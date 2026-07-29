@@ -21,6 +21,12 @@
       "command": "npx",
       "args": ["tsx", "tools/tv-mcp/src/index.ts"],
       "description": "TradingView Desktop — 74 chart control, drawing, data, and automation tools via CDP"
+    },
+    "frozo-tv": {
+      "command": "node",
+      "args": ["C:/Users/cash/frozo-tradingview-mcp/src/server.js"],
+      "cwd": "C:/Users/cash/frozo-tradingview-mcp",
+      "description": "Frozo TradingView MCP — 79 tools with UI automation (click, type, find_element), Pine Script, Dhan broker bridge"
     }
   }
 }
