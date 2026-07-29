@@ -112,29 +112,118 @@ function isInJudasSwingNY() {
 // NY day-of-week for ICT calendar
 const NY_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-// CLI mode: node tools/ny_time.cjs --now
+// ═══════════════ ICT DAY PROFILES ═══════════════
+const DAY_PROFILES = {
+  0: { name: "Sunday",     character: "Weekly prep. Low volume, gap analysis only.", risk: "None", multiplier: 0.0, bestModels: [], notes: "No trading. Prepare for the week." },
+  1: { name: "Monday",     character: "Range Set Day. Weekly range established.", risk: "Low", multiplier: 0.8, bestModels: ["Asian Range","NWOG/NDOG","Judas Swing"], notes: "Don't trade first 2h of London. Wait for weekly range to set." },
+  2: { name: "Tuesday",    character: "Continuation Day. Monday extends or reverses.", risk: "Medium", multiplier: 1.0, bestModels: ["Breaker Block","OTE + OB","Silver Bullet"], notes: "If Monday range-bound, Tuesday expands. Watch for turnaround." },
+  3: { name: "Wednesday",  character: "Reversal Day. Often marks weekly high/low.", risk: "Medium-High", multiplier: 1.2, bestModels: ["Turtle Soup","Judas Swing","Silver Bullet (NY AM)"], notes: "Highest probability reversal day. NY AM critical." },
+  4: { name: "Thursday",   character: "Expansion Day. Strongest trending day.", risk: "High", multiplier: 1.3, bestModels: ["MMXM","Unicorn","SCOB","2FVG","OTE + OB"], notes: "Best day for trend trades. Highest MMXM win rate." },
+  5: { name: "Friday",     character: "Position Squaring. Profit-taking dominates.", risk: "Low", multiplier: 0.6, bestModels: ["Silver Bullet (AM only)"], notes: "Close all positions by NY close. No new swings. No weekend holds." },
+  6: { name: "Saturday",   character: "Market closed.", risk: "None", multiplier: 0.0, bestModels: [], notes: "No trading." },
+};
+
+// Weekly cycle position based on day + session
+function getWeeklyPosition(nyHour, nyDay) {
+  if (nyDay === 1) return nyHour < 12 ? "Monday AM — Gap analysis, weekly range not yet set" : "Monday PM — Weekly range setting, high/low of week often forms now";
+  if (nyDay === 2) return "Tuesday — Range extending or reversing. 'Turnaround Tuesday'";
+  if (nyDay === 3) return nyHour < 12 ? "Wednesday AM — Weekly reversal zone" : "Wednesday PM — Weekly expansion begins. Big move incoming.";
+  if (nyDay === 4) return "Thursday — Weekly expansion peak. Strongest trending. ★ MMXM prime time.";
+  if (nyDay === 5) return nyHour < 12 ? "Friday AM — Late continuation or early squaring" : "Friday PM — Close all positions. No new trades.";
+  return "Weekend — No trading";
+}
+
+// Monthly/quarterly event detection
+function getMacroEvents() {
+  const now = new Date();
+  const dom = now.getUTCDate();
+  const month = now.getUTCMonth(); // 0-11
+  const day = now.getUTCDay();
+  const year = now.getUTCFullYear();
+  const events = [];
+
+  // NFP: 1st Friday
+  if (dom <= 7 && day === 5) events.push({ event: "NFP Week", impact: "Extreme", action: "No positions 30min before/after release" });
+
+  // Options expiry: 3rd Friday
+  if (dom >= 15 && dom <= 21 && day === 5) events.push({ event: "Options Expiry", impact: "High — pinning", action: "Expect range-bound, avoid breakouts" });
+
+  // Month-end: last 2-3 trading days
+  const lastDay = new Date(year, month + 1, 0).getDate();
+  if (dom >= lastDay - 2) events.push({ event: "Month-End Rebalancing", impact: "Medium", action: "Institutional flow can reverse technicals" });
+
+  // Quarter-end
+  if ([2,5,8,11].includes(month) && dom >= lastDay - 4) events.push({ event: "Quarter-End", impact: "High", action: "Major rebalancing. Expect unusual correlations." });
+
+  // CPI week (2nd week, rough)
+  if (dom >= 8 && dom <= 14 && day >= 1 && day <= 4) events.push({ event: "CPI/Inflation Window", impact: "High", action: "Tighten SL, reduce size" });
+
+  return events;
+}
+
+// Next Silver Bullet window
+function getNextSB(nyHour) {
+  if (nyHour < 3) return { window: "London SB", time: "03:00-04:00 NY", countdown: (3 - nyHour) + "h" };
+  if (nyHour === 3) return { window: "London SB", time: "NOW — 03:00-04:00 NY", countdown: "ACTIVE" };
+  if (nyHour < 10) return { window: "NY AM SB", time: "10:00-11:00 NY", countdown: (10 - nyHour) + "h" };
+  if (nyHour === 10) return { window: "NY AM SB", time: "NOW — 10:00-11:00 NY", countdown: "ACTIVE" };
+  if (nyHour < 14) return { window: "NY PM SB", time: "14:00-15:00 NY", countdown: (14 - nyHour) + "h" };
+  if (nyHour === 14) return { window: "NY PM SB", time: "NOW — 14:00-15:00 NY", countdown: "ACTIVE" };
+  return { window: "London SB (tomorrow)", time: "03:00-04:00 NY", countdown: ((27 - nyHour) % 24) + "h" };
+}
+
+// ═══════════════ CLI ═══════════════
 if (require.main === module) {
+  const mode = process.argv[2] || "--now";
   const sb = isInSilverBulletNY();
   const js = isInJudasSwingNY();
   const session = getNYSession();
   const kz = isInKillzoneNY();
-  const day = NY_DAYS[getNYDay()];
-  const reliability = sb.active ? 1.5 : kz ? 1.3 : session.name === "nyLunch" ? 0.4 : 1.0;
-  console.log(JSON.stringify({
-    nyHour: getNYHour(),
-    nyDay: day,
-    session: session.label,
-    character: session.character,
-    killzone: kz,
-    silverBullet: sb.active ? sb.label : null,
-    judasSwing: js.active ? js.label : null,
-    reliability: reliability,
-    tradeable: kz && !["nyLunch", "offHours", "nyClose"].includes(session.name),
-    nextSB: sb.active ? "NOW — closes soon" :
-      getNYHour() < 3 ? "London SB 03:00 NY" :
-      getNYHour() < 10 ? "NY AM SB 10:00 NY" :
-      getNYHour() < 14 ? "NY PM SB 14:00 NY" : "Tomorrow London SB 03:00 NY"
-  }, null, 2));
+  const nyDay = getNYDay();
+  const nyHour = getNYHour();
+  const dayProfile = DAY_PROFILES[nyDay] || DAY_PROFILES[0];
+  const nextSB = getNextSB(nyHour);
+  const macroEvents = getMacroEvents();
+  const weeklyPosition = getWeeklyPosition(nyHour, nyDay);
+
+  const reliability = sb.active ? 1.5 : kz ? 1.3 : session.name === "nyLunch" ? 0.4 : session.name === "offHours" ? 0.3 : 1.0;
+  const dayMultiplier = dayProfile.multiplier;
+  const combinedMultiplier = (reliability * dayMultiplier).toFixed(2);
+
+  const output = {
+    now: new Date().toISOString(),
+    nyTime: { hour: nyHour, day: NY_DAYS[nyDay], dayIndex: nyDay },
+    session: { name: session.label, character: session.character, killzone: kz, reliability: reliability },
+    dayProfile: { name: dayProfile.name, character: dayProfile.character, risk: dayProfile.risk, multiplier: dayMultiplier, bestModels: dayProfile.bestModels, notes: dayProfile.notes },
+    silverBullet: { active: sb.active, current: sb.active ? sb.label : null, next: nextSB },
+    judasSwing: { active: js.active, current: js.active ? js.label : null },
+    weeklyPosition: weeklyPosition,
+    multipliers: { session: reliability, day: dayMultiplier, combined: combinedMultiplier },
+    tradeable: kz && !["nyLunch","offHours","nyClose"].includes(session.name) && dayMultiplier > 0,
+    macroEvents: macroEvents,
+    rules: {
+      noTrade: session.name === "offHours" ? "Off hours — no liquidity" :
+                session.name === "nyLunch" ? "NY Lunch — low liquidity, avoid entries" :
+                session.name === "nyClose" ? "NY Close approaching — tighten stops, no new entries" : null,
+      dayNote: dayProfile.notes,
+      fridayRule: nyDay === 5 ? "CLOSE ALL POSITIONS by 16:00 NY. No weekend holds." : null,
+    }
+  };
+
+  if (mode === "--full" || mode === "-f") {
+    console.log(JSON.stringify(output, null, 2));
+  } else {
+    // Compact mode
+    console.log(JSON.stringify({
+      nyTime: output.nyTime,
+      session: output.session,
+      dayProfile: { name: output.dayProfile.name, multiplier: output.dayProfile.multiplier },
+      silverBullet: output.silverBullet,
+      combinedMultiplier: output.multipliers.combined,
+      tradeable: output.tradeable,
+      nextSB: nextSB.window + " " + nextSB.time,
+    }, null, 2));
+  }
   process.exit(0);
 }
 
