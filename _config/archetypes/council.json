@@ -1,0 +1,34 @@
+{
+  "description": "Archetype Council — four specialists collaborating on every trade decision. Position sets direction, Swing finds the zone, Day times the entry, Scalp pulls the trigger.",
+  "voting": {
+    "weights": { "position": 4, "swing": 3, "day": 2, "scalp": 1 },
+    "quorum": { "strong": 4, "majority": 3, "split": 2 },
+    "thresholds": {
+      "allAligned": { "verdict": "STRONG", "action": "FULL SIZE — all archetypes agree" },
+      "majority": { "verdict": "MAJORITY", "action": "ENTER with standard size" },
+      "positionScalpAligned": { "verdict": "POSITION-SCALP", "action": "SCALE-IN — start scalp size, add as middle TFs confirm" },
+      "split": { "verdict": "SPLIT", "action": "WAIT — no consensus" }
+    }
+  },
+  "scaleIn": {
+    "enabled": true,
+    "steps": [
+      { "name": "Scalp Entry", "archetype": "scalp", "risk": "0.25%", "trigger": "1m CHoCH + 5m FVG", "sl": "1m swing" },
+      { "name": "Day Add", "archetype": "day", "risk": "+0.5%", "trigger": "15m BOS in council direction", "sl": "15m swing" },
+      { "name": "Swing Add", "archetype": "swing", "risk": "+1%", "trigger": "4H close confirming", "sl": "4H swing" },
+      { "name": "Position Add", "archetype": "position", "risk": "+1%", "trigger": "Daily close confirming", "sl": "Daily swing" }
+    ],
+    "totalRisk": "2.75%"
+  },
+  "crossQueries": {
+    "enabled": true,
+    "examples": {
+      "scalp→position": "Is this 1m move worth holding, or just a scalp?",
+      "scalp→day": "Is 5m confirming my 1m signal?",
+      "day→swing": "Does 4H support this 15m entry?",
+      "swing→position": "Is the HTF POI still valid?",
+      "position→scalp": "Is there a 1m trigger yet? I want to build.",
+      "position→swing": "Is the daily pullback exhausted? Ready to enter?"
+    }
+  }
+}

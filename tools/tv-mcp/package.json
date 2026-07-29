@@ -1,0 +1,26 @@
+{
+  "name": "@smc/tv-mcp",
+  "version": "1.0.0",
+  "description": "TradingView Desktop MCP server — 74 tools for chart control, drawing, data, and more",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "tv-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "chrome-remote-interface": "^0.33.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/chrome-remote-interface": "^0.34.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  }
+}

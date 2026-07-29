@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Secrets
+.env
+*.pem
+*.key
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Runtime data (daily candles, engine reports, forecasts)
+shared/backtest/batch/
+shared/monitor/
+shared/performance/
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Claude (session files, not the settings)
+.claude/
+
+# Test output
+coverage/

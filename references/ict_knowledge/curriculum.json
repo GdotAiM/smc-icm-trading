@@ -1,0 +1,2172 @@
+[
+  {
+    "tier": 0,
+    "name": "Foundations",
+    "conceptCount": 45,
+    "concepts": [
+      {
+        "id": "break-of-structure-bos",
+        "title": "break-of-structure-bos",
+        "file": "01 - ICT Trading Tutorials\\break-of-structure-bos.md",
+        "wordCount": 2225,
+        "prerequisites": [],
+        "keyRules": [
+          "Read the higher-timeframe context.",
+          "Identify the previous structure.",
+          "Wait for the BOS to print.",
+          "Mark the inducement inside the leg.",
+          "Wait for price to retrace and grab the inducement."
+        ]
+      },
+      {
+        "id": "break-of-structure-vs-change-of-character",
+        "title": "break-of-structure-vs-change-of-character",
+        "file": "01 - ICT Trading Tutorials\\break-of-structure-vs-change-of-character.md",
+        "wordCount": 2051,
+        "prerequisites": [],
+        "keyRules": [
+          "Set the higher-timeframe bias.",
+          "Mark the higher-timeframe PD array.",
+          "Wait for the structural confirmation."
+        ]
+      },
+      {
+        "id": "candle-range-theory-crt",
+        "title": "candle-range-theory-crt",
+        "file": "01 - ICT Trading Tutorials\\candle-range-theory-crt.md",
+        "wordCount": 2171,
+        "prerequisites": [],
+        "keyRules": [
+          "Anchor on a higher timeframe.",
+          "Mark the CRT-High and CRT-Low.",
+          "Wait for the raid.",
+          "Confirm the close.",
+          "Drop to the lower timeframe.",
+          "Look for an MSS."
+        ]
+      },
+      {
+        "id": "change-of-character-choch-in",
+        "title": "change-of-character-choch-in-trading",
+        "file": "01 - ICT Trading Tutorials\\change-of-character-choch-in-trading.md",
+        "wordCount": 1978,
+        "prerequisites": [],
+        "keyRules": [
+          "Read the higher-timeframe context.",
+          "Wait for price to reach a higher-timeframe PD array.",
+          "Watch for the CHOCH on the analysis timeframe.",
+          "Mark the inducement inside the CHOCH leg."
+        ]
+      },
+      {
+        "id": "forex",
+        "title": "forex-trading",
+        "file": "01 - ICT Trading Tutorials\\forex-trading.md",
+        "wordCount": 2364,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "free-ict-trading-tools-kill-zones-macro-times-forex-hours-tracker",
+        "title": "free-ict-trading-tools-kill-zones-macro-times-forex-hours-tracker",
+        "file": "06 - Tools\\free-ict-trading-tools-kill-zones-macro-times-forex-hours-tracker.md",
+        "wordCount": 458,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "glossary-pdf",
+        "title": "glossary-pdf",
+        "file": "09 - Site Pages\\glossary-pdf.md",
+        "wordCount": 25,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "higher-high-and-higher-low",
+        "title": "higher-high-and-higher-low",
+        "file": "01 - ICT Trading Tutorials\\higher-high-and-higher-low.md",
+        "wordCount": 1861,
+        "prerequisites": [],
+        "keyRules": [
+          "Confirm the bullish trend.",
+          "Mark the structural low.",
+          "Wait for the first swing high.",
+          "Mark the inducement.",
+          "Wait for the inducement sweep."
+        ]
+      },
+      {
+        "id": "Homepage",
+        "title": "Homepage",
+        "file": "00 - Home\\Homepage.md",
+        "wordCount": 1469,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "ict",
+        "title": "ict",
+        "file": "09 - Site Pages\\ict.md",
+        "wordCount": 35,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "abbreviations",
+        "title": "ict-abbreviations",
+        "file": "01 - ICT Trading Tutorials\\ict-abbreviations.md",
+        "wordCount": 1794,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "advance-market-structure",
+        "title": "ict-advance-market-structure",
+        "file": "01 - ICT Trading Tutorials\\ict-advance-market-structure.md",
+        "wordCount": 2179,
+        "prerequisites": [],
+        "keyRules": [
+          "Mark the LTHs first."
+        ]
+      },
+      {
+        "id": "asian-range",
+        "title": "ict-asian-range",
+        "file": "01 - ICT Trading Tutorials\\ict-asian-range.md",
+        "wordCount": 2222,
+        "prerequisites": [],
+        "keyRules": [
+          "Set the daily bias.",
+          "Mark the Asian range.",
+          "Mark the New York midnight open.",
+          "Wait for the sweep.",
+          "Drop to the lower timeframe."
+        ]
+      },
+      {
+        "id": "cisd-and-ict-mss",
+        "title": "ict-cisd-and-ict-mss",
+        "file": "01 - ICT Trading Tutorials\\ict-cisd-and-ict-mss.md",
+        "wordCount": 2059,
+        "prerequisites": [],
+        "keyRules": [
+          "Identify the higher-timeframe PD array.",
+          "Wait for price to tap the PD array.",
+          "Drop to the lower timeframe.",
+          "Watch for the CISD."
+        ]
+      },
+      {
+        "id": "daily-bias-trick",
+        "title": "ict-daily-bias-trick",
+        "file": "01 - ICT Trading Tutorials\\ict-daily-bias-trick.md",
+        "wordCount": 1863,
+        "prerequisites": [],
+        "keyRules": [
+          "Open the 1-day chart.",
+          "Identify the most recent daily MSS.",
+          "Lock the bias direction.",
+          "Mark the bias-aligned PD array.",
+          "Wait for price to retrace into the PD array.",
+          "Drop to the confirmation timeframe."
+        ]
+      },
+      {
+        "id": "ICT-Foundations-and-FAQ",
+        "title": "ICT-Foundations-and-FAQ",
+        "file": "00 - Home\\ICT-Foundations-and-FAQ.md",
+        "wordCount": 335,
+        "prerequisites": [],
+        "keyRules": [
+          "PD Array (Premium / Discount Array)",
+          "ICT Kill Zones",
+          "Order Blocks",
+          "Fair Value Gaps (FVG)",
+          "Liquidity",
+          "Power of 3"
+        ]
+      },
+      {
+        "id": "intraday",
+        "title": "ict-intraday-trading-strategy",
+        "file": "01 - ICT Trading Tutorials\\ict-intraday-trading-strategy.md",
+        "wordCount": 2547,
+        "prerequisites": [],
+        "keyRules": [
+          "Set the daily bias.",
+          "Identify the Asian session range.",
+          "If Asia is expanding, plot Fibonacci."
+        ]
+      },
+      {
+        "id": "liquidity-pool",
+        "title": "ict-liquidity-pool",
+        "file": "01 - ICT Trading Tutorials\\ict-liquidity-pool.md",
+        "wordCount": 2117,
+        "prerequisites": [],
+        "keyRules": [
+          "Read the daily and H4 bias.",
+          "Mark the old high and old low.",
+          "Identify the matching pool.",
+          "Wait for the sweep.",
+          "Drop to the lower timeframe."
+        ]
+      },
+      {
+        "id": "liquidity-sweep-vs-liquidity-run",
+        "title": "ict-liquidity-sweep-vs-liquidity-run",
+        "file": "01 - ICT Trading Tutorials\\ict-liquidity-sweep-vs-liquidity-run.md",
+        "wordCount": 2143,
+        "prerequisites": [],
+        "keyRules": [
+          "Read the higher-timeframe bias.",
+          "Mark the liquidity above and below.",
+          "Mark the PD array."
+        ]
+      },
+      {
+        "id": "market-maker-sell-model",
+        "title": "ict-market-maker-sell-model",
+        "file": "01 - ICT Trading Tutorials\\ict-market-maker-sell-model.md",
+        "wordCount": 1929,
+        "prerequisites": [],
+        "keyRules": [
+          "Confirm bearish higher-timeframe structure.",
+          "Confirm the next draw-on-liquidity is below.",
+          "Identify the higher-timeframe bearish PD array.",
+          "Wait for the buy program on the lower timeframe."
+        ]
+      },
+      {
+        "id": "market-structure-shift",
+        "title": "ict-market-structure-shift",
+        "file": "01 - ICT Trading Tutorials\\ict-market-structure-shift.md",
+        "wordCount": 2714,
+        "prerequisites": [],
+        "keyRules": [
+          "Set the daily bias",
+          "Mark the higher-timeframe PD Array",
+          "Wait for price to approach",
+          "Drop to the 5-minute, 3-minute, or 1-minute chart",
+          "Identify the most recent counter-trend swing"
+        ]
+      },
+      {
+        "id": "pd-array-key-to-trade-execution",
+        "title": "ict-pd-array-key-to-trade-execution",
+        "file": "01 - ICT Trading Tutorials\\ict-pd-array-key-to-trade-execution.md",
+        "wordCount": 2507,
+        "prerequisites": [],
+        "keyRules": [
+          "Identify the dealing range",
+          "Plot the fibonacci",
+          "Mark premium and discount zones",
+          "Set the daily bias",
+          "Wait for price to enter the correct zone"
+        ]
+      },
+      {
+        "id": "ICT-PDF-and-Glossary",
+        "title": "ICT-PDF-and-Glossary",
+        "file": "07 - eBook\\ICT-PDF-and-Glossary.md",
+        "wordCount": 135,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "premium-and-discount-zone-identification",
+        "title": "ict-premium-and-discount-zone-identification",
+        "file": "01 - ICT Trading Tutorials\\ict-premium-and-discount-zone-identification.md",
+        "wordCount": 1706,
+        "prerequisites": [],
+        "keyRules": [
+          "Confirm the higher-timeframe trend.",
+          "Identify the relevant swing high and swing low",
+          "Draw the Fibonacci tool",
+          "Mark the zones.",
+          "Wait for price to retrace into the relevant zone"
+        ]
+      },
+      {
+        "id": "redelivered-rebalanced-price-range",
+        "title": "ict-redelivered-rebalanced-price-range",
+        "file": "01 - ICT Trading Tutorials\\ict-redelivered-rebalanced-price-range.md",
+        "wordCount": 1960,
+        "prerequisites": [],
+        "keyRules": [
+          "Identify the higher-timeframe bias.",
+          "Spot the 2-candle RDRB pair.",
+          "Mark the surrounding wicks.",
+          "Confirm bias alignment.",
+          "Wait for the retest.",
+          "Drop to the lower timeframe."
+        ]
+      },
+      {
+        "id": "stl-itl-ltl",
+        "title": "ict-stl-itl-ltl",
+        "file": "01 - ICT Trading Tutorials\\ict-stl-itl-ltl.md",
+        "wordCount": 2080,
+        "prerequisites": [],
+        "keyRules": [
+          "Mark the LTLs first.",
+          "Mark the ITLs.",
+          "Mark the STLs."
+        ]
+      },
+      {
+        "id": "suspension-block",
+        "title": "ict-suspension-block",
+        "file": "01 - ICT Trading Tutorials\\ict-suspension-block.md",
+        "wordCount": 2001,
+        "prerequisites": [],
+        "keyRules": [
+          "Set the higher-timeframe bias.",
+          "Mark the higher-timeframe premium and discount zones.",
+          "Wait for price to tap the bias-aligned zone.",
+          "Drop to the lower timeframe.",
+          "Wait for the MSS."
+        ]
+      },
+      {
+        "id": "swing-high",
+        "title": "ict-swing-high-explained",
+        "file": "01 - ICT Trading Tutorials\\ict-swing-high-explained.md",
+        "wordCount": 1611,
+        "prerequisites": [],
+        "keyRules": [
+          "Mark the high of a candlestick",
+          "Check the high of the candlestick on the left",
+          "Check the high of the candlestick on the right"
+        ]
+      },
+      {
+        "id": "swing-low-formation",
+        "title": "ict-swing-low-formation",
+        "file": "01 - ICT Trading Tutorials\\ict-swing-low-formation.md",
+        "wordCount": 1598,
+        "prerequisites": [],
+        "keyRules": [
+          "Mark the low of a candlestick",
+          "Check the low of the candlestick on the left",
+          "Check the low of the candlestick on the right"
+        ]
+      },
+      {
+        "id": "venom-trading-model-2025",
+        "title": "ict-venom-trading-model-2025",
+        "file": "01 - ICT Trading Tutorials\\ict-venom-trading-model-2025.md",
+        "wordCount": 2422,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "weekly-range-expansion",
+        "title": "ict-weekly-range-expansion",
+        "file": "01 - ICT Trading Tutorials\\ict-weekly-range-expansion.md",
+        "wordCount": 1716,
+        "prerequisites": [],
+        "keyRules": [
+          "Set the weekly bias.",
+          "Confirm the bias with daily MSS.",
+          "Identify the three PD arrays.",
+          "Wait for the new week to open.",
+          "Wait for the Tuesday 04:00 AM NY open."
+        ]
+      },
+      {
+        "id": "inducement-after-break-of-structure",
+        "title": "inducement-after-break-of-structure",
+        "file": "01 - ICT Trading Tutorials\\inducement-after-break-of-structure.md",
+        "wordCount": 1845,
+        "prerequisites": [],
+        "keyRules": [
+          "Confirm the major BOS.",
+          "Check for the original inducement sweep.",
+          "Watch for price moving away without the sweep.",
+          "Wait for the minor BOS.",
+          "Mark the new bullish or bearish leg."
+        ]
+      },
+      {
+        "id": "killzone-silver-bullet-overlap",
+        "title": "killzone-silver-bullet-overlap",
+        "file": "01 - ICT Trading Tutorials\\killzone-silver-bullet-overlap.md",
+        "wordCount": 2425,
+        "prerequisites": [],
+        "keyRules": [
+          "Establish your bias.",
+          "Wait for a liquidity sweep."
+        ]
+      },
+      {
+        "id": "lower-high-and-lower-low",
+        "title": "lower-high-and-lower-low",
+        "file": "01 - ICT Trading Tutorials\\lower-high-and-lower-low.md",
+        "wordCount": 1896,
+        "prerequisites": [],
+        "keyRules": [
+          "Confirm the bearish trend.",
+          "Mark the structural high.",
+          "Wait for the first swing low.",
+          "Mark the inducement.",
+          "Wait for the inducement sweep."
+        ]
+      },
+      {
+        "id": "market-structure",
+        "title": "market-structure",
+        "file": "09 - Site Pages\\market-structure.md",
+        "wordCount": 204,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "market-structure-in",
+        "title": "market-structure-in-trading",
+        "file": "01 - ICT Trading Tutorials\\market-structure-in-trading.md",
+        "wordCount": 1989,
+        "prerequisites": [],
+        "keyRules": [
+          "Set the higher-timeframe context.",
+          "Identify the structural extremes.",
+          "Wait for the BOS.",
+          "Mark the inducement inside the BOS leg.",
+          "Wait for price to retrace and take the inducement.",
+          "Drop to the lower timeframe.",
+          "Wait for the lower-timeframe MSS."
+        ]
+      },
+      {
+        "id": "market-structure-playlist---ict",
+        "title": "market-structure-playlist---ict-trading",
+        "file": "08 - Market Structure\\market-structure-playlist---ict-trading.md",
+        "wordCount": 166,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "ict-kill-zones",
+        "title": "master-ict-kill-zones",
+        "file": "01 - ICT Trading Tutorials\\master-ict-kill-zones.md",
+        "wordCount": 2849,
+        "prerequisites": [],
+        "keyRules": [
+          "Set the daily bias.",
+          "Mark the draw on liquidity.",
+          "Wait for the killzone to open.",
+          "Watch for the sweep.",
+          "Wait for an MSS."
+        ]
+      },
+      {
+        "id": "mss-vs-choch",
+        "title": "mss-vs-choch",
+        "file": "01 - ICT Trading Tutorials\\mss-vs-choch.md",
+        "wordCount": 1987,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "powerful-ict-reversal-patterns",
+        "title": "powerful-ict-reversal-patterns",
+        "file": "01 - ICT Trading Tutorials\\powerful-ict-reversal-patterns.md",
+        "wordCount": 1998,
+        "prerequisites": [],
+        "keyRules": [
+          "Identify the higher-timeframe PD array.",
+          "Wait for price to reach the PD array.",
+          "Watch for Stage 1 — IFVG/BPR.",
+          "Watch for Stage 2 — CISD.",
+          "Watch for Stage 3 — MSS.",
+          "Wait for the retest."
+        ]
+      },
+      {
+        "id": "proven-ict-20-pips-a-day",
+        "title": "proven-ict-20-pips-a-day",
+        "file": "01 - ICT Trading Tutorials\\proven-ict-20-pips-a-day.md",
+        "wordCount": 1961,
+        "prerequisites": [],
+        "keyRules": [
+          "Read the market environment.",
+          "Set the chart to New York local time.",
+          "Identify the active session.",
+          "Mark the short-term liquidity.",
+          "Wait for the liquidity raid.",
+          "Drop to the 1-minute for the trigger.",
+          "Enter the trade."
+        ]
+      },
+      {
+        "id": "qml-chart-pattern",
+        "title": "qml-chart-pattern",
+        "file": "01 - ICT Trading Tutorials\\qml-chart-pattern.md",
+        "wordCount": 1949,
+        "prerequisites": [],
+        "keyRules": [
+          "Read the higher-timeframe context.",
+          "Wait for price to reach the key level.",
+          "Watch for the QML structure.",
+          "Mark the QML zone.",
+          "Refine inside the QML zone."
+        ]
+      },
+      {
+        "id": "simple-ict-scalping",
+        "title": "simple-ict-scalping-strategy",
+        "file": "01 - ICT Trading Tutorials\\simple-ict-scalping-strategy.md",
+        "wordCount": 1728,
+        "prerequisites": [],
+        "keyRules": [
+          "Set the daily bias.",
+          "Identify the 3rd daily candle.",
+          "Mark the OTE level on the 3rd daily candle.",
+          "Mark the next draw on liquidity.",
+          "Wait for the killzone."
+        ]
+      },
+      {
+        "id": "supply-and-demand-in-forex",
+        "title": "supply-and-demand-in-forex-trading",
+        "file": "01 - ICT Trading Tutorials\\supply-and-demand-in-forex-trading.md",
+        "wordCount": 2270,
+        "prerequisites": [],
+        "keyRules": [
+          "Read the higher-timeframe context.",
+          "Wait for the structural confirmation.",
+          "Identify the supply or demand zone.",
+          "Mark the zone boundary.",
+          "Wait for price to retrace and tap the zone.",
+          "Drop to the lower timeframe (5-minute or 15-minute)."
+        ]
+      },
+      {
+        "id": "what-is-ict-hidden-order-block",
+        "title": "what-is-ict-hidden-order-block",
+        "file": "01 - ICT Trading Tutorials\\what-is-ict-hidden-order-block.md",
+        "wordCount": 1895,
+        "prerequisites": [],
+        "keyRules": [
+          "Find two consecutive same-colour candles.",
+          "Check for wick overlap.",
+          "Mark the overlap zone."
+        ]
+      }
+    ],
+    "estimatedStudyTime": 398
+  },
+  {
+    "tier": 1,
+    "name": "Core Mechanics",
+    "conceptCount": 26,
+    "concepts": [
+      {
+        "id": "fair-value-gap",
+        "title": "fair-value-gap-trading-strategy",
+        "file": "01 - ICT Trading Tutorials\\fair-value-gap-trading-strategy.md",
+        "wordCount": 2554,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "daily-bias-trick",
+          "premium-and-discount-zone-identification",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": []
+      },
+      {
+        "id": "balanced-price-range-bpr",
+        "title": "ict-balanced-price-range-bpr",
+        "file": "01 - ICT Trading Tutorials\\ict-balanced-price-range-bpr.md",
+        "wordCount": 2324,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution",
+          "premium-and-discount-zone-identification"
+        ],
+        "keyRules": [
+          "Set the daily bias",
+          "Mark the higher-timeframe PD Array",
+          "Wait for price to approach",
+          "Drop to the 5-minute or 3-minute chart",
+          "Watch for a Market Structure Shift"
+        ]
+      },
+      {
+        "id": "bearish-order-block",
+        "title": "ict-bearish-order-block",
+        "file": "01 - ICT Trading Tutorials\\ict-bearish-order-block.md",
+        "wordCount": 2232,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Confirm bearish trend.",
+          "Spot the candle pair.",
+          "Verify the four conditions.",
+          "Mark the order block zone.",
+          "Mark the next draw on liquidity.",
+          "Wait for the retest."
+        ]
+      },
+      {
+        "id": "breaker-block",
+        "title": "ict-breaker-block-trading",
+        "file": "01 - ICT Trading Tutorials\\ict-breaker-block-trading.md",
+        "wordCount": 1985,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "liquidity-sweep-vs-liquidity-run",
+          "daily-bias-trick"
+        ],
+        "keyRules": [
+          "Set the daily bias",
+          "Mark the higher-timeframe PD Array",
+          "Wait for the liquidity sweep",
+          "Confirm the OB has failed",
+          "Drop to the lower timeframe"
+        ]
+      },
+      {
+        "id": "bullish-order-block",
+        "title": "ict-bullish-order-block",
+        "file": "01 - ICT Trading Tutorials\\ict-bullish-order-block.md",
+        "wordCount": 2139,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Confirm bullish trend.",
+          "Spot the candle pair.",
+          "Verify the four conditions.",
+          "Mark the order block zone.",
+          "Mark the next draw on liquidity."
+        ]
+      },
+      {
+        "id": "consequent-encroachment",
+        "title": "ict-consequent-encroachment",
+        "file": "01 - ICT Trading Tutorials\\ict-consequent-encroachment.md",
+        "wordCount": 1969,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Set the daily bias.",
+          "Identify the higher-timeframe PD array.",
+          "Mark the next draw on liquidity.",
+          "Wait for price to tap the PD array."
+        ]
+      },
+      {
+        "id": "displacement-move",
+        "title": "ict-displacement-move",
+        "file": "01 - ICT Trading Tutorials\\ict-displacement-move.md",
+        "wordCount": 1457,
+        "prerequisites": [
+          "market-structure",
+          "pd-array-key-to-trade-execution",
+          "premium-and-discount-zone-identification",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "First, look for a bullish market structure.",
+          "If the market structure is bullish and price displaced from a higher-timeframe[PD Array](<https://innercircletrader.net/tutorials/ict-pd-array-key-to-trade-execution/> \"ICT PD Array\")",
+          "When price retraces back and tests the premium zone",
+          "After confirmation",
+          "First, look for a bearish market structure.",
+          "If the market structure is bearish and price displaced from a higher-timeframe PD Array",
+          "When price retraces back and tests the discount zone"
+        ]
+      },
+      {
+        "id": "enigma-fair-value-gap",
+        "title": "ict-enigma-fair-value-gap",
+        "file": "01 - ICT Trading Tutorials\\ict-enigma-fair-value-gap.md",
+        "wordCount": 2173,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Anchoring from the wrong candle."
+        ]
+      },
+      {
+        "id": "implied-fair-value-gap-ifvg",
+        "title": "ict-implied-fair-value-gap-ifvg",
+        "file": "01 - ICT Trading Tutorials\\ict-implied-fair-value-gap-ifvg.md",
+        "wordCount": 2465,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Set the higher-timeframe trend.",
+          "Mark the higher-timeframe PD array."
+        ]
+      },
+      {
+        "id": "institutional-order-flow-entry-drill",
+        "title": "ict-institutional-order-flow-entry-drill",
+        "file": "01 - ICT Trading Tutorials\\ict-institutional-order-flow-entry-drill.md",
+        "wordCount": 2105,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Set the daily bias.",
+          "Identify the higher-timeframe premium / discount.",
+          "Mark the higher-timeframe PD array.",
+          "Wait for price to tap the PD array.",
+          "Drop to the lower timeframe.",
+          "Wait for the LTF MSS."
+        ]
+      },
+      {
+        "id": "inversion-fair-value-gap",
+        "title": "ict-inversion-fair-value-gap",
+        "file": "01 - ICT Trading Tutorials\\ict-inversion-fair-value-gap.md",
+        "wordCount": 2231,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Set the daily bias",
+          "Identify the original fair value gap",
+          "Watch for violation",
+          "Confirm the violation context"
+        ]
+      },
+      {
+        "id": "mitigation-block",
+        "title": "ict-mitigation-block-explained",
+        "file": "01 - ICT Trading Tutorials\\ict-mitigation-block-explained.md",
+        "wordCount": 1903,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution",
+          "daily-bias-trick"
+        ],
+        "keyRules": [
+          "Set the daily bias",
+          "Identify the original order block",
+          "Confirm the OB has NOT been broken",
+          "Wait for the retrace",
+          "Drop to a lower timeframe",
+          "Mark the Mitigation zone"
+        ]
+      },
+      {
+        "id": "new-day-opening-gap-ndog",
+        "title": "ict-new-day-opening-gap-ndog",
+        "file": "01 - ICT Trading Tutorials\\ict-new-day-opening-gap-ndog.md",
+        "wordCount": 1825,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "daily-bias-trick"
+        ],
+        "keyRules": [
+          "Mark the last 5 NDOGs on your daily chart.",
+          "Mark the consequent encroachment for each.",
+          "Set the daily bias.",
+          "Locate price relative to the nearest NDOG.",
+          "Drop to the 15-minute (or 5-minute) for the trigger.",
+          "Wait for confirmation."
+        ]
+      },
+      {
+        "id": "order-block",
+        "title": "ict-order-block",
+        "file": "01 - ICT Trading Tutorials\\ict-order-block.md",
+        "wordCount": 2657,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Set the daily bias",
+          "Mark the higher-timeframe[PD Array](<https://innercircletrader.net/tutorials/ict-pd-array-key-to-trade-execution/>)",
+          "Wait for price to approach",
+          "Drop to the 5-minute or 3-minute chart",
+          "Watch for the impulse move"
+        ]
+      },
+      {
+        "id": "power-of-3",
+        "title": "ict-power-of-3",
+        "file": "01 - ICT Trading Tutorials\\ict-power-of-3.md",
+        "wordCount": 2358,
+        "prerequisites": [
+          "market-structure",
+          "daily-bias-trick"
+        ],
+        "keyRules": [
+          "Establish daily bias",
+          "Mark the daily opening price",
+          "Wait for accumulation",
+          "Mark the accumulation range high and low",
+          "Wait for the manipulation move",
+          "Confirm the sweep"
+        ]
+      },
+      {
+        "id": "propulsion-block",
+        "title": "ict-propulsion-block",
+        "file": "01 - ICT Trading Tutorials\\ict-propulsion-block.md",
+        "wordCount": 2068,
+        "prerequisites": [],
+        "keyRules": [
+          "Identify a valid order block.",
+          "Spot the propulsion candle.",
+          "Mark the mean threshold.",
+          "Wait for the retest.",
+          "Confirm the mean-threshold rule.",
+          "Enter on the body retest."
+        ]
+      },
+      {
+        "id": "reaper-inversion-fair-value-gap",
+        "title": "ict-reaper-inversion-fair-value-gap",
+        "file": "01 - ICT Trading Tutorials\\ict-reaper-inversion-fair-value-gap.md",
+        "wordCount": 2540,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "premium-and-discount-zone-identification"
+        ],
+        "keyRules": [
+          "Establish a bullish bias.",
+          "Identify the bullish Breaker.",
+          "Locate the Reaper IFVG.",
+          "Wait for price to reach discount.",
+          "Look for confirmation."
+        ]
+      },
+      {
+        "id": "reclaimed-order-block",
+        "title": "ict-reclaimed-order-block",
+        "file": "01 - ICT Trading Tutorials\\ict-reclaimed-order-block.md",
+        "wordCount": 2170,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "market-maker-sell-model",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Confirm the Market Maker model.",
+          "Identify the curve direction.",
+          "Mark the higher-timeframe PD array.",
+          "Watch for accumulation candles.",
+          "Identify the reclaimed OB candle.",
+          "Wait for the reclaim."
+        ]
+      },
+      {
+        "id": "rejection-block",
+        "title": "ict-rejection-block",
+        "file": "01 - ICT Trading Tutorials\\ict-rejection-block.md",
+        "wordCount": 1714,
+        "prerequisites": [
+          "market-structure",
+          "daily-bias-trick"
+        ],
+        "keyRules": [
+          "Set a bullish daily bias",
+          "Identify the swing low",
+          "Mark the Rejection Block zone",
+          "Wait for price to retrace",
+          "Drop to a lower timeframe",
+          "Execute the buy trade",
+          "Take profit"
+        ]
+      },
+      {
+        "id": "smt-divergence-smart-money-technique",
+        "title": "ict-smt-divergence-smart-money-technique",
+        "file": "01 - ICT Trading Tutorials\\ict-smt-divergence-smart-money-technique.md",
+        "wordCount": 2003,
+        "prerequisites": [
+          "market-structure",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Identify the correlated pair",
+          "Pull both charts side by side",
+          "Mark the higher-timeframe PD Array",
+          "Wait for both assets to approach a swing high or swing low"
+        ]
+      },
+      {
+        "id": "unicorn-model",
+        "title": "ict-unicorn-model",
+        "file": "01 - ICT Trading Tutorials\\ict-unicorn-model.md",
+        "wordCount": 2509,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Set the daily bias",
+          "Mark the higher-timeframe[PD Array](<https://innercircletrader.net/tutorials/ict-pd-array-key-to-trade-execution/>)",
+          "Wait for price to approach",
+          "Drop to the 15-minute or 5-minute chart",
+          "Mark the Breaker Block"
+        ]
+      },
+      {
+        "id": "ict-1st-presented-fvg",
+        "title": "master-ict-1st-presented-fvg",
+        "file": "01 - ICT Trading Tutorials\\master-ict-1st-presented-fvg.md",
+        "wordCount": 1905,
+        "prerequisites": [
+          "market-structure-shift",
+          "cisd-and-ict-mss",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Identify the 1st Presented FVG on the 1-minute chart",
+          "Confirm qualification",
+          "Mark the FVG and extend it forward"
+        ]
+      },
+      {
+        "id": "mentorship-lecture-2",
+        "title": "mentorship-lecture-2",
+        "file": "02 - ICT 2024\\mentorship-lecture-2.md",
+        "wordCount": 2371,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Sit down before 07:00 AM NY time.",
+          "Mark the London high and low.",
+          "Do not predict."
+        ]
+      },
+      {
+        "id": "sibi-and-bisi-the-ict-concepts",
+        "title": "sibi-and-bisi-the-ict-concepts",
+        "file": "01 - ICT Trading Tutorials\\sibi-and-bisi-the-ict-concepts.md",
+        "wordCount": 2104,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Set the daily bias"
+        ]
+      },
+      {
+        "id": "single-candle-order-block-scob",
+        "title": "single-candle-order-block-scob",
+        "file": "01 - ICT Trading Tutorials\\single-candle-order-block-scob.md",
+        "wordCount": 1906,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "First candle",
+          "Second candle",
+          "Third candle",
+          "First candle",
+          "Second candle"
+        ]
+      },
+      {
+        "id": "valid-ict-fair-value-gap",
+        "title": "valid-ict-fair-value-gap",
+        "file": "01 - ICT Trading Tutorials\\valid-ict-fair-value-gap.md",
+        "wordCount": 1749,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "cisd-and-ict-mss"
+        ],
+        "keyRules": [
+          "Mark every FVG on your bias timeframe.",
+          "Drop the weak ones.",
+          "Trade quietly strong only with confluence",
+          "Take exceptional FVGs as primary entries."
+        ]
+      }
+    ],
+    "estimatedStudyTime": 278
+  },
+  {
+    "tier": 2,
+    "name": "Strategies",
+    "conceptCount": 18,
+    "concepts": [
+      {
+        "id": "trading-quotes",
+        "title": "forex-trading-quotes",
+        "file": "03 - Opinion\\forex-trading-quotes.md",
+        "wordCount": 1611,
+        "prerequisites": [
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Print one quote at the top of your trading journal each week.",
+          "After a losing trade, open the quotes page.",
+          "Pair each quote with a rule.",
+          "Read quote (10) every morning before the killzone.",
+          "Re-read the full list at the end of every month."
+        ]
+      },
+      {
+        "id": "2024-mentorship-lecture-3",
+        "title": "ict-2024-mentorship-lecture-3",
+        "file": "02 - ICT 2024\\ict-2024-mentorship-lecture-3.md",
+        "wordCount": 2354,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "new-day-opening-gap-ndog",
+          "inversion-fair-value-gap",
+          "liquidity-sweep-vs-liquidity-run",
+          "consequent-encroachment"
+        ],
+        "keyRules": [
+          "Annotate at least four NDOGs.",
+          "Annotate the active NWOG.",
+          "Set the daily bias.",
+          "Identify the relevant NDOG for the day."
+        ]
+      },
+      {
+        "id": "2024-mentorship-lecture-4",
+        "title": "ict-2024-mentorship-lecture-4",
+        "file": "02 - ICT 2024\\ict-2024-mentorship-lecture-4.md",
+        "wordCount": 2584,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "new-day-opening-gap-ndog",
+          "inversion-fair-value-gap",
+          "liquidity-sweep-vs-liquidity-run",
+          "consequent-encroachment",
+          "premium-and-discount-zone-identification"
+        ],
+        "keyRules": [
+          "Annotate the active NDOGs and the NWOG.",
+          "Apply the Quarters Fibonacci on each gap.",
+          "Set the daily bias.",
+          "Sit before 08:30 AM NY time."
+        ]
+      },
+      {
+        "id": "2024-mentorship-lecture-5",
+        "title": "ict-2024-mentorship-lecture-5",
+        "file": "02 - ICT 2024\\ict-2024-mentorship-lecture-5.md",
+        "wordCount": 2491,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "new-day-opening-gap-ndog",
+          "market-structure-shift",
+          "inversion-fair-value-gap",
+          "liquidity-sweep-vs-liquidity-run",
+          "consequent-encroachment",
+          "premium-and-discount-zone-identification",
+          "swing-high",
+          "swing-low-formation"
+        ],
+        "keyRules": [
+          "Sit down before 06:00 PM NY time."
+        ]
+      },
+      {
+        "id": "bread-and-butter",
+        "title": "ict-bread-and-butter",
+        "file": "01 - ICT Trading Tutorials\\ict-bread-and-butter.md",
+        "wordCount": 2165,
+        "prerequisites": [
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "asian-range"
+        ],
+        "keyRules": [
+          "Confirm higher-timeframe bearish institutional order flow.",
+          "Set your chart to New York local time.",
+          "Identify the active session.",
+          "Mark the premium PD array for that session.",
+          "Wait for the IPDA price engine.",
+          "Drop to the 5-minute for the trigger."
+        ]
+      },
+      {
+        "id": "bread-and-butter-buy-setup",
+        "title": "ict-bread-and-butter-buy-setup",
+        "file": "01 - ICT Trading Tutorials\\ict-bread-and-butter-buy-setup.md",
+        "wordCount": 2155,
+        "prerequisites": [
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "asian-range",
+          "pd-array-key-to-trade-execution",
+          "premium-and-discount-zone-identification"
+        ],
+        "keyRules": [
+          "Confirm higher-timeframe bullish institutional order flow.",
+          "Set your chart to New York local time.",
+          "Identify the active session.",
+          "Mark the discount PD array for that session.",
+          "Wait for the IPDA price engine.",
+          "Drop to the 5-minute for the trigger."
+        ]
+      },
+      {
+        "id": "fibonacci-levels",
+        "title": "ict-fibonacci-levels",
+        "file": "01 - ICT Trading Tutorials\\ict-fibonacci-levels.md",
+        "wordCount": 2021,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "premium-and-discount-zone-identification",
+          "swing-low-formation"
+        ],
+        "keyRules": [
+          "Drawing from the wrong swing.",
+          "Entering at every retracement.",
+          "Ignoring confluence."
+        ]
+      },
+      {
+        "id": "judas-swing",
+        "title": "ict-judas-swing-complete-guide",
+        "file": "01 - ICT Trading Tutorials\\ict-judas-swing-complete-guide.md",
+        "wordCount": 2534,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Set the daily bias",
+          "Mark the New York midnight open price",
+          "Wait for the time window",
+          "Watch for the false move",
+          "Confirm the failure"
+        ]
+      },
+      {
+        "id": "macro-time-based",
+        "title": "ict-macro-time-based-strategy",
+        "file": "01 - ICT Trading Tutorials\\ict-macro-time-based-strategy.md",
+        "wordCount": 2904,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution",
+          "consequent-encroachment"
+        ],
+        "keyRules": [
+          "Mark the draw on liquidity",
+          "Mark the imbalances",
+          "Read direction",
+          "Wait for the window to open",
+          "Look for displacement and an MSS"
+        ]
+      },
+      {
+        "id": "market-maker-buy-model",
+        "title": "ict-market-maker-buy-model",
+        "file": "01 - ICT Trading Tutorials\\ict-market-maker-buy-model.md",
+        "wordCount": 1699,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "pd-array-key-to-trade-execution",
+          "market-structure-shift",
+          "smt-divergence-smart-money-technique",
+          "liquidity-sweep-vs-liquidity-run",
+          "market-maker-sell-model"
+        ],
+        "keyRules": [
+          "The higher time frame market structure should be bullish.",
+          "The next draw on liquidity or[Daily Bias](<https://innercircletrader.net/tutorials/ict-daily-bias-explained/> \"ICT Daily Bias\") should be pointing higher.",
+          "There should be a sell program on the lower time frame prior to the higher time frame PD Array.",
+          "Confirm bullish higher-timeframe order flow",
+          "Wait for a sell program on the lower time frame",
+          "When price reaches the bullish PD Array of the higher timeframe",
+          "After both confirmations"
+        ]
+      },
+      {
+        "id": "one-shot-one-kill",
+        "title": "ict-one-shot-one-kill",
+        "file": "01 - ICT Trading Tutorials\\ict-one-shot-one-kill.md",
+        "wordCount": 1764,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Note all medium and high-impact economic events.",
+          "Mark the 20-week IPDA dealing range.",
+          "Identify the next draw on liquidity inside the dealing range.",
+          "Identify the bias-aligned PD array.",
+          "Wait for the anchor point.",
+          "Drop to the 15-minute for OTE.",
+          "Execute during the London or New York killzone."
+        ]
+      },
+      {
+        "id": "optimal-trade-entry-ote-pattern",
+        "title": "ict-optimal-trade-entry-ote-pattern",
+        "file": "01 - ICT Trading Tutorials\\ict-optimal-trade-entry-ote-pattern.md",
+        "wordCount": 1842,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Establish the daily bias",
+          "Identify the dealing range",
+          "Confirm the trend direction",
+          "Apply the fibonacci retracement"
+        ]
+      },
+      {
+        "id": "seek-and-destroy-friday",
+        "title": "ict-seek-and-destroy-friday",
+        "file": "01 - ICT Trading Tutorials\\ict-seek-and-destroy-friday.md",
+        "wordCount": 2190,
+        "prerequisites": [
+          "market-structure",
+          "fair-value-gap",
+          "power-of-3",
+          "market-structure-shift",
+          "liquidity-sweep-vs-liquidity-run",
+          "displacement-move"
+        ],
+        "keyRules": [
+          "A high-impact event is on the calendar for Friday.",
+          "Monday-Thursday price action is sideways or shows irregular swings",
+          "Higher-timeframe weekly order flow has a clear bias",
+          "Avoid trading before the news release."
+        ]
+      },
+      {
+        "id": "silver-bullet",
+        "title": "ict-silver-bullet-strategy",
+        "file": "01 - ICT Trading Tutorials\\ict-silver-bullet-strategy.md",
+        "wordCount": 2698,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "liquidity-sweep-vs-liquidity-run",
+          "premium-and-discount-zone-identification"
+        ],
+        "keyRules": [
+          "Mark the buy-side and sell-side liquidity",
+          "Wait for the Silver Bullet window to open",
+          "Drop to 1-minute or 3-minute",
+          "Watch for a Market Structure Shift",
+          "Confirm displacement",
+          "Mark the fair value gap"
+        ]
+      },
+      {
+        "id": "tgif-setup-trade-like-a-pro",
+        "title": "ict-tgif-setup-trade-like-a-pro",
+        "file": "01 - ICT Trading Tutorials\\ict-tgif-setup-trade-like-a-pro.md",
+        "wordCount": 2089,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "power-of-3",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Map the weekly range.",
+          "Confirm the trend.",
+          "Sit at the screen Friday morning.",
+          "Watch for the Judas Swing.",
+          "If morning is quiet, wait for 01:30 to 02:00 PM ET."
+        ]
+      },
+      {
+        "id": "top-down-analysis",
+        "title": "ict-top-down-analysis",
+        "file": "01 - ICT Trading Tutorials\\ict-top-down-analysis.md",
+        "wordCount": 2160,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "premium-and-discount-zone-identification"
+        ],
+        "keyRules": [
+          "Starting on the M15 instead of the Daily."
+        ]
+      },
+      {
+        "id": "turtle-soup-pattern",
+        "title": "ict-turtle-soup-pattern",
+        "file": "01 - ICT Trading Tutorials\\ict-turtle-soup-pattern.md",
+        "wordCount": 2306,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "liquidity-sweep-vs-liquidity-run"
+        ],
+        "keyRules": [
+          "Read the higher-timeframe order flow",
+          "Identify the higher-timeframe draw on liquidity",
+          "Drop to the 15-minute chart",
+          "Wait for price to raid the internal range liquidity",
+          "Confirm the failure",
+          "Drop to the 1-minute or 3-minute chart",
+          "Watch for a Market Structure Shift"
+        ]
+      },
+      {
+        "id": "lecture-1",
+        "title": "lecture-1",
+        "file": "02 - ICT 2024\\lecture-1.md",
+        "wordCount": 2167,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Sit down before 08:00 AM NY time.",
+          "15-minute parent chart.",
+          "1-minute trigger chart."
+        ]
+      }
+    ],
+    "estimatedStudyTime": 199
+  },
+  {
+    "tier": 3,
+    "name": "Advanced Concepts",
+    "conceptCount": 49,
+    "concepts": [
+      {
+        "id": "3-step-guide-to-master-valid-pullback",
+        "title": "3-step-guide-to-master-valid-pullback",
+        "file": "01 - ICT Trading Tutorials\\3-step-guide-to-master-valid-pullback.md",
+        "wordCount": 2061,
+        "prerequisites": [
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "break-of-structure-bos"
+        ],
+        "keyRules": [
+          "Read the higher-timeframe context.",
+          "Identify the impulse leg.",
+          "Mark the most extreme opposite-color candle.",
+          "Mark the GRAB level.",
+          "Wait for the pullback to grab the level."
+        ]
+      },
+      {
+        "id": "about-us",
+        "title": "about-us",
+        "file": "09 - Site Pages\\about-us.md",
+        "wordCount": 415,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "affiliate-disclosure",
+        "title": "affiliate-disclosure",
+        "file": "09 - Site Pages\\affiliate-disclosure.md",
+        "wordCount": 395,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "bear-flag-pattern",
+        "title": "bear-flag-pattern-explained",
+        "file": "01 - ICT Trading Tutorials\\bear-flag-pattern-explained.md",
+        "wordCount": 1868,
+        "prerequisites": [
+          "market-structure-shift",
+          "break-of-structure-bos"
+        ],
+        "keyRules": [
+          "Confirm bearish trend.",
+          "Identify the pole.",
+          "Mark the flag.",
+          "Wait for the breakout.",
+          "Wait for the retest.",
+          "Wait for confirmation."
+        ]
+      },
+      {
+        "id": "blog",
+        "title": "blog",
+        "file": "09 - Site Pages\\blog.md",
+        "wordCount": 19,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "blog---ict",
+        "title": "blog---ict-trading",
+        "file": "00 - Home\\blog---ict-trading.md",
+        "wordCount": 757,
+        "prerequisites": [
+          "silver-bullet",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "enigma-fair-value-gap",
+          "top-down-analysis",
+          "reaper-inversion-fair-value-gap",
+          "killzone-silver-bullet-overlap",
+          "what-is-ict-hidden-order-block",
+          "valid-ict-fair-value-gap"
+        ],
+        "keyRules": []
+      },
+      {
+        "id": "bull-flag-pattern",
+        "title": "bull-flag-pattern-trading-strategy",
+        "file": "01 - ICT Trading Tutorials\\bull-flag-pattern-trading-strategy.md",
+        "wordCount": 1885,
+        "prerequisites": [
+          "market-structure-shift",
+          "break-of-structure-bos"
+        ],
+        "keyRules": [
+          "Confirm bullish trend.",
+          "Identify the pole.",
+          "Mark the flag.",
+          "Wait for the breakout.",
+          "Wait for the retest.",
+          "Wait for confirmation."
+        ]
+      },
+      {
+        "id": "bullish-pennant-pattern",
+        "title": "bullish-pennant-pattern",
+        "file": "01 - ICT Trading Tutorials\\bullish-pennant-pattern.md",
+        "wordCount": 1773,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "break-of-structure-bos"
+        ],
+        "keyRules": [
+          "Confirm bullish trend.",
+          "Identify the flag pole.",
+          "Mark the pennant.",
+          "Wait for the breakout.",
+          "Wait for the retest."
+        ]
+      },
+      {
+        "id": "ict-trading-strategy-2022",
+        "title": "complete-ict-trading-strategy-2022",
+        "file": "01 - ICT Trading Tutorials\\complete-ict-trading-strategy-2022.md",
+        "wordCount": 3224,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "daily-bias-trick",
+          "displacement-move",
+          "pd-array-key-to-trade-execution",
+          "premium-and-discount-zone-identification",
+          "liquidity-sweep-vs-liquidity-run",
+          "optimal-trade-entry-ote-pattern"
+        ],
+        "keyRules": [
+          "Establish daily bias",
+          "Mark the price range",
+          "Wait for London open",
+          "Look for a liquidity sweep",
+          "Watch for an ICT Market Structure Shift",
+          "Confirm displacement"
+        ]
+      },
+      {
+        "id": "contact-us",
+        "title": "contact-us",
+        "file": "09 - Site Pages\\contact-us.md",
+        "wordCount": 176,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "crypto-trading-strategies-for-2026-a-practical-profit-framework",
+        "title": "crypto-trading-strategies-for-2026-a-practical-profit-framework",
+        "file": "03 - Opinion\\crypto-trading-strategies-for-2026-a-practical-profit-framework.md",
+        "wordCount": 2111,
+        "prerequisites": [
+          "market-structure"
+        ],
+        "keyRules": []
+      },
+      {
+        "id": "disclaimer",
+        "title": "disclaimer",
+        "file": "09 - Site Pages\\disclaimer.md",
+        "wordCount": 402,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "dragonfly-doji-candlestick",
+        "title": "dragonfly-doji-candlestick",
+        "file": "01 - ICT Trading Tutorials\\dragonfly-doji-candlestick.md",
+        "wordCount": 1882,
+        "prerequisites": [
+          "market-structure-shift",
+          "liquidity-sweep-vs-liquidity-run"
+        ],
+        "keyRules": [
+          "Identify the trend.",
+          "Mark the support zone.",
+          "Wait for price to test support.",
+          "Watch for the dragonfly doji to print.",
+          "Wait for the candle to close.",
+          "Wait for the confirmation candle."
+        ]
+      },
+      {
+        "id": "editorial-process",
+        "title": "editorial-process",
+        "file": "09 - Site Pages\\editorial-process.md",
+        "wordCount": 693,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "elliot-wave-theory",
+        "title": "elliot-wave-theory",
+        "file": "01 - ICT Trading Tutorials\\elliot-wave-theory.md",
+        "wordCount": 2790,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "break-of-structure-bos"
+        ],
+        "keyRules": []
+      },
+      {
+        "id": "market-hours-live-tool-time-zone-converter-gmtest",
+        "title": "forex-market-hours-live-tool-time-zone-converter-gmtest",
+        "file": "06 - Tools\\forex-market-hours-live-tool-time-zone-converter-gmtest.md",
+        "wordCount": 3771,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "gravestone-doji-candlestick",
+        "title": "gravestone-doji-candlestick",
+        "file": "01 - ICT Trading Tutorials\\gravestone-doji-candlestick.md",
+        "wordCount": 1880,
+        "prerequisites": [
+          "market-structure-shift",
+          "liquidity-sweep-vs-liquidity-run"
+        ],
+        "keyRules": [
+          "Identify the trend.",
+          "Mark the resistance zone.",
+          "Wait for price to test resistance.",
+          "Watch for the gravestone doji to print.",
+          "Wait for the candle to close.",
+          "Wait for the confirmation candle."
+        ]
+      },
+      {
+        "id": "trade-an-rsi-divergence",
+        "title": "how-to-trade-an-rsi-divergence",
+        "file": "01 - ICT Trading Tutorials\\how-to-trade-an-rsi-divergence.md",
+        "wordCount": 2195,
+        "prerequisites": [
+          "market-structure",
+          "market-structure-shift",
+          "liquidity-sweep-vs-liquidity-run"
+        ],
+        "keyRules": [
+          "Identify the trend.",
+          "Mark the key level.",
+          "Wait for price to reach the level."
+        ]
+      },
+      {
+        "id": "2024---ict",
+        "title": "ict-2024---ict-trading",
+        "file": "02 - ICT 2024\\ict-2024---ict-trading.md",
+        "wordCount": 619,
+        "prerequisites": [
+          "silver-bullet",
+          "fair-value-gap",
+          "enigma-fair-value-gap",
+          "top-down-analysis",
+          "reaper-inversion-fair-value-gap",
+          "killzone-silver-bullet-overlap"
+        ],
+        "keyRules": []
+      },
+      {
+        "id": "breakaway-gap",
+        "title": "ict-breakaway-gap",
+        "file": "01 - ICT Trading Tutorials\\ict-breakaway-gap.md",
+        "wordCount": 2140,
+        "prerequisites": [
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "inversion-fair-value-gap",
+          "balanced-price-range-bpr",
+          "sibi-and-bisi-the-ict-concepts",
+          "new-day-opening-gap-ndog"
+        ],
+        "keyRules": [
+          "Read the higher-timeframe context.",
+          "Identify the displacement and the FVG it left behind.",
+          "Look for one of the three holding mechanisms.",
+          "Wait for price to test the holding mechanism (not the FVG).",
+          "Wait for confirmation at the holding mechanism."
+        ]
+      },
+      {
+        "id": "central-bank-dealers-range",
+        "title": "ict-central-bank-dealers-range",
+        "file": "01 - ICT Trading Tutorials\\ict-central-bank-dealers-range.md",
+        "wordCount": 2071,
+        "prerequisites": [
+          "judas-swing",
+          "asian-range"
+        ],
+        "keyRules": [
+          "Mark the CBDR window.",
+          "Measure the height.",
+          "Plot 1, 2 and 3 standard deviations above the CBDR."
+        ]
+      },
+      {
+        "id": "change-in-the-state-of-delivery",
+        "title": "ict-change-in-the-state-of-delivery",
+        "file": "01 - ICT Trading Tutorials\\ict-change-in-the-state-of-delivery.md",
+        "wordCount": 1941,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Identify a higher-timeframe PD Array",
+          "Wait for price to tap the PD Array",
+          "Drop to the lower timeframe",
+          "Watch for the CISD candle"
+        ]
+      },
+      {
+        "id": "consolidation",
+        "title": "ict-consolidation-trading",
+        "file": "01 - ICT Trading Tutorials\\ict-consolidation-trading.md",
+        "wordCount": 2151,
+        "prerequisites": [
+          "market-structure",
+          "fair-value-gap",
+          "power-of-3",
+          "market-structure-shift",
+          "liquidity-sweep-vs-liquidity-run",
+          "consequent-encroachment"
+        ],
+        "keyRules": [
+          "Set the higher-timeframe bias.",
+          "Identify the consolidation.",
+          "Mark the support, resistance and CE.",
+          "Locate retail liquidity.",
+          "Wait for the sweep in the opposite direction of bias.",
+          "Drop to the lower timeframe."
+        ]
+      },
+      {
+        "id": "daily-bias",
+        "title": "ict-daily-bias-explained",
+        "file": "01 - ICT Trading Tutorials\\ict-daily-bias-explained.md",
+        "wordCount": 2216,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "power-of-3",
+          "daily-bias-trick",
+          "pd-array-key-to-trade-execution",
+          "optimal-trade-entry-ote-pattern"
+        ],
+        "keyRules": [
+          "Open the daily chart",
+          "Read the daily order flow",
+          "Identify any unfilled imbalance"
+        ]
+      },
+      {
+        "id": "hrlr-lrlr",
+        "title": "ict-hrlr-lrlr",
+        "file": "01 - ICT Trading Tutorials\\ict-hrlr-lrlr.md",
+        "wordCount": 2012,
+        "prerequisites": [
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "asian-range",
+          "liquidity-sweep-vs-liquidity-run"
+        ],
+        "keyRules": [
+          "Read the institutional order flow.",
+          "Identify the long-term high and low.",
+          "Map the short-term swings.",
+          "Set the entry.",
+          "Set the first target as LRLR.",
+          "Set the second target as HRLR (optional)."
+        ]
+      },
+      {
+        "id": "internal-external-liquidity",
+        "title": "ict-internal-external-liquidity",
+        "file": "01 - ICT Trading Tutorials\\ict-internal-external-liquidity.md",
+        "wordCount": 2561,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "swing-high",
+          "swing-low-formation",
+          "optimal-trade-entry-ote-pattern"
+        ],
+        "keyRules": [
+          "Mark the dealing range",
+          "Identify the ERL on both sides",
+          "Identify the IRL inside the range",
+          "Read where in the cycle the chart is",
+          "Set the daily bias"
+        ]
+      },
+      {
+        "id": "intraday-profiles",
+        "title": "ict-intraday-profiles",
+        "file": "01 - ICT Trading Tutorials\\ict-intraday-profiles.md",
+        "wordCount": 2675,
+        "prerequisites": [
+          "market-structure",
+          "judas-swing",
+          "market-structure-shift",
+          "asian-range",
+          "premium-and-discount-zone-identification",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": []
+      },
+      {
+        "id": "ipda",
+        "title": "ict-ipda",
+        "file": "01 - ICT Trading Tutorials\\ict-ipda.md",
+        "wordCount": 2353,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "sibi-and-bisi-the-ict-concepts",
+          "optimal-trade-entry-ote-pattern",
+          "pd-array-key-to-trade-execution"
+        ],
+        "keyRules": [
+          "Identify the current quarterly shift",
+          "Mark the 20-, 40-, and 60-day highs and lows",
+          "Identify the next major draw on liquidity",
+          "Wait for the false breakout",
+          "Drop to the intraday chart"
+        ]
+      },
+      {
+        "id": "market-order-flow",
+        "title": "ict-market-order-flow-explained",
+        "file": "01 - ICT Trading Tutorials\\ict-market-order-flow-explained.md",
+        "wordCount": 2012,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "break-of-structure-bos"
+        ],
+        "keyRules": [
+          "Read the higher-timeframe context.",
+          "Identify the BOS on the analysis timeframe.",
+          "Look back into the leg that produced the BOS.",
+          "Wait for price to retrace.",
+          "Tap the 1st order flow first."
+        ]
+      },
+      {
+        "id": "new-week-opening-gap-nwog",
+        "title": "ict-new-week-opening-gap-nwog",
+        "file": "01 - ICT Trading Tutorials\\ict-new-week-opening-gap-nwog.md",
+        "wordCount": 2235,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Mark the NWOG on the weekly chart.",
+          "Mark the consequent encroachment.",
+          "Set the higher-timeframe bias.",
+          "Identify the active NWOG for the week.",
+          "Wait for the retest.",
+          "Wait for the MSS.",
+          "Enter on the retracement."
+        ]
+      },
+      {
+        "id": "one-trade-setup-for-life",
+        "title": "ict-one-trade-setup-for-life",
+        "file": "01 - ICT Trading Tutorials\\ict-one-trade-setup-for-life.md",
+        "wordCount": 2082,
+        "prerequisites": [
+          "market-structure",
+          "judas-swing",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Set your chart to New York local time.",
+          "Set the daily bias.",
+          "Mark the previous day’s AM session high and low.",
+          "Mark the PM session range.",
+          "Mark the London session range.",
+          "Mark the NY lunch range."
+        ]
+      },
+      {
+        "id": "pdf",
+        "title": "ict-pdf",
+        "file": "01 - ICT Trading Tutorials\\ict-pdf.md",
+        "wordCount": 1258,
+        "prerequisites": [
+          "silver-bullet",
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "judas-swing",
+          "asian-range"
+        ],
+        "keyRules": []
+      },
+      {
+        "id": "ICT-Trading-Tools-Overview",
+        "title": "ICT-Trading-Tools-Overview",
+        "file": "06 - Tools\\ICT-Trading-Tools-Overview.md",
+        "wordCount": 245,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "vacuum-block-opening-gaps",
+        "title": "ict-vacuum-block-opening-gaps",
+        "file": "01 - ICT Trading Tutorials\\ict-vacuum-block-opening-gaps.md",
+        "wordCount": 2219,
+        "prerequisites": [
+          "market-structure",
+          "fair-value-gap",
+          "market-structure-shift",
+          "consequent-encroachment",
+          "fibonacci-levels"
+        ],
+        "keyRules": [
+          "Identify the catalyst.",
+          "Mark the vacuum block on the chart.",
+          "Mark the consequent encroachment.",
+          "Assess the catalyst’s longevity.",
+          "Wait for the retracement.",
+          "Drop to the lower timeframe."
+        ]
+      },
+      {
+        "id": "weekly-range-profiles",
+        "title": "ict-weekly-range-profiles",
+        "file": "01 - ICT Trading Tutorials\\ict-weekly-range-profiles.md",
+        "wordCount": 2715,
+        "prerequisites": [
+          "silver-bullet",
+          "fair-value-gap",
+          "premium-and-discount-zone-identification",
+          "pd-array-key-to-trade-execution",
+          "seek-and-destroy-friday"
+        ],
+        "keyRules": [
+          "Read the higher-timeframe context"
+        ]
+      },
+      {
+        "id": "liquidity-in-forex",
+        "title": "liquidity-in-forex-trading",
+        "file": "01 - ICT Trading Tutorials\\liquidity-in-forex-trading.md",
+        "wordCount": 2047,
+        "prerequisites": [
+          "market-structure",
+          "liquidity-pool",
+          "liquidity-sweep-vs-liquidity-run"
+        ],
+        "keyRules": [
+          "Set the higher-timeframe bias.",
+          "Mark the previous day high and previous day low.",
+          "Mark the previous week high and low."
+        ]
+      },
+      {
+        "id": "ict-liquidity-void",
+        "title": "master-ict-liquidity-void",
+        "file": "01 - ICT Trading Tutorials\\master-ict-liquidity-void.md",
+        "wordCount": 2145,
+        "prerequisites": [
+          "market-structure",
+          "fair-value-gap",
+          "market-structure-shift",
+          "displacement-move",
+          "consequent-encroachment"
+        ],
+        "keyRules": [
+          "Identify the higher-timeframe market structure.",
+          "Spot the displacement move.",
+          "Mark the liquidity void.",
+          "Mark the consequent encroachment.",
+          "Confirm bias alignment."
+        ]
+      },
+      {
+        "id": "most-important-ict-concepts-to-conquer-market-complete-list",
+        "title": "most-important-ict-concepts-to-conquer-market-complete-list",
+        "file": "01 - ICT Trading Tutorials\\most-important-ict-concepts-to-conquer-market-complete-list.md",
+        "wordCount": 2150,
+        "prerequisites": [
+          "silver-bullet",
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "power-of-3",
+          "judas-swing",
+          "market-structure-shift",
+          "asian-range",
+          "displacement-move",
+          "break-of-structure-bos",
+          "daily-bias-trick",
+          "premium-and-discount-zone-identification"
+        ],
+        "keyRules": [
+          "Liquidity, Imbalance, Displacement",
+          "BOS and CHOCH",
+          "MSS",
+          "Order Block, FVG, Inducement",
+          "Premium and Discount, OTE",
+          "Daily Bias, Power of 3",
+          "Killzones, Silver Bullet, Macros, Judas Swing",
+          "SMT, Turtle Soup, IRL/ERL"
+        ]
+      },
+      {
+        "id": "pin-bar",
+        "title": "pin-bar-trading-strategy",
+        "file": "01 - ICT Trading Tutorials\\pin-bar-trading-strategy.md",
+        "wordCount": 2151,
+        "prerequisites": [
+          "liquidity-sweep-vs-liquidity-run"
+        ],
+        "keyRules": [
+          "Identify the trend.",
+          "Mark the bias-aligned level."
+        ]
+      },
+      {
+        "id": "privacy-policy",
+        "title": "privacy-policy",
+        "file": "09 - Site Pages\\privacy-policy.md",
+        "wordCount": 530,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "rally-base-rally",
+        "title": "rally-base-rally",
+        "file": "01 - ICT Trading Tutorials\\rally-base-rally.md",
+        "wordCount": 1853,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "market-structure-shift",
+          "break-of-structure-bos"
+        ],
+        "keyRules": [
+          "Confirm bullish trend.",
+          "Identify the initial rally.",
+          "Mark the base.",
+          "Wait for the breakout."
+        ]
+      },
+      {
+        "id": "review-board",
+        "title": "review-board",
+        "file": "09 - Site Pages\\review-board.md",
+        "wordCount": 308,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "shooting-star-candlestick",
+        "title": "shooting-star-candlestick",
+        "file": "01 - ICT Trading Tutorials\\shooting-star-candlestick.md",
+        "wordCount": 1967,
+        "prerequisites": [
+          "market-structure-shift",
+          "liquidity-sweep-vs-liquidity-run"
+        ],
+        "keyRules": [
+          "Identify the trend.",
+          "Mark the resistance zone.",
+          "Wait for price to test resistance.",
+          "Watch for the shooting star to print.",
+          "Wait for the candle to close."
+        ]
+      },
+      {
+        "id": "support-resistance",
+        "title": "support-resistance-trading",
+        "file": "01 - ICT Trading Tutorials\\support-resistance-trading.md",
+        "wordCount": 2276,
+        "prerequisites": [
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift"
+        ],
+        "keyRules": [
+          "Identify the trend."
+        ]
+      },
+      {
+        "id": "the-hidden-infrastructure-behind-instant-crypto-transactions",
+        "title": "the-hidden-infrastructure-behind-instant-crypto-transactions",
+        "file": "03 - Opinion\\the-hidden-infrastructure-behind-instant-crypto-transactions.md",
+        "wordCount": 1286,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "tools",
+        "title": "tools",
+        "file": "09 - Site Pages\\tools.md",
+        "wordCount": 19,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "user-reviews",
+        "title": "user-reviews",
+        "file": "09 - Site Pages\\user-reviews.md",
+        "wordCount": 344,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
+        "id": "what-is-inducement-in-forex",
+        "title": "what-is-inducement-in-forex",
+        "file": "01 - ICT Trading Tutorials\\what-is-inducement-in-forex.md",
+        "wordCount": 1994,
+        "prerequisites": [
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "market-structure-shift",
+          "break-of-structure-bos",
+          "inducement-after-break-of-structure"
+        ],
+        "keyRules": [
+          "Read the higher-timeframe context.",
+          "Identify a CHOCH or BOS.",
+          "Look back into the leg that produced it.",
+          "Mark the inducement level.",
+          "Wait for the sweep."
+        ]
+      },
+      {
+        "id": "who-is-inner-circle-trader-ict",
+        "title": "who-is-inner-circle-trader-ict",
+        "file": "03 - Opinion\\who-is-inner-circle-trader-ict.md",
+        "wordCount": 2026,
+        "prerequisites": [
+          "silver-bullet",
+          "market-structure",
+          "order-block",
+          "fair-value-gap",
+          "power-of-3",
+          "judas-swing",
+          "market-structure-shift",
+          "pd-array-key-to-trade-execution",
+          "optimal-trade-entry-ote-pattern",
+          "smt-divergence-smart-money-technique"
+        ],
+        "keyRules": []
+      }
+    ],
+    "estimatedStudyTime": 415
+  },
+  {
+    "tier": 4,
+    "name": "Meta / Reference",
+    "conceptCount": 0,
+    "concepts": [],
+    "estimatedStudyTime": 0
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "name": "Position Trader",
+  "anchor": ["1W", "1D"],
+  "holds": "weeks to months",
+  "tradesPerMonth": "1-3",
+  "riskPerIdea": "1-2% scaled",
+  "description": "Macro cycle trader. Identifies HTF accumulation/distribution phases and builds positions over weeks. Enters on daily/weekly structure confirmation. Doesn't use intraday triggers.",
+  "models": {
+    "primary": ["2022 Model (MMXM)", "PO3 (AMD)"],
+    "secondary": ["OTE + Institutional OB", "Turtle Soup", "Breaker Block"],
+    "avoid": ["Silver Bullet", "2FVG Entry", "Asian Range Breakout", "NWOG/NDOG", "Judas Swing", "SCOB", "Unicorn (OTE+FVG)"]
+  },
+  "cycleFocus": ["ACCUMULATION", "DISTRIBUTION", "EXPANSION"],
+  "sessionRelevance": "low",
+  "microLayerEnabled": false,
+  "coherenceThreshold": 5,
+  "riskParams": {
+    "slPips": "100-300",
+    "rrMinimum": 3.0,
+    "maxPositionPct": 2.0,
+    "scaleInSteps": 4
+  }
+}

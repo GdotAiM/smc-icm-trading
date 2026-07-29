@@ -1,0 +1,2019 @@
+{
+  "blog---ict": {
+    "dependsOn": [
+      "silver-bullet",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "enigma-fair-value-gap",
+      "top-down-analysis",
+      "reaper-inversion-fair-value-gap",
+      "killzone-silver-bullet-overlap",
+      "what-is-ict-hidden-order-block",
+      "valid-ict-fair-value-gap"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "Homepage": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "what-is-ict-hidden-order-block",
+      "powerful-ict-reversal-patterns",
+      "suspension-block",
+      "redelivered-rebalanced-price-range",
+      "venom-trading-model-2025",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "ICT-Foundations-and-FAQ": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift"
+    ]
+  },
+  "3-step-guide-to-master-valid-pullback": {
+    "dependsOn": [
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "break-of-structure-bos"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "3-step-guide-to-master-valid-pullback",
+      "what-is-inducement-in-forex",
+      "market-order-flow"
+    ]
+  },
+  "bear-flag-pattern": {
+    "dependsOn": [
+      "market-structure-shift",
+      "break-of-structure-bos"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "bear-flag-pattern",
+      "bull-flag-pattern",
+      "3-step-guide-to-master-valid-pullback",
+      "what-is-inducement-in-forex"
+    ]
+  },
+  "break-of-structure-bos": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "3-step-guide-to-master-valid-pullback",
+      "bear-flag-pattern",
+      "bull-flag-pattern",
+      "bullish-pennant-pattern",
+      "elliot-wave-theory",
+      "market-order-flow",
+      "most-important-ict-concepts-to-conquer-market-complete-list",
+      "rally-base-rally",
+      "what-is-inducement-in-forex"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "break-of-structure-bos",
+      "inducement-after-break-of-structure",
+      "swing-low-formation",
+      "swing-high"
+    ]
+  },
+  "break-of-structure-vs-change-of-character": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "break-of-structure-vs-change-of-character",
+      "break-of-structure-bos",
+      "mss-vs-choch"
+    ]
+  },
+  "bull-flag-pattern": {
+    "dependsOn": [
+      "market-structure-shift",
+      "break-of-structure-bos"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "bull-flag-pattern",
+      "3-step-guide-to-master-valid-pullback",
+      "what-is-inducement-in-forex"
+    ]
+  },
+  "bullish-pennant-pattern": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "break-of-structure-bos"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "bullish-pennant-pattern",
+      "bull-flag-pattern",
+      "what-is-inducement-in-forex"
+    ]
+  },
+  "candle-range-theory-crt": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "candle-range-theory-crt",
+      "liquidity-sweep-vs-liquidity-run",
+      "asian-range",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "change-of-character-choch-in": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "break-of-structure-bos",
+      "mss-vs-choch",
+      "break-of-structure-vs-change-of-character"
+    ]
+  },
+  "ict-trading-strategy-2022": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "daily-bias-trick",
+      "displacement-move",
+      "pd-array-key-to-trade-execution",
+      "premium-and-discount-zone-identification",
+      "liquidity-sweep-vs-liquidity-run",
+      "optimal-trade-entry-ote-pattern"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "dragonfly-doji-candlestick": {
+    "dependsOn": [
+      "market-structure-shift",
+      "liquidity-sweep-vs-liquidity-run"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "dragonfly-doji-candlestick",
+      "gravestone-doji-candlestick",
+      "change-in-the-state-of-delivery"
+    ]
+  },
+  "elliot-wave-theory": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "break-of-structure-bos"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "elliot-wave-theory",
+      "change-in-the-state-of-delivery"
+    ]
+  },
+  "fair-value-gap": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "daily-bias-trick",
+      "premium-and-discount-zone-identification",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [
+      "blog---ict",
+      "3-step-guide-to-master-valid-pullback",
+      "ict-trading-strategy-2022",
+      "bread-and-butter-buy-setup",
+      "bread-and-butter",
+      "breakaway-gap",
+      "change-in-the-state-of-delivery",
+      "consolidation",
+      "daily-bias",
+      "fibonacci-levels",
+      "hrlr-lrlr",
+      "internal-external-liquidity",
+      "ipda",
+      "judas-swing",
+      "macro-time-based",
+      "market-maker-buy-model",
+      "market-order-flow",
+      "new-week-opening-gap-nwog",
+      "one-shot-one-kill",
+      "pdf",
+      "seek-and-destroy-friday",
+      "silver-bullet",
+      "tgif-setup-trade-like-a-pro",
+      "top-down-analysis",
+      "turtle-soup-pattern",
+      "vacuum-block-opening-gaps",
+      "weekly-range-profiles",
+      "ict-liquidity-void",
+      "most-important-ict-concepts-to-conquer-market-complete-list",
+      "support-resistance",
+      "what-is-inducement-in-forex",
+      "2024---ict",
+      "2024-mentorship-lecture-3",
+      "2024-mentorship-lecture-4",
+      "2024-mentorship-lecture-5",
+      "lecture-1",
+      "who-is-inner-circle-trader-ict"
+    ],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "valid-ict-fair-value-gap",
+      "inversion-fair-value-gap",
+      "implied-fair-value-gap-ifvg",
+      "balanced-price-range-bpr",
+      "new-day-opening-gap-ndog",
+      "sibi-and-bisi-the-ict-concepts",
+      "institutional-order-flow-entry-drill"
+    ]
+  },
+  "forex": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "break-of-structure-bos"
+    ]
+  },
+  "gravestone-doji-candlestick": {
+    "dependsOn": [
+      "market-structure-shift",
+      "liquidity-sweep-vs-liquidity-run"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "gravestone-doji-candlestick",
+      "dragonfly-doji-candlestick",
+      "shooting-star-candlestick",
+      "change-in-the-state-of-delivery"
+    ]
+  },
+  "higher-high-and-higher-low": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "higher-high-and-higher-low",
+      "lower-high-and-lower-low",
+      "break-of-structure-bos",
+      "swing-high",
+      "swing-low-formation"
+    ]
+  },
+  "trade-an-rsi-divergence": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "liquidity-sweep-vs-liquidity-run"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "abbreviations": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "abbreviations",
+      "break-of-structure-bos",
+      "candle-range-theory-crt",
+      "daily-bias-trick",
+      "advance-market-structure",
+      "stl-itl-ltl",
+      "liquidity-pool",
+      "market-maker-sell-model",
+      "qml-chart-pattern",
+      "redelivered-rebalanced-price-range",
+      "swing-high",
+      "swing-low-formation"
+    ]
+  },
+  "advance-market-structure": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "advance-market-structure",
+      "stl-itl-ltl",
+      "swing-high",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "asian-range": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "bread-and-butter-buy-setup",
+      "bread-and-butter",
+      "central-bank-dealers-range",
+      "hrlr-lrlr",
+      "intraday-profiles",
+      "pdf",
+      "most-important-ict-concepts-to-conquer-market-complete-list"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "asian-range"
+    ]
+  },
+  "balanced-price-range-bpr": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution",
+      "premium-and-discount-zone-identification"
+    ],
+    "dependedOnBy": [
+      "breakaway-gap"
+    ],
+    "sameTierRefs": [
+      "fair-value-gap",
+      "balanced-price-range-bpr"
+    ]
+  },
+  "bearish-order-block": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "bearish-order-block",
+      "bullish-order-block"
+    ]
+  },
+  "bread-and-butter-buy-setup": {
+    "dependsOn": [
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "asian-range",
+      "pd-array-key-to-trade-execution",
+      "premium-and-discount-zone-identification"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "judas-swing",
+      "bread-and-butter-buy-setup",
+      "bread-and-butter"
+    ]
+  },
+  "bread-and-butter": {
+    "dependsOn": [
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "asian-range"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "judas-swing",
+      "bread-and-butter",
+      "bread-and-butter-buy-setup"
+    ]
+  },
+  "breakaway-gap": {
+    "dependsOn": [
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "inversion-fair-value-gap",
+      "balanced-price-range-bpr",
+      "sibi-and-bisi-the-ict-concepts",
+      "new-day-opening-gap-ndog"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "breakaway-gap",
+      "new-week-opening-gap-nwog"
+    ]
+  },
+  "breaker-block": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "liquidity-sweep-vs-liquidity-run",
+      "daily-bias-trick"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "bearish-order-block",
+      "bullish-order-block"
+    ]
+  },
+  "bullish-order-block": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "bullish-order-block",
+      "bearish-order-block"
+    ]
+  },
+  "central-bank-dealers-range": {
+    "dependsOn": [
+      "judas-swing",
+      "asian-range"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "intraday-profiles",
+      "central-bank-dealers-range"
+    ]
+  },
+  "change-in-the-state-of-delivery": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "change-in-the-state-of-delivery"
+    ]
+  },
+  "cisd-and-ict-mss": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "ict-1st-presented-fvg",
+      "valid-ict-fair-value-gap"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "cisd-and-ict-mss",
+      "pd-array-key-to-trade-execution",
+      "swing-high",
+      "swing-low-formation"
+    ]
+  },
+  "consequent-encroachment": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [
+      "consolidation",
+      "macro-time-based",
+      "vacuum-block-opening-gaps",
+      "ict-liquidity-void",
+      "2024-mentorship-lecture-3",
+      "2024-mentorship-lecture-4",
+      "2024-mentorship-lecture-5"
+    ],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "consequent-encroachment",
+      "implied-fair-value-gap-ifvg",
+      "bearish-order-block"
+    ]
+  },
+  "consolidation": {
+    "dependsOn": [
+      "market-structure",
+      "fair-value-gap",
+      "power-of-3",
+      "market-structure-shift",
+      "liquidity-sweep-vs-liquidity-run",
+      "consequent-encroachment"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "daily-bias"
+    ]
+  },
+  "daily-bias": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "power-of-3",
+      "daily-bias-trick",
+      "pd-array-key-to-trade-execution",
+      "optimal-trade-entry-ote-pattern"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "daily-bias"
+    ]
+  },
+  "daily-bias-trick": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "ict-trading-strategy-2022",
+      "fair-value-gap",
+      "breaker-block",
+      "daily-bias",
+      "mitigation-block",
+      "new-day-opening-gap-ndog",
+      "power-of-3",
+      "rejection-block",
+      "most-important-ict-concepts-to-conquer-market-complete-list"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "daily-bias-trick",
+      "premium-and-discount-zone-identification",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "displacement-move": {
+    "dependsOn": [
+      "market-structure",
+      "pd-array-key-to-trade-execution",
+      "premium-and-discount-zone-identification",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [
+      "ict-trading-strategy-2022",
+      "seek-and-destroy-friday",
+      "ict-liquidity-void",
+      "most-important-ict-concepts-to-conquer-market-complete-list"
+    ],
+    "sameTierRefs": [
+      "fair-value-gap",
+      "displacement-move"
+    ]
+  },
+  "enigma-fair-value-gap": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [
+      "blog---ict",
+      "2024---ict"
+    ],
+    "sameTierRefs": [
+      "fair-value-gap",
+      "enigma-fair-value-gap",
+      "displacement-move",
+      "inversion-fair-value-gap",
+      "smt-divergence-smart-money-technique"
+    ]
+  },
+  "fibonacci-levels": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "premium-and-discount-zone-identification",
+      "swing-low-formation"
+    ],
+    "dependedOnBy": [
+      "vacuum-block-opening-gaps"
+    ],
+    "sameTierRefs": [
+      "fibonacci-levels",
+      "optimal-trade-entry-ote-pattern"
+    ]
+  },
+  "hrlr-lrlr": {
+    "dependsOn": [
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "asian-range",
+      "liquidity-sweep-vs-liquidity-run"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "hrlr-lrlr"
+    ]
+  },
+  "implied-fair-value-gap-ifvg": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "implied-fair-value-gap-ifvg",
+      "inversion-fair-value-gap",
+      "consequent-encroachment"
+    ]
+  },
+  "institutional-order-flow-entry-drill": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "institutional-order-flow-entry-drill"
+    ]
+  },
+  "internal-external-liquidity": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "swing-high",
+      "swing-low-formation",
+      "optimal-trade-entry-ote-pattern"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "internal-external-liquidity",
+      "daily-bias"
+    ]
+  },
+  "intraday-profiles": {
+    "dependsOn": [
+      "market-structure",
+      "judas-swing",
+      "market-structure-shift",
+      "asian-range",
+      "premium-and-discount-zone-identification",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "ipda",
+      "intraday-profiles",
+      "central-bank-dealers-range",
+      "daily-bias"
+    ]
+  },
+  "intraday": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "asian-range",
+      "intraday",
+      "daily-bias-trick",
+      "liquidity-sweep-vs-liquidity-run",
+      "premium-and-discount-zone-identification",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "inversion-fair-value-gap": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [
+      "breakaway-gap",
+      "2024-mentorship-lecture-3",
+      "2024-mentorship-lecture-4",
+      "2024-mentorship-lecture-5"
+    ],
+    "sameTierRefs": [
+      "fair-value-gap",
+      "inversion-fair-value-gap",
+      "consequent-encroachment"
+    ]
+  },
+  "ipda": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "sibi-and-bisi-the-ict-concepts",
+      "optimal-trade-entry-ote-pattern",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "ipda",
+      "internal-external-liquidity"
+    ]
+  },
+  "judas-swing": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [
+      "central-bank-dealers-range",
+      "intraday-profiles",
+      "one-trade-setup-for-life",
+      "pdf",
+      "most-important-ict-concepts-to-conquer-market-complete-list",
+      "who-is-inner-circle-trader-ict"
+    ],
+    "sameTierRefs": [
+      "judas-swing"
+    ]
+  },
+  "liquidity-pool": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "liquidity-in-forex"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "liquidity-pool",
+      "premium-and-discount-zone-identification",
+      "liquidity-sweep-vs-liquidity-run"
+    ]
+  },
+  "liquidity-sweep-vs-liquidity-run": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "ict-trading-strategy-2022",
+      "dragonfly-doji-candlestick",
+      "gravestone-doji-candlestick",
+      "trade-an-rsi-divergence",
+      "breaker-block",
+      "consolidation",
+      "hrlr-lrlr",
+      "market-maker-buy-model",
+      "seek-and-destroy-friday",
+      "silver-bullet",
+      "turtle-soup-pattern",
+      "liquidity-in-forex",
+      "pin-bar",
+      "shooting-star-candlestick",
+      "2024-mentorship-lecture-3",
+      "2024-mentorship-lecture-4",
+      "2024-mentorship-lecture-5"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "asian-range",
+      "liquidity-sweep-vs-liquidity-run",
+      "pd-array-key-to-trade-execution",
+      "premium-and-discount-zone-identification",
+      "liquidity-pool"
+    ]
+  },
+  "macro-time-based": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution",
+      "consequent-encroachment"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "silver-bullet",
+      "judas-swing"
+    ]
+  },
+  "market-maker-buy-model": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "pd-array-key-to-trade-execution",
+      "market-structure-shift",
+      "smt-divergence-smart-money-technique",
+      "liquidity-sweep-vs-liquidity-run",
+      "market-maker-sell-model"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-maker-buy-model"
+    ]
+  },
+  "market-maker-sell-model": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "market-maker-buy-model",
+      "reclaimed-order-block"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "market-maker-sell-model",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "market-order-flow": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "break-of-structure-bos"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-order-flow"
+    ]
+  },
+  "market-structure-shift": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "blog---ict",
+      "3-step-guide-to-master-valid-pullback",
+      "bear-flag-pattern",
+      "bull-flag-pattern",
+      "bullish-pennant-pattern",
+      "ict-trading-strategy-2022",
+      "dragonfly-doji-candlestick",
+      "elliot-wave-theory",
+      "fair-value-gap",
+      "gravestone-doji-candlestick",
+      "trade-an-rsi-divergence",
+      "balanced-price-range-bpr",
+      "bearish-order-block",
+      "bread-and-butter-buy-setup",
+      "bread-and-butter",
+      "breakaway-gap",
+      "breaker-block",
+      "bullish-order-block",
+      "change-in-the-state-of-delivery",
+      "consequent-encroachment",
+      "consolidation",
+      "displacement-move",
+      "enigma-fair-value-gap",
+      "fibonacci-levels",
+      "hrlr-lrlr",
+      "implied-fair-value-gap-ifvg",
+      "institutional-order-flow-entry-drill",
+      "internal-external-liquidity",
+      "intraday-profiles",
+      "inversion-fair-value-gap",
+      "ipda",
+      "judas-swing",
+      "macro-time-based",
+      "market-maker-buy-model",
+      "market-order-flow",
+      "mitigation-block",
+      "new-day-opening-gap-ndog",
+      "new-week-opening-gap-nwog",
+      "one-trade-setup-for-life",
+      "optimal-trade-entry-ote-pattern",
+      "order-block",
+      "reaper-inversion-fair-value-gap",
+      "reclaimed-order-block",
+      "seek-and-destroy-friday",
+      "silver-bullet",
+      "tgif-setup-trade-like-a-pro",
+      "top-down-analysis",
+      "turtle-soup-pattern",
+      "unicorn-model",
+      "vacuum-block-opening-gaps",
+      "ict-1st-presented-fvg",
+      "ict-liquidity-void",
+      "most-important-ict-concepts-to-conquer-market-complete-list",
+      "rally-base-rally",
+      "shooting-star-candlestick",
+      "sibi-and-bisi-the-ict-concepts",
+      "single-candle-order-block-scob",
+      "support-resistance",
+      "valid-ict-fair-value-gap",
+      "what-is-inducement-in-forex",
+      "2024-mentorship-lecture-3",
+      "2024-mentorship-lecture-4",
+      "2024-mentorship-lecture-5",
+      "lecture-1",
+      "mentorship-lecture-2",
+      "trading-quotes",
+      "who-is-inner-circle-trader-ict"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution",
+      "swing-high",
+      "swing-low-formation"
+    ]
+  },
+  "mitigation-block": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution",
+      "daily-bias-trick"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "mitigation-block"
+    ]
+  },
+  "new-day-opening-gap-ndog": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "daily-bias-trick"
+    ],
+    "dependedOnBy": [
+      "breakaway-gap",
+      "2024-mentorship-lecture-3",
+      "2024-mentorship-lecture-4",
+      "2024-mentorship-lecture-5"
+    ],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "new-day-opening-gap-ndog"
+    ]
+  },
+  "new-week-opening-gap-nwog": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "new-week-opening-gap-nwog",
+      "daily-bias"
+    ]
+  },
+  "one-shot-one-kill": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "one-shot-one-kill",
+      "optimal-trade-entry-ote-pattern",
+      "fibonacci-levels"
+    ]
+  },
+  "one-trade-setup-for-life": {
+    "dependsOn": [
+      "market-structure",
+      "judas-swing",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "one-trade-setup-for-life",
+      "daily-bias"
+    ]
+  },
+  "optimal-trade-entry-ote-pattern": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [
+      "ict-trading-strategy-2022",
+      "daily-bias",
+      "internal-external-liquidity",
+      "ipda",
+      "who-is-inner-circle-trader-ict"
+    ],
+    "sameTierRefs": [
+      "optimal-trade-entry-ote-pattern"
+    ]
+  },
+  "order-block": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [
+      "blog---ict",
+      "3-step-guide-to-master-valid-pullback",
+      "ict-trading-strategy-2022",
+      "bread-and-butter-buy-setup",
+      "bread-and-butter",
+      "breakaway-gap",
+      "change-in-the-state-of-delivery",
+      "daily-bias",
+      "fibonacci-levels",
+      "hrlr-lrlr",
+      "internal-external-liquidity",
+      "ipda",
+      "judas-swing",
+      "macro-time-based",
+      "market-maker-buy-model",
+      "market-order-flow",
+      "new-week-opening-gap-nwog",
+      "one-shot-one-kill",
+      "pdf",
+      "silver-bullet",
+      "tgif-setup-trade-like-a-pro",
+      "top-down-analysis",
+      "turtle-soup-pattern",
+      "most-important-ict-concepts-to-conquer-market-complete-list",
+      "rally-base-rally",
+      "support-resistance",
+      "what-is-inducement-in-forex",
+      "2024-mentorship-lecture-3",
+      "2024-mentorship-lecture-4",
+      "2024-mentorship-lecture-5",
+      "lecture-1",
+      "who-is-inner-circle-trader-ict"
+    ],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "bullish-order-block",
+      "bearish-order-block"
+    ]
+  },
+  "pd-array-key-to-trade-execution": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "ict-trading-strategy-2022",
+      "fair-value-gap",
+      "balanced-price-range-bpr",
+      "bread-and-butter-buy-setup",
+      "change-in-the-state-of-delivery",
+      "consequent-encroachment",
+      "daily-bias",
+      "displacement-move",
+      "implied-fair-value-gap-ifvg",
+      "intraday-profiles",
+      "inversion-fair-value-gap",
+      "ipda",
+      "macro-time-based",
+      "market-maker-buy-model",
+      "mitigation-block",
+      "one-shot-one-kill",
+      "order-block",
+      "reclaimed-order-block",
+      "smt-divergence-smart-money-technique",
+      "unicorn-model",
+      "weekly-range-profiles",
+      "ict-1st-presented-fvg",
+      "sibi-and-bisi-the-ict-concepts",
+      "mentorship-lecture-2",
+      "who-is-inner-circle-trader-ict"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "pdf": {
+    "dependsOn": [
+      "silver-bullet",
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "judas-swing",
+      "asian-range"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "intraday-profiles",
+      "pdf"
+    ]
+  },
+  "power-of-3": {
+    "dependsOn": [
+      "market-structure",
+      "daily-bias-trick"
+    ],
+    "dependedOnBy": [
+      "consolidation",
+      "daily-bias",
+      "seek-and-destroy-friday",
+      "tgif-setup-trade-like-a-pro",
+      "most-important-ict-concepts-to-conquer-market-complete-list",
+      "who-is-inner-circle-trader-ict"
+    ],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "power-of-3"
+    ]
+  },
+  "premium-and-discount-zone-identification": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "ict-trading-strategy-2022",
+      "fair-value-gap",
+      "balanced-price-range-bpr",
+      "bread-and-butter-buy-setup",
+      "displacement-move",
+      "fibonacci-levels",
+      "intraday-profiles",
+      "reaper-inversion-fair-value-gap",
+      "silver-bullet",
+      "top-down-analysis",
+      "weekly-range-profiles",
+      "most-important-ict-concepts-to-conquer-market-complete-list",
+      "2024-mentorship-lecture-4",
+      "2024-mentorship-lecture-5"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "premium-and-discount-zone-identification",
+      "swing-high",
+      "swing-low-formation",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "propulsion-block": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "propulsion-block",
+      "bullish-order-block",
+      "bearish-order-block"
+    ]
+  },
+  "reaper-inversion-fair-value-gap": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "premium-and-discount-zone-identification"
+    ],
+    "dependedOnBy": [
+      "blog---ict",
+      "2024---ict"
+    ],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "reaper-inversion-fair-value-gap",
+      "inversion-fair-value-gap"
+    ]
+  },
+  "reclaimed-order-block": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "market-maker-sell-model",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "reclaimed-order-block",
+      "bullish-order-block",
+      "bearish-order-block",
+      "propulsion-block",
+      "mitigation-block",
+      "rejection-block"
+    ]
+  },
+  "redelivered-rebalanced-price-range": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "redelivered-rebalanced-price-range",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "rejection-block": {
+    "dependsOn": [
+      "market-structure",
+      "daily-bias-trick"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "rejection-block"
+    ]
+  },
+  "seek-and-destroy-friday": {
+    "dependsOn": [
+      "market-structure",
+      "fair-value-gap",
+      "power-of-3",
+      "market-structure-shift",
+      "liquidity-sweep-vs-liquidity-run",
+      "displacement-move"
+    ],
+    "dependedOnBy": [
+      "weekly-range-profiles"
+    ],
+    "sameTierRefs": [
+      "seek-and-destroy-friday"
+    ]
+  },
+  "silver-bullet": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "liquidity-sweep-vs-liquidity-run",
+      "premium-and-discount-zone-identification"
+    ],
+    "dependedOnBy": [
+      "blog---ict",
+      "pdf",
+      "weekly-range-profiles",
+      "most-important-ict-concepts-to-conquer-market-complete-list",
+      "2024---ict",
+      "who-is-inner-circle-trader-ict"
+    ],
+    "sameTierRefs": [
+      "silver-bullet"
+    ]
+  },
+  "smt-divergence-smart-money-technique": {
+    "dependsOn": [
+      "market-structure",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [
+      "market-maker-buy-model",
+      "who-is-inner-circle-trader-ict"
+    ],
+    "sameTierRefs": [
+      "smt-divergence-smart-money-technique"
+    ]
+  },
+  "stl-itl-ltl": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "stl-itl-ltl",
+      "advance-market-structure",
+      "swing-low-formation",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "suspension-block": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "suspension-block",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "swing-high": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "internal-external-liquidity",
+      "2024-mentorship-lecture-5"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "swing-high",
+      "swing-low-formation",
+      "pd-array-key-to-trade-execution",
+      "advance-market-structure",
+      "stl-itl-ltl"
+    ]
+  },
+  "swing-low-formation": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "fibonacci-levels",
+      "internal-external-liquidity",
+      "2024-mentorship-lecture-5"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "swing-low-formation",
+      "swing-high",
+      "pd-array-key-to-trade-execution",
+      "stl-itl-ltl",
+      "advance-market-structure"
+    ]
+  },
+  "tgif-setup-trade-like-a-pro": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "power-of-3",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "judas-swing",
+      "tgif-setup-trade-like-a-pro",
+      "seek-and-destroy-friday"
+    ]
+  },
+  "top-down-analysis": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "premium-and-discount-zone-identification"
+    ],
+    "dependedOnBy": [
+      "blog---ict",
+      "2024---ict"
+    ],
+    "sameTierRefs": [
+      "top-down-analysis"
+    ]
+  },
+  "turtle-soup-pattern": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "liquidity-sweep-vs-liquidity-run"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "turtle-soup-pattern"
+    ]
+  },
+  "unicorn-model": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "unicorn-model"
+    ]
+  },
+  "vacuum-block-opening-gaps": {
+    "dependsOn": [
+      "market-structure",
+      "fair-value-gap",
+      "market-structure-shift",
+      "consequent-encroachment",
+      "fibonacci-levels"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "vacuum-block-opening-gaps",
+      "new-week-opening-gap-nwog"
+    ]
+  },
+  "venom-trading-model-2025": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "venom-trading-model-2025",
+      "liquidity-sweep-vs-liquidity-run",
+      "pd-array-key-to-trade-execution"
+    ]
+  },
+  "weekly-range-expansion": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "weekly-range-expansion",
+      "pd-array-key-to-trade-execution",
+      "liquidity-pool",
+      "premium-and-discount-zone-identification"
+    ]
+  },
+  "weekly-range-profiles": {
+    "dependsOn": [
+      "silver-bullet",
+      "fair-value-gap",
+      "premium-and-discount-zone-identification",
+      "pd-array-key-to-trade-execution",
+      "seek-and-destroy-friday"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "weekly-range-profiles"
+    ]
+  },
+  "inducement-after-break-of-structure": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "what-is-inducement-in-forex"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "inducement-after-break-of-structure",
+      "swing-high",
+      "swing-low-formation",
+      "higher-high-and-higher-low",
+      "lower-high-and-lower-low"
+    ]
+  },
+  "killzone-silver-bullet-overlap": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "blog---ict",
+      "2024---ict"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "killzone-silver-bullet-overlap"
+    ]
+  },
+  "liquidity-in-forex": {
+    "dependsOn": [
+      "market-structure",
+      "liquidity-pool",
+      "liquidity-sweep-vs-liquidity-run"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "lower-high-and-lower-low": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "lower-high-and-lower-low",
+      "higher-high-and-higher-low",
+      "break-of-structure-bos",
+      "swing-low-formation",
+      "swing-high"
+    ]
+  },
+  "market-structure-in": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "swing-high",
+      "swing-low-formation",
+      "break-of-structure-bos",
+      "advance-market-structure",
+      "stl-itl-ltl"
+    ]
+  },
+  "ict-1st-presented-fvg": {
+    "dependsOn": [
+      "market-structure-shift",
+      "cisd-and-ict-mss",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "inversion-fair-value-gap",
+      "valid-ict-fair-value-gap"
+    ]
+  },
+  "ict-kill-zones": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "asian-range"
+    ]
+  },
+  "ict-liquidity-void": {
+    "dependsOn": [
+      "market-structure",
+      "fair-value-gap",
+      "market-structure-shift",
+      "displacement-move",
+      "consequent-encroachment"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "most-important-ict-concepts-to-conquer-market-complete-list": {
+    "dependsOn": [
+      "silver-bullet",
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "power-of-3",
+      "judas-swing",
+      "market-structure-shift",
+      "asian-range",
+      "displacement-move",
+      "break-of-structure-bos",
+      "daily-bias-trick",
+      "premium-and-discount-zone-identification"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "ipda",
+      "most-important-ict-concepts-to-conquer-market-complete-list",
+      "what-is-inducement-in-forex"
+    ]
+  },
+  "mss-vs-choch": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "mss-vs-choch",
+      "swing-low-formation",
+      "swing-high",
+      "pd-array-key-to-trade-execution",
+      "break-of-structure-bos"
+    ]
+  },
+  "pin-bar": {
+    "dependsOn": [
+      "liquidity-sweep-vs-liquidity-run"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "pin-bar",
+      "shooting-star-candlestick",
+      "change-in-the-state-of-delivery"
+    ]
+  },
+  "powerful-ict-reversal-patterns": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "powerful-ict-reversal-patterns",
+      "pd-array-key-to-trade-execution",
+      "swing-high",
+      "swing-low-formation"
+    ]
+  },
+  "proven-ict-20-pips-a-day": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "proven-ict-20-pips-a-day",
+      "intraday"
+    ]
+  },
+  "qml-chart-pattern": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "qml-chart-pattern"
+    ]
+  },
+  "rally-base-rally": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "market-structure-shift",
+      "break-of-structure-bos"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "rally-base-rally",
+      "what-is-inducement-in-forex"
+    ]
+  },
+  "shooting-star-candlestick": {
+    "dependsOn": [
+      "market-structure-shift",
+      "liquidity-sweep-vs-liquidity-run"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "shooting-star-candlestick",
+      "gravestone-doji-candlestick",
+      "dragonfly-doji-candlestick",
+      "pin-bar",
+      "change-in-the-state-of-delivery"
+    ]
+  },
+  "sibi-and-bisi-the-ict-concepts": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [
+      "breakaway-gap",
+      "ipda"
+    ],
+    "sameTierRefs": [
+      "fair-value-gap",
+      "sibi-and-bisi-the-ict-concepts"
+    ]
+  },
+  "simple-ict-scalping": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "swing-high",
+      "swing-low-formation"
+    ]
+  },
+  "single-candle-order-block-scob": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "single-candle-order-block-scob",
+      "mitigation-block"
+    ]
+  },
+  "supply-and-demand-in-forex": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "break-of-structure-bos"
+    ]
+  },
+  "support-resistance": {
+    "dependsOn": [
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "valid-ict-fair-value-gap": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "cisd-and-ict-mss"
+    ],
+    "dependedOnBy": [
+      "blog---ict"
+    ],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "valid-ict-fair-value-gap",
+      "displacement-move"
+    ]
+  },
+  "what-is-ict-hidden-order-block": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "blog---ict"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift",
+      "what-is-ict-hidden-order-block",
+      "pd-array-key-to-trade-execution",
+      "premium-and-discount-zone-identification",
+      "cisd-and-ict-mss",
+      "liquidity-sweep-vs-liquidity-run",
+      "suspension-block"
+    ]
+  },
+  "what-is-inducement-in-forex": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "break-of-structure-bos",
+      "inducement-after-break-of-structure"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "what-is-inducement-in-forex",
+      "3-step-guide-to-master-valid-pullback"
+    ]
+  },
+  "2024---ict": {
+    "dependsOn": [
+      "silver-bullet",
+      "fair-value-gap",
+      "enigma-fair-value-gap",
+      "top-down-analysis",
+      "reaper-inversion-fair-value-gap",
+      "killzone-silver-bullet-overlap"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "2024-mentorship-lecture-3": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "new-day-opening-gap-ndog",
+      "inversion-fair-value-gap",
+      "liquidity-sweep-vs-liquidity-run",
+      "consequent-encroachment"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "optimal-trade-entry-ote-pattern"
+    ]
+  },
+  "2024-mentorship-lecture-4": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift",
+      "new-day-opening-gap-ndog",
+      "inversion-fair-value-gap",
+      "liquidity-sweep-vs-liquidity-run",
+      "consequent-encroachment",
+      "premium-and-discount-zone-identification"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "2024-mentorship-lecture-5": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "new-day-opening-gap-ndog",
+      "market-structure-shift",
+      "inversion-fair-value-gap",
+      "liquidity-sweep-vs-liquidity-run",
+      "consequent-encroachment",
+      "premium-and-discount-zone-identification",
+      "swing-high",
+      "swing-low-formation"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "optimal-trade-entry-ote-pattern"
+    ]
+  },
+  "lecture-1": {
+    "dependsOn": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "mentorship-lecture-2": {
+    "dependsOn": [
+      "market-structure",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "order-block",
+      "fair-value-gap",
+      "inversion-fair-value-gap",
+      "consequent-encroachment"
+    ]
+  },
+  "crypto-trading-strategies-for-2026-a-practical-profit-framework": {
+    "dependsOn": [
+      "market-structure"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "trading-quotes": {
+    "dependsOn": [
+      "market-structure-shift"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "the-hidden-infrastructure-behind-instant-crypto-transactions": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "who-is-inner-circle-trader-ict": {
+    "dependsOn": [
+      "silver-bullet",
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "power-of-3",
+      "judas-swing",
+      "market-structure-shift",
+      "pd-array-key-to-trade-execution",
+      "optimal-trade-entry-ote-pattern",
+      "smt-divergence-smart-money-technique"
+    ],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "ipda"
+    ]
+  },
+  "market-hours-live-tool-time-zone-converter-gmtest": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "free-ict-trading-tools-kill-zones-macro-times-forex-hours-tracker": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "ICT-Trading-Tools-Overview": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "ICT-PDF-and-Glossary": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "abbreviations"
+    ]
+  },
+  "market-structure-playlist---ict": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "break-of-structure-bos",
+      "higher-high-and-higher-low",
+      "lower-high-and-lower-low",
+      "break-of-structure-vs-change-of-character",
+      "inducement-after-break-of-structure"
+    ]
+  },
+  "about-us": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "affiliate-disclosure": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "blog": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "contact-us": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "disclaimer": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "editorial-process": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "glossary-pdf": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "ict": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "market-structure": {
+    "dependsOn": [],
+    "dependedOnBy": [
+      "bullish-pennant-pattern",
+      "ict-trading-strategy-2022",
+      "elliot-wave-theory",
+      "fair-value-gap",
+      "trade-an-rsi-divergence",
+      "balanced-price-range-bpr",
+      "bearish-order-block",
+      "breaker-block",
+      "bullish-order-block",
+      "change-in-the-state-of-delivery",
+      "consequent-encroachment",
+      "consolidation",
+      "daily-bias",
+      "displacement-move",
+      "enigma-fair-value-gap",
+      "fibonacci-levels",
+      "implied-fair-value-gap-ifvg",
+      "institutional-order-flow-entry-drill",
+      "internal-external-liquidity",
+      "intraday-profiles",
+      "inversion-fair-value-gap",
+      "ipda",
+      "judas-swing",
+      "macro-time-based",
+      "market-maker-buy-model",
+      "market-order-flow",
+      "mitigation-block",
+      "new-day-opening-gap-ndog",
+      "new-week-opening-gap-nwog",
+      "one-shot-one-kill",
+      "one-trade-setup-for-life",
+      "optimal-trade-entry-ote-pattern",
+      "order-block",
+      "pdf",
+      "power-of-3",
+      "reaper-inversion-fair-value-gap",
+      "reclaimed-order-block",
+      "rejection-block",
+      "seek-and-destroy-friday",
+      "silver-bullet",
+      "smt-divergence-smart-money-technique",
+      "tgif-setup-trade-like-a-pro",
+      "top-down-analysis",
+      "turtle-soup-pattern",
+      "unicorn-model",
+      "vacuum-block-opening-gaps",
+      "liquidity-in-forex",
+      "ict-liquidity-void",
+      "most-important-ict-concepts-to-conquer-market-complete-list",
+      "rally-base-rally",
+      "sibi-and-bisi-the-ict-concepts",
+      "single-candle-order-block-scob",
+      "valid-ict-fair-value-gap",
+      "what-is-inducement-in-forex",
+      "2024-mentorship-lecture-3",
+      "2024-mentorship-lecture-4",
+      "2024-mentorship-lecture-5",
+      "lecture-1",
+      "mentorship-lecture-2",
+      "crypto-trading-strategies-for-2026-a-practical-profit-framework",
+      "who-is-inner-circle-trader-ict"
+    ],
+    "sameTierRefs": [
+      "market-structure",
+      "break-of-structure-bos",
+      "higher-high-and-higher-low",
+      "lower-high-and-lower-low",
+      "break-of-structure-vs-change-of-character",
+      "inducement-after-break-of-structure"
+    ]
+  },
+  "privacy-policy": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "review-board": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "tools": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
+  "user-reviews": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  }
+}

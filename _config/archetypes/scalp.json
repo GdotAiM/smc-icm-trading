@@ -1,0 +1,24 @@
+{
+  "name": "Scalper",
+  "anchor": ["1m", "5m"],
+  "holds": "minutes",
+  "tradesPerMonth": "40-60",
+  "riskPerTrade": "0.25-0.5%",
+  "description": "Fast execution trader. Uses 1m/5m triggers within the 15m/1H bias window. Enters on manipulation sweeps and FVG fills. Needs 1m CHoCH + 5m FVG for trigger. Relies on higher-TF archetypes for direction.",
+  "models": {
+    "primary": ["Silver Bullet", "2FVG Entry", "Judas Swing"],
+    "secondary": ["SCOB"],
+    "avoid": ["2022 Model (MMXM)", "OTE + Institutional OB", "Unicorn (OTE+FVG)", "Turtle Soup", "Breaker Block", "Asian Range Breakout", "NWOG/NDOG"]
+  },
+  "cycleFocus": ["MANIPULATION", "EXPANSION"],
+  "sessionRelevance": "critical",
+  "microLayerEnabled": true,
+  "microLayerTF": "1m",
+  "coherenceThreshold": 8,
+  "riskParams": {
+    "slPips": "5-15",
+    "rrMinimum": 1.0,
+    "maxPositionPct": 0.5,
+    "scaleInSteps": 0
+  }
+}

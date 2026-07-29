@@ -1,0 +1,105 @@
+{
+  "price": 1.329150915145874,
+  "structure": {
+    "bias": "bearish",
+    "lastEvent": "BOS",
+    "lastEventPrice": 1.3343117237091064,
+    "lastEventTime": 1784847600000,
+    "confidence": 1,
+    "lastSwingHigh": 1.3544628620147705,
+    "lastSwingLow": 1.3343117237091064
+  },
+  "liquidity": [
+    {
+      "price": 1.3481148481369019,
+      "type": "BSL",
+      "strength": 6,
+      "score": 3.064984463834761,
+      "distance": 1.4267704874541312,
+      "session": "Off",
+      "ageBars": 37,
+      "swept": true
+    },
+    {
+      "price": 1.3147563338279724,
+      "type": "SSL",
+      "strength": 4,
+      "score": 2.136954439423587,
+      "distance": 1.0829907389652444,
+      "session": "Off",
+      "ageBars": 24,
+      "swept": false
+    },
+    {
+      "price": 1.324153184890747,
+      "type": "SSL",
+      "strength": 2,
+      "score": 1.3303067530524375,
+      "distance": 0.37600924004769265,
+      "session": "Asia",
+      "ageBars": 96,
+      "swept": true
+    },
+    {
+      "price": 1.3543347120285034,
+      "type": "BSL",
+      "strength": 4,
+      "score": 2.262944127297454,
+      "distance": 1.8947281753829643,
+      "session": "Off",
+      "ageBars": 8,
+      "swept": false
+    },
+    {
+      "price": 1.3452497323354085,
+      "type": "BSL",
+      "strength": 3,
+      "score": 1.5664665992554785,
+      "distance": 1.211210631244804,
+      "session": "Off",
+      "ageBars": 31,
+      "swept": true
+    },
+    {
+      "price": 1.3593310832977294,
+      "type": "BSL",
+      "strength": 5,
+      "score": 2.258876071053188,
+      "distance": 2.270635170765628,
+      "session": "Off",
+      "ageBars": 72,
+      "swept": true
+    }
+  ],
+  "orderBlocks": [],
+  "fvgs": [],
+  "draw": {
+    "price": 1.3147563338279724,
+    "side": "down",
+    "distance": 1.0829907389652444,
+    "reason": "SSL pool Â· 4 touches",
+    "score": 0.9133607408827804
+  },
+  "alt": {
+    "price": 1.3481148481369019,
+    "side": "up",
+    "distance": 1.4267704874541312,
+    "reason": "BSL pool Â· 6 touches",
+    "score": 0.6458583610036694
+  },
+  "volumeDisplacement": {
+    "atrRatio": 0.03664155972272207,
+    "label": "weak",
+    "volumeConfirmed": true,
+    "volumeRatio": 0
+  },
+  "pdArray": {
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
+    "currentZone": "discount",
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
+  },
+  "inversionFvgs": []
+}

@@ -1,0 +1,61 @@
+[
+  {
+    "type": "fill_in_blank",
+    "concept": "3-step-guide-to-master-valid-pullback",
+    "question": "Complete the rule from \"3-step-guide-to-master-valid-pullback\": Read the higher-timeframe context. 1-day and 4-hour charts — bullish, bearish or neutral ________",
+    "answer": "structure",
+    "context": "Read the higher-timeframe context. 1-day and 4-hour charts — bullish, bearish or neutral structure",
+    "tier": 3
+  },
+  {
+    "type": "concept_id",
+    "concept": "about-us",
+    "question": "What concept is described by: \"excerpt: \"Hello and Welcome to ICT Trading Blog, the one stop solution to master the all the SMC & ICT concepts in unique & easy way like never before...\"?",
+    "answer": "about-us",
+    "tier": 3
+  },
+  {
+    "type": "scenario",
+    "concept": "affiliate-disclosure",
+    "question": "When is affiliate-disclosure most appropriate to use?",
+    "answer": "scraped_at: \"2026-07-27t15:51:32.511415+00:00\"",
+    "tier": 3
+  },
+  {
+    "type": "fill_in_blank",
+    "concept": "bear-flag-pattern-explained",
+    "question": "Complete the rule from \"bear-flag-pattern-explained\": Wait for ________ breakout. Price must close below the lower trendline of the flag",
+    "answer": "the",
+    "context": "Wait for the breakout. Price must close below the lower trendline of the flag",
+    "tier": 3
+  },
+  {
+    "type": "concept_id",
+    "concept": "blog",
+    "question": "What concept is described by: \"---\r title: \"Blog\"\r source: \"https://innercircletrader.net/blog/\"\r type: \"wordpress-page\"\r date: \"2023-11-18T16:42:24\"\r modified: \"2024-06-04T06:01:02...\"?",
+    "answer": "blog",
+    "tier": 3
+  },
+  {
+    "type": "fill_in_blank",
+    "concept": "bull-flag-pattern-trading-strategy",
+    "question": "Complete the rule from \"bull-flag-pattern-trading-strategy\": Enter the buy. On the confirmation candle ________",
+    "answer": "close",
+    "context": "Enter the buy. On the confirmation candle close",
+    "tier": 3
+  },
+  {
+    "type": "concept_id",
+    "concept": "bullish-pennant-pattern",
+    "question": "What concept is described by: \"It is a type of [bullish flag pattern](<https://innercircletrader.net/tutorials/bull-flag-pattern-trading-strategy/>), with only one difference — a pe...\"?",
+    "answer": "bullish-pennant-pattern",
+    "tier": 3
+  },
+  {
+    "type": "scenario",
+    "concept": "complete-ict-trading-strategy-2022",
+    "question": "When is complete-ict-trading-strategy-2022 most appropriate to use?",
+    "answer": "use the table of contents to jump to any section.",
+    "tier": 3
+  }
+]

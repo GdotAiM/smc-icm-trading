@@ -1,0 +1,24 @@
+{
+  "name": "Day Trader",
+  "anchor": ["15m", "1H"],
+  "holds": "hours",
+  "tradesPerMonth": "15-20",
+  "riskPerTrade": "0.5-1%",
+  "description": "Intraday trader. Uses 15m/1H for entries within the 4H/daily bias. Silver Bullet windows are primary. Needs micro confirmation on 5m. The default archetype for the current system.",
+  "models": {
+    "primary": ["Silver Bullet", "OTE + Institutional OB", "2022 Model (MMXM)"],
+    "secondary": ["Unicorn (OTE+FVG)", "SCOB", "Breaker Block", "Turtle Soup"],
+    "avoid": ["Asian Range Breakout", "NWOG/NDOG"]
+  },
+  "cycleFocus": ["MANIPULATION", "DISTRIBUTION", "EXPANSION"],
+  "sessionRelevance": "high",
+  "microLayerEnabled": true,
+  "microLayerTF": "5m",
+  "coherenceThreshold": 7,
+  "riskParams": {
+    "slPips": "15-40",
+    "rrMinimum": 1.5,
+    "maxPositionPct": 1.0,
+    "scaleInSteps": 1
+  }
+}

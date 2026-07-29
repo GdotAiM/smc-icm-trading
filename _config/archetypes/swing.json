@@ -1,0 +1,24 @@
+{
+  "name": "Swing Trader",
+  "anchor": ["4H", "1D"],
+  "holds": "days to weeks",
+  "tradesPerMonth": "4-8",
+  "riskPerTrade": "1%",
+  "description": "Multi-day trend trader. Uses 4H/1D structure for bias and entries. MMXM steps 3-4 — enters at POI return after the manipulation phase confirms. Holds through distribution.",
+  "models": {
+    "primary": ["2022 Model (MMXM)", "OTE + Institutional OB", "Turtle Soup", "Breaker Block"],
+    "secondary": ["Unicorn (OTE+FVG)", "SCOB", "Silver Bullet"],
+    "avoid": ["2FVG Entry", "Asian Range Breakout", "NWOG/NDOG", "Judas Swing"]
+  },
+  "cycleFocus": ["MANIPULATION", "DISTRIBUTION"],
+  "sessionRelevance": "medium",
+  "microLayerEnabled": true,
+  "microLayerTF": "15m",
+  "coherenceThreshold": 6,
+  "riskParams": {
+    "slPips": "40-100",
+    "rrMinimum": 2.0,
+    "maxPositionPct": 1.0,
+    "scaleInSteps": 2
+  }
+}

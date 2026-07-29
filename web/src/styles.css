@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Markdown content styling */
+.prose h1 { @apply text-2xl font-bold text-white mb-4; }
+.prose h2 { @apply text-xl font-semibold text-gray-200 mb-3 mt-6; }
+.prose h3 { @apply text-lg font-medium text-gray-300 mb-2 mt-4; }
+.prose p { @apply text-gray-400 mb-3; }
+.prose ul { @apply list-disc pl-5 text-gray-400 mb-3; }
+.prose ol { @apply list-decimal pl-5 text-gray-400 mb-3; }
+.prose li { @apply mb-1; }
+.prose table { @apply w-full border-collapse mb-4; }
+.prose th { @apply text-left p-2 bg-gray-800 text-gray-300 font-medium border-b border-gray-700; }
+.prose td { @apply p-2 border-b border-gray-800 text-gray-400; }
+.prose code { @apply bg-gray-800 px-1.5 py-0.5 rounded text-sm text-green-400; }
+.prose pre { @apply bg-gray-900 p-3 rounded-lg overflow-x-auto mb-4; }
+.prose strong { @apply text-gray-200 font-semibold; }
+.prose blockquote { @apply border-l-2 border-blue-500 pl-4 text-gray-500 italic my-3; }
+.prose hr { @apply border-gray-800 my-6; }

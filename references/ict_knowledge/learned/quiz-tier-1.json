@@ -1,0 +1,76 @@
+[
+  {
+    "type": "fill_in_blank",
+    "concept": "fair-value-gap-trading-strategy",
+    "question": "Complete the rule from \"fair-value-gap-trading-strategy\": Read ________ higher-timeframe context. 1-day and 4-hour charts — bullish, bearish or neutral structure",
+    "answer": "the",
+    "context": "Read the higher-timeframe context. 1-day and 4-hour charts — bullish, bearish or neutral structure",
+    "tier": 1
+  },
+  {
+    "type": "concept_id",
+    "concept": "ict-balanced-price-range-bpr",
+    "question": "What concept is described by: \"The ICT Balanced Price Range is built on top of the [ICT Fair Value Gap](<https://innercircletrader.net/tutorials/fair-value-gap-trading-strategy/> \"I...\"?",
+    "answer": "ict-balanced-price-range-bpr",
+    "tier": 1
+  },
+  {
+    "type": "scenario",
+    "concept": "ict-bearish-order-block",
+    "question": "When is ict-bearish-order-block most appropriate to use?",
+    "answer": "these are the recurring mistakes i see when traders first start trading bearish ob setups.",
+    "tier": 1
+  },
+  {
+    "type": "fill_in_blank",
+    "concept": "ict-breaker-block-trading",
+    "question": "Complete the rule from \"ict-breaker-block-trading\": A confirming [Market Structure Shift](<https://innercircletrader.net/tutorials/ict-market-structure-shift/>) to the ________",
+    "answer": "upside",
+    "context": "A confirming [Market Structure Shift](<https://innercircletrader.net/tutorials/ict-market-structure-shift/>) to the upside",
+    "tier": 1
+  },
+  {
+    "type": "concept_id",
+    "concept": "ict-bullish-order-block",
+    "question": "What concept is described by: \"The ICT bullish order block is the zone on a price chart where a large number of buy orders are executed by institutional traders, and the market show...\"?",
+    "answer": "ict-bullish-order-block",
+    "tier": 1
+  },
+  {
+    "type": "scenario",
+    "concept": "ict-consequent-encroachment",
+    "question": "When is ict-consequent-encroachment most appropriate to use?",
+    "answer": "you identify the consequent encroachment level of the fvg and wait for price to mitigate that level for trade execution.",
+    "tier": 1
+  },
+  {
+    "type": "fill_in_blank",
+    "concept": "ict-displacement-move",
+    "question": "Complete the rule from \"ict-displacement-move\": ________ confirmation , execute a buy trade targeting the next draw on liquidity levels",
+    "answer": "After",
+    "context": "After confirmation , execute a buy trade targeting the next draw on liquidity levels",
+    "tier": 1
+  },
+  {
+    "type": "concept_id",
+    "concept": "ict-enigma-fair-value-gap",
+    "question": "What concept is described by: \"A traditional Fair Value Gap is an imbalance created when a strong displacement candle leaves an inefficient area between three consecutive candles. T...\"?",
+    "answer": "ict-enigma-fair-value-gap",
+    "tier": 1
+  },
+  {
+    "type": "scenario",
+    "concept": "ict-implied-fair-value-gap-ifvg",
+    "question": "When is ict-implied-fair-value-gap-ifvg most appropriate to use?",
+    "answer": "* **implied fvg (this article)** — hidden gap inside a 3-candle displacement where the wicks of the 1st and 3rd candle do overlap the body of the middle candle. marked between the ce of the surroundin",
+    "tier": 1
+  },
+  {
+    "type": "fill_in_blank",
+    "concept": "ict-institutional-order-flow-entry-drill",
+    "question": "Complete the rule from \"ict-institutional-order-flow-entry-drill\": Mark the ________ PD array. Order block, FVG or breaker that price is drawn to inside the bias-aligned zone",
+    "answer": "higher-timeframe",
+    "context": "Mark the higher-timeframe PD array. Order block, FVG or breaker that price is drawn to inside the bias-aligned zone",
+    "tier": 1
+  }
+]

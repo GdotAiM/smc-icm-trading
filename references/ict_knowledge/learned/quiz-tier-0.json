@@ -1,0 +1,46 @@
+[
+  {
+    "type": "fill_in_blank",
+    "concept": "break-of-structure-bos",
+    "question": "Complete the rule from \"break-of-structure-bos\": Read the higher-timeframe context. 1-day and ________ charts — bullish, bearish or neutral structure",
+    "answer": "4-hour",
+    "context": "Read the higher-timeframe context. 1-day and 4-hour charts — bullish, bearish or neutral structure",
+    "tier": 0
+  },
+  {
+    "type": "concept_id",
+    "concept": "break-of-structure-vs-change-of-character",
+    "question": "What concept is described by: \"When price breaks its structure in the direction of the previous trend, it is called a Break of Structure (BOS) — a trend continuation pattern. In a b...\"?",
+    "answer": "break-of-structure-vs-change-of-character",
+    "tier": 0
+  },
+  {
+    "type": "scenario",
+    "concept": "candle-range-theory-crt",
+    "question": "When is candle-range-theory-crt most appropriate to use?",
+    "answer": "these are the mistakes i see most often from traders who first start trading the crt model.",
+    "tier": 0
+  },
+  {
+    "type": "fill_in_blank",
+    "concept": "change-of-character-choch-in-trading",
+    "question": "Complete the rule from \"change-of-character-choch-in-trading\": Wait for the inducement sweep. ________ — price dips below the inducement low. Bearish — price spikes above the inducement high",
+    "answer": "Bullish",
+    "context": "Wait for the inducement sweep. Bullish — price dips below the inducement low. Bearish — price spikes above the inducement high",
+    "tier": 0
+  },
+  {
+    "type": "concept_id",
+    "concept": "forex-trading",
+    "question": "What concept is described by: \"The word forex is derived from two words — foreign and exchange. The word foreign here refers to **foreign currencies** , so it is basically the excha...\"?",
+    "answer": "forex-trading",
+    "tier": 0
+  },
+  {
+    "type": "concept_id",
+    "concept": "higher-high-and-higher-low",
+    "question": "What concept is described by: \"title: \"Higher High and Higher Low — Identify Valid Bullish Market Structure with Inducement Sweep\"...\"?",
+    "answer": "higher-high-and-higher-low",
+    "tier": 0
+  }
+]

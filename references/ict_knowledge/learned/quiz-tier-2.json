@@ -1,0 +1,76 @@
+[
+  {
+    "type": "fill_in_blank",
+    "concept": "forex-trading-quotes",
+    "question": "Complete the rule from \"forex-trading-quotes\": Print one quote at ________ top of your trading journal each week. Re-read it before every session",
+    "answer": "the",
+    "context": "Print one quote at the top of your trading journal each week. Re-read it before every session",
+    "tier": 2
+  },
+  {
+    "type": "concept_id",
+    "concept": "ict-2024-mentorship-lecture-3",
+    "question": "What concept is described by: \"title: \"ICT 2024 Mentorship Lecture 3 Notes — NDOG, NWOG & PM Session Trading + Free PDF\"...\"?",
+    "answer": "ict-2024-mentorship-lecture-3",
+    "tier": 2
+  },
+  {
+    "type": "scenario",
+    "concept": "ict-2024-mentorship-lecture-4",
+    "question": "When is ict-2024-mentorship-lecture-4 most appropriate to use?",
+    "answer": "6. **wait for the 09:30 am equity-market open.** if price is still spooling after the news, the 09:30 open often delivers the a-plus setup.",
+    "tier": 2
+  },
+  {
+    "type": "fill_in_blank",
+    "concept": "ict-2024-mentorship-lecture-5",
+    "question": "Complete the rule from \"ict-2024-mentorship-lecture-5\": Wait — do not trade the open. Let price give a clue ________ committing",
+    "answer": "before",
+    "context": "Wait — do not trade the open. Let price give a clue before committing",
+    "tier": 2
+  },
+  {
+    "type": "concept_id",
+    "concept": "ict-bread-and-butter",
+    "question": "What concept is described by: \"The ICT Bread and Butter Sell-Setup is an intraday model designed to capitalize on bearish trading days. When the market is poised for lower prices ba...\"?",
+    "answer": "ict-bread-and-butter",
+    "tier": 2
+  },
+  {
+    "type": "scenario",
+    "concept": "ict-bread-and-butter-buy-setup",
+    "question": "When is ict-bread-and-butter-buy-setup most appropriate to use?",
+    "answer": "you can jump to the section you are most interested in from below or continue reading the full article for a complete view.",
+    "tier": 2
+  },
+  {
+    "type": "fill_in_blank",
+    "concept": "ict-fibonacci-levels",
+    "question": "Complete the rule from \"ict-fibonacci-levels\": Save the configuration as a template named _“ICT Fib”_ so you ________ reapply it on every chart",
+    "answer": "can",
+    "context": "Save the configuration as a template named _“ICT Fib”_ so you can reapply it on every chart",
+    "tier": 2
+  },
+  {
+    "type": "concept_id",
+    "concept": "ict-judas-swing-complete-guide",
+    "question": "What concept is described by: \"The Judas Swing is a false move at session open designed to trap retail traders before the real institutional move of the day begins. The setup follow...\"?",
+    "answer": "ict-judas-swing-complete-guide",
+    "tier": 2
+  },
+  {
+    "type": "scenario",
+    "concept": "ict-macro-time-based-strategy",
+    "question": "When is ict-macro-time-based-strategy most appropriate to use?",
+    "answer": "you can jump to the section you are most interested in from below or continue reading the full article for a complete understanding.",
+    "tier": 2
+  },
+  {
+    "type": "fill_in_blank",
+    "concept": "ict-market-maker-buy-model",
+    "question": "Complete the rule from \"ict-market-maker-buy-model\": Stop loss sits 10 to 20 pips below the last swing low — the low made before ________ Market Structure Shift",
+    "answer": "the",
+    "context": "Stop loss sits 10 to 20 pips below the last swing low — the low made before the Market Structure Shift",
+    "tier": 2
+  }
+]
