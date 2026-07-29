@@ -59,3 +59,22 @@ A trade is invalidated if:
 - Reduce position size by 50% in NY PM session
 - Close all intraday positions by 21:00 UTC
 - Friday: No new swing trades. Close all positions by NY close.
+
+## News Trading Rules (ICT One Shot One Kill)
+
+For deliberate news-event trading (FOMC, NFP, CPI):
+
+- [ ] Weekly bias is clear (1W/1D structure aligned)
+- [ ] Mon-Thu price action is consolidating (Seek & Destroy condition)
+- [ ] All 3 entry timeframes aligned (15m/5m/1m same direction)
+- [ ] SL = 2.5× normal distance (survive the whipsaw)
+- [ ] TP = 3.5× normal distance (capture the full move), targeting actual liquidity pool
+- [ ] Max 1 dollar-correlated pair (EURUSD OR GBPUSD, never both)
+- [ ] Gold (XAUUSD) is preferred FOMC instrument (per ICT Lecture 4)
+- [ ] No counter-trend news entries — all TFs must agree
+- [ ] Enter 2-5 minutes before release, during active killzone
+- [ ] Do NOT enter during the first 60 seconds after release (let the spike settle)
+
+For NON-news trades, the standard rule applies:
+- No high-impact news within 30 minutes of entry
+- Close positions 5 minutes before major news if R:R is unfavorable

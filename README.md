@@ -134,8 +134,10 @@ Read `CONTEXT.md` for the daily workflow router. Standard sequence:
 
 ## Key Documents
 
+- `USER_MANUAL.md` — Complete user guide (workflows, commands, troubleshooting)
 - `CLAUDE.md` — Full workspace reference for AI agents
 - `CONTEXT.md` — Daily workflow router
+- `_config/trading_rules.md` — Entry rules, news trading, session restrictions
 - `shared/2026-07-29/SESSION_JOURNAL.md` — Latest session journal
 - `shared/2026-07-29/STRATEGY_COMPARISON.md` — Fed day trade analysis
 - `shared/2026-07-29/ICT_NEWS_TRADING_STRATEGY.md` — ICT news trading strategy

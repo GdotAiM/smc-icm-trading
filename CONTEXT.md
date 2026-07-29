@@ -68,6 +68,19 @@ Follow this sequence unless the user explicitly requests a different path:
 - "Compare Kronos vs Chronos on this pair"
 - "Journal today's trades"
 - "Show me the dashboard"
+- "Place a trade on EURUSD"
+- "Trade the FOMC news"
+- "Check my positions"
+- "Scan all pairs for setups"
+
+## News Trading (ICT One Shot One Kill)
+
+For high-impact events (FOMC, NFP, CPI):
+- See `shared/2026-07-29/ICT_NEWS_TRADING_STRATEGY.md` for full strategy
+- Use `node tools/tv-mcp/news_trade.cjs --event "NAME" --time "HH:MM"`
+- Gold (XAUUSD) is the #1 FOMC instrument per ICT Lecture 4
+- Never take both EURUSD AND GBPUSD on the same news event (correlated dollar risk)
+- SL = 2.5× normal, TP = 3.5× normal for news trades
 
 ## Stage Selection
 
