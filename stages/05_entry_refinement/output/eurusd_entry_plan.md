@@ -1,9 +1,9 @@
 # Entry Plan — EURUSD — 2026-07-29
 
-## Data Freshness: 10/10 — FRESH
+## Data Freshness: 5/10 — ACCEPTABLE
 - **Price source**: 1H @ 1.13895
 - **1H close**: 1.13895 | **1m close**: 1.13891
-- **Data age**: 3m since last candle
+- **Data age**: 70m since last candle
 - ✅ Data is tradeable
 
 ## Model: **MMXM Sell Model** (2.4/9)

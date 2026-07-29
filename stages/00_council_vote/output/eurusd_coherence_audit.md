@@ -1,19 +1,19 @@
-# Coherence Audit — EURUSD — 2026-07-26
+# Coherence Audit — EURUSD — 2026-07-29
 
-## Overall Coherence: 40/100 — D — POOR coherence
+## Overall Coherence: 80/100 — B — GOOD coherence
 
 ---
 
-## 1. Lens Coherence (⚠️ 2/4 agree)
+## 1. Lens Coherence (✅ 3/4 agree)
 
 | Lens | Reading | Direction | vs Structure |
 |------|---------|-----------|-------------|
-| STRUCTURE | BEARISH (BOS) | BEARISH | — |
+| STRUCTURE | BULLISH (CHoCH) | BULLISH | — |
 | IPDA RANGE | DISCOUNT → BULLISH bias | BULLISH | — |
-| CYCLE PHASE | MANIPULATION → expects BEARISH | BEARISH | — |
+| CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
 | LIQUIDITY | UP (BSL magnet) | 2 swept | BULLISH | — |
 
-**⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bearish). The IPDA says bullish while structure says bearish. This is TEXTBOOK manipulation — the lenses SHOULD disagree in manipulation phase.**
+**✅ LENS COHERENCE — All 3 lenses agree on BULLISH. No contradictions.**
 
 ---
 
@@ -23,11 +23,11 @@
 |----|------|-------|------------------|
 | 1W | **BULLISH** | BOS | ⚠️ opposing |
 | 1D | **BEARISH** | BOS | ✅ aligned |
-| 4H | **BEARISH** | BOS | ✅ aligned |
+| 4H | **BULLISH** | CHoCH | ⚠️ opposing |
 | 1H | **BEARISH** | CHoCH | ✅ aligned |
 | 15m | **BEARISH** | CHoCH | ✅ aligned |
-| 5m | **BEARISH** | CHoCH | ✅ aligned |
-| 1m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 5m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 1m | **BEARISH** | CHoCH | ✅ aligned |
 
 **✅ TEMPORAL COHERENCE — 3/4 LTFs aligned with HTF BEARISH. 1 opposing (micro pullback — normal).**
 
@@ -41,11 +41,9 @@
 
 ## 4. Self-Contradiction Check
 
-- **[WARNING]** STRUCTURE vs PD ARRAY: Structure is BEARISH but price is in DISCOUNT (buy zone). This is a counter-trend sell within the buy zone. The move may exhaust soon.
-- **[CRITICAL]** HTF-LTF DIVERGENCE: 3 consecutive timeframes oppose HTF (bullish). Possible macro reversal.
 - **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
 
-**❌ 3 contradiction(s) including CRITICAL issues. The system is fighting itself.**
+**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
 
 ---
 
@@ -53,11 +51,11 @@
 
 | Dimension | Score | Status |
 |-----------|-------|--------|
-| Lens Coherence | 15/25 | ⚠️ |
+| Lens Coherence | 25/25 | ✅ |
 | Temporal Coherence | 25/25 | ✅ |
 | Archetype Coherence | 15/25 | ⚠️ |
-| No Contradictions | 5/25 | ❌ |
-| **TOTAL** | **40/100** | **D — POOR coherence** |
+| No Contradictions | 25/25 | ✅ |
+| **TOTAL** | **80/100** | **B — GOOD coherence** |
 
 ---
 

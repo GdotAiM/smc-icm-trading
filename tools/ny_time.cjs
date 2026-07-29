@@ -161,6 +161,17 @@ function getMacroEvents() {
   return events;
 }
 
+// Day-of-week cycle estimate (fallback when macro_context returns UNKNOWN)
+// Based on model_cycle_map.md day+cycle combined table
+function getCycleEstimate(nyDay, nyHour) {
+  if (nyDay === 1) return "ACCUMULATION";
+  if (nyDay === 2) return "MANIPULATION";
+  if (nyDay === 3) return "MANIPULATION";
+  if (nyDay === 4) return nyHour < 12 ? "DISTRIBUTION" : "EXPANSION";
+  if (nyDay === 5) return nyHour < 12 ? "EXPANSION" : "ACCUMULATION";
+  return "ACCUMULATION";
+}
+
 // Next Silver Bullet window
 function getNextSB(nyHour) {
   if (nyHour < 3) return { window: "London SB", time: "03:00-04:00 NY", countdown: (3 - nyHour) + "h" };
@@ -189,11 +200,13 @@ if (require.main === module) {
   const reliability = sb.active ? 1.5 : kz ? 1.3 : session.name === "nyLunch" ? 0.4 : session.name === "offHours" ? 0.3 : 1.0;
   const dayMultiplier = dayProfile.multiplier;
   const combinedMultiplier = (reliability * dayMultiplier).toFixed(2);
+  const cycleEstimate = getCycleEstimate(nyDay, nyHour);
 
   const output = {
     now: new Date().toISOString(),
     nyTime: { hour: nyHour, day: NY_DAYS[nyDay], dayIndex: nyDay },
     session: { name: session.label, character: session.character, killzone: kz, reliability: reliability },
+    cycleEstimate: cycleEstimate,
     dayProfile: { name: dayProfile.name, character: dayProfile.character, risk: dayProfile.risk, multiplier: dayMultiplier, bestModels: dayProfile.bestModels, notes: dayProfile.notes },
     silverBullet: { active: sb.active, current: sb.active ? sb.label : null, next: nextSB },
     judasSwing: { active: js.active, current: js.active ? js.label : null },
@@ -217,6 +230,7 @@ if (require.main === module) {
     console.log(JSON.stringify({
       nyTime: output.nyTime,
       session: output.session,
+      cycleEstimate: output.cycleEstimate,
       dayProfile: { name: output.dayProfile.name, multiplier: output.dayProfile.multiplier },
       silverBullet: output.silverBullet,
       combinedMultiplier: output.multipliers.combined,

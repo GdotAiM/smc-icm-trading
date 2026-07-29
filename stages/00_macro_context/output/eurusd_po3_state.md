@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for NY AM (14:00 UTC): DISTRIBUTION**
+**Expected phase for NY AM (15:00 UTC): DISTRIBUTION**
 **Detected phase: MANIPULATION**
 ⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.
 

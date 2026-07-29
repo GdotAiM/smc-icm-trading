@@ -132,16 +132,29 @@ try {
   console.log(`  Macro context unavailable — continuing without`);
 }
 
-// Cycle weights for model scoring
+// Cycle weights for model scoring — all 14 models (matching model_cycle_map.md)
+// Note: MMXM Sell/Buy both map to "2022 Model (MMXM)" weight
 const CYCLE_MODEL_WEIGHTS = {
-  ACCUMULATION: { "2022 Model (MMXM)": 0.3, "Silver Bullet": 0.3, "OTE + Institutional OB": 0.3, "Turtle Soup": 0.3, "Breaker Block": 1.0, "Unicorn (OTE + FVG)": 0.3, "SCOB": 0.3, "2FVG Entry": 0.3, "Judas Swing": 1.3, "Asian Range Breakout": 1.3, "NWOG/NDOG": 1.3 },
-  MANIPULATION: { "2022 Model (MMXM)": 1.0, "Silver Bullet": 1.3, "OTE + Institutional OB": 1.0, "Turtle Soup": 1.3, "Breaker Block": 1.3, "Unicorn (OTE + FVG)": 0.3, "SCOB": 0.5, "2FVG Entry": 0.3, "Judas Swing": 1.3, "Asian Range Breakout": 0.5, "NWOG/NDOG": 0.3 },
-  DISTRIBUTION: { "2022 Model (MMXM)": 1.4, "Silver Bullet": 1.1, "OTE + Institutional OB": 1.4, "Turtle Soup": 0.3, "Breaker Block": 0.5, "Unicorn (OTE + FVG)": 1.4, "SCOB": 1.4, "2FVG Entry": 1.1, "Judas Swing": 0.3, "Asian Range Breakout": 0.3, "NWOG/NDOG": 0.3 },
-  EXPANSION:    { "2022 Model (MMXM)": 1.0, "Silver Bullet": 1.2, "OTE + Institutional OB": 1.0, "Turtle Soup": 0.3, "Breaker Block": 0.3, "Unicorn (OTE + FVG)": 1.0, "SCOB": 0.5, "2FVG Entry": 1.2, "Judas Swing": 0.3, "Asian Range Breakout": 0.3, "NWOG/NDOG": 0.3 },
-  UNKNOWN:      { "2022 Model (MMXM)": 1.0, "Silver Bullet": 1.0, "OTE + Institutional OB": 1.0, "Turtle Soup": 1.0, "Breaker Block": 1.0, "Unicorn (OTE + FVG)": 1.0, "SCOB": 1.0, "2FVG Entry": 1.0, "Judas Swing": 1.0, "Asian Range Breakout": 1.0, "NWOG/NDOG": 1.0 },
+  ACCUMULATION: { "MMXM Sell Model": 0.3, "MMXM Buy Model": 0.3, "Silver Bullet": 0.3, "OTE + Institutional OB": 0.3, "Turtle Soup": 0.3, "Breaker Block": 1.0, "Unicorn (OTE+FVG)": 0.3, "SCOB": 0.3, "2FVG Entry": 0.3, "Judas Swing": 1.3, "Asian Range Breakout": 1.3, "NWOG/NDOG": 1.3, "Mitigation Block": 0.8, "Rejection Block": 0.5 },
+  MANIPULATION: { "MMXM Sell Model": 1.0, "MMXM Buy Model": 1.0, "Silver Bullet": 1.3, "OTE + Institutional OB": 1.0, "Turtle Soup": 1.3, "Breaker Block": 1.3, "Unicorn (OTE+FVG)": 0.3, "SCOB": 0.5, "2FVG Entry": 0.3, "Judas Swing": 1.3, "Asian Range Breakout": 0.5, "NWOG/NDOG": 0.3, "Mitigation Block": 1.0, "Rejection Block": 1.0 },
+  DISTRIBUTION: { "MMXM Sell Model": 1.4, "MMXM Buy Model": 1.4, "Silver Bullet": 1.1, "OTE + Institutional OB": 1.4, "Turtle Soup": 0.3, "Breaker Block": 0.5, "Unicorn (OTE+FVG)": 1.4, "SCOB": 1.4, "2FVG Entry": 1.1, "Judas Swing": 0.3, "Asian Range Breakout": 0.3, "NWOG/NDOG": 0.3, "Mitigation Block": 0.5, "Rejection Block": 0.8 },
+  EXPANSION:    { "MMXM Sell Model": 1.0, "MMXM Buy Model": 1.0, "Silver Bullet": 1.2, "OTE + Institutional OB": 1.0, "Turtle Soup": 0.3, "Breaker Block": 0.3, "Unicorn (OTE+FVG)": 1.0, "SCOB": 0.5, "2FVG Entry": 1.2, "Judas Swing": 0.3, "Asian Range Breakout": 0.3, "NWOG/NDOG": 0.3, "Mitigation Block": 0.3, "Rejection Block": 0.5 },
+  UNKNOWN:      { "MMXM Sell Model": 1.0, "MMXM Buy Model": 1.0, "Silver Bullet": 1.0, "OTE + Institutional OB": 1.0, "Turtle Soup": 1.0, "Breaker Block": 1.0, "Unicorn (OTE+FVG)": 1.0, "SCOB": 1.0, "2FVG Entry": 1.0, "Judas Swing": 1.0, "Asian Range Breakout": 1.0, "NWOG/NDOG": 1.0, "Mitigation Block": 1.0, "Rejection Block": 1.0 },
 };
 
-const cycleWeights = macroContext ? (CYCLE_MODEL_WEIGHTS[macroContext.phase] || CYCLE_MODEL_WEIGHTS["UNKNOWN"]) : CYCLE_MODEL_WEIGHTS["UNKNOWN"];
+// Determine cycle phase — try macro_context first, fall back to day-of-week estimate
+let effectivePhase = macroContext ? (macroContext.phase || "UNKNOWN") : "UNKNOWN";
+if (effectivePhase === "UNKNOWN") {
+  try {
+    const nyCheck = execSync(`node "${ROOT}/tools/ny_time.cjs" --now`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 5000 });
+    const nyData = JSON.parse(nyCheck);
+    if (nyData.cycleEstimate) {
+      effectivePhase = nyData.cycleEstimate;
+      console.log(`  Cycle fallback: ${effectivePhase} (from day-of-week — macro_context returned UNKNOWN)`);
+    }
+  } catch(e) { /* ny_time.cjs may fail, use UNKNOWN */ }
+}
+const cycleWeights = CYCLE_MODEL_WEIGHTS[effectivePhase] || CYCLE_MODEL_WEIGHTS["UNKNOWN"];
 
 // Load engine reports
 const TFS = ["1W", "1D", "4H", "1H", "15m", "5m", "1m"];
@@ -424,6 +437,13 @@ const PO3_MODEL_PHASE_MAP = {
   "Turtle Soup": ["MANIPULATION"],
   "Unicorn (OTE+FVG)": ["DISTRIBUTION", "EXPANSION"],
   "Breaker Block": ["MANIPULATION", "DISTRIBUTION"],
+  "SCOB": ["DISTRIBUTION", "EXPANSION"],
+  "2FVG Entry": ["EXPANSION", "DISTRIBUTION"],
+  "Judas Swing": ["MANIPULATION"],
+  "Asian Range Breakout": ["ACCUMULATION", "MANIPULATION"],
+  "NWOG/NDOG": ["ACCUMULATION"],
+  "Mitigation Block": ["ACCUMULATION", "MANIPULATION"],
+  "Rejection Block": ["MANIPULATION", "DISTRIBUTION"],
 };
 const currentPhase = macroContext?.phase || "UNKNOWN";
 function isPhaseValid(modelName) {
@@ -461,6 +481,20 @@ try {
   }
 } catch(e) {}
 
+// ═══════════════ PERFORMANCE WEIGHTS ═══════════════
+// Load model/session/pair performance stats from trade history
+let perfWeights = {}; // { "Silver Bullet": 1.3, "Turtle Soup": 0.8, ... }
+try {
+  const perfOutput = execSync(`node "${ROOT}/tools/performance_ledger.cjs"`, {
+    stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 10000
+  });
+  const perfData = JSON.parse(perfOutput);
+  perfWeights = perfData.modelWeights || {};
+  if (Object.keys(perfWeights).length > 0) {
+    console.log(`  📊 Performance: ${perfData.totalTrades || 0} trades | Edge: ${perfData.edgeScore || 0}/100 | Top model: ${perfData.topModel || 'N/A'}`);
+  }
+} catch(e) { console.log(`  Performance ledger unavailable — using neutral weights`); }
+
 const models = [
   { name: "MMXM Sell Model", score: (bias1d === 'bearish' ? 3 : 0) + (hasOB ? 2 : 0) + (hasSweep ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 9 },
   { name: "MMXM Buy Model", score: (bias1d === 'bullish' ? 3 : 0) + (hasOB ? 2 : 0) + (hasSweep ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 9 },
@@ -469,14 +503,25 @@ const models = [
   { name: "Turtle Soup", score: (hasSweep ? 3 : 0) + (nearSSL && nearSSL.swept ? 2 : 0) + (bias1d !== 'neutral' ? 1 : 0) + (smtDetected ? 1 : 0), max: 7 },
   { name: "Unicorn (OTE+FVG)", score: (hasOB ? 2 : 0) + (hasFVG ? 3 : 0) + (inOTEZoneSimple ? 2 : 0) + (smtDetected ? 1 : 0), max: 8 },
   { name: "Breaker Block", score: (obs.filter(o => o.kind === 'Breaker').length * 3) + (hasFVG ? 1 : 0) + (smtDetected ? 1 : 0), max: 7 },
+  // ── Tier 2: Strong (phase-specific) ──
+  { name: "SCOB", score: (hasOB && hasFVG ? 3 : 0) + (r1d.volumeDisplacement && r1d.volumeDisplacement.atrRatio > 1.0 ? 2 : 0) + (bias1d !== 'neutral' ? 1 : 0) + (smtDetected ? 1 : 0), max: 7 },
+  { name: "2FVG Entry", score: (fvgs.length >= 2 ? 3 : 0) + (bias1d !== 'neutral' ? 2 : 0) + (hasSweep ? 1 : 0), max: 6 },
+  { name: "Judas Swing", score: ((UTC_HOUR >= 7 && UTC_HOUR < 8) || (UTC_HOUR >= 12 && UTC_HOUR < 13) ? 3 : 0) + (hasSweep ? 2 : 0) + (bias1d !== 'neutral' ? 2 : 0) + (smtDetected ? 1 : 0), max: 8 },
+  { name: "Asian Range Breakout", score: (UTC_HOUR >= 0 && UTC_HOUR < 7 ? 3 : 0) + (hasSweep ? 2 : 0) + (hasOB ? 1 : 0), max: 6 },
+  { name: "NWOG/NDOG", score: (r1w ? 2 : 0) + (bias1d !== 'neutral' ? 1 : 0) + (hasOB ? 1 : 0), max: 4 },
+  // ── Tier 3: Situational ──
+  { name: "Mitigation Block", score: (obs.filter(o => (o.mitigationFraction || 0) > 0.3 && (o.mitigationFraction || 0) < 0.7).length * 3) + (bias1d !== 'neutral' ? 1 : 0), max: 4 },
+  { name: "Rejection Block", score: (hasOB ? 2 : 0) + (r1h && r1h.volumeDisplacement && r1h.volumeDisplacement.atrRatio > 0.8 ? 1 : 0) + (bias1d !== 'neutral' ? 1 : 0), max: 4 },
 ];
-// Apply cycle-aware weighting from Stage 00
+// Apply cycle-aware weighting from Stage 00 + performance weights from trade history
 models.forEach(m => {
   const cycleWeight = cycleWeights[m.name] || 1.0;
+  const perfWeight = perfWeights[m.name] || 1.0; // From performance ledger (neutral if <5 trades)
   m.structuralScore = m.score; // preserve original
-  m.score = Math.round(m.score * cycleWeight * 10) / 10; // apply cycle weight
   m.cycleMultiplier = cycleWeight;
-  m.max = Math.round(m.max * Math.max(cycleWeight, 1.0) * 10) / 10;
+  m.perfMultiplier = perfWeight;
+  m.score = Math.round(m.score * cycleWeight * perfWeight * 10) / 10; // structural × cycle × performance
+  m.max = Math.round(m.max * Math.max(cycleWeight, 1.0) * Math.max(perfWeight, 1.0) * 10) / 10;
 
   // PRIORITY 1: Po3 Phase Filter — zero out models outside their phase
   if (!isPhaseValid(m.name)) {
@@ -500,6 +545,11 @@ const MUTUAL_EXCLUSIVITY = {
   "Breaker Block,Unicorn (OTE+FVG)": "Breaker Block trades the OB flip; Unicorn trades the unmitigated OB. The OB can't be both flipped and unflipped.",
   "2022 Model (MMXM),Turtle Soup": "MMXM requires HTF trend alignment; Turtle Soup fades any sweep regardless of trend. Can conflict on direction.",
   "2FVG Entry,Asian Range Breakout": "2FVG needs active expansion; Asian Range trades accumulation. Opposite cycle phases.",
+  "Mitigation Block,Breaker Block": "Mitigation Block means the OB was TAGGED but not broken; Breaker Block means the OB was BROKEN and flipped. The same OB cannot be both.",
+  "Judas Swing,Asian Range Breakout": "Judas Swing requires London/NY session open; Asian Range requires Asian session. Session-exclusive.",
+  "SCOB,Unicorn (OTE+FVG)": "SCOB requires clean OB+FVG with displacement; Unicorn requires OTE retracement to the FVG. Different entry mechanics on the same structure.",
+  "NWOG/NDOG,Silver Bullet": "NWOG/NDOG are weekly opening gap plays; Silver Bullet is intraday time-based. Different time horizons.",
+  "Rejection Block,Breaker Block": "Rejection Block means the OB HELD (wick rejected); Breaker Block means the OB BROKE. They are opposite outcomes at the same level.",
 };
 
 function detectConflicts(models) {
@@ -525,10 +575,10 @@ function detectConflicts(models) {
 function detectPhaseConflicts(models, cyclePhase) {
   const phaseConflicts = [];
   const phaseModelMap = {
-    ACCUMULATION: ["2022 Model (MMXM)", "2FVG Entry", "Silver Bullet"],
-    MANIPULATION: ["Unicorn (OTE+FVG)", "2FVG Entry", "NWOG/NDOG"],
-    DISTRIBUTION: ["Asian Range Breakout", "NWOG/NDOG", "Turtle Soup"],
-    EXPANSION: ["Asian Range Breakout", "NWOG/NDOG", "Turtle Soup", "Breaker Block"],
+    ACCUMULATION: ["MMXM Sell Model", "MMXM Buy Model", "2FVG Entry", "Silver Bullet", "Unicorn (OTE+FVG)", "SCOB"],
+    MANIPULATION: ["Unicorn (OTE+FVG)", "2FVG Entry", "NWOG/NDOG", "Mitigation Block"],
+    DISTRIBUTION: ["Asian Range Breakout", "NWOG/NDOG", "Turtle Soup", "Judas Swing"],
+    EXPANSION: ["Asian Range Breakout", "NWOG/NDOG", "Turtle Soup", "Breaker Block", "Judas Swing", "Rejection Block"],
   };
   const inappropriate = phaseModelMap[cyclePhase] || [];
   for (const model of models) {
@@ -540,7 +590,7 @@ function detectPhaseConflicts(models, cyclePhase) {
 }
 
 const conflicts = detectConflicts(models);
-const phaseConflicts = detectPhaseConflicts(models, macroContext ? macroContext.phase : "UNKNOWN");
+const phaseConflicts = detectPhaseConflicts(models, effectivePhase);
 const primary = models[0];
 
 writeMd("04_model_selection", "active_models.md", `# Model Selection — ${pairLabel} — ${DATE}
@@ -548,19 +598,19 @@ writeMd("04_model_selection", "active_models.md", `# Model Selection — ${pairL
 ## Market Context
 - Bias: **${bias1d.toUpperCase()}** (1D/4H)
 - Session: ${session} (${gate})
-- **Cycle Phase**: ${macroContext ? macroContext.phase : 'UNKNOWN'} | **MMXM Step**: ${macroContext ? macroContext.mxmStep + '/4' : 'N/A'}
+- **Cycle Phase**: ${effectivePhase} | **MMXM Step**: ${macroContext ? macroContext.mxmStep + '/4' : 'N/A'}
 - Levels: ${uniqueOBs.length} OBs | ${fvgs.length} FVGs | ${pools.length} pools
 - Sweeps: ${hasSweep ? 'Yes — liquidity sweep detected' : 'None'}
 
 ## Model Scores (Cycle-Weighted)
 
-| Model | Structural | Cycle × | Po3 | Final | Status |
+| Model | Structural | Cycle × | Perf × | Po3 | Final | Status |
 |-------|-----------|---------|-----|-------|--------|
-${models.map(m => `| ${m.name} | ${m.structuralScore}/${m.max.toFixed(0)} | ×${r2(m.cycleMultiplier)} | ${m.po3Blocked ? '⚠️ BLOCKED' : '✅'} | **${r2(m.score)}** | ${m === primary ? '★ PRIMARY' : m.score >= 3 ? 'Alternative' : 'Rejected'} |`).join("\n")}
+${models.map(m => `| ${m.name} | ${m.structuralScore}/${m.max.toFixed(0)} | ×${r2(m.cycleMultiplier)} | ×${r2(m.perfMultiplier||1.0)} | ${m.po3Blocked ? '⚠️ BLOCKED' : '✅'} | **${r2(m.score)}** | ${m === primary ? '★ PRIMARY' : m.score >= 3 ? 'Alternative' : 'Rejected'} |`).join("\n")}
 
 ${models.filter(m => m.po3Blocked).map(m => `⚠️ **${m.name}**: ${m.po3BlockReason}`).join('\n\n')}
 
-## Primary: ${primary.name} (${r2(primary.score)} — structural ${primary.structuralScore} × cycle ${r2(primary.cycleMultiplier)})
+## Primary: ${primary.name} (${r2(primary.score)} — structural ${primary.structuralScore} × cycle ${r2(primary.cycleMultiplier)} × perf ${r2(primary.perfMultiplier||1.0)})
 ${smtDetected ? `**SMT**: ✅ ${smtDetails}` : '**SMT**: ⚠️ Not detected — check correlated pairs manually'}
 
 ## Conflict Check
@@ -636,6 +686,30 @@ try {
 } catch (e) {
   console.log(`  Micro context unavailable — ${e.message.slice(0, 50)}`);
 }
+
+// ── Invalidation Engine (7-dimension check) ──────────────────
+let invalidationResult = null;
+try {
+  const invOut = execSync(`node "${ROOT}/tools/invalidation.cjs" ${PAIR}`, {
+    stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000
+  });
+  invalidationResult = JSON.parse(invOut);
+  const invIcon = invalidationResult.overallStatus === "VALID" ? "✅" :
+                   invalidationResult.overallStatus === "INVALIDATED" ? "🛑" :
+                   invalidationResult.overallStatus === "HIGH RISK" ? "⚠️" : "🔍";
+  console.log(`  🛡️ Invalidation: ${invIcon} ${invalidationResult.overallStatus} | Invalid: ${invalidationResult.totalInvalidated || 0} | Warnings: ${invalidationResult.totalWarnings || 0} | Valid: ${invalidationResult.totalValid || 0}`);
+} catch(e) { console.log(`  Invalidation unavailable`); }
+
+// ── Coherence Audit (0-100 score across 4 dimensions) ──────────────────
+let coherenceScore = null;
+try {
+  const cohOut = execSync(`node "${ROOT}/tools/coherence_audit.cjs" ${PAIR}`, {
+    stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000
+  });
+  const cohData = JSON.parse(cohOut);
+  coherenceScore = cohData.coherenceScore;
+  console.log(`  🔍 Coherence: ${cohData.coherenceScore}/100 (${cohData.coherenceLabel}) | Lens: ${cohData.lens?.coherent ? '✅' : '⚠️'} | Temporal: ${cohData.temporal?.coherent ? '✅' : '⚠️'} | Archetype: ${cohData.archetype?.coherent ? '✅' : '⚠️'}`);
+} catch(e) { console.log(`  Coherence audit unavailable`); }
 
 // ═══════════════ PRICE FRESHNESS GUARD ═══════════════
 // Prevents trading on stale data. Compares 1H close vs 1m close
@@ -870,13 +944,32 @@ writeMd("05_entry_refinement", "entry_plan.md", `# Entry Plan — ${pairLabel} �
 
 // ═══════════════ STAGE 06 — Risk ═══════════════
 console.log("═══ STAGE 06 — Risk Management ═══");
-const accountBalance = 10000, riskPct = 1;
+
+// ── Risk Gate: Check daily/weekly limits, drawdown, consecutive losses ──
+let riskState = null;
+let riskAllowed = true;
+let riskBlockReason = "";
+try {
+  const riskOut = execSync(`node "${ROOT}/tools/risk_tracker.cjs" --check`, {
+    stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 5000
+  });
+  riskState = JSON.parse(riskOut);
+  riskAllowed = riskState.allowed !== false;
+  if (!riskAllowed) riskBlockReason = riskState.reason;
+  if (riskState.sizeMultiplier < 1.0) console.log(`  ⚠️ Size reduced to ×${riskState.sizeMultiplier} (${riskState.consecutiveLosses} consecutive losses)`);
+  if (riskState.dailyLossRemaining < 50) console.log(`  ⚠️ Daily loss budget low: $${riskState.dailyLossRemaining} remaining`);
+  if (riskState.reason) console.log(`  ℹ️ ${riskState.reason}`);
+} catch(e) { console.log(`  Risk tracker unavailable — using default limits`); }
+
+const accountBalance = riskState ? parseFloat(riskState.balance) : 10000;
+const riskPct = 1;
 const riskAmount = accountBalance * riskPct / 100;
+const sizeMultiplier = riskState ? riskState.sizeMultiplier : 1.0;
 
 // Position sizing: riskInPips × pointValuePerLot = $ risk per standard lot
 const riskInPips = toPips(risk);
 const riskDollarsPerLot = riskInPips * IC.pointValuePerLot;
-const posSizeLots = riskDollarsPerLot > 0 ? riskAmount / riskDollarsPerLot : 0;
+const posSizeLots = riskDollarsPerLot > 0 ? (riskAmount / riskDollarsPerLot) * sizeMultiplier : 0;
 const lots = posSizeLots >= 0.1
   ? posSizeLots.toFixed(2) + " std"
   : posSizeLots >= 0.01
@@ -888,8 +981,12 @@ const maxGain = posSizeLots * toPips(reward1) * IC.pointValuePerLot;
 
 writeMd("06_risk_management", "risk_plan.md", `# Risk Plan — ${pairLabel} — ${DATE}
 
+${!riskAllowed ? `## 🛑 RISK GATE: BLOCKED — ${riskBlockReason}\n\nTrade not allowed under current risk parameters.\n\n` : ''}
 ## Account
-- **Balance**: $${accountBalance.toLocaleString()} | **Risk**: ${riskPct}% = $${riskAmount}
+- **Balance**: $${accountBalance.toLocaleString()} | **Risk**: ${riskPct}% = $${riskAmount}${riskState ? ` | **Size**: ×${sizeMultiplier}` : ''}
+- **Daily P&L**: ${riskState ? '$' + riskState.dailyPnl + ' / $' + riskState.dailyLossLimit + ' limit' : 'N/A'}
+- **Weekly P&L**: ${riskState ? '$' + riskState.weeklyPnl + ' / $' + riskState.weeklyLossLimit + ' limit' : 'N/A'}
+- **Drawdown**: ${riskState ? riskState.drawdownPct + '% (peak $' + riskState.peakBalance + ')' : 'N/A'} | **Consecutive**: ${riskState ? riskState.consecutiveLosses + 'L / ' + riskState.consecutiveWins + 'W' : 'N/A'}
 - **Daily Loss Limit**: $${r2(accountBalance * 0.03)}
 
 ## Position Size
@@ -957,15 +1054,27 @@ writeMd("07_journal_review", "review.md", `# Session Review — ${pairLabel} —
 - ${hasFVG ? 'FVGs present for entry refinement ✅' : 'No FVGs — wait for displacement'}
 `);
 
+// ═══════════════ NARRATIVE — Causal Chain ═══════════════
+console.log("═══ NARRATIVE SYNTHESIS ═══");
+let narrativeResult = null;
+try {
+  const narOut = execSync(`node "${ROOT}/tools/narrative.cjs" ${PAIR}`, {
+    stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 20000
+  });
+  narrativeResult = JSON.parse(narOut);
+  console.log(`  📖 Narrative: ${narrativeResult.bias?.toUpperCase() || 'N/A'} | Strength: ${narrativeResult.strength || '?'} | Coherence: ${narrativeResult.coherence || '?'}/10 | Council: ${narrativeResult.councilVerdict || '?'}`);
+} catch(e) { console.log(`  Narrative unavailable`); }
+
 // ═══════════════ SUMMARY ═══════════════
 console.log(`\n${"=".repeat(55)}`);
 console.log(`  ${pairLabel} — COMPLETE`);
 console.log(`${"=".repeat(55)}`);
 console.log(`Data: ${freshnessLabel} (${freshnessScore}/10) | Source: ${priceSource} | Age: ${Math.round(dataAgeMin)}m`);
+console.log(`Cycle: ${effectivePhase} | Coherence: ${coherenceScore || '?'}/100 | Invalidation: ${invalidationResult ? invalidationResult.overallStatus : '?'}`);
 console.log(`Bias: ${bias1d.toUpperCase()} | 1W→${bias1w} 1D→${bias1d} 4H→${bias4h}`);
-console.log(`Model: ${primary.name} (${r2(primary.score)}/${primary.max.toFixed(0)})`);
+console.log(`Model: ${primary.name} (${r2(primary.score)}/${primary.max.toFixed(0)}) — ${models.length} models scored`);
 if (conflicts.length > 0) console.log(`⚠️  Conflicts: ${conflicts.length} mutual exclusivity issue(s) detected`);
-if (phaseConflicts.length > 0) console.log(`⚠️  Phase conflicts: ${phaseConflicts.length} model(s) inappropriate for ${macroContext ? macroContext.phase : 'current'} phase`);
+if (phaseConflicts.length > 0) console.log(`⚠️  Phase conflicts: ${phaseConflicts.length} model(s) inappropriate for ${effectivePhase} phase`);
 console.log(`Entry: ${entryType} @ ${r5(entryPrice)}`);
 console.log(`SL: ${r5(slPrice)} | TP1: ${r5(tp1Price)} | TP2: ${r5(tp2Price)}`);
 console.log(`R:R: ${r2(rr1)}:1 / ${r2(rr2)}:1 | ${rr1 >= 1.0 ? '✅ MEETS 1:1' : '✗ BELOW 1:1'}`);
