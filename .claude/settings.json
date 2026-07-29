@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(npx *)",
+      "Bash(python *)",
+      "Bash(node *)",
+      "Bash(npm *)",
+      "Bash(pnpm *)",
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "WebFetch",
+      "WebSearch"
+    ]
+  },
+  "mcpServers": {
+    "tv-mcp": {
+      "command": "npx",
+      "args": ["tsx", "tools/tv-mcp/src/index.ts"],
+      "description": "TradingView Desktop — 74 chart control, drawing, data, and automation tools via CDP"
+    }
+  }
+}

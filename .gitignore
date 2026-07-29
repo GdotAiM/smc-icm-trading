@@ -32,8 +32,9 @@ __pycache__/
 .venv/
 venv/
 
-# Claude (session files, not the settings)
-.claude/
+# Claude session files (keep project-level settings)
+.claude/*
+!.claude/settings.json
 
 # Test output
 coverage/
