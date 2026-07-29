@@ -1,5 +1,5 @@
 {
-  "price": 1.32924,
+  "price": 1.33037,
   "structure": {
     "bias": "bearish",
     "lastEvent": "BOS",
@@ -15,7 +15,7 @@
       "type": "SSL",
       "strength": 3,
       "score": 2.605474308616512,
-      "distance": 0.010030794539234349,
+      "distance": 0.09496105093570915,
       "session": "Off",
       "ageBars": 52,
       "swept": true
@@ -25,7 +25,7 @@
       "type": "SSL",
       "strength": 4,
       "score": 3.814736819731432,
-      "distance": 1.106459330143548,
+      "distance": 1.1904582935574441,
       "session": "Off",
       "ageBars": 25,
       "swept": false
@@ -35,7 +35,7 @@
       "type": "BSL",
       "strength": 4,
       "score": 3.6466798006747054,
-      "distance": 1.4510171225662878,
+      "distance": 1.3648458699459585,
       "session": "Off",
       "ageBars": 38,
       "swept": true
@@ -45,7 +45,7 @@
       "type": "BSL",
       "strength": 3,
       "score": 2.792478221295274,
-      "distance": 1.2829386215682168,
+      "distance": 1.1969101327700782,
       "session": "Off",
       "ageBars": 32,
       "swept": true
@@ -55,7 +55,7 @@
       "type": "BSL",
       "strength": 5,
       "score": 3.840550991364574,
-      "distance": 2.2649032529866666,
+      "distance": 2.1780406954456195,
       "session": "Off",
       "ageBars": 73,
       "swept": true
@@ -65,7 +65,7 @@
       "type": "SSL",
       "strength": 2,
       "score": 1.4190165570304758,
-      "distance": 0.3122084800337108,
+      "distance": 0.39688207040148027,
       "session": "Off",
       "ageBars": 106,
       "swept": true
@@ -83,7 +83,7 @@
       "time": 1769637600000,
       "impulseAtr": 1.2129853037946807,
       "hasFvg": true,
-      "distance": 3.782988775540921
+      "distance": 3.694836774731846
     },
     {
       "top": 1.32077,
@@ -96,7 +96,7 @@
       "time": 1743627600000,
       "impulseAtr": 1.9826730943897168,
       "hasFvg": true,
-      "distance": 1.519289217898947
+      "distance": 1.6029375286574439
     }
   ],
   "fvgs": [
@@ -109,28 +109,28 @@
       "gapAtr": 0.8117309961233847,
       "displacementAtr": 1.1601775380639374,
       "fillFraction": 0,
-      "distance": 2.833197917607056
+      "distance": 2.915730210392605
     }
   ],
   "draw": {
     "price": 1.3291066666666667,
     "side": "down",
-    "distance": 0.010030794539234349,
+    "distance": 0.09496105093570915,
     "reason": "SSL pool Â· 3 touches",
-    "score": 0.9241975364368613
+    "score": 0.9174031159251432
   },
   "alt": {
     "price": 1.3485275,
     "side": "up",
-    "distance": 1.4510171225662878,
+    "distance": 1.3648458699459585,
     "reason": "BSL pool Â· 4 touches",
-    "score": 0.6439186301946971
+    "score": 0.6508123304043234
   },
   "volumeDisplacement": {
-    "atrRatio": 0.03906851424171112,
+    "atrRatio": 0.19130100076981982,
     "label": "weak",
     "volumeConfirmed": false,
-    "volumeRatio": 0.6275908568327094
+    "volumeRatio": 0.6486073015340987
   },
   "pdArray": {
     "rangeHigh": 0,
@@ -150,7 +150,7 @@
       "gapAtr": 0.28150134048257963,
       "reversalAtr": 0.6537048377219842,
       "confirmationLag": 3,
-      "distance": 0.019936204146744137
+      "distance": -0.06501950585174752
     },
     {
       "top": 1.33803,
@@ -161,7 +161,7 @@
       "gapAtr": 0.33621942741578825,
       "reversalAtr": 0.5164485843128592,
       "confirmationLag": 1,
-      "distance": -0.5183413078149968
+      "distance": -0.4329622586197815
     },
     {
       "top": 1.34116,
@@ -172,7 +172,7 @@
       "gapAtr": 0.5983640081799356,
       "reversalAtr": 0.5959477888174511,
       "confirmationLag": 2,
-      "distance": 0.7395203274051342
+      "distance": 0.6539534114569578
     },
     {
       "top": 1.34846,
@@ -183,7 +183,7 @@
       "gapAtr": 0.8367547913036858,
       "reversalAtr": 0.5289256198347,
       "confirmationLag": 5,
-      "distance": 1.1491528994011562
+      "distance": 1.0632380465584652
     }
   ]
 }

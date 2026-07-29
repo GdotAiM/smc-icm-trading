@@ -7,10 +7,10 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 1.32920 |
+| Entry | 1.33036 |
 | SL | 1.33169 (structural invalidation) |
-| Stop Distance | 25 pips |
-| **Position** | **0.40 std lots** |
+| Stop Distance | 13 pips |
+| **Position** | **0.77 std lots** |
 | Risk | $100.00 |
 | Max Gain (TP1) | $100.00 |
 
@@ -18,10 +18,10 @@
 ```
 PAIR:       GBPUSD
 DIRECTION:  SHORT
-ENTRY:      1.32920
+ENTRY:      1.33036
 SL:         1.33169
-TP1:        1.32671 (close 50%)
-TP2:        1.32423 (close 50%)
+TP1:        1.32903 (close 50%)
+TP2:        1.32771 (close 50%)
 R:R:        1.00:1 / 2.00:1
 ```
 

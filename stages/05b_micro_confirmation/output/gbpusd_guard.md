@@ -1,5 +1,5 @@
-# Cross-System Guard Report — GBPUSD — 2026-07-27
-## NY Time: 04:00 | Session: London Killzone | Judas: Inactive | SB: Inactive
+# Cross-System Guard Report — GBPUSD — 2026-07-29
+## NY Time: 10:00 | Session: NY AM Killzone | Judas: Inactive | SB: ✅ NY AM Silver Bullet
 
 ## Verdict: **❌ DO NOT ENTER**
 
@@ -12,12 +12,11 @@
 ## All Guards
 | Guard | Severity | Blocked | Narrative |
 |-------|----------|---------|-----------|
-| SILVER_BULLET | INFO | ✅ | Killzone active but Silver Bullet window not yet. SB window at 10:00 NY AM SB.... |
+| SILVER_BULLET | INFO | ✅ | ✅ SILVER BULLET ACTIVE (NY AM Silver Bullet). This is the highest-probability 1-... |
 | IPDA_ZONE | WARNING | ✅ | ⚠️ IPDA ZONE CONFLICT: DISCOUNT across all TFs. You are SHORTING into the BUY ZO... |
 | INVERSION_MISSING | HIGH | ❌ | ❌ 1m Inversion NOT DETECTED. ICT requires the entry sentence to be written on th... |
-| MONDAY | INFO | ✅ | 📅 MONDAY — Weekly range not yet established. Reduce size, avoid early London en... |
 
 ## Adjustments
-- Size Multiplier: ×0.56
-- Confidence Adjustment: -1
+- Size Multiplier: ×0.75
+- Confidence Adjustment: 0
 - Entry Allowed: ❌

@@ -6,16 +6,17 @@
 
 | TF | Step | Label | Confidence | Narrative |
 |----|------|-------|------------|-----------|
-| 1W | **0** | NO DATA | 0.00 | No data |
-| 1D | **3** | DISTRIBUTION | 0.80 | BOS bearish confirmed. 1 FVG(s). Displacement: weak (0.04x). Trend is distributing. |
-| 4H | **3** | DISTRIBUTION | 0.80 | BOS bearish confirmed. 1 FVG(s). Displacement: weak (0.40x). Trend is distributing. |
-| 1H | **3** | DISTRIBUTION | 0.80 | BOS bullish confirmed. 2 FVG(s). Displacement: weak (0.23x). Trend is distributing. |
+| 1W | **2** | MANIPULATION | 0.85 | Sweep (SSL,SSL,BSL,SSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
+| 1D | **3** | DISTRIBUTION | 0.80 | BOS bearish confirmed. 1 FVG(s). Displacement: weak (0.19x). Trend is distributing. |
+| 4H | **3** | DISTRIBUTION | 0.80 | BOS bearish confirmed. 1 FVG(s). Displacement: moderate (0.90x). Trend is distributing. |
+| 1H | **3** | DISTRIBUTION | 0.80 | BOS bullish confirmed. 2 FVG(s). Displacement: moderate (0.90x). Trend is distributing. |
 | 15m | **4** | RE-ACCUMULATION | 0.65 | Price returning to OB/FVG zone. Building base before next expansion. 1 prior sweep(s). |
-| 5m | **4** | RE-ACCUMULATION | 0.65 | Price returning to OB/FVG zone. Building base before next expansion. 3 prior sweep(s). |
-| 1m | **4** | RE-ACCUMULATION | 0.65 | Price returning to OB/FVG zone. Building base before next expansion. 2 prior sweep(s). |
+| 5m | **4** | RE-ACCUMULATION | 0.65 | Price returning to OB/FVG zone. Building base before next expansion. 2 prior sweep(s). |
+| 1m | **4** | RE-ACCUMULATION | 0.65 | Price returning to OB/FVG zone. Building base before next expansion. 1 prior sweep(s). |
 
 ## Fractal Nesting Check (6 pairs)
 
+- ✅ 1W Step 2 → 1D Step 3 — 1W Step 2 → 1D Step 3 — correctly nested
 - ✅ 1D Step 3 → 4H Step 3 — 1D Step 3 → 4H Step 3 — correctly nested
 - ✅ 4H Step 3 → 1H Step 3 — 4H Step 3 → 1H Step 3 — correctly nested
 - ✅ 1H Step 3 → 15m Step 4 — 1H Step 3 → 15m Step 4 — correctly nested

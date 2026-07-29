@@ -5,14 +5,14 @@
 |---|---|
 | **Direction** | SHORT |
 | **Model** | MMXM Sell Model (2.4/9) |
-| **Bias** | 1W N/A → 1D bearish → 4H bearish |
+| **Bias** | 1W bullish → 1D bearish → 4H bearish |
 | **Session** | NY AM (Killzone ✅) |
-| **Entry** | 1.32920 | SL: 1.33169 | TP1: 1.32671 |
+| **Entry** | 1.33036 | SL: 1.33169 | TP1: 1.32903 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment
 ```
-1W  ⚠️ N/A
+1W  ⚠️ BULLISH
 1D  ✅ BEARISH ← TRADE BIAS
 4H  ✅ BEARISH
 1H  ⚠️ BULLISH
