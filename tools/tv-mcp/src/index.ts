@@ -61,7 +61,7 @@ function withAutoConnect(tool: ToolDef): ToolDef {
   return {
     ...tool,
     execute: async (args: Record<string, unknown>) => {
-      if (!isConnected()) {
+      if (!(await isConnected())) {
         logger.info(`Auto-connecting for tool: ${tool.name}`);
         await connect();
       }
