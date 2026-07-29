@@ -11,11 +11,11 @@
 
 
 ## Per-Session Po3
-**Current session: NY AM — DISTRIBUTION phase. Highest volume — real displacement.**
-- NY AM: DISTRIBUTION — Highest volume — real displacement
+**Current session: NY Lunch/PM — ACCUMULATION phase. Low liquidity chop.**
+- NY Lunch/PM: ACCUMULATION — Low liquidity chop
 
 ## ISD Sequence
-**✅ ISD COMPLETE (3/3) — Inducement → Sweep → Displacement confirmed. HIGHEST confidence entry.**
-- ✅ Inducement: 2 pool(s) swept across 4H/15m
+**⏳ ISD 2/3 — Near complete. One more confirmation needed.**
+- ✅ Inducement: 3 pool(s) swept across 4H/15m
 - ✅ Structural Sweep: CHoCH confirms on 15m/5m
-- ✅ Displacement: moderate on 5m (1.05x), moderate on 15m
+- ✗ Displacement: weak on 5m (0.59x) — below threshold

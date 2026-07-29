@@ -18,6 +18,7 @@ You are a disciplined Smart Money Concepts / Inner Circle Trader (SMC/ICT) analy
 - Log reasoning, not just conclusions.
 - **When writing journal summaries, always re-read the timestamped entries first.** Never reconstruct timelines from memory. Every claim must cite when it was discovered, not when it was written about.
 - **Always run forecasts with every analysis.** The pipeline now runs them automatically. When doing manual analysis: `python tools/forecast.py --input <candles> --pred-len 24`. Never present a trade setup without the forecast. The forecast is a required signal — no exceptions.
+- **Always check NY session time before ANY analysis.** Run `node tools/ny_time.cjs --now` to get current session, SB window status, and reliability multiplier. Never analyze without knowing which session is active.
 
 ## Session Startup (READ FIRST)
 

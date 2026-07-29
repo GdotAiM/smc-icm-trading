@@ -1,7 +1,7 @@
 # Po3 State Machine — NAS100 — 2026-07-29
 
-## Current State: **DISTRIBUTION** (0.60 confidence)
-**BOS bearish — distribution beginning**
+## Current State: **DISTRIBUTION** (0.80 confidence)
+**BOS bearish + displacement (1.04x) — trend is distributing**
 
 ## State Timeline
 
@@ -19,17 +19,17 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for London Open (07:00 UTC): MANIPULATION**
+**Expected phase for NY AM (15:00 UTC): DISTRIBUTION**
 **Detected phase: DISTRIBUTION**
-⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.
+✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
 
 ## Per-TF States
 
 | TF | State | Confidence | Reason |
 |----|-------|------------|--------|
 | 1D | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
-| 4H | DISTRIBUTION | 0.60 | BOS bearish — distribution beginning |
-| 1H | MANIPULATION | 0.85 | 4 sweep(s) + CHoCH — manipulation active |
+| 4H | DISTRIBUTION | 0.80 | BOS bearish + displacement (1.04x) — trend is distributing |
+| 1H | DISTRIBUTION | 0.60 | BOS bearish — distribution beginning |
 
 ## Entry Rules for DISTRIBUTION
 
@@ -44,6 +44,6 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 | Transition | Signal | Status |
 |-----------|--------|--------|
 | ACCUMULATION→MANIPULATION | Sweep of range extreme (BSL above or SSL below) | ✅  |
-| MANIPULATION→DISTRIBUTION | BOS in reversal direction + displacement > 1.0x | ✗  |
+| MANIPULATION→DISTRIBUTION | BOS in reversal direction + displacement > 1.0x | ✅  |
 | DISTRIBUTION→EXPANSION | ATR > 2.0x OR consecutive FVGs ≥ 3 | ✗ ← CURRENT |
 | EXPANSION→ACCUMULATION | Exhaustion (CHoCH) OR sweep of opposite extreme | ✗  |

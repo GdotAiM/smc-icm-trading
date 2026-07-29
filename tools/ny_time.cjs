@@ -112,6 +112,32 @@ function isInJudasSwingNY() {
 // NY day-of-week for ICT calendar
 const NY_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+// CLI mode: node tools/ny_time.cjs --now
+if (require.main === module) {
+  const sb = isInSilverBulletNY();
+  const js = isInJudasSwingNY();
+  const session = getNYSession();
+  const kz = isInKillzoneNY();
+  const day = NY_DAYS[getNYDay()];
+  const reliability = sb.active ? 1.5 : kz ? 1.3 : session.name === "nyLunch" ? 0.4 : 1.0;
+  console.log(JSON.stringify({
+    nyHour: getNYHour(),
+    nyDay: day,
+    session: session.label,
+    character: session.character,
+    killzone: kz,
+    silverBullet: sb.active ? sb.label : null,
+    judasSwing: js.active ? js.label : null,
+    reliability: reliability,
+    tradeable: kz && !["nyLunch", "offHours", "nyClose"].includes(session.name),
+    nextSB: sb.active ? "NOW — closes soon" :
+      getNYHour() < 3 ? "London SB 03:00 NY" :
+      getNYHour() < 10 ? "NY AM SB 10:00 NY" :
+      getNYHour() < 14 ? "NY PM SB 14:00 NY" : "Tomorrow London SB 03:00 NY"
+  }, null, 2));
+  process.exit(0);
+}
+
 module.exports = {
   getNYHour, getNYDay, getNYDate, getNYOffset,
   getNYSession, isInKillzoneNY, isInSilverBulletNY, isInJudasSwingNY,

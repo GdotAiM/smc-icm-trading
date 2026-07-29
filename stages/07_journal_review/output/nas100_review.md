@@ -4,15 +4,15 @@
 | | |
 |---|---|
 | **Direction** | SHORT |
-| **Model** | Silver Bullet (2.1/9) |
-| **Bias** | 1W N/A → 1D bearish → 4H bearish |
+| **Model** | MMXM Sell Model (1.5/9) |
+| **Bias** | 1W bearish → 1D bearish → 4H bearish |
 | **Session** | NY AM (Killzone ✅) |
-| **Entry** | 27497.9 | SL: 28064.3 | TP1: 26931.5 |
+| **Entry** | 27448.0 | SL: 28113.3 | TP1: 26782.7 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment
 ```
-1W  ⚠️ N/A
+1W  ✅ BEARISH
 1D  ✅ BEARISH ← TRADE BIAS
 4H  ✅ BEARISH
 1H  ✅ BEARISH
@@ -21,11 +21,11 @@
 ## Decision Quality
 | Decision | Rating (1-5) |
 |----------|-------------|
-| HTF Bias | 3 |
+| HTF Bias | 4 |
 | Levels | 4 |
 | Model | 3 |
 | R:R | 4 |
-| **Overall** | **3.50/5** |
+| **Overall** | **3.75/5** |
 
 ## Confluence Check
 - DXY correlation: EURUSD + GBPUSD both bearish → DXY should be bullish

@@ -7,10 +7,10 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 27497.9 |
-| SL | 28064.3 (structural invalidation) |
-| Stop Distance | 566 points |
-| **Position** | **0.18 std lots** |
+| Entry | 27448.0 |
+| SL | 28113.3 (structural invalidation) |
+| Stop Distance | 665 points |
+| **Position** | **0.15 std lots** |
 | Risk | $100.00 |
 | Max Gain (TP1) | $100.00 |
 
@@ -18,10 +18,10 @@
 ```
 PAIR:       NAS100
 DIRECTION:  SHORT
-ENTRY:      27497.9
-SL:         28064.3
-TP1:        26931.5 (close 50%)
-TP2:        26365.0 (close 50%)
+ENTRY:      27448.0
+SL:         28113.3
+TP1:        26782.7 (close 50%)
+TP2:        26117.4 (close 50%)
 R:R:        1.00:1 / 2.00:1
 ```
 

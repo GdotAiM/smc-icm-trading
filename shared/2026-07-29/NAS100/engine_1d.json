@@ -1,5 +1,5 @@
 {
-  "price": 27499.6,
+  "price": 27449.3,
   "structure": {
     "bias": "bearish",
     "lastEvent": "CHoCH",
@@ -15,7 +15,7 @@
       "type": "BSL",
       "strength": 2,
       "score": 1.8941932538713149,
-      "distance": 11.463984930689913,
+      "distance": 11.668239262932032,
       "session": "Off",
       "ageBars": 27,
       "swept": false
@@ -25,7 +25,7 @@
       "type": "SSL",
       "strength": 2,
       "score": 1.3979434879865704,
-      "distance": 10.525789466028582,
+      "distance": 10.361830720637672,
       "session": "Off",
       "ageBars": 112,
       "swept": true
@@ -35,7 +35,7 @@
       "type": "BSL",
       "strength": 1,
       "score": 0.9279635687246608,
-      "distance": 8.588488559833609,
+      "distance": 8.787473633207412,
       "session": "Off",
       "ageBars": 10,
       "swept": false
@@ -45,7 +45,7 @@
       "type": "BSL",
       "strength": 1,
       "score": 0.8624923276470193,
-      "distance": 7.914296935228155,
+      "distance": 8.112046573136658,
       "session": "Off",
       "ageBars": 54,
       "swept": true
@@ -55,7 +55,7 @@
       "type": "SSL",
       "strength": 2,
       "score": 1.2736404594228223,
-      "distance": 12.810004509156487,
+      "distance": 12.650231517743615,
       "session": "Off",
       "ageBars": 102,
       "swept": true
@@ -65,7 +65,7 @@
       "type": "BSL",
       "strength": 1,
       "score": 0.8067153272274382,
-      "distance": 10.277604037876925,
+      "distance": 10.479684363535691,
       "session": "Off",
       "ageBars": 21,
       "swept": false
@@ -76,75 +76,75 @@
   "draw": {
     "price": 24605.050000000003,
     "side": "down",
-    "distance": 10.525789466028582,
+    "distance": 10.361830720637672,
     "reason": "SSL pool Â· 2 touches",
     "score": 0.5175
   },
   "alt": {
     "price": 30652.15,
     "side": "up",
-    "distance": 11.463984930689913,
+    "distance": 11.668239262932032,
     "reason": "BSL pool Â· 2 touches",
     "score": 0.21
   },
   "volumeDisplacement": {
-    "atrRatio": 0.5067431654018484,
+    "atrRatio": 0.5788252258747723,
     "label": "weak",
     "volumeConfirmed": false,
-    "volumeRatio": 0.7548538596627375
+    "volumeRatio": 0.8092458379083597
   },
   "pdArray": {
-    "rangeHigh": 21869.1,
-    "rangeLow": 20833.6,
-    "midpoint": 21351.35,
+    "rangeHigh": 22916.1,
+    "rangeLow": 22583.7,
+    "midpoint": 22749.9,
     "currentZone": "premium",
-    "zoneDistance": 11.874939642684694,
-    "description": "Price in premium (644% of range). 593.7% above midpoint"
+    "zoneDistance": 28.27557160048152,
+    "description": "Price in premium (1464% of range). 1413.8% above midpoint"
   },
   "inversionFvgs": [
     {
       "top": 25440.9,
       "bottom": 25288.6,
       "type": "inversion",
-      "index": 262,
+      "index": 162,
       "time": 1768777200000,
       "gapAtr": 0.4529945399307482,
       "reversalAtr": 1.1406852820963331,
       "confirmationLag": 3,
-      "distance": -7.763203828419317
+      "distance": -7.594182729614232
     },
     {
       "top": 25400.2,
       "bottom": 25314.8,
       "type": "inversion",
-      "index": 261,
+      "index": 161,
       "time": 1768514400000,
       "gapAtr": 0.26588387039384864,
       "reversalAtr": 1.1406852820963331,
       "confirmationLag": 4,
-      "distance": -7.789567848259606
+      "distance": -7.620595060711928
     },
     {
       "top": 25376.6,
       "bottom": 25246.3,
       "type": "inversion",
-      "index": 214,
+      "index": 114,
       "time": 1762729200000,
       "gapAtr": 0.2791217198378075,
       "reversalAtr": 1.1224538629497856,
       "confirmationLag": 1,
-      "distance": 7.957024829452071
+      "distance": 7.788358901684204
     },
     {
       "top": 29939.1,
       "bottom": 29506.5,
       "type": "inversion",
-      "index": 366,
+      "index": 266,
       "time": 1781211600000,
       "gapAtr": 0.5916648756374415,
       "reversalAtr": 1.0301888927506258,
       "confirmationLag": 5,
-      "distance": -8.084481228817877
+      "distance": -8.282542724222477
     }
   ]
 }
