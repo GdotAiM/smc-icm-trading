@@ -21,7 +21,7 @@ const votes = {};
 
 for (const arch of archetypes) {
   try {
-    const output = execSync(`node "${ROOT}\\tools\\archetype_engine.cjs" ${PAIR} ${arch}`, {
+    const output = execSync(`node "${ROOT}/tools/archetype_engine.cjs" ${PAIR} ${arch}`, {
       stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000
     });
     votes[arch] = JSON.parse(output);

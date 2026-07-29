@@ -1,4 +1,4 @@
-# Priority 2 Report — DXY — 2026-07-27
+# Priority 2 Report — DXY — 2026-07-29
 
 ## CISD (Engine-Quality)
 **No CISD detected.**
@@ -16,6 +16,6 @@
 
 ## ISD Sequence
 **⏳ ISD 2/3 — Near complete. One more confirmation needed.**
-- ✅ Inducement: 4 pool(s) swept across 4H/15m
-- ✅ Structural Sweep: BOS confirms on 15m/5m
-- ✗ Displacement: weak on 5m (0.00x) — below threshold
+- ✅ Inducement: 3 pool(s) swept across 4H/15m
+- ✅ Structural Sweep: CHoCH confirms on 15m/5m
+- ✗ Displacement: weak on 5m (0.67x) — below threshold

@@ -1,6 +1,7 @@
 // ICM Stage Runner — runs all 7 stages for a given pair
 const fs = require("fs");
 const path = require("path");
+const { execSync } = require("child_process");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const now = new Date();
@@ -110,7 +111,7 @@ try {
     console.log(`  Generating macro context...`);
     try {
       const { execSync } = require("child_process");
-      execSync(`node "${ROOT}\\tools\\macro_context.cjs"`, { stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 10000 });
+      execSync(`node "${ROOT}/tools/macro_context.cjs"`, { stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 10000 });
       // Re-read after generation
       if (fs.existsSync(cycleFile)) {
         const cycleMd = fs.readFileSync(cycleFile, "utf8");
@@ -161,7 +162,7 @@ console.log("\n═══ LIVE STRUCTURE CHECK ═══");
 try {
   const { execSync } = require("child_process");
   for (const tf of ["4h", "1h"]) {
-    const liveOutput = execSync(`node "${ROOT}\\tools\\tv-mcp\\check_live_structure.cjs" --pair ${PAIR} --tf ${tf} --date ${DATE}`, {
+    const liveOutput = execSync(`node "${ROOT}/tools/tv-mcp/check_live_structure.cjs" --pair ${PAIR} --tf ${tf} --date ${DATE}`, {
       stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 25000
     });
     const live = JSON.parse(liveOutput);
@@ -180,7 +181,7 @@ try {
   const slFile = path.join(ROOT, "stages", "07_journal_review", "output", `${PAIR.toLowerCase()}_sl.json`);
   if (fs.existsSync(slFile)) {
     const trades = JSON.parse(fs.readFileSync(slFile, "utf8"));
-    const slOutput = execSync(`node "${ROOT}\\tools\\tv-mcp\\check_sl.cjs" --pair ${PAIR} --trades '${JSON.stringify(trades)}'`, {
+    const slOutput = execSync(`node "${ROOT}/tools/tv-mcp/check_sl.cjs" --pair ${PAIR} --trades '${JSON.stringify(trades)}'`, {
       stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 30000
     });
     const slResults = JSON.parse(slOutput);
@@ -201,7 +202,7 @@ console.log("\n═══ FORECASTS ═══");
 let forecastContext = { f5m: null, f1m: null };
 try {
   const { execSync: fexec } = require("child_process");
-  const f5mOutput = fexec(`python "${ROOT}\\tools\\forecast.py" --input "${sharedDir}\\candles_5m.json" --pred-len 24 --samples 20 --output "${sharedDir}\\forecast_5m.json"`, {
+  const f5mOutput = fexec(`python "${ROOT}/tools/forecast.py" --input "${sharedDir}/candles_5m.json" --pred-len 24 --samples 20 --output "${sharedDir}/forecast_5m.json"`, {
     stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000
   });
   forecastContext.f5m = JSON.parse(fs.readFileSync(`${sharedDir}\\forecast_5m.json`, "utf8"));
@@ -210,7 +211,7 @@ try {
 
 try {
   const { execSync: fexec2 } = require("child_process");
-  const f1mOutput = fexec2(`python "${ROOT}\\tools\\forecast.py" --input "${sharedDir}\\candles_1m.json" --pred-len 48 --samples 20 --output "${sharedDir}\\forecast_1m.json"`, {
+  const f1mOutput = fexec2(`python "${ROOT}/tools/forecast.py" --input "${sharedDir}/candles_1m.json" --pred-len 48 --samples 20 --output "${sharedDir}/forecast_1m.json"`, {
     stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000
   });
   forecastContext.f1m = JSON.parse(fs.readFileSync(`${sharedDir}\\forecast_1m.json`, "utf8"));
@@ -232,18 +233,18 @@ try {
   });
   intradayProfile = JSON.parse(ipOutput);
   console.log(`  📊 Intraday: ${intradayProfile.profile} | Bias: ${intradayProfile.dailyBias} | CBDR: ${intradayProfile.cbdr?.range || '?'} | Checklist: ${intradayProfile.checklist}`);
-} catch(e) { console.log(`  Intraday profile unavailable`); }
+} catch(e) { console.log(`  Intraday profile unavailable: ${e.message.slice(0,80)}`); }
 
 // ── Run Tier 1 (SMT+Fib+ATR+BPR+Po3) ───────────────────────
 let tier1Context = null;
 try {
-  const tier1Output = execSync(`node "${ROOT}\\tools\\tier1.cjs" ${PAIR}`, {
+  const tier1Output = execSync(`node "${ROOT}/tools/tier1.cjs" ${PAIR}`, {
     stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 20000
   });
   tier1Context = JSON.parse(tier1Output);
   if (tier1Context.smt) console.log(`  SMT: ${tier1Context.smt.detected ? '✅ ' + tier1Context.smt.type : '✗ Not detected'} | Fib: ${tier1Context.fib4h?.inOTE ? '✅ OTE' : '✗'} | BPR: ${tier1Context.bpr.detected ? '✅' : '✗'} | ATR SL: ${tier1Context.atrSL.slPips} ${pairLabel === 'XAUUSD' ? 'pts' : 'pips'} | Po3: ${tier1Context.po3.state}`);
   if (tier1Context.fibConfluence) console.log(`  Fib Confluence: ${tier1Context.fibConfluence.clusters} cluster(s)`);
-} catch(e) { console.log(`  Tier 1 unavailable`); }
+} catch(e) { console.log(`  Tier 1 unavailable: ${e.message.slice(0,80)}`); }
 
 // ── Run Cross-System Guard (ALL GAPS CLOSED) ────────────────────
 let guardContext = null;
@@ -256,13 +257,13 @@ try {
   if (guardContext.blocked > 0) {
     console.log(`  ⚠️ BLOCKED by: ${guardContext.guards.filter(g => g.blocked).map(g => g.id).join(', ')}`);
   }
-} catch(e) { console.log(`  Guard unavailable`); }
+} catch(e) { console.log(`  Guard unavailable: ${e.message.slice(0,80)}`); }
 
 // ── Run IPDA Lens (NEW) ──────────────────────────────────────
 let ipdaContext = null;
 try {
   const { execSync } = require("child_process");
-  const ipdaOutput = execSync(`node "${ROOT}\\tools\\ipda.cjs" ${PAIR}`, {
+  const ipdaOutput = execSync(`node "${ROOT}/tools/ipda.cjs" ${PAIR}`, {
     stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000
   });
   ipdaContext = JSON.parse(ipdaOutput);
@@ -271,7 +272,7 @@ try {
     console.log(`  EQ Cascade: ${ipdaContext.equilibriumCascade.map(c => c.tf + '@' + c.eq).join(' → ')}`);
     console.log(`  AMD: ${ipdaContext.amd.position}`);
   }
-} catch(e) { console.log(`  IPDA unavailable`); }
+} catch(e) { console.log(`  IPDA unavailable: ${e.message.slice(0,80)}`); }
 
 const bias1w = r1w ? r1w.structure.bias : "N/A";
 const bias1d = r1d.structure.bias;
@@ -582,7 +583,7 @@ console.log("═══ STAGE 05b — Micro Confirmation ═══");
 let microContext = null;
 try {
   const { execSync } = require("child_process");
-  const microOutput = execSync(`node "${ROOT}\\tools\\micro_context.cjs" ${PAIR}`, {
+  const microOutput = execSync(`node "${ROOT}/tools/micro_context.cjs" ${PAIR}`, {
     stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000
   });
   console.log(microOutput.trim().split("\n").filter(l => l.includes(":") && !l.includes("=")).join("\n"));
@@ -601,7 +602,7 @@ try {
 
   // ── Run Fractal MMXM (Gap Fix #9) ──────────────────────────────
   try {
-    const fractalOutput = execSync(`node "${ROOT}\\tools\\fractal_mmxm.cjs" ${PAIR}`, {
+    const fractalOutput = execSync(`node "${ROOT}/tools/fractal_mmxm.cjs" ${PAIR}`, {
       stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000
     });
     const fractalData = JSON.parse(fractalOutput);
@@ -612,7 +613,7 @@ try {
 
   // ── Run Priority 2 (CISD + BPR + Po3 + ISD) ─────────────────
   try {
-    const p2Output = execSync(`node "${ROOT}\\tools\\priority2.cjs" ${PAIR}`, {
+    const p2Output = execSync(`node "${ROOT}/tools/priority2.cjs" ${PAIR}`, {
       stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000
     });
     const p2 = JSON.parse(p2Output);
@@ -636,9 +637,128 @@ try {
   console.log(`  Micro context unavailable — ${e.message.slice(0, 50)}`);
 }
 
+// ═══════════════ PRICE FRESHNESS GUARD ═══════════════
+// Prevents trading on stale data. Compares 1H close vs 1m close
+// vs live CDP price. Flags divergences and auto-corrects entry.
+console.log("\n═══ PRICE FRESHNESS GUARD ═══");
+const r1mPrice = r1m ? r1m.price : null;
+const r1hPrice = r1h.price;
+const h1mDivergence = r1mPrice ? Math.abs(r1hPrice - r1mPrice) : 0;
+const h1mDivergencePct = r1mPrice ? (h1mDivergence / r1mPrice) * 100 : 0;
+
+// Check candle data age — how old is the last 1m bar?
+let dataAgeMin = 999;
+let lastCandleTime = null;
+try {
+  const candles1mPath = path.join(sharedDir, "candles_1m.json");
+  if (fs.existsSync(candles1mPath)) {
+    const candles1m = JSON.parse(fs.readFileSync(candles1mPath, "utf8"));
+    if (candles1m.length > 0) {
+      lastCandleTime = candles1m[candles1m.length - 1].time;
+      dataAgeMin = (Date.now() - lastCandleTime) / 60000;
+    }
+  }
+} catch (e) { /* candles file may not exist */ }
+
+// Attempt live CDP price check if TV is reachable
+let livePrice = null;
+let livePriceAge = null;
+try {
+  const tvCheck = require("child_process").execSync(
+    `node -e "
+      const CDP = require('${ROOT.replace(/\\/g,"/")}/tools/tv-mcp/node_modules/chrome-remote-interface');
+      (async()=>{
+        const r=await fetch('http://127.0.0.1:9222/json/list');
+        const t=await r.json();
+        const c=t.find(x=>x.type==='page'&&/tradingview/.test(x.url||''));
+        if(!c){console.log(JSON.stringify({error:'no chart'}));return;}
+        const cl=await CDP({host:'127.0.0.1',port:9222,target:c.id});
+        await cl.Runtime.enable();
+        const sym='${PAIR==='DXY'?'USDOLLAR':PAIR==='GOLD'?'XAUUSD':PAIR}';
+        await cl.Runtime.evaluate({expression:'window.TradingViewApi._activeChartWidgetWV.value().setSymbol(\\\"'+sym+'\\\",{})',returnByValue:true});
+        await new Promise(r=>setTimeout(r,2000));
+        const v=await cl.Runtime.evaluate({expression:'(function(){var a=window.TradingViewApi._activeChartWidgetWV.value();var b=a._chartWidget.model().mainSeries().bars();var i=b.lastIndex();var x=b.valueAt(i);return JSON.stringify({price:x[4],time:x[0]*1000});})()',returnByValue:true});
+        console.log(v.result.value);
+        await cl.close();
+      })();
+    "`,
+    { stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000 }
+  );
+  if (tvCheck) {
+    try {
+      const lp = JSON.parse(tvCheck.trim());
+      if (lp.price && !lp.error) {
+        livePrice = lp.price;
+        livePriceAge = lp.time ? (Date.now() - lp.time) / 60000 : null;
+      }
+    } catch (e) { /* parse failed */ }
+  }
+} catch (e) { /* TV not connected */ }
+
+// Determine staleness level and best entry price
+let freshnessScore = 10; // 10 = real-time, 0 = unusable
+let priceSource = "1H";
+let entryPrice = r1hPrice;
+const stalenessWarnings = [];
+
+// Factor 1: 1H vs 1m divergence
+if (h1mDivergencePct > 0.5) {
+  freshnessScore -= 5;
+  stalenessWarnings.push(`1H/1m DIVERGENCE: ${r5(h1mDivergence)} (${h1mDivergencePct.toFixed(2)}%) — 1H price is stale`);
+  priceSource = "1m";
+  entryPrice = r1mPrice;
+} else if (h1mDivergencePct > 0.1) {
+  freshnessScore -= 2;
+  stalenessWarnings.push(`1H/1m drift: ${r5(h1mDivergence)} (${h1mDivergencePct.toFixed(2)}%) — using 1m`);
+  priceSource = "1m";
+  entryPrice = r1mPrice;
+} else {
+  stalenessWarnings.push(`1H/1m aligned (${h1mDivergencePct.toFixed(3)}% drift)`);
+}
+
+// Factor 2: Data age (last candle timestamp)
+if (dataAgeMin > 30) {
+  freshnessScore -= 5;
+  stalenessWarnings.push(`DATA AGE: last candle ${Math.round(dataAgeMin)}m old — highly stale, do not trade without live confirmation`);
+} else if (dataAgeMin > 10) {
+  freshnessScore -= 3;
+  stalenessWarnings.push(`DATA AGE: last candle ${Math.round(dataAgeMin)}m old — moderately stale, prefer live price`);
+} else if (dataAgeMin > 3) {
+  freshnessScore -= 1;
+  stalenessWarnings.push(`DATA AGE: last candle ${Math.round(dataAgeMin)}m old — acceptable`);
+} else {
+  stalenessWarnings.push(`DATA AGE: last candle ${dataAgeMin.toFixed(0)}m old — fresh`);
+}
+
+// Factor 3: Live CDP price vs best available
+if (livePrice !== null) {
+  const liveVsBest = Math.abs(livePrice - entryPrice);
+  const liveVsBestPct = (liveVsBest / entryPrice) * 100;
+  if (liveVsBestPct > 0.3) {
+    freshnessScore -= 3;
+    stalenessWarnings.push(`LIVE PRICE DIVERGENCE: ${r5(livePrice)} vs ${r5(entryPrice)} (${liveVsBestPct.toFixed(2)}%) — using live CDP price`);
+    priceSource = "CDP live";
+    entryPrice = livePrice;
+  } else if (liveVsBestPct > 0.05) {
+    freshnessScore -= 1;
+    stalenessWarnings.push(`Live price check: ${r5(livePrice)} vs ${r5(entryPrice)} (${liveVsBestPct.toFixed(2)}% drift)`);
+  } else {
+    stalenessWarnings.push(`Live price check: ${r5(livePrice)} — matches engine data`);
+  }
+} else {
+  stalenessWarnings.push(`Live price check: TV not connected — no cross-reference available`);
+}
+
+freshnessScore = Math.max(0, freshnessScore);
+
+const freshnessLabel = freshnessScore >= 8 ? "FRESH" : freshnessScore >= 5 ? "ACCEPTABLE" : freshnessScore >= 3 ? "STALE — CAUTION" : "DANGER — DO NOT TRADE";
+
+for (const w of stalenessWarnings) console.log(`  ${w}`);
+console.log(`  Freshness: ${freshnessScore}/10 — ${freshnessLabel}`);
+console.log(`  Entry price source: ${priceSource} @ ${r5(entryPrice)}`);
+
 // ═══════════════ STAGE 05 — Entry Refinement ═══════════════
-console.log("═══ STAGE 05 — Entry Refinement ═══");
-const entryPrice = r1h.price;
+console.log("\n═══ STAGE 05 — Entry Refinement ═══");
 const atrValue = Math.abs((r4h.structure.lastSwingHigh || entryPrice + 0.003) - (r4h.structure.lastSwingLow || entryPrice - 0.003)) * 0.15;
 
 // ── PRIORITY 1: Fibonacci OTE Zone Calculation ──────────────────────
@@ -707,6 +827,12 @@ const reward2Pips = toPips(reward2);
 const pipLabelStr = pipLabel();
 
 writeMd("05_entry_refinement", "entry_plan.md", `# Entry Plan — ${pairLabel} — ${DATE}
+
+## Data Freshness: ${freshnessScore}/10 — ${freshnessLabel}
+- **Price source**: ${priceSource} @ ${r5(entryPrice)}
+- **1H close**: ${r5(r1hPrice)} | **1m close**: ${r1mPrice ? r5(r1mPrice) : 'N/A'}${livePrice !== null ? ` | **Live CDP**: ${r5(livePrice)}` : ''}
+- **Data age**: ${Math.round(dataAgeMin)}m since last candle
+- ${freshnessScore >= 5 ? '✅ Data is tradeable' : '⛔ DO NOT TRADE — refresh data first'}
 
 ## Model: **${primary.name}** (${primary.score}/${primary.max})
 
@@ -835,6 +961,7 @@ writeMd("07_journal_review", "review.md", `# Session Review — ${pairLabel} —
 console.log(`\n${"=".repeat(55)}`);
 console.log(`  ${pairLabel} — COMPLETE`);
 console.log(`${"=".repeat(55)}`);
+console.log(`Data: ${freshnessLabel} (${freshnessScore}/10) | Source: ${priceSource} | Age: ${Math.round(dataAgeMin)}m`);
 console.log(`Bias: ${bias1d.toUpperCase()} | 1W→${bias1w} 1D→${bias1d} 4H→${bias4h}`);
 console.log(`Model: ${primary.name} (${r2(primary.score)}/${primary.max.toFixed(0)})`);
 if (conflicts.length > 0) console.log(`⚠️  Conflicts: ${conflicts.length} mutual exclusivity issue(s) detected`);

@@ -1,142 +1,130 @@
 {
-  "price": 1.1394,
+  "price": 1.13895,
   "structure": {
-    "bias": "bullish",
-    "lastEvent": "BOS",
-    "lastEventPrice": 1.1393,
-    "lastEventTime": 1785290400000,
+    "bias": "bearish",
+    "lastEvent": "CHoCH",
+    "lastEventPrice": 1.13932,
+    "lastEventTime": 1785318300000,
     "confidence": 1,
-    "lastSwingHigh": 1.14036,
-    "lastSwingLow": 1.13854
+    "lastSwingHigh": 1.14005,
+    "lastSwingLow": 1.13746
   },
   "liquidity": [
     {
-      "price": 1.1378270000000001,
-      "type": "SSL",
+      "price": 1.139302,
+      "type": "BSL",
       "strength": 10,
-      "score": 15.768257556972044,
-      "distance": 0.1380551167280871,
-      "session": "Asia",
-      "ageBars": 20,
-      "swept": false
+      "score": 13.296210679368214,
+      "distance": 0.030905658720762983,
+      "session": "London",
+      "ageBars": 21,
+      "swept": true
+    },
+    {
+      "price": 1.1377936363636365,
+      "type": "SSL",
+      "strength": 11,
+      "score": 13.95725417910001,
+      "distance": 0.10152892017765487,
+      "session": "NY AM",
+      "ageBars": 7,
+      "swept": true
     },
     {
       "price": 1.1409666666666667,
       "type": "BSL",
       "strength": 6,
-      "score": 9.896962054270917,
-      "distance": 0.13749926862091594,
+      "score": 8.919641629853496,
+      "distance": 0.17706366975431562,
       "session": "Asia",
-      "ageBars": 7,
+      "ageBars": 37,
       "swept": false
     },
     {
       "price": 1.136442,
       "type": "SSL",
       "strength": 10,
-      "score": 10.129139535586496,
-      "distance": 0.2596103212216971,
+      "score": 9.128891692296982,
+      "distance": 0.22020281838535097,
       "session": "NY AM",
-      "ageBars": 72,
-      "swept": false
-    },
-    {
-      "price": 1.14344,
-      "type": "BSL",
-      "strength": 2,
-      "score": 0.7916733152996386,
-      "distance": 0.35457258206073755,
-      "session": "Asia",
-      "ageBars": 386,
+      "ageBars": 102,
       "swept": false
     }
   ],
   "orderBlocks": [],
-  "fvgs": [
-    {
-      "top": 1.1384,
-      "bottom": 1.13798,
-      "type": "bullish",
-      "index": 333,
-      "time": 1785249900000,
-      "gapAtr": 0.8099173553720637,
-      "displacementAtr": 1.3305785123964111,
-      "fillFraction": 0.4285714285715041,
-      "distance": 0.10619624363699609
-    }
-  ],
+  "fvgs": [],
   "draw": {
-    "price": 1.1409666666666667,
-    "side": "up",
-    "distance": 0.13749926862091594,
-    "reason": "BSL pool Â· 6 touches",
-    "score": 1.1373500672868757
+    "price": 1.1377936363636365,
+    "side": "down",
+    "distance": 0.10152892017765487,
+    "reason": "SSL pool Â· 11 touches",
+    "score": 1.1406593393436557
   },
   "alt": {
-    "price": 1.1378270000000001,
-    "side": "down",
-    "distance": 0.1380551167280871,
-    "reason": "SSL pool Â· 10 touches",
-    "score": 0.7489555906617531
+    "price": 1.139302,
+    "side": "up",
+    "distance": 0.030905658720762983,
+    "reason": "BSL pool Â· 10 touches",
+    "score": 0.7575275473023391
   },
   "volumeDisplacement": {
-    "atrRatio": 0.0799999999999391,
+    "atrRatio": 0.4992570579494916,
     "label": "weak",
     "volumeConfirmed": false,
-    "volumeRatio": 0.8383853319532752
+    "volumeRatio": 1.1632205648454628
   },
   "pdArray": {
-    "rangeHigh": 1.1433,
-    "rangeLow": 1.1407,
-    "midpoint": 1.142,
-    "currentZone": "discount",
-    "zoneDistance": -2,
-    "description": "Price in discount (-50% of range). 100.0% below midpoint"
+    "rangeHigh": 1.13863,
+    "rangeLow": 1.1368,
+    "midpoint": 1.137715,
+    "currentZone": "premium",
+    "zoneDistance": 1.3497267759561489,
+    "description": "Price in premium (117% of range). 67.5% above midpoint"
   },
   "inversionFvgs": [
     {
       "top": 1.13902,
       "bottom": 1.13878,
       "type": "inversion",
-      "index": 358,
+      "index": 331,
       "time": 1785272400000,
       "gapAtr": 0.7795823665892585,
       "reversalAtr": 0.9485981308414133,
       "confirmationLag": 3,
-      "distance": 0.04388274530454142
+      "distance": 0.004390008341005617
     },
     {
       "top": 1.13904,
       "bottom": 1.13874,
       "type": "inversion",
-      "index": 357,
+      "index": 330,
       "time": 1785271500000,
       "gapAtr": 1.0421836228285026,
       "reversalAtr": 0.9485981308414133,
       "confirmationLag": 4,
-      "distance": 0.044760400210638096
-    },
-    {
-      "top": 1.14013,
-      "bottom": 1.13994,
-      "type": "inversion",
-      "index": 209,
-      "time": 1785138300000,
-      "gapAtr": 0.3720279720282706,
-      "reversalAtr": 0.6202531645571239,
-      "confirmationLag": 2,
-      "distance": 0.055731086536788065
+      "distance": 0.005268010009214538
     },
     {
       "top": 1.13882,
       "bottom": 1.13865,
       "type": "inversion",
-      "index": 371,
+      "index": 344,
       "time": 1785284100000,
       "gapAtr": 0.5639810426539655,
       "reversalAtr": 1.1115879828324304,
       "confirmationLag": 3,
-      "distance": 0.05836405125503912
+      "distance": 0.018877035866355345
+    },
+    {
+      "top": 1.13808,
+      "bottom": 1.13796,
+      "type": "inversion",
+      "index": 69,
+      "time": 1784863800000,
+      "gapAtr": 0.3456790123453947,
+      "reversalAtr": 0.9201877934274356,
+      "confirmationLag": 2,
+      "distance": 0.08165415514288384
     }
   ]
 }

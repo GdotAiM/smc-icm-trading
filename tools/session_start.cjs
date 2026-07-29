@@ -21,7 +21,7 @@ const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
 const PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100", "DXY"];
 const TV_SYMBOLS = { DXY: "USDOLLAR" }; // TV symbol overrides
-const TFS = ["1d", "4h", "1h", "15m", "5m", "1m"];
+const TFS = ["1w", "1d", "4h", "1h", "15m", "5m", "1m"];
 const TV_TF_MAP = { "1d": "1D", "4h": "240", "1h": "60", "15m": "15", "5m": "5", "1m": "1" };
 const TV_WAIT = { "1d": 3000, "4h": 2500, "1h": 2000, "15m": 2000, "5m": 2000, "1m": 1500 };
 
@@ -177,7 +177,7 @@ function runEngines() {
       }
       try {
         execSync(
-          `npx tsx "${ROOT}\\tools\\smc-engine\\src\\cli.ts" --pair ${pair} --tf ${tf} --input "${input}" --output "${output}" --mode full`,
+          `npx tsx "${ROOT}/tools/smc-engine/src/cli.ts" --pair ${pair} --tf ${tf} --input "${input}" --output "${output}" --mode full`,
           { stdio: ["ignore", "pipe", "ignore"], timeout: 30000 }
         );
         process.stderr.write(`${pair}:${tf} `);
@@ -203,7 +203,7 @@ function runForecasts() {
       try {
         const predLen = tf === "5m" ? 24 : 48;
         execSync(
-          `python "${ROOT}\\tools\\forecast.py" --input "${input}" --pred-len ${predLen} --samples 20 --output "${output}"`,
+          `python "${ROOT}/tools/forecast.py" --input "${input}" --pred-len ${predLen} --samples 20 --output "${output}"`,
           { stdio: ["ignore", "pipe", "ignore"], timeout: 15000 }
         );
         process.stderr.write(`${pair}:${tf} `);

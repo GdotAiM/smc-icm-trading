@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "built": "2026-07-29T13:01:45.133Z",
+  "built": "2026-07-29T14:33:52.266Z",
   "nodes": {
     "concept:blog---ict": {
       "id": "concept:blog---ict",
@@ -490,8 +490,7 @@
       "name": "ict-optimal-trade-entry-ote-pattern",
       "tier": 2,
       "tierName": "Strategies",
-      "category": "01 - ICT Trading Tutorials",
-      "usageCount": 1
+      "category": "01 - ICT Trading Tutorials"
     },
     "concept:order-block": {
       "id": "concept:order-block",
@@ -499,8 +498,7 @@
       "name": "ict-order-block",
       "tier": 1,
       "tierName": "Core Mechanics",
-      "category": "01 - ICT Trading Tutorials",
-      "usageCount": 1
+      "category": "01 - ICT Trading Tutorials"
     },
     "concept:pd-array-key-to-trade-execution": {
       "id": "concept:pd-array-key-to-trade-execution",
@@ -589,7 +587,7 @@
       "tier": 2,
       "tierName": "Strategies",
       "category": "01 - ICT Trading Tutorials",
-      "usageCount": 1
+      "usageCount": 2
     },
     "concept:smt-divergence-smart-money-technique": {
       "id": "concept:smt-divergence-smart-money-technique",
@@ -1141,7 +1139,7 @@
       "id": "model:silver-bullet",
       "type": "model",
       "name": "Silver Bullet",
-      "totalTrades": 1,
+      "totalTrades": 2,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1191,8 +1189,8 @@
       "date": "2026-07-29",
       "pair": "EURUSD",
       "direction": "SHORT",
-      "model": "OTE + Institutional OB",
-      "session": "Asia",
+      "model": "MMXM Sell Model",
+      "session": "NY AM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1205,20 +1203,20 @@
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "model:ote-institutional-ob": {
-      "id": "model:ote-institutional-ob",
+    "model:mmxm-sell-model": {
+      "id": "model:mmxm-sell-model",
       "type": "model",
-      "name": "OTE + Institutional OB",
-      "totalTrades": 1,
+      "name": "MMXM Sell Model",
+      "totalTrades": 2,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "session:asia": {
-      "id": "session:asia",
+    "session:ny-am": {
+      "id": "session:ny-am",
       "type": "session",
-      "name": "Asia",
-      "totalTrades": 1,
+      "name": "NY AM",
+      "totalTrades": 4,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1239,31 +1237,13 @@
       "outcome": "blocked",
       "decisionQuality": 3.5
     },
-    "model:mmxm-sell-model": {
-      "id": "model:mmxm-sell-model",
-      "type": "model",
-      "name": "MMXM Sell Model",
-      "totalTrades": 2,
-      "winRate": 0,
-      "totalPnl": 0,
-      "avgPnl": 0
-    },
-    "session:ny-am": {
-      "id": "session:ny-am",
-      "type": "session",
-      "name": "NY AM",
-      "totalTrades": 3,
-      "winRate": 0,
-      "totalPnl": 0,
-      "avgPnl": 0
-    },
     "trade:nas100:2026-07-29": {
       "id": "trade:nas100:2026-07-29",
       "type": "trade",
       "date": "2026-07-29",
       "pair": "NAS100",
       "direction": "SHORT",
-      "model": "MMXM Sell Model",
+      "model": "Silver Bullet",
       "session": "NY AM",
       "coherence": 0,
       "source": "review_md_fallback"
@@ -1287,6 +1267,27 @@
       "session": "NY AM",
       "coherence": 0,
       "source": "review_md_fallback"
+    },
+    "trade:dxy:2026-07-29": {
+      "id": "trade:dxy:2026-07-29",
+      "type": "trade",
+      "date": "2026-07-29",
+      "pair": "DXY",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.5,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
+    "pair:dxy": {
+      "id": "pair:dxy",
+      "type": "pair",
+      "name": "Dxy",
+      "totalTrades": 1,
+      "winRate": 0,
+      "totalPnl": 0,
+      "avgPnl": 0
     },
     "trade:eurusd:2026-07-28": {
       "id": "trade:eurusd:2026-07-28",
@@ -1618,14 +1619,14 @@
     },
     {
       "source": "trade:eurusd:2026-07-29",
-      "target": "model:ote-institutional-ob",
+      "target": "model:mmxm-sell-model",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
       "source": "trade:eurusd:2026-07-29",
-      "target": "session:asia",
+      "target": "session:ny-am",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -1660,7 +1661,7 @@
     },
     {
       "source": "trade:nas100:2026-07-29",
-      "target": "model:mmxm-sell-model",
+      "target": "model:silver-bullet",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
@@ -1694,6 +1695,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:dxy:2026-07-29",
+      "target": "pair:dxy",
+      "type": "ON_PAIR",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
       "source": "trade:eurusd:2026-07-28",
       "target": "pair:eurusd",
       "type": "ON_PAIR",
@@ -1702,14 +1710,7 @@
     },
     {
       "source": "trade:eurusd:2026-07-29",
-      "target": "concept:optimal-trade-entry-ote-pattern",
-      "type": "USED_CONCEPT",
-      "weight": 0.9,
-      "metadata": {}
-    },
-    {
-      "source": "trade:eurusd:2026-07-29",
-      "target": "concept:order-block",
+      "target": "concept:ict-trading-strategy-2022",
       "type": "USED_CONCEPT",
       "weight": 0.9,
       "metadata": {}
@@ -2129,7 +2130,7 @@
     },
     {
       "source": "trade:nas100:2026-07-29",
-      "target": "concept:ict-trading-strategy-2022",
+      "target": "concept:silver-bullet",
       "type": "USED_CONCEPT",
       "weight": 0.9,
       "metadata": {}
@@ -2156,6 +2157,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:gbpusd:2026-07-27",
+      "target": "trade:nas100:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-07-28",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
@@ -2163,10 +2171,31 @@
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-07-29",
-      "target": "trade:nas100:2026-07-29",
+      "source": "trade:eurusd:2026-07-29",
+      "target": "trade:gbpusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
+      "target": "trade:eurusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
+      "target": "trade:gbpusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
+      "target": "trade:gold:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
       "metadata": {}
     },
     {

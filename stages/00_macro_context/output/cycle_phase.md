@@ -4,7 +4,7 @@
 - **1W Bias**: N/A
 - **1D Bias**: BEARISH
 - **Sweeps**: ✅ Detected — SSL @ 1.13845, BSL @ 1.16727
-- **Displacement**: weak (0.07x ATR)
+- **Displacement**: weak (0.02x ATR)
 - **Confidence**: 0.00
 
 ## Phase Narrative

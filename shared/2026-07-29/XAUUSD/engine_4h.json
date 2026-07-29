@@ -1,150 +1,150 @@
 {
-  "price": 4043.535,
+  "price": 3997.425,
   "structure": {
-    "bias": "bullish",
+    "bias": "bearish",
     "lastEvent": "CHoCH",
-    "lastEventPrice": 4040.815,
-    "lastEventTime": 1784595600000,
+    "lastEventPrice": 4022.06,
+    "lastEventTime": 1785330000000,
     "confidence": 1,
     "lastSwingHigh": 4116.185,
     "lastSwingLow": 4022.06
   },
   "liquidity": [
     {
-      "price": 4020.4500000000003,
-      "type": "SSL",
-      "strength": 3,
-      "score": 4.758717755206,
-      "distance": 0.5709113436633931,
-      "session": "Asia",
-      "ageBars": 18,
-      "swept": true
-    },
-    {
       "price": 3959.7183333333337,
       "type": "SSL",
       "strength": 3,
-      "score": 3.325276077895031,
-      "distance": 2.0728562178061063,
+      "score": 3.3023067182138552,
+      "distance": 0.9432738992392973,
       "session": "NY AM",
-      "ageBars": 46,
-      "swept": false
-    },
-    {
-      "price": 4117.79,
-      "type": "BSL",
-      "strength": 3,
-      "score": 2.7856218362468996,
-      "distance": 1.8363882098213595,
-      "session": "Off",
-      "ageBars": 14,
+      "ageBars": 48,
       "swept": false
     },
     {
       "price": 3983.2475,
       "type": "SSL",
       "strength": 2,
-      "score": 1.6432859286758241,
-      "distance": 1.490960261256547,
+      "score": 1.6319349236252414,
+      "distance": 0.35466581611913256,
       "session": "Off",
-      "ageBars": 68,
+      "ageBars": 70,
       "swept": true
     },
     {
-      "price": 4063.48,
+      "price": 4042.4775,
       "type": "BSL",
-      "strength": 1,
-      "score": 0.6641673100237555,
-      "distance": 0.49325651935744746,
-      "session": "NY AM",
-      "ageBars": 123,
+      "strength": 2,
+      "score": 1.9512916827507016,
+      "distance": 1.1270380307322783,
+      "session": "London",
+      "ageBars": 43,
       "swept": true
     },
     {
-      "price": 4081.52,
+      "price": 4117.79,
       "type": "BSL",
+      "strength": 3,
+      "score": 2.766380140702332,
+      "distance": 3.011063372045749,
+      "session": "Off",
+      "ageBars": 16,
+      "swept": false
+    },
+    {
+      "price": 3969.345,
+      "type": "SSL",
       "strength": 1,
-      "score": 0.7243854049436009,
-      "distance": 0.9394007965802232,
+      "score": 0.7102072910994026,
+      "distance": 0.7024522036060808,
       "session": "NY PM",
-      "ageBars": 57,
+      "ageBars": 53,
       "swept": true
+    },
+    {
+      "price": 3942.1,
+      "type": "SSL",
+      "strength": 1,
+      "score": 0.9617776099843051,
+      "distance": 1.3840159602744335,
+      "session": "Asia",
+      "ageBars": 128,
+      "swept": false
     }
   ],
   "orderBlocks": [],
   "fvgs": [],
   "draw": {
-    "price": 4117.79,
-    "side": "up",
-    "distance": 1.8363882098213595,
-    "reason": "BSL pool Â· 3 touches",
-    "score": 0.8948022846964349
+    "price": 3959.7183333333337,
+    "side": "down",
+    "distance": 0.9432738992392973,
+    "reason": "SSL pool Â· 3 touches",
+    "score": 0.8495380880608563
   },
   "alt": {
-    "price": 4020.4500000000003,
-    "side": "down",
-    "distance": 0.5709113436633931,
-    "reason": "SSL pool Â· 3 touches",
-    "score": 0.6393270925069285
+    "price": 4042.4775,
+    "side": "up",
+    "distance": 1.1270380307322783,
+    "reason": "BSL pool Â· 2 touches",
+    "score": 0.5198369575414177
   },
   "volumeDisplacement": {
-    "atrRatio": 0.685719497734929,
-    "label": "weak",
+    "atrRatio": 1.0382105155572388,
+    "label": "moderate",
     "volumeConfirmed": false,
-    "volumeRatio": 0.3815643510475752
+    "volumeRatio": 0.684055806543952
   },
   "pdArray": {
-    "rangeHigh": 4660.585,
-    "rangeLow": 4501.035,
-    "midpoint": 4580.8099999999995,
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
     "currentZone": "discount",
-    "zoneDistance": -6.734879348166706,
-    "description": "Price in discount (-287% of range). 336.7% below midpoint"
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
   },
   "inversionFvgs": [
     {
-      "top": 4046.925,
-      "bottom": 4037.16,
+      "top": 4008.74,
+      "bottom": 3998.27,
       "type": "inversion",
-      "index": 329,
-      "time": 1784077200000,
-      "gapAtr": 0.25088316526431553,
-      "reversalAtr": 0.6965464256292065,
-      "confirmationLag": 2,
-      "distance": -0.036910772381093186
-    },
-    {
-      "top": 4057.81,
-      "bottom": 4034.25,
-      "type": "inversion",
-      "index": 325,
-      "time": 1784019600000,
-      "gapAtr": 0.6037155669442652,
-      "reversalAtr": 0.6690217740381513,
-      "confirmationLag": 2,
-      "distance": -0.06170343523673941
+      "index": 272,
+      "time": 1782795600000,
+      "gapAtr": 0.2621244635193082,
+      "reversalAtr": 0.5286845917925784,
+      "confirmationLag": 3,
+      "distance": -0.1520979130315122
     },
     {
       "top": 4046.43,
       "bottom": 4006.245,
       "type": "inversion",
-      "index": 320,
+      "index": 327,
       "time": 1783947600000,
       "gapAtr": 1.1695406779132462,
       "reversalAtr": 1.5413196668802076,
       "confirmationLag": 3,
-      "distance": -0.42530854808973384
+      "distance": 0.7232781102834813
     },
     {
-      "top": 4085.23,
-      "bottom": 4069.96,
+      "top": 4046.925,
+      "bottom": 4037.16,
       "type": "inversion",
-      "index": 376,
-      "time": 1785099600000,
-      "gapAtr": 0.5385904138061313,
-      "reversalAtr": 0.8631836353395338,
-      "confirmationLag": 4,
-      "distance": -0.8423322661977799
+      "index": 336,
+      "time": 1784077200000,
+      "gapAtr": 0.25088316526431553,
+      "reversalAtr": 0.6965464256292065,
+      "confirmationLag": 2,
+      "distance": 1.1161560254413738
+    },
+    {
+      "top": 4057.81,
+      "bottom": 4034.25,
+      "type": "inversion",
+      "index": 332,
+      "time": 1784019600000,
+      "gapAtr": 0.6037155669442652,
+      "reversalAtr": 0.6690217740381513,
+      "confirmationLag": 2,
+      "distance": -1.2159077406080054
     }
   ]
 }

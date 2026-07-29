@@ -5,12 +5,12 @@
 ## Liquidity Pools (6 on 4H)
 | Type | Price | Role | Touches | Score | Distance | Swept |
 |------|-------|------|---------|-------|----------|-------|
-| SSL | 4020.45 | Support | 3 | 4.76 | 0.57% | ⚡ |
-| SSL | 3959.72 | Support | 3 | 3.33 | 2.07% | Active |
-| BSL | 4117.79 | Resistance | 3 | 2.79 | 1.84% | Active |
-| SSL | 3983.25 | Support | 2 | 1.64 | 1.49% | ⚡ |
-| BSL | 4081.52 | Resistance | 1 | 0.72 | 0.94% | ⚡ |
-| BSL | 4063.48 | Resistance | 1 | 0.66 | 0.49% | ⚡ |
+| SSL | 3959.72 | Support | 3 | 3.30 | 0.94% | Active |
+| BSL | 4117.79 | Resistance | 3 | 2.77 | 3.01% | Active |
+| BSL | 4042.48 | Resistance | 2 | 1.95 | 1.13% | ⚡ |
+| SSL | 3983.25 | Support | 2 | 1.63 | 0.35% | ⚡ |
+| SSL | 3942.10 | Support | 1 | 0.96 | 1.38% | Active |
+| SSL | 3969.34 | Support | 1 | 0.71 | 0.70% | ⚡ |
 
 ## Order Blocks (3 across 1D/4H/1H)
 | Type | Proximal | Distal | Impulse | FVG | TF |
@@ -26,5 +26,5 @@
 | bullish | 3071.51 | 3022.76 | 0.80x | 1.64x | 0.00% |
 
 ## Draw Targets
-- **Primary**: UP @ 4117.79 — BSL pool Â· 3 touches (0.89)
-- **Alternate**: DOWN @ 4020.45 — SSL pool Â· 3 touches (0.64)
+- **Primary**: DOWN @ 3959.72 — SSL pool Â· 3 touches (0.85)
+- **Alternate**: UP @ 4042.48 — BSL pool Â· 2 touches (0.52)

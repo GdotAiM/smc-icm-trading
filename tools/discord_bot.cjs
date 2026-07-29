@@ -358,7 +358,7 @@ client.on("interactionCreate", async (interaction) => {
   try {
     switch (commandName) {
       case "status": {
-        const macro = execSync(`node "${ROOT}\\tools\\macro_context.cjs"`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 15000 });
+        const macro = execSync(`node "${ROOT}/tools/macro_context.cjs"`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 15000 });
         const lines = macro.split("\n");
         const cycle = (lines.find(l => l.includes("Cycle:")) || "").replace(/.*Cycle:\s*/, "").split("(")[0].trim() || "UNKNOWN";
         const mmxm = (lines.find(l => l.includes("MMXM:")) || "").replace(/.*MMXM:\s*/, "").split("—")[0].trim() || "?";
@@ -375,7 +375,7 @@ client.on("interactionCreate", async (interaction) => {
         const pairMap = { "GOLD": "XAUUSD", "EURUSD": "EURUSD", "GBPUSD": "GBPUSD", "NAS100": "NAS100", "DXY": "DXY" };
         const fsPair = pairMap[analyzePair] || analyzePair;
         await interaction.editReply({ content: `🔍 Running full pipeline on ${analyzePair}... (30-60s)` });
-        const result = execSync(`node "${ROOT}\\tools\\run_pair.cjs" ${fsPair}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 90000 });
+        const result = execSync(`node "${ROOT}/tools/run_pair.cjs" ${fsPair}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 90000 });
         const lines = result.split("\n");
         const bias = (lines.find(l => l.includes("Bias:")) || "").replace(/.*Bias:\s*/, "").trim();
         const model = (lines.find(l => l.includes("Model:")) || "").replace(/.*Model:\s*/, "").split("(")[0].trim();
@@ -399,7 +399,7 @@ client.on("interactionCreate", async (interaction) => {
         const results = {};
         for (const p of PAIRS) {
           try {
-            const output = execSync(`node "${ROOT}\\tools\\council.cjs" ${p.name}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 20000 });
+            const output = execSync(`node "${ROOT}/tools/council.cjs" ${p.name}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 20000 });
             // council.cjs outputs multi-line JSON at the end — find the full JSON block
             const pairIdx = output.lastIndexOf('"pair"'); const jsonStart = pairIdx >= 0 ? output.lastIndexOf('{', pairIdx) : -1;
             if (jsonStart >= 0) {
@@ -460,7 +460,7 @@ client.on("interactionCreate", async (interaction) => {
       }
       case "micro": {
         const pair = interaction.options.getString("pair");
-        const result = execSync(`node "${ROOT}\\tools\\micro_context.cjs" ${pair}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 20000 });
+        const result = execSync(`node "${ROOT}/tools/micro_context.cjs" ${pair}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 20000 });
         const lines = result.split("\n");
         const coh = (lines.find(l => l.includes("Coherence:")) || "").trim();
         const dec = (lines.find(l => l.includes("Decision:")) || "").trim();

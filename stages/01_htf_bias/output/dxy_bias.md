@@ -1,33 +1,33 @@
-# HTF Bias — DXY — 2026-07-27
+# HTF Bias — DXY — 2026-07-29
 
 ## Structural Bias
-**BULLISH** — 1W BULLISH → 1D BULLISH → 4H BEARISH
+**BULLISH** — 1W N/A → 1D BULLISH → 4H BULLISH
 
 | Timeframe | Bias | Last Event | Price | Confidence | Pools | OBs | FVGs |
 |-----------|------|------------|-------|------------|-------|-----|------|
-| 1W | bullish | BOS | 100.6 | 1.00 | 6 | 4 | 2 |
-| 1D | bullish | BOS | 101.3 | 1.00 | 6 | 4 | 3 |
-| 4H | bearish | CHoCH | 101.3 | 1.00 | 6 | 4 | 4 |
-| 1H | bearish | CHoCH | 101.3 | 1.00 | 6 | 4 | 4 |
-| 15m | bullish | BOS | 101.3 | 1.00 | 6 | 3 | 3 |
-| 5m | bullish | BOS | 101.4 | 1.00 | 4 | 4 | 4 |
-| 1m | bullish | BOS | 101.4 | 1.00 | 2 | 4 | 4 |
+| 1W | — | — | — | — | — | — | — |
+| 1D | bullish | BOS | 12794.00 | 1.00 | 6 | 2 | 2 |
+| 4H | bullish | BOS | 12774.00 | 1.00 | 6 | 0 | 1 |
+| 1H | bullish | BOS | 12802.00 | 1.00 | 5 | 0 | 0 |
+| 15m | bullish | BOS | 12800.00 | 1.00 | 3 | 0 | 1 |
+| 5m | bullish | CHoCH | 12794.00 | 1.00 | 2 | 1 | 0 |
+| 1m | bearish | BOS | 12795.00 | 0.75 | 1 | 0 | 0 |
 
 ## Key Observations
-- 1W: BULLISH | 1D: **BULLISH** | 4H: **BEARISH**
-- 1D & 4H diverging ⚠️ — reduced confidence
-- 1W 1D swing: H 101.3 / L 100.3
-- Current price: 101.4
+- 1W: N/A | 1D: **BULLISH** | 4H: **BULLISH**
+- 1D & 4H aligned ✅ — strong directional conviction
+- 1W 1D swing: H 12794.00 / L 12708.00
+- Current price: 12794.00
 
 ## Multi-TF Cascade
 ```
-1W  🟢 BULLISH
+1W  ⚪ N/A
 1D  🟢 BULLISH ← TRADE BIAS
-4H  🔴 BEARISH
-1H  🔴 BEARISH ← ENTRY TF
+4H  🟢 BULLISH
+1H  🟢 BULLISH ← ENTRY TF
 15m 🟢 BULLISH
 5m  🟢 BULLISH
-1m  🟢 BULLISH
+1m  🔴 BEARISH
 ```
 
 ## Final Bias

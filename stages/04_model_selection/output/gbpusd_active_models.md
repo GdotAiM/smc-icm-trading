@@ -12,14 +12,16 @@
 | Model | Structural | Cycle × | Po3 | Final | Status |
 |-------|-----------|---------|-----|-------|--------|
 | MMXM Sell Model | 8/9 | ×1.00 | ⚠️ BLOCKED | **2.40** | ★ PRIMARY |
+| Silver Bullet | 8/9 | ×1.00 | ⚠️ BLOCKED | **2.40** | Rejected |
 | Breaker Block | 8/7 | ×1.00 | ⚠️ BLOCKED | **2.40** | Rejected |
 | OTE + Institutional OB | 6/8 | ×1.00 | ⚠️ BLOCKED | **1.80** | Rejected |
 | Unicorn (OTE+FVG) | 6/8 | ×1.00 | ⚠️ BLOCKED | **1.80** | Rejected |
 | MMXM Buy Model | 5/9 | ×1.00 | ⚠️ BLOCKED | **1.50** | Rejected |
-| Silver Bullet | 5/9 | ×1.00 | ⚠️ BLOCKED | **1.50** | Rejected |
 | Turtle Soup | 5/7 | ×1.00 | ⚠️ BLOCKED | **1.50** | Rejected |
 
 ⚠️ **MMXM Sell Model**: MMXM Sell Model requires DISTRIBUTION/EXPANSION/MANIPULATION phase, but we are in UNKNOWN
+
+⚠️ **Silver Bullet**: Silver Bullet requires MANIPULATION/DISTRIBUTION/EXPANSION phase, but we are in UNKNOWN
 
 ⚠️ **Breaker Block**: Breaker Block requires MANIPULATION/DISTRIBUTION phase, but we are in UNKNOWN
 
@@ -29,12 +31,10 @@
 
 ⚠️ **MMXM Buy Model**: MMXM Buy Model requires DISTRIBUTION/EXPANSION/MANIPULATION phase, but we are in UNKNOWN
 
-⚠️ **Silver Bullet**: Silver Bullet requires MANIPULATION/DISTRIBUTION/EXPANSION phase, but we are in UNKNOWN
-
 ⚠️ **Turtle Soup**: Turtle Soup requires MANIPULATION phase, but we are in UNKNOWN
 
 ## Primary: MMXM Sell Model (2.40 — structural 8 × cycle 1.00)
-**SMT**: ✅ Indirect SMT: 5 sweeps across 1H/4H suggest manipulation
+**SMT**: ✅ Indirect SMT: 6 sweeps across 1H/4H suggest manipulation
 
 ## Conflict Check
 ✅ **NO CONFLICTS** — All top models are compatible.

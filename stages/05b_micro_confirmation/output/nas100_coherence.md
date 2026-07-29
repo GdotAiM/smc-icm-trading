@@ -1,19 +1,19 @@
 # Macro-Micro Coherence — NAS100 — 2026-07-29
 
-## Coherence Score: **6/10** (raw) → **8/10** (session-adjusted)
+## Coherence Score: **13/10** (raw) → **10/10** (session-adjusted)
 
-> Session: **NY AM Killzone** (×1.4) | Killzone: ✅ NY AM Killzone Killzone | Silver Bullet: Inactive
+> Session: **NY AM Killzone** (×1.4) | Killzone: ✅ NY AM Killzone Killzone | Silver Bullet: ✅ NY AM Silver Bullet
 > Standard session — Highest volume, displacement
 > Best entry TF for NY AM Killzone: **5m**
 
 | Component | Score | Detail |
 |-----------|-------|--------|
-| Bias alignment | 0/3 | 0/3 (✗ ✗ ✗) |
-| Structure | 1/2 | 1/2 (15m:CHoCH bullish, 5m:BOS bullish) |
-| Displacement | 0/2 | 0/2 (5m:weak 0.2126797650394958x, 1m:weak 0.17306843267104227x) |
-| Manipulation | 2/2 | 2/2 (15m sweep:true SSL,BSL,SSL,BSL, 5m:true SSL,BSL,SSL,BSL) |
+| Bias alignment | 3/3 | 3/3 (✓ ✓ ✓) |
+| Structure | 2/2 | 2/2 (15m:BOS bearish, 5m:CHoCH bearish) |
+| Displacement | 2/2 | 2/2 (5m:moderate 1.046930102179179x, 1m:weak 0.4181504882251137x) |
+| Manipulation | 2/2 | 2/2 (15m sweep:true BSL,BSL, 5m:true BSL,BSL,BSL) |
 | Trigger readiness | 0/1 | 0/1 (5m FVG:false, 1m CHoCH:false) |
-| Liquidity | 3/3 | 3/3 — 5m draw is UP — not aligned with HTF bearish; Recent sweep detected — manipulation active (0 on 15m, 1 on 5m); Engineered liquidity (EQH/EQL) — higher probability draw |
+| Liquidity | 4/3 | 4/3 — 5m draw aligns with HTF bias; 15m draw confirms; Engineered liquidity (EQH/EQL) — higher probability draw |
 | **Session Adj** | ×1.4 | NY AM Killzone reliability multiplier |
 
 ## Go/No-Go Decision
@@ -31,5 +31,5 @@
 ## Macro-Micro Relationship
 
 - **Macro says**: UNKNOWN phase, HTF BEARISH, MMXM Step 0
-- **Micro says**: 15m bullish, 5m bullish, 1m bullish
-- **Interpretation**: LTF partially confirms HTF — some alignment but not full. Wait for clearer LTF structure.
+- **Micro says**: 15m bearish, 5m bearish, 1m bearish
+- **Interpretation**: LTF confirms HTF — bearish trend is intact on lower timeframes. Entry signal is valid.

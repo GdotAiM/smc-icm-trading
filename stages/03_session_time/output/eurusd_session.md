@@ -1,17 +1,17 @@
-# Session Analysis — EURUSD — 2026-07-29 06:00 UTC
+# Session Analysis — EURUSD — 2026-07-29 14:00 UTC
 
 ## Current Session
-- **Session**: Asia | Killzone: Inactive
-- **Character**: Accumulation
-- **Gate**: **NO TRADE**
+- **Session**: NY AM | Killzone: ✅ ACTIVE
+- **Character**: High volume
+- **Gate**: **ACTIVE**
 
 ## Silver Bullet
 | Window | UTC | Status |
 |--------|-----|--------|
 | London SB | 08-10 | — |
-| NY AM SB | 13-15 | — |
+| NY AM SB | 13-15 | ✅ |
 | NY PM SB | 17-19 | — |
 
 ## Alignment
-- Bias: **bearish** | Session: Asia
-- ⚠️ NOT ALIGNED
+- Bias: **bearish** | Session: NY AM
+- ✅ ALIGNED — Active killzone with directional bias

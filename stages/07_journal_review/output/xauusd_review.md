@@ -5,16 +5,16 @@
 |---|---|
 | **Direction** | SHORT |
 | **Model** | Breaker Block (3.3/7) |
-| **Bias** | 1W N/A → 1D bearish → 4H bullish |
+| **Bias** | 1W N/A → 1D bearish → 4H bearish |
 | **Session** | NY AM (Killzone ✅) |
-| **Entry** | 4043.70 | SL: 4130.30 | TP1: 3957.09 |
+| **Entry** | 3997.43 | SL: 4130.30 | TP1: 3864.55 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment
 ```
 1W  ⚠️ N/A
 1D  ✅ BEARISH ← TRADE BIAS
-4H  ⚠️ BULLISH
+4H  ✅ BEARISH
 1H  ✅ BEARISH
 ```
 

@@ -11,11 +11,11 @@
 
 
 ## Per-Session Po3
-**Current session: Asia — ACCUMULATION phase. Range-bound, building positions.**
-- Asia: ACCUMULATION — Range-bound, building positions
+**Current session: NY AM — DISTRIBUTION phase. Highest volume — real displacement.**
+- NY AM: DISTRIBUTION — Highest volume — real displacement
 
 ## ISD Sequence
 **⏳ ISD 2/3 — Near complete. One more confirmation needed.**
-- ✅ Inducement: 2 pool(s) swept across 4H/15m
+- ✅ Inducement: 4 pool(s) swept across 4H/15m
 - ✅ Structural Sweep: CHoCH confirms on 15m/5m
-- ✗ Displacement: weak on 5m (0.15x) — below threshold
+- ✗ Displacement: weak on 5m (0.07x) — below threshold

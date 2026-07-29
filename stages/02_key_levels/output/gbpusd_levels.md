@@ -5,12 +5,12 @@
 ## Liquidity Pools (6 on 4H)
 | Type | Price | Role | Touches | Score | Distance | Swept |
 |------|-------|------|---------|-------|----------|-------|
-| BSL | 1.34450 | Resistance | 7 | 7.99 | 1.10% | ⚡ |
-| BSL | 1.34596 | Resistance | 5 | 7.46 | 1.21% | Active |
-| BSL | 1.34816 | Resistance | 5 | 7.31 | 1.38% | Active |
-| BSL | 1.33939 | Resistance | 4 | 6.20 | 0.72% | Active |
-| BSL | 1.33716 | Resistance | 3 | 4.46 | 0.55% | Active |
-| BSL | 1.34219 | Resistance | 3 | 3.79 | 0.93% | ⚡ |
+| BSL | 1.34450 | Resistance | 7 | 7.94 | 1.15% | ⚡ |
+| BSL | 1.34596 | Resistance | 5 | 7.41 | 1.26% | Active |
+| BSL | 1.34816 | Resistance | 5 | 7.25 | 1.42% | Active |
+| BSL | 1.33939 | Resistance | 4 | 6.16 | 0.76% | Active |
+| BSL | 1.33716 | Resistance | 3 | 4.43 | 0.60% | Active |
+| BSL | 1.34219 | Resistance | 3 | 3.76 | 0.97% | ⚡ |
 
 ## Order Blocks (4 across 1D/4H/1H)
 | Type | Proximal | Distal | Impulse | FVG | TF |
@@ -29,5 +29,5 @@
 | bearish | 1.34964 | 1.34914 | 0.37x | 1.50x | 0.00% |
 
 ## Draw Targets
-- **Primary**: UP @ 1.33939 — BSL pool Â· 4 touches (0.81)
+- **Primary**: UP @ 1.33939 — BSL pool Â· 4 touches (0.80)
 - **Alternate**: None

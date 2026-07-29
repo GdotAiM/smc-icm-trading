@@ -119,7 +119,7 @@ if (NY_HOUR >= 17 || NY_HOUR < 2) {
 
 // ── GAP 6: IPDA zone vs entry direction ────────────────────────────
 try {
-  const ipdaOutput = execSync(`node "${ROOT}\\tools\\ipda.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
+  const ipdaOutput = execSync(`node "${ROOT}/tools/ipda.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
   const ipda = JSON.parse(ipdaOutput);
   const consensus = ipda.draw?.consensus;
   const drawDir = ipda.draw?.direction?.split("(")[0]?.trim();
@@ -160,7 +160,7 @@ try {
 
 // ── GAP 7: Fractal nesting breaks → reduce confidence ──────────────
 try {
-  const fractalOutput = execSync(`node "${ROOT}\\tools\\fractal_mmxm.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
+  const fractalOutput = execSync(`node "${ROOT}/tools/fractal_mmxm.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
   const fractal = JSON.parse(fractalOutput);
   if (fractal.nestingScore <= 3) {
     guards.push({
@@ -178,7 +178,7 @@ try {
 
 // ── GAP 8: 1m Inversion not detected → no entry ────────────────────
 try {
-  const fractalOutput2 = execSync(`node "${ROOT}\\tools\\fractal_mmxm.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
+  const fractalOutput2 = execSync(`node "${ROOT}/tools/fractal_mmxm.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
   const fractal2 = JSON.parse(fractalOutput2);
   if (!fractal2.inversionDetected && fractal2.inversionScore < 4) {
     guards.push({

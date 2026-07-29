@@ -15,7 +15,7 @@
 - NY AM: DISTRIBUTION — Highest volume — real displacement
 
 ## ISD Sequence
-**⏳ ISD 2/3 — Near complete. One more confirmation needed.**
-- ✅ Inducement: 5 pool(s) swept across 4H/15m
+**✅ ISD COMPLETE (3/3) — Inducement → Sweep → Displacement confirmed. HIGHEST confidence entry.**
+- ✅ Inducement: 2 pool(s) swept across 4H/15m
 - ✅ Structural Sweep: CHoCH confirms on 15m/5m
-- ✗ Displacement: weak on 5m (0.21x) — below threshold
+- ✅ Displacement: moderate on 5m (1.05x), moderate on 15m

@@ -4,10 +4,10 @@
 | | |
 |---|---|
 | **Direction** | SHORT |
-| **Model** | MMXM Sell Model (2.4/9) |
+| **Model** | Silver Bullet (2.1/9) |
 | **Bias** | 1W N/A → 1D bearish → 4H bearish |
 | **Session** | NY AM (Killzone ✅) |
-| **Entry** | 27747.3 | SL: 28727.5 | TP1: 26767.1 |
+| **Entry** | 27497.9 | SL: 28064.3 | TP1: 26931.5 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment

@@ -6,7 +6,7 @@
 - **Risk Level**: Medium-High
 - **Day Weight**: ×1.2
 - **Session**: NY AM Killzone (Highest volume, displacement)
-- **NY Hour**: 08:00 (ICT standard: New York local time)
+- **NY Hour**: 10:00 (ICT standard: New York local time)
 
 ## Weekly Position
 - **Week Phase**: Mid-week — classic reversal zone

@@ -8,6 +8,7 @@ const DATE = "2026-07-29";
 const PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100", "DXY"];
 
 const TFS = [
+  { label: "1w", resolution: "1W", wait: 3000 },
   { label: "1d", resolution: "1D", wait: 3000 },
   { label: "4h", resolution: "240", wait: 2500 },
   { label: "1h", resolution: "60", wait: 2000 },

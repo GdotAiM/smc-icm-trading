@@ -170,7 +170,7 @@ function bprScoring() {
   // Use priority2.cjs BPR detection
   let bprResult = { detected: false, zones: 0, narrative: "BPR not available" };
   try {
-    const p2Output = execSync(`node "${ROOT}\\tools\\priority2.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
+    const p2Output = execSync(`node "${ROOT}/tools/priority2.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
     const p2 = JSON.parse(p2Output);
     bprResult = {
       detected: p2.bpr.detected4h || p2.bpr.detected1h,
@@ -220,7 +220,7 @@ function atrDynamicSL(report, entryPrice, htfBias) {
 function po3Wired() {
   let po3 = { state: "UNKNOWN", confidence: 0, entryRules: null };
   try {
-    const po3Output = execSync(`node "${ROOT}\\tools\\po3_state_machine.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
+    const po3Output = execSync(`node "${ROOT}/tools/po3_state_machine.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
     po3 = JSON.parse(po3Output);
   } catch(e) {}
   return po3;

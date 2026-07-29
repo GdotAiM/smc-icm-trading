@@ -1,4 +1,4 @@
-# IPDA Dealing Range Analysis — DXY — 2026-07-27
+# IPDA Dealing Range Analysis — DXY — 2026-07-29
 
 ## Nested Dealing Ranges (Macro → Micro)
 

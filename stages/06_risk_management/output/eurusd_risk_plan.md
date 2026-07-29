@@ -7,22 +7,22 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 1.13940 |
+| Entry | 1.13895 |
 | SL | 1.14131 (structural invalidation) |
-| Stop Distance | 19 pips |
-| **Position** | **0.53 std lots** |
+| Stop Distance | 24 pips |
+| **Position** | **0.42 std lots** |
 | Risk | $100.00 |
-| Max Gain (TP1) | $173.68 |
+| Max Gain (TP1) | $120.83 |
 
 ## Trade Ticket
 ```
 PAIR:       EURUSD
 DIRECTION:  SHORT
-ENTRY:      1.13940
+ENTRY:      1.13895
 SL:         1.14131
 TP1:        1.13610 (close 50%)
-TP2:        1.13279 (close 50%)
-R:R:        1.73:1 / 3.46:1
+TP2:        1.13324 (close 50%)
+R:R:        1.21:1 / 2.42:1
 ```
 
 ## Execution: **PAPER**

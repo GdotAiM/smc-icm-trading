@@ -35,7 +35,7 @@ function checkNewsBlackout() {
   if (!calendar) {
     // Try to fetch fresh
     try {
-      execSync(`python "${ROOT}\\tools\\economic_calendar.py" --output "${ROOT}\\shared\\economic_calendar.json"`, { stdio: "ignore", timeout: 15000 });
+      execSync(`python "${ROOT}/tools/economic_calendar.py" --output "${ROOT}/shared/economic_calendar.json"`, { stdio: "ignore", timeout: 15000 });
       const calFile = path.join(ROOT, "shared", "economic_calendar.json");
       if (fs.existsSync(calFile)) {
         calendar = JSON.parse(fs.readFileSync(calFile, "utf8"));
