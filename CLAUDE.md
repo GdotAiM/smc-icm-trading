@@ -57,6 +57,29 @@ After it completes (~3-4 min), run: `node tools/run_pair.cjs <PAIR>` for each pa
 - **System**: `system_audit.cjs` (health checks), `summarizer.cjs` (data compression)
 - **Backtest**: `backtest_runner.cjs`, `backtest_distill.cjs`
 
+## Hard Rules (from _config/trading_rules.md)
+
+- **6 Confirmations required before entry**: SMT Divergence, Liquidity Sweep, MSS/CHoCH, CISD, FVG Creation, HTF PD Array. Need 4-5 of 6.
+- **SL placement**: At structural invalidation (swing + 0.5× ATR buffer). NEVER at liquidity pools — those are TARGETS.
+- **Entry rules**: Wait for candle close. Limit orders preferred. Don't chase if price gaps through zone.
+- **Trade management**: Move SL to BE after TP1. Close 50% at TP1. Never add to losers.
+- **Session rules**: No new entries in Asian session. NY Lunch ×0.4 — no entries. Friday: close all by NY close.
+- **Risk**: 1% per trade ($100). 3% daily max ($300). Max 2 positions open. No correlated double-exposure.
+
+## Pre-Analysis Checklist (Run Before Every Analysis)
+
+1. `node tools/ny_time.cjs --full` — session, SB windows, day profile, multipliers, macro events
+2. `node tools/ict_rag.cjs --query "<current setup pattern>"` — query ICT knowledge base for relevant concepts
+3. `node tools/trade_graph.cjs --query <PAIR>` — check failure patterns for this pair
+4. `node tools/trade_graph.cjs --stats model "<model name>"` — check model performance before selecting
+
+## Pre-Trade Validation (Run Before Every Entry)
+
+1. `node tools/ict_decision_validator.cjs --validate <PAIR>` — full ICT rule compliance audit
+2. `node tools/council.cjs <PAIR>` — 4-archetype vote for confidence check
+3. Verify 4-5 of 6 Confirmations are met
+4. Verify R:R ≥ 1:1 with SL at structural invalidation (not at a liquidity pool)
+
 ## Communication
 
 - Direct and structured. Use clear headings and bullet points.
