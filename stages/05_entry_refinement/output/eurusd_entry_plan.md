@@ -3,7 +3,7 @@
 ## Data Freshness: 5/10 — ACCEPTABLE
 - **Price source**: 1H @ 1.13895
 - **1H close**: 1.13895 | **1m close**: 1.13891
-- **Data age**: 70m since last candle
+- **Data age**: 103m since last candle
 - ✅ Data is tradeable
 
 ## Model: **MMXM Sell Model** (2.4/9)
@@ -36,5 +36,5 @@
 ## Checklist
 - [ ] SL at structural invalidation: ✓
 - [ ] HTF bias aligned: ✓
-- [ ] Killzone active: ✓
+- [ ] Killzone active: ✗
 - [ ] R:R ≥ 1:1: ✓

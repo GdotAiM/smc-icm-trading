@@ -3,4 +3,4 @@
 
 **Last 1 similar setups (NAS100)**:
 
-- **2026-07-29**: 🔴 SHORT | Silver Bullet | NY AM | Outcome: ➖ | PnL: $0 | Quality: ?/5
+- **2026-07-29**: 🔴 SHORT | MMXM Sell Model | NY AM | Outcome: ➖ | PnL: $0 | Quality: ?/5

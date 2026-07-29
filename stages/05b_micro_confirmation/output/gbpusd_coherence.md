@@ -1,10 +1,10 @@
 # Macro-Micro Coherence — GBPUSD — 2026-07-29
 
-## Coherence Score: **8/10** (raw) → **10/10** (session-adjusted)
+## Coherence Score: **8/10** (raw) → **3/10** (session-adjusted)
 
-> Session: **NY AM Killzone** (×1.4) | Killzone: ✅ NY AM Killzone Killzone | Silver Bullet: ✅ NY AM Silver Bullet
-> Standard session — Highest volume, displacement
-> Best entry TF for NY AM Killzone: **5m**
+> Session: **NY Lunch** (×0.4) | Killzone: Inactive | Silver Bullet: Inactive
+> Standard session — Low liquidity, avoid entries
+> Best entry TF for NY Lunch: **none**
 
 | Component | Score | Detail |
 |-----------|-------|--------|
@@ -14,11 +14,11 @@
 | Manipulation | 2/2 | 2/2 (15m sweep:true SSL, 5m:true SSL,BSL) |
 | Trigger readiness | 0/1 | 0/1 (5m FVG:false, 1m CHoCH:false) |
 | Liquidity | 5/3 | 5/3 — 5m draw aligns with HTF bias; Recent sweep detected — manipulation active (1 on 15m, 0 on 5m); Engineered liquidity (EQH/EQL) — higher probability draw |
-| **Session Adj** | ×1.4 | NY AM Killzone reliability multiplier |
+| **Session Adj** | ×0.4 | NY Lunch reliability multiplier |
 
 ## Go/No-Go Decision
 
-**✅ GO — All conditions met for entry**
+**⏳ WAIT — Let LTF develop further**
 
 | Score Range | Action |
 |-------------|--------|

@@ -1,9 +1,10 @@
 # Cross-System Guard Report — GBPUSD — 2026-07-29
-## NY Time: 10:00 | Session: NY AM Killzone | Judas: Inactive | SB: ✅ NY AM Silver Bullet
+## NY Time: 12:00 | Session: NY Lunch | Judas: Inactive | SB: Inactive
 
 ## Verdict: **❌ DO NOT ENTER**
 
-### ❌ BLOCKED (1)
+### ❌ BLOCKED (2)
+- **NY_LUNCH**: ❌ NY LUNCH (11:00-13:00 NY). ICT explicitly teaches: NO entries during lunch. Low liquidity. Wait for NY PM at 13:00. → BLOCK ALL ENTRIES — Resume at 13:00 NY.
 - **INVERSION_MISSING**: ❌ 1m Inversion NOT DETECTED. ICT requires the entry sentence to be written on the 1m before entering. Wait for CHoCH + sweep + FVG on 1m. → WAIT — No entry without 1m Inversion.
 
 ### ⚠️ WARNINGS (1)
@@ -12,11 +13,11 @@
 ## All Guards
 | Guard | Severity | Blocked | Narrative |
 |-------|----------|---------|-----------|
-| SILVER_BULLET | INFO | ✅ | ✅ SILVER BULLET ACTIVE (NY AM Silver Bullet). This is the highest-probability 1-... |
+| NY_LUNCH | CRITICAL | ❌ | ❌ NY LUNCH (11:00-13:00 NY). ICT explicitly teaches: NO entries during lunch. Lo... |
 | IPDA_ZONE | WARNING | ✅ | ⚠️ IPDA ZONE CONFLICT: DISCOUNT across all TFs. You are SHORTING into the BUY ZO... |
 | INVERSION_MISSING | HIGH | ❌ | ❌ 1m Inversion NOT DETECTED. ICT requires the entry sentence to be written on th... |
 
 ## Adjustments
 - Size Multiplier: ×0.75
-- Confidence Adjustment: 0
+- Confidence Adjustment: -1
 - Entry Allowed: ❌

@@ -1,4 +1,20 @@
 {
+  "name": "smc-icm-trading",
+  "version": "1.0.0",
+  "description": "Smart Money Concepts / Inner Circle Trader automated trading workspace with TradingView CDP integration",
+  "private": true,
+  "scripts": {
+    "session": "node tools/session_start.cjs",
+    "analyze": "node tools/run_pair.cjs",
+    "trade": "node tools/tv-mcp/market_order.cjs",
+    "news": "node tools/tv-mcp/news_trade.cjs",
+    "positions": "node tools/tv-mcp/check_orders.cjs",
+    "levels": "node tools/tv-mcp/live_levels.cjs",
+    "scan": "node tools/tv-mcp/scan_all_pairs.cjs",
+    "journal": "node tools/ict_continuous_learn.cjs --run",
+    "graph": "node tools/trade_graph.cjs --rebuild",
+    "calendar": "python tools/economic_calendar.py --today-only --output shared/today_events.json"
+  },
   "dependencies": {
     "discord.js": "^14.27.0"
   }

@@ -4,9 +4,9 @@
 | | |
 |---|---|
 | **Direction** | SHORT |
-| **Model** | Breaker Block (3.3/7) |
+| **Model** | Breaker Block (4.3/9.1) |
 | **Bias** | 1W N/A → 1D bearish → 4H bearish |
-| **Session** | NY AM (Killzone ✅) |
+| **Session** | NY PM  |
 | **Entry** | 3997.43 | SL: 4130.30 | TP1: 3864.55 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 

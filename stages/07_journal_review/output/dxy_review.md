@@ -6,7 +6,7 @@
 | **Direction** | LONG |
 | **Model** | MMXM Buy Model (2.4/9) |
 | **Bias** | 1W N/A → 1D bullish → 4H bullish |
-| **Session** | NY AM (Killzone ✅) |
+| **Session** | NY PM  |
 | **Entry** | 12794.00 | SL: 12780.70 | TP1: 12826.00 |
 | **R:R** | 2.41:1 | Meets 1:1 ✓ |
 

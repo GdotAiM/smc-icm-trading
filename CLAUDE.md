@@ -49,7 +49,7 @@ After it completes (~3-4 min), run: `node tools/run_pair.cjs <PAIR>` for each pa
 - **Kronos** (`python tools/kronos_forecast.py`): Candlestick foundation model forecast
 - **Chronos-2** (`python tools/chronos_forecast.py`): Time-series forecast
 - **Forecast** (`python tools/forecast.py`): Statistical log-linear + Monte Carlo
-- **Broker** (`tools/broker/`): Alpaca paper trading
+- **Broker**: TV Paper Trading via CDP (see `tools/tv-mcp/market_order.cjs`)
 - **Stage runners**: `run_pair.cjs`, `run_all_stages.cjs`, `run_topdown.cjs`, `run_confluence.cjs`
 - **Analysis tools**: `macro_context.cjs`, `council.cjs`, `narrative.cjs`, `coherence_audit.cjs`, `fractal_mmxm.cjs`, `ipda.cjs`, `invalidation.cjs`, `tier1.cjs`, `tier2.cjs`, `po3_state_machine.cjs`, `micro_context.cjs`, `cross_system_guard.cjs`, `gap_closer.cjs`, `intraday_profile.cjs`, `po3_fractal.cjs`, `priority2.cjs`, `priority34.cjs`, `market_state.cjs`, `ny_time.cjs`, `archetype_engine.cjs`
 - **ICT Knowledge Tools**: `ict_rag.cjs` (semantic search), `ict_curriculum.cjs` (learning), `ict_decision_validator.cjs` (rule compliance), `ict_continuous_learn.cjs` (lessons → playbook), `ict_knowledge_ingest.cjs` (index builder), `trade_graph.cjs` (unified memory graph), `graph_rag.cjs` (concept + experience retrieval)
@@ -151,3 +151,149 @@ The graph persists at `shared/trade_graph.json` and is rebuilt from all source d
 ## Workflow
 
 Start by reading `CONTEXT.md` for the daily workflow router. Complete one stage fully before moving to the next. Prefer quality of confluence over quantity of trades. If conditions are unclear, explicitly say "No Trade."
+
+## ICT News Trading (Jul 29 — Fed Day Proven)
+
+We trade high-impact news using ICT One Shot One Kill framework:
+
+| ICT Rule | Implementation |
+|----------|---------------|
+| Note all high-impact events | `economic_calendar.py` → `today_events.json` |
+| Weekly bias must be clear | 15m/5m/1m trend alignment check |
+| Identify liquidity draw | Nearest swing high/low from 5m structure |
+| PD array for entry | FVG/OB from SMC engine |
+| 15m OTE during killzone | Entry at NY SB window (14:00-15:00) |
+| Target liquidity pool | TP at opposing structural level |
+
+**Fed Day playbook:**
+- Gold (XAUUSD) is the #1 FOMC trade — no direct dollar exposure
+- Don't fight the dollar on EURUSD/GBPUSD during FOMC
+- SL = 2.5× ATR, TP = 3.5× ATR
+- Enter 2-5 min before release, let the news deliver the move
+- All 3 timeframes must align (15m/5m/1m) — no counter-trend news trades
+
+**Command:**
+```bash
+node tools/tv-mcp/news_trade.cjs --event "FOMC" --time "14:00"
+node tools/tv-mcp/news_trade.cjs --event "NFP" --time "08:30" --pairs XAUUSD
+```
+
+**Proven result:** XAUUSD LONG during FOMC → TP hit in 90s → +$2,554
+Full strategy: `shared/2026-07-29/ICT_NEWS_TRADING_STRATEGY.md`
+
+## TV Paper Trading Automation (Updated Jul 29)
+
+### Quick Start — Place a Trade
+
+```bash
+# Kill monitors first — they fight for chart control
+taskkill /F /IM node.exe
+
+# Place a trade (pair, side, sl, tp, qty)
+node tools/tv-mcp/market_order.cjs EURUSD SELL 1.13950 1.13750 10000
+```
+
+This single command switches the chart+panel via `setSymbol()`, opens the ticket, fills all fields, and clicks Place. Works for all pairs: XAUUSD, NAS100, GBPUSD, EURUSD, DXY (use USDOLLAR).
+
+### Critical Bugs Found & Fixed (Jul 29)
+
+**1. Monitors fight for chart control**
+- Symptom: Chart switches pairs randomly, ticket closes mid-fill, orders go to wrong symbol
+- Fix: Kill ALL node processes before trading (`taskkill /F /IM node.exe`)
+- The intel_monitor.cjs and discord_bot.cjs auto-restart — kill them completely
+
+**2. SL/TP fields are SWAPPED in the order form**
+- Symptom: "Take profit order must be above/below entry price" or "Stop loss must be above entry"
+- Root cause: TP field is at y=399 (lower), SL field is at y=483 (higher). We were putting SL in TP field and vice versa.
+- Fix: `refs[0]` (lower y) = TARGET, `refs[1]` (higher y) = STOP
+- Fixed in `market_order.cjs` line 97-98
+
+**3. Trading panel symbol is independent from chart symbol**
+- Symptom: Chart shows XAUUSD but ticket opens for EURUSD
+- Root cause: `setSymbol()` API syncs chart + panel; keyboard symbol search only switches chart
+- Fix: Use `window.TradingViewApi._activeChartWidgetWV.value().setSymbol("PAIR", {})` with 3s wait — this syncs BOTH
+- DO NOT use keyboard typing for symbol switches
+
+**4. SL must be validated against CURRENT entry price**
+- Symptom: SL rejected because market moved since analysis
+- Root cause: Using stale SL levels from 20+ min old analysis
+- Fix: Always verify SL is on the correct side of current price before placing
+  - For SELL: SL must be ABOVE entry, TP must be BELOW entry
+  - For BUY: SL must be BELOW entry, TP must be ABOVE entry
+
+**5. Bottom panel collapses and ticket won't open**
+- Symptom: Clicking Buy/Sell does nothing, no form appears
+- Root cause: Account manager panel collapsed (height < 100px)
+- Fix: Click "Paper Trading" button in bottom bar to expand before opening ticket
+- Panel height should be 380+ px
+
+**6. Stale/pending orders block new positions**
+- Symptom: Order "Placed: true" but never appears in positions
+- Root cause: Previous failed attempts leave pending orders that block new ones
+- Fix: Use a different quantity (e.g. 5000 vs 10000) or cancel pending orders first
+
+**7. Drawings from one pair pollute other pairs**
+- Symptom: GBPUSD price lines (1.32xxx) on NAS100 chart (27,000+) make candles invisible
+- Fix: Call `api.removeAllShapes()` before drawing on a new pair
+
+### Order Form Field Map (for CDP automation)
+
+```
+y=210  [Price display — read only]
+y=277  UNITS/QUANTITY input
+y=340  "Exits" expand/collapse button
+y=367  TAKE PROFIT checkbox
+y=399  TAKE PROFIT price input  ← fill TARGET here
+y=451  STOP LOSS checkbox
+y=483  STOP LOSS price input    ← fill STOP here
+y=789  PLACE ORDER button (data-name="place-and-modify-button")
+```
+
+### Trading Panel Selector
+
+The buy-sell bar at top of chart shows current panel symbol:
+- `data-name="buy-order-button"` — click to open BUY ticket
+- `data-name="sell-order-button"` — click to open SELL ticket
+
+### Symbol Resolution
+
+| Input | Resolves To |
+|-------|------------|
+| GBPUSD | OANDA:GBPUSD |
+| EURUSD | OANDA:EURUSD |
+| XAUUSD | OANDA:XAUUSD |
+| NAS100 | CAPITALCOM:NAS100 |
+| USDOLLAR | FX:USDOLLAR |
+
+### Position Sizing by Pair Type
+
+| Pair Type | Example | Qty Meaning | Risk per 1pt |
+|-----------|---------|-------------|--------------|
+| Forex | EURUSD, GBPUSD | Units (10,000 = 0.1 lot) | ~$1 for 10K units |
+| Indices | NAS100 | Contracts (1 = 1 contract) | ~$1-10/point |
+| Metals | XAUUSD | Units (100 = 1 lot) | ~$1 for 100 units |
+
+### Verification
+
+```bash
+# Check all open positions after placing
+node tools/tv-mcp/check_orders.cjs
+```
+
+### Scripts Reference
+
+| Script | Purpose |
+|--------|---------|
+| `execute.cjs` | Full e2e: keyboard switch + label-based field mapping |
+| `market_order.cjs` | `setSymbol` switch + place (args: PAIR SIDE SL TP QTY) |
+| `quick_trade.cjs` | Fast one-shot without keyboard switch |
+| `check_orders.cjs` | Verify positions + orders table |
+| `clean_slate.cjs` | Clear all drawings + cancel all orders |
+| `scan_ticket.cjs` | Deep scan order form fields |
+| `find_selector.cjs` | Find panel symbol selector button |
+| `diagnose.cjs` | Symbol resolution + orders table dump |
+| `modify_sl.cjs` | Calculate structural SL from swing levels |
+| `scan_all_pairs.cjs` | Live scan all 5 pairs for setups |
+| `switch_panel.cjs` | Switch panel symbol via dropdown |
+
+

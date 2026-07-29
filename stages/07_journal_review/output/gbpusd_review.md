@@ -4,9 +4,9 @@
 | | |
 |---|---|
 | **Direction** | SHORT |
-| **Model** | MMXM Sell Model (2.4/9) |
+| **Model** | Breaker Block (3.1/9.1) |
 | **Bias** | 1W bullish → 1D bearish → 4H bearish |
-| **Session** | NY AM (Killzone ✅) |
+| **Session** | NY PM  |
 | **Entry** | 1.33036 | SL: 1.33169 | TP1: 1.32903 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 

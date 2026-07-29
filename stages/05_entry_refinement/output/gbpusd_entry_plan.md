@@ -1,12 +1,12 @@
 # Entry Plan — GBPUSD — 2026-07-29
 
-## Data Freshness: 10/10 — FRESH
+## Data Freshness: 5/10 — ACCEPTABLE
 - **Price source**: 1H @ 1.33036
 - **1H close**: 1.33036 | **1m close**: 1.33038
-- **Data age**: 1m since last candle
+- **Data age**: 92m since last candle
 - ✅ Data is tradeable
 
-## Model: **MMXM Sell Model** (2.4/9)
+## Model: **Breaker Block** (3.1/9.1)
 
 ## Setup
 - **Direction**: **SHORT** | **Entry TF**: 15m/5m
@@ -36,5 +36,5 @@
 ## Checklist
 - [ ] SL at structural invalidation: ✓
 - [ ] HTF bias aligned: ✓
-- [ ] Killzone active: ✓
+- [ ] Killzone active: ✗
 - [ ] R:R ≥ 1:1: ✓

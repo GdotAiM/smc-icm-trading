@@ -1,17 +1,17 @@
-# Session Analysis — XAUUSD — 2026-07-29 14:00 UTC
+# Session Analysis — XAUUSD — 2026-07-29 16:00 UTC
 
 ## Current Session
-- **Session**: NY AM | Killzone: ✅ ACTIVE
-- **Character**: High volume
-- **Gate**: **ACTIVE**
+- **Session**: NY PM | Killzone: Inactive
+- **Character**: Late session
+- **Gate**: **NO TRADE**
 
 ## Silver Bullet
 | Window | UTC | Status |
 |--------|-----|--------|
 | London SB | 08-10 | — |
-| NY AM SB | 13-15 | ✅ |
+| NY AM SB | 13-15 | — |
 | NY PM SB | 17-19 | — |
 
 ## Alignment
-- Bias: **bearish** | Session: NY AM
-- ✅ ALIGNED — Active killzone with directional bias
+- Bias: **bearish** | Session: NY PM
+- ⚠️ NOT ALIGNED

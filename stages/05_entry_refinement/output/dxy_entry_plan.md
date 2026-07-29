@@ -1,5 +1,11 @@
 # Entry Plan — DXY — 2026-07-29
 
+## Data Freshness: 5/10 — ACCEPTABLE
+- **Price source**: 1H @ 12794.00
+- **1H close**: 12794.00 | **1m close**: 12794.00
+- **Data age**: 999m since last candle
+- ✅ Data is tradeable
+
 ## Model: **MMXM Buy Model** (2.4/9)
 
 ## Setup
@@ -30,5 +36,5 @@
 ## Checklist
 - [ ] SL at structural invalidation: ✓
 - [ ] HTF bias aligned: ✓
-- [ ] Killzone active: ✓
+- [ ] Killzone active: ✗
 - [ ] R:R ≥ 1:1: ✓

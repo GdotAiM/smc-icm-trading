@@ -6,7 +6,7 @@
 | **Direction** | SHORT |
 | **Model** | MMXM Sell Model (2.4/9) |
 | **Bias** | 1W bullish → 1D bearish → 4H bullish |
-| **Session** | NY AM (Killzone ✅) |
+| **Session** | NY PM  |
 | **Entry** | 1.13895 | SL: 1.14131 | TP1: 1.13610 |
 | **R:R** | 1.21:1 | Meets 1:1 ✓ |
 

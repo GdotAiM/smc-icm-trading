@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "built": "2026-07-29T15:41:06.518Z",
+  "built": "2026-07-29T18:08:51.471Z",
   "nodes": {
     "concept:blog---ict": {
       "id": "concept:blog---ict",
@@ -97,7 +97,7 @@
       "tier": 3,
       "tierName": "Advanced Concepts",
       "category": "01 - ICT Trading Tutorials",
-      "usageCount": 3
+      "usageCount": 1
     },
     "concept:dragonfly-doji-candlestick": {
       "id": "concept:dragonfly-doji-candlestick",
@@ -226,7 +226,7 @@
       "tier": 1,
       "tierName": "Core Mechanics",
       "category": "01 - ICT Trading Tutorials",
-      "usageCount": 2
+      "usageCount": 3
     },
     "concept:bullish-order-block": {
       "id": "concept:bullish-order-block",
@@ -651,7 +651,8 @@
       "name": "ict-turtle-soup-pattern",
       "tier": 2,
       "tierName": "Strategies",
-      "category": "01 - ICT Trading Tutorials"
+      "category": "01 - ICT Trading Tutorials",
+      "usageCount": 1
     },
     "concept:unicorn-model": {
       "id": "concept:unicorn-model",
@@ -1178,7 +1179,7 @@
       "id": "model:breaker-block",
       "type": "model",
       "name": "Breaker Block",
-      "totalTrades": 2,
+      "totalTrades": 3,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1190,7 +1191,7 @@
       "pair": "EURUSD",
       "direction": "SHORT",
       "model": "MMXM Sell Model",
-      "session": "NY AM",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1207,15 +1208,15 @@
       "id": "model:mmxm-sell-model",
       "type": "model",
       "name": "MMXM Sell Model",
-      "totalTrades": 3,
+      "totalTrades": 1,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "session:ny-am": {
-      "id": "session:ny-am",
+    "session:ny-pm": {
+      "id": "session:ny-pm",
       "type": "session",
-      "name": "NY AM",
+      "name": "NY PM",
       "totalTrades": 4,
       "winRate": 0,
       "totalPnl": 0,
@@ -1227,8 +1228,8 @@
       "date": "2026-07-29",
       "pair": "GBPUSD",
       "direction": "SHORT",
-      "model": "MMXM Sell Model",
-      "session": "NY AM",
+      "model": "Breaker Block",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback",
       "pnl": 0,
@@ -1243,8 +1244,8 @@
       "date": "2026-07-29",
       "pair": "NAS100",
       "direction": "SHORT",
-      "model": "MMXM Sell Model",
-      "session": "NY AM",
+      "model": "Turtle Soup",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1257,6 +1258,15 @@
       "totalPnl": 0,
       "avgPnl": 0
     },
+    "model:turtle-soup": {
+      "id": "model:turtle-soup",
+      "type": "model",
+      "name": "Turtle Soup",
+      "totalTrades": 1,
+      "winRate": 0,
+      "totalPnl": 0,
+      "avgPnl": 0
+    },
     "trade:xauusd:2026-07-29": {
       "id": "trade:xauusd:2026-07-29",
       "type": "trade",
@@ -1264,7 +1274,7 @@
       "pair": "XAUUSD",
       "direction": "SHORT",
       "model": "Breaker Block",
-      "session": "NY AM",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1626,7 +1636,7 @@
     },
     {
       "source": "trade:eurusd:2026-07-29",
-      "target": "session:ny-am",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -1640,14 +1650,14 @@
     },
     {
       "source": "trade:gbpusd:2026-07-29",
-      "target": "model:mmxm-sell-model",
+      "target": "model:breaker-block",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
       "source": "trade:gbpusd:2026-07-29",
-      "target": "session:ny-am",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -1661,14 +1671,14 @@
     },
     {
       "source": "trade:nas100:2026-07-29",
-      "target": "model:mmxm-sell-model",
+      "target": "model:turtle-soup",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
       "source": "trade:nas100:2026-07-29",
-      "target": "session:ny-am",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -1689,7 +1699,7 @@
     },
     {
       "source": "trade:xauusd:2026-07-29",
-      "target": "session:ny-am",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -2109,7 +2119,7 @@
     },
     {
       "source": "trade:gbpusd:2026-07-29",
-      "target": "concept:ict-trading-strategy-2022",
+      "target": "concept:breaker-block",
       "type": "USED_CONCEPT",
       "weight": 0.9,
       "metadata": {}
@@ -2130,7 +2140,7 @@
     },
     {
       "source": "trade:nas100:2026-07-29",
-      "target": "concept:ict-trading-strategy-2022",
+      "target": "concept:turtle-soup-pattern",
       "type": "USED_CONCEPT",
       "weight": 0.9,
       "metadata": {}
@@ -2158,28 +2168,21 @@
     },
     {
       "source": "trade:xauusd:2026-07-28",
+      "target": "trade:gbpusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.7,
+      "metadata": {}
+    },
+    {
+      "source": "trade:xauusd:2026-07-28",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.7,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-07-29",
-      "target": "trade:gbpusd:2026-07-29",
-      "type": "SIMILAR_TO",
-      "weight": 1,
-      "metadata": {}
-    },
-    {
-      "source": "trade:eurusd:2026-07-29",
-      "target": "trade:nas100:2026-07-29",
-      "type": "SIMILAR_TO",
-      "weight": 1,
-      "metadata": {}
-    },
-    {
       "source": "trade:gbpusd:2026-07-29",
-      "target": "trade:nas100:2026-07-29",
+      "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 1,
       "metadata": {}

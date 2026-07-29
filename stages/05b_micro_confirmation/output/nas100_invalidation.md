@@ -1,4 +1,4 @@
-# Invalidation Awareness — NAS100 — 2026-07-27
+# Invalidation Awareness — NAS100 — 2026-07-29
 
 ## Overall Status: ❌ TRADE INVALID — At least one dimension has failed. Exit or do not enter.
 
@@ -7,18 +7,17 @@
 | PRICE | ⏳ undefined |  |
 | STRUCTURE | ✅ VALID | 4H BOS bearish — structure confirms direction |
 | STRUCTURE | ✅ VALID | 1D bias bearish — HTF confirms |
-| TIME | ✅ ACTIVE | Killzone active — 1h 0m remaining |
-| TIME | ✅ ACTIVE | Silver Bullet window ACTIVE — time-gated models eligible |
-| MODEL | ✅ VALID | SB window active — model conditions met |
+| TIME | ⏳ MONITOR | Between killzones — reduced displacement probability |
+| TIME | ⏳ INACTIVE | SB window not active — next: NY PM SB at 17:00 |
+| MODEL | ❌ INVALIDATED | Not in Silver Bullet window — model requires active SB killzone |
 | MODEL | ❌ INVALIDATED | No unmitigated OB — MMXM requires HTF POI |
-| CYCLE | ✅ VALID | DISTRIBUTION phase — trend is active. Let winners run. |
-| MICRO | ⚠️ WARNING | 15m bias bullish — OPPOSING HTF. This is a pullback. Hold if SL not threatened. |
+| MICRO | ✅ VALID | 15m bias bearish — aligned with HTF |
 | CORRELATION | ✅ VALID | DXY is bullish — confirms USD direction for bearish NAS100 |
 
 ## Invalidation Summary
-- **Invalidated**: 1 dimension(s) — EXIT OR DO NOT ENTER
-- **Warnings**: 1 — Trade with reduced size and awareness
-- **Confirmed**: 7 checks passed
+- **Invalidated**: 2 dimension(s) — EXIT OR DO NOT ENTER
+- **Warnings**: 0 — None
+- **Confirmed**: 4 checks passed
 
 ## If Trade Is Active
 - **EXIT NOW** — the trade thesis is no longer valid.

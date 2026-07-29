@@ -7,8 +7,9 @@
 | PRICE | ⏳ undefined |  |
 | STRUCTURE | ✅ VALID | 4H BOS bearish — structure confirms direction |
 | STRUCTURE | ✅ VALID | 1D bias bearish — HTF confirms |
+| STRUCTURE | ⚠️ WARNING | 1W bias is bullish — MACRO trend opposes trade direction. This may be a pullback, not a reversal. |
 | TIME | ⏳ MONITOR | Between killzones — reduced displacement probability |
-| TIME | ⏳ INACTIVE | SB window not active — next: NY AM SB at 13:00 |
+| TIME | ⏳ INACTIVE | SB window not active — next: NY PM SB at 17:00 |
 | MODEL | ❌ INVALIDATED | Not in Silver Bullet window — model requires active SB killzone |
 | MODEL | ✅ VALID | OB present + sweep detected — MMXM conditions met |
 | MICRO | ⚠️ WARNING | 15m bias bullish — OPPOSING HTF. This is a pullback. Hold if SL not threatened. |
@@ -16,7 +17,7 @@
 
 ## Invalidation Summary
 - **Invalidated**: 1 dimension(s) — EXIT OR DO NOT ENTER
-- **Warnings**: 1 — Trade with reduced size and awareness
+- **Warnings**: 2 — Trade with reduced size and awareness
 - **Confirmed**: 4 checks passed
 
 ## If Trade Is Active

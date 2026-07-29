@@ -1,7 +1,11 @@
 # Risk Plan — GBPUSD — 2026-07-29
 
+
 ## Account
-- **Balance**: $10 000 | **Risk**: 1% = $100
+- **Balance**: $10 000 | **Risk**: 1% = $100 | **Size**: ×1
+- **Daily P&L**: $0.00 / $300.00 limit
+- **Weekly P&L**: $0.00 / $500.00 limit
+- **Drawdown**: 0.00% (peak $10000.00) | **Consecutive**: 0L / 0W
 - **Daily Loss Limit**: $300.00
 
 ## Position Size

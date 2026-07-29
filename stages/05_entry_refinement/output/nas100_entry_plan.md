@@ -1,12 +1,12 @@
 # Entry Plan — NAS100 — 2026-07-29
 
-## Data Freshness: 10/10 — FRESH
+## Data Freshness: 5/10 — ACCEPTABLE
 - **Price source**: 1H @ 27448.0
 - **1H close**: 27448.0 | **1m close**: 27452.7
-- **Data age**: 2m since last candle
+- **Data age**: 69m since last candle
 - ✅ Data is tradeable
 
-## Model: **MMXM Sell Model** (1.5/9)
+## Model: **Turtle Soup** (1.6/9.1)
 
 ## Setup
 - **Direction**: **SHORT** | **Entry TF**: 15m/5m
@@ -36,5 +36,5 @@
 ## Checklist
 - [ ] SL at structural invalidation: ✓
 - [ ] HTF bias aligned: ✓
-- [ ] Killzone active: ✓
+- [ ] Killzone active: ✗
 - [ ] R:R ≥ 1:1: ✓

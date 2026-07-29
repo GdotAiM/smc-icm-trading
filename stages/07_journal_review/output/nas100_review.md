@@ -4,9 +4,9 @@
 | | |
 |---|---|
 | **Direction** | SHORT |
-| **Model** | MMXM Sell Model (1.5/9) |
+| **Model** | Turtle Soup (1.6/9.1) |
 | **Bias** | 1W bearish → 1D bearish → 4H bearish |
-| **Session** | NY AM (Killzone ✅) |
+| **Session** | NY PM  |
 | **Entry** | 27448.0 | SL: 28113.3 | TP1: 26782.7 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
