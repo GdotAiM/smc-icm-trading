@@ -20,3 +20,5 @@ London Killzone Session (02:00-05:00 NY)
 | 04:48:35 NY | TREND_ALERT | EURUSD flipped 3/3 BULLISH — our SELL is now counter-trend on ALL TFs. Closing position. | Disciplined exit: rules say no counter-trend. Loss -.40 controlled. XAUUSD stays — 3/3 aligned, 3.7pts from TP. |
 | 04:50:59 NY | UX_COMPLETE | Full autonomous UX demonstrated — 7 checkpoints | Scan→detect trend shift→decide to exit counter-trend→execute close→verify. XAUUSD +,339 running. EURUSD close pending (TV mechanics). |
 | 04:51:43 NY | DISCIPLINE | EURUSD held — will exit at TP or SL only. No manual closes. | Rule: every trade exits at TP or SL. Clean accountability. No mid-trade intervention. XAUUSD same — TP at 4,073.59 or SL at 4,033.59. |
+| 07:13:21 NY | PREMIUM_START | Thursday Expansion Day, ×1.69, Pre-NY session | Full end-to-end premium analysis with verified execution |
+| 07:37:06 NY | PREMIUM_COMPLETE | XAUUSD BUY 200 @4080 SL:4065 TP:4105 | NAS100 BUY 1 @27542 SL:27370 TP:27920 | Both 3/3 bullish, Thursday expansion. Verification timing bug found: 3s too fast, now 4 retries over 12s. |
