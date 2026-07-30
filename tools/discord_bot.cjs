@@ -116,6 +116,20 @@ const commands = [
   new SlashCommandBuilder()
     .setName("trades").setDescription("Active trade status + today's trade history"),
   new SlashCommandBuilder()
+    .setName("positions").setDescription("Current open positions with P&L, SL, TP"),
+  new SlashCommandBuilder()
+    .setName("pnl").setDescription("Today's P&L summary — all closed + open trades"),
+  new SlashCommandBuilder()
+    .setName("session").setDescription("Current NY session, killzone, SB windows, tradeable?"),
+  new SlashCommandBuilder()
+    .setName("scan").setDescription("Quick multi-TF scan of all pairs with alignment scores"),
+  new SlashCommandBuilder()
+    .setName("news").setDescription("Today's economic calendar events"),
+  new SlashCommandBuilder()
+    .setName("rules").setDescription("Today's active trading rules and risk limits"),
+  new SlashCommandBuilder()
+    .setName("graph").setDescription("Trade graph stats — trades, lessons, edges, models"),
+  new SlashCommandBuilder()
     .setName("help").setDescription("Show all available commands"),
 ].map(cmd => cmd.toJSON());
 
@@ -300,9 +314,10 @@ function embedHelp() {
     .setColor(0x448AFF)
     .setDescription("All times in New York local (ICT standard)")
     .addFields(
-      { name: "📊 Analysis", value: "`/status` `/analyze` `/council` `/prices` `/ipda` `/narrative` `/micro` `/fractal`", inline: false },
+      { name: "📊 Analysis", value: "`/status` `/analyze` `/council` `/prices` `/ipda` `/narrative` `/micro` `/fractal` `/scan`", inline: false },
       { name: "🛡️ Validation", value: "`/invalidation` `/coherence`", inline: false },
-      { name: "📈 Trading", value: "`/journal` `/draw` `/trades` `/briefing`", inline: false },
+      { name: "📈 Trading", value: "`/positions` `/trades` `/pnl` `/journal` `/draw` `/briefing`", inline: false },
+      { name: "⏰ Session", value: "`/session` — NY time, killzone, SB windows\n`/rules` — today's trading rules\n`/news` — economic calendar\n`/graph` — trade graph stats", inline: false },
       { name: "🔴 Monitor", value: "`/live` — start live structure monitor\n`/silent` — stop monitor", inline: false },
       { name: "🔔 Session Alerts", value: "London Open (02:00) · NY AM (08:00) · Silver Bullet (10:00) · NY Lunch (11:00) · NY Close (15:30) · Daily Briefing (08:30)", inline: false },
     )
@@ -586,6 +601,117 @@ client.on("interactionCreate", async (interaction) => {
           .setDescription(description || "No data")
           .setFooter({ text: "Full journal: stages/07_journal_review/output/" });
         await interaction.editReply({ embeds: [embed] });
+        break;
+      }
+      // ═══ NEW COMMANDS — Autonomous Session Support ═══
+      case "positions": {
+        await interaction.deferReply();
+        try {
+          const raw = execSync(`cd "${path.join(ROOT, "tools", "tv-mcp")}" && node check_orders.cjs`, { encoding: "utf8", timeout: 20000, stdio: ["ignore", "pipe", "ignore"] });
+          const embed = new EmbedBuilder().setTitle("📊 Open Positions").setColor(0x00E676)
+            .setDescription("```" + raw.substring(0, 1500) + "```")
+            .setFooter({ text: "Live from TradingView paper trading" });
+          await interaction.editReply({ embeds: [embed] });
+        } catch(e) { await interaction.editReply("❌ Could not check positions. Is TV Desktop running?"); }
+        break;
+      }
+      case "pnl": {
+        await interaction.deferReply();
+        try {
+          const raw = execSync(`node "${path.join(ROOT, "tools", "risk_tracker.cjs")}" --summary`, { encoding: "utf8", timeout: 10000, stdio: ["ignore", "pipe", "ignore"] });
+          const d = JSON.parse(raw);
+          const embed = new EmbedBuilder().setTitle("💰 P&L Summary").setColor(0xFFD740)
+            .setDescription(
+              `**Balance**: $${d.balance || "?"}\n` +
+              `**Daily P&L**: $${d.dailyPnl || "0"}\n` +
+              `**Open Positions**: ${d.openPositions || 0}\n` +
+              `**Today's Trades**: ${d.todayCount || 0}`
+            );
+          await interaction.editReply({ embeds: [embed] });
+        } catch(e) { await interaction.editReply("❌ P&L data unavailable"); }
+        break;
+      }
+      case "session": {
+        await interaction.deferReply();
+        try {
+          const raw = execSync(`node "${path.join(ROOT, "tools", "ny_time.cjs")}" --full`, { encoding: "utf8", timeout: 10000, stdio: ["ignore", "pipe", "ignore"] });
+          const d = JSON.parse(raw);
+          const embed = new EmbedBuilder().setTitle("⏰ Session Status").setColor(0x3498DB)
+            .setDescription(
+              `**Session**: ${d.session?.name || "?"} (×${d.multipliers?.combined || "?"})\n` +
+              `**NY Time**: ${d.nyTime?.hour || "?"}:00 ${d.nyTime?.day || "?"}\n` +
+              `**Tradeable**: ${d.tradeable ? "✅ YES" : "❌ NO"}\n` +
+              `**Silver Bullet**: ${d.silverBullet?.active ? "🔫 ACTIVE" : "⏳ " + (d.silverBullet?.next?.window || "Inactive")}`
+            );
+          await interaction.editReply({ embeds: [embed] });
+        } catch(e) { await interaction.editReply("❌ Session data unavailable"); }
+        break;
+      }
+      case "scan": {
+        await interaction.deferReply();
+        try {
+          const raw = execSync(`cd "${path.join(ROOT, "tools", "tv-mcp")}" && node live_levels.cjs`, { encoding: "utf8", timeout: 45000, stdio: ["ignore", "pipe", "ignore"] });
+          const pairs = JSON.parse(raw);
+          const embed = new EmbedBuilder().setTitle("🔍 Live Pair Scan").setColor(0x9B59B6);
+          let desc = "";
+          for (const p of (Array.isArray(pairs) ? pairs : [])) {
+            if (p.error) { desc += `❌ **${p.pair}**: ${p.error}\n`; continue; }
+            desc += `${p.side === "SELL" ? "🔴" : "🟢"} **${p.pair}** ${p.side} @ ${p.price} | SL: ${p.sl} | TP: ${p.tp} | ATR: ${p.atr}\n`;
+          }
+          embed.setDescription(desc || "No pairs scanned");
+          embed.setFooter({ text: "Data freshness: candles < 5 min old required" });
+          await interaction.editReply({ embeds: [embed] });
+        } catch(e) { await interaction.editReply("❌ Scan failed. Is TV Desktop running?"); }
+        break;
+      }
+      case "news": {
+        await interaction.deferReply();
+        try {
+          const calPath = path.join(ROOT, "shared", "today_events.json");
+          if (fs.existsSync(calPath)) {
+            const events = JSON.parse(fs.readFileSync(calPath, "utf8"));
+            const embed = new EmbedBuilder().setTitle("📅 Today's Economic Events").setColor(0xE74C3C);
+            let desc = "";
+            for (const e of (Array.isArray(events) ? events : []).slice(0, 10)) {
+              desc += `**${e.time || "?"}** — ${e.title || e.event || "?"} (${e.impact || "?"})\n`;
+            }
+            embed.setDescription(desc || "No events today");
+            await interaction.editReply({ embeds: [embed] });
+          } else {
+            await interaction.editReply("No calendar data. Run: `python tools/economic_calendar.py --today-only --output shared/today_events.json`");
+          }
+        } catch { await interaction.editReply("Calendar unavailable. Run economic_calendar.py to fetch."); }
+        break;
+      }
+      case "rules": {
+        await interaction.deferReply();
+        const rulesPath = path.join(ROOT, "_config", "trading_rules.md");
+        const riskPath = path.join(ROOT, "_config", "risk_parameters.md");
+        let rules = "No rules file found";
+        try { rules = fs.readFileSync(rulesPath, "utf8").substring(0, 1500); } catch {}
+        const embed = new EmbedBuilder().setTitle("📋 Today's Trading Rules").setColor(0x1ABC9C)
+          .setDescription("```" + rules.replace(/[#*`]/g, "").substring(0, 1000) + "```")
+          .setFooter({ text: "Full rules: _config/trading_rules.md" });
+        await interaction.editReply({ embeds: [embed] });
+        break;
+      }
+      case "graph": {
+        await interaction.deferReply();
+        try {
+          const graph = JSON.parse(fs.readFileSync(path.join(ROOT, "shared", "trade_graph.json"), "utf8"));
+          const embed = new EmbedBuilder().setTitle("🧠 Trade Graph").setColor(0xE91E63)
+            .setDescription(
+              `**Trades**: ${graph.trades || 0}\n` +
+              `**Lessons**: ${graph.lessons || 0}\n` +
+              `**Edges**: ${graph.edges || 0}\n` +
+              `**Models**: ${graph.models || 0}\n` +
+              `**Concepts**: ${graph.concepts || 0}\n` +
+              `**Sessions**: ${graph.sessions || 0}\n` +
+              `**Gaps**: ${graph.gaps || 0}`
+            )
+            .setFooter({ text: "Trade graph: shared/trade_graph.json" });
+          await interaction.editReply({ embeds: [embed] });
+        } catch { await interaction.editReply("Trade graph unavailable"); }
         break;
       }
       case "help": {
