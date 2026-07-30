@@ -151,6 +151,25 @@ function writeState(positions, alerts, lastScan) {
   return state;
 }
 
+// ═══ PROCESS LIFECYCLE — prevent silent death ═══
+process.on("uncaughtException", (err) => {
+  console.error("[MONITOR:FATAL] Uncaught exception:", err.message);
+  log({ event: "MONITOR_CRASH", detail: err.message, alert: true });
+  // Don't exit — let the loop restart
+});
+process.on("unhandledRejection", (reason) => {
+  console.error("[MONITOR:FATAL] Unhandled rejection:", reason?.message || reason);
+  log({ event: "MONITOR_REJECTION", detail: reason?.message || String(reason), alert: true });
+});
+process.on("SIGINT", () => {
+  log({ event: "MONITOR_SHUTDOWN", detail: "SIGINT received — shutting down gracefully" });
+  process.exit(0);
+});
+process.on("SIGTERM", () => {
+  log({ event: "MONITOR_SHUTDOWN", detail: "SIGTERM received — shutting down gracefully" });
+  process.exit(0);
+});
+
 // ═══ MAIN ═══
 async function tick() {
   const now = new Date();

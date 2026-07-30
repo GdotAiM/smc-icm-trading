@@ -167,6 +167,8 @@ async function fetchFromTV() {
 log("═══ STEP 3: Run SMC Engine ═══");
 
 function runEngines() {
+  let success = 0, failed = 0;
+  const failures = [];
   for (const pair of PAIRS) {
     for (const tf of TFS) {
       const input = path.join(ROOT, "shared", DATE, pair, `candles_${tf}.json`);
@@ -178,15 +180,23 @@ function runEngines() {
       try {
         execSync(
           `npx tsx "${ROOT}/tools/smc-engine/src/cli.ts" --pair ${pair} --tf ${tf} --input "${input}" --output "${output}" --mode full`,
-          { stdio: ["ignore", "pipe", "ignore"], timeout: 30000 }
+          { stdio: ["ignore", "pipe", "pipe"], timeout: 30000 }
         );
         process.stderr.write(`${pair}:${tf} `);
+        success++;
       } catch (e) {
         process.stderr.write(`${pair}:${tf}❌ `);
+        failed++;
+        failures.push({ pair, tf, error: e.stderr?.toString()?.substring(0, 200) || e.message });
       }
     }
     process.stderr.write("\n");
   }
+  log(`  Engine results: ${success} OK, ${failed} FAILED`);
+  if (failed > 0) {
+    failures.forEach(f => log(`  ❌ ${f.pair}/${f.tf}: ${f.error}`));
+  }
+  return { success, failed };
 }
 
 // ═══════════════════════════════════════════════════
@@ -195,6 +205,8 @@ function runEngines() {
 log("═══ STEP 4: Generate Forecasts ═══");
 
 function runForecasts() {
+  let success = 0, failed = 0;
+  const failures = [];
   for (const pair of PAIRS.slice(0, 4)) { // skip DXY for forecasts
     for (const tf of ["5m", "1m"]) {
       const input = path.join(ROOT, "shared", DATE, pair, `candles_${tf}.json`);
@@ -204,23 +216,49 @@ function runForecasts() {
         const predLen = tf === "5m" ? 24 : 48;
         execSync(
           `python "${ROOT}/tools/forecast.py" --input "${input}" --pred-len ${predLen} --samples 20 --output "${output}"`,
-          { stdio: ["ignore", "pipe", "ignore"], timeout: 15000 }
+          { stdio: ["ignore", "pipe", "pipe"], timeout: 15000 }
         );
         process.stderr.write(`${pair}:${tf} `);
+        success++;
       } catch (e) {
         process.stderr.write(`${pair}:${tf}❌ `);
+        failed++;
+        failures.push({ pair, tf, error: e.stderr?.toString()?.substring(0, 200) || e.message });
       }
     }
   }
   process.stderr.write("\n");
+  log(`  Forecast results: ${success} OK, ${failed} FAILED`);
+  if (failed > 0) {
+    failures.forEach(f => log(`  ❌ ${f.pair}/${f.tf}: ${f.error}`));
+  }
+  return { success, failed };
 }
 
 // ═══════════════════════════════════════════════════
 // STEP 5: Summary
 // ═══════════════════════════════════════════════════
-function printSummary() {
+function printSummary(engineResult, forecastResult) {
+  const engOk = engineResult?.success || 0;
+  const engFail = engineResult?.failed || 0;
+  const fcstOk = forecastResult?.success || 0;
+  const fcstFail = forecastResult?.failed || 0;
+
   log("═══ STEP 5: Ready State ═══");
-  console.log(`\n✅ Session Startup Complete — ${DATE}`);
+
+  if (engFail === 0 && fcstFail === 0) {
+    console.log(`\n✅ Session Startup Complete — ${DATE}`);
+  } else if (engFail > 0 || fcstFail > 0) {
+    console.log(`\n⚠️  Session Startup — ${DATE} — WITH FAILURES`);
+    console.log(`   Engines: ${engOk} OK, ${engFail} FAILED`);
+    console.log(`   Forecasts: ${fcstOk} OK, ${fcstFail} FAILED`);
+    if (engFail + fcstFail > 5) {
+      console.log(`   ⚠️  ${engFail + fcstFail} total failures — data may be incomplete`);
+    }
+  } else {
+    console.log(`\n❌ Session Startup — ${DATE} — ALL STEPS FAILED`);
+  }
+
   console.log(`   Pairs: ${PAIRS.join(", ")}`);
   console.log(`   Timeframes: ${TFS.join(", ")}`);
   console.log(`   Engine reports: shared/${DATE}/PAIR/engine_*.json`);
@@ -236,9 +274,9 @@ function printSummary() {
 
   await ensureTV();
   await fetchFromTV();
-  runEngines();
-  runForecasts();
-  printSummary();
+  const engineResult = runEngines();
+  const forecastResult = runForecasts();
+  printSummary(engineResult, forecastResult);
 
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
   log(`Total startup time: ${elapsed}s`);

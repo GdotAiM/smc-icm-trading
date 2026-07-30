@@ -35,6 +35,23 @@ const PAIRS = [
       continue;
     }
 
+    // ═══ FRESHNESS CHECK — reject stale data ═══
+    const lastCandle = candles[candles.length - 1];
+    const candleAgeMs = Date.now() - lastCandle.t;
+    const candleAgeMin = Math.round(candleAgeMs / 60000);
+    const STALE_THRESHOLD_MIN = 5;
+
+    if (candleAgeMin > STALE_THRESHOLD_MIN) {
+      results.push({
+        pair: pair.name,
+        error: "stale_data",
+        price: lastCandle.c,
+        candleAgeMinutes: candleAgeMin,
+        warning: "Last candle is " + candleAgeMin + " min old — data may not reflect current market. Re-run session_start.cjs to refresh."
+      });
+      continue;
+    }
+
     const current = candles[candles.length - 1].c;
     let atr = 0;
     for (let i = Math.max(0, candles.length - 10); i < candles.length; i++) {

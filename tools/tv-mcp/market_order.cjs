@@ -120,10 +120,47 @@ const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
   console.log("Values: " + JSON.stringify(verify.inputs));
 
   // Place!
-  console.log("\n=== PLACING MARKET SELL ===");
+  console.log("\n=== PLACING MARKET ORDER ===");
   const placed = await ev(`(function(){ var b=document.querySelector('[data-name="place-and-modify-button"]'); if(!b) return false; b.click(); return true; })()`);
   console.log("Placed: " + placed);
-  await sleep(2000);
+  await sleep(3000);
+
+  // ═══ VERIFY ORDER APPEARED IN POSITIONS ═══
+  let verified = false;
+  try {
+    // Click Positions tab
+    await ev(`(function(){ var bs=document.querySelectorAll("button"); for(var i=0;i<bs.length;i++){ if(bs[i].textContent.trim()==="Positions"){ bs[i].click(); return; } } })()`);
+    await sleep(1500);
+
+    const check = await ev(`(function() {
+      var tables = document.querySelectorAll("table");
+      for (var i = 0; i < tables.length; i++) {
+        var r = tables[i].getBoundingClientRect();
+        if (r.y > 500 && r.width > 400) {
+          var rows = tables[i].querySelectorAll("tr");
+          for (var j = 1; j < Math.min(rows.length, 10); j++) {
+            var txt = rows[j].textContent;
+            if (txt.indexOf("${PAIR}") >= 0 && txt.indexOf("${SIDE === 'SELL' ? 'Short' : 'Long'}") >= 0) {
+              return { found: true, row: txt.substring(0, 120) };
+            }
+          }
+        }
+      }
+      return { found: false };
+    })()`);
+
+    verified = check?.found;
+    console.log("Verified in positions: " + (verified ? "✅" : "❌ NOT FOUND"));
+    if (!verified) {
+      console.error("⚠️  ORDER PLACED BUT NOT CONFIRMED IN POSITIONS TABLE — CHECK MANUALLY");
+      const { logError } = require("./logger.cjs");
+      logError("market_order", "post-place-verify", new Error("Order not found in positions table for " + PAIR + " " + SIDE));
+    }
+  } catch(e) {
+    console.error("⚠️  Could not verify placement: " + e.message);
+    const { logError } = require("./logger.cjs");
+    logError("market_order", "verify-error", e);
+  }
 
   fs.mkdirSync(path.join(ROOT, "shared", "screenshots"), { recursive: true });
   const ss = await client.Page.captureScreenshot({ format: "png" });
