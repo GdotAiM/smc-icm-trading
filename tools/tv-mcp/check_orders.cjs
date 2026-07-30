@@ -1,5 +1,6 @@
 // Check both Positions AND Orders tabs
-const CDP = require("./cdp_client.cjs");
+const path = require("path");
+const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 
 (async () => {
   const r = await fetch("http://127.0.0.1:9222/json/list");

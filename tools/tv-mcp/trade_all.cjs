@@ -1,5 +1,6 @@
 // Place trades on all pairs — switches panel symbol between each
-const CDP = require("./cdp_client.cjs");
+const path = require("path");
+const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 const fs = require("fs");
 const path = require("path");
 

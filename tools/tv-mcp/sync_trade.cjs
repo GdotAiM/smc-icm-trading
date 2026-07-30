@@ -1,6 +1,7 @@
 // Properly sync chart + trading panel by using keyboard symbol search
 // Then place the trade with verified values
-const CDP = require("./cdp_client.cjs");
+const path = require("path");
+const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 const fs = require("fs");
 const path = require("path");
 

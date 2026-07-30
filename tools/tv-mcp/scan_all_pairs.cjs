@@ -1,5 +1,6 @@
 // Scan all pairs for live tradeable setups
-const CDP = require("./cdp_client.cjs");
+const path = require("path");
+const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 
 const PAIRS = [
   { name: "EURUSD", tv: "EURUSD" },

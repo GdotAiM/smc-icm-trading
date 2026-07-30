@@ -1,5 +1,6 @@
 // Place paper trade on TV — clicks Exits to reveal SL/TP, fills, places
-const CDP = require("./cdp_client.cjs");
+const path = require("path");
+const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 const fs = require("fs");
 const path = require("path");
 

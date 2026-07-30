@@ -1,5 +1,6 @@
 // ONE end-to-end trade: switch → open → fill → place → verify
-const CDP = require("./cdp_client.cjs");
+const path = require("path");
+const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 const fs = require("fs");
 const path = require("path");
 

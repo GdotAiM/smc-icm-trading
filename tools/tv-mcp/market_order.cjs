@@ -1,6 +1,8 @@
 // Quick market order on TV paper trading
 // Usage: node market_order.cjs [PAIR] [SIDE] [SL] [TP] [QTY]
-const CDP = require("./cdp_client.cjs");
+const path = require("path");
+const CDP = require(path.join(__dirname, "cdp_client.cjs"));
+const fs = require("fs");
 
 const PAIR = process.argv[2] || "GBPUSD";
 const SIDE = (process.argv[3] || "SELL").toUpperCase();
@@ -10,6 +12,7 @@ const QTY = process.argv[6] || "10000";
 const TV_SYMBOLS = { DXY: "USDOLLAR" };
 const TV_SYM = TV_SYMBOLS[PAIR] || PAIR;
 const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
+const ROOT = "C:/Users/cash/smc-icm-trading";
 
 (async () => {
   const r = await fetch("http://127.0.0.1:9222/json/list");
@@ -19,9 +22,6 @@ const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
   await client.Runtime.enable();
   const ev = async (e) => { const res = await client.Runtime.evaluate({ expression: e, returnByValue: true }); return res.result.value; };
   const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-  const fs = require("fs");
-  const path = require("path");
-  const ROOT = "C:/Users/cash/smc-icm-trading";
 
   // Switch symbol first
   await ev(`window.TradingViewApi._activeChartWidgetWV.value().setSymbol("${TV_SYM}", {});`);

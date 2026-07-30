@@ -37,90 +37,47 @@ function log(entry) {
 
 function run(cmd) {
   try {
-    return execSync(cmd, { encoding: "utf8", timeout: 30000, stdio: ["ignore", "pipe", "ignore"], env: { ...process.env, NODE_PATH } });
+    return execSync(cmd, { encoding: "utf8", timeout: 30000, stdio: ["ignore", "pipe", "pipe"] });
   } catch (e) {
+    console.error("[MONITOR:RUN_ERR]", cmd.substring(0, 80), e.message);
+    if (e.stderr) console.error("[MONITOR:STDERR]", e.stderr.toString().substring(0, 200));
     return null;
   }
 }
 
 function checkPositions() {
-  // Run from the tv-mcp directory so relative requires resolve
-  const cmd = `cd "${path.join(ROOT, "tools", "tv-mcp")}" && node check_orders.cjs`;
+  const cmd = `cd "${path.join(ROOT, "tools", "tv-mcp")}" && node positions_json.cjs`;
   const raw = run(cmd);
-
-  // CRITICAL: distinguish "no positions" from "script failed"
-  if (!raw || raw.trim() === "") {
-    log({ event: "CHECK_FAILED", detail: "check_orders.cjs returned empty — script may have failed", alert: true });
-    return null; // null = error, [] = genuinely empty
+  if (!raw || raw.trim() === "" || raw.trim() === "[]") {
+    return [];
   }
-
-  // Verify the output contains expected headers
-  if (!raw.includes("POSITIONS") && !raw.includes("ORDERS")) {
-    log({ event: "CHECK_FAILED", detail: "check_orders.cjs output missing headers — NODE_PATH issue?", alert: true });
-    return null;
-  }
-
-  const positions = [];
-  const lines = raw.split("\n");
-  for (const line of lines) {
-    // Parse TV paper trading position rows
-    // Format: OANDA:EURUSDShort10,000  1.14467  1.14339  1.14569  1.14377  +9.00USD  0.08%  ...
-    // Fields: Broker:Pair  Side  Qty  Entry  TP  SL  Current  PnL  PnL%  TradeValue  MarketValue  Leverage  Margin
-    const brokerMatch = line.match(/^(OANDA|CAPITALCOM):(\w+)/);
-    if (!brokerMatch) continue;
-
-    const side = line.includes("Short") ? "SELL" : line.includes("Long") ? "BUY" : null;
-    if (!side) continue;
-
-    // Extract all decimal numbers (prices, P&L)
-    const decimals = line.match(/([\d]+[.,\d]*)/g);
-    if (!decimals || decimals.length < 8) continue;
-
-    // Clean up: remove commas from numbers like "10,000" -> "10000"
-    const clean = decimals.map(d => d.replace(/,/g, ""));
-
-    // Find the index where quantity ends and prices begin
-    // Quantity is usually first number after side (e.g. "10000")
-    // Then: entry, tp, sl, current, pnl
-    // We look for numbers with decimal points to find prices
-    const priceNumbers = [];
-    for (let i = 0; i < clean.length; i++) {
-      const n = parseFloat(clean[i]);
-      // Prices have decimal points and are reasonable values (> 1 for forex, > 100 for indices/gold)
-      if (clean[i].includes(".") && n > 1) {
-        priceNumbers.push(n);
-      }
+  try {
+    const rows = JSON.parse(raw);
+    const positions = [];
+    for (const row of rows) {
+      if (row.length < 8) continue;
+      const symbol = row[0] || "";
+      const brokerMatch = symbol.match(/(OANDA|CAPITALCOM):(\w+)/);
+      if (!brokerMatch) continue;
+      const sideStr = row[1] || "";
+      const side = sideStr === "Short" ? "SELL" : sideStr === "Long" ? "BUY" : null;
+      if (!side) continue;
+      const entry = parseFloat((row[3] || "").replace(/,/g, ""));
+      const tp = parseFloat((row[4] || "").replace(/,/g, ""));
+      const sl = parseFloat((row[5] || "").replace(/,/g, ""));
+      const current = parseFloat((row[6] || "").replace(/,/g, ""));
+      const pnl = (row[7] || "").replace(/USD/i, "");
+      if (isNaN(entry) || isNaN(current)) continue;
+      positions.push({
+        broker: brokerMatch[1], pair: brokerMatch[2], direction: side,
+        qty: (row[2] || "").replace(/,/g, ""), entry, tp, sl, current, pnl
+      });
     }
-
-    if (priceNumbers.length < 4) continue;
-
-    // The price sequence is: entry, tp, sl, current
-    const entry = priceNumbers[0];
-    const tp = priceNumbers[1];
-    const sl = priceNumbers[2];
-    const current = priceNumbers[3];
-
-    // Find P&L: number starting with + or -
-    const pnlMatch = line.match(/([+\-][\d.]+)USD/);
-    const pnl = pnlMatch ? pnlMatch[1] : "?";
-
-    // Find quantity
-    const qtyMatch = line.match(/(\d{1,3}(?:,\d{3})*)\s+\d+\.\d+/);
-    const qty = qtyMatch ? qtyMatch[1] : clean[0];
-
-    positions.push({
-      broker: brokerMatch[1],
-      pair: brokerMatch[2],
-      direction: side,
-      qty: qty,
-      entry: entry,
-      tp: tp,
-      sl: sl,
-      current: current,
-      pnl: pnl
-    });
+    return positions;
+  } catch(e) {
+    log({ event: "PARSE_ERROR", detail: e.message });
+    return [];
   }
-  return positions;
 }
 
 function checkAlerts(positions) {

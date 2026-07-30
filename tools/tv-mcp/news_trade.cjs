@@ -2,7 +2,8 @@
 // Positions in trend direction before high-impact events with wide stops and ambitious TPs
 // Usage: node news_trade.cjs --event "FOMC" --time "14:00" [--pairs EURUSD,GBPUSD,XAUUSD,NAS100]
 
-const CDP = require("./cdp_client.cjs");
+const path = require("path");
+const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 const fs = require("fs");
 const path = require("path");
 
