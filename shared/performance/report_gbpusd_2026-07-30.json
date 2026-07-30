@@ -1,0 +1,30 @@
+{
+  "generated": "2026-07-30T07:49:28.877Z",
+  "pair": "GBPUSD",
+  "date": "2026-07-30",
+  "summary": {
+    "tradePnl": 0,
+    "decisionQuality": 3.5,
+    "forecastAccuracy": null,
+    "lessonsExtracted": 5,
+    "gapsDetected": 0,
+    "playbookEntries": 0
+  },
+  "strengths": [
+    "Guard system working — blocked entries prevented losses"
+  ],
+  "weaknesses": [],
+  "recommendations": [
+    {
+      "action": "89 core ICT concepts never referenced — potential knowledge blind spots. Schedule a review session.",
+      "concepts": [
+        "Homepage",
+        "ICT-Foundations-and-FAQ",
+        "break-of-structure-bos",
+        "break-of-structure-vs-change-of-character",
+        "candle-range-theory-crt"
+      ],
+      "priority": 2
+    }
+  ]
+}

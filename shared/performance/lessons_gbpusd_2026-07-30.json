@@ -1,0 +1,45 @@
+{
+  "pair": "GBPUSD",
+  "date": "2026-07-30",
+  "extracted": "2026-07-30T07:49:28.844Z",
+  "trade": {
+    "pnl": 0,
+    "outcome": "**: 2 blocked entries, 0 trades taken, 0R lost, capital preserved.",
+    "entries": 2,
+    "blocked": 6
+  },
+  "conceptsUsed": [],
+  "ruleViolations": [],
+  "rulesFollowed": [],
+  "forecastAccuracy": null,
+  "decisionQuality": 3.5,
+  "lessons": [
+    {
+      "title": "Judas Swing guard works.",
+      "detail": "Entering at 02:00 during London Open manipulation = trap confirmed. Guard prevented -1R.",
+      "source": "journal"
+    },
+    {
+      "title": "1m Inversion can fade fast.",
+      "detail": "7/8 at 02:00 → 2/8 at 03:00 → 0/8 at 03:26. Re-validate at entry time, not signal time.",
+      "source": "journal"
+    },
+    {
+      "title": "SB displacement must occur during SB window.",
+      "detail": "The move already happened during Judas. By SB time, displacement was gone.",
+      "source": "journal"
+    },
+    {
+      "title": "The forecast should run BEFORE every signal.",
+      "detail": "5m forecast at 02:00 would have shown the bounce projection and prevented premature entries.",
+      "source": "journal"
+    },
+    {
+      "title": "The reload is cleaner than the original signal.",
+      "detail": "The bounce exhausted, the 5m flipped, and now all TFs can align with the HTF direction.",
+      "source": "journal"
+    }
+  ],
+  "gaps": [],
+  "playbookCandidates": []
+}
