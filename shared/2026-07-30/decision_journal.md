@@ -22,3 +22,5 @@ London Killzone Session (02:00-05:00 NY)
 | 04:51:43 NY | DISCIPLINE | EURUSD held — will exit at TP or SL only. No manual closes. | Rule: every trade exits at TP or SL. Clean accountability. No mid-trade intervention. XAUUSD same — TP at 4,073.59 or SL at 4,033.59. |
 | 07:13:21 NY | PREMIUM_START | Thursday Expansion Day, ×1.69, Pre-NY session | Full end-to-end premium analysis with verified execution |
 | 07:37:06 NY | PREMIUM_COMPLETE | XAUUSD BUY 200 @4080 SL:4065 TP:4105 | NAS100 BUY 1 @27542 SL:27370 TP:27920 | Both 3/3 bullish, Thursday expansion. Verification timing bug found: 3s too fast, now 4 retries over 12s. |
+| 08:06:15 NY | NY_AM_START | NY AM KZ active, Judas Swing, Thursday expansion x1.69. 2 positions running. | XAUUSD +04, NAS100 +7. Max positions. Monitoring for exits to free slots. |
+| 08:32:17 NY | MONITOR_LIVE | Background monitor operational — 60s updates, SL_WARNING on XAUUSD (8.80pts from stop) | 3 root causes fixed: CWD-relative require, concatenated table cells, leading whitespace. 28 scripts updated. |
