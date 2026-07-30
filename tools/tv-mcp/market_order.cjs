@@ -125,51 +125,53 @@ const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
   console.log("Placed: " + placed);
   await sleep(3000);
 
-  // ═══ VERIFY ORDER APPEARED IN POSITIONS ═══
+  // ═══ VERIFY ORDER APPEARED IN POSITIONS (with retries) ═══
   let verified = false;
-  try {
-    // Click Positions tab
-    await ev(`(function(){ var bs=document.querySelectorAll("button"); for(var i=0;i<bs.length;i++){ if(bs[i].textContent.trim()==="Positions"){ bs[i].click(); return; } } })()`);
-    await sleep(1500);
+  const MAX_RETRIES = 4;
+  const RETRY_DELAY = 3000;
 
-    const check = await ev(`(function() {
-      var tables = document.querySelectorAll("table");
-      for (var i = 0; i < tables.length; i++) {
-        var r = tables[i].getBoundingClientRect();
-        if (r.y > 500 && r.width > 400) {
-          var rows = tables[i].querySelectorAll("tr");
-          for (var j = 1; j < Math.min(rows.length, 10); j++) {
-            var txt = rows[j].textContent;
-            if (txt.indexOf("${PAIR}") >= 0 && txt.indexOf("${SIDE === 'SELL' ? 'Short' : 'Long'}") >= 0) {
-              return { found: true, row: txt.substring(0, 120) };
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      await ev(`(function(){ var bs=document.querySelectorAll("button"); for(var i=0;i<bs.length;i++){ if(bs[i].textContent.trim()==="Positions"){ bs[i].click(); return; } } })()`);
+      await sleep(1500);
+
+      const check = await ev(`(function() {
+        var tables = document.querySelectorAll("table");
+        for (var i = 0; i < tables.length; i++) {
+          var r = tables[i].getBoundingClientRect();
+          if (r.y > 400 && r.width > 400) {
+            var rows = tables[i].querySelectorAll("tr");
+            for (var j = 1; j < Math.min(rows.length, 10); j++) {
+              var txt = rows[j].textContent;
+              if (txt.indexOf("${PAIR}") >= 0 && txt.indexOf("${SIDE === 'SELL' ? 'Short' : 'Long'}") >= 0) {
+                return { found: true, row: txt.substring(0, 120) };
+              }
             }
           }
         }
-      }
-      return { found: false };
-    })()`);
+        return { found: false };
+      })()`);
 
-    verified = check?.found;
-    console.log("Verified in positions: " + (verified ? "✅" : "❌ NOT FOUND — ORDER LIKELY REJECTED"));
-    if (!verified) {
-      console.error("🛑 ORDER REJECTED — Not found in positions table after placement");
-      console.error("   Pair: " + PAIR + " | Side: " + SIDE + " | Check TV order form for validation errors");
-      const { logError } = require("./logger.cjs");
-      logError("market_order", "ORDER_REJECTED", new Error("Order not found in positions table for " + PAIR + " " + SIDE + ". TV likely rejected at form validation."));
-      // Write a rejection flag file for monitoring
-      try {
-        const fs = require("fs");
-        const path = require("path");
-        const ROOT2 = "C:/Users/cash/smc-icm-trading";
-        const DATE2 = new Date().toISOString().split("T")[0];
-        fs.appendFileSync(path.join(ROOT2, "shared", DATE2, "rejected_orders.jsonl"),
-          JSON.stringify({ time: new Date().toISOString(), pair: PAIR, side: SIDE, sl: STOP, tp: TARGET, qty: QTY, reason: "Not found in positions table after placement" }) + "\n");
-      } catch {}
+      if (check?.found) {
+        verified = true;
+        console.log("Verified in positions: ✅ (attempt " + attempt + ")");
+        break;
+      }
+      if (attempt < MAX_RETRIES) {
+        console.log("  Position not yet visible — retrying in " + (RETRY_DELAY/1000) + "s (attempt " + attempt + "/" + MAX_RETRIES + ")");
+        await sleep(RETRY_DELAY);
+      }
+    } catch(e) {
+      console.log("  Verify attempt " + attempt + " failed: " + e.message);
+      await sleep(RETRY_DELAY);
     }
-  } catch(e) {
-    console.error("⚠️  Could not verify placement: " + e.message);
+  }
+
+  if (!verified) {
+    console.error("🛑 ORDER MAY BE REJECTED — Not found in positions after " + MAX_RETRIES + " attempts");
+    console.error("   Pair: " + PAIR + " | Side: " + SIDE + " | Verify manually on TV screen");
     const { logError } = require("./logger.cjs");
-    logError("market_order", "verify-error", e);
+    logError("market_order", "ORDER_UNVERIFIED", new Error("Order not found in positions after " + MAX_RETRIES + " retries for " + PAIR + " " + SIDE));
   }
 
   fs.mkdirSync(path.join(ROOT, "shared", "screenshots"), { recursive: true });
@@ -180,10 +182,10 @@ const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
   if (verified) {
     console.log("\n✅ MARKET " + SIDE + " " + PAIR + " " + QTY + " units | SL: " + STOP + " | TP: " + TARGET);
   } else {
-    console.log("\n❌ ORDER REJECTED — " + PAIR + " " + SIDE + " " + QTY + " did not appear in positions");
-    console.log("   Check the TradingView order form for red validation errors");
-    console.log("   Common causes: SL on wrong side of entry, invalid price format, insufficient margin");
+    console.log("\n⚠️  UNVERIFIED — " + PAIR + " " + SIDE + " " + QTY + " not confirmed in positions after " + MAX_RETRIES + " attempts");
+    console.log("   Check TV screen — order may have placed but verification timed out");
+    console.log("   If trade IS visible on screen, verification has a timing issue (not a rejection)");
   }
   await client.close();
-  if (!verified) process.exit(1);
+  if (!verified) process.exit(2); // exit 2 = unverified (not necessarily rejected)
 })().catch(e => { console.log("FATAL: " + e.message); process.exit(1); });

@@ -15,7 +15,7 @@ const CDP = require("./cdp_client.cjs");
       var tables = document.querySelectorAll("table");
       for (var i = 0; i < tables.length; i++) {
         var r = tables[i].getBoundingClientRect();
-        if (r.y > 550 && r.width > 400) {
+        if (r.y > 400 && r.width > 400) {
           var rows = tables[i].querySelectorAll("tr");
           var data = [];
           for (var j = 1; j < Math.min(rows.length, 10); j++) {
