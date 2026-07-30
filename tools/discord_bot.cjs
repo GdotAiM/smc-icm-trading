@@ -40,7 +40,7 @@ if (!TOKEN || !CLIENT_ID) {
 const PAIRS = [
   { name: "EURUSD", label: "EURUSD" },
   { name: "GBPUSD", label: "GBPUSD" },
-  { name: "GOLD", label: "GOLD" },
+  { name: "XAUUSD", label: "XAUUSD" },
   { name: "NAS100", label: "NAS100" },
   { name: "DXY", label: "DXY" },
 ];
@@ -575,31 +575,48 @@ client.on("interactionCreate", async (interaction) => {
         break;
       }
       case "trades": {
+        let description = "";
+
+        // 1. Get LIVE positions from TV paper trading
+        try {
+          const raw = execSync(`cd "${path.join(ROOT, "tools", "tv-mcp")}" && node check_orders.cjs`, { encoding: "utf8", timeout: 20000, stdio: ["ignore", "pipe", "ignore"] });
+          if (raw && raw.includes("POSITIONS")) {
+            description += "**🔵 OPEN POSITIONS (TV Paper Trading)**\n";
+            const lines = raw.split("\n");
+            for (const line of lines) {
+              const m = line.match(/(OANDA|CAPITALCOM):(\w+)\s*(Short|Long)\s*([\d,]+)\s*([\d.]+)\s*([\d.]+)\s*([\d.]+)\s*([\d.]+)\s*([+\-][\d.]+)/);
+              if (m) {
+                const pair = m[2], dir = m[3] === "Short" ? "SELL" : "BUY", entry = m[5], tp = m[6], sl = m[7], current = m[8], pnl = m[9];
+                description += `${dir === "SELL" ? "🔴" : "🟢"} **${pair}** ${dir} | Entry: ${entry} | SL: ${sl} | TP: ${tp} | Now: ${current} | P&L: ${pnl}\n`;
+              }
+            }
+          }
+        } catch(e) { description += "⚠️ Could not fetch live positions (TV running?)\n"; }
+
+        // 2. Get closed trades from journal
         const perfDir = path.join(ROOT, "shared", "performance");
         const todayFiles = fs.existsSync(perfDir) ? fs.readdirSync(perfDir).filter(f => f.startsWith("trades_") && f.includes(new Date().toISOString().split("T")[0])) : [];
-        const journalFile = path.join(ROOT, "stages", "07_journal_review", "output", `session_master_journal_${new Date().toISOString().split("T")[0]}.md`);
-
-        let description = "";
         if (todayFiles.length > 0) {
+          description += "\n**📁 CLOSED TRADES**\n";
           for (const f of todayFiles) {
             try {
               const trades = JSON.parse(fs.readFileSync(path.join(perfDir, f), "utf8"));
               for (const t of (Array.isArray(trades) ? trades : [trades])) {
                 const pnl = t.pnl || 0;
-                const emoji = t.status === "OPEN" ? "🔄" : pnl >= 0 ? "✅" : "❌";
-                description += `${emoji} **${t.pair}** ${t.direction} | Entry: ${t.entry} | SL: ${t.sl} | TP1: ${t.tp1} | P&L: ${pnl >= 0 ? '+' : ''}${pnl} pts | ${t.status || t.outcome || 'CLOSED'}\n`;
+                const emoji = pnl >= 0 ? "✅" : "❌";
+                description += `${emoji} **${t.pair}** ${t.direction} | Entry: ${t.entry} | P&L: ${pnl >= 0 ? '+' : ''}${pnl}\n`;
               }
             } catch {}
           }
-        } else {
-          description = "No trades today. Use /analyze to find setups.";
         }
 
+        if (!description) description = "No trades today. Use /analyze to find setups.";
+
         const embed = new EmbedBuilder()
-          .setTitle("📊 Trade History — " + new Date().toISOString().split("T")[0])
+          .setTitle("📊 Trade Status — " + new Date().toISOString().split("T")[0])
           .setColor(0xFFD740)
-          .setDescription(description || "No data")
-          .setFooter({ text: "Full journal: stages/07_journal_review/output/" });
+          .setDescription(description.substring(0, 4000))
+          .setFooter({ text: "Live from TV paper trading + performance journal" });
         await interaction.editReply({ embeds: [embed] });
         break;
       }
@@ -693,19 +710,22 @@ client.on("interactionCreate", async (interaction) => {
       case "graph": {
         try {
           const graph = JSON.parse(fs.readFileSync(path.join(ROOT, "shared", "trade_graph.json"), "utf8"));
+          const counts = {};
+          if (graph.nodes && typeof graph.nodes === "object") {
+            for (const n of Object.values(graph.nodes)) { const t = n.type || "unknown"; counts[t] = (counts[t] || 0) + 1; }
+          }
+          const edgeCount = Array.isArray(graph.edges) ? graph.edges.length : 0;
           const embed = new EmbedBuilder().setTitle("🧠 Trade Graph").setColor(0xE91E63)
-            .setDescription(
-              `**Trades**: ${graph.trades || 0}\n` +
-              `**Lessons**: ${graph.lessons || 0}\n` +
-              `**Edges**: ${graph.edges || 0}\n` +
-              `**Models**: ${graph.models || 0}\n` +
-              `**Concepts**: ${graph.concepts || 0}\n` +
-              `**Sessions**: ${graph.sessions || 0}\n` +
-              `**Gaps**: ${graph.gaps || 0}`
-            )
+            .setDescription(`**Concepts**: ${counts.concept || 0}
+**Sessions**: ${counts.session || 0}
+**Trades**: ${counts.trade || 0}
+**Lessons**: ${counts.lesson || 0}
+**Models**: ${counts.model || 0}
+**Edges**: ${edgeCount}
+**Built**: ${graph.built || "?"}`)
             .setFooter({ text: "Trade graph: shared/trade_graph.json" });
           await interaction.editReply({ embeds: [embed] });
-        } catch { await interaction.editReply("Trade graph unavailable"); }
+        } catch(e) { await interaction.editReply({ content: "❌ Trade graph unavailable" }); }
         break;
       }
       case "help": {
