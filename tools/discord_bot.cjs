@@ -605,7 +605,7 @@ client.on("interactionCreate", async (interaction) => {
       }
       // ═══ NEW COMMANDS — Autonomous Session Support ═══
       case "positions": {
-        await interaction.deferReply();
+        console.log("[DISCORD] /positions called");
         try {
           const raw = execSync(`cd "${path.join(ROOT, "tools", "tv-mcp")}" && node check_orders.cjs`, { encoding: "utf8", timeout: 20000, stdio: ["ignore", "pipe", "ignore"] });
           const embed = new EmbedBuilder().setTitle("📊 Open Positions").setColor(0x00E676)
@@ -616,7 +616,6 @@ client.on("interactionCreate", async (interaction) => {
         break;
       }
       case "pnl": {
-        await interaction.deferReply();
         try {
           const raw = execSync(`node "${path.join(ROOT, "tools", "risk_tracker.cjs")}" --summary`, { encoding: "utf8", timeout: 10000, stdio: ["ignore", "pipe", "ignore"] });
           const d = JSON.parse(raw);
@@ -632,7 +631,6 @@ client.on("interactionCreate", async (interaction) => {
         break;
       }
       case "session": {
-        await interaction.deferReply();
         try {
           const raw = execSync(`node "${path.join(ROOT, "tools", "ny_time.cjs")}" --full`, { encoding: "utf8", timeout: 10000, stdio: ["ignore", "pipe", "ignore"] });
           const d = JSON.parse(raw);
@@ -648,7 +646,6 @@ client.on("interactionCreate", async (interaction) => {
         break;
       }
       case "scan": {
-        await interaction.deferReply();
         try {
           const raw = execSync(`cd "${path.join(ROOT, "tools", "tv-mcp")}" && node live_levels.cjs`, { encoding: "utf8", timeout: 45000, stdio: ["ignore", "pipe", "ignore"] });
           const pairs = JSON.parse(raw);
@@ -665,7 +662,6 @@ client.on("interactionCreate", async (interaction) => {
         break;
       }
       case "news": {
-        await interaction.deferReply();
         try {
           const calPath = path.join(ROOT, "shared", "today_events.json");
           if (fs.existsSync(calPath)) {
@@ -684,7 +680,6 @@ client.on("interactionCreate", async (interaction) => {
         break;
       }
       case "rules": {
-        await interaction.deferReply();
         const rulesPath = path.join(ROOT, "_config", "trading_rules.md");
         const riskPath = path.join(ROOT, "_config", "risk_parameters.md");
         let rules = "No rules file found";
@@ -696,7 +691,6 @@ client.on("interactionCreate", async (interaction) => {
         break;
       }
       case "graph": {
-        await interaction.deferReply();
         try {
           const graph = JSON.parse(fs.readFileSync(path.join(ROOT, "shared", "trade_graph.json"), "utf8"));
           const embed = new EmbedBuilder().setTitle("🧠 Trade Graph").setColor(0xE91E63)
@@ -717,6 +711,9 @@ client.on("interactionCreate", async (interaction) => {
       case "help": {
         await interaction.editReply({ embeds: [embedHelp()] });
         break;
+      }
+      default: {
+        await interaction.editReply({ content: `❓ Unknown command: \`/${commandName}\`. Try \`/help\` for available commands.` });
       }
     }
   } catch(e) {
