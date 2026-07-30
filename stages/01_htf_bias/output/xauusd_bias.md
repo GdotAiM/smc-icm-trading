@@ -1,33 +1,33 @@
-# HTF Bias — XAUUSD — 2026-07-29
+# HTF Bias — XAUUSD — 2026-07-30
 
 ## Structural Bias
-**BEARISH** — 1W N/A → 1D BEARISH → 4H BEARISH
+**BEARISH** — 1W BULLISH → 1D BEARISH → 4H BULLISH
 
 | Timeframe | Bias | Last Event | Price | Confidence | Pools | OBs | FVGs |
 |-----------|------|------------|-------|------------|-------|-----|------|
-| 1W | — | — | — | — | — | — | — |
-| 1D | bearish | BOS | 4366.23 | 1.00 | 6 | 0 | 2 |
-| 4H | bearish | CHoCH | 4022.06 | 1.00 | 6 | 0 | 0 |
-| 1H | bearish | BOS | 4010.41 | 1.00 | 6 | 3 | 0 |
-| 15m | bearish | BOS | 4009.39 | 1.00 | 6 | 0 | 1 |
-| 5m | bearish | BOS | 4010.26 | 1.00 | 5 | 1 | 0 |
-| 1m | bearish | BOS | 4001.13 | 1.00 | 6 | 3 | 0 |
+| 1W | bullish | CHoCH | 4035.31 | 1.00 | 6 | 1 | 4 |
+| 1D | bearish | BOS | 4366.23 | 1.00 | 6 | 0 | 1 |
+| 4H | bullish | CHoCH | 4040.82 | 1.00 | 6 | 0 | 0 |
+| 1H | bullish | CHoCH | 4047.88 | 1.00 | 6 | 3 | 0 |
+| 15m | bearish | CHoCH | 4050.81 | 1.00 | 6 | 0 | 0 |
+| 5m | bearish | BOS | 4037.60 | 1.00 | 6 | 0 | 1 |
+| 1m | bullish | CHoCH | 4035.31 | 1.00 | 6 | 1 | 4 |
 
 ## Key Observations
-- 1W: N/A | 1D: **BEARISH** | 4H: **BEARISH**
-- 1D & 4H aligned ✅ — strong directional conviction
+- 1W: BULLISH | 1D: **BEARISH** | 4H: **BULLISH**
+- 1D & 4H diverging ⚠️ — reduced confidence
 - 1W 1D swing: H 4166.13 / L 3959.80
-- Current price: 3997.26
+- Current price: 4036.43
 
 ## Multi-TF Cascade
 ```
-1W  ⚪ N/A
+1W  🟢 BULLISH
 1D  🔴 BEARISH ← TRADE BIAS
-4H  🔴 BEARISH
-1H  🔴 BEARISH ← ENTRY TF
+4H  🟢 BULLISH
+1H  🟢 BULLISH ← ENTRY TF
 15m 🔴 BEARISH
 5m  🔴 BEARISH
-1m  🔴 BEARISH
+1m  🟢 BULLISH
 ```
 
 ## Final Bias

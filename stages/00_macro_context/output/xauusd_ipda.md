@@ -1,4 +1,4 @@
-# IPDA Dealing Range Analysis — XAUUSD — 2026-07-29
+# IPDA Dealing Range Analysis — XAUUSD — 2026-07-30
 
 ## Nested Dealing Ranges (Macro → Micro)
 

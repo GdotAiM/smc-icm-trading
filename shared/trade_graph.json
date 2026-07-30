@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "built": "2026-07-30T08:31:57.910Z",
+  "built": "2026-07-30T14:58:35.680Z",
   "nodes": {
     "concept:blog---ict": {
       "id": "concept:blog---ict",
@@ -97,7 +97,7 @@
       "tier": 3,
       "tierName": "Advanced Concepts",
       "category": "01 - ICT Trading Tutorials",
-      "usageCount": 1
+      "usageCount": 2
     },
     "concept:dragonfly-doji-candlestick": {
       "id": "concept:dragonfly-doji-candlestick",
@@ -226,7 +226,7 @@
       "tier": 1,
       "tierName": "Core Mechanics",
       "category": "01 - ICT Trading Tutorials",
-      "usageCount": 3
+      "usageCount": 2
     },
     "concept:bullish-order-block": {
       "id": "concept:bullish-order-block",
@@ -1149,7 +1149,7 @@
       "id": "session:london",
       "type": "session",
       "name": "London",
-      "totalTrades": 2,
+      "totalTrades": 3,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1170,7 +1170,7 @@
       "id": "pair:xauusd",
       "type": "pair",
       "name": "Xauusd",
-      "totalTrades": 2,
+      "totalTrades": 3,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1179,7 +1179,7 @@
       "id": "model:breaker-block",
       "type": "model",
       "name": "Breaker Block",
-      "totalTrades": 3,
+      "totalTrades": 2,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1208,7 +1208,7 @@
       "id": "model:mmxm-sell-model",
       "type": "model",
       "name": "MMXM Sell Model",
-      "totalTrades": 1,
+      "totalTrades": 2,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1217,7 +1217,7 @@
       "id": "session:ny-pm",
       "type": "session",
       "name": "NY PM",
-      "totalTrades": 4,
+      "totalTrades": 3,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1267,14 +1267,14 @@
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "trade:xauusd:2026-07-29": {
-      "id": "trade:xauusd:2026-07-29",
+    "trade:xauusd:2026-07-30": {
+      "id": "trade:xauusd:2026-07-30",
       "type": "trade",
-      "date": "2026-07-29",
+      "date": "2026-07-30",
       "pair": "XAUUSD",
       "direction": "SHORT",
-      "model": "Breaker Block",
-      "session": "NY PM",
+      "model": "MMXM Sell Model",
+      "session": "London",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1598,6 +1598,18 @@
       "date": "2026-07-28",
       "resolved": false
     },
+    "trade:xauusd:2026-07-29": {
+      "id": "trade:xauusd:2026-07-29",
+      "type": "trade",
+      "date": "2026-07-29",
+      "pair": "XAUUSD",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.5,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
     "playbook_rule:judas-swing-guard-works": {
       "id": "playbook_rule:judas-swing-guard-works",
       "type": "playbook_rule",
@@ -1751,22 +1763,22 @@
       "metadata": {}
     },
     {
-      "source": "trade:xauusd:2026-07-29",
+      "source": "trade:xauusd:2026-07-30",
       "target": "pair:xauusd",
       "type": "ON_PAIR",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:xauusd:2026-07-29",
-      "target": "model:breaker-block",
+      "source": "trade:xauusd:2026-07-30",
+      "target": "model:mmxm-sell-model",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:xauusd:2026-07-29",
-      "target": "session:ny-pm",
+      "source": "trade:xauusd:2026-07-30",
+      "target": "session:london",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -2361,7 +2373,14 @@
     },
     {
       "source": "trade:xauusd:2026-07-29",
-      "target": "concept:breaker-block",
+      "target": "pair:xauusd",
+      "type": "ON_PAIR",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:xauusd:2026-07-30",
+      "target": "concept:ict-trading-strategy-2022",
       "type": "USED_CONCEPT",
       "weight": 0.9,
       "metadata": {}
@@ -2374,17 +2393,10 @@
       "metadata": {}
     },
     {
-      "source": "trade:xauusd:2026-07-28",
-      "target": "trade:xauusd:2026-07-29",
+      "source": "trade:eurusd:2026-07-29",
+      "target": "trade:xauusd:2026-07-30",
       "type": "SIMILAR_TO",
       "weight": 0.7,
-      "metadata": {}
-    },
-    {
-      "source": "trade:gbpusd:2026-07-29",
-      "target": "trade:xauusd:2026-07-29",
-      "type": "SIMILAR_TO",
-      "weight": 1,
       "metadata": {}
     },
     {
@@ -2416,6 +2428,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:dxy:2026-07-29",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:eurusd:2026-07-28",
       "target": "trade:gbpusd:2026-07-28",
       "type": "SIMILAR_TO",
@@ -2437,6 +2456,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:eurusd:2026-07-28",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:gbpusd:2026-07-28",
       "target": "trade:gbpusd:2026-07-30",
       "type": "SIMILAR_TO",
@@ -2451,8 +2477,29 @@
       "metadata": {}
     },
     {
+      "source": "trade:gbpusd:2026-07-28",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:gbpusd:2026-07-30",
       "target": "trade:gold:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-30",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gold:2026-07-28",
+      "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}

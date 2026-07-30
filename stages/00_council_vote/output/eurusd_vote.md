@@ -1,7 +1,7 @@
-# Council Vote — EURUSD — 2026-07-29
+# Council Vote — EURUSD — 2026-07-30
 
-## Verdict: **SPLIT — No consensus**
-**Confidence**: 0% | **Action**: WAIT — The Council is divided. Let the market resolve the conflict before entering.
+## Verdict: **BULLISH MAJORITY — 3/4 archetypes**
+**Confidence**: 80% | **Action**: ENTER with standard size. Dissenting archetype may be seeing a counter-trend pullback.
 
 ## Individual Votes
 
@@ -9,14 +9,14 @@
 |-----------|--------|-----------|------------|-----------|-------|
 | 🟢 Position Trader | 1W/1D | **BULLISH** | 1.00 | 2022 Model (MMXM) | 1W structure intact — building longs on dips |
 | 🟢 Swing Trader | 4H/1D | **BULLISH** | 1.00 | 2022 Model (MMXM) | HTF alignment unclear — waiting for 4H/1D agreement |
-| 🔴 Day Trader | 15m/1H | **BEARISH** | 1.00 | 2022 Model (MMXM) | Sweep detected — manipulation active. Looking for 5m bearish FVG for short entry. |
+| 🟢 Day Trader | 15m/1H | **BULLISH** | 1.00 | 2022 Model (MMXM) | Sweep detected — manipulation active. Looking for 5m bullish FVG for long entry. |
 | 🔴 Scalper | 1m/5m | **BEARISH** | 1.00 | Silver Bullet | 1m/5m FVGs present — scalp triggers available. Direction: bearish. |
 
 ## Council Breakdown
-- **Bullish**: 2/4 — Position Trader, Swing Trader
-- **Bearish**: 2/4 — Day Trader, Scalper
+- **Bullish**: 3/4 — Position Trader, Swing Trader, Day Trader
+- **Bearish**: 1/4 — Scalper
 - **Neutral**: 0/4 — none
-- **Weighted Score**: 4/10 (0%)
+- **Weighted Score**: 8/10 (80%)
 
 ## Conflict Analysis
-❌ SPLIT COUNCIL — No direction has majority support. Wait for the market to tip the balance.
+⚠️ MINORITY DISSENT — 1 archetype(s) disagree. The dissenter may be seeing a counter-trend move. Trade with standard size.

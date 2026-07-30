@@ -1,35 +1,35 @@
-# Coherence Audit — XAUUSD — 2026-07-29
+# Coherence Audit — XAUUSD — 2026-07-30
 
 ## Overall Coherence: 60/100 — C — ADEQUATE coherence
 
 ---
 
-## 1. Lens Coherence (✅ 2/4 agree)
+## 1. Lens Coherence (⚠️ 1/4 agree)
 
 | Lens | Reading | Direction | vs Structure |
 |------|---------|-----------|-------------|
-| STRUCTURE | BEARISH (CHoCH) | BEARISH | — |
+| STRUCTURE | BULLISH (CHoCH) | BULLISH | — |
 | IPDA RANGE | undefined → NEUTRAL bias | NEUTRAL | — |
 | CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
 | LIQUIDITY | DOWN (SSL magnet) | 3 swept | BEARISH | — |
 
-**✅ LENS COHERENCE — All 2 lenses agree on BEARISH. No contradictions.**
+**⚠️ LENS DIVERGENCE — 1 lens(es) disagree with structure (bullish). The IPDA says neutral while structure says bullish. This is a concern — lenses should align in UNKNOWN phase.**
 
 ---
 
-## 2. Temporal Coherence (✅ 4/4 LTFs aligned)
+## 2. Temporal Coherence (⚠️ 2/4 LTFs aligned)
 
 | TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
-| 1W | **N/A** | ? | ⚠️ opposing |
+| 1W | **BULLISH** | CHoCH | ⚠️ opposing |
 | 1D | **BEARISH** | BOS | ✅ aligned |
-| 4H | **BEARISH** | CHoCH | ✅ aligned |
-| 1H | **BEARISH** | BOS | ✅ aligned |
-| 15m | **BEARISH** | BOS | ✅ aligned |
+| 4H | **BULLISH** | CHoCH | ⚠️ opposing |
+| 1H | **BULLISH** | CHoCH | ⚠️ opposing |
+| 15m | **BEARISH** | CHoCH | ✅ aligned |
 | 5m | **BEARISH** | BOS | ✅ aligned |
-| 1m | **BEARISH** | BOS | ✅ aligned |
+| 1m | **BULLISH** | CHoCH | ⚠️ opposing |
 
-**✅ TEMPORAL COHERENCE — 4/4 LTFs aligned with HTF BEARISH. Perfect alignment.**
+**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
 
 ---
 
@@ -41,10 +41,9 @@
 
 ## 4. Self-Contradiction Check
 
-- **[WARNING]** STRUCTURE vs PD ARRAY: Structure is BEARISH but price is in DISCOUNT (buy zone). This is a counter-trend sell within the buy zone. The move may exhaust soon.
-- **[CRITICAL]** HTF-LTF DIVERGENCE: 3 consecutive timeframes oppose HTF (neutral). Possible macro reversal.
+- **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
 
-**❌ 2 contradiction(s) including CRITICAL issues. The system is fighting itself.**
+**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
 
 ---
 
@@ -52,10 +51,10 @@
 
 | Dimension | Score | Status |
 |-----------|-------|--------|
-| Lens Coherence | 25/25 | ✅ |
-| Temporal Coherence | 25/25 | ✅ |
+| Lens Coherence | 15/25 | ⚠️ |
+| Temporal Coherence | 15/25 | ⚠️ |
 | Archetype Coherence | 5/25 | ⚠️ |
-| No Contradictions | 5/25 | ❌ |
+| No Contradictions | 25/25 | ✅ |
 | **TOTAL** | **60/100** | **C — ADEQUATE coherence** |
 
 ---

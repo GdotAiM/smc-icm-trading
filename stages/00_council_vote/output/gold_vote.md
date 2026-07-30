@@ -1,4 +1,4 @@
-# Council Vote — XAUUSD — 2026-07-29
+# Council Vote — XAUUSD — 2026-07-30
 
 ## Verdict: **SPLIT — No consensus**
 **Confidence**: 0% | **Action**: WAIT — The Council is divided. Let the market resolve the conflict before entering.

@@ -1,4 +1,4 @@
-# Po3 State Machine — XAUUSD — 2026-07-29
+# Po3 State Machine — XAUUSD — 2026-07-30
 
 ## Current State: **MANIPULATION** (0.85 confidence)
 **3 sweep(s) + CHoCH — manipulation active**
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for NY Lunch (16:00 UTC): ACCUMULATION**
+**Expected phase for London PM (09:00 UTC): DISTRIBUTION**
 **Detected phase: MANIPULATION**
 ⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.
 
@@ -29,7 +29,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 |----|-------|------------|--------|
 | 1D | DISTRIBUTION | 0.60 | BOS bearish — distribution beginning |
 | 4H | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
-| 1H | DISTRIBUTION | 0.80 | BOS bearish + displacement (0.78x) — trend is distributing |
+| 1H | MANIPULATION | 0.85 | 4 sweep(s) + CHoCH — manipulation active |
 
 ## Entry Rules for MANIPULATION
 

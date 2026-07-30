@@ -1,12 +1,12 @@
-# Cross-Archetype Intelligence — EURUSD — 2026-07-29
+# Cross-Archetype Intelligence — EURUSD — 2026-07-30
 
 ### Scalp → Position
 **Q**: Is this bearish 1m move worth holding?
 **A**: No — Position is bullish. Take the scalp and reset. Don't hold against the HTF.
 
 ### Day → Swing
-**Q**: Does 4H/1D support this 15m bearish entry?
-**A**: Caution — Swing sees bullish. This may be a counter-trend move. Tighten SL.
+**Q**: Does 4H/1D support this 15m bullish entry?
+**A**: Yes — Swing confirms. The bullish move has HTF backing.
 
 ### Position → Scalp
 **Q**: Is there a 1m trigger to start building bullish?

@@ -1,21 +1,21 @@
-# Session Review — XAUUSD — 2026-07-29
+# Session Review — XAUUSD — 2026-07-30
 
 ## Setup Summary
 | | |
 |---|---|
 | **Direction** | SHORT |
-| **Model** | Breaker Block (4.3/9.1) |
-| **Bias** | 1W N/A → 1D bearish → 4H bearish |
-| **Session** | NY PM  |
-| **Entry** | 3997.43 | SL: 4130.30 | TP1: 3864.55 |
+| **Model** | MMXM Sell Model (3.4/12.6) |
+| **Bias** | 1W bullish → 1D bearish → 4H bullish |
+| **Session** | London (Killzone ✅) |
+| **Entry** | 4035.66 | SL: 4134.47 | TP1: 3936.84 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment
 ```
-1W  ⚠️ N/A
+1W  ⚠️ BULLISH
 1D  ✅ BEARISH ← TRADE BIAS
-4H  ✅ BEARISH
-1H  ✅ BEARISH
+4H  ⚠️ BULLISH
+1H  ⚠️ BULLISH
 ```
 
 ## Decision Quality
