@@ -43,8 +43,21 @@ function run(cmd) {
 }
 
 function checkPositions() {
-  const raw = run(`node "${path.join(ROOT, "tools", "tv-mcp", "check_orders.cjs")}"`);
-  if (!raw) return [];
+  // Run from the tv-mcp directory so relative requires resolve
+  const cmd = `cd "${path.join(ROOT, "tools", "tv-mcp")}" && node check_orders.cjs`;
+  const raw = run(cmd);
+
+  // CRITICAL: distinguish "no positions" from "script failed"
+  if (!raw || raw.trim() === "") {
+    log({ event: "CHECK_FAILED", detail: "check_orders.cjs returned empty — script may have failed", alert: true });
+    return null; // null = error, [] = genuinely empty
+  }
+
+  // Verify the output contains expected headers
+  if (!raw.includes("POSITIONS") && !raw.includes("ORDERS")) {
+    log({ event: "CHECK_FAILED", detail: "check_orders.cjs output missing headers — NODE_PATH issue?", alert: true });
+    return null;
+  }
 
   const positions = [];
   const lines = raw.split("\n");
@@ -149,6 +162,13 @@ async function tick() {
   }
 
   const positions = checkPositions();
+
+  // If check failed (null), don't write state — keep previous state
+  if (positions === null) {
+    log({ event: "MONITOR_ERROR", detail: "Position check failed — check_orders.cjs may have module errors. Keeping previous state.", alert: true });
+    return null;
+  }
+
   const alerts = checkAlerts(positions);
   const state = writeState(positions, alerts, null);
 
@@ -159,7 +179,7 @@ async function tick() {
   } else if (positions.length > 0) {
     log({ event: "MONITOR", detail: positions.length + " position(s), no alerts. " + positions.map(p => p.pair + " P&L:" + p.pnl).join(", ") });
   } else {
-    log({ event: "MONITOR", detail: "No open positions" });
+    log({ event: "MONITOR", detail: "Genuinely no open positions (verified)" });
   }
 
   return state;

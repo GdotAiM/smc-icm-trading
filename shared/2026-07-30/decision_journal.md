@@ -12,3 +12,4 @@ London Killzone Session (02:00-05:00 NY)
 | 02:18:33 NY | DISCORD_ONLINE | Trading Bot#8449, 17 commands, alert scheduler active | Discord bot restarted — uses CDP only on-demand for slash commands, won't interfere with trading |
 | 03:46:35 NY | MONITOR_FIX | EURUSD +.00, 3.8p from TP. Background monitor started. | Cron failed (needs idle REPL). Replaced with background bash loop checking every 5min. |
 | 03:49:25 NY | SESSION_JOURNALED | Full analysis written to shared/2026-07-30/SESSION_JOURNAL.md | Cron failure root cause: requires idle REPL. Fix: background bash loop. Score 7/10. |
+| 04:00:40 NY | FALSE_CLOSE | EURUSD STILL OPEN +.40 — incorrectly reported as closed | Root cause: session_monitor check_orders.js failed silently (NODE_PATH missing). Empty output treated as 'no positions'. Fix: null vs [] distinction, cd to tv-mcp dir before running, verify with screenshot before declaring closed. |
