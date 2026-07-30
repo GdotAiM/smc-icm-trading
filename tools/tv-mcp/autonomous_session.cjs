@@ -87,10 +87,23 @@ async function phase1Startup() {
   log({ event: "PHASE_1", detail: "Session startup" });
   await discordAlert("🚀", "London Killzone Session Starting", "02:00-05:00 NY | " + DATE, 0x3498DB);
 
-  // Kill any lingering monitors that could fight for chart control
-  log({ event: "KILL_MONITORS", detail: "Ensuring clean state" });
-  try { execSync("taskkill /F /IM node.exe 2>nul", { timeout: 5000, stdio: "ignore" }); } catch {}
-  await new Promise(r => setTimeout(r, 2000));
+  // Kill only the intel_monitor — NOT Discord or other processes
+  log({ event: "KILL_MONITORS", detail: "Stopping intel_monitor only (preserving Discord)" });
+  try { execSync("taskkill /F /FI \"WINDOWTITLE eq intel_monitor*\" 2>nul", { timeout: 5000, stdio: "ignore" }); } catch {}
+  try {
+    // Find and kill intel_monitor by command line
+    const result = execSync('wmic process where "name=\'node.exe\'" get processid,commandline /format:csv 2>nul', { encoding: "utf8", timeout: 5000, stdio: ["ignore", "pipe", "ignore"] });
+    if (result) {
+      const lines = result.split("\n");
+      for (const line of lines) {
+        if (line.includes("intel_monitor")) {
+          const pid = line.split(",")[2]?.trim();
+          if (pid) { try { execSync("taskkill /F /PID " + pid + " 2>nul", { timeout: 3000, stdio: "ignore" }); } catch {} }
+        }
+      }
+    }
+  } catch {}
+  log({ event: "MONITORS_CLEAN", detail: "Intel monitor stopped, Discord preserved" });
 
   // Check TV CDP
   try {

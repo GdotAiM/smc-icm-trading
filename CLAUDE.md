@@ -186,8 +186,10 @@ Full strategy: `shared/2026-07-29/ICT_NEWS_TRADING_STRATEGY.md`
 ### Quick Start — Place a Trade
 
 ```bash
-# Kill monitors first — they fight for chart control
-taskkill /F /IM node.exe
+# Kill ONLY intel_monitor (NOT Discord) — it fights for chart control
+# Find PID: wmic process where "name='node.exe'" get processid,commandline | findstr intel_monitor
+# Kill it:  taskkill /F /PID <pid>
+# NEVER:   taskkill /F /IM node.exe  (kills Discord bot too)
 
 # Place a trade (pair, side, sl, tp, qty)
 node tools/tv-mcp/market_order.cjs EURUSD SELL 1.13950 1.13750 10000
@@ -199,7 +201,7 @@ This single command switches the chart+panel via `setSymbol()`, opens the ticket
 
 **1. Monitors fight for chart control**
 - Symptom: Chart switches pairs randomly, ticket closes mid-fill, orders go to wrong symbol
-- Fix: Kill ALL node processes before trading (`taskkill /F /IM node.exe`)
+- Fix: Kill ONLY intel_monitor before trading (NOT Discord — use targeted PID kill, not `/IM node.exe`)
 - The intel_monitor.cjs and discord_bot.cjs auto-restart — kill them completely
 
 **2. SL/TP fields are SWAPPED in the order form**
