@@ -1,5 +1,5 @@
 // Scan all pairs for live tradeable setups
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 
 const PAIRS = [
   { name: "EURUSD", tv: "EURUSD" },

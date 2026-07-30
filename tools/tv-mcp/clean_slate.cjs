@@ -1,5 +1,5 @@
 // Clean slate: clear drawings, cancel all orders, reset
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 
 (async () => {
   const r = await fetch("http://127.0.0.1:9222/json/list");

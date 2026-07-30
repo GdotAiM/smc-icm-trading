@@ -1,5 +1,5 @@
 // Get live prices + calculate SL/TP for all pairs
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 
 const PAIRS = [
   { name: "EURUSD", tv: "EURUSD", type: "forex", slPips: 8, tpPips: 15, qty: 10000 },

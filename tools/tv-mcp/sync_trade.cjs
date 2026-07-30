@@ -1,6 +1,6 @@
 // Properly sync chart + trading panel by using keyboard symbol search
 // Then place the trade with verified values
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 const fs = require("fs");
 const path = require("path");
 

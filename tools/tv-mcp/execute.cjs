@@ -1,5 +1,5 @@
 // ONE end-to-end trade: switch → open → fill → place → verify
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 const fs = require("fs");
 const path = require("path");
 

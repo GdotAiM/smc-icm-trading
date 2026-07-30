@@ -1,6 +1,6 @@
 // Quick market order on TV paper trading
 // Usage: node market_order.cjs [PAIR] [SIDE] [SL] [TP] [QTY]
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 
 const PAIR = process.argv[2] || "GBPUSD";
 const SIDE = (process.argv[3] || "SELL").toUpperCase();

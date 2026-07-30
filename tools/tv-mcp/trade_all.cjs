@@ -1,5 +1,5 @@
 // Place trades on all pairs — switches panel symbol between each
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 const fs = require("fs");
 const path = require("path");
 

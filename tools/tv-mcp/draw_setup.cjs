@@ -3,7 +3,7 @@
 // Reads entry plan from stages/05_entry_refinement/output/{pair}_entry_plan.md
 // Falls back to engine data for levels
 
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 const fs = require("fs");
 const path = require("path");
 

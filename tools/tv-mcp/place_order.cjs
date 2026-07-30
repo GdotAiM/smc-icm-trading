@@ -1,5 +1,5 @@
 // Place paper trade on TV — clicks Exits to reveal SL/TP, fills, places
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 const fs = require("fs");
 const path = require("path");
 

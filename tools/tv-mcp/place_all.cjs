@@ -1,5 +1,5 @@
 // Place all SMC scalp trades with proper broker symbols and structural stops
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 const fs = require("fs");
 const path = require("path");
 

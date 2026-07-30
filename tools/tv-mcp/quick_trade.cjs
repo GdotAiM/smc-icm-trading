@@ -1,5 +1,5 @@
 // ONE-SHOT trade: click, fill, place without pauses that dismiss the ticket
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 const fs = require("fs");
 
 (async () => {

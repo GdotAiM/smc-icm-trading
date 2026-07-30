@@ -1,6 +1,6 @@
 // Fetch live structure for a pair and calculate proper SL levels
 // Usage: node modify_sl.cjs PAIR
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 
 const PAIR = process.argv[2] || "EURUSD";
 const TV_SYMBOLS = { DXY: "USDOLLAR" };

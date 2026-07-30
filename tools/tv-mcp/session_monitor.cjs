@@ -17,6 +17,7 @@
 const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
+const { atomicWrite, atomicAppend } = require("./atomic_write.cjs");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
@@ -29,7 +30,7 @@ const INTERVAL_SEC = ONCE ? 0 : 60; // 60 seconds for continuous, instant for --
 
 function log(entry) {
   const line = { time: new Date().toISOString(), ...entry };
-  try { fs.appendFileSync(LOG_FILE, JSON.stringify(line) + "\n"); } catch {}
+  atomicAppend(LOG_FILE, JSON.stringify(line));
   const emoji = entry.alert ? "🚨" : "📡";
   console.log("[" + new Date().toLocaleTimeString() + "]", emoji, entry.event || "", entry.detail || "");
 }
@@ -147,7 +148,7 @@ function writeState(positions, alerts, lastScan) {
     positionCount: positions.length,
     maxPositions: 2
   };
-  try { fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2)); } catch {}
+  try { atomicWrite(STATE_FILE, state); } catch(e) { log({ event: "STATE_WRITE_FAIL", detail: e.message, alert: true }); }
   return state;
 }
 

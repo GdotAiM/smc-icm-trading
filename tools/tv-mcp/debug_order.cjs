@@ -1,5 +1,5 @@
 // Step-by-step order placement with screenshots at each stage
-const CDP = require("./node_modules/chrome-remote-interface");
+const CDP = require("./cdp_client.cjs");
 const fs = require("fs");
 const path = require("path");
 

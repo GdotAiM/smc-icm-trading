@@ -316,6 +316,17 @@ function embedHelp() {
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
+// ═══ LIFECYCLE HANDLERS — prevent silent disconnection ═══
+client.on("error", (err) => {
+  console.error("[DISCORD:ERROR]", err.message);
+});
+client.on("shardError", (err) => {
+  console.error("[DISCORD:SHARD_ERROR]", err.message);
+});
+client.on("disconnect", () => {
+  console.error("[DISCORD:DISCONNECT] Bot disconnected — will attempt reconnect automatically");
+});
+
 client.once("ready", async () => {
   console.log(`✅ Discord bot online as ${client.user.tag}`);
 

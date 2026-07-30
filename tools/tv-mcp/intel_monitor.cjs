@@ -545,9 +545,26 @@ function analyzeRegime(pairStates, recentMs = 60000) {
     }
   };
 
+  // ═══ PROCESS LIFECYCLE — prevent silent death ═══
+  process.on("uncaughtException", (err) => {
+    console.error("[INTEL:FATAL]", err.message);
+  });
+  process.on("unhandledRejection", (reason) => {
+    console.error("[INTEL:FATAL] Unhandled rejection:", reason?.message || reason);
+  });
+  process.on("SIGINT", async () => {
+    console.error("[INTEL] SIGINT — closing CDP");
+    try { await client.close(); } catch {}
+    process.exit(0);
+  });
+
   let idx = 0;
   const cycle = async () => {
-    await checkPair(PAIRS[idx % PAIRS.length]);
+    try {
+      await checkPair(PAIRS[idx % PAIRS.length]);
+    } catch(e) {
+      console.error("[INTEL:CYCLE_ERR]", e.message);
+    }
     idx++;
     setTimeout(cycle, 2000);
   };
