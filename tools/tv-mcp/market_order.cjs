@@ -150,11 +150,21 @@ const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
     })()`);
 
     verified = check?.found;
-    console.log("Verified in positions: " + (verified ? "✅" : "❌ NOT FOUND"));
+    console.log("Verified in positions: " + (verified ? "✅" : "❌ NOT FOUND — ORDER LIKELY REJECTED"));
     if (!verified) {
-      console.error("⚠️  ORDER PLACED BUT NOT CONFIRMED IN POSITIONS TABLE — CHECK MANUALLY");
+      console.error("🛑 ORDER REJECTED — Not found in positions table after placement");
+      console.error("   Pair: " + PAIR + " | Side: " + SIDE + " | Check TV order form for validation errors");
       const { logError } = require("./logger.cjs");
-      logError("market_order", "post-place-verify", new Error("Order not found in positions table for " + PAIR + " " + SIDE));
+      logError("market_order", "ORDER_REJECTED", new Error("Order not found in positions table for " + PAIR + " " + SIDE + ". TV likely rejected at form validation."));
+      // Write a rejection flag file for monitoring
+      try {
+        const fs = require("fs");
+        const path = require("path");
+        const ROOT2 = "C:/Users/cash/smc-icm-trading";
+        const DATE2 = new Date().toISOString().split("T")[0];
+        fs.appendFileSync(path.join(ROOT2, "shared", DATE2, "rejected_orders.jsonl"),
+          JSON.stringify({ time: new Date().toISOString(), pair: PAIR, side: SIDE, sl: STOP, tp: TARGET, qty: QTY, reason: "Not found in positions table after placement" }) + "\n");
+      } catch {}
     }
   } catch(e) {
     console.error("⚠️  Could not verify placement: " + e.message);
@@ -167,6 +177,13 @@ const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
   const ssName = PAIR.toLowerCase() + "_market_" + SIDE.toLowerCase() + ".png";
   fs.writeFileSync(path.join(ROOT, "shared", "screenshots", ssName), ss.data, "base64");
 
-  console.log("\n✅ MARKET " + SIDE + " " + PAIR + " " + QTY + " units | SL: " + STOP + " | TP: " + TARGET);
+  if (verified) {
+    console.log("\n✅ MARKET " + SIDE + " " + PAIR + " " + QTY + " units | SL: " + STOP + " | TP: " + TARGET);
+  } else {
+    console.log("\n❌ ORDER REJECTED — " + PAIR + " " + SIDE + " " + QTY + " did not appear in positions");
+    console.log("   Check the TradingView order form for red validation errors");
+    console.log("   Common causes: SL on wrong side of entry, invalid price format, insufficient margin");
+  }
   await client.close();
+  if (!verified) process.exit(1);
 })().catch(e => { console.log("FATAL: " + e.message); process.exit(1); });
