@@ -1,0 +1,8 @@
+# Q&A Log — 2026-07-31
+
+| Time | Topic | Q | A | Action |
+|------|-------|---|---|--------|
+| 03:46:17 | London KZ Judas... | London KZ Judas Swing lesson — was it applied to XAUUSD entry? | No — entered at 02:29 pre-SB. ICT says wait for killzone to open. SL hit at 4,071 when London swept lows. Timing error, not direction error. | Created pre-SB entry rule: never enter before killzone opens. Wait for sweep to complete. |
+| 03:46:20 | Stale data —... | Stale data — why did you report XAUUSD as holding after SL hit? | Orders tab showed SL/TP as 'working' which persists after position closes. Positions tab row disappears when closed. Was reading wrong tab. | Created verify_live.cjs — cross-references Positions tab (existence) + chart CDP (live price). Ne... |
+| 03:46:23 | Scalp on EURUSD... | Scalp on EURUSD — did it make sense? | No. Placed because asked, not because setup met threshold. Friday x0.6 + month-end + EURUSD choppy all week. Dollar pairs on Friday are noise. | Rule: never force a trade on request. Only execute when conviction is internally generated from s... |
+| 03:46:26 | How to document... | How to document conversations without exploding token bill? | Lightweight Q&A log — structured table with truncated Q/A/action columns. Not full transcripts. Captures decisions, not chatter. | Created qa_log.cjs — appends to shared/YYYY-MM-DD/qa_log.md. Token-efficient structured summary. |
