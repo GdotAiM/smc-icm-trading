@@ -234,36 +234,135 @@ function getDayProfileMatch() {
   };
 }
 
-// ═══ 4. NDOG LEVELS ═══
-function getNDOGLevels() {
-  // NDOG = New Day Opening Gap — 5pm to 6pm NY gap
-  // For current day: yesterday's close to today's open
-  const engine1d = getEngine("1d");
-  if (!engine1d?.candles || engine1d.candles.length < 2) {
-    return { available: false, detail: "Need 1D candles for NDOG calculation" };
+// ═══ 4. NDOG LADDER (Last 5 Days) ═══
+function getNDOGLadder() {
+  const today = new Date();
+  const ndogs = [];
+
+  for (let i = 0; i < 5; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const dateStr = d.toISOString().split("T")[0];
+
+    // Get candles for this day and the previous day
+    const prevD = new Date(d);
+    prevD.setDate(d.getDate() - 1);
+    const prevDateStr = prevD.toISOString().split("T")[0];
+
+    const todayCandles = getCandles("1d", dateStr);
+    const prevCandles = getCandles("1d", prevDateStr);
+
+    if (!todayCandles || !prevCandles || todayCandles.length < 1 || prevCandles.length < 1) {
+      ndogs.push({ date: dateStr, available: false });
+      continue;
+    }
+
+    const todayBar = todayCandles[todayCandles.length - 1];
+    const prevBar = prevCandles[prevCandles.length - 1];
+
+    const ndogHigh = Math.max(prevBar.c, todayBar.o);
+    const ndogLow = Math.min(prevBar.c, todayBar.o);
+    const gapSize = Math.abs(ndogHigh - ndogLow);
+    const encroachment = ndogLow + gapSize / 2; // 50% level — ICT consequent encroachment
+    const gapType = todayBar.o > prevBar.c ? "BULLISH" : todayBar.o < prevBar.c ? "BEARISH" : "FLAT";
+
+    // Check if price has filled this gap
+    const filled = gapType === "BULLISH"
+      ? todayBar.l <= ndogLow  // Price dropped into the gap
+      : gapType === "BEARISH"
+        ? todayBar.h >= ndogHigh // Price rallied into the gap
+        : true;
+
+    ndogs.push({
+      date: dateStr,
+      available: true,
+      gapType,
+      ndogHigh,
+      ndogLow,
+      encroachment,
+      gapSize,
+      filled,
+      prevClose: prevBar.c,
+      todayOpen: todayBar.o,
+      detail: filled
+        ? `${gapType} gap ${ndogLow.toFixed(2)}–${ndogHigh.toFixed(2)} — FILLED ✅`
+        : `${gapType} gap ${ndogLow.toFixed(2)}–${ndogHigh.toFixed(2)} — OPEN ⚠️ Encroachment at ${encroachment.toFixed(2)}`
+    });
   }
 
-  const candles = engine1d.candles;
-  const last = candles[candles.length - 1];
-  const prev = candles[candles.length - 2];
+  // Current day's NDOG is the most recent
+  const currentNDOG = ndogs.find(n => n.available) || null;
 
-  // NDOG is the gap between prev day close and current day open
-  const ndogHigh = Math.max(prev.c, last.o);
-  const ndogLow = Math.min(prev.c, last.o);
-  const gapSize = Math.abs(ndogHigh - ndogLow);
-  const gapType = last.o > prev.c ? "BULLISH" : last.o < prev.c ? "BEARISH" : "FLAT";
+  // Find nearest unfilled NDOG above and below current price
+  const currentPrice = currentNDOG ? currentNDOG.todayOpen : null;
+
+  return {
+    available: ndogs.some(n => n.available),
+    ladder: ndogs,
+    currentNDOG,
+    unfilledCount: ndogs.filter(n => n.available && !n.filled).length,
+    summary: ndogs.filter(n => n.available).map(n => n.detail).join(" | ")
+  };
+}
+
+// ═══ 5. NWOG (New Week Opening Gap) ═══
+function getNWOG() {
+  // NWOG = Friday 4:59 PM close to Sunday 6:00 PM open
+  // We approximate with Friday close to Monday open
+  const fridayData = getWeekdayData();
+  const monday = fridayData.days.find(d => d.day === "Monday");
+  const friday = fridayData.days.find(d => d.day === "Friday");
+
+  if (!monday || !friday) {
+    return { available: false, detail: "Need Monday and Friday data for NWOG" };
+  }
+
+  // Get Friday close and Monday open from candles
+  const friCandles = getCandles("1d", friday.date);
+  const monCandles = getCandles("1d", monday.date);
+
+  if (!friCandles || !monCandles || friCandles.length < 1 || monCandles.length < 1) {
+    return { available: false, detail: "Need Friday and Monday 1D candles" };
+  }
+
+  const friClose = friCandles[friCandles.length - 1].c;
+  const monOpen = monCandles[monCandles.length - 1].o;
+  const nwogHigh = Math.max(friClose, monOpen);
+  const nwogLow = Math.min(friClose, monOpen);
+  const gapSize = Math.abs(nwogHigh - nwogLow);
+  const encroachment = nwogLow + gapSize / 2;
+  const gapType = monOpen > friClose ? "BULLISH" : monOpen < friClose ? "BEARISH" : "FLAT";
+
+  // Check fill progress: has this week's price filled the NWOG?
+  let filled = false;
+  const allWeekCandles = [];
+  for (const day of fridayData.days) {
+    if (day.hasData) {
+      const candles = getCandles("1d", day.date);
+      if (candles) allWeekCandles.push(...candles);
+    }
+  }
+
+  if (allWeekCandles.length > 0) {
+    const weekHigh = Math.max(...allWeekCandles.map(c => c.h));
+    const weekLow = Math.min(...allWeekCandles.map(c => c.l));
+    if (gapType === "BULLISH" && weekLow <= nwogLow) filled = true;
+    if (gapType === "BEARISH" && weekHigh >= nwogHigh) filled = true;
+  }
 
   return {
     available: true,
-    prevClose: prev.c,
-    todayOpen: last.o,
-    ndogHigh: ndogHigh,
-    ndogLow: ndogLow,
-    gapSize: gapSize,
-    gapType: gapType,
-    detail: gapType === "BULLISH" ? `Bullish gap — ${ndogLow.toFixed(2)} to ${ndogHigh.toFixed(2)}. Gap support at ${ndogLow}.` :
-            gapType === "BEARISH" ? `Bearish gap — ${ndogHigh.toFixed(2)} to ${ndogLow.toFixed(2)}. Gap resistance at ${ndogHigh}.` :
-            "No gap — flat open."
+    gapType,
+    nwogHigh,
+    nwogLow,
+    encroachment,
+    gapSize,
+    filled,
+    fridayClose: friClose,
+    mondayOpen: monOpen,
+    detail: filled
+      ? `${gapType} NWOG ${nwogLow.toFixed(2)}–${nwogHigh.toFixed(2)} — FILLED ✅`
+      : `${gapType} NWOG ${nwogLow.toFixed(2)}–${nwogHigh.toFixed(2)} — OPEN ⚠️ Magnet active. Encroachment at ${encroachment.toFixed(2)}`
   };
 }
 
@@ -272,7 +371,8 @@ const weekdays = getWeekdayData();
 const amd = getAMDPhase();
 const range = getWeeklyRange();
 const dayProfile = getDayProfileMatch();
-const ndog = getNDOGLevels();
+const ndogLadder = getNDOGLadder();
+const nwog = getNWOG();
 
 // Build a 5-day narrative
 const dayBias = weekdays.days.map(d => `${d.day.substring(0,3)}:${d.hasData ? d.bias.toUpperCase() : "???"}`).join(" → ");
@@ -294,8 +394,9 @@ const result = {
   amd,
   weeklyRange: range,
   dayProfile,
-  ndog,
-  summary: `${dataNote} | ${amd.phase} → ${dayProfile.expected} | ${amd.structuralNote || dayProfile.tradePlan}`
+  ndogLadder,
+  nwog,
+  summary: `${dataNote} | ${amd.phase} → ${dayProfile.expected} | ${nwog.available ? nwog.detail : "NWOG unavailable"} | ${ndogLadder.available ? ndogLadder.currentNDOG?.detail || "" : ""}`
 };
 
 console.log(JSON.stringify(result, null, 2));
