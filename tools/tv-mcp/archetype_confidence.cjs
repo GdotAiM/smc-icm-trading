@@ -71,8 +71,8 @@ function layerPosition() {
 }
 
 // ═══════════════════════════════════════════════
-// LAYER 3: SWING TRADER (4H)
-// Structural zones. Provides "where" — discount/premium.
+// LAYER 3: SWING TRADER (4H) + IPDA DEALING RANGE
+// Structural zones + Market Maker Model. Provides "where".
 // ═══════════════════════════════════════════════
 function layerSwing() {
   const eng4h = getEngine("4h");
@@ -87,36 +87,57 @@ function layerSwing() {
   const ourDir = DIRECTION === "BUY" ? "bullish" : "bearish";
   const with4H = bias4h === ourDir;
 
-  // Check IPDA zone
-  let zone = "UNKNOWN";
-  let zoneBonus = 0;
-  if (eng4h.ipda?.zone) {
-    zone = eng4h.ipda.zone;
-    if ((DIRECTION === "BUY" && zone === "DISCOUNT") || (DIRECTION === "SELL" && zone === "PREMIUM")) {
-      zoneBonus = 12; // ICT-aligned: buy discount, sell premium
-    } else if ((DIRECTION === "BUY" && zone === "PREMIUM") || (DIRECTION === "SELL" && zone === "DISCOUNT")) {
-      zoneBonus = 0; // Counter to ICT zone rule
-    }
-  }
+  // Run IPDA dealing range analysis
+  let ipdaData = null;
+  try {
+    const { execSync: es } = require("child_process");
+    const raw = es(`node "${path.join(ROOT, "tools", "tv-mcp", "ipda_range.cjs")}" ${PAIR}`, {
+      encoding: "utf8", timeout: 15000, stdio: ["ignore", "pipe", "ignore"]
+    });
+    if (raw) ipdaData = JSON.parse(raw);
+  } catch(e) {}
 
-  const chochBonus = (event4h === "CHoCH" && with4H) ? 8 : 0; // CHoCH in our direction is strong
+  const mmModel = ipdaData?.marketMakerModel?.model || "UNKNOWN";
+  const mmDetail = ipdaData?.marketMakerModel?.detail || "";
+  const priceZone = ipdaData?.position?.["40-period"]?.zone || "UNKNOWN";
+  const priceAtEq = ipdaData?.position?.["40-period"]?.pctFromLow || 50;
+  const eqCascade = ipdaData?.equilibriumCascade || "";
+
+  // Zone bonus based on ICT rule: buy discount, sell premium
+  let zoneBonus = 0;
+  const buyingInDiscount = DIRECTION === "BUY" && (priceZone === "DISCOUNT" || priceZone === "BELOW_EQ");
+  const sellingInPremium = DIRECTION === "SELL" && (priceZone === "PREMIUM" || priceZone === "ABOVE_EQ");
+  const ictAligned = buyingInDiscount || sellingInPremium;
+
+  if (ictAligned) zoneBonus = 12;
+  else if (priceZone === "ABOVE_EQ" || priceZone === "BELOW_EQ") zoneBonus = 5; // Near equilibrium = neutral
+
+  // MM Model bonus
+  let mmBonus = 0;
+  if (mmModel.includes("MMBM") && DIRECTION === "BUY") mmBonus = 10;
+  if (mmModel.includes("MMSM") && DIRECTION === "SELL") mmBonus = 10;
+  if (mmModel.includes("LATE CYCLE")) mmBonus = -5;
+
+  const chochBonus = (event4h === "CHoCH" && with4H) ? 8 : 0;
   const baseConfidence = with4H ? 20 : 5;
-  const confidence = Math.round(baseConfidence + zoneBonus * 0.5 + chochBonus * 0.5);
+  const confidence = Math.round(baseConfidence + zoneBonus * 0.5 + chochBonus * 0.5 + mmBonus * 0.5);
 
   let note = "";
-  if (with4H && event4h === "CHoCH") note = `4H CHoCH ${bias4h} — strong structural reversal in our direction.`;
+  if (with4H && event4h === "CHoCH") note = `4H CHoCH ${bias4h} — structural reversal.`;
   else if (with4H) note = `4H ${bias4h} BOS — aligned.`;
-  else note = `Trading against 4H ${bias4h}. Need 3/3 LTF + SB window.`;
+  else note = `Against 4H ${bias4h}. Need 3/3 LTF + SB.`;
 
-  if (zone !== "UNKNOWN") note += ` Price in ${zone} zone${zoneBonus > 0 ? ' (ICT-aligned)' : ''}.`;
+  note += ` ${mmModel}. ${mmDetail.substring(0, 80)}`;
 
   return {
     active: true,
-    bias4h, event4h, zone,
-    with4H, zoneBonus, chochBonus,
+    bias4h, event4h, with4H,
+    zone: priceZone, ictAligned,
+    mmModel, mmDetail, eqCascade,
+    zoneBonus, chochBonus, mmBonus,
     confidence,
     note,
-    detail: `4H:${bias4h} ${event4h} | Zone:${zone} | ${with4H ? 'WITH' : 'AGAINST'}`
+    detail: `4H:${bias4h} ${event4h} | ${priceZone} (${priceAtEq}%) | ${mmModel}`
   };
 }
 
