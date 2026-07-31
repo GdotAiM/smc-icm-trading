@@ -193,27 +193,43 @@ if (ictRaw) {
   try { ictAdvanced = JSON.parse(ictRaw); } catch(e) {}
 }
 
+// Run fluid archetype confidence
+let archetype = { blocked: false, confidence: 0, sizing: "SKIP", layers: {}, summary: "" };
+const archRaw = run(`node "${path.join(ROOT, "tools", "tv-mcp", "archetype_confidence.cjs")}" ${PAIR} ${DIRECTION}`, 30000);
+if (archRaw) {
+  try { archetype = JSON.parse(archRaw); } catch(e) {}
+}
+
 const checks = [
   { name: "PRICE", ...price },
   { name: "TIME", ...time },
   { name: "WEEKLY_PROFILE", ...weekly },
+  { name: "ARCHETYPE_FLUID", pass: !archetype.blocked, confidence: archetype.confidence, sizing: archetype.sizing,
+    withTFs: archetype.withTimeframes, againstTFs: archetype.againstTimeframes,
+    layers: archetype.layers, detail: archetype.summary },
   ...(ictAdvanced.checks || []).map(c => ({ name: c.name, ...c })),
   { name: "DATA_QUALITY", ...dataQuality },
 ];
 
-// Block if: data blind, price counter-trend, or Judas Swing HIGH risk
+// Block if: data blind, price counter-trend, archetype blocked, or Judas HIGH risk
 const blockers = checks.filter(c => !c.pass);
-const hardBlocks = blockers.filter(c => c.name === "PRICE" || c.name === "DATA_QUALITY" || (c.name === "JUDAS_SWING" && c.risk === "HIGH"));
+const hardBlocks = blockers.filter(c =>
+  c.name === "PRICE" || c.name === "DATA_QUALITY" ||
+  c.name === "ARCHETYPE_FLUID" ||
+  (c.name === "JUDAS_SWING" && c.risk === "HIGH")
+);
 const go = hardBlocks.length === 0;
 
-// Confidence: 0-100 based on alignment, day, session
-const alignScore = price.align || 0;
-const confidence = Math.round(
-  (alignScore / 3) * 50 +  // Alignment: up to 50 points
-  (time.combined || 1) * 20 +  // Session multiplier: up to 30
-  (time.sbActive ? 20 : 0)  // SB bonus: 20
-);
+// Use fluid archetype confidence as primary, fall back to simple calculation
+const confidence = archetype.confidence > 0
+  ? archetype.confidence
+  : Math.round((price.align || 0) / 3 * 50 + (time.combined || 1) * 20 + (time.sbActive ? 20 : 0));
 
-const result = { go, pair: PAIR, direction: DIRECTION, confidence: Math.min(100, confidence), checks };
+const result = {
+  go, pair: PAIR, direction: DIRECTION,
+  confidence: Math.min(100, confidence),
+  sizing: archetype.sizing || "STANDARD",
+  checks
+};
 console.log(JSON.stringify(result, null, 2));
 process.exit(go ? 0 : 1);
