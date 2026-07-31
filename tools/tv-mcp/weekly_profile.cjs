@@ -70,13 +70,13 @@ function getWeekdayData() {
           if (Array.isArray(candles) && candles.length >= 2) {
             const last = candles[candles.length - 1];
             const prev = candles[candles.length - 2];
-            const bias = last.c > prev.c ? "bullish" : "bearish";
-            const event = last.h > prev.h ? "BOS" : last.l < prev.l ? "BOS" : "CHoCH";
+            const bias = last.close > prev.close ? "bullish" : "bearish";
+            const event = last.high > prev.high ? "BOS" : last.low < prev.low ? "BOS" : "CHoCH";
             engine1d = {
               structure: {
                 bias, lastEvent: event,
-                lastSwingHigh: Math.max(last.h, prev.h),
-                lastSwingLow: Math.min(last.l, prev.l)
+                lastSwingHigh: Math.max(last.high, prev.high),
+                lastSwingLow: Math.min(last.low, prev.low)
               }
             };
             derivedFrom = "candles";
@@ -234,8 +234,12 @@ function getDayProfileMatch() {
   };
 }
 
-// ═══ 4. NDOG LADDER (Last 5 Days) ═══
+// ═══ 4. NDOG LADDER (Last 5 Days — NY 5PM close / 6PM open) ═══
 function getNDOGLadder() {
+  // NDOG = gap between NY 5:00 PM close and NY 6:00 PM open
+  // NY 5PM = 21:00 or 22:00 UTC depending on DST
+  // We look at 1H candle data to find the exact prices at these times
+
   const today = new Date();
   const ndogs = [];
 
@@ -244,58 +248,79 @@ function getNDOGLadder() {
     d.setDate(today.getDate() - i);
     const dateStr = d.toISOString().split("T")[0];
 
-    // Get candles for this day and the previous day
-    const prevD = new Date(d);
-    prevD.setDate(d.getDate() - 1);
+    // Get 1H candles for this day and previous day
+    const today1h = getCandles("1h", dateStr);
+    const prevD = new Date(d); prevD.setDate(d.getDate() - 1);
     const prevDateStr = prevD.toISOString().split("T")[0];
+    const prev1h = getCandles("1h", prevDateStr);
 
-    const todayCandles = getCandles("1d", dateStr);
-    const prevCandles = getCandles("1d", prevDateStr);
-
-    if (!todayCandles || !prevCandles || todayCandles.length < 1 || prevCandles.length < 1) {
-      ndogs.push({ date: dateStr, available: false });
+    if (!today1h || !prev1h || today1h.length < 1 || prev1h.length < 1) {
+      // Fallback to 1D candles
+      const today1d = getCandles("1d", dateStr);
+      const prev1d = getCandles("1d", prevDateStr);
+      if (today1d && prev1d && today1d.length > 0 && prev1d.length > 0) {
+        const t = today1d[today1d.length - 1], p = prev1d[prev1d.length - 1];
+        const gapSize = Math.abs(t.open - p.close);
+        ndogs.push({
+          date: dateStr, available: true, source: "1D",
+          gapType: t.open > p.close ? "BULLISH" : t.open < p.close ? "BEARISH" : "FLAT",
+          ndogHigh: Math.max(p.close, t.open), ndogLow: Math.min(p.close, t.open),
+          encroachment: (Math.max(p.close, t.open) + Math.min(p.close, t.open)) / 2,
+          gapSize, filled: gapSize < 0.0001,
+          prevClose: p.close, todayOpen: t.open,
+          detail: gapSize < 0.0001 ? `No gap (${gapSize.toFixed(5)}) — 24h market` : `${gapSize.toFixed(5)} gap`
+        });
+      } else {
+        ndogs.push({ date: dateStr, available: false });
+      }
       continue;
     }
 
-    const todayBar = todayCandles[todayCandles.length - 1];
-    const prevBar = prevCandles[prevCandles.length - 1];
+    // Find the NY 5PM close candle (usually 21:00 or 22:00 UTC)
+    // and NY 6PM open candle
+    // Strategy: find the last candle of prev day and first candle of today
+    if (prev1h.length === 0 || today1h.length === 0) {
+      ndogs.push({ date: dateStr, available: false });
+      continue;
+    }
+    const prevClose = prev1h[prev1h.length - 1].close;
+    const todayOpen = today1h[0].open;
 
-    const ndogHigh = Math.max(prevBar.c, todayBar.o);
-    const ndogLow = Math.min(prevBar.c, todayBar.o);
+    const ndogHigh = Math.max(prevClose, todayOpen);
+    const ndogLow = Math.min(prevClose, todayOpen);
     const gapSize = Math.abs(ndogHigh - ndogLow);
-    const encroachment = ndogLow + gapSize / 2; // 50% level — ICT consequent encroachment
-    const gapType = todayBar.o > prevBar.c ? "BULLISH" : todayBar.o < prevBar.c ? "BEARISH" : "FLAT";
+    const encroachment = ndogLow + gapSize / 2;
+    const gapType = todayOpen > prevClose ? "BULLISH" : todayOpen < prevClose ? "BEARISH" : "FLAT";
 
-    // Check if price has filled this gap
-    const filled = gapType === "BULLISH"
-      ? todayBar.l <= ndogLow  // Price dropped into the gap
-      : gapType === "BEARISH"
-        ? todayBar.h >= ndogHigh // Price rallied into the gap
-        : true;
+    // Check fill: did today's price action fill the gap?
+    let filled = gapSize < 0.0001; // No gap = filled by definition
+    if (!filled) {
+      const todayHigh = Math.max(...today1h.map(c => c.high));
+      const todayLow = Math.min(...today1h.map(c => c.low));
+      if (gapType === "BULLISH" && todayLow <= ndogLow) filled = true;
+      if (gapType === "BEARISH" && todayHigh >= ndogHigh) filled = true;
+    }
 
+    const decimals = PAIR === "XAUUSD" ? 2 : PAIR === "NAS100" ? 1 : 5;
     ndogs.push({
       date: dateStr,
       available: true,
+      source: "1H",
       gapType,
-      ndogHigh,
-      ndogLow,
-      encroachment,
-      gapSize,
+      ndogHigh: Number(ndogHigh.toFixed(decimals)),
+      ndogLow: Number(ndogLow.toFixed(decimals)),
+      encroachment: Number(encroachment.toFixed(decimals)),
+      gapSize: Number(gapSize.toFixed(decimals)),
       filled,
-      prevClose: prevBar.c,
-      todayOpen: todayBar.o,
+      prevClose: Number(prevClose.toFixed(decimals)),
+      todayOpen: Number(todayOpen.toFixed(decimals)),
       detail: filled
-        ? `${gapType} gap ${ndogLow.toFixed(2)}–${ndogHigh.toFixed(2)} — FILLED ✅`
-        : `${gapType} gap ${ndogLow.toFixed(2)}–${ndogHigh.toFixed(2)} — OPEN ⚠️ Encroachment at ${encroachment.toFixed(2)}`
+        ? `${gapType} gap ${ndogLow.toFixed(decimals)}–${ndogHigh.toFixed(decimals)} — FILLED ✅`
+        : `${gapType} gap ${ndogLow.toFixed(decimals)}–${ndogHigh.toFixed(decimals)} — OPEN ⚠️ Encroachment ${encroachment.toFixed(decimals)}`
     });
   }
 
-  // Current day's NDOG is the most recent
   const currentNDOG = ndogs.find(n => n.available) || null;
-
-  // Find nearest unfilled NDOG above and below current price
-  const currentPrice = currentNDOG ? currentNDOG.todayOpen : null;
-
   return {
     available: ndogs.some(n => n.available),
     ladder: ndogs,
@@ -317,37 +342,38 @@ function getNWOG() {
     return { available: false, detail: "Need Monday and Friday data for NWOG" };
   }
 
-  // Get Friday close and Monday open from candles
-  const friCandles = getCandles("1d", friday.date);
-  const monCandles = getCandles("1d", monday.date);
+  // Get Friday close and Monday open from 1H candles (NY session close/open)
+  const fri1h = getCandles("1h", friday.date);
+  const mon1h = getCandles("1h", monday.date);
 
-  if (!friCandles || !monCandles || friCandles.length < 1 || monCandles.length < 1) {
-    return { available: false, detail: "Need Friday and Monday 1D candles" };
+  if (!fri1h || !mon1h || fri1h.length < 1 || mon1h.length < 1) {
+    return { available: false, detail: "Need Friday and Monday 1H candles for NWOG" };
   }
 
-  const friClose = friCandles[friCandles.length - 1].c;
-  const monOpen = monCandles[monCandles.length - 1].o;
+  const friClose = fri1h[fri1h.length - 1].close; // Last 1H candle of Friday = NY close proxy
+  const monOpen = mon1h[0].open; // First 1H candle of Monday = NY open proxy
   const nwogHigh = Math.max(friClose, monOpen);
   const nwogLow = Math.min(friClose, monOpen);
   const gapSize = Math.abs(nwogHigh - nwogLow);
   const encroachment = nwogLow + gapSize / 2;
   const gapType = monOpen > friClose ? "BULLISH" : monOpen < friClose ? "BEARISH" : "FLAT";
 
-  // Check fill progress: has this week's price filled the NWOG?
-  let filled = false;
-  const allWeekCandles = [];
-  for (const day of fridayData.days) {
-    if (day.hasData) {
-      const candles = getCandles("1d", day.date);
-      if (candles) allWeekCandles.push(...candles);
+  // Check fill progress from 1H candles across the week
+  let filled = gapSize < 0.0001;
+  if (!filled) {
+    const allWeek1h = [];
+    for (const day of fridayData.days) {
+      if (day.hasData) {
+        const candles = getCandles("1h", day.date);
+        if (candles) allWeek1h.push(...candles);
+      }
     }
-  }
-
-  if (allWeekCandles.length > 0) {
-    const weekHigh = Math.max(...allWeekCandles.map(c => c.h));
-    const weekLow = Math.min(...allWeekCandles.map(c => c.l));
-    if (gapType === "BULLISH" && weekLow <= nwogLow) filled = true;
-    if (gapType === "BEARISH" && weekHigh >= nwogHigh) filled = true;
+    if (allWeek1h.length > 0) {
+      const weekHigh = Math.max(...allWeek1h.map(c => c.high));
+      const weekLow = Math.min(...allWeek1h.map(c => c.low));
+      if (gapType === "BULLISH" && weekLow <= nwogLow) filled = true;
+      if (gapType === "BEARISH" && weekHigh >= nwogHigh) filled = true;
+    }
   }
 
   return {
