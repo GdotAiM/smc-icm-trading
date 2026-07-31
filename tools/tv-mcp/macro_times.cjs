@@ -29,6 +29,12 @@ const MACRO_SCHEDULE = [
   { start: { h: 4, m: 0 }, end: { h: 4, m: 20 }, session: "London KZ", name: "London Late Macro", reliability: 0.6 },
   { start: { h: 4, m: 20 }, end: { h: 4, m: 40 }, session: "London KZ", name: "London Close Macro", reliability: 0.5 },
 
+  // Pre-NY AM — 07:00 AM Liquidity Hunt + IFVG Entry (ICT 2024 Lecture 2)
+  // "Sit down before 07:00 AM NY. Mark London high/low. Do not predict."
+  { start: { h: 7, m: 0 }, end: { h: 7, m: 20 }, session: "Pre-NY AM", name: "07:00 AM Liquidity Hunt ⭐", reliability: 1.0 },
+  { start: { h: 7, m: 20 }, end: { h: 7, m: 40 }, session: "Pre-NY AM", name: "07:20 IFVG Entry Window", reliability: 0.9 },
+  { start: { h: 7, m: 40 }, end: { h: 8, m: 0 }, session: "Pre-NY AM", name: "Pre-NY Open Macro", reliability: 0.8 },
+
   // NY AM KZ macros (08:00-11:00)
   { start: { h: 8, m: 0 }, end: { h: 8, m: 20 }, session: "NY AM KZ", name: "NY Open Macro", reliability: 0.7 },
   { start: { h: 8, m: 20 }, end: { h: 8, m: 40 }, session: "NY AM KZ", name: "NY AM Early Macro", reliability: 0.7 },
