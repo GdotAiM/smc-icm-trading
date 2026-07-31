@@ -97,66 +97,79 @@ function checkTimeContext() {
   }
 }
 
-// ═══ CHECK 3: TGIF Weekly Profile (Friday only) ═══
+// ═══ CHECK 3: Weekly Profile (AMD Cycle + Day Matching + TGIF) ═══
 function checkWeeklyProfile() {
-  const raw = run(`node "${path.join(ROOT, "tools", "ny_time.cjs")}" --now`);
-  if (!raw) return { pass: true, detail: "Weekly profile check skipped" };
+  // Run the weekly profile engine
+  const raw = run(`node "${path.join(ROOT, "tools", "tv-mcp", "weekly_profile.cjs")}" ${PAIR}`, 15000);
+  if (!raw) return { pass: true, detail: "Weekly profile engine unavailable" };
 
   try {
-    const ny = JSON.parse(raw);
-    const day = ny.dayProfile?.name || "?";
-    if (day !== "Friday") return { pass: true, detail: "Not Friday — weekly profile check not applicable" };
+    const wp = JSON.parse(raw);
+    const day = wp.dayProfile?.day || "?";
+    const amd = wp.amd || {};
+    const dayPlan = wp.dayProfile || {};
+    const range = wp.weeklyRange || {};
+    const ndog = wp.ndog || {};
 
-    // Read 1D and 1W engine data to determine Mon-Thu profile
-    const DATE = new Date().toISOString().split("T")[0];
-    let weeklyProfile = "unknown";
-    let tgifGuidance = "";
+    // Build comprehensive guidance
+    const guidance = [];
 
-    try {
-      const engine1d = JSON.parse(require("fs").readFileSync(
-        require("path").join(ROOT, "shared", DATE, PAIR, "engine_1d.json"), "utf8"
-      ));
-      const bias1d = engine1d?.structure?.bias || "?";
-      const event1d = engine1d?.structure?.lastEvent || "?";
+    // AMD phase
+    if (amd.phase && amd.phase !== "UNKNOWN") {
+      guidance.push(`AMD: ${amd.phase} — ${amd.detail}`);
+    }
+    if (amd.structuralNote) guidance.push(amd.structuralNote);
 
-      // Determine Mon-Thu profile from 1D structure
-      if (bias1d === "bullish" && event1d === "BOS") {
-        weeklyProfile = "BULLISH EXPANSION";
-        tgifGuidance = "Mon-Thu trended up. Weekly high likely set Thursday. Friday = profit-taking pullback. Trade small or pass. London KZ = expect dip. NY PM = possible bounce.";
-      } else if (bias1d === "bearish" && event1d === "BOS") {
-        weeklyProfile = "BEARISH EXPANSION";
-        tgifGuidance = "Mon-Thu trended down. Weekly low likely set Thursday. Friday = short-covering rally. Trade small or pass.";
-      } else if (event1d === "CHoCH") {
-        weeklyProfile = "REVERSAL/CONSOLIDATION";
-        tgifGuidance = "Mon-Thu was choppy or reversing. Friday = Seek & Destroy possible. Wait for sweep of weekly high/low before entering. If NFP/FOMC week, expect both-side sweep.";
-      } else {
-        weeklyProfile = "RANGE/CONSOLIDATION";
-        tgifGuidance = "Mon-Thu consolidated. Friday may expand. Watch for break of weekly range. Enter on confirmed breakout, not before.";
-      }
-    } catch(e) {
-      weeklyProfile = "unknown (engine data missing)";
-      tgifGuidance = "Run session_start.cjs to generate engine data. Without weekly context, reduce Friday size by 50%.";
+    // Day profile
+    if (dayPlan.tradePlan) guidance.push(`Today: ${dayPlan.tradePlan}`);
+    if (dayPlan.biasNote) guidance.push(dayPlan.biasNote);
+
+    // Weekly range
+    if (range.weeklyHigh) {
+      guidance.push(`Weekly Range: ${range.weeklyLow?.toFixed(2)} — ${range.weeklyHigh?.toFixed(2)} (${range.source})`);
     }
 
-    // TGIF entry windows by NY time
-    const hour = ny.nyTime?.hour || 0;
-    let windowGuidance = "";
-    if (hour >= 2 && hour < 5) windowGuidance = "London KZ — TGIF SETUP window. Watch for Judas Swing/pullback. Do not enter before sweep completes.";
-    else if (hour >= 8 && hour < 11) windowGuidance = "NY AM — TGIF ENTRY window #1. Enter after London+NY sweeps confirm. Scalp only.";
-    else if (hour >= 13 && hour < 14) windowGuidance = "NY PM — TGIF ENTRY window #2. 'If morning was quiet.' Late profit-taking move.";
-    else windowGuidance = "Outside TGIF window. If entering, reduce size 50%.";
+    // NDOG
+    if (ndog.available) {
+      guidance.push(`NDOG: ${ndog.detail}`);
+    }
+
+    // TGIF window guidance
+    const ny = getNY();
+    if (ny && day === "Friday") {
+      const hour = ny.nyTime?.hour || 0;
+      if (hour >= 2 && hour < 5) guidance.push("⏰ London KZ — TGIF SETUP. Watch sweep. Don't enter before it.");
+      else if (hour >= 8 && hour < 11) guidance.push("⏰ NY AM — TGIF ENTRY #1. Enter after sweeps confirm.");
+      else if (hour >= 13 && hour < 14) guidance.push("⏰ NY PM — TGIF ENTRY #2. Late profit-taking move.");
+    }
+
+    // Warnings
+    let warning = null;
+    if (amd.phase === "UNKNOWN" && day === "Friday") {
+      warning = "Engine data missing — run session_start.cjs for full weekly context. Reduce Friday size by 50%.";
+    }
 
     return {
       pass: true,
-      applicable: true,
-      weeklyProfile,
-      tgifGuidance,
-      windowGuidance,
-      detail: `${weeklyProfile} | ${windowGuidance}`
+      day,
+      amdPhase: amd.phase || "UNKNOWN",
+      weeklyHigh: range.weeklyHigh,
+      weeklyLow: range.weeklyLow,
+      ndogGap: ndog.available ? ndog.gapType : null,
+      guidance: guidance.length > 0 ? guidance : null,
+      warning,
+      detail: guidance[0] || "Weekly profile check complete"
     };
   } catch(e) {
-    return { pass: true, detail: "TGIF check parse error" };
+    return { pass: true, detail: "Weekly profile parse error: " + e.message };
   }
+}
+
+// Helper: get NY time
+function getNY() {
+  const raw = run(`node "${path.join(ROOT, "tools", "ny_time.cjs")}" --now`, 10000);
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch { return null; }
 }
 
 // ═══ CHECK 4: Data quality — are we flying blind? ═══
@@ -176,7 +189,7 @@ const dataQuality = checkDataQuality(price);
 const checks = [
   { name: "PRICE", ...price },
   { name: "TIME", ...time },
-  { name: "TGIF_WEEKLY", ...weekly },
+  { name: "WEEKLY_PROFILE", ...weekly },
   { name: "DATA_QUALITY", ...dataQuality },
 ];
 
