@@ -41,13 +41,39 @@ function getWeekdayData() {
     const d = new Date(monday);
     d.setDate(monday.getDate() + i);
     const dateStr = d.toISOString().split("T")[0];
-    const engine1d = getEngine("1d", dateStr);
+    let engine1d = getEngine("1d", dateStr);
+
+    // Fallback: if no engine data but candles exist, try to derive bias from candles
+    let derivedFrom = "engine";
+    if (!engine1d) {
+      try {
+        const candleFile = path.join(ROOT, "shared", dateStr, PAIR, "candles_1d.json");
+        if (fs.existsSync(candleFile)) {
+          const candles = JSON.parse(fs.readFileSync(candleFile, "utf8"));
+          if (Array.isArray(candles) && candles.length >= 2) {
+            const last = candles[candles.length - 1];
+            const prev = candles[candles.length - 2];
+            const bias = last.c > prev.c ? "bullish" : "bearish";
+            const event = last.h > prev.h ? "BOS" : last.l < prev.l ? "BOS" : "CHoCH";
+            engine1d = {
+              structure: {
+                bias, lastEvent: event,
+                lastSwingHigh: Math.max(last.h, prev.h),
+                lastSwingLow: Math.min(last.l, prev.l)
+              }
+            };
+            derivedFrom = "candles";
+          }
+        }
+      } catch(e) {}
+    }
 
     days.push({
       date: dateStr,
       day: dayNames[d.getDay()],
       index: i,
       hasData: !!engine1d,
+      derivedFrom,
       bias: engine1d?.structure?.bias || "?",
       event: engine1d?.structure?.lastEvent || "?",
       swingHigh: engine1d?.structure?.lastSwingHigh || null,
@@ -55,11 +81,23 @@ function getWeekdayData() {
     });
   }
 
+  const withData = days.filter(d => d.hasData);
+  const engineDays = days.filter(d => d.derivedFrom === "engine");
+  const candleDays = days.filter(d => d.derivedFrom === "candles");
+  const missingDays = days.filter(d => !d.hasData);
+
   return {
     days,
-    daysWithData: days.filter(d => d.hasData).length,
-    daysMissing: days.filter(d => !d.hasData).length,
-    completeness: Math.round((days.filter(d => d.hasData).length / 5) * 100),
+    daysWithData: withData.length,
+    engineDays: engineDays.length,
+    candleDays: candleDays.length,
+    daysMissing: missingDays.length,
+    completeness: Math.round((withData.length / 5) * 100),
+    note: missingDays.length > 0
+      ? `${missingDays.length} days missing (${missingDays.map(d => d.day).join(", ")}). Run session_start.cjs daily for 100% coverage.`
+      : candleDays.length > 0
+        ? `Full coverage: ${engineDays.length} from engine, ${candleDays.length} derived from candles.`
+        : "100% engine coverage — full weekly context available."
   };
 }
 
