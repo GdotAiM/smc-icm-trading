@@ -152,6 +152,27 @@ The graph persists at `shared/trade_graph.json` and is rebuilt from all source d
 
 Start by reading `CONTEXT.md` for the daily workflow router. Complete one stage fully before moving to the next. Prefer quality of confluence over quantity of trades. If conditions are unclear, explicitly say "No Trade."
 
+## Autonomous Mode — Self-Repair Permission (Jul 31)
+
+During autonomous sessions, you ARE permitted to fix broken things WITHOUT user approval, provided:
+
+1. **Don't change core functionality** — fix the bug, don't redesign the system
+2. **Document everything** — what was broken, why, what you changed
+3. **Make it traceable** — log to `qa_log.cjs` AND `decision_log.cjs` AND commit message
+4. **User can revert** — every fix is in git with a clear commit message
+
+Examples of allowed fixes:
+- Module resolution errors (CWD, NODE_PATH, require paths)
+- Script syntax errors from previous edits
+- Stale data detection improvements
+- ScheduleWakeup/CronCreate adjustments
+
+Examples of NOT allowed without asking:
+- Changing position sizing rules
+- Modifying SL/TP calculation logic
+- Altering the signal conflict filter thresholds
+- Adding/removing trading pairs
+
 ## ICT News Trading (Jul 29 — Fed Day Proven)
 
 We trade high-impact news using ICT One Shot One Kill framework:
