@@ -21,7 +21,25 @@ function getNY() {
 function getEngine(tf, dateOverride) {
   try {
     const d = dateOverride || DATE;
-    const file = path.join(ROOT, "shared", d, PAIR, `engine_${tf}.json`);
+    // Check primary pair name
+    let file = path.join(ROOT, "shared", d, PAIR, `engine_${tf}.json`);
+    // Fallback: check GOLD directory (old naming convention)
+    if (!fs.existsSync(file) && PAIR === "XAUUSD") {
+      file = path.join(ROOT, "shared", d, "GOLD", `engine_${tf}.json`);
+    }
+    if (!fs.existsSync(file)) return null;
+    return JSON.parse(fs.readFileSync(file, "utf8"));
+  } catch(e) { return null; }
+}
+
+// Also fix candle lookup
+function getCandles(tf, dateOverride) {
+  try {
+    const d = dateOverride || DATE;
+    let file = path.join(ROOT, "shared", d, PAIR, `candles_${tf}.json`);
+    if (!fs.existsSync(file) && PAIR === "XAUUSD") {
+      file = path.join(ROOT, "shared", d, "GOLD", `candles_${tf}.json`);
+    }
     if (!fs.existsSync(file)) return null;
     return JSON.parse(fs.readFileSync(file, "utf8"));
   } catch(e) { return null; }
@@ -47,9 +65,8 @@ function getWeekdayData() {
     let derivedFrom = "engine";
     if (!engine1d) {
       try {
-        const candleFile = path.join(ROOT, "shared", dateStr, PAIR, "candles_1d.json");
-        if (fs.existsSync(candleFile)) {
-          const candles = JSON.parse(fs.readFileSync(candleFile, "utf8"));
+        const candles = getCandles("1d", dateStr);
+        if (candles && Array.isArray(candles) && candles.length >= 2) {
           if (Array.isArray(candles) && candles.length >= 2) {
             const last = candles[candles.length - 1];
             const prev = candles[candles.length - 2];
