@@ -18,12 +18,49 @@ function getNY() {
   } catch(e) { return null; }
 }
 
-function getEngine(tf) {
+function getEngine(tf, dateOverride) {
   try {
-    const file = path.join(ROOT, "shared", DATE, PAIR, `engine_${tf}.json`);
+    const d = dateOverride || DATE;
+    const file = path.join(ROOT, "shared", d, PAIR, `engine_${tf}.json`);
     if (!fs.existsSync(file)) return null;
     return JSON.parse(fs.readFileSync(file, "utf8"));
   } catch(e) { return null; }
+}
+
+// Get all available weekdays for this week
+function getWeekdayData() {
+  const today = new Date();
+  const dayOfWeek = today.getDay(); // 0=Sun, 1=Mon...
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7)); // Go back to Monday
+
+  const days = [];
+  const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  for (let i = 0; i < 5; i++) {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    const dateStr = d.toISOString().split("T")[0];
+    const engine1d = getEngine("1d", dateStr);
+
+    days.push({
+      date: dateStr,
+      day: dayNames[d.getDay()],
+      index: i,
+      hasData: !!engine1d,
+      bias: engine1d?.structure?.bias || "?",
+      event: engine1d?.structure?.lastEvent || "?",
+      swingHigh: engine1d?.structure?.lastSwingHigh || null,
+      swingLow: engine1d?.structure?.lastSwingLow || null,
+    });
+  }
+
+  return {
+    days,
+    daysWithData: days.filter(d => d.hasData).length,
+    daysMissing: days.filter(d => !d.hasData).length,
+    completeness: Math.round((days.filter(d => d.hasData).length / 5) * 100),
+  };
 }
 
 // ═══ 1. AMD CYCLE PHASE ═══
@@ -176,19 +213,34 @@ function getNDOGLevels() {
 }
 
 // ═══ MAIN ═══
+const weekdays = getWeekdayData();
 const amd = getAMDPhase();
 const range = getWeeklyRange();
 const dayProfile = getDayProfileMatch();
 const ndog = getNDOGLevels();
 
+// Build a 5-day narrative
+const dayBias = weekdays.days.map(d => `${d.day.substring(0,3)}:${d.hasData ? d.bias.toUpperCase() : "???"}`).join(" → ");
+const dataNote = weekdays.completeness < 60
+  ? `⚠️ Only ${weekdays.daysWithData}/5 days have engine data. Run session_start.cjs daily for full weekly context.`
+  : `${weekdays.daysWithData}/5 days available.`;
+
 const result = {
   pair: PAIR,
   date: DATE,
+  weeklyData: {
+    completeness: weekdays.completeness + "%",
+    daysWithData: weekdays.daysWithData,
+    daysMissing: weekdays.daysMissing,
+    dayBias,
+    dataNote,
+    days: weekdays.days,
+  },
   amd,
   weeklyRange: range,
   dayProfile,
   ndog,
-  summary: `${amd.phase} → ${dayProfile.expected} | ${amd.structuralNote} | ${dayProfile.tradePlan}`
+  summary: `${dataNote} | ${amd.phase} → ${dayProfile.expected} | ${amd.structuralNote || dayProfile.tradePlan}`
 };
 
 console.log(JSON.stringify(result, null, 2));
