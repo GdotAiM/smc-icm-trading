@@ -143,9 +143,10 @@ function layerSwing() {
 
 // ═══════════════════════════════════════════════
 // LAYER 2: DAY TRADER (15m/1H) — ALWAYS ACTIVE
-// Directional filter. CAN veto if counter-trend on all TFs.
+// Directional filter with SWING CONTEXT CASCADE.
+// Receives HTF IPDA/MM info to inform LTF entries.
 // ═══════════════════════════════════════════════
-function layerDay() {
+function layerDay(swingLayer) {
   const eng15m = getEngine("15m");
   const eng5m = getEngine("5m");
   const eng1m = getEngine("1m");
@@ -164,29 +165,64 @@ function layerDay() {
   const counterTrend = tfsAgree === 0;
 
   // Confidence: 0-40 based on alignment
-  const confidence = counterTrend ? 0 : Math.round(tfsAgree * 13.3);
+  let confidence = counterTrend ? 0 : Math.round(tfsAgree * 13.3);
+
+  // ═══ SWING CONTEXT CASCADE ═══
+  // The day trader receives HTF information to contextualize LTF entries
+  let swingContext = "";
+  let contextBonus = 0;
+
+  if (swingLayer?.active) {
+    const mmModel = swingLayer.mmModel || "";
+    const zone = swingLayer.zone || "";
+    const eqCascade = swingLayer.eqCascade || "";
+    const with4H = swingLayer.with4H;
+
+    // Fractal: if 4H is in discount and we're buying, the 15m is riding the IPDA delivery
+    if (mmModel.includes("MMBM") && DIRECTION === "BUY") {
+      swingContext = `4H MMBM in discount → IPDA delivering UP. 15m entries in buy direction have structural support. Target 4H equilibrium at ≈${eqCascade.split('→')[0]?.match(/[\d.]+/)?.[0] || '?'}.`;
+      contextBonus = 10;
+    } else if (mmModel.includes("MMSM") && DIRECTION === "SELL") {
+      swingContext = `4H MMSM in premium → IPDA delivering DOWN. 15m entries in sell direction have structural support.`;
+      contextBonus = 10;
+    } else if (mmModel.includes("LATE CYCLE")) {
+      swingContext = `4H in late cycle — IPDA move may be exhausted. LTF entries have reduced probability. Consider waiting for new dealing range to establish.`;
+      contextBonus = -5;
+    } else if (with4H) {
+      swingContext = `4H aligned with trade direction — LTF entries have HTF wind at their back.`;
+      contextBonus = 5;
+    } else if (!with4H && tfsAgree >= 2) {
+      swingContext = `Trading against 4H but 2/3 LTFs agree — possible counter-trend scalp. Tight SL, small target.`;
+      contextBonus = 0; // Allow but don't encourage
+    }
+  }
+
+  confidence = Math.round(confidence + contextBonus * 0.5);
 
   let note = "";
-  if (counterTrend) note = "HARD BLOCK: 0/3 TFs agree. Counter-trend on ALL entry timeframes.";
-  else if (tfsAgree === 3) note = "3/3 aligned. Strong directional agreement.";
-  else if (tfsAgree === 2) note = "2/3 aligned. Direction supported but not unanimous.";
-  else note = "1/3 aligned. Weak directional support. Need HTF context to justify.";
+  if (counterTrend) note = "HARD BLOCK: 0/3 TFs agree.";
+  else if (tfsAgree === 3) note = "3/3 aligned.";
+  else if (tfsAgree === 2) note = "2/3 aligned.";
+  else note = "1/3 aligned. Weak.";
+
+  if (swingContext) note += " " + swingContext;
 
   return {
     active: true,
     b15, b5, b1,
     tfsAgree, allAligned, counterTrend,
     confidence,
+    swingContext,
     note,
-    detail: `15m:${b15} 5m:${b5} 1m:${b1} | ${tfsAgree}/3 agree`
+    detail: `15m:${b15} 5m:${b5} 1m:${b1} | ${tfsAgree}/3 agree | HTF: ${swingLayer?.mmModel || '?'}`
   };
 }
 
 // ═══════════════════════════════════════════════
 // LAYER 1: SCALPER (1m/5m) — ALWAYS ACTIVE
-// Entry timing. Checks for FVG, MSS, killzone window.
+// Entry timing. Receives fractal context from Day + Swing layers.
 // ═══════════════════════════════════════════════
-function layerScalp() {
+function layerScalp(swingLayer, dayLayer) {
   const ny = getNY();
   const eng5m = getEngine("5m");
 
@@ -204,31 +240,60 @@ function layerScalp() {
 
   // Window quality
   let windowScore = 0;
-  if (inSB) windowScore = 15;    // SB = highest probability
-  else if (inKillzone) windowScore = 10;  // KZ = good
-  else windowScore = 3;  // Outside windows = low
+  if (inSB) windowScore = 15;
+  else if (inKillzone) windowScore = 10;
+  else windowScore = 3;
 
-  // Sweep bonus
   const sweepBonus = hasSweep ? 5 : 0;
-
-  // Manipulation penalty
   const manipulationPenalty = inManipulation ? -5 : 0;
 
-  const confidence = Math.max(0, Math.round(windowScore + sweepBonus + manipulationPenalty));
+  let confidence = Math.max(0, Math.round(windowScore + sweepBonus + manipulationPenalty));
+
+  // ═══ FRACTAL CONTEXT CASCADE ═══
+  // The scalper receives information from the day trader and swing trader
+  // ICT: patterns repeat across timeframes — what the 4H does, the 1m echoes
+  let fractalContext = "";
+  let fractalBonus = 0;
+
+  if (dayLayer?.active && swingLayer?.active) {
+    const dayAligned = dayLayer.tfsAgree >= 2;
+    const swingAligned = swingLayer.with4H;
+    const mmModel = swingLayer.mmModel || "";
+
+    if (dayAligned && swingAligned && mmModel.includes("MMBM") && DIRECTION === "BUY") {
+      fractalContext = "FULL STACK: 4H MMBM → 15m aligned → 1m entry. Fractal confluence. Scale in.";
+      fractalBonus = 12;
+    } else if (dayAligned && swingAligned && mmModel.includes("MMSM") && DIRECTION === "SELL") {
+      fractalContext = "FULL STACK: 4H MMSM → 15m aligned → 1m entry. Fractal confluence. Scale in.";
+      fractalBonus = 12;
+    } else if (dayAligned && !swingAligned) {
+      fractalContext = "PARTIAL: 15m aligned but against 4H. Scalp only — tight SL, small target. Don't pyramid.";
+      fractalBonus = 3;
+    } else if (!dayAligned && swingAligned) {
+      fractalContext = "WAIT: 4H supports but 15m not ready. Let LTF catch up to HTF. Patience.";
+      fractalBonus = 0;
+    } else {
+      fractalContext = "NO STACK: Neither 4H nor 15m support. Skip.";
+    }
+  }
+
+  confidence = Math.round(confidence + fractalBonus * 0.5);
 
   let note = "";
-  if (inSB && hasSweep) note = "SB window + sweep detected — ideal scalp conditions.";
-  else if (inSB) note = "SB window active. Watch for FVG trigger.";
-  else if (inKillzone) note = "Killzone active. Scalp entry valid if LTF confirms.";
-  else note = "Outside primary windows. Reduced scalp probability.";
-  if (inManipulation) note += " WARNING: Manipulation hour. Expect sweeps.";
+  if (inSB && hasSweep) note = "SB + sweep — ideal.";
+  else if (inSB) note = "SB active.";
+  else if (inKillzone) note = "KZ active.";
+  else note = "No window.";
+  if (inManipulation) note += " MANIPULATION.";
+  if (fractalContext) note += " " + fractalContext;
 
   return {
     active: true,
     inKillzone, inSB, inManipulation, hasSweep,
     confidence,
+    fractalContext,
     note,
-    detail: `${inSB ? '🔫 SB' : inKillzone ? 'KZ' : 'No window'} | Sweep:${hasSweep ? 'YES' : 'no'}`
+    detail: `${inSB ? '🔫 SB' : inKillzone ? 'KZ' : 'No win'} | Sweep:${hasSweep ? 'YES' : 'no'} | ${fractalContext?.substring(0, 40) || ''}`
   };
 }
 
@@ -237,8 +302,8 @@ function layerScalp() {
 // ═══════════════════════════════════════════════
 const position = layerPosition();
 const swing = layerSwing();
-const day = layerDay();
-const scalp = layerScalp();
+const day = layerDay(swing);     // Day receives swing context
+const scalp = layerScalp(swing, day); // Scalp receives swing + day fractal context
 
 // Weight: Day + Scalp are primary (we trade intraday)
 // Swing + Position are contextual (add or subtract from base)
