@@ -40,3 +40,9 @@ London Killzone Session (02:00-05:00 NY)
 | 10:13:33 NY | XAUUSD_EXIT | XAUUSD EXITED — likely TP at 4116. Was +,918. NAS100 still running +18. | EURUSD/GBPUSD placed but unverified. Check screen. Pyramid play on dollar weakness. |
 | 10:16:13 NY | XAUUSD_TP_JOURNAL | XAUUSD 300 TP HIT at 4,117.73 — +,922 profit. 200@4080 + 100@4093 merged. | Third consecutive winning gold trade. Jul 29: +,554 + +,340. Jul 30: +,922. Gold 3/3 bullish = system edge. |
 | 10:28:40 NY | MID_SESSION | Portfolio: NAS100 +17, EURUSD -, GBPUSD -. XAUUSD +,922 banked. | SB window 30min remaining. All positions aligned with Thursday expansion. Loop: 20+ checks. |
+| 14:27:41 NY | SB_PM_START | PM SB active — x1.95. NAS100 +73 (84pts from TP). XAUUSD bearish 5m — potential short. | Starting 3-min ScheduleWakeup cycle. PM session highest multiplier of day. |
+| 14:46:43 NY | SB_CLOSE | PM SB closed. NAS100 +58 holding. No new trades — XAUUSD lacked 15m confirmation. | Disciplined: no forced entries. 1 position running. PM session complete. |
+| 14:56:07 NY | SB_CORRECTION | SB STILL ACTIVE until 15:00. Prematurely declared close at 14:46 — clock error. Resuming 3-min cycle. | 10 min remaining. ×1.95 multiplier. Scanning for late SB entries. |
+| 15:06:51 NY | SB_TIMING_ERROR | SB prematurely closed at 14:46 — actually runs until 15:00. Lost 14 min of SB window. | Root cause: counted wakeup intervals instead of checking ny_time.cjs. Fix: check clock at every wakeup, not assume from intervals. |
+| 15:11:51 NY | NAS100_TP | NAS100 TP HIT at ~28136 — +40 est. Last position closed. All slots open. | Late-day rally delivered TP. Per ICT close-hour: watching for reversal short. 30+ min to NY close. |
+| 15:13:00 NY | SESSION_CLOSE | Session closed. Net ~+3,176. No close-hour trades — booking profits per ICT discipline. | 6 trades, 4 winners. Gold 2/2 +2,262. NAS100 +40. Dollar -6. Disciplined close. |
