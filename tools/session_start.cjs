@@ -105,7 +105,7 @@ async function ensureChartTab() {
 log("═══ STEP 2: Fetch candles from TradingView ═══");
 
 async function fetchFromTV() {
-  const CDP = require("chrome-remote-interface");
+  const CDP = require("./tv-mcp/cdp_client.cjs");
   const targetId = await ensureChartTab();
   const client = await CDP({ host: "127.0.0.1", port: 9222, target: targetId });
   await client.Runtime.enable();
@@ -236,6 +236,23 @@ function runForecasts() {
 }
 
 // ═══════════════════════════════════════════════════
+// STEP 4b: Sync XAUUSD → GOLD (pipeline reads from GOLD/)
+// ═══════════════════════════════════════════════════
+function syncGoldDir() {
+  const xauDir = path.join(ROOT, "shared", DATE, "XAUUSD");
+  const goldDir = path.join(ROOT, "shared", DATE, "GOLD");
+  if (!fs.existsSync(xauDir)) return;
+  fs.mkdirSync(goldDir, { recursive: true });
+  let count = 0;
+  const files = fs.readdirSync(xauDir).filter(f => f.startsWith("candles_") || f.startsWith("engine_") || f.startsWith("forecast_"));
+  for (const f of files) {
+    fs.copyFileSync(path.join(xauDir, f), path.join(goldDir, f));
+    count++;
+  }
+  if (count > 0) log(`  🔄 Synced ${count} files from XAUUSD → GOLD`);
+}
+
+// ═══════════════════════════════════════════════════
 // STEP 5: Summary
 // ═══════════════════════════════════════════════════
 function printSummary(engineResult, forecastResult) {
@@ -276,6 +293,7 @@ function printSummary(engineResult, forecastResult) {
   await fetchFromTV();
   const engineResult = runEngines();
   const forecastResult = runForecasts();
+  syncGoldDir();
   printSummary(engineResult, forecastResult);
 
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);

@@ -1,4 +1,4 @@
-# IPDA Dealing Range Analysis — NAS100 — 2026-07-29
+# IPDA Dealing Range Analysis — NAS100 — 2026-07-31
 
 ## Nested Dealing Ranges (Macro → Micro)
 
@@ -51,3 +51,18 @@ Daily range: DISCOUNT (buy) at 18.11% of range. ACCUMULATION ZONE — Price at r
 ---
 
 *"The IPDA doesn't move randomly. It delivers price from one dealing range extreme to the other, hunting liquidity at every equilibrium checkpoint along the way."*
+
+## False Breakout Detection
+**Below 20-day low — monitoring for reversal**
+Price below 20-day low @ 28052.3. If it reverses back above → false breakout confirmed.
+
+## Kill Zone Alignment
+⏳ NY PM active (weight: 1) — lower conviction. Prefer London KZ, NY AM KZ, or NY PM KZ.
+- Active Zone: NY PM (weight: 1)
+
+## IPDA Objective: POST-HUNT TRANSITION
+All FVGs filled, 8 pools swept. IPDA in transition — awaiting next objective.
+- Unfilled FVGs: 0 | Swept Pools: 8 | Unswept: 4
+
+## Weekly Reference Levels (Marked 2026-07-31)
+20-Day: H 30324.90000 L 28052.30000 EQ 29188.60000 | 40-Day: H 30759.20000 L 28052.30000 EQ 29405.75000 | 60-Day: H 30759.20000 L 27615.40000 EQ 29187.30000

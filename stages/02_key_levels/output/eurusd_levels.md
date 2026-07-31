@@ -1,35 +1,31 @@
-# Key Levels — EURUSD — 2026-07-29
+# Key Levels — EURUSD — 2026-07-31
 
 ## Bias Reminder — **BEARISH**
 
 ## Liquidity Pools (6 on 4H)
 | Type | Price | Role | Touches | Score | Distance | Swept |
 |------|-------|------|---------|-------|----------|-------|
-| BSL | 1.14353 | Resistance | 8 | 12.31 | 0.40% | Active |
-| BSL | 1.14550 | Resistance | 7 | 9.88 | 0.58% | Active |
-| SSL | 1.13610 | Support | 4 | 5.58 | 0.25% | Active |
-| BSL | 1.14119 | Resistance | 3 | 3.54 | 0.20% | Active |
-| SSL | 1.13831 | Support | 4 | 3.47 | 0.06% | ⚡ |
-| BSL | 1.13947 | Resistance | 2 | 2.81 | 0.05% | ⚡ |
+| SSL | 1.13814 | Support | 5 | 6.81 | 1.28% | ⚡ |
+| SSL | 1.13610 | Support | 4 | 5.34 | 1.46% | Active |
+| BSL | 1.16524 | Resistance | 7 | 4.33 | 1.07% | Active |
+| SSL | 1.14036 | Support | 4 | 3.62 | 1.09% | ⚡ |
+| BSL | 1.15804 | Resistance | 3 | 1.54 | 0.45% | ⚡ |
+| BSL | 1.15370 | Resistance | 1 | 0.90 | 0.07% | ⚡ |
 
-## Order Blocks (5 across 1D/4H/1H)
+## Order Blocks (3 across 1D/4H/1H)
 | Type | Proximal | Distal | Impulse | FVG | TF |
 |------|----------|--------|---------|-----|-----|
 | bearish Mitigation | 1.17890 | 1.18270 | 1.34x | ✓ | — |
 | bearish OB | 1.19062 | 1.19966 | 1.27x | ✓ | — |
-| bullish OB | 1.10952 | 1.09134 | 1.85x | ✓ | — |
 | bearish OB | 1.16130 | 1.16400 | 2.48x | ✓ | — |
-| bullish Breaker | 1.14309 | 1.14204 | 1.29x | ✓ | — |
 
-## FVGs (5 across 1D/4H/1H)
+## FVGs (3 across 1D/4H/1H)
 | Type | Top | Bottom | Gap ATR | Disp ATR | Fill % |
 |------|-----|--------|---------|----------|--------|
-| bullish | 1.07658 | 1.06278 | 1.63x | 1.96x | 23.77% |
-| bullish | 1.06020 | 1.05040 | 1.26x | 1.77x | 0.00% |
-| bearish | 1.15810 | 1.15208 | 2.33x | 3.48x | 12.46% |
-| bearish | 1.16964 | 1.16808 | 0.88x | 1.18x | 32.69% |
-| bullish | 1.13880 | 1.13830 | 0.60x | 1.61x | 0.00% |
+| bearish | 1.15810 | 1.15208 | 2.33x | 3.48x | 27.91% |
+| bullish | 1.14552 | 1.13970 | 2.66x | 3.74x | 35.74% |
+| bullish | 1.14398 | 1.14000 | 2.89x | 4.06x | 13.57% |
 
 ## Draw Targets
-- **Primary**: UP @ 1.14353 — BSL pool Â· 8 touches (0.97)
-- **Alternate**: DOWN @ 1.13831 — SSL pool Â· 4 touches (0.76)
+- **Primary**: UP @ 1.16524 — BSL pool Â· 7 touches (1.05)
+- **Alternate**: DOWN @ 1.14036 — SSL pool Â· 4 touches (0.67)

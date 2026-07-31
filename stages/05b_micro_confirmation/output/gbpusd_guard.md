@@ -1,23 +1,20 @@
-# Cross-System Guard Report — GBPUSD — 2026-07-29
-## NY Time: 12:00 | Session: NY Lunch | Judas: Inactive | SB: Inactive
+# Cross-System Guard Report — GBPUSD — 2026-07-31
+## NY Time: 14:00 | Session: NY PM Session | Judas: Inactive | SB: ✅ NY PM Silver Bullet
 
-## Verdict: **❌ DO NOT ENTER**
+## Verdict: **⚠️ ENTER WITH CAUTION**
 
-### ❌ BLOCKED (2)
-- **NY_LUNCH**: ❌ NY LUNCH (11:00-13:00 NY). ICT explicitly teaches: NO entries during lunch. Low liquidity. Wait for NY PM at 13:00. → BLOCK ALL ENTRIES — Resume at 13:00 NY.
-- **INVERSION_MISSING**: ❌ 1m Inversion NOT DETECTED. ICT requires the entry sentence to be written on the 1m before entering. Wait for CHoCH + sweep + FVG on 1m. → WAIT — No entry without 1m Inversion.
 
 ### ⚠️ WARNINGS (1)
-- **IPDA_ZONE**: ⚠️ IPDA ZONE CONFLICT: DISCOUNT across all TFs. You are SHORTING into the BUY ZONE. This is a counter-trend trade within the IPDA context. The bearish move may exhaust. Consider tighter stops and earlier profit-taking. → TRADE WITH CAUTION — Shorting into discount zone. IPDA says price is drawn UP to equilibrium.
+- **FRIDAY**: 📅 FRIDAY — No swing trades. Scalps only (Silver Bullet, lecture setups). Close all by NY close. Size ×0.5. → SCALPS ONLY — Silver Bullet + time-based lecture setups allowed at 50% size. Close all by 16:00 NY.
 
 ## All Guards
 | Guard | Severity | Blocked | Narrative |
 |-------|----------|---------|-----------|
-| NY_LUNCH | CRITICAL | ❌ | ❌ NY LUNCH (11:00-13:00 NY). ICT explicitly teaches: NO entries during lunch. Lo... |
-| IPDA_ZONE | WARNING | ✅ | ⚠️ IPDA ZONE CONFLICT: DISCOUNT across all TFs. You are SHORTING into the BUY ZO... |
-| INVERSION_MISSING | HIGH | ❌ | ❌ 1m Inversion NOT DETECTED. ICT requires the entry sentence to be written on th... |
+| SILVER_BULLET | INFO | ✅ | ✅ SILVER BULLET ACTIVE (NY PM Silver Bullet). This is the highest-probability 1-... |
+| IPDA_ZONE | INFO | ✅ | ✅ IPDA ZONE ALIGNED: DISCOUNT. Trade direction matches dealing range context.... |
+| FRIDAY | HIGH | ✅ | 📅 FRIDAY — No swing trades. Scalps only (Silver Bullet, lecture setups). Close ... |
 
 ## Adjustments
-- Size Multiplier: ×0.75
-- Confidence Adjustment: -1
-- Entry Allowed: ❌
+- Size Multiplier: ×0.50
+- Confidence Adjustment: -8
+- Entry Allowed: ✅

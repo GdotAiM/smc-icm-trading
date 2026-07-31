@@ -1,4 +1,4 @@
-# IPDA Dealing Range Analysis — XAUUSD — 2026-07-30
+# IPDA Dealing Range Analysis — XAUUSD — 2026-07-31
 
 ## Nested Dealing Ranges (Macro → Micro)
 
@@ -39,3 +39,18 @@ No daily range data
 ---
 
 *"The IPDA doesn't move randomly. It delivers price from one dealing range extreme to the other, hunting liquidity at every equilibrium checkpoint along the way."*
+
+## False Breakout Detection
+**None**
+No false breakout detected.
+
+## Kill Zone Alignment
+⏳ NY PM active (weight: 1) — lower conviction. Prefer London KZ, NY AM KZ, or NY PM KZ.
+- Active Zone: NY PM (weight: 1)
+
+## IPDA Objective: POST-HUNT TRANSITION
+All FVGs filled, 7 pools swept. IPDA in transition — awaiting next objective.
+- Unfilled FVGs: 0 | Swept Pools: 7 | Unswept: 5
+
+## Weekly Reference Levels (Marked today)
+N/A

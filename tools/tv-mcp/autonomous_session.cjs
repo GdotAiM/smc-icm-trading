@@ -183,25 +183,57 @@ async function phase2InitialScan() {
 // PHASE 3: Monitor Loop (02:15-04:55)
 // ═══════════════════════════════════════════════════════════
 async function phase3Monitor(trades) {
-  log({ event: "PHASE_3", detail: "Monitoring " + trades.length + " positions" });
+  log({ event: "PHASE_3", detail: "Monitoring " + trades.length + " positions — refreshing data each cycle" });
 
   let checkCount = 0;
   const maxChecks = Math.floor((170) / CONFIG.recheckIntervalMin); // ~170 min window
+  const FULL_REFRESH_EVERY = 3; // Full session_start every 3rd cycle (~30 min)
 
   while (checkCount < maxChecks) {
     checkCount++;
     await new Promise(r => setTimeout(r, CONFIG.recheckIntervalMin * 60000));
 
-    log({ event: "CHECK", detail: "#" + checkCount });
+    log({ event: "CHECK", detail: "#" + checkCount + " — refreshing data" });
 
-    // Check positions
-    const positions = run(`node "${path.join(ROOT, "tools", "tv-mcp", "check_orders.cjs")}"`);
-    if (positions) {
-      try { log({ event: "POSITIONS", detail: positions.substring(0, 200) }); } catch {}
+    // ═══ DATA REFRESH — keeps candles, engines, and forecasts fresh ═══
+    // Run session_start every cycle. It fetches live candles from TV CDP,
+    // re-runs the SMC engine, and regenerates forecasts.
+    // Without this, data goes stale within 5 minutes and analysis becomes unreliable.
+    const doFullRefresh = (checkCount % FULL_REFRESH_EVERY === 0);
+    if (doFullRefresh) {
+      log({ event: "FULL_REFRESH", detail: "Running full session_start.cjs (all pairs, all TFs)" });
+      const refreshStart = Date.now();
+      const startupResult = run(`node "${path.join(ROOT, "tools", "session_start.cjs")}"`);
+      const refreshSec = ((Date.now() - refreshStart) / 1000).toFixed(0);
+      log({ event: "FULL_REFRESH_DONE", detail: "Completed in " + refreshSec + "s — " + (startupResult ? "OK" : "FAILED") });
     }
 
-    // Re-scan for new setups if we have capacity
-    // (simplified — just check existing positions)
+    // ═══ CHECK POSITIONS ═══
+    const positions = run(`node "${path.join(ROOT, "tools", "tv-mcp", "check_orders.cjs")}"`);
+    if (positions) {
+      try {
+        const posData = JSON.parse(positions);
+        if (Array.isArray(posData) && posData.length > 0) {
+          for (const p of posData) {
+            log({ event: "POSITION", detail: p.pair + " " + p.side + " | Entry: " + p.entry + " | Current: " + p.currentPrice + " | P&L: " + p.pnl });
+          }
+        } else {
+          log({ event: "POSITIONS", detail: "No open positions" });
+        }
+      } catch {
+        log({ event: "POSITIONS", detail: positions.substring(0, 200) });
+      }
+    }
+
+    // ═══ RE-SCAN for new setups on full refresh cycles ═══
+    if (doFullRefresh && trades.length < CONFIG.maxPositions) {
+      log({ event: "RESCAN", detail: "Scanning for new setups..." });
+      const newTrades = await phase2InitialScan();
+      if (newTrades.length > 0) {
+        trades.push(...newTrades);
+        log({ event: "NEW_TRADES", detail: newTrades.length + " new trades placed" });
+      }
+    }
   }
 }
 

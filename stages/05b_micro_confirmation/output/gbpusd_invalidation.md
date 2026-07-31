@@ -1,24 +1,26 @@
-# Invalidation Awareness — GBPUSD — 2026-07-29
+# Invalidation Awareness — GBPUSD — 2026-07-31
 
 ## Overall Status: ❌ TRADE INVALID — At least one dimension has failed. Exit or do not enter.
 
 | Dimension | Status | Detail |
 |-----------|--------|--------|
 | PRICE | ⏳ undefined |  |
-| STRUCTURE | ✅ VALID | 4H BOS bearish — structure confirms direction |
-| STRUCTURE | ✅ VALID | 1D bias bearish — HTF confirms |
-| STRUCTURE | ⚠️ WARNING | 1W bias is bullish — MACRO trend opposes trade direction. This may be a pullback, not a reversal. |
+| STRUCTURE | ⏳ MONITOR | 4H structure: bullish with CHoCH |
+| STRUCTURE | ⚠️ WARNING | 1D bias is bearish — HTF may be opposing the trade |
+| STRUCTURE | ⚠️ WARNING | 1W bias is bearish — MACRO trend opposes trade direction. This may be a pullback, not a reversal. |
 | TIME | ⏳ MONITOR | Between killzones — reduced displacement probability |
-| TIME | ⏳ INACTIVE | SB window not active — next: NY PM SB at 17:00 |
-| MODEL | ❌ INVALIDATED | Not in Silver Bullet window — model requires active SB killzone |
+| TIME | ✅ ACTIVE | Silver Bullet window ACTIVE — time-gated models eligible |
+| TIME | ❌ INVALIDATED | Friday PM — close all positions by NY close. No weekend holds. |
+| MODEL | ✅ VALID | SB window active — model conditions met |
 | MODEL | ✅ VALID | OB present + sweep detected — MMXM conditions met |
-| MICRO | ⚠️ WARNING | 15m bias bullish — OPPOSING HTF. This is a pullback. Hold if SL not threatened. |
-| CORRELATION | ✅ VALID | DXY is bullish — confirms USD direction for bearish GBPUSD |
+| CYCLE | ✅ VALID | DISTRIBUTION phase — trend is active. Let winners run. |
+| MICRO | ✅ VALID | 15m bias bullish — aligned with HTF |
+| CORRELATION | ⚠️ WARNING | DXY is bullish, expected bearish — correlation weakening. Reduce size or tighten SL. |
 
 ## Invalidation Summary
 - **Invalidated**: 1 dimension(s) — EXIT OR DO NOT ENTER
-- **Warnings**: 2 — Trade with reduced size and awareness
-- **Confirmed**: 4 checks passed
+- **Warnings**: 3 — Trade with reduced size and awareness
+- **Confirmed**: 5 checks passed
 
 ## If Trade Is Active
 - **EXIT NOW** — the trade thesis is no longer valid.

@@ -1,4 +1,4 @@
-# Session Analysis — NAS100 — 2026-07-29 16:00 UTC
+# Session Analysis — NAS100 — 2026-07-31 18:00 UTC
 
 ## Current Session
 - **Session**: NY PM | Killzone: Inactive
@@ -10,7 +10,7 @@
 |--------|-----|--------|
 | London SB | 08-10 | — |
 | NY AM SB | 13-15 | — |
-| NY PM SB | 17-19 | — |
+| NY PM SB | 17-19 | ✅ |
 
 ## Alignment
 - Bias: **bearish** | Session: NY PM

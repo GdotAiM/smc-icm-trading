@@ -38,9 +38,15 @@ const MACRO_SCHEDULE = [
   // NY AM KZ macros (08:00-11:00)
   { start: { h: 8, m: 0 }, end: { h: 8, m: 20 }, session: "NY AM KZ", name: "NY Open Macro", reliability: 0.7 },
   { start: { h: 8, m: 20 }, end: { h: 8, m: 40 }, session: "NY AM KZ", name: "NY AM Early Macro", reliability: 0.7 },
+  // ICT 2024 Lecture 1: 08:00-08:30 Pre-Market Formation
+  { start: { h: 8, m: 0 }, end: { h: 8, m: 30 }, session: "NY AM KZ", name: "08:00 Pre-Market Formation ⭐", reliability: 0.9 },
+  // ICT 2024 Lecture 4: 08:30 News + NDOG/NWOG Gap Model
+  { start: { h: 8, m: 30 }, end: { h: 8, m: 50 }, session: "NY AM KZ", name: "08:30 News Release Macro ⭐", reliability: 0.9 },
   { start: { h: 8, m: 40 }, end: { h: 9, m: 0 }, session: "NY AM KZ", name: "NY Pre-Data Macro", reliability: 0.8 },
   { start: { h: 9, m: 0 }, end: { h: 9, m: 20 }, session: "NY AM KZ", name: "NY AM Macro #1", reliability: 0.8 },
   { start: { h: 9, m: 20 }, end: { h: 9, m: 40 }, session: "NY AM KZ", name: "NY AM Macro #2", reliability: 0.8 },
+  // ICT 2024 Lecture 4: 09:30 Equity Market Open — A-Plus delivery
+  { start: { h: 9, m: 30 }, end: { h: 9, m: 50 }, session: "NY AM KZ", name: "09:30 Equity Open (A-Plus) ⭐", reliability: 0.9 },
   { start: { h: 9, m: 40 }, end: { h: 10, m: 0 }, session: "NY AM KZ", name: "NY AM Pre-SB Macro", reliability: 0.9 },
   // NY AM SB macros (10:00-11:00 — ICT's "09:50 NY-AM macro" is the entry into this)
   { start: { h: 9, m: 50 }, end: { h: 10, m: 10 }, session: "NY AM SB", name: "09:50 NY-AM Macro ⭐⭐", reliability: 1.0 },

@@ -1,21 +1,21 @@
-# Session Review — EURUSD — 2026-07-29
+# Session Review — EURUSD — 2026-07-31
 
 ## Setup Summary
 | | |
 |---|---|
-| **Direction** | SHORT |
-| **Model** | MMXM Sell Model (2.4/9) |
+| **Direction** | NO TRADE |
+| **Model** | MMXM Sell Model (0/12.6) |
 | **Bias** | 1W bullish → 1D bearish → 4H bullish |
 | **Session** | NY PM  |
-| **Entry** | 1.13895 | SL: 1.14131 | TP1: 1.13610 |
-| **R:R** | 1.21:1 | Meets 1:1 ✓ |
+| **Entry** | 1.15289 | SL: 0.00000 | TP1: 0.00000 |
+| **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment
 ```
 1W  ⚠️ BULLISH
 1D  ✅ BEARISH ← TRADE BIAS
 4H  ⚠️ BULLISH
-1H  ✅ BEARISH
+1H  ⚠️ BULLISH
 ```
 
 ## Decision Quality

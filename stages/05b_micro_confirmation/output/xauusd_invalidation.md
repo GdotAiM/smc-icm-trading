@@ -1,4 +1,4 @@
-# Invalidation Awareness — XAUUSD — 2026-07-30
+# Invalidation Awareness — XAUUSD — 2026-07-31
 
 ## Overall Status: ❌ TRADE INVALID — At least one dimension has failed. Exit or do not enter.
 
@@ -7,17 +7,20 @@
 | PRICE | ⏳ undefined |  |
 | STRUCTURE | ⏳ MONITOR | 4H structure: bullish with CHoCH |
 | STRUCTURE | ⚠️ WARNING | 1D bias is bearish — HTF may be opposing the trade |
-| TIME | ✅ ACTIVE | Killzone active — 1h 0m remaining |
+| STRUCTURE | ⚠️ WARNING | 1W bias is bearish — MACRO trend opposes trade direction. This may be a pullback, not a reversal. |
+| TIME | ⏳ MONITOR | Between killzones — reduced displacement probability |
 | TIME | ✅ ACTIVE | Silver Bullet window ACTIVE — time-gated models eligible |
+| TIME | ❌ INVALIDATED | Friday PM — close all positions by NY close. No weekend holds. |
 | MODEL | ✅ VALID | SB window active — model conditions met |
 | MODEL | ❌ INVALIDATED | No unmitigated OB — MMXM requires HTF POI |
-| MICRO | ⚠️ WARNING | 15m bias bearish — OPPOSING HTF. This is a pullback. Hold if SL not threatened. |
+| CYCLE | ✅ VALID | DISTRIBUTION phase — trend is active. Let winners run. |
+| MICRO | ✅ VALID | 15m bias bullish — aligned with HTF |
 | CORRELATION | ⚠️ WARNING | DXY is bullish, expected bearish — correlation weakening. Reduce size or tighten SL. |
 
 ## Invalidation Summary
-- **Invalidated**: 1 dimension(s) — EXIT OR DO NOT ENTER
+- **Invalidated**: 2 dimension(s) — EXIT OR DO NOT ENTER
 - **Warnings**: 3 — Trade with reduced size and awareness
-- **Confirmed**: 3 checks passed
+- **Confirmed**: 4 checks passed
 
 ## If Trade Is Active
 - **EXIT NOW** — the trade thesis is no longer valid.

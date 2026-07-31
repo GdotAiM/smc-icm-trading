@@ -173,6 +173,109 @@ Examples of NOT allowed without asking:
 - Altering the signal conflict filter thresholds
 - Adding/removing trading pairs
 
+## System Coherence — Weighted Bias + Inducement Gate (Jul 31)
+
+The system now grounds every decision in TIME + PRICE through a coherent top-to-bottom stack:
+
+### Authority Chain
+```
+TIME → Killzone active? NO → session multiplier ×0.4-0.5, monitor only
+PRICE → Weighted Bias (6 sources, timeframe-weighted vote)
+GATE → Inducement swept? NO → all models suppressed, skip scoring
+MODELS → Scored with direction from weighted bias, not model names
+COHERENCE → Single unified score, worst dimension wins (INVALIDATED = 0)
+EXECUTION → Entry only after all gates clear
+```
+
+### Weighted Bias System
+6 sources vote bullish/bearish with timeframe-based weights:
+| Source | Weight | Rationale |
+|--------|--------|-----------|
+| 1W | 3.0 | Highest timeframe — structural trend |
+| 1D | 2.5 | The daily anchor |
+| 4H | 2.0 | Intraday confirmation |
+| Weekly Profile | 1.5 | Multi-TF computed alignment |
+| One Trade Setup | 1.0 | Daily bias computation |
+| 1H | 0.5 | Entry context refinement |
+
+Direction = weighted majority. Confidence = winning weight / total weight. No "neutral" — bias is always binary with confidence %.
+
+### ICT Coherence Audit (Jul 31)
+Full audit at `shared/AUDIT_ICT_COHERENCE.md`. 10 gaps identified and closed:
+1. ✅ Weighted bias (replaced 3 competing authorities)
+2. ✅ Lecture time gates (self-suppress outside windows)
+3. ✅ Inducement before scoring (gate checked FIRST)
+4. ✅ Higher TF veto (opposing models ×0.3)
+5. ✅ Single coherence score (worst dimension wins)
+6. ✅ Killzone authority (session multiplier ×0.4-1.0)
+7. ✅ Direction from price (1D bias, not model name)
+8. ✅ Dominant liquidity metric (BSL vs SSL power)
+9. ✅ Daily open anchor (intraday price zone reference)
+10. ✅ IPDA cascade in confidence (fractal delivery alignment)
+
+## ICT 2024 Lecture Models — Time-Based Entry Pipeline (Jul 31)
+
+Three ICT 2024 mentorship lectures are wired into the pipeline as automated setup detectors. Each fires at a specific NY time window with its own catalyst, entry logic, and SL/TP rules.
+
+### Time Window Map
+
+```
+07:00 ─── Lecture 2: London Hunt + IFVG ─────── 07:00–07:40 NY
+08:00 ─── Lecture 1: Formation window ───────── 08:00–08:30 NY
+08:30 ─── Lecture 1: Post-08:30 raid + PD array  \
+08:30 ─── Lecture 4: News gap draw model ──────── /  08:30–10:00 NY
+09:30 ─── Lecture 4: A-Plus equity open
+```
+
+### Lecture 2 — 07:00 AM London Hunt + IFVG (`tools/tv-mcp/lecture2_setup.cjs`)
+- **Catalyst**: Time-based — relative equal highs/lows forming after 07:00 AM
+- **Hunt**: Sweep of those levels on 5m/1m
+- **Confirmation**: Mandatory MSS (close beyond prior swing)
+- **Entry**: First FVG before the hunt → IFVG at CE (50% midpoint); breaker block backup
+- **SL**: Post-hunt swing extreme + ATR buffer
+- **TP**: Fib -2.0/-2.5 extensions (post-hunt swing → 07:00 AM open)
+- **Filter**: 30-min reversal windows at 07:00/08:00/09:00
+- **Model #15**: "London Hunt + IFVG" — MANIPULATION phase (1.5×), DISTRIBUTION (1.0×)
+
+### Lecture 1 — 08:30 AM Liquidity Raid Model (`tools/tv-mcp/lecture1_setup.cjs`)
+- **Catalyst**: Post-08:30 AM liquidity raid of pre-08:30 relative equal levels
+- **Setup**: Levels must FORM in the 08:00–08:30 window
+- **Confirmation**: Mandatory MSS on 1m
+- **Entry**: First-tagged of 3 PD arrays: OB + SIBI/BISI (FVG) + Breaker Block
+- **SL**: Beyond ENTIRE post-08:30 AM range (high for shorts, low for longs)
+- **TP**: Opposite relative equal levels or previous session high/low
+- **Context**: 15m parent chart bias + draw-on-liquidity targets
+- **Model #17**: "08:30 Liquidity Raid Model" — MANIPULATION (1.5×), DISTRIBUTION (1.3×)
+
+### Lecture 4 — 08:30 News + NDOG/NWOG Gap Model (`tools/tv-mcp/lecture4_setup.cjs`)
+- **Catalyst**: Economic news release / NDOG-NWOG gap clusters as draw
+- **Gaps**: NDOG/NWOG with Quarters Fibonacci (0/0.25/0.50/0.75/1.0)
+- **Gap substitute**: Nearest FVG when no NDOG/NWOG exists
+- **Confirmation**: Mandatory MSS at gap cluster
+- **Entry**: Breaker block or FVG CE near the gap
+- **SL**: Post-MSS swing + buffer
+- **TP**: Opposite gap cluster, prior session high/low
+- **Signal**: 0.25 quarter tap → gap won't fill on this leg → reduce TP
+- **A-Plus**: 09:30 equity market open secondary delivery window
+- **Model #16**: "NDOG/NWOG News Model" — DISTRIBUTION (1.5×), MANIPULATION (1.3×)
+
+### Shared Architecture
+All three modules import shared helpers from `lecture2_setup.cjs`:
+`findSwings`, `findRelativeEqualLevels`, `confirmMSS`, `detectBreakerBlock`, `detectIFVG`, `check30MinReversal`, `calcATR`, `filterAfterUTCHour`, `findFirstCandleAtUTCHour`
+
+Lecture 4 additionally imports from `lecture2_setup.cjs` for gap-based detection.
+Lecture 1 additionally reads SMC engine reports for order blocks and FVGs.
+
+### Macro Times Added (`tools/tv-mcp/macro_times.cjs`)
+- 08:00–08:30: Pre-Market Formation ⭐ (0.9) — Lecture 1
+- 08:30–08:50: News Release Macro ⭐ (0.9) — Lectures 1 + 4
+- 09:30–09:50: Equity Open A-Plus ⭐ (0.9) — Lecture 4
+
+### Verification
+All three lecture sections appear in `run_pair.cjs` output. Models scored in Stage 04.
+Stage 05 overrides entry/SL/TP when a lecture setup is primary. Entry plan markdown
+shows active overrides or monitoring status for each lecture.
+
 ## ICT News Trading (Jul 29 — Fed Day Proven)
 
 We trade high-impact news using ICT One Shot One Kill framework:

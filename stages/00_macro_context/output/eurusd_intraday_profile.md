@@ -1,8 +1,8 @@
-# ICT Intraday Profile — EURUSD — 2026-07-29
+# ICT Intraday Profile — EURUSD — 2026-07-31
 
 ## Profile: **SELL PROFILE** (VALID)
 
-**SELL PROFILE — DELAYED (move arriving after 02:00 NY — London open). Enter at premium after 5m MSS.**
+**SELL PROFILE — DELAYED (move arriving after 02:00 NY — London open).  Enter at premium after 5m MSS.**
 
 ## Key Levels
 

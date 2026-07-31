@@ -1,31 +1,31 @@
-# Session Review — XAUUSD — 2026-07-30
+# Session Review — XAUUSD — 2026-07-31
 
 ## Setup Summary
 | | |
 |---|---|
-| **Direction** | SHORT |
-| **Model** | MMXM Sell Model (3.4/12.6) |
-| **Bias** | 1W bullish → 1D bearish → 4H bullish |
-| **Session** | London (Killzone ✅) |
-| **Entry** | 4035.66 | SL: 4134.47 | TP1: 3936.84 |
+| **Direction** | NO TRADE |
+| **Model** | Silver Bullet (16.2/9.9) |
+| **Bias** | 1W bearish → 1D bearish → 4H bullish |
+| **Session** | NY PM  |
+| **Entry** | 4051.87 | SL: 0.00 | TP1: 0.00 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment
 ```
-1W  ⚠️ BULLISH
+1W  ✅ BEARISH
 1D  ✅ BEARISH ← TRADE BIAS
 4H  ⚠️ BULLISH
-1H  ⚠️ BULLISH
+1H  ✅ BEARISH
 ```
 
 ## Decision Quality
 | Decision | Rating (1-5) |
 |----------|-------------|
-| HTF Bias | 3 |
+| HTF Bias | 4 |
 | Levels | 4 |
-| Model | 3 |
+| Model | 4 |
 | R:R | 4 |
-| **Overall** | **3.50/5** |
+| **Overall** | **4.00/5** |
 
 ## Confluence Check
 - DXY correlation: EURUSD + GBPUSD both bearish → DXY should be bullish

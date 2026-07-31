@@ -1,4 +1,4 @@
-# Fractal MMXM Coherence — XAUUSD — 2026-07-30
+# Fractal MMXM Coherence — XAUUSD — 2026-07-31
 
 ## HTF Direction: **BULLISH**
 
@@ -6,13 +6,13 @@
 
 | TF | Step | Label | Confidence | Narrative |
 |----|------|-------|------------|-----------|
-| 1W | **2** | MANIPULATION | 0.85 | Sweep (BSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
-| 1D | **3** | DISTRIBUTION | 0.80 | BOS bearish confirmed. 1 FVG(s). Displacement: weak (0.45x). Trend is distributing. |
-| 4H | **2** | MANIPULATION | 0.85 | Sweep (SSL,BSL,SSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
+| 1W | **2** | MANIPULATION | 0.85 | Sweep (BSL,SSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
+| 1D | **3** | DISTRIBUTION | 0.80 | BOS bearish confirmed. 1 FVG(s). Displacement: weak (0.61x). Trend is distributing. |
+| 4H | **2** | MANIPULATION | 0.85 | Sweep (SSL,SSL,BSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
 | 1H | **4** | RE-ACCUMULATION | 0.65 | Price returning to OB/FVG zone. Building base before next expansion. 4 prior sweep(s). |
-| 15m | **2** | MANIPULATION | 0.85 | Sweep (SSL,BSL,BSL,SSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
-| 5m | **3** | DISTRIBUTION | 0.80 | BOS bearish confirmed. 1 FVG(s). Displacement: weak (0.44x). Trend is distributing. |
-| 1m | **2** | MANIPULATION | 0.85 | Sweep (BSL,BSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
+| 15m | **2** | MANIPULATION | 0.85 | Sweep (SSL,SSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
+| 5m | **3** | DISTRIBUTION | 0.60 | BOS bullish detected. Distribution beginning. Waiting for displacement confirmation. |
+| 1m | **2** | MANIPULATION | 0.85 | Sweep (BSL,SSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
 
 ## Fractal Nesting Check (6 pairs)
 
@@ -27,17 +27,17 @@
 
 ## 1m Inversion Detection
 
-**Score**: 6/8
+**Score**: 4/8
 
 | Signal | Status |
 |--------|--------|
 | CHoCH on 1m | ✅ |
 | Recent sweep on 1m | ✅ |
-| 1m bias aligned with HTF (bullish) | ✅ |
+| 1m bias aligned with HTF (bullish) | ✗ |
 | Entry FVG on 1m | ✗ |
 | Strong displacement | ✗ |
 
-**✅ 1m INVERSION DETECTED — CHoCH + sweep + FVG aligned with HTF bullish. This is the entry sentence within the larger MMXM story.**
+**⏳ 1m Inversion BUILDING — 4/8 signals. CHoCH ✓. Sweep ✓.**
 
 ## 5m CISD (Change in State of Delivery)
 
@@ -55,14 +55,14 @@
 | 2 | Liquidity Sweep | ✅ | Sweep detected on 1H |
 | 3 | MSS / CHoCH | ✅ | 5m event: BOS |
 | 4 | CISD (Engulfing) | ✗ | Insufficient candle data |
-| 5 | FVG Creation | ✅ | 5m: 1 FVGs, 1m: 4 FVGs |
+| 5 | FVG Creation | ✗ | 5m: 0 FVGs, 1m: 0 FVGs |
 | 6 | HTF PD Array | ✅ | HTF at Step 3 — PD Array context active |
 
-**Passed**: 4/6
+**Passed**: 3/6
 
-## Fractal Coherence Score: **12/20**
+## Fractal Coherence Score: **10/20**
 
-**✅ HIGH fractal coherence — nesting mostly intact. 1m Inversion building. Near entry.**
+**⏳ MODERATE fractal coherence — some nesting gaps. Wait for tighter alignment.**
 
 ---
 

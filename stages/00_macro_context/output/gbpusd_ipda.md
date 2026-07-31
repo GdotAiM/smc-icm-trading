@@ -1,4 +1,4 @@
-# IPDA Dealing Range Analysis — GBPUSD — 2026-07-29
+# IPDA Dealing Range Analysis — GBPUSD — 2026-07-31
 
 ## Nested Dealing Ranges (Macro → Micro)
 
@@ -51,3 +51,18 @@ Daily range: PREMIUM (sell) at 51.22% of range. MANIPULATION ZONE — Price near
 ---
 
 *"The IPDA doesn't move randomly. It delivers price from one dealing range extreme to the other, hunting liquidity at every equilibrium checkpoint along the way."*
+
+## False Breakout Detection
+**Below 20-day low — monitoring for reversal**
+Price below 20-day low @ 1.32122. If it reverses back above → false breakout confirmed.
+
+## Kill Zone Alignment
+⏳ NY PM active (weight: 1) — lower conviction. Prefer London KZ, NY AM KZ, or NY PM KZ.
+- Active Zone: NY PM (weight: 1)
+
+## IPDA Objective: REBALANCE (post-hunt)
+Liquidity swept (8 pools). 3 unfilled FVGs remain — IPDA now rebalancing imbalances. Price drawing toward unfilled FVGs.
+- Unfilled FVGs: 3 | Swept Pools: 8 | Unswept: 4
+
+## Weekly Reference Levels (Marked 2026-07-31)
+20-Day: H 1.35582 L 1.32122 EQ 1.33852 | 40-Day: H 1.35582 L 1.31402 EQ 1.33492 | 60-Day: H 1.36536 L 1.31402 EQ 1.33969

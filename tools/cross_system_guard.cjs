@@ -209,10 +209,12 @@ if (dayNum === 5) {
   guards.push({
     id: "FRIDAY",
     severity: "HIGH",
-    blocked: true,
-    entryAllowed: false,
-    narrative: "📅 FRIDAY — No new swing trades. Close all positions by NY close. Position squaring distorts signals.",
-    action: "NO NEW SWING TRADES — Scalps only, close all by 16:00.",
+    blocked: false,           // Don't hard-block — Silver Bullet scalps are allowed
+    entryAllowed: true,       // Scalping models (SB, lecture setups) can still fire
+    narrative: "📅 FRIDAY — No swing trades. Scalps only (Silver Bullet, lecture setups). Close all by NY close. Size ×0.5.",
+    action: "SCALPS ONLY — Silver Bullet + time-based lecture setups allowed at 50% size. Close all by 16:00 NY.",
+    sizeMultiplier: 0.5,      // Half size for all Friday trades
+    confidenceAdjustment: -10, // Higher bar for entry
   });
 }
 

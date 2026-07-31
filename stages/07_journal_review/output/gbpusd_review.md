@@ -1,31 +1,31 @@
-# Session Review — GBPUSD — 2026-07-29
+# Session Review — GBPUSD — 2026-07-31
 
 ## Setup Summary
 | | |
 |---|---|
-| **Direction** | SHORT |
-| **Model** | Breaker Block (3.1/9.1) |
-| **Bias** | 1W bullish → 1D bearish → 4H bearish |
+| **Direction** | NO TRADE |
+| **Model** | MMXM Sell Model (0/12.6) |
+| **Bias** | 1W bearish → 1D bearish → 4H bullish |
 | **Session** | NY PM  |
-| **Entry** | 1.33036 | SL: 1.33169 | TP1: 1.32903 |
+| **Entry** | 1.34758 | SL: 0.00000 | TP1: 0.00000 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment
 ```
-1W  ⚠️ BULLISH
+1W  ✅ BEARISH
 1D  ✅ BEARISH ← TRADE BIAS
-4H  ✅ BEARISH
+4H  ⚠️ BULLISH
 1H  ⚠️ BULLISH
 ```
 
 ## Decision Quality
 | Decision | Rating (1-5) |
 |----------|-------------|
-| HTF Bias | 3 |
+| HTF Bias | 4 |
 | Levels | 4 |
 | Model | 3 |
 | R:R | 4 |
-| **Overall** | **3.50/5** |
+| **Overall** | **3.75/5** |
 
 ## Confluence Check
 - DXY correlation: EURUSD + GBPUSD both bearish → DXY should be bullish

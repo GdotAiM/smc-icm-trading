@@ -1,20 +1,20 @@
-# Macro-Micro Coherence — XAUUSD — 2026-07-30
+# Macro-Micro Coherence — XAUUSD — 2026-07-31
 
-## Coherence Score: **9/10** (raw) → **10/10** (session-adjusted)
+## Coherence Score: **11/10** (raw) → **10/10** (session-adjusted)
 
-> Session: **London PM / Pre-NY** (×1.1) | Killzone: ✅ London PM / Pre-NY Killzone | Silver Bullet: Inactive
-> Standard session — European distribution, trend building
-> Best entry TF for London PM / Pre-NY: **15m**
+> Session: **NY PM Session** (×1) | Killzone: ✅ NY PM Session Killzone | Silver Bullet: ✅ NY PM Silver Bullet
+> Standard session — Afternoon continuation / reversal
+> Best entry TF for NY PM Session: **5m**
 
 | Component | Score | Detail |
 |-----------|-------|--------|
-| Bias alignment | 1/3 | 1/3 (✗ ✗ ✓) |
-| Structure | 1/2 | 1/2 (15m:CHoCH bearish, 5m:BOS bearish) |
-| Displacement | 0/2 | 0/2 (5m:weak 0.4362947658402466x, 1m:weak 0.15539494062978532x) |
-| Manipulation | 2/2 | 2/2 (15m sweep:true SSL,BSL,BSL,SSL, 5m:true SSL,SSL,BSL,BSL) |
-| Trigger readiness | 0/1 | 0/1 (5m FVG:false, 1m CHoCH:true) |
-| Liquidity | 5/3 | 5/3 — 5m draw aligns with HTF bias; Recent sweep detected — manipulation active (0 on 15m, 1 on 5m); Engineered liquidity (EQH/EQL) — higher probability draw |
-| **Session Adj** | ×1.1 | London PM / Pre-NY reliability multiplier |
+| Bias alignment | 2/3 | 2/3 (✓ ✓ ✗) |
+| Structure | 2/2 | 2/2 (15m:CHoCH bullish, 5m:BOS bullish) |
+| Displacement | 1/2 | 1/2 (5m:weak 0.25733226195258013x, 1m:weak 0.41718946047673044x) |
+| Manipulation | 2/2 | 2/2 (15m sweep:true SSL,SSL, 5m:false none) |
+| Trigger readiness | 0/1 | 0/1 (5m FVG:false, 1m CHoCH:false) |
+| Liquidity | 4/3 | 4/3 — 5m draw aligns with HTF bias; 15m draw confirms; Engineered liquidity (EQH/EQL) — higher probability draw |
+| **Session Adj** | ×1 | NY PM Session reliability multiplier |
 
 ## Go/No-Go Decision
 
@@ -30,6 +30,6 @@
 
 ## Macro-Micro Relationship
 
-- **Macro says**: UNKNOWN phase, HTF BULLISH, MMXM Step 0
-- **Micro says**: 15m bearish, 5m bearish, 1m bullish
+- **Macro says**: DISTRIBUTION phase, HTF BULLISH, MMXM Step 3
+- **Micro says**: 15m bullish, 5m bullish, 1m bearish
 - **Interpretation**: LTF confirms HTF — bullish trend is intact on lower timeframes. Entry signal is valid.

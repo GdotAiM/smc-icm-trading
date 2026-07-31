@@ -1,4 +1,4 @@
-# ICT Intraday Profile — GBPUSD — 2026-07-29
+# ICT Intraday Profile — GBPUSD — 2026-07-31
 
 ## Profile: **DEGRADED** (INVALID)
 

@@ -164,16 +164,32 @@ function classifyProfile(dailyBias, cbdr, asianRange, inJudas) {
   }
 
   const profileType = dailyBias === "bearish" ? "SELL PROFILE" : "BUY PROFILE";
+
+  // Judas Swing SD validation — protraction must stay within 2-3σ of CBDR
+  let sdValid = true, sdNote = "";
+  if (sdProj && cbdr) {
+    const cbdrMid = (cbdr.high + cbdr.low) / 2;
+    const protractionPips = dailyBias === "bearish"
+      ? Math.abs((cbdr.high) - cbdrMid) * 10000  // How far above CBDR?
+      : Math.abs((cbdr.low) - cbdrMid) * 10000;
+    const sd2Limit = Math.abs(sdProj.sd2_upper - cbdrMid) * 10000;
+    if (protractionPips > sd2Limit * 1.5) {
+      sdValid = false;
+      sdNote = `⚠️ Judas Swing protraction (${Math.round(protractionPips)} pips) exceeds 2-3σ limit (${Math.round(sd2Limit)} pips). Profile reliability reduced.`;
+    }
+  }
+
   const protraction = inJudas ? "NORMAL (move arriving during Judas window 00:00-02:00 NY)" :
                       NY_HOUR >= 2 ? "DELAYED (move arriving after 02:00 NY — London open)" : "PENDING (waiting for protraction)";
 
   return {
     type: profileType,
-    valid: true,
+    valid: sdValid,
     protraction,
+    sdValid, sdNote,
     entryZone: profileType === "SELL PROFILE" ? "PREMIUM (above equilibrium)" : "DISCOUNT (below equilibrium)",
     stopLoss: protraction.includes("NORMAL") ? "London session high (shorts) / London session low (longs)" : "Dealing range high (shorts) / Dealing range low (longs)",
-    narrative: `${profileType} — ${protraction}. Enter at ${profileType === 'SELL PROFILE' ? 'premium' : 'discount'} after 5m MSS.`,
+    narrative: `${profileType} — ${protraction}. ${sdNote} Enter at ${profileType === 'SELL PROFILE' ? 'premium' : 'discount'} after 5m MSS.`,
   };
 }
 

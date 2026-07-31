@@ -1,6 +1,6 @@
 # Cycle-Aware Model Filter — 2026-07-31
 
-## Active Cycle: **DISTRIBUTION** — Day: **Friday** — Session: **London PM / Pre-NY**
+## Active Cycle: **DISTRIBUTION** — Day: **Friday** — Session: **NY AM Killzone**
 
 ## Full Model Matrix
 
@@ -37,4 +37,4 @@
 - **If Step 4**: Manage existing positions or wait for next cycle
 
 ## Session Override
-- **London PM / Pre-NY Session** → Standard session
+- **NY AM Killzone Session** → Standard session

@@ -298,6 +298,222 @@ md += `
 *"The IPDA doesn't move randomly. It delivers price from one dealing range extreme to the other, hunting liquidity at every equilibrium checkpoint along the way."*
 `;
 
+// ═══════════════════════════════════════════════════════════════════
+// IPDA FALSE BREAKOUT DETECTION — 20-Day Extreme Stop Hunt
+// ICT: "When price creates a new 20-day high/low, the IPDA typically
+// takes liquidity there before reversing toward the 40/60-day level."
+// ═══════════════════════════════════════════════════════════════════
+
+function detectFalseBreakout(nested, reports) {
+  const dailyRange = nested["1D"];
+  if (!dailyRange) return null;
+
+  const ipda20 = dailyRange.ranges["IPDA20"];
+  const ipda40 = dailyRange.ranges["IPDA40"];
+  const ipda60 = dailyRange.ranges["IPDA60"];
+  if (!ipda20) return null;
+
+  const currentPrice = parseFloat(ipda20.currentPrice || 0);
+  const dHigh = parseFloat(ipda20.high);
+  const dLow = parseFloat(ipda20.low);
+  const r1h = reports["1H"];
+  const r4h = reports["4H"];
+
+  // Check if price recently broke the 20-day high or low
+  const recentSweeps = (r1h?.liquidity || []).concat(r4h?.liquidity || []).filter(p => p.swept);
+  const highSwept = recentSweeps.some(p => p.type === "BSL" && p.price >= dHigh * 0.998);
+  const lowSwept = recentSweeps.some(p => p.type === "SSL" && p.price <= dLow * 1.002);
+
+  // Was it a false breakout? Price breaks the extreme, then reverses back inside
+  const brokeHigh = currentPrice > dHigh;
+  const brokeLow = currentPrice < dLow;
+  const backInsideHigh = highSwept && currentPrice < dHigh;
+  const backInsideLow = lowSwept && currentPrice > dLow;
+
+  // Target: if false breakout above → target 40/60-day LOW (bearish reversal)
+  //         if false breakout below → target 40/60-day HIGH (bullish reversal)
+  let falseBreakout = null;
+  if (backInsideHigh) {
+    const target40 = ipda40 ? parseFloat(ipda40.low) : null;
+    const target60 = ipda60 ? parseFloat(ipda60.low) : null;
+    falseBreakout = {
+      detected: true,
+      type: "BULL TRAP (20-day HIGH swept → reversal DOWN)",
+      direction: "BEARISH",
+      sweptLevel: dHigh,
+      target40: target40, target60: target60,
+      detail: `⚠️ FALSE BREAKOUT: 20-day high @ ${dHigh} swept, price reversed back inside. IPDA stop-hunt before bearish reversal. Target: 40-day low @ ${target40 || '?'} / 60-day low @ ${target60 || '?'}.`,
+    };
+  } else if (backInsideLow) {
+    const target40 = ipda40 ? parseFloat(ipda40.high) : null;
+    const target60 = ipda60 ? parseFloat(ipda60.high) : null;
+    falseBreakout = {
+      detected: true,
+      type: "BEAR TRAP (20-day LOW swept → reversal UP)",
+      direction: "BULLISH",
+      sweptLevel: dLow,
+      target40: target40, target60: target60,
+      detail: `⚠️ FALSE BREAKOUT: 20-day low @ ${dLow} swept, price reversed back inside. IPDA stop-hunt before bullish reversal. Target: 40-day high @ ${target40 || '?'} / 60-day high @ ${target60 || '?'}.`,
+    };
+  } else if (brokeHigh || brokeLow) {
+    falseBreakout = {
+      detected: false,
+      type: brokeHigh ? "Above 20-day high — monitoring for reversal" : "Below 20-day low — monitoring for reversal",
+      detail: brokeHigh
+        ? `Price above 20-day high @ ${dHigh}. If it reverses back below → false breakout confirmed.`
+        : `Price below 20-day low @ ${dLow}. If it reverses back above → false breakout confirmed.`,
+    };
+  }
+
+  return falseBreakout || { detected: false, detail: "Price within 20-day range — no false breakout." };
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// IPDA KILL ZONE ALIGNMENT
+// ICT: IPDA reversals "typically print inside the London open, NY AM,
+// or NY PM kill zones."
+// ═══════════════════════════════════════════════════════════════════
+
+function getKillZoneAlignment() {
+  const utcHour = new Date().getUTCHours();
+  const utcMin = new Date().getUTCMinutes();
+
+  // Kill zone windows in UTC (EDT = UTC-4)
+  const zones = {
+    asia:       { start: 0, end: 2, label: "Asia", weight: 0.5 },
+    londonKZ:   { start: 6, end: 10, label: "London KZ", weight: 1.2 },
+    londonSB:   { start: 7, end: 8, label: "London SB", weight: 1.5 },
+    nyAMKZ:     { start: 12, end: 15, label: "NY AM KZ", weight: 1.3 },
+    nyAMSB:     { start: 14, end: 15, label: "NY AM SB", weight: 1.5 },
+    nyLunch:    { start: 15, end: 17, label: "NY Lunch", weight: 0.4 },
+    nyPM:       { start: 17, end: 20, label: "NY PM", weight: 1.0 },
+    nyPMSB:     { start: 18, end: 19, label: "NY PM SB", weight: 1.2 },
+  };
+
+  let activeZone = null;
+  for (const [key, z] of Object.entries(zones)) {
+    const startMins = z.start * 60;
+    const endMins = z.end * 60;
+    const currentMins = utcHour * 60 + utcMin;
+    if (currentMins >= startMins && currentMins < endMins) {
+      activeZone = { id: key, ...z };
+      break;
+    }
+  }
+
+  if (!activeZone) return { inKillZone: false, detail: "Outside kill zone windows — IPDA reversal probability lower." };
+
+  const isHighConviction = activeZone.weight >= 1.2;
+  return {
+    inKillZone: true,
+    activeZone,
+    isHighConviction,
+    detail: isHighConviction
+      ? `✅ ${activeZone.label} active (weight: ${activeZone.weight}) — HIGH conviction for IPDA reversals.`
+      : `⏳ ${activeZone.label} active (weight: ${activeZone.weight}) — lower conviction. Prefer London KZ, NY AM KZ, or NY PM KZ.`,
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// IPDA OBJECTIVE DETECTION — Rebalance vs Hunt
+// ICT: The IPDA has exactly two objectives:
+//   1. Balance an imbalance (fill FVGs)
+//   2. Hunt liquidity (sweep BSL/SSL at extremes)
+// ═══════════════════════════════════════════════════════════════════
+
+function detectIPDAObjective(reports, nested) {
+  const r4h = reports["4H"];
+  const r1h = reports["1H"];
+  if (!r4h) return { objective: "UNKNOWN", detail: "Insufficient data" };
+
+  // Check for unfilled FVGs (imbalance to rebalance)
+  const unfilledFvgs = (r4h.fvgs || []).concat(r1h?.fvgs || []).filter(f => (f.fillFraction || 0) < 0.3);
+  const partiallyFilled = (r4h.fvgs || []).concat(r1h?.fvgs || []).filter(f => (f.fillFraction || 0) >= 0.3 && (f.fillFraction || 0) < 0.7);
+
+  // Check for swept liquidity pools (hunt completed or in progress)
+  const sweptPools = (r4h.liquidity || []).concat(r1h?.liquidity || []).filter(p => p.swept);
+  const unsweptPools = (r4h.liquidity || []).concat(r1h?.liquidity || []).filter(p => !p.swept);
+
+  // Determine primary objective
+  let objective, detail;
+  if (sweptPools.length > unsweptPools.length && unfilledFvgs.length > 0) {
+    objective = "REBALANCE (post-hunt)";
+    detail = `Liquidity swept (${sweptPools.length} pools). ${unfilledFvgs.length} unfilled FVGs remain — IPDA now rebalancing imbalances. Price drawing toward unfilled FVGs.`;
+  } else if (unsweptPools.length > sweptPools.length && unsweptPools.length > 3) {
+    objective = "HUNT LIQUIDITY";
+    detail = `${unsweptPools.length} unswept pools vs ${sweptPools.length} swept. IPDA hunting liquidity — expect sweep of nearest BSL/SSL before rebalancing.`;
+  } else if (unfilledFvgs.length > partiallyFilled.length) {
+    objective = "REBALANCE";
+    detail = `${unfilledFvgs.length} unfilled FVGs — IPDA rebalancing imbalances. Price will seek to fill these gaps.`;
+  } else if (sweptPools.length > 0 && unfilledFvgs.length === 0) {
+    objective = "POST-HUNT TRANSITION";
+    detail = `All FVGs filled, ${sweptPools.length} pools swept. IPDA in transition — awaiting next objective.`;
+  } else {
+    objective = "EQUILIBRIUM";
+    detail = "No clear dominant objective. IPDA balanced — wait for displacement to reveal next move.";
+  }
+
+  return { objective, unfilledFvgs: unfilledFvgs.length, sweptPools: sweptPools.length, unsweptPools: unsweptPools.length, detail };
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// WEEKLY IPDA REFERENCE LEVELS
+// ICT: "Mark the three levels at the start of every week."
+// ═══════════════════════════════════════════════════════════════════
+
+function getWeeklyReferenceLevels(nested) {
+  const dailyRange = nested["1D"];
+  if (!dailyRange) return null;
+
+  const ipda20 = dailyRange.ranges["IPDA20"];
+  const ipda40 = dailyRange.ranges["IPDA40"];
+  const ipda60 = dailyRange.ranges["IPDA60"];
+  if (!ipda20) return null;
+
+  return {
+    twentyDay: { high: parseFloat(ipda20.high), low: parseFloat(ipda20.low), eq: parseFloat(ipda20.equilibrium) },
+    fortyDay: ipda40 ? { high: parseFloat(ipda40.high), low: parseFloat(ipda40.low), eq: parseFloat(ipda40.equilibrium) } : null,
+    sixtyDay: ipda60 ? { high: parseFloat(ipda60.high), low: parseFloat(ipda60.low), eq: parseFloat(ipda60.equilibrium) } : null,
+    marked: new Date().toISOString().split("T")[0],
+    detail: [
+      `20-Day: H ${ipda20.high} L ${ipda20.low} EQ ${ipda20.equilibrium}`,
+      ipda40 ? `40-Day: H ${ipda40.high} L ${ipda40.low} EQ ${ipda40.equilibrium}` : '',
+      ipda60 ? `60-Day: H ${ipda60.high} L ${ipda60.low} EQ ${ipda60.equilibrium}` : '',
+    ].filter(Boolean).join(" | "),
+  };
+}
+
+// ═══ Compute new sections ═══
+const falseBreakout = detectFalseBreakout(nested, { "1H": loadEngine("1h"), "4H": loadEngine("4h") });
+const killZone = getKillZoneAlignment();
+const ipdaObjective = detectIPDAObjective(
+  { "4H": loadEngine("4h"), "1H": loadEngine("1h") },
+  nested
+);
+const weeklyRefs = getWeeklyReferenceLevels(nested);
+
+// Append to markdown
+md += `\n## False Breakout Detection\n`;
+md += `**${falseBreakout?.type || 'None'}**\n`;
+md += `${falseBreakout?.detail || 'No false breakout detected.'}\n`;
+if (falseBreakout?.detected) {
+  md += `- Direction: ${falseBreakout.direction}\n`;
+  md += `- Target: 40-day @ ${r5(falseBreakout.target40 || 0)} / 60-day @ ${r5(falseBreakout.target60 || 0)}\n`;
+}
+
+md += `\n## Kill Zone Alignment\n`;
+md += `${killZone.detail}\n`;
+if (killZone.inKillZone) {
+  md += `- Active Zone: ${killZone.activeZone?.label} (weight: ${killZone.activeZone?.weight})\n`;
+}
+
+md += `\n## IPDA Objective: ${ipdaObjective.objective}\n`;
+md += `${ipdaObjective.detail}\n`;
+md += `- Unfilled FVGs: ${ipdaObjective.unfilledFvgs} | Swept Pools: ${ipdaObjective.sweptPools} | Unswept: ${ipdaObjective.unsweptPools}\n`;
+
+md += `\n## Weekly Reference Levels (Marked ${weeklyRefs?.marked || 'today'})\n`;
+md += `${weeklyRefs?.detail || 'N/A'}\n`;
+
 fs.writeFileSync(path.join(outDir, `${PAIR.toLowerCase()}_ipda.md`), md, "utf8");
 
 console.log(JSON.stringify({
@@ -307,4 +523,8 @@ console.log(JSON.stringify({
   draw: { direction: draw.drawDirection, consensus: draw.zoneConsensus, strength: draw.consensusStrength },
   amd: { position: amd.amdPosition, eq: amd.equilibrium },
   quarterly: { shift: quarterly.inShiftWindow },
+  falseBreakout: falseBreakout?.detected ? { type: falseBreakout.type, direction: falseBreakout.direction, target40: falseBreakout.target40, target60: falseBreakout.target60 } : null,
+  killZone: { inKillZone: killZone.inKillZone, active: killZone.activeZone?.label || null, highConviction: killZone.isHighConviction },
+  objective: { primary: ipdaObjective.objective, unfilledFvgs: ipdaObjective.unfilledFvgs, sweptPools: ipdaObjective.sweptPools },
+  weeklyRefs: weeklyRefs ? { twentyDay: weeklyRefs.twentyDay, fortyDay: weeklyRefs.fortyDay, sixtyDay: weeklyRefs.sixtyDay } : null,
 }, null, 2));

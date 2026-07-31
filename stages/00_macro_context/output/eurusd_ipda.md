@@ -1,4 +1,4 @@
-# IPDA Dealing Range Analysis — EURUSD — 2026-07-29
+# IPDA Dealing Range Analysis — EURUSD — 2026-07-31
 
 ## Nested Dealing Ranges (Macro → Micro)
 
@@ -51,3 +51,20 @@ Daily range: DISCOUNT (buy) at 13.52% of range. ACCUMULATION ZONE — Price at r
 ---
 
 *"The IPDA doesn't move randomly. It delivers price from one dealing range extreme to the other, hunting liquidity at every equilibrium checkpoint along the way."*
+
+## False Breakout Detection
+**BULL TRAP (20-day HIGH swept → reversal DOWN)**
+⚠️ FALSE BREAKOUT: 20-day high @ 1.14824 swept, price reversed back inside. IPDA stop-hunt before bearish reversal. Target: 40-day low @ 1.13246 / 60-day low @ 1.13246.
+- Direction: BEARISH
+- Target: 40-day @ 1.13246 / 60-day @ 1.13246
+
+## Kill Zone Alignment
+⏳ NY PM active (weight: 1) — lower conviction. Prefer London KZ, NY AM KZ, or NY PM KZ.
+- Active Zone: NY PM (weight: 1)
+
+## IPDA Objective: REBALANCE (post-hunt)
+Liquidity swept (8 pools). 2 unfilled FVGs remain — IPDA now rebalancing imbalances. Price drawing toward unfilled FVGs.
+- Unfilled FVGs: 2 | Swept Pools: 8 | Unswept: 4
+
+## Weekly Reference Levels (Marked 2026-07-31)
+20-Day: H 1.14824 L 1.13618 EQ 1.14221 | 40-Day: H 1.16648 L 1.13246 EQ 1.14947 | 60-Day: H 1.17967 L 1.13246 EQ 1.15606

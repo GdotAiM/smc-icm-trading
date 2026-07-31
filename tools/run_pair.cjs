@@ -86,6 +86,67 @@ try {
   console.log(`  ⚠️  Graph memory skipped: ${e.message}`);
 }
 
+// ═══════════════ WEEKLY RANGE PROFILE ═══════════════
+console.log("\n═══ WEEKLY RANGE PROFILE — 12-Profile Classification ═══");
+let weeklyProfile = null;
+let weeklyAnchor = null;
+try {
+  const { analyzeWeeklyProfile } = require("./weekly_profile_engine.cjs");
+  weeklyProfile = analyzeWeeklyProfile(PAIR);
+  console.log(`  HTF: ${weeklyProfile.htf?.detail || 'N/A'}`);
+  console.log(`  Bias: ${weeklyProfile.bias?.detail}`);
+  console.log(`  Profile: ${weeklyProfile.classification.profileName} (${weeklyProfile.classification.confidence}%)`);
+  if (weeklyProfile.classification.candidates.length > 0) {
+    const top3 = weeklyProfile.classification.candidates.slice(0, 3).map(c => `${romanNumeral(c.id)} ${c.name}(${c.score})`).join(" | ");
+    console.log(`  Candidates: ${top3}`);
+  }
+  weeklyAnchor = weeklyProfile.anchor;
+  const anchorIcon = weeklyAnchor.skipWeek ? "⚠️ SKIP" : "✅";
+  console.log(`  Anchor: ${anchorIcon} ${weeklyAnchor.direction} | Target: ${weeklyAnchor.targetDay} | Boost: ×${weeklyAnchor.boostMultiplier}`);
+  if (weeklyAnchor.skipWeek) console.log(`  ⚠️ ${weeklyAnchor.detail}`);
+} catch(e) {
+  console.log(`  Weekly profile unavailable: ${e.message.slice(0, 80)}`);
+}
+
+// Need romanNumeral helper for the candidates display
+function romanNumeral(n) { const r = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]; return r[n] || String(n); }
+
+// ═══════════════ ONE TRADE SETUP FOR LIFE ═══════════════
+console.log("\n═══ ONE TRADE SETUP FOR LIFE — Session Framework ═══");
+let oneTradeSetup = null;
+try {
+  const { analyzeOneTradeSetup } = require("./one_trade_setup.cjs");
+  oneTradeSetup = analyzeOneTradeSetup(PAIR);
+  console.log(`  Daily Bias: ${oneTradeSetup.dailyBias.bias.toUpperCase()} (${oneTradeSetup.dailyBias.confidence} confidence) | ${oneTradeSetup.dailyBias.alignment}`);
+  console.log(`  Zone: ${oneTradeSetup.dailyBias.pdZone} | Tradeable: ${oneTradeSetup.dailyBias.tradeable ? '✅' : '❌'}`);
+  if (oneTradeSetup.prevAM) {
+    console.log(`  TP Target: Prev AM H ${r5(oneTradeSetup.prevAM.high)} / L ${r5(oneTradeSetup.prevAM.low)} (${oneTradeSetup.prevAM.date})`);
+  }
+  for (const r of oneTradeSetup.raidSummary) console.log(`  ${r}`);
+  console.log(`  ${oneTradeSetup.firstOpp.detail}`);
+  if (oneTradeSetup.firstOpp.locked) {
+    console.log(`  ⚡ Direction Boost: ×${oneTradeSetup.firstOpp.directionBoost} for ${oneTradeSetup.firstOpp.lockedDirection} models`);
+  }
+} catch(e) {
+  console.log(`  One Trade Setup unavailable: ${e.message.slice(0, 80)}`);
+}
+
+// ═══════════════ BREAD AND BUTTER — Session Scalp Framework ═══════════════
+console.log("\n═══ BREAD AND BUTTER — Session Scalp ═══");
+try {
+  const { analyzeBreadAndButter } = require("./bread_and_butter.cjs");
+  const bnb = analyzeBreadAndButter(PAIR);
+  console.log(`  Session: ${bnb.session?.label || 'None'} | HTF: ${bnb.htfBias.detail}`);
+  if (bnb.setup?.active) {
+    console.log(`  ${bnb.setup.detail}`);
+    console.log(`  ⚡ Direction: ${bnb.setup.direction} | Engine: ${bnb.setup.engine} | TP: ${bnb.setup.tp} | SL: ${bnb.setup.sl}`);
+  } else {
+    console.log(`  ${bnb.setup?.detail || 'No setup for current session'}`);
+  }
+} catch(e) {
+  console.log(`  Bread and Butter unavailable: ${e.message.slice(0, 80)}`);
+}
+
 // ═══════════════ STAGE 00 — Macro Context ═══════════════
 console.log("\n═══ STAGE 00 — Macro Context ═══");
 let macroContext = null;
@@ -135,11 +196,11 @@ try {
 // Cycle weights for model scoring — all 14 models (matching model_cycle_map.md)
 // Note: MMXM Sell/Buy both map to "2022 Model (MMXM)" weight
 const CYCLE_MODEL_WEIGHTS = {
-  ACCUMULATION: { "MMXM Sell Model": 0.3, "MMXM Buy Model": 0.3, "Silver Bullet": 0.3, "OTE + Institutional OB": 0.3, "Turtle Soup": 0.3, "Breaker Block": 1.0, "Unicorn (OTE+FVG)": 0.3, "SCOB": 0.3, "2FVG Entry": 0.3, "Judas Swing": 1.3, "Asian Range Breakout": 1.3, "NWOG/NDOG": 1.3, "Mitigation Block": 0.8, "Rejection Block": 0.5 },
-  MANIPULATION: { "MMXM Sell Model": 1.0, "MMXM Buy Model": 1.0, "Silver Bullet": 1.3, "OTE + Institutional OB": 1.0, "Turtle Soup": 1.3, "Breaker Block": 1.3, "Unicorn (OTE+FVG)": 0.3, "SCOB": 0.5, "2FVG Entry": 0.3, "Judas Swing": 1.3, "Asian Range Breakout": 0.5, "NWOG/NDOG": 0.3, "Mitigation Block": 1.0, "Rejection Block": 1.0 },
-  DISTRIBUTION: { "MMXM Sell Model": 1.4, "MMXM Buy Model": 1.4, "Silver Bullet": 1.1, "OTE + Institutional OB": 1.4, "Turtle Soup": 0.3, "Breaker Block": 0.5, "Unicorn (OTE+FVG)": 1.4, "SCOB": 1.4, "2FVG Entry": 1.1, "Judas Swing": 0.3, "Asian Range Breakout": 0.3, "NWOG/NDOG": 0.3, "Mitigation Block": 0.5, "Rejection Block": 0.8 },
-  EXPANSION:    { "MMXM Sell Model": 1.0, "MMXM Buy Model": 1.0, "Silver Bullet": 1.2, "OTE + Institutional OB": 1.0, "Turtle Soup": 0.3, "Breaker Block": 0.3, "Unicorn (OTE+FVG)": 1.0, "SCOB": 0.5, "2FVG Entry": 1.2, "Judas Swing": 0.3, "Asian Range Breakout": 0.3, "NWOG/NDOG": 0.3, "Mitigation Block": 0.3, "Rejection Block": 0.5 },
-  UNKNOWN:      { "MMXM Sell Model": 1.0, "MMXM Buy Model": 1.0, "Silver Bullet": 1.0, "OTE + Institutional OB": 1.0, "Turtle Soup": 1.0, "Breaker Block": 1.0, "Unicorn (OTE+FVG)": 1.0, "SCOB": 1.0, "2FVG Entry": 1.0, "Judas Swing": 1.0, "Asian Range Breakout": 1.0, "NWOG/NDOG": 1.0, "Mitigation Block": 1.0, "Rejection Block": 1.0 },
+  ACCUMULATION: { "MMXM Sell Model": 0.3, "MMXM Buy Model": 0.3, "Silver Bullet": 0.3, "OTE + Institutional OB": 0.3, "Turtle Soup": 0.3, "Breaker Block": 1.0, "Unicorn (OTE+FVG)": 0.3, "SCOB": 0.3, "2FVG Entry": 0.3, "Judas Swing": 1.3, "Asian Range Breakout": 1.3, "NWOG/NDOG": 1.3, "Mitigation Block": 0.8, "Rejection Block": 0.5, "London Hunt + IFVG": 0.3, "NDOG/NWOG News Model": 0.3, "08:30 Liquidity Raid Model": 0.3 },
+  MANIPULATION: { "MMXM Sell Model": 1.0, "MMXM Buy Model": 1.0, "Silver Bullet": 1.3, "OTE + Institutional OB": 1.0, "Turtle Soup": 1.3, "Breaker Block": 1.3, "Unicorn (OTE+FVG)": 0.3, "SCOB": 0.5, "2FVG Entry": 0.3, "Judas Swing": 1.3, "Asian Range Breakout": 0.5, "NWOG/NDOG": 0.3, "Mitigation Block": 1.0, "Rejection Block": 1.0, "London Hunt + IFVG": 1.5, "NDOG/NWOG News Model": 1.3, "08:30 Liquidity Raid Model": 1.5 },
+  DISTRIBUTION: { "MMXM Sell Model": 1.4, "MMXM Buy Model": 1.4, "Silver Bullet": 1.1, "OTE + Institutional OB": 1.4, "Turtle Soup": 0.3, "Breaker Block": 0.5, "Unicorn (OTE+FVG)": 1.4, "SCOB": 1.4, "2FVG Entry": 1.1, "Judas Swing": 0.3, "Asian Range Breakout": 0.3, "NWOG/NDOG": 0.3, "Mitigation Block": 0.5, "Rejection Block": 0.8, "London Hunt + IFVG": 1.0, "NDOG/NWOG News Model": 1.5, "08:30 Liquidity Raid Model": 1.3 },
+  EXPANSION:    { "MMXM Sell Model": 1.0, "MMXM Buy Model": 1.0, "Silver Bullet": 1.2, "OTE + Institutional OB": 1.0, "Turtle Soup": 0.3, "Breaker Block": 0.3, "Unicorn (OTE+FVG)": 1.0, "SCOB": 0.5, "2FVG Entry": 1.2, "Judas Swing": 0.3, "Asian Range Breakout": 0.3, "NWOG/NDOG": 0.3, "Mitigation Block": 0.3, "Rejection Block": 0.5, "London Hunt + IFVG": 0.3, "NDOG/NWOG News Model": 0.5, "08:30 Liquidity Raid Model": 0.5 },
+  UNKNOWN:      { "MMXM Sell Model": 1.0, "MMXM Buy Model": 1.0, "Silver Bullet": 1.0, "OTE + Institutional OB": 1.0, "Turtle Soup": 1.0, "Breaker Block": 1.0, "Unicorn (OTE+FVG)": 1.0, "SCOB": 1.0, "2FVG Entry": 1.0, "Judas Swing": 1.0, "Asian Range Breakout": 1.0, "NWOG/NDOG": 1.0, "Mitigation Block": 1.0, "Rejection Block": 1.0, "London Hunt + IFVG": 1.0, "NDOG/NWOG News Model": 1.0, "08:30 Liquidity Raid Model": 1.0 },
 };
 
 // Determine cycle phase — try macro_context first, fall back to day-of-week estimate
@@ -169,6 +230,10 @@ const r1d = reports["1D"]; const r4h = reports["4H"]; const r1h = reports["1H"];
 const r15m = reports["15m"]; const r5m = reports["5m"]; const r1m = reports["1m"];
 const r1w = reports["1W"];
 if (!r1d || !r4h || !r1h) { console.error("Missing engine reports"); process.exit(1); }
+
+// Load 1m candles early (needed by Turtle Soup, inducement, and freshness checks)
+let candles1m = null;
+try { candles1m = JSON.parse(fs.readFileSync(path.join(sharedDir, "candles_1m.json"), "utf8")); } catch {}
 
 // ═══════════════ LIVE STRUCTURE CHECK ═══════════════
 console.log("\n═══ LIVE STRUCTURE CHECK ═══");
@@ -284,13 +349,64 @@ try {
     console.log(`  IPDA: ${ipdaContext.draw.consensus} (${ipdaContext.draw.strength}) | Draw: ${ipdaContext.draw.direction}`);
     console.log(`  EQ Cascade: ${ipdaContext.equilibriumCascade.map(c => c.tf + '@' + c.eq).join(' → ')}`);
     console.log(`  AMD: ${ipdaContext.amd.position}`);
+    // IPDA cascade confidence: aligned cascade = stronger signal
+    const cascadeTFs = ipdaContext.equilibriumCascade || [];
+    const premiumCount = cascadeTFs.filter(c => c.zone?.includes("PREMIUM")).length;
+    const discountCount = cascadeTFs.filter(c => c.zone?.includes("DISCOUNT")).length;
+    const cascadeAligned = (bias1d === "bearish" && premiumCount > discountCount) || (bias1d === "bullish" && discountCount > premiumCount);
+    if (cascadeAligned) console.log(`  IPDA Cascade: ✅ Aligned with 1D ${bias1d} (${premiumCount}P/${discountCount}D) — +confidence`);
+    if (ipdaContext.falseBreakout) {
+      console.log(`  False Breakout: ⚠️ ${ipdaContext.falseBreakout.type} → ${ipdaContext.falseBreakout.direction}`);
+    }
+    if (ipdaContext.objective) {
+      console.log(`  Objective: ${ipdaContext.objective.primary} | FVGs: ${ipdaContext.objective.unfilledFvgs} | Swept: ${ipdaContext.objective.sweptPools}`);
+    }
+    if (ipdaContext.killZone?.inKillZone) {
+      console.log(`  Kill Zone: ${ipdaContext.killZone.active} (${ipdaContext.killZone.highConviction ? 'HIGH conviction' : 'active'})`);
+    }
+    if (ipdaContext.weeklyRefs) {
+      console.log(`  Weekly Refs: 20D H ${r5(ipdaContext.weeklyRefs.twentyDay.high)} L ${r5(ipdaContext.weeklyRefs.twentyDay.low)}`);
+    }
   }
 } catch(e) { console.log(`  IPDA unavailable: ${e.message.slice(0,80)}`); }
 
-const bias1w = r1w ? r1w.structure.bias : "N/A";
+// ═══ WEIGHTED BIAS — Multiple Sources, One Direction ═══
+// ICT: Bias is binary — bullish or bearish. There is no third way.
+// Multiple sources each vote. Higher TFs carry more weight.
+// Agreement = high confidence. Disagreement = reduced confidence but still directional.
+
+const bias1w = r1w ? r1w.structure.bias : null;
 const bias1d = r1d.structure.bias;
 const bias4h = r4h.structure.bias;
 const bias1h = r1h.structure.bias;
+const biasWeeklyProfile = weeklyProfile?.classification?.direction === "BULLISH" ? "bullish" : weeklyProfile?.classification?.direction === "BEARISH" ? "bearish" : null;
+const biasOneTrade = oneTradeSetup?.dailyBias?.bias || null;
+
+// Weighted vote: bullish = +1, bearish = -1
+const votes = [
+  { source: "1W", bias: bias1w, weight: 3 },
+  { source: "1D", bias: bias1d, weight: 2.5 },
+  { source: "4H", bias: bias4h, weight: 2 },
+  { source: "1H", bias: bias1h, weight: 0.5 },
+  { source: "Weekly Profile", bias: biasWeeklyProfile, weight: 1.5 },
+  { source: "One Trade", bias: biasOneTrade, weight: 1 },
+];
+
+let bullishWeight = 0, bearishWeight = 0, totalWeight = 0;
+const voteDetails = [];
+for (const v of votes) {
+  if (!v.bias || v.bias === "neutral") continue;
+  totalWeight += v.weight;
+  if (v.bias === "bullish") { bullishWeight += v.weight; voteDetails.push(`${v.source}:🟢`); }
+  else if (v.bias === "bearish") { bearishWeight += v.weight; voteDetails.push(`${v.source}:🔴`); }
+}
+
+const weightedBias = bullishWeight > bearishWeight ? "bullish" : bearishWeight > bullishWeight ? "bearish" : "neutral";
+const biasConfidence = totalWeight > 0 ? Math.round((Math.max(bullishWeight, bearishWeight) / totalWeight) * 100) : 0;
+const biasAgreement = biasConfidence >= 80 ? "STRONG" : biasConfidence >= 60 ? "MODERATE" : "WEAK";
+
+console.log(`  🎯 Weighted Bias: ${weightedBias.toUpperCase()} (${biasConfidence}% — ${biasAgreement}) | Votes: ${voteDetails.join(' ')} | Bull:${bullishWeight.toFixed(1)} Bear:${bearishWeight.toFixed(1)}`);
+console.log(`  📍 Current Price: ${r5(r1d.price)} | 1D Range: ${r5(r1d.structure.lastSwingLow || 0)}–${r5(r1d.structure.lastSwingHigh || 0)}`);
 const aligned = bias1d === bias4h;
 
 writeMd("01_htf_bias", "bias.md", `# HTF Bias — ${pairLabel} — ${DATE}
@@ -358,8 +474,78 @@ ${fvgs.map(f => `| ${f.type} | ${r5(f.top)} | ${r5(f.bottom)} | ${r2(f.gapAtr ||
 - **Alternate**: ${r4h.alt ? `${r4h.alt.side.toUpperCase()} @ ${r5(r4h.alt.price)} — ${r4h.alt.reason} (${r2(r4h.alt.score)})` : 'None'}
 `);
 
+// ═══════════════ IRL/ERL — Internal & External Range Liquidity ═══════════════
+console.log("\n═══ IRL/ERL — Range Liquidity Analysis ═══");
+let irlErlResult = null;
+try {
+  const { analyzeIRLERL } = require("./irl_erl_engine.cjs");
+  irlErlResult = analyzeIRLERL(PAIR);
+  if (irlErlResult.dealingRange) {
+    const dr = irlErlResult.dealingRange;
+    const validIcon = dr.valid ? "✅" : "⚠️";
+    console.log(`  Dealing Range (${dr.source}): ${validIcon} ${r5(dr.low)} — ${r5(dr.high)} | ${dr.validation.detail}`);
+    console.log(`  Premium: ${r5(dr.premium.high)} — ${r5(dr.premium.low)} | Discount: ${r5(dr.discount.high)} — ${r5(dr.discount.low)}`);
+  }
+  console.log(`  IRL: ${irlErlResult.irl.count} FVGs inside range (${irlErlResult.irl.unfilled} unfilled, ${irlErlResult.irl.filled} filled)`);
+  console.log(`  ERL: ${irlErlResult.erl.detail}`);
+  console.log(`  Cycle: ${irlErlResult.cycle.position} | ${irlErlResult.cycle.phase}`);
+  console.log(`  IRL/ERL Bias: ${irlErlResult.bias.bias.toUpperCase()} (confidence: ${r2(irlErlResult.bias.confidence)})`);
+  if (irlErlResult.entryGuidance[0]) {
+    console.log(`  Guidance: ${irlErlResult.entryGuidance[0].action} → ${irlErlResult.entryGuidance[0].detail}`);
+  }
+} catch(e) {
+  console.log(`  IRL/ERL analysis unavailable: ${e.message.slice(0, 80)}`);
+}
+
+// ═══════════════ LIQUIDITY MARKER — 8-Step Pre-Session Workflow ═══════════════
+console.log("\n═══ LIQUIDITY MARKER — PDH/PDL/PWH/PWL ═══");
+let liquidityMarker = null;
+try {
+  const { analyzeLiquidity } = require("./liquidity_marker.cjs");
+  liquidityMarker = analyzeLiquidity(PAIR);
+  console.log(`  HTF Bias: ${liquidityMarker.htfBias.detail}`);
+  if (liquidityMarker.pdhPdl) {
+    console.log(`  PDH: ${r5(liquidityMarker.pdhPdl.pdh)} | PDL: ${r5(liquidityMarker.pdhPdl.pdl)} | Range: ${toPips(liquidityMarker.pdhPdl.range)} ${pipLabel()}`);
+  }
+  if (liquidityMarker.pwhPwl) {
+    console.log(`  PWH: ${r5(liquidityMarker.pwhPwl.pwh)} | PWL: ${r5(liquidityMarker.pwhPwl.pwl)}`);
+  }
+  console.log(`  Primary Draw: ${liquidityMarker.drawTargets.detail}`);
+  console.log(`  Sweep: ${liquidityMarker.sweepStatus.detail}`);
+  console.log(`  HRLR/LRLR: ${liquidityMarker.hrlrLrlr?.detail || 'N/A'}`);
+  // Dominant liquidity: which side has more resting orders (institutional magnet)
+  if (liquidityMarker.erl) {
+    const buyPower = (liquidityMarker.erl.buySide?.length || 0) + (liquidityMarker.erl.buySideClusters || 0) * 2;
+    const sellPower = (liquidityMarker.erl.sellSide?.length || 0) + (liquidityMarker.erl.sellSideClusters || 0) * 2;
+    const dominant = buyPower > sellPower * 1.2 ? '🧲 BUY-SIDE (above)' : sellPower > buyPower * 1.2 ? '🧲 SELL-SIDE (below)' : 'BALANCED';
+    console.log(`  Dominant Liquidity: ${dominant} | BSL: ${liquidityMarker.erl.buySide?.length || 0} pools | SSL: ${liquidityMarker.erl.sellSide?.length || 0} pools`);
+  }
+  if (liquidityMarker.sweepVsRun) {
+    const svIcon = liquidityMarker.sweepVsRun.classification === "SWEEP" ? "🔄" :
+                    liquidityMarker.sweepVsRun.classification === "RUN" ? "🏃" :
+                    liquidityMarker.sweepVsRun.classification === "INDUCEMENT" ? "⚠️" : "❓";
+    console.log(`  Sweep/Run: ${svIcon} ${liquidityMarker.sweepVsRun.classification} — ${liquidityMarker.sweepVsRun.action}`);
+  }
+  console.log(`  Entry: ${liquidityMarker.entryGuidance.detail}`);
+} catch(e) {
+  console.log(`  Liquidity marker unavailable: ${e.message.slice(0, 80)}`);
+}
+
 // ═══════════════ STAGE 03 — Session ═══════════════
-console.log("═══ STAGE 03 — Session ═══");
+// ═══ ORDER FLOW ZONES ═══
+console.log("\n═══ ORDER FLOW — Pullback Zones ═══");
+try {
+  const { analyzeOrderFlow } = require("./order_flow.cjs");
+  const of = analyzeOrderFlow(PAIR);
+  if (of.bosLeg) console.log(`  ${of.bosLeg.detail}`);
+  console.log(`  OF Zones: ${of.zoneCount} marked`);
+  for (const z of of.zones.slice(0, 3)) console.log(`    ${z.detail}`);
+  if (of.zones.length > 3) console.log(`    ... +${of.zones.length - 3} more`);
+  console.log(`  Retracement: ${of.retracement.detail}`);
+  if (of.confirmation.confirmed) console.log(`  ✅ ${of.confirmation.detail}`);
+} catch(e) { console.log(`  Order Flow unavailable: ${e.message.slice(0, 80)}`); }
+
+console.log("\n═══ STAGE 03 — Session ═══");
 let session, char;
 if (UTC_HOUR >= 0 && UTC_HOUR < 7) { session = "Asia"; char = "Accumulation"; }
 else if (UTC_HOUR >= 7 && UTC_HOUR < 12) { session = "London"; char = "Institutional flow"; }
@@ -388,8 +574,184 @@ writeMd("03_session_time", "session.md", `# Session Analysis — ${pairLabel} �
 - ${bias1d !== 'neutral' && inKZ ? '✅ ALIGNED — Active killzone with directional bias' : '⚠️ NOT ALIGNED'}
 `);
 
+// ═══════════════ LECTURE 2 — 07:00 AM Setup ═══════════════
+console.log("\n═══ LECTURE 2 — 07:00 AM Setup ═══");
+let lecture2 = null;
+try {
+  const { runLecture2Setup } = require("./tv-mcp/lecture2_setup.cjs");
+  lecture2 = runLecture2Setup(PAIR, DATE, ROOT);
+  // London range (context)
+  if (lecture2.londonRange) {
+    console.log(`  London Range: H ${lecture2.londonRange.high.toFixed(IC.priceDecimals)} / L ${lecture2.londonRange.low.toFixed(IC.priceDecimals)} (${lecture2.londonRange.source})`);
+  } else {
+    console.log(`  London Range: No 1H data`);
+  }
+  // Relative equal levels
+  const relHighs = lecture2.relEqualHighs || [];
+  const relLows = lecture2.relEqualLows || [];
+  if (relHighs.length > 0) console.log(`  Rel Equal Highs: ${relHighs.map(l => l.price.toFixed(IC.priceDecimals)).join(', ')}`);
+  if (relLows.length > 0) console.log(`  Rel Equal Lows: ${relLows.map(l => l.price.toFixed(IC.priceDecimals)).join(', ')}`);
+  // Hunt
+  if (lecture2.hunt) {
+    const hIcon = lecture2.hunt.active ? '⚡' : '⏳';
+    console.log(`  Hunt: ${hIcon} ${lecture2.hunt.active ? lecture2.hunt.direction + (lecture2.hunt.reversed ? ' — REVERSED' : ' — awaiting reversal') : lecture2.hunt.detail}`);
+  }
+  // MSS
+  if (lecture2.mss) {
+    const mssIcon = lecture2.mss.confirmed ? '✅' : '⏳';
+    console.log(`  MSS: ${mssIcon} ${lecture2.mss.detail || ''}`);
+  }
+  // IFVG
+  if (lecture2.ifvg) {
+    const iIcon = lecture2.ifvg.found ? '✅' : '⏳';
+    console.log(`  IFVG: ${iIcon} ${lecture2.ifvg.detail}`);
+  }
+  // Breaker
+  if (lecture2.breaker) {
+    const bIcon = lecture2.breaker.found ? '✅' : '—';
+    console.log(`  Breaker: ${bIcon} ${lecture2.breaker.detail || 'Not found'}`);
+  }
+  // SL
+  if (lecture2.postHuntSL) {
+    console.log(`  SL (post-hunt): ${lecture2.postHuntSL.price.toFixed(IC.priceDecimals)} — ${lecture2.postHuntSL.source}`);
+  }
+  // 30-min reversal
+  if (lecture2.reversalCheck?.active) {
+    console.log(`  ⚠️ ${lecture2.reversalCheck.warning}`);
+  }
+  // Fib targets
+  if (lecture2.fibTargets) {
+    console.log(`  Fib TP: ${lecture2.fibTargets.detail}`);
+  }
+  // Summary
+  const readyIcon = lecture2.setupReady ? '✅ READY' : '⏳ NOT READY';
+  console.log(`  Setup: ${readyIcon}${lecture2.direction ? ' — ' + lecture2.direction : ''}`);
+  console.log(`  ${lecture2.detail}`);
+} catch(e) {
+  console.log(`  Lecture 2 setup unavailable: ${e.message.slice(0, 80)}`);
+}
+
+// ═══════════════ LECTURE 1 — 08:30 Liquidity Raid + PD Array Model ═══════════════
+console.log("\n═══ LECTURE 1 — 08:30 Liquidity Raid Model ═══");
+let lecture1 = null;
+try {
+  const { runLecture1Setup } = require("./tv-mcp/lecture1_setup.cjs");
+  lecture1 = runLecture1Setup(PAIR, DATE, ROOT);
+  // 15m context
+  if (lecture1.ctx15m) {
+    console.log(`  15m Context: Bias ${lecture1.ctx15m.bias.toUpperCase()} | ${lecture1.ctx15m.drawTargets?.length || 0} draw targets`);
+  }
+  // Formation
+  if (lecture1.formation) {
+    const fIcon = lecture1.formation.formed ? '✅' : '⏳';
+    console.log(`  Formation (08:00-08:30): ${fIcon} ${lecture1.formation.detail}`);
+  }
+  // Raid
+  if (lecture1.raid) {
+    const rIcon = lecture1.raid.active ? '⚡' : '⏳';
+    console.log(`  Raid (post-08:30): ${rIcon} ${lecture1.raid.detail}`);
+  }
+  // MSS
+  if (lecture1.mss) {
+    const mIcon = lecture1.mss.confirmed ? '✅' : '⏳';
+    console.log(`  MSS: ${mIcon} ${lecture1.mss.detail}`);
+  }
+  // PD Arrays
+  if (lecture1.pdArrays?.length > 0) {
+    console.log(`  PD Arrays: ${lecture1.pdArrays.length} found — First-tagged: ${lecture1.firstTagged?.type} @ ${lecture1.firstTagged?.price?.toFixed(IC.priceDecimals)}`);
+  } else {
+    console.log(`  PD Arrays: None discovered yet`);
+  }
+  // SL
+  if (lecture1.post0830SL) {
+    console.log(`  SL (post-08:30 range): ${lecture1.post0830SL.price.toFixed(IC.priceDecimals)} — ${lecture1.post0830SL.source}`);
+  }
+  // TP
+  if (lecture1.tpTargets) {
+    console.log(`  TP: ${lecture1.tpTargets.detail}`);
+  }
+  // Summary
+  const readyIcon = lecture1.setupReady ? '✅ READY' : '⏳ NOT READY';
+  console.log(`  Setup: ${readyIcon}${lecture1.direction ? ' — ' + lecture1.direction : ''}`);
+  console.log(`  ${lecture1.detail}`);
+} catch(e) {
+  console.log(`  Lecture 1 setup unavailable: ${e.message.slice(0, 80)}`);
+}
+
+// ═══════════════ LECTURE 4 — 08:30 News + NDOG/NWOG Gap Model ═══════════════
+console.log("\n═══ LECTURE 4 — 08:30 News + Gap Model ═══");
+let lecture4 = null;
+try {
+  const { runLecture4Setup } = require("./tv-mcp/lecture4_setup.cjs");
+  lecture4 = runLecture4Setup(PAIR, DATE, ROOT);
+  // Gaps
+  if (lecture4.gapClusters?.hasGaps) {
+    console.log(`  Gaps: ${lecture4.gapClusters.detail}`);
+    if (lecture4.gapDraw?.nearestGap) {
+      const ng = lecture4.gapDraw.nearestGap;
+      console.log(`  Nearest Gap: ${ng.type} ${ng.detail} | Quarters: ${ng.quarters.q025.toFixed(IC.priceDecimals)} / ${ng.quarters.q50.toFixed(IC.priceDecimals)} / ${ng.quarters.q075.toFixed(IC.priceDecimals)}`);
+    }
+  } else if (lecture4.substituteGap) {
+    console.log(`  Gap Substitute: ${lecture4.substituteGap.detail}`);
+  } else {
+    console.log(`  Gaps: No NDOG/NWOG or FVG substitute available`);
+  }
+  // Time window
+  const wIcon = lecture4.inNewsWindow ? '✅' : '⏳';
+  const aIcon = lecture4.inAPlusWindow ? '⭐ A-PLUS' : '';
+  console.log(`  Window: ${wIcon} 08:30-10:00 NY ${aIcon}`);
+  // Gap draw
+  if (lecture4.gapDraw) {
+    const dIcon = lecture4.gapDraw.drawing ? '⚡' : '⏳';
+    console.log(`  Draw: ${dIcon} ${lecture4.gapDraw.detail}`);
+  }
+  // MSS
+  if (lecture4.mss) {
+    const mIcon = lecture4.mss.confirmed ? '✅' : '⏳';
+    console.log(`  MSS: ${mIcon} ${lecture4.mss.detail}`);
+  }
+  // Entry
+  if (lecture4.entry) {
+    const eIcon = lecture4.entry.found ? '✅' : '⏳';
+    console.log(`  Entry: ${eIcon} ${lecture4.entry.detail}`);
+  }
+  // Quarter tap
+  if (lecture4.quarterTap?.detected) {
+    console.log(`  ⚠️ ${lecture4.quarterTap.detail}`);
+  }
+  // SL
+  if (lecture4.postMSS_SL) {
+    console.log(`  SL (post-MSS): ${lecture4.postMSS_SL.price.toFixed(IC.priceDecimals)} — ${lecture4.postMSS_SL.source}`);
+  }
+  // TP
+  if (lecture4.tpTargets) {
+    console.log(`  TP: ${lecture4.tpTargets.detail}`);
+  }
+  // Summary
+  const rIcon = lecture4.setupReady ? '✅ READY' : '⏳ NOT READY';
+  console.log(`  Setup: ${rIcon}${lecture4.direction ? ' — ' + lecture4.direction : ''}`);
+  console.log(`  ${lecture4.detail}`);
+} catch(e) {
+  console.log(`  Lecture 4 setup unavailable: ${e.message.slice(0, 80)}`);
+}
+
+// ═══════════════ INDUCEMENT PRE-CHECK (before model scoring) ═══════════════
+// ICT: "Do not enter until inducement is swept." Check gate FIRST.
+// If gate is closed, skip model scoring — no point scoring setups that can't be entered.
+let inducementBlocked = false;
+try {
+  const { runInducementCheck } = require("./inducement_engine.cjs");
+  const preInducement = runInducementCheck(PAIR);
+  console.log(`\n═══ INDUCEMENT PRE-CHECK ═══`);
+  console.log(`  ${preInducement.gate.reason}`);
+  if (!preInducement.gate.open) {
+    inducementBlocked = true;
+    console.log(`  🛑 GATE CLOSED — skipping model scoring. No entry possible until inducement swept.`);
+  }
+} catch(e) { /* inducement engine may not be available */ }
+
 // ═══════════════ STAGE 04 — Model Selection ═══════════════
-console.log("═══ STAGE 04 — Model Selection ═══");
+console.log("\n═══ STAGE 04 — Model Selection ═══");
 const hasOB = uniqueOBs.length > 0, hasFVG = fvgs.length > 0;
 const hasSweep = pools.some(p => p.swept);
 const nearSSL = pools.filter(p => p.type === 'SSL')[0];
@@ -444,6 +806,9 @@ const PO3_MODEL_PHASE_MAP = {
   "NWOG/NDOG": ["ACCUMULATION"],
   "Mitigation Block": ["ACCUMULATION", "MANIPULATION"],
   "Rejection Block": ["MANIPULATION", "DISTRIBUTION"],
+  "London Hunt + IFVG": ["MANIPULATION", "DISTRIBUTION"],
+  "NDOG/NWOG News Model": ["MANIPULATION", "DISTRIBUTION"],
+  "08:30 Liquidity Raid Model": ["MANIPULATION", "DISTRIBUTION"],
 };
 const currentPhase = macroContext?.phase || "UNKNOWN";
 function isPhaseValid(modelName) {
@@ -495,12 +860,83 @@ try {
   }
 } catch(e) { console.log(`  Performance ledger unavailable — using neutral weights`); }
 
+// ═══ TURTLE SOUP DETECTION ═══
+// ICT: Failed breakout — price spikes through level, sweeps stops, fails to hold, reverses.
+// Requires: HTF ranging + clean sweep (wick through, body close back) + LTF MSS + displacement FVG/OB
+function detectTurtleSoup() {
+  if (!r1h || !r5m || !candles1m || candles1m.length < 5) return { detected: false, score: 0, detail: "Insufficient data" };
+
+  // 1. HTF ranging check: 1D/4H not strongly trending (CHoCH or neutral = ranging)
+  const htfRanging = (r1d.structure?.lastEvent === "CHoCH" || r1d.structure?.bias === "neutral") &&
+                     (r4h.structure?.lastEvent === "CHoCH" || r4h.structure?.bias === "neutral");
+  const htfConsolidating = Math.abs((r4h.structure?.lastSwingHigh || 0) - (r4h.structure?.lastSwingLow || 0)) / r4h.price < 0.02;
+
+  // 2. Find recent sweep: pool was swept (wick through) and price closed back inside
+  const sweptPools = (r1h.liquidity || []).concat(r5m?.liquidity || []).filter(p => p.swept);
+  let turtleSoupSweep = null;
+  for (const pool of sweptPools) {
+    const isBSLSwept = pool.type === "BSL" && r1h.price < pool.price;
+    const isSSLSwept = pool.type === "SSL" && r1h.price > pool.price;
+    if (isBSLSwept || isSSLSwept) {
+      turtleSoupSweep = { pool, direction: isBSLSwept ? "BEARISH" : "BULLISH", sweptPrice: pool.price };
+      break;
+    }
+  }
+
+  // 3. Check LTF MSS in direction opposite the sweep
+  let mssConfirmed = false;
+  if (turtleSoupSweep) {
+    const fakeHunt = {
+      active: true, reversed: true,
+      direction: turtleSoupSweep.direction === "BEARISH" ? "BEARISH (highs swept → reversal down)" : "BULLISH (lows swept → reversal up)",
+      swept: turtleSoupSweep.direction === "BEARISH" ? "BSL" : "SSL",
+      sweepPrice: turtleSoupSweep.sweptPrice,
+      sweepTime: new Date().toISOString(),
+    };
+    const L2 = require("./tv-mcp/lecture2_setup.cjs");
+    const mssCheck = L2.confirmMSS(candles1m, fakeHunt);
+    mssConfirmed = mssCheck?.confirmed || false;
+  }
+
+  // 4. Find displacement FVG/OB for entry zone
+  const hasDisplacementFVG = fvgs.some(f => (f.fillFraction || 0) < 0.3 &&
+    (turtleSoupSweep?.direction === "BEARISH" ? f.type === "bearish" : f.type === "bullish"));
+
+  const hasDisplacementOB = obs.some(o => o.kind !== "Breaker" &&
+    (turtleSoupSweep?.direction === "BEARISH" ? o.type === "bearish" : o.type === "bullish"));
+
+  // Score
+  const htfRangingScore = (htfRanging || htfConsolidating) ? 2 : 0;
+  const sweepScore = turtleSoupSweep ? 3 : 0;
+  const mssScore = mssConfirmed ? 2 : 0;
+  const displacementScore = (hasDisplacementFVG || hasDisplacementOB) ? 2 : 0;
+  const totalScore = htfRangingScore + sweepScore + mssScore + displacementScore;
+  const detected = turtleSoupSweep && mssConfirmed && (hasDisplacementFVG || hasDisplacementOB);
+
+  return {
+    detected,
+    score: totalScore,
+    max: 9,
+    htfRanging: htfRanging || htfConsolidating,
+    sweep: turtleSoupSweep,
+    mssConfirmed,
+    hasDisplacementFVG, hasDisplacementOB,
+    detail: detected
+      ? `🐢 TURTLE SOUP: ${turtleSoupSweep.direction} — ${turtleSoupSweep.pool.type} swept @ ${r5(turtleSoupSweep.sweptPrice)}, MSS confirmed. Entry: ${hasDisplacementFVG ? 'FVG' : 'OB'} retracement.`
+      : turtleSoupSweep
+        ? `Turtle Soup forming: sweep detected, ${mssConfirmed ? 'MSS confirmed' : 'awaiting MSS'}, ${hasDisplacementFVG || hasDisplacementOB ? 'displacement zone found' : 'awaiting displacement'}`
+        : "No Turtle Soup: no failed-breakout sweep detected",
+  };
+}
+const turtleSoupCheck = detectTurtleSoup();
+if (turtleSoupCheck.detected) console.log(`  🐢 ${turtleSoupCheck.detail}`);
+
 const models = [
   { name: "MMXM Sell Model", score: (bias1d === 'bearish' ? 3 : 0) + (hasOB ? 2 : 0) + (hasSweep ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 9 },
   { name: "MMXM Buy Model", score: (bias1d === 'bullish' ? 3 : 0) + (hasOB ? 2 : 0) + (hasSweep ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 9 },
   { name: "Silver Bullet", score: ((UTC_HOUR >= 8 && UTC_HOUR < 10) || (UTC_HOUR >= 13 && UTC_HOUR < 15) || (UTC_HOUR >= 17 && UTC_HOUR < 19) ? 3 : 0) + (bias1d !== 'neutral' && inKZ ? 2 : 0) + (hasFVG ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 9 },
   { name: "OTE + Institutional OB", score: (hasOB ? 3 : 0) + (inOTEZoneSimple ? 2 : 0) + (bias1d !== 'neutral' ? 2 : 0) + (smtDetected ? 1 : 0), max: 8 },
-  { name: "Turtle Soup", score: (hasSweep ? 3 : 0) + (nearSSL && nearSSL.swept ? 2 : 0) + (bias1d !== 'neutral' ? 1 : 0) + (smtDetected ? 1 : 0), max: 7 },
+  { name: "Turtle Soup", score: turtleSoupCheck.score, max: turtleSoupCheck.max },
   { name: "Unicorn (OTE+FVG)", score: (hasOB ? 2 : 0) + (hasFVG ? 3 : 0) + (inOTEZoneSimple ? 2 : 0) + (smtDetected ? 1 : 0), max: 8 },
   { name: "Breaker Block", score: (obs.filter(o => o.kind === 'Breaker').length * 3) + (hasFVG ? 1 : 0) + (smtDetected ? 1 : 0), max: 7 },
   // ── Tier 2: Strong (phase-specific) ──
@@ -512,6 +948,9 @@ const models = [
   // ── Tier 3: Situational ──
   { name: "Mitigation Block", score: (obs.filter(o => (o.mitigationFraction || 0) > 0.3 && (o.mitigationFraction || 0) < 0.7).length * 3) + (bias1d !== 'neutral' ? 1 : 0), max: 4 },
   { name: "Rejection Block", score: (hasOB ? 2 : 0) + (r1h && r1h.volumeDisplacement && r1h.volumeDisplacement.atrRatio > 0.8 ? 1 : 0) + (bias1d !== 'neutral' ? 1 : 0), max: 4 },
+  { name: "London Hunt + IFVG", score: (lecture2?.setupReady ? 4 : 0) + (lecture2?.hunt?.active ? 2 : 0) + (lecture2?.direction && ((lecture2.direction === 'BUY' && bias1d === 'bullish') || (lecture2.direction === 'SELL' && bias1d === 'bearish')) ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 10 },
+  { name: "NDOG/NWOG News Model", score: (lecture4?.setupReady ? 4 : 0) + (lecture4?.gapClusters?.hasGaps || lecture4?.substituteGap ? 2 : 0) + (lecture4?.gapDraw?.drawing ? 2 : 0) + (lecture4?.mss?.confirmed ? 1 : 0) + (lecture4?.inNewsWindow ? 1 : 0), max: 10 },
+  { name: "08:30 Liquidity Raid Model", score: (lecture1?.setupReady ? 4 : 0) + (lecture1?.formation?.formed ? 2 : 0) + (lecture1?.raid?.active ? 2 : 0) + (lecture1?.mss?.confirmed ? 1 : 0) + (lecture1?.pdArrays?.length >= 2 ? 1 : 0), max: 10 },
 ];
 // Apply cycle-aware weighting from Stage 00 + performance weights from trade history
 models.forEach(m => {
@@ -520,7 +959,11 @@ models.forEach(m => {
   m.structuralScore = m.score; // preserve original
   m.cycleMultiplier = cycleWeight;
   m.perfMultiplier = perfWeight;
-  m.score = Math.round(m.score * cycleWeight * perfWeight * 10) / 10; // structural × cycle × performance
+  // Killzone session multiplier: London/NY = 1.0, Asia/NY Lunch = reduced
+  const sessionMultiplier = (session === "London" || session === "NY AM") ? 1.0 :
+                            session === "NY PM" ? 0.8 : session === "Asia" ? 0.5 : session === "Off" ? 0.4 : 0.7;
+  m.sessionMultiplier = sessionMultiplier;
+  m.score = Math.round(m.score * cycleWeight * perfWeight * sessionMultiplier * 10) / 10;
   m.max = Math.round(m.max * Math.max(cycleWeight, 1.0) * Math.max(perfWeight, 1.0) * 10) / 10;
 
   // PRIORITY 1: Po3 Phase Filter — zero out models outside their phase
@@ -531,8 +974,86 @@ models.forEach(m => {
   } else {
     m.po3Blocked = false;
   }
+
+  // PRIORITY 2: Weekly Profile direction boost
+  // Models aligned with the weekly anchor get boosted; opposing get reduced
+  // Skip-weeks (IX/X) suppress all models to ×0.3
+  // ═══ DIRECTION FROM PRICE, NOT NAME ═══
+  // ICT: The chart tells you the direction. Not the model name.
+  // All models trade in the direction of the 1D bias — the single authority.
+  const modelDirection = weightedBias === "bullish" ? "BUY" : weightedBias === "bearish" ? "SELL" : null;
+
+  // PRIORITY 2: Weekly Profile direction boost
+  if (weeklyAnchor) {
+    if (weeklyAnchor.skipWeek) {
+      m.score = Math.round(m.score * 0.3 * 10) / 10;
+      m.weeklyProfileSkipped = true;
+    } else if (modelDirection === weeklyAnchor.direction) {
+      m.score = Math.round(m.score * weeklyAnchor.boostMultiplier * 10) / 10;
+      m.weeklyProfileBoost = true;
+    } else if (modelDirection && modelDirection !== weeklyAnchor.direction) {
+      m.score = Math.round(m.score * weeklyAnchor.counterWeight * 10) / 10;
+      m.weeklyProfileReduced = true;
+    }
+  }
+
+  // PRIORITY 3: One Trade Setup direction boost
+  if (oneTradeSetup?.firstOpp?.locked && modelDirection) {
+    const lockedDir = oneTradeSetup.firstOpp.lockedDirection;
+    if (modelDirection === lockedDir) {
+      m.score = Math.round(m.score * oneTradeSetup.firstOpp.directionBoost * 10) / 10;
+      m.oneTradeBoost = true;
+    } else if (modelDirection !== lockedDir) {
+      m.score = Math.round(m.score * oneTradeSetup.firstOpp.counterDirectionWeight * 10) / 10;
+      m.oneTradeReduced = true;
+    }
+  }
 });
+
+// ═══ INDUCEMENT GATE: Zero all scores if gate is closed ═══
+if (inducementBlocked) {
+  models.forEach(m => { m.score = 0; m.inducementBlocked = true; });
+}
+
 models.sort((a, b) => b.score - a.score);
+
+// ═══ SILVER BULLET WINDOW OVERRIDE ═══
+// During active SB windows (London 03:00-04:00, NY AM 10:00-11:00, NY PM 14:00-15:00),
+// the Silver Bullet model gets priority. This is THE scalp model for these windows.
+const inSBWindow = (UTC_HOUR >= 8 && UTC_HOUR < 10) || (UTC_HOUR >= 13 && UTC_HOUR < 15) || (UTC_HOUR >= 17 && UTC_HOUR < 19);
+if (inSBWindow) {
+  const sbModel = models.find(m => m.name === "Silver Bullet");
+  if (sbModel && sbModel.score >= 5) {
+    // Boost Silver Bullet to primary during its window — this is a scalp, not a swing trade
+    sbModel.score = Math.max(sbModel.score, models[0].score + 0.5);
+    sbModel.sbWindowBoost = true;
+    models.sort((a, b) => b.score - a.score);
+    console.log(`  ⚡ Silver Bullet Window ACTIVE — boosted to primary (was ${sbModel.structuralScore}/${sbModel.max.toFixed(0)}, now ${r2(sbModel.score)})`);
+  }
+}
+
+// ═══ LECTURE + WEEKLY ANCHOR ALIGNMENT BOOST ═══
+// When a lecture setup is READY AND the weekly anchor agrees on direction,
+// jump that lecture model to primary. This resolves conflicts where the weekly
+// anchor boosts a buy-labeled model but bias makes it execute short.
+if (weeklyAnchor && !weeklyAnchor.skipWeek) {
+  const lectureModels = [
+    { name: "London Hunt + IFVG", ready: lecture2?.setupReady, dir: lecture2?.direction },
+    { name: "08:30 Liquidity Raid Model", ready: lecture1?.setupReady, dir: lecture1?.direction },
+    { name: "NDOG/NWOG News Model", ready: lecture4?.setupReady, dir: lecture4?.direction },
+  ];
+  for (const lm of lectureModels) {
+    if (lm.ready && lm.dir === weeklyAnchor.direction) {
+      const model = models.find(m => m.name === lm.name);
+      if (model && model.score < models[0].score) {
+        model.score = models[0].score + 0.5;
+        model.lectureWeeklyAligned = true;
+        models.sort((a, b) => b.score - a.score);
+        console.log(`  ⚡ Lecture+Weekly Aligned: ${lm.name} (${lm.dir}) boosted to primary — weekly anchor agrees`);
+      }
+    }
+  }
+}
 
 // ── Model Conflict & Mutual Exclusivity Detection ──────────────────────
 const MUTUAL_EXCLUSIVITY = {
@@ -550,6 +1071,19 @@ const MUTUAL_EXCLUSIVITY = {
   "SCOB,Unicorn (OTE+FVG)": "SCOB requires clean OB+FVG with displacement; Unicorn requires OTE retracement to the FVG. Different entry mechanics on the same structure.",
   "NWOG/NDOG,Silver Bullet": "NWOG/NDOG are weekly opening gap plays; Silver Bullet is intraday time-based. Different time horizons.",
   "Rejection Block,Breaker Block": "Rejection Block means the OB HELD (wick rejected); Breaker Block means the OB BROKE. They are opposite outcomes at the same level.",
+  "London Hunt + IFVG,Judas Swing": "Both are session-open hunt setups. London Hunt + IFVG is the 07:00 AM macro; Judas Swing is the session-open first-hour sweep. Mutually exclusive timing.",
+  "London Hunt + IFVG,Turtle Soup": "London Hunt enters on the IFVG after reversal; Turtle Soup fades the sweep. Different entry mechanics on the same manipulation event.",
+  "London Hunt + IFVG,Silver Bullet": "London Hunt fires at 07:00-07:40 NY; Silver Bullet fires at 10:00-11:00 NY. Different time windows — mutually exclusive by session.",
+  "London Hunt + IFVG,Asian Range Breakout": "London Hunt requires NY pre-open; Asian Range requires Asian session. Session-exclusive.",
+  "NDOG/NWOG News Model,Asian Range Breakout": "News Model requires 08:30-10:00 NY; Asian Range requires Asian session. Session-exclusive.",
+  "NDOG/NWOG News Model,Silver Bullet": "News Model fires 08:30-10:00 NY; Silver Bullet fires 10:00-11:00 NY. Sequential — can both be valid but not simultaneously.",
+  "NDOG/NWOG News Model,London Hunt + IFVG": "News Model fires 08:30-10:00; London Hunt fires 07:00-07:40. Sequential by time — not conflicting.",
+  "NDOG/NWOG News Model,Judas Swing": "News Model uses gap draw catalyst; Judas Swing uses session-open sweep. Different catalysts, overlapping time.",
+  "08:30 Liquidity Raid Model,Asian Range Breakout": "Raid Model requires 08:00-10:00 NY; Asian Range requires Asian session. Session-exclusive.",
+  "08:30 Liquidity Raid Model,London Hunt + IFVG": "Raid Model fires 08:30+; London Hunt fires 07:00-07:40. Sequential by time — not conflicting.",
+  "08:30 Liquidity Raid Model,NDOG/NWOG News Model": "Both fire at 08:30 but target different draws (rel equal levels vs gap clusters). Complementary — can coexist.",
+  "08:30 Liquidity Raid Model,Silver Bullet": "Raid Model fires 08:30-10:00; Silver Bullet fires 10:00-11:00. Sequential — can both be valid.",
+  "08:30 Liquidity Raid Model,Turtle Soup": "Raid Model enters on PD array retrace after MSS; Turtle Soup fades the sweep. Different entry timing on same event.",
 };
 
 function detectConflicts(models) {
@@ -831,9 +1365,39 @@ for (const w of stalenessWarnings) console.log(`  ${w}`);
 console.log(`  Freshness: ${freshnessScore}/10 — ${freshnessLabel}`);
 console.log(`  Entry price source: ${priceSource} @ ${r5(entryPrice)}`);
 
+// ═══════════════ INDUCEMENT GATE STATUS (checked before Stage 04) ═══════════════
+console.log(`\n═══ INDUCEMENT GATE: ${inducementBlocked ? '🛑 CLOSED' : '✅ OPEN'} ═══`);
+
 // ═══════════════ STAGE 05 — Entry Refinement ═══════════════
 console.log("\n═══ STAGE 05 — Entry Refinement ═══");
 const atrValue = Math.abs((r4h.structure.lastSwingHigh || entryPrice + 0.003) - (r4h.structure.lastSwingLow || entryPrice - 0.003)) * 0.15;
+
+// ── PRIORITY 0: 3rd Daily Candle OTE (Simple ICT Scalping Strategy) ──
+// "Once a new swing low (bullish) or swing high (bearish) forms on the daily,
+// price retraces to the 62-79% Fib of that 3rd candle before continuing."
+let thirdCandleOTE = null;
+try {
+  const dailyCandles = JSON.parse(fs.readFileSync(path.join(sharedDir, "candles_1d.json"), "utf8"));
+  if (dailyCandles && dailyCandles.length >= 4) {
+    // Find the 3rd candle back from the most recent swing
+    const last3 = dailyCandles.slice(-4, -1); // 3 candles before current
+    if (last3.length === 3) {
+      const c3High = Math.max(...last3.map(c => c.high));
+      const c3Low = Math.min(...last3.map(c => c.low));
+      const c3Range = c3High - c3Low;
+      const c3OTE62 = bias1d === "bearish" ? c3High - c3Range * 0.62 : c3Low + c3Range * 0.62;
+      const c3OTE79 = bias1d === "bearish" ? c3High - c3Range * 0.79 : c3Low + c3Range * 0.79;
+      const in3rdOTE = r1h.price >= Math.min(c3OTE62, c3OTE79) && r1h.price <= Math.max(c3OTE62, c3OTE79);
+      thirdCandleOTE = {
+        high: c3High, low: c3Low, range: c3Range,
+        ote62: c3OTE62, ote79: c3OTE79,
+        inZone: in3rdOTE,
+        detail: `3rd Candle OTE: ${r5(c3OTE62)}–${r5(c3OTE79)} | ${in3rdOTE ? '✅ IN ZONE' : '⏳ Outside zone'}`,
+      };
+      console.log(`  🎯 3rd Candle OTE: ${thirdCandleOTE.detail}`);
+    }
+  }
+} catch(e) { /* candles may not exist */ }
 
 // ── PRIORITY 1: Fibonacci OTE Zone Calculation ──────────────────────
 const swHi4h = r4h.structure.lastSwingHigh || entryPrice;
@@ -850,7 +1414,7 @@ const otePips = toPips(distanceToIdeal);
 
 let slPrice, tp1Price, tp2Price, entryType, slReason, tp1Reason, tp2Reason;
 
-if (bias1d === 'bearish') {
+if (weightedBias === 'bearish') {
   entryType = 'SHORT';
   const swingHigh = r4h.structure.lastSwingHigh || r1d.structure.lastSwingHigh || (entryPrice + 0.003);
   slPrice = swingHigh + atrValue;
@@ -867,7 +1431,7 @@ if (bias1d === 'bearish') {
   const tp1Dist = Math.abs(entryPrice - tp1Price);
   tp2Price = entryPrice - tp1Dist * 2;
   tp2Reason = `2:1 measured move (${toPips(tp1Dist * 2)} ${pipLabel()})`;
-} else if (bias1d === 'bullish') {
+} else if (weightedBias === 'bullish') {
   entryType = 'LONG';
   const swingLow = r4h.structure.lastSwingLow || r1d.structure.lastSwingLow || (entryPrice - 0.003);
   slPrice = swingLow - atrValue;
@@ -887,6 +1451,214 @@ if (bias1d === 'bearish') {
 } else {
   entryType = 'NO TRADE'; slPrice = 0; tp1Price = 0; tp2Price = 0;
   slReason = ''; tp1Reason = ''; tp2Reason = '';
+}
+
+// ═══ SILVER BULLET SCALP OVERRIDE — Tighter SL/TP for SB window ═══
+// During Silver Bullet windows, use 15m/1H levels instead of 4H/1D swing levels.
+// This is a SCALP, not a swing trade. SL must be tight enough for valid R:R.
+if (primary.name === "Silver Bullet" && inSBWindow && entryType !== 'NO TRADE') {
+  const r15mSwing = r15m?.structure?.lastSwingHigh || r1h?.structure?.lastSwingHigh;
+  const r15mSwingLow = r15m?.structure?.lastSwingLow || r1h?.structure?.lastSwingLow;
+  const sbAtr = Math.abs((r15mSwing || entryPrice) - (r15mSwingLow || entryPrice)) * 0.1;
+
+  if (entryType === 'SHORT') {
+    const sbSL = (r15mSwing || (entryPrice + sbAtr * 2)) + sbAtr;
+    slPrice = sbSL;
+    slReason = `SB Scalp: 15m/1H Swing High @ ${r5(r15mSwing || 0)} + ATR`;
+    const sbRisk = Math.abs(entryPrice - slPrice);
+    const sbPools = pools.filter(p => p.type === 'SSL' && p.price < entryPrice).sort((a, b) => a.price - b.price);
+    if (sbPools.length > 0 && Math.abs(entryPrice - sbPools[0].price) >= sbRisk * 0.5) {
+      tp1Price = sbPools[0].price;
+      tp1Reason = `SB Scalp: SSL pool @ ${r5(tp1Price)}`;
+    } else {
+      tp1Price = entryPrice - sbRisk;
+      tp1Reason = `SB Scalp: 1:1 (${toPips(sbRisk)} ${pipLabel()})`;
+    }
+    tp2Price = entryPrice - sbRisk * 2;
+    tp2Reason = `SB Scalp: 2:1 (${toPips(sbRisk * 2)} ${pipLabel()})`;
+  } else {
+    const sbSL = (r15mSwingLow || (entryPrice - sbAtr * 2)) - sbAtr;
+    slPrice = sbSL;
+    slReason = `SB Scalp: 15m/1H Swing Low @ ${r5(r15mSwingLow || 0)} - ATR`;
+    const sbRisk = Math.abs(entryPrice - slPrice);
+    const sbPools = pools.filter(p => p.type === 'BSL' && p.price > entryPrice).sort((a, b) => a.price - b.price);
+    if (sbPools.length > 0 && Math.abs(sbPools[0].price - entryPrice) >= sbRisk * 0.5) {
+      tp1Price = sbPools[0].price;
+      tp1Reason = `SB Scalp: BSL pool @ ${r5(tp1Price)}`;
+    } else {
+      tp1Price = entryPrice + sbRisk;
+      tp1Reason = `SB Scalp: 1:1 (${toPips(sbRisk)} ${pipLabel()})`;
+    }
+    tp2Price = entryPrice + sbRisk * 2;
+    tp2Reason = `SB Scalp: 2:1 (${toPips(sbRisk * 2)} ${pipLabel()})`;
+  }
+  console.log(`  ⚡ SB Scalp SL/TP: SL ${r5(slPrice)} | TP1 ${r5(tp1Price)} | Risk ${toPips(Math.abs(entryPrice-slPrice))} ${pipLabel()}`);
+}
+
+// ═══ INDUCEMENT GATE OVERRIDE — Force NO TRADE if inducement not swept ═══
+if (inducementBlocked) {
+  entryType = 'NO TRADE';
+  slPrice = 0; tp1Price = 0; tp2Price = 0;
+  slReason = `🛑 Inducement not swept — entry gate closed at pre-check`;
+  tp1Reason = ''; tp2Reason = '';
+  console.log(`  🛑 Inducement Gate: Entry blocked — inducement must be swept before any entry.`);
+}
+
+// ═══ LECTURE 2 OVERRIDE — Use post-hunt swing SL + IFVG CE entry ═══
+let lecture2Override = false;
+if (lecture2?.setupReady && primary.name === "London Hunt + IFVG") {
+  lecture2Override = true;
+  const l2Entry = lecture2.entryPrice; // IFVG CE or breaker entry
+  const l2SL = lecture2.slReference;   // post-hunt swing + buffer
+  if (l2Entry && l2SL && l2Entry !== l2SL) {
+    const prevEntry = entryPrice;
+    const prevSL = slPrice;
+    entryPrice = l2Entry;
+    slPrice = l2SL;
+    entryType = lecture2.direction; // "BUY" or "SELL"
+    slReason = `Lecture 2: ${lecture2.slSource || 'Post-hunt swing'} @ ${r5(slPrice)} (ICT structural invalidation)`;
+    // Use Fib targets if available, otherwise 1:1 / 2:1
+    if (lecture2.fibTargets) {
+      tp1Price = lecture2.fibTargets.tp1;
+      tp1Reason = `Fib ${lecture2.fibTargets.tp1Label} @ ${r5(tp1Price)}`;
+      tp2Price = lecture2.fibTargets.tp2;
+      tp2Reason = `Fib ${lecture2.fibTargets.tp2Label} @ ${r5(tp2Price)}`;
+    } else {
+      const l2Risk = Math.abs(entryPrice - slPrice);
+      if (entryType === 'BUY') {
+        tp1Price = entryPrice + l2Risk;
+        tp1Reason = `1:1 from entry (${toPips(l2Risk)} ${pipLabel()})`;
+        tp2Price = entryPrice + l2Risk * 2;
+        tp2Reason = `2:1 from entry (${toPips(l2Risk * 2)} ${pipLabel()})`;
+      } else {
+        tp1Price = entryPrice - l2Risk;
+        tp1Reason = `1:1 from entry (${toPips(l2Risk)} ${pipLabel()})`;
+        tp2Price = entryPrice - l2Risk * 2;
+        tp2Reason = `2:1 from entry (${toPips(l2Risk * 2)} ${pipLabel()})`;
+      }
+    }
+    const source = lecture2.ifvg?.found ? 'IFVG CE' : 'Breaker';
+    console.log(`  📐 Lecture 2 Override (${source}): Entry ${r5(prevEntry)}→${r5(entryPrice)} | SL ${r5(prevSL)}→${r5(slPrice)} | Dir: ${entryType}`);
+  }
+}
+
+// ═══ LECTURE 1 OVERRIDE — Use first-tagged PD array entry + post-08:30 range SL ═══
+let lecture1Override = false;
+if (!lecture2Override && lecture1?.setupReady && primary.name === "08:30 Liquidity Raid Model") {
+  lecture1Override = true;
+  const l1Entry = lecture1.entryPrice;
+  const l1SL = lecture1.slReference;
+  if (l1Entry && l1SL && l1Entry !== l1SL) {
+    const prevEntry = entryPrice;
+    const prevSL = slPrice;
+    entryPrice = l1Entry;
+    slPrice = l1SL;
+    entryType = lecture1.direction;
+    slReason = `Lecture 1: ${lecture1.slSource || 'Post-08:30 range'} @ ${r5(slPrice)} (ICT structural invalidation)`;
+    if (lecture1.tpTargets?.tp1) {
+      tp1Price = lecture1.tpTargets.tp1.price;
+      tp1Reason = lecture1.tpTargets.tp1.detail;
+    }
+    if (lecture1.tpTargets?.tp2) {
+      tp2Price = lecture1.tpTargets.tp2.price;
+      tp2Reason = lecture1.tpTargets.tp2.detail;
+    }
+    if (!lecture1.tpTargets?.tp1) {
+      const l1Risk = Math.abs(entryPrice - slPrice);
+      if (entryType === 'BUY') {
+        tp1Price = entryPrice + l1Risk;
+        tp1Reason = `1:1 from entry (${toPips(l1Risk)} ${pipLabel()})`;
+        tp2Price = entryPrice + l1Risk * 2;
+        tp2Reason = `2:1 from entry (${toPips(l1Risk * 2)} ${pipLabel()})`;
+      } else {
+        tp1Price = entryPrice - l1Risk;
+        tp1Reason = `1:1 from entry (${toPips(l1Risk)} ${pipLabel()})`;
+        tp2Price = entryPrice - l1Risk * 2;
+        tp2Reason = `2:1 from entry (${toPips(l1Risk * 2)} ${pipLabel()})`;
+      }
+    }
+    console.log(`  📐 Lecture 1 Override (${lecture1.entrySource || 'PD Array'}): Entry ${r5(prevEntry)}→${r5(entryPrice)} | SL ${r5(prevSL)}→${r5(slPrice)} | Dir: ${entryType}`);
+  }
+}
+
+// ═══ LECTURE 4 OVERRIDE — Use gap-based entry + post-MSS SL + gap TP ═══
+let lecture4Override = false;
+if (!lecture2Override && !lecture1Override && lecture4?.setupReady && primary.name === "NDOG/NWOG News Model") {
+  lecture4Override = true;
+  const l4Entry = lecture4.entryPrice;
+  const l4SL = lecture4.slReference;
+  if (l4Entry && l4SL && l4Entry !== l4SL) {
+    const prevEntry = entryPrice;
+    const prevSL = slPrice;
+    entryPrice = l4Entry;
+    slPrice = l4SL;
+    entryType = lecture4.direction;
+    slReason = `Lecture 4: ${lecture4.slSource || 'Post-MSS swing'} @ ${r5(slPrice)} (ICT structural invalidation)`;
+    // Use gap-based TP targets if available
+    if (lecture4.tpTargets?.tp1) {
+      tp1Price = lecture4.tpTargets.tp1.price;
+      tp1Reason = lecture4.tpTargets.tp1.detail;
+    }
+    if (lecture4.tpTargets?.tp2) {
+      tp2Price = lecture4.tpTargets.tp2.price;
+      tp2Reason = lecture4.tpTargets.tp2.detail;
+    }
+    if (!lecture4.tpTargets?.tp1) {
+      // Fallback: 1:1 / 2:1 from entry
+      const l4Risk = Math.abs(entryPrice - slPrice);
+      if (entryType === 'BUY') {
+        tp1Price = entryPrice + l4Risk;
+        tp1Reason = `1:1 from entry (${toPips(l4Risk)} ${pipLabel()})`;
+        tp2Price = entryPrice + l4Risk * 2;
+        tp2Reason = `2:1 from entry (${toPips(l4Risk * 2)} ${pipLabel()})`;
+      } else {
+        tp1Price = entryPrice - l4Risk;
+        tp1Reason = `1:1 from entry (${toPips(l4Risk)} ${pipLabel()})`;
+        tp2Price = entryPrice - l4Risk * 2;
+        tp2Reason = `2:1 from entry (${toPips(l4Risk * 2)} ${pipLabel()})`;
+      }
+    }
+    const l4source = lecture4.entry?.source || 'Gap entry';
+    console.log(`  📐 Lecture 4 Override (${l4source}): Entry ${r5(prevEntry)}→${r5(entryPrice)} | SL ${r5(prevSL)}→${r5(slPrice)} | Dir: ${entryType}`);
+  }
+}
+
+// ═══ IOFED PYRAMID — 3-Level FVG Entry Drill ═══
+// ICT: Enter at FVG edge (starter) → CE 50% (add) → Far edge (add)
+// "Many setups reverse from the very edge without retracing to the 50% level."
+let iofedPyramid = null;
+const iofedDirection = weightedBias === 'bearish' ? 'SHORT' : weightedBias === 'bullish' ? 'LONG' : 'NO TRADE';
+if (iofedDirection !== 'NO TRADE' && fvgs.length > 0) {
+  // Find the nearest FVG in the trade direction for IOFED entry
+  const tradeFvgs = fvgs.filter(f => {
+    if (iofedDirection === 'SHORT') return f.type === 'bearish' && (f.fillFraction || 0) < 0.5;
+    return f.type === 'bullish' && (f.fillFraction || 0) < 0.5;
+  });
+  if (tradeFvgs.length > 0) {
+    const fvg = tradeFvgs.reduce((a, b) =>
+      Math.abs(((a.top + a.bottom) / 2) - entryPrice) < Math.abs(((b.top + b.bottom) / 2) - entryPrice) ? a : b
+    );
+    const gap = Math.abs(fvg.top - fvg.bottom);
+    const ce = (fvg.top + fvg.bottom) / 2;
+
+    if (iofedDirection === 'SHORT') {
+      iofedPyramid = {
+        starter: { price: fvg.top - gap * 0.1, label: 'IOFED (FVG edge)', size: '40%' },
+        add1: { price: ce, label: 'CE 50%', size: '35%' },
+        add2: { price: fvg.bottom, label: 'Far edge (full mitigation)', size: '25%' },
+      };
+    } else {
+      iofedPyramid = {
+        starter: { price: fvg.bottom + gap * 0.1, label: 'IOFED (FVG edge)', size: '40%' },
+        add1: { price: ce, label: 'CE 50%', size: '35%' },
+        add2: { price: fvg.top, label: 'Far edge (full mitigation)', size: '25%' },
+      };
+    }
+    iofedPyramid.fvgType = fvg.type;
+    iofedPyramid.slPrice = slPrice;
+    iofedPyramid.tpPrice = tp1Price;
+    console.log(`  📐 IOFED Pyramid: Starter @ ${r5(iofedPyramid.starter.price)} | CE @ ${r5(iofedPyramid.add1.price)} | Far @ ${r5(iofedPyramid.add2.price)}`);
+  }
 }
 
 const risk = Math.abs(entryPrice - slPrice);
@@ -909,11 +1681,68 @@ writeMd("05_entry_refinement", "entry_plan.md", `# Entry Plan — ${pairLabel} �
 - ${freshnessScore >= 5 ? '✅ Data is tradeable' : '⛔ DO NOT TRADE — refresh data first'}
 
 ## Model: **${primary.name}** (${primary.score}/${primary.max})
-
+${lecture2?.setupReady ? `
+## 📐 Lecture 2 Override ACTIVE
+- **Entry Source**: ${lecture2.ifvg?.found ? `IFVG CE @ ${r5(lecture2.ifvg.ce)} (${lecture2.ifvg.type})` : `Breaker Block @ ${r5(lecture2.breaker?.entry || 0)}`}
+- **SL Source**: ${lecture2.slSource || 'Post-hunt swing'} @ ${lecture2.slReference ? r5(lecture2.slReference) : 'N/A'}
+- **MSS**: Confirmed ${lecture2.mss?.direction || ''} — close beyond prior swing
+- **London Range**: H ${lecture2.londonRange ? r5(lecture2.londonRange.high) : 'N/A'} / L ${lecture2.londonRange ? r5(lecture2.londonRange.low) : 'N/A'} (draw reference)
+- **Hunt**: ${lecture2.hunt.swept} swept @ ${r5(lecture2.hunt.sweepPrice)} → reversed → IFVG confirmed
+${lecture2.fibTargets ? `- **Fib TP**: ${lecture2.fibTargets.detail}` : ''}
+` : ''}${lecture2?.hunt?.active && !lecture2?.setupReady ? `
+## ⏳ Lecture 2 Monitoring
+- **Hunt**: ${lecture2.hunt.detail || 'Active'}
+- **MSS**: ${lecture2.mss?.confirmed ? '✅ Confirmed' : '⏳ ' + (lecture2.mss?.detail || 'Pending')}
+- **IFVG**: ${lecture2.ifvg?.found ? '✅ Found' : '⏳ ' + (lecture2.ifvg?.detail || 'Pending')}
+- **Breaker**: ${lecture2.breaker?.found ? '✅ Available as backup' : 'Not found'}
+${lecture2.reversalCheck?.active ? `- **⚠️ ${lecture2.reversalCheck.warning}**` : ''}
+` : ''}${lecture1?.setupReady ? `
+## 📐 Lecture 1 Override ACTIVE (08:30 Liquidity Raid Model)
+- **Entry Source**: ${lecture1.entrySource || 'PD Array'} @ ${lecture1.entryPrice ? r5(lecture1.entryPrice) : 'N/A'} (first-tagged)
+- **SL Source**: ${lecture1.slSource || 'Post-08:30 range'} @ ${lecture1.slReference ? r5(lecture1.slReference) : 'N/A'}
+- **MSS**: Confirmed ${lecture1.mss?.direction || ''}
+- **15m Bias**: ${lecture1.bias?.toUpperCase() || 'N/A'} | ${lecture1.ctx15m?.drawTargets?.length || 0} draw targets
+- **Raid**: ${lecture1.raid?.swept || 'Levels'} swept @ ${lecture1.raid?.sweepPrice ? r5(lecture1.raid.sweepPrice) : 'N/A'}
+- **PD Arrays**: ${lecture1.pdArrays?.length || 0} found — ${lecture1.firstTagged?.type || 'None'} first-tagged
+${lecture1.tpTargets ? `- **TP**: ${lecture1.tpTargets.detail}` : ''}
+` : ''}${lecture1?.inWindow && !lecture1?.setupReady ? `
+## ⏳ Lecture 1 Monitoring (08:30 Liquidity Raid Model)
+- **Formation (08:00-08:30)**: ${lecture1.formation?.formed ? '✅ ' + lecture1.formation.detail : '⏳ ' + (lecture1.formation?.detail || 'Pending')}
+- **Raid (post-08:30)**: ${lecture1.raid?.active ? '⚡ ' + lecture1.raid.detail : '⏳ ' + (lecture1.raid?.detail || 'Pending')}
+- **MSS**: ${lecture1.mss?.confirmed ? '✅ Confirmed' : '⏳ ' + (lecture1.mss?.detail || 'Pending')}
+- **PD Arrays**: ${lecture1.pdArrays?.length || 0} discovered${lecture1.firstTagged ? ' — first: ' + lecture1.firstTagged.type : ''}
+${lecture1.reversalCheck?.active ? `- **⚠️ ${lecture1.reversalCheck.warning}**` : ''}
+` : ''}${lecture4?.setupReady ? `
+## 📐 Lecture 4 Override ACTIVE (NDOG/NWOG News Model)
+- **Entry Source**: ${lecture4.entry?.source || 'Gap'} @ ${lecture4.entryPrice ? r5(lecture4.entryPrice) : 'N/A'} (${lecture4.entry?.detail || ''})
+- **SL Source**: ${lecture4.slSource || 'Post-MSS swing'} @ ${lecture4.slReference ? r5(lecture4.slReference) : 'N/A'}
+- **MSS**: Confirmed ${lecture4.mss?.direction || ''}
+- **Gap Draw**: ${lecture4.gapDraw?.nearestGap?.type || 'GAP'} — ${lecture4.gapDraw?.detail || ''}
+- **Quarters**: ${lecture4.quarters ? `0.25@${r5(lecture4.quarters.q025)} / 0.50@${r5(lecture4.quarters.q50)} / 0.75@${r5(lecture4.quarters.q075)}` : 'N/A'}
+${lecture4.quarterTap?.detected ? `- **⚠️ ${lecture4.quarterTap.detail}**` : ''}
+${lecture4.tpTargets ? `- **Gap TP**: ${lecture4.tpTargets.detail}` : ''}
+` : ''}${lecture4?.inNewsWindow && !lecture4?.setupReady ? `
+## ⏳ Lecture 4 Monitoring (NDOG/NWOG News Model)
+- **Gaps**: ${lecture4.gapClusters?.hasGaps ? lecture4.gapClusters.detail : (lecture4.substituteGap ? 'Using FVG substitute' : 'None')}
+- **Draw**: ${lecture4.gapDraw?.drawing ? '⚡ Drawing toward gap' : '⏳ ' + (lecture4.gapDraw?.detail || 'Pending')}
+- **MSS**: ${lecture4.mss?.confirmed ? '✅ Confirmed' : '⏳ ' + (lecture4.mss?.detail || 'Pending')}
+- **Entry**: ${lecture4.entry?.found ? '✅ ' + lecture4.entry.detail : '⏳ Pending'}
+${lecture4.inAPlusWindow ? '- **⭐ 09:30 A-PLUS WINDOW ACTIVE** — equity market open delivery' : ''}
+${lecture4.reversalCheck?.active ? `- **⚠️ ${lecture4.reversalCheck.warning}**` : ''}
+` : ''}
 ## Setup
 - **Direction**: **${entryType}** | **Entry TF**: 15m/5m
 - **Trigger**: ${bias1d === 'bearish' ? 'MSS downside + bearish FVG fill on 5m' : bias1d === 'bullish' ? 'MSS upside + bullish FVG fill on 5m' : 'N/A'}
 
+${thirdCandleOTE ? `
+## 3rd Daily Candle OTE (Priority 0 — Simple Scalping Strategy)
+| Level | Price | Notes |
+|-------|-------|-------|
+| 3rd Candle High | ${r5(thirdCandleOTE.high)} | 3-candle range: ${r5(thirdCandleOTE.range)} |
+| 62% Retrace | ${r5(thirdCandleOTE.ote62)} | OTE zone entry |
+| 79% Retrace | ${r5(thirdCandleOTE.ote79)} | OTE zone boundary |
+| Current Price | ${r5(r1h.price)} | ${thirdCandleOTE.inZone ? '✅ IN 3RD CANDLE OTE ZONE' : '⏳ Outside zone'} |
+` : ''}
 ## Fibonacci OTE Zone (Priority 1)
 | Level | Price | Notes |
 |-------|-------|-------|
@@ -932,6 +1761,14 @@ writeMd("05_entry_refinement", "entry_plan.md", `# Entry Plan — ${pairLabel} �
 
 ## Risk-Reward
 - **R:R TP1**: ${r2(rr1)}:1 ${rr1 >= 1.0 ? '✅' : '✗ Below 1:1'}
+${iofedPyramid ? `
+## IOFED Pyramid Entry (${iofedPyramid.fvgType} FVG)
+| Level | Price | Size | Risk | R:R | Notes |
+|-------|-------|------|------|-----|-------|
+| 🥇 Starter | ${r5(iofedPyramid.starter.price)} | ${iofedPyramid.starter.size} | ${toPips(Math.abs(iofedPyramid.starter.price - iofedPyramid.slPrice))} ${pipLabelStr} | ${r2(Math.abs(iofedPyramid.tpPrice - iofedPyramid.starter.price) / Math.abs(iofedPyramid.starter.price - iofedPyramid.slPrice))}:1 | ${iofedPyramid.starter.label} |
+| 🥈 Add #1 | ${r5(iofedPyramid.add1.price)} | ${iofedPyramid.add1.size} | ${toPips(Math.abs(iofedPyramid.add1.price - iofedPyramid.slPrice))} ${pipLabelStr} | ${r2(Math.abs(iofedPyramid.tpPrice - iofedPyramid.add1.price) / Math.abs(iofedPyramid.add1.price - iofedPyramid.slPrice))}:1 | ${iofedPyramid.add1.label} |
+| 🥉 Add #2 | ${r5(iofedPyramid.add2.price)} | ${iofedPyramid.add2.size} | ${toPips(Math.abs(iofedPyramid.add2.price - iofedPyramid.slPrice))} ${pipLabelStr} | ${r2(Math.abs(iofedPyramid.tpPrice - iofedPyramid.add2.price) / Math.abs(iofedPyramid.add2.price - iofedPyramid.slPrice))}:1 | ${iofedPyramid.add2.label} |
+` : ''}
 - **R:R TP2**: ${r2(rr2)}:1
 - **Risk**: ${riskPips} ${pipLabelStr}
 
@@ -1070,6 +1907,13 @@ console.log(`\n${"=".repeat(55)}`);
 console.log(`  ${pairLabel} — COMPLETE`);
 console.log(`${"=".repeat(55)}`);
 console.log(`Data: ${freshnessLabel} (${freshnessScore}/10) | Source: ${priceSource} | Age: ${Math.round(dataAgeMin)}m`);
+// ═══ UNIFIED COHERENCE — worst dimension wins ═══
+const microCoh = microContext?.score || 0;
+const auditCoh = coherenceScore || 0;
+const isInvalid = invalidationResult?.overallStatus === "INVALIDATED";
+const unifiedCoh = isInvalid ? 0 : Math.min(microCoh * 10, auditCoh); // Normalize micro to 0-100, take minimum
+const unifiedLabel = isInvalid ? "🛑 INVALIDATED" : unifiedCoh >= 70 ? "✅ STRONG" : unifiedCoh >= 50 ? "⚠️ ADEQUATE" : unifiedCoh >= 30 ? "⏳ WEAK" : "❌ POOR";
+console.log(`Unified Coherence: ${unifiedCoh}/100 — ${unifiedLabel}${isInvalid ? ' (invalidation overrides all)' : ''}`);
 console.log(`Cycle: ${effectivePhase} | Coherence: ${coherenceScore || '?'}/100 | Invalidation: ${invalidationResult ? invalidationResult.overallStatus : '?'}`);
 console.log(`Bias: ${bias1d.toUpperCase()} | 1W→${bias1w} 1D→${bias1d} 4H→${bias4h}`);
 console.log(`Model: ${primary.name} (${r2(primary.score)}/${primary.max.toFixed(0)}) — ${models.length} models scored`);
