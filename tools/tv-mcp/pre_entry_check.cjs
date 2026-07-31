@@ -186,16 +186,25 @@ const time = checkTimeContext();
 const weekly = checkWeeklyProfile();
 const dataQuality = checkDataQuality(price);
 
+// Run ICT advanced checks (Judas Swing, SMT, Premium/Discount)
+let ictAdvanced = { go: true, checks: [] };
+const ictRaw = run(`node "${path.join(ROOT, "tools", "tv-mcp", "ict_checks.cjs")}" ${PAIR} ${DIRECTION}`, 30000);
+if (ictRaw) {
+  try { ictAdvanced = JSON.parse(ictRaw); } catch(e) {}
+}
+
 const checks = [
   { name: "PRICE", ...price },
   { name: "TIME", ...time },
   { name: "WEEKLY_PROFILE", ...weekly },
+  ...(ictAdvanced.checks || []).map(c => ({ name: c.name, ...c })),
   { name: "DATA_QUALITY", ...dataQuality },
 ];
 
-// Only block if: data is blind OR price is counter-trend with <2 alignment
+// Block if: data blind, price counter-trend, or Judas Swing HIGH risk
 const blockers = checks.filter(c => !c.pass);
-const go = blockers.length === 0;
+const hardBlocks = blockers.filter(c => c.name === "PRICE" || c.name === "DATA_QUALITY" || (c.name === "JUDAS_SWING" && c.risk === "HIGH"));
+const go = hardBlocks.length === 0;
 
 // Confidence: 0-100 based on alignment, day, session
 const alignScore = price.align || 0;
