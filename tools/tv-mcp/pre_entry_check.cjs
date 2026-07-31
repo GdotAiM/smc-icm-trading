@@ -86,6 +86,20 @@ function checkTimeContext() {
     if (dayMult < 0.7) warnings.push(`Friday ×${dayMult} — low conviction day. Reduce size, not skip.`);
     if (sbActive) warnings.unshift("🔫 SB WINDOW ACTIVE — highest probability entry window.");
 
+    // ICT Macro Times (20-min high-conviction windows)
+    try {
+      const macroRaw = run(`node "${path.join(ROOT, "tools", "tv-mcp", "macro_times.cjs")}"`, 10000);
+      if (macroRaw) {
+        const macro = JSON.parse(macroRaw);
+        if (macro.active) {
+          warnings.unshift(`⏰ MACRO ACTIVE: ${macro.active.name} (reliability ${macro.active.reliability}) — ends ${macro.active.endsIn}`);
+        }
+        if (macro.nextStar && macro.nextStar.inMinutes < 30) {
+          warnings.push(`⭐ Next star macro: ${macro.nextStar.name} in ${macro.nextStar.inMinutes}min`);
+        }
+      }
+    } catch(e) {}
+
     return {
       pass: true,
       session, hour, reliability, sbActive, day, dayMult, combined,

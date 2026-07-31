@@ -238,11 +238,32 @@ function layerScalp(swingLayer, dayLayer) {
     hasSweep = eng5m.liquidity.some(l => l.swept);
   }
 
-  // Window quality
+  // Window quality + Macro Times
   let windowScore = 0;
+  let macroActive = false;
+  let macroName = "";
+
+  // Check ICT Macro Times (20-min high-conviction windows)
+  try {
+    const { execSync: es2 } = require("child_process");
+    const macroRaw = es2(`node "${path.join(ROOT, "tools", "tv-mcp", "macro_times.cjs")}"`, {
+      encoding: "utf8", timeout: 10000, stdio: ["ignore", "pipe", "ignore"]
+    });
+    if (macroRaw) {
+      const macro = JSON.parse(macroRaw);
+      if (macro.active && macro.active.reliability >= 0.9) {
+        macroActive = true;
+        macroName = macro.active.name;
+      }
+    }
+  } catch(e) {}
+
   if (inSB) windowScore = 15;
   else if (inKillzone) windowScore = 10;
   else windowScore = 3;
+
+  // Macro bonus: active macro = timing precision
+  if (macroActive) windowScore += 8;
 
   const sweepBonus = hasSweep ? 5 : 0;
   const manipulationPenalty = inManipulation ? -5 : 0;
@@ -287,13 +308,15 @@ function layerScalp(swingLayer, dayLayer) {
   if (inManipulation) note += " MANIPULATION.";
   if (fractalContext) note += " " + fractalContext;
 
+  if (macroActive) note += ` MACRO:${macroName}.`;
+
   return {
     active: true,
-    inKillzone, inSB, inManipulation, hasSweep,
+    inKillzone, inSB, inManipulation, hasSweep, macroActive, macroName,
     confidence,
     fractalContext,
     note,
-    detail: `${inSB ? '🔫 SB' : inKillzone ? 'KZ' : 'No win'} | Sweep:${hasSweep ? 'YES' : 'no'} | ${fractalContext?.substring(0, 40) || ''}`
+    detail: `${inSB ? '🔫 SB' : inKillzone ? 'KZ' : 'No win'} | Sweep:${hasSweep ? 'YES' : 'no'}${macroActive ? ' | MACRO:' + macroName : ''} | ${fractalContext?.substring(0, 30) || ''}`
   };
 }
 
