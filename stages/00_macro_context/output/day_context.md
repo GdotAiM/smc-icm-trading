@@ -1,23 +1,23 @@
-# Macro Context — 2026-07-29 — Wednesday
+# Macro Context — 2026-07-31 — Friday
 
 ## Today's Profile
-- **Day**: Wednesday — "Reversal Day"
-- **Character**: Classic ICT reversal. Often marks weekly high or low.
-- **Risk Level**: Medium-High
-- **Day Weight**: ×1.2
-- **Session**: NY AM Killzone (Highest volume, displacement)
-- **NY Hour**: 10:00 (ICT standard: New York local time)
+- **Day**: Friday — "Position Squaring"
+- **Character**: Profit-taking dominates. Thursday's move often retraces.
+- **Risk Level**: Low
+- **Day Weight**: ×0.6
+- **Session**: London Killzone (Institutional flow, manipulation)
+- **NY Hour**: 04:00 (ICT standard: New York local time)
 
 ## Weekly Position
-- **Week Phase**: Mid-week — classic reversal zone
+- **Week Phase**: Week end — position squaring, avoid new risk
 - **Week of Month**: 5
-- **Expected Pattern**: Classic ICT Wednesday reversal — watch for manipulation then expansion
-- **Caution**: Highest probability reversal day. Watch manipulation then expansion.
+- **Expected Pattern**: Position squaring — take profits, no new swing risk
+- **Caution**: Close all positions by NY close. No new swing trades.
 
 ## Monthly Events
 None
 
 ## Session-Cycle Alignment
-- **Session Character**: Highest volume, displacement
+- **Session Character**: Institutional flow, manipulation
 - **Cycle Phase**: UNKNOWN
 - **Alignment Quality**: ⚠️ Sub-optimal — Session and cycle not ideally matched

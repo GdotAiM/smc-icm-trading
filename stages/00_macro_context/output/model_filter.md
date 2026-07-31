@@ -1,22 +1,22 @@
-# Cycle-Aware Model Filter — 2026-07-29
+# Cycle-Aware Model Filter — 2026-07-31
 
-## Active Cycle: **UNKNOWN** — Day: **Wednesday** — Session: **NY AM Killzone**
+## Active Cycle: **UNKNOWN** — Day: **Friday** — Session: **London Killzone**
 
 ## Full Model Matrix
 
 | Model | Cycle Fit | Cycle Rating | Day Fit | Day Weight | Combined | Recommendation |
 |-------|----------|-------------|---------|-----------|----------|----------------|
-| 2022 Model (MMXM) | 0/3 | — Not recommended | Neutral | ×1.2 | 0.00 | ✗ Skip today |
-| Silver Bullet | 0/3 | — Not recommended | FAVORED | ×1.2 | 0.00 | ✗ Skip today |
-| OTE + Institutional OB | 0/3 | — Not recommended | Neutral | ×1.2 | 0.00 | ✗ Skip today |
-| Turtle Soup | 0/3 | — Not recommended | FAVORED | ×1.2 | 0.00 | ✗ Skip today |
-| Breaker Block | 0/3 | — Not recommended | Neutral | ×1.2 | 0.00 | ✗ Skip today |
-| Unicorn (OTE + FVG) | 0/3 | — Not recommended | Neutral | ×1.2 | 0.00 | ✗ Skip today |
-| SCOB | 0/3 | — Not recommended | Neutral | ×1.2 | 0.00 | ✗ Skip today |
-| 2FVG Entry | 0/3 | — Not recommended | AVOID | ×1.2 | 0.00 | ✗ Skip today |
-| Judas Swing | 0/3 | — Not recommended | FAVORED | ×1.2 | 0.00 | ✗ Skip today |
-| Asian Range Breakout | 0/3 | — Not recommended | Neutral | ×1.2 | 0.00 | ✗ Skip today |
-| NWOG/NDOG | 0/3 | — Not recommended | Neutral | ×1.2 | 0.00 | ✗ Skip today |
+| 2022 Model (MMXM) | 0/3 | — Not recommended | AVOID | ×0.6 | 0.00 | ✗ Skip today |
+| Silver Bullet | 0/3 | — Not recommended | FAVORED | ×0.6 | 0.00 | ✗ Skip today |
+| OTE + Institutional OB | 0/3 | — Not recommended | Neutral | ×0.6 | 0.00 | ✗ Skip today |
+| Turtle Soup | 0/3 | — Not recommended | AVOID | ×0.6 | 0.00 | ✗ Skip today |
+| Breaker Block | 0/3 | — Not recommended | Neutral | ×0.6 | 0.00 | ✗ Skip today |
+| Unicorn (OTE + FVG) | 0/3 | — Not recommended | Neutral | ×0.6 | 0.00 | ✗ Skip today |
+| SCOB | 0/3 | — Not recommended | Neutral | ×0.6 | 0.00 | ✗ Skip today |
+| 2FVG Entry | 0/3 | — Not recommended | AVOID | ×0.6 | 0.00 | ✗ Skip today |
+| Judas Swing | 0/3 | — Not recommended | Neutral | ×0.6 | 0.00 | ✗ Skip today |
+| Asian Range Breakout | 0/3 | — Not recommended | Neutral | ×0.6 | 0.00 | ✗ Skip today |
+| NWOG/NDOG | 0/3 | — Not recommended | Neutral | ×0.6 | 0.00 | ✗ Skip today |
 
 
 ## Today's Best Models (Cycle-Recommended)
@@ -32,4 +32,4 @@
 - **If Step 4**: Manage existing positions or wait for next cycle
 
 ## Session Override
-- **NY AM Killzone Session** → Standard session
+- **London Killzone Session** → Standard session
