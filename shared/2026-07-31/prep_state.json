@@ -1,13 +1,13 @@
 {
   "date": "2026-07-31",
-  "time": "2026-07-31T08:19:24.631Z",
+  "time": "2026-07-31T11:07:20.284Z",
   "pairs": {
-    "EURUSD": {
+    "XAUUSD": {
       "htfBias": "available",
       "keyLevels": "available",
       "modelSelection": "available"
     },
-    "GBPUSD": {
+    "NAS100": {
       "htfBias": "available",
       "keyLevels": "available",
       "modelSelection": "available"

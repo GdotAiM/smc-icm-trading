@@ -1,12 +1,12 @@
-# Cross-Archetype Intelligence — NAS100 — 2026-07-31
+# Cross-Archetype Intelligence — XAUUSD — 2026-07-31
 
 ### Scalp → Position
 **Q**: Is this bullish 1m move worth holding?
 **A**: Yes — Position also sees bullish. Scale it into a Day trade if 5m confirms.
 
 ### Day → Swing
-**Q**: Does 4H/1D support this 15m bullish entry?
-**A**: Yes — Swing confirms. The bullish move has HTF backing.
+**Q**: Does 4H/1D support this 15m bearish entry?
+**A**: Caution — Swing sees bullish. This may be a counter-trend move. Tighten SL.
 
 ### Position → Scalp
 **Q**: Is there a 1m trigger to start building bullish?

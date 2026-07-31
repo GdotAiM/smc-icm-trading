@@ -5,8 +5,8 @@
 - **Character**: Profit-taking dominates. Thursday's move often retraces.
 - **Risk Level**: Low
 - **Day Weight**: ×0.6
-- **Session**: London Killzone (Institutional flow, manipulation)
-- **NY Hour**: 04:00 (ICT standard: New York local time)
+- **Session**: London PM / Pre-NY (European distribution, trend building)
+- **NY Hour**: 07:00 (ICT standard: New York local time)
 
 ## Weekly Position
 - **Week Phase**: Week end — position squaring, avoid new risk
@@ -18,6 +18,6 @@
 None
 
 ## Session-Cycle Alignment
-- **Session Character**: Institutional flow, manipulation
-- **Cycle Phase**: UNKNOWN
+- **Session Character**: European distribution, trend building
+- **Cycle Phase**: DISTRIBUTION
 - **Alignment Quality**: ⚠️ Sub-optimal — Session and cycle not ideally matched
