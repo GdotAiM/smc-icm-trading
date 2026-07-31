@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "built": "2026-07-30T14:58:35.680Z",
+  "built": "2026-07-31T07:42:30.583Z",
   "nodes": {
     "concept:blog---ict": {
       "id": "concept:blog---ict",
@@ -1131,7 +1131,7 @@
       "id": "pair:gbpusd",
       "type": "pair",
       "name": "Gbpusd",
-      "totalTrades": 4,
+      "totalTrades": 5,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1553,6 +1553,73 @@
       "source": "journal",
       "pair": "GBPUSD",
       "date": "2026-07-30",
+      "active": true
+    },
+    "trade:gbpusd:2026-07-31": {
+      "id": "trade:gbpusd:2026-07-31",
+      "type": "trade",
+      "date": "2026-07-31",
+      "pair": "GBPUSD",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.5,
+      "entries": 2,
+      "blocked": 6,
+      "source": "performance"
+    },
+    "lesson:gbpusd:2026-07-31:0": {
+      "id": "lesson:gbpusd:2026-07-31:0",
+      "type": "lesson",
+      "title": "Judas Swing guard works.",
+      "detail": "Entering at 02:00 during London Open manipulation = trap confirmed. Guard prevented -1R.",
+      "category": "risk-management",
+      "source": "journal",
+      "pair": "GBPUSD",
+      "date": "2026-07-31",
+      "active": true
+    },
+    "lesson:gbpusd:2026-07-31:1": {
+      "id": "lesson:gbpusd:2026-07-31:1",
+      "type": "lesson",
+      "title": "1m Inversion can fade fast.",
+      "detail": "7/8 at 02:00 → 2/8 at 03:00 → 0/8 at 03:26. Re-validate at entry time, not signal time.",
+      "category": "entry-execution",
+      "source": "journal",
+      "pair": "GBPUSD",
+      "date": "2026-07-31",
+      "active": true
+    },
+    "lesson:gbpusd:2026-07-31:2": {
+      "id": "lesson:gbpusd:2026-07-31:2",
+      "type": "lesson",
+      "title": "SB displacement must occur during SB window.",
+      "detail": "The move already happened during Judas. By SB time, displacement was gone.",
+      "category": "entry-execution",
+      "source": "journal",
+      "pair": "GBPUSD",
+      "date": "2026-07-31",
+      "active": true
+    },
+    "lesson:gbpusd:2026-07-31:3": {
+      "id": "lesson:gbpusd:2026-07-31:3",
+      "type": "lesson",
+      "title": "The forecast should run BEFORE every signal.",
+      "detail": "5m forecast at 02:00 would have shown the bounce projection and prevented premature entries.",
+      "category": "forecast-usage",
+      "source": "journal",
+      "pair": "GBPUSD",
+      "date": "2026-07-31",
+      "active": true
+    },
+    "lesson:gbpusd:2026-07-31:4": {
+      "id": "lesson:gbpusd:2026-07-31:4",
+      "type": "lesson",
+      "title": "The reload is cleaner than the original signal.",
+      "detail": "The bounce exhausted, the 5m flipped, and now all TFs can align with the HTF direction.",
+      "category": "directional-bias",
+      "source": "journal",
+      "pair": "GBPUSD",
+      "date": "2026-07-31",
       "active": true
     },
     "trade:gold:2026-07-28": {
@@ -2337,6 +2404,139 @@
       "metadata": {}
     },
     {
+      "source": "trade:gbpusd:2026-07-31",
+      "target": "pair:gbpusd",
+      "type": "ON_PAIR",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
+      "target": "lesson:gbpusd:2026-07-31:0",
+      "type": "GENERATED_LESSON",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:0",
+      "target": "concept:judas-swing",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:0",
+      "target": "concept:swing-high",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:0",
+      "target": "concept:swing-low-formation",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
+      "target": "lesson:gbpusd:2026-07-31:1",
+      "type": "GENERATED_LESSON",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:1",
+      "target": "concept:3-step-guide-to-master-valid-pullback",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:1",
+      "target": "concept:institutional-order-flow-entry-drill",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:1",
+      "target": "concept:inversion-fair-value-gap",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:1",
+      "target": "concept:optimal-trade-entry-ote-pattern",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:1",
+      "target": "concept:reaper-inversion-fair-value-gap",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:1",
+      "target": "concept:valid-ict-fair-value-gap",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
+      "target": "lesson:gbpusd:2026-07-31:2",
+      "type": "GENERATED_LESSON",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:2",
+      "target": "concept:displacement-move",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:2",
+      "target": "concept:judas-swing",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:2",
+      "target": "concept:silver-bullet",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-07-31:2",
+      "target": "concept:killzone-silver-bullet-overlap",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
+      "target": "lesson:gbpusd:2026-07-31:3",
+      "type": "GENERATED_LESSON",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
+      "target": "lesson:gbpusd:2026-07-31:4",
+      "type": "GENERATED_LESSON",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
       "source": "trade:gold:2026-07-28",
       "target": "pair:gold",
       "type": "ON_PAIR",
@@ -2422,6 +2622,13 @@
     },
     {
       "source": "trade:dxy:2026-07-29",
+      "target": "trade:gbpusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -2450,6 +2657,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-28",
+      "target": "trade:gbpusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-28",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -2471,6 +2685,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-28",
+      "target": "trade:gbpusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-28",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -2485,6 +2706,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-30",
+      "target": "trade:gbpusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-30",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -2492,6 +2720,20 @@
     },
     {
       "source": "trade:gbpusd:2026-07-30",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
+      "target": "trade:gold:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
