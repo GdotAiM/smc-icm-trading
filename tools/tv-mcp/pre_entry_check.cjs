@@ -97,7 +97,69 @@ function checkTimeContext() {
   }
 }
 
-// ═══ CHECK 3: Data quality — are we flying blind? ═══
+// ═══ CHECK 3: TGIF Weekly Profile (Friday only) ═══
+function checkWeeklyProfile() {
+  const raw = run(`node "${path.join(ROOT, "tools", "ny_time.cjs")}" --now`);
+  if (!raw) return { pass: true, detail: "Weekly profile check skipped" };
+
+  try {
+    const ny = JSON.parse(raw);
+    const day = ny.dayProfile?.name || "?";
+    if (day !== "Friday") return { pass: true, detail: "Not Friday — weekly profile check not applicable" };
+
+    // Read 1D and 1W engine data to determine Mon-Thu profile
+    const DATE = new Date().toISOString().split("T")[0];
+    let weeklyProfile = "unknown";
+    let tgifGuidance = "";
+
+    try {
+      const engine1d = JSON.parse(require("fs").readFileSync(
+        require("path").join(ROOT, "shared", DATE, PAIR, "engine_1d.json"), "utf8"
+      ));
+      const bias1d = engine1d?.structure?.bias || "?";
+      const event1d = engine1d?.structure?.lastEvent || "?";
+
+      // Determine Mon-Thu profile from 1D structure
+      if (bias1d === "bullish" && event1d === "BOS") {
+        weeklyProfile = "BULLISH EXPANSION";
+        tgifGuidance = "Mon-Thu trended up. Weekly high likely set Thursday. Friday = profit-taking pullback. Trade small or pass. London KZ = expect dip. NY PM = possible bounce.";
+      } else if (bias1d === "bearish" && event1d === "BOS") {
+        weeklyProfile = "BEARISH EXPANSION";
+        tgifGuidance = "Mon-Thu trended down. Weekly low likely set Thursday. Friday = short-covering rally. Trade small or pass.";
+      } else if (event1d === "CHoCH") {
+        weeklyProfile = "REVERSAL/CONSOLIDATION";
+        tgifGuidance = "Mon-Thu was choppy or reversing. Friday = Seek & Destroy possible. Wait for sweep of weekly high/low before entering. If NFP/FOMC week, expect both-side sweep.";
+      } else {
+        weeklyProfile = "RANGE/CONSOLIDATION";
+        tgifGuidance = "Mon-Thu consolidated. Friday may expand. Watch for break of weekly range. Enter on confirmed breakout, not before.";
+      }
+    } catch(e) {
+      weeklyProfile = "unknown (engine data missing)";
+      tgifGuidance = "Run session_start.cjs to generate engine data. Without weekly context, reduce Friday size by 50%.";
+    }
+
+    // TGIF entry windows by NY time
+    const hour = ny.nyTime?.hour || 0;
+    let windowGuidance = "";
+    if (hour >= 2 && hour < 5) windowGuidance = "London KZ — TGIF SETUP window. Watch for Judas Swing/pullback. Do not enter before sweep completes.";
+    else if (hour >= 8 && hour < 11) windowGuidance = "NY AM — TGIF ENTRY window #1. Enter after London+NY sweeps confirm. Scalp only.";
+    else if (hour >= 13 && hour < 14) windowGuidance = "NY PM — TGIF ENTRY window #2. 'If morning was quiet.' Late profit-taking move.";
+    else windowGuidance = "Outside TGIF window. If entering, reduce size 50%.";
+
+    return {
+      pass: true,
+      applicable: true,
+      weeklyProfile,
+      tgifGuidance,
+      windowGuidance,
+      detail: `${weeklyProfile} | ${windowGuidance}`
+    };
+  } catch(e) {
+    return { pass: true, detail: "TGIF check parse error" };
+  }
+}
+
+// ═══ CHECK 4: Data quality — are we flying blind? ═══
 function checkDataQuality(priceCheck) {
   if (!priceCheck.pass && priceCheck.warning?.includes("BLIND")) {
     return { pass: false, warning: "CRITICAL: Cannot read price data. Do not trade blind." };
@@ -108,11 +170,13 @@ function checkDataQuality(priceCheck) {
 // ═══ MAIN ═══
 const price = checkPriceAction();
 const time = checkTimeContext();
+const weekly = checkWeeklyProfile();
 const dataQuality = checkDataQuality(price);
 
 const checks = [
   { name: "PRICE", ...price },
   { name: "TIME", ...time },
+  { name: "TGIF_WEEKLY", ...weekly },
   { name: "DATA_QUALITY", ...dataQuality },
 ];
 
