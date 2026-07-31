@@ -1,0 +1,16 @@
+{
+  "date": "2026-07-31",
+  "time": "2026-07-31T08:19:24.631Z",
+  "pairs": {
+    "EURUSD": {
+      "htfBias": "available",
+      "keyLevels": "available",
+      "modelSelection": "available"
+    },
+    "GBPUSD": {
+      "htfBias": "available",
+      "keyLevels": "available",
+      "modelSelection": "available"
+    }
+  }
+}
