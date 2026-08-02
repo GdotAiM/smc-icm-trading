@@ -1,5 +1,7 @@
 // IPDA Engine — Interbank Price Delivery Algorithm
 // Dealing Ranges, Nested Equilibrium, Premium/Discount, Cascading Draw
+// PD Array Matrix & IPDA Data Ranges (20-day look-back, quadrant/octant
+// grading, middle focus zone, matrix-weighted PD arrays)
 // "Price delivers from one equilibrium to another, hunting liquidity along the way."
 
 const fs = require("fs");
@@ -18,10 +20,11 @@ const sharedDir = path.join(ROOT, "shared", DATE, PAIR);
 
 function loadRaw(tf) {
   try {
-    const f = path.join(process.env.TEMP || "/tmp", `${PAIR}_${tf.toLowerCase()}.json`);
+    const dir = PAIR === "XAUUSD" ? "GOLD" : PAIR;
+    const f = path.join(ROOT, "shared", DATE, dir, `candles_${tf.toLowerCase()}.json`);
     if (fs.existsSync(f)) return JSON.parse(fs.readFileSync(f, "utf8"));
-    return null;
   } catch(e) { return null; }
+  return null;
 }
 
 function loadEngine(tf) {
@@ -30,9 +33,44 @@ function loadEngine(tf) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
+// PD Array Matrix Grading — Quadrants + Octants + Focus Zone
+// ICT (PD Array Matrix & IPDA Data Ranges): grade the look-back range
+// into CE (50%), upper/lower quadrants (75/25), optional octants, then
+// focus on the middle portion (lower quadrant → EQ → upper quadrant).
+// Extreme outer quadrants are secondary unless a reversal/regime change.
+// ═══════════════════════════════════════════════════════════════════
+
+function gradeRange(high, low, eq, positionPct) {
+  const total = high - low;
+  if (total <= 0) return null;
+
+  const q1 = low + total * 0.25;  // Lower quadrant
+  const q3 = low + total * 0.75;  // Upper quadrant
+  const octants = [];
+  for (let i = 1; i <= 7; i++) octants.push({ level: i, price: r5(low + total * (i / 8)) });
+
+  let focusZone;
+  if (positionPct >= 25 && positionPct <= 75) {
+    focusZone = "IN FOCUS (lower quadrant → equilibrium → upper quadrant)";
+  } else if (positionPct > 75) {
+    focusZone = "EXTREME UPPER (above upper quadrant) — secondary unless reversal/regime change";
+  } else {
+    focusZone = "EXTREME LOWER (below lower quadrant) — secondary unless reversal/regime change";
+  }
+
+  return {
+    quadrants: { lower: r5(q1), eq: r5(eq), upper: r5(q3) },
+    octants,
+    focusZone,
+    detail: `Q1(25%) ${r5(q1)} | EQ(50%) ${r5(eq)} | Q3(75%) ${r5(q3)} | Octants: ${octants.map(o => r5(o.price)).join(' | ')}`,
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════
 // IPDA Dealing Range Calculator
 // ICT: 20/40/60 period lookbacks, fractal across all timeframes.
-// Each dealing range has: High, Low, Equilibrium (50%), Premium/Discount zones.
+// Each dealing range has: High, Low, Equilibrium (50%), Premium/Discount zones,
+// plus quadrant/octant grading and the matrix focus zone.
 // ═══════════════════════════════════════════════════════════════════
 
 function computeIPDARange(candles, label, lookbacks = [20, 40, 60]) {
@@ -55,6 +93,7 @@ function computeIPDARange(candles, label, lookbacks = [20, 40, 60]) {
       zone, positionPct: r2(positionInRange), distanceToEQ: r2(distanceToEQ),
       rangeSize: r5(high - low),
       narrative: `Price at ${r2(positionInRange)}% of ${label} ${lb}-period range. ${zone}. ${r2(Math.abs(distanceToEQ))}% from equilibrium.`,
+      ...gradeRange(high, low, eq, positionInRange),
     };
   }
 
@@ -197,6 +236,50 @@ function mapAMDToRange(nested, macroPhase) {
     positionPct: d1Range.positionPct,
     zone: d1Range.zone,
     narrative: `Daily range: ${d1Range.zone} at ${d1Range.positionPct}% of range. ${amdPosition} EQ @ ${d1Range.equilibrium}.`,
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PD Array Matrix Weighting — Which arrays carry algorithmic weight
+// ICT: Only PD arrays inside the graded 20-day IPDA data range are
+// currently relevant; arrays inside the middle focus zone (Q1→EQ→Q3)
+// are the high-probability ones. Arrays outside the matrix are noise.
+// ═══════════════════════════════════════════════════════════════════
+
+function computePDArrayMatrix(reports, nested) {
+  const dailyRange = nested["1D"]?.ranges["IPDA20"];
+  if (!dailyRange) return { graded: null, matrixCount: 0, inFocusCount: 0, inFocus: [], weight: "NEUTRAL", detail: "20-day matrix not available" };
+
+  const high = parseFloat(dailyRange.high);
+  const low = parseFloat(dailyRange.low);
+  const eq = parseFloat(dailyRange.equilibrium);
+  const graded = gradeRange(high, low, eq, parseFloat(dailyRange.positionPct));
+  if (!graded) return { graded: null, matrixCount: 0, inFocusCount: 0, inFocus: [], weight: "NEUTRAL", detail: "Matrix not gradable" };
+
+  const arrays = [];
+  for (const tf of ["4H", "1H", "15m"]) {
+    const r = reports[tf];
+    for (const fvg of (r?.fvgs || [])) {
+      arrays.push({ kind: "FVG", tf, type: fvg.type, price: (fvg.top + fvg.bottom) / 2 });
+    }
+    for (const ob of (r?.orderBlocks || [])) {
+      arrays.push({ kind: "OB", tf, type: ob.type, price: (ob.proximal + ob.distal) / 2 });
+    }
+  }
+
+  const q1 = parseFloat(graded.quadrants.lower);
+  const q3 = parseFloat(graded.quadrants.upper);
+
+  const inMatrix = arrays.filter(a => a.price >= low && a.price <= high);
+  const inFocus = inMatrix.filter(a => a.price >= q1 && a.price <= q3);
+
+  return {
+    graded,
+    matrixCount: inMatrix.length,
+    inFocusCount: inFocus.length,
+    inFocus: inFocus.slice(0, 10).map(a => ({ kind: a.kind, tf: a.tf, type: a.type, price: r5(a.price) })),
+    weight: inFocus.length >= 1 ? "ENHANCED" : "NEUTRAL",
+    detail: `${inMatrix.length} PD arrays inside the 20-day matrix, ${inFocus.length} in the middle focus zone (Q1 → EQ → Q3). ${inFocus.length >= 1 ? 'High-probability arrays present.' : 'No high-probability arrays in the focus zone yet — wait for one to form inside it.'}`,
   };
 }
 
@@ -495,6 +578,8 @@ const ipdaObjective = detectIPDAObjective(
   nested
 );
 const weeklyRefs = getWeeklyReferenceLevels(nested);
+const pdMatrix = computePDArrayMatrix({ "4H": loadEngine("4h"), "1H": loadEngine("1h"), "15m": loadEngine("15m") }, nested);
+const pdDailyRange = nested["1D"]?.ranges["IPDA20"];
 
 // Append to markdown
 md += `\n## False Breakout Detection\n`;
@@ -518,6 +603,17 @@ md += `- Unfilled FVGs: ${ipdaObjective.unfilledFvgs} | Swept Pools: ${ipdaObjec
 md += `\n## Weekly Reference Levels (Marked ${weeklyRefs?.marked || 'today'})\n`;
 md += `${weeklyRefs?.detail || 'N/A'}\n`;
 
+md += `\n## PD Array Matrix — 20-Day IPDA Data Range\n`;
+if (pdMatrix.graded) {
+  md += `\n**Graded Levels**: ${pdMatrix.graded.detail}\n`;
+  md += `\n**Focus Zone**: ${pdMatrix.graded.focusZone} (price at ${pdDailyRange?.positionPct || '?'}% of 20-day range)\n`;
+}
+md += `\n**Matrix Weighting**: ${pdMatrix.weight} — ${pdMatrix.detail}\n`;
+if (pdMatrix.inFocus.length > 0) {
+  md += `\nIn-focus PD arrays (carry extra algorithmic weight):\n`;
+  for (const a of pdMatrix.inFocus) md += `- ${a.kind} ${a.type} @ ${a.price} (${a.tf})\n`;
+}
+
 fs.writeFileSync(path.join(outDir, `${PAIR.toLowerCase()}_ipda.md`), md, "utf8");
 
 console.log(JSON.stringify({
@@ -531,4 +627,5 @@ console.log(JSON.stringify({
   killZone: { inKillZone: killZone.inKillZone, active: killZone.activeZone?.label || null, highConviction: killZone.isHighConviction },
   objective: { primary: ipdaObjective.objective, unfilledFvgs: ipdaObjective.unfilledFvgs, sweptPools: ipdaObjective.sweptPools },
   weeklyRefs: weeklyRefs ? { twentyDay: weeklyRefs.twentyDay, fortyDay: weeklyRefs.fortyDay, sixtyDay: weeklyRefs.sixtyDay } : null,
+  matrix: pdMatrix.graded ? { focus: pdMatrix.graded.focusZone, inMatrix: pdMatrix.matrixCount, inFocus: pdMatrix.inFocusCount, weight: pdMatrix.weight } : null,
 }, null, 2));
