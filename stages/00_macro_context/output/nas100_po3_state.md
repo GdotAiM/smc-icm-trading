@@ -1,7 +1,7 @@
-# Po3 State Machine — NAS100 — 2026-07-31
+# Po3 State Machine — NAS100 — 2026-08-02
 
 ## Current State: **MANIPULATION** (0.85 confidence)
-**3 sweep(s) + CHoCH — manipulation active**
+**4 sweep(s) + CHoCH — manipulation active**
 
 ## State Timeline
 
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for NY PM (18:00 UTC): DISTRIBUTION**
+**Expected phase for NY Lunch (12:00 NY): ACCUMULATION**
 **Detected phase: MANIPULATION**
 ⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.
 
@@ -27,16 +27,16 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 | TF | State | Confidence | Reason |
 |----|-------|------------|--------|
-| 1D | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
-| 4H | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
-| 1H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
+| 1D | MANIPULATION | 0.85 | 2 sweep(s) + CHoCH — manipulation active |
+| 4H | MANIPULATION | 0.85 | 4 sweep(s) + CHoCH — manipulation active |
+| 1H | DISTRIBUTION | 0.80 | BOS bullish + displacement (0.71x) — trend is distributing |
 
 ## Entry Rules for MANIPULATION
 
 **Manipulation is the TRAP phase. Enter on the reversal after the sweep. Turtle Soup and Breaker Block are primary.**
 
 ## Daily Open Anchor
-Daily Open (Midnight NY): 29823.30000
+Daily Open (Midnight NY): 29545.50000
 
 ## Accumulation Range
 Range: 27956.30000–28601.70000 (2.28% — WIDE). Not tight accumulation.
@@ -44,7 +44,7 @@ Range: 27956.30000–28601.70000 (2.28% — WIDE). Not tight accumulation.
 ## Manipulation Direction Check
 ⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.
 - Daily Bias: BEARISH
-- Swept Above (BSL): 3 | Swept Below (SSL): 2
+- Swept Above (BSL): 2 | Swept Below (SSL): 2
 - Is Manipulation: ⚠️ YES — do not trade with the sweep
 - With Bias: ✅ Yes — likely distribution
 - Entries: AFTER sweep reversal confirmed

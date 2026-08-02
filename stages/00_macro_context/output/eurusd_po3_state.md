@@ -19,9 +19,9 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for NY AM (09:00 NY): DISTRIBUTION**
+**Expected phase for NY Lunch (12:00 NY): ACCUMULATION**
 **Detected phase: DISTRIBUTION**
-✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
+⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.
 
 ## Per-TF States
 

@@ -57,12 +57,12 @@ Daily range: DISCOUNT (buy) at 23.40% of range. ACCUMULATION ZONE — Price at r
 Price below 20-day low @ 3959.8. If it reverses back above → false breakout confirmed.
 
 ## Kill Zone Alignment
-✅ NY AM KZ active (weight: 1.3) — HIGH conviction for IPDA reversals.
-- Active Zone: NY AM KZ (weight: 1.3)
+⏳ NY Lunch active (weight: 0.4) — lower conviction. Prefer London KZ, NY AM KZ, or NY PM KZ.
+- Active Zone: NY Lunch (weight: 0.4)
 
 ## IPDA Objective: POST-HUNT TRANSITION
-All FVGs filled, 7 pools swept. IPDA in transition — awaiting next objective.
-- Unfilled FVGs: 0 | Swept Pools: 7 | Unswept: 5
+All FVGs filled, 6 pools swept. IPDA in transition — awaiting next objective.
+- Unfilled FVGs: 0 | Swept Pools: 6 | Unswept: 6
 
 ## Weekly Reference Levels (Marked 2026-08-02)
 20-Day: H 4202.70500 L 3959.80000 EQ 4081.25250 | 40-Day: H 4382.61500 L 3942.10000 EQ 4162.35750 | 60-Day: H 4773.57500 L 3942.10000 EQ 4357.83750

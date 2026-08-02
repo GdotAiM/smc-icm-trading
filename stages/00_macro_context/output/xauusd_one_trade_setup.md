@@ -1,4 +1,4 @@
-# One Trade Setup for Life — XAUUSD — 2026-07-31
+# One Trade Setup for Life — XAUUSD — 2026-08-02
 
 ## Daily Bias
 **NEUTRAL** (0.00 confidence)

@@ -1,52 +1,52 @@
-# IPDA Dealing Range Analysis — NAS100 — 2026-07-31
+# IPDA Dealing Range Analysis — NAS100 — 2026-08-02
 
 ## Nested Dealing Ranges (Macro → Micro)
 
 | Timeframe | IPDA20 EQ | IPDA40 EQ | IPDA60 EQ | Zone | Position |
 |-----------|-----------|-----------|-----------|------|----------|
-| 1W | 26770.90000 | — | — | PREMIUM (sell) | 72.23% |
-| 1D | 29188.60000 | 29405.75000 | 29187.30000 | DISCOUNT (buy) | 21.57% |
-| 4H | 28613.70000 | 28621.30000 | — | DISCOUNT (buy) | 43.64% |
-| 1H | 28313.15000 | 28383.75000 | — | PREMIUM (sell) | 94.06% |
-| 15m | 28474.10000 | — | — | PREMIUM (sell) | 85.71% |
+| 1W | 28207.70000 | — | — | DISCOUNT (buy) | 16.51% |
+| 1D | 28421.00000 | 28816.40000 | 28869.45000 | DISCOUNT (buy) | 41.15% |
+| 4H | 27791.15000 | 27998.15000 | — | PREMIUM (sell) | 73.13% |
+| 1H | 28279.00000 | 27898.40000 | — | DISCOUNT (buy) | 32.51% |
+| 15m | 28257.50000 | — | — | DISCOUNT (buy) | 17.45% |
 
 ## Equilibrium Cascade (Stepping Stones)
 
 Price delivers from one equilibrium to another. Each level acts as a checkpoint.
 
 ```
-1W   EQ 26770.90000  PREMIUM (sell)     ██████████ 72.23%
-1D   EQ 29188.60000  DISCOUNT (buy)     ██████████ 21.57%
-4H   EQ 28613.70000  DISCOUNT (buy)     █ 43.64%
-1H   EQ 28313.15000  PREMIUM (sell)     ████ 94.06%
-15m  EQ 28474.10000  PREMIUM (sell)     █ 85.71%
+1W   EQ 28207.70000  DISCOUNT (buy)     █ 16.51%
+1D   EQ 28421.00000  DISCOUNT (buy)     █████ 41.15%
+4H   EQ 27791.15000  PREMIUM (sell)     ███████ 73.13%
+1H   EQ 28279.00000  DISCOUNT (buy)     ██ 32.51%
+15m  EQ 28257.50000  DISCOUNT (buy)     ██ 17.45%
 ```
 
 ## IPDA Draw Direction
 
-**DOWN (toward equilibrium)**
-Price is in PREMIUM across macro (1W) and micro (15m). IPDA is drawing price DOWN toward equilibrium. Sell-side delivery domain.
+**UP (toward equilibrium)**
+Price is in DISCOUNT across macro (1W) and micro (15m). IPDA is drawing price UP toward equilibrium. Buy-side delivery domain.
 
-**Zone Consensus**: PREMIUM (3/5 premium, 2/5 discount) — MODERATE consensus
+**Zone Consensus**: DISCOUNT (1/5 premium, 4/5 discount) — STRONG consensus
 
 ## AMD on the Dealing Range
 
-**ACCUMULATION ZONE — Price at range extreme. Institutions building positions.**
-Daily range: DISCOUNT (buy) at 18.11% of range. ACCUMULATION ZONE — Price at range extreme. Institutions building positions. EQ @ 29405.75000.
+**DISTRIBUTION ZONE — Price expanding from equilibrium toward extreme.**
+Daily range: DISCOUNT (buy) at 32.29% of range. DISTRIBUTION ZONE — Price expanding from equilibrium toward extreme. EQ @ 28816.40000.
 
 ## Quarterly Shift
 
-**⚠️ QUARTERLY SHIFT WINDOW — Month 1 of quarter. Market may transition from external→internal liquidity hunting.**
+**Quarter month 2. Standard IPDA behavior expected.**
 
 ## How the IPDA Lens Changes Your Trade
 
-- **Macro (1W)**: Price is PREMIUM (sell) — institutional sell zone. Look for SHORTS only when LTF confirms.
-- **Meso (1D)**: Price is DISCOUNT (buy) at 21.57% of range.
-- **Micro (4H)**: Price is DISCOUNT (buy). ⚠️ DIVERGENT from macro — this is a counter-trend move within the larger range.
+- **Macro (1W)**: Price is DISCOUNT (buy) — institutional buy zone. Look for LONGS only when LTF confirms.
+- **Meso (1D)**: Price is DISCOUNT (buy) at 41.15% of range.
+- **Micro (4H)**: Price is PREMIUM (sell). ⚠️ DIVERGENT from macro — this is a counter-trend move within the larger range.
 
-- **Equilibrium Gravity**: The 1W equilibrium at 26770.90000 is the macro fair value. Price is 6.62% above it. The algorithm will seek to return to this level.
+- **Equilibrium Gravity**: The 1W equilibrium at 28207.70000 is the macro fair value. Price is -0.15% below it. The algorithm will seek to return to this level.
 
-- **Cascading Delivery**: Price must pass through each equilibrium checkpoint: 1W @ 26770.90000 → 1D @ 29188.60000 → 4H @ 28613.70000 → 1H @ 28313.15000 → 15m @ 28474.10000. Each is a potential reaction zone.
+- **Cascading Delivery**: Price must pass through each equilibrium checkpoint: 1W @ 28207.70000 → 1D @ 28421.00000 → 4H @ 27791.15000 → 1H @ 28279.00000 → 15m @ 28257.50000. Each is a potential reaction zone.
 
 ---
 
@@ -54,15 +54,23 @@ Daily range: DISCOUNT (buy) at 18.11% of range. ACCUMULATION ZONE — Price at r
 
 ## False Breakout Detection
 **Below 20-day low — monitoring for reversal**
-Price below 20-day low @ 28052.3. If it reverses back above → false breakout confirmed.
+Price below 20-day low @ 26980.6. If it reverses back above → false breakout confirmed.
 
 ## Kill Zone Alignment
-⏳ NY PM active (weight: 1) — lower conviction. Prefer London KZ, NY AM KZ, or NY PM KZ.
-- Active Zone: NY PM (weight: 1)
+⏳ NY Lunch active (weight: 0.4) — lower conviction. Prefer London KZ, NY AM KZ, or NY PM KZ.
+- Active Zone: NY Lunch (weight: 0.4)
 
 ## IPDA Objective: POST-HUNT TRANSITION
 All FVGs filled, 8 pools swept. IPDA in transition — awaiting next objective.
 - Unfilled FVGs: 0 | Swept Pools: 8 | Unswept: 4
 
-## Weekly Reference Levels (Marked 2026-07-31)
-20-Day: H 30324.90000 L 28052.30000 EQ 29188.60000 | 40-Day: H 30759.20000 L 28052.30000 EQ 29405.75000 | 60-Day: H 30759.20000 L 27615.40000 EQ 29187.30000
+## Weekly Reference Levels (Marked 2026-08-02)
+20-Day: H 29861.40000 L 26980.60000 EQ 28421.00000 | 40-Day: H 30652.20000 L 26980.60000 EQ 28816.40000 | 60-Day: H 30758.30000 L 26980.60000 EQ 28869.45000
+
+## PD Array Matrix — 20-Day IPDA Data Range
+
+**Graded Levels**: Q1(25%) 27700.80000 | EQ(50%) 28421.00000 | Q3(75%) 29141.20000 | Octants: 27340.70000 | 27700.80000 | 28060.90000 | 28421.00000 | 28781.10000 | 29141.20000 | 29501.30000
+
+**Focus Zone**: IN FOCUS (lower quadrant → equilibrium → upper quadrant) (price at 41.15% of 20-day range)
+
+**Matrix Weighting**: NEUTRAL — 1 PD arrays inside the 20-day matrix, 0 in the middle focus zone (Q1 → EQ → Q3). No high-probability arrays in the focus zone yet — wait for one to form inside it.

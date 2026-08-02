@@ -175,6 +175,27 @@ try {
   console.log(`  Confidence: ${hp.confidenceAdjustment >= 0 ? '+' : ''}${hp.confidenceAdjustment} pts`);
 } catch(e) { console.log(`  High Precision unavailable: ${e.message.slice(0, 80)}`); }
 
+// ═══ PD ARRAY MATRIX — 20-Day Quadrant Grading ═══
+console.log("\n═══ PD ARRAY MATRIX — 20-Day + Quadrants ═══");
+try {
+  const { analyzePDAMatrix } = require("./pd_array_matrix.cjs");
+  const pda = analyzePDAMatrix(PAIR);
+  console.log(`  ${pda.range20?.detail || 'N/A'}`);
+  console.log(`  Current: ${pda.currentQuadrant} | ${pda.arrayCount} arrays catalogued | ${pda.dxy.detail}`);
+  for (const c of pda.confluence) console.log(`  ${c.detail}`);
+} catch(e) { console.log(`  PDA Matrix unavailable: ${e.message.slice(0,80)}`); }
+
+// ═══ MMXM — Smart Money Reversal + Side of Curve ═══
+console.log("\n═══ MMXM — Market Maker Model ═══");
+try {
+  const { analyzeMMXM } = require("./mmxm_engine.cjs");
+  const mmxm = analyzeMMXM(PAIR);
+  console.log(`  SMR: ${mmxm.smr.detected ? '✅ ' + mmxm.smr.type : '⏳ ' + mmxm.smr.detail}`);
+  console.log(`  Side of Curve: ${mmxm.side.side} (${mmxm.side.confidence})`);
+  if (mmxm.symmetry?.target) console.log(`  Symmetry Target: ${r5(mmxm.symmetry.target)}`);
+  console.log(`  Entry Phase: ${mmxm.entry.phase} — ${mmxm.entry.action}`);
+} catch(e) { console.log(`  MMXM unavailable: ${e.message.slice(0,80)}`); }
+
 // ═══════════════ STAGE 00 — Macro Context ═══════════════
 console.log("\n═══ STAGE 00 — Macro Context ═══");
 let macroContext = null;

@@ -1,6 +1,6 @@
 # Time & Price Grid — GBPUSD — 2026-08-02
 
-## Current: 10:32:53 NY | Price: 1.34836 | Bias: BEARISH
+## Current: 12:23:21 NY | Price: 1.34836 | Bias: BEARISH
 
 ## Suspension Blocks (137 on daily)
 - Bearish Suspension: 1.33594–1.34345 (body 61.68% of range) (2026-07-20)
@@ -11,6 +11,15 @@
 
 ## Graded Levels (Octants & Quadrants)
 Quadrants: Q1 1.33447 | Q2(CE) 1.34159 | Q3 1.34870 | Octants: 1.33091 | 1.33447 | 1.33803 | 1.34159 | 1.34514 | 1.34870 | 1.35226
+
+## Daily Wick Grading (8 graded)
+| Date | Type | Range | CE | Q25 | Q75 |
+|------|------|-------|----|-----|-----|
+| 2026-07-19 | PREMIUM WICK | 1.34489–1.34814 | 1.34651 | 1.34570 | 1.34733 |
+| 2026-07-21 | DISCOUNT WICK | 1.33756–1.33954 | 1.33855 | 1.33805 | 1.33905 |
+| 2026-07-21 | DISCOUNT WICK | 1.33546–1.33748 | 1.33647 | 1.33597 | 1.33698 |
+| 2026-07-23 | DISCOUNT WICK | 1.33239–1.33491 | 1.33365 | 1.33302 | 1.33428 |
+| 2026-07-23 | DISCOUNT WICK | 1.33059–1.33172 | 1.33115 | 1.33087 | 1.33144 |
 
 ## Wick & Body Confirmation
 Upper wick: extreme 1.34874, CE 1.34855. CE reached (bearish pressure) | Bodies: lower half ✅ | Turn: ⏳ Not confirmed

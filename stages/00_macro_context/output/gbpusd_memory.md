@@ -3,7 +3,7 @@
 
 **Last 5 similar setups (GBPUSD)**:
 
-- **2026-08-02**: ⚪ NO | MMXM Sell Model | NY AM | Outcome: ➖ | PnL: $0 | Quality: 3.75/5
+- **2026-08-02**: ⚪ NO | MMXM Sell Model | NY Lunch | Outcome: ➖ | PnL: $0 | Quality: 3.75/5
 - **2026-07-31**: ⚪ N/A | undefined | undefined | Outcome: ➖ | PnL: $0 | Quality: 3.75/5
 - **2026-07-30**: ⚪ N/A | undefined | undefined | Outcome: ➖ | PnL: $0 | Quality: 3.5/5
 - **2026-07-29**: ⚪ N/A | undefined | undefined | Outcome: ➖ | PnL: $0 | Quality: 3.5/5

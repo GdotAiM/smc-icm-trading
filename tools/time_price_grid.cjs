@@ -156,6 +156,77 @@ function computeOctantsQuadrants(spaceBetween, dailyRange) {
   };
 }
 
+// ═══ 4a. DAILY WICK GRADING — Quadrants + CE + Projection ═══
+// ICT: Significant daily wicks are volume inefficiencies/data arrays.
+// Grade into 0/25/50(CE)/75/100% quadrants. Project forward.
+// Classify as premium or discount vs the 20-day dealing range.
+function gradeDailyWicks(dailyCandles, range20) {
+  if (!dailyCandles || dailyCandles.length < 5) return [];
+
+  const graded = [];
+  const recent = dailyCandles.slice(-10); // Last 10 daily candles
+
+  for (const c of recent) {
+    const body = Math.abs(c.close - c.open);
+    const totalRange = c.high - c.low;
+    if (totalRange === 0) continue;
+
+    const upperWick = c.high - Math.max(c.open, c.close);
+    const lowerWick = Math.min(c.open, c.close) - c.low;
+
+    // Only grade significant wicks (wick > 40% of total range or > body)
+    const isUpperSignificant = upperWick > totalRange * 0.4 || upperWick > body;
+    const isLowerSignificant = lowerWick > totalRange * 0.4 || lowerWick > body;
+
+    if (isUpperSignificant) {
+      const wickRange = upperWick;
+      const wickLow = Math.max(c.open, c.close); // Body extreme = wick start
+      const wickHigh = c.high;
+      const ce = wickLow + wickRange / 2;
+      const q25 = wickLow + wickRange * 0.25;
+      const q75 = wickLow + wickRange * 0.75;
+
+      // Classify vs 20-day range
+      const classification = range20
+        ? (wickHigh > range20.eq ? "PREMIUM WICK" : "DISCOUNT WICK")
+        : "UPPER WICK";
+
+      graded.push({
+        type: classification,
+        direction: "UPPER",
+        date: new Date(c.time).toISOString().split("T")[0],
+        high: wickHigh, low: wickLow, range: wickRange,
+        ce, q25, q75,
+        detail: `${classification}: ${r5(wickLow)}–${r5(wickHigh)} | CE ${r5(ce)} | Q25 ${r5(q25)} | Q75 ${r5(q75)} | ${new Date(c.time).toISOString().split('T')[0]}`,
+      });
+    }
+
+    if (isLowerSignificant) {
+      const wickRange = lowerWick;
+      const wickHigh = Math.min(c.open, c.close);
+      const wickLow = c.low;
+      const ce = wickLow + wickRange / 2;
+      const q25 = wickLow + wickRange * 0.25;
+      const q75 = wickLow + wickRange * 0.75;
+
+      const classification = range20
+        ? (wickLow < range20.eq ? "DISCOUNT WICK" : "PREMIUM WICK")
+        : "LOWER WICK";
+
+      graded.push({
+        type: classification,
+        direction: "LOWER",
+        date: new Date(c.time).toISOString().split("T")[0],
+        high: wickHigh, low: wickLow, range: wickRange,
+        ce, q25, q75,
+        detail: `${classification}: ${r5(wickLow)}–${r5(wickHigh)} | CE ${r5(ce)} | Q25 ${r5(q25)} | Q75 ${r5(q75)} | ${new Date(c.time).toISOString().split('T')[0]}`,
+      });
+    }
+  }
+
+  return graded;
+}
+
 // ═══ 4. WICK MEASUREMENT & BODY HALF-BEHAVIOUR ═══
 // ICT: After a stop-hunt wick prints, measure from body close to wick extreme.
 // If price cannot reach CE of the wick and bodies stay in upper half (bullish)
@@ -318,7 +389,13 @@ function analyzeTimePriceGrid(pair) {
   const dailyRange = dailyHigh && dailyLow ? { high: dailyHigh, low: dailyLow } : null;
   const octants = computeOctantsQuadrants(spaceBetween, dailyRange);
 
-  // Step 4: Wick/body turn confirmation
+  // Step 4a: Daily wick grading (on daily chart — per ICT spec)
+  const range20 = dailyCandles && dailyCandles.length >= 20
+    ? (() => { const w = dailyCandles.slice(-20); const h = Math.max(...w.map(c => c.high)); const l = Math.min(...w.map(c => c.low)); return { high: h, low: l, eq: (h + l) / 2 }; })()
+    : null;
+  const dailyWicks = gradeDailyWicks(dailyCandles, range20);
+
+  // Step 4: Wick/body turn confirmation (intraday)
   const wickBody = analyzeWickBody(candles1m, currentPrice, dailyBias);
 
   // Step 5: Delivery mode
@@ -367,6 +444,7 @@ function analyzeTimePriceGrid(pair) {
     blockCount: blocks.length,
     spaceBetween,
     octants,
+    dailyWicks,
     wickBody,
     delivery,
     tetheredPDArrays: tethered,
@@ -407,6 +485,15 @@ if (result.octants) {
   md += `\n## Graded Levels (Octants & Quadrants)\n${result.octants.detail}\n`;
 }
 
+if (result.dailyWicks?.length > 0) {
+  md += `\n## Daily Wick Grading (${result.dailyWicks.length} graded)\n`;
+  md += `| Date | Type | Range | CE | Q25 | Q75 |\n`;
+  md += `|------|------|-------|----|-----|-----|\n`;
+  for (const w of result.dailyWicks.slice(0, 5)) {
+    md += `| ${w.date} | ${w.type} | ${r5(w.low)}–${r5(w.high)} | ${r5(w.ce)} | ${r5(w.q25)} | ${r5(w.q75)} |\n`;
+  }
+}
+
 if (result.wickBody) {
   md += `\n## Wick & Body Confirmation\n${result.wickBody.detail}\n`;
 }
@@ -435,6 +522,7 @@ fs.writeFileSync(outFile, md, "utf8");
 
 console.log(`\n═══ TIME & PRICE GRID — ${PAIR} ═══`);
 console.log(`  Suspension Blocks: ${result.blockCount} on daily`);
+console.log(`  Daily Wicks Graded: ${result.dailyWicks?.length || 0} (${result.dailyWicks?.filter(w => w.type.includes('PREMIUM')).length || 0} premium, ${result.dailyWicks?.filter(w => w.type.includes('DISCOUNT')).length || 0} discount)`);
 console.log(`  Space Between: ${result.spaceBetween?.detail || 'None'}`);
 console.log(`  Wick/Body: ${result.wickBody?.detail || 'No signal'}`);
 console.log(`  Delivery: ${result.delivery?.detail || 'No data'}`);
@@ -527,4 +615,4 @@ function buildCustodyChain(suspensionBlocks, wickBody, org, dailyBias, currentPr
   };
 }
 
-module.exports = { analyzeTimePriceGrid, detectSuspensionBlocks, computeSpaceBetween, computeOctantsQuadrants, analyzeWickBody, detectDeliveryMode, tetherPDArrays, buildCustodyChain };
+module.exports = { analyzeTimePriceGrid, detectSuspensionBlocks, computeSpaceBetween, computeOctantsQuadrants, analyzeWickBody, detectDeliveryMode, tetherPDArrays, buildCustodyChain, gradeDailyWicks };
