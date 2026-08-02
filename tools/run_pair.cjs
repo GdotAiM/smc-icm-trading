@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
 
-const ROOT = "C:\\Users\\cash\\smc-icm-trading";
+const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
 const now = new Date();
 const DATE = now.toISOString().split("T")[0];
 const ny = require("./ny_time.cjs");
@@ -148,6 +148,32 @@ try {
 } catch(e) {
   console.log(`  Bread and Butter unavailable: ${e.message.slice(0, 80)}`);
 }
+
+// ═══ TIME & PRICE GRID — Pre-Session Narrative ═══
+console.log("\n═══ TIME & PRICE GRID — Daily Narrative ═══");
+try {
+  const { analyzeTimePriceGrid } = require("./time_price_grid.cjs");
+  const tpg = analyzeTimePriceGrid(PAIR);
+  console.log(`  Suspension Blocks: ${tpg.blockCount} on daily`);
+  if (tpg.spaceBetween) console.log(`  Space Between: ${tpg.spaceBetween.detail}`);
+  if (tpg.wickBody) console.log(`  Wick/Body: ${tpg.wickBody.detail}`);
+  if (tpg.delivery) console.log(`  Delivery: ${tpg.delivery.detail}`);
+  if (tpg.tetheredCount > 0) console.log(`  Tethered PD Arrays: ${tpg.tetheredCount} anchored to graded levels`);
+  console.log(`  Narrative: ${tpg.narrative}`);
+} catch(e) { console.log(`  Time & Price Grid unavailable: ${e.message.slice(0, 80)}`); }
+
+// ═══ HIGH PRECISION SECRETS — Parts 1 & 2 ═══
+console.log("\n═══ HIGH PRECISION — 7-9AM Range + ORG ═══");
+try {
+  const { analyzeHighPrecision } = require("./high_precision_secrets.cjs");
+  const hp = analyzeHighPrecision(PAIR);
+  if (hp.preSession) console.log(`  Pre-Session: ${hp.preSession.detail}`);
+  console.log(`  Tethering: ${hp.tethering.detail}`);
+  console.log(`  Body/Wick: ${hp.bodyWick.detail}`);
+  if (hp.org) console.log(`  ORG: ${hp.org.detail}`);
+  for (const g of hp.gapTypes) console.log(`  Gap: ${g.detail}`);
+  console.log(`  Confidence: ${hp.confidenceAdjustment >= 0 ? '+' : ''}${hp.confidenceAdjustment} pts`);
+} catch(e) { console.log(`  High Precision unavailable: ${e.message.slice(0, 80)}`); }
 
 // ═══════════════ STAGE 00 — Macro Context ═══════════════
 console.log("\n═══ STAGE 00 — Macro Context ═══");
