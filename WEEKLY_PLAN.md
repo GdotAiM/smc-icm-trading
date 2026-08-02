@@ -54,17 +54,21 @@ EVERY EVENING — Journal & Learn
 
 ## Sunday Evening Prep (7:00-9:00 PM NY)
 
-### What to do:
+### ONE COMMAND:
 ```bash
-# 1. Launch TV + fetch data
-node tools/session_start.cjs
-
-# 2. Run premium analysis on all pairs
-node tools/run_pair.cjs EURUSD
-node tools/run_pair.cjs GBPUSD
-node tools/run_pair.cjs XAUUSD
-node tools/run_pair.cjs NAS100
+node tools/morning_briefing.cjs
 ```
+This replaces ALL of the below. It auto-refreshes data, runs all 4 pairs, ranks them, and shows the best candidate with trade command.
+
+### Or for full autonomous mode:
+```bash
+# Monitor only (reports setups, no execution):
+node tools/auto_scheduler.cjs
+
+# Autonomous (executes best setup automatically):
+node tools/auto_scheduler.cjs --execute
+```
+The auto scheduler runs 24/7, waking at each session window to refresh data, scan pairs, and optionally execute.
 
 ### What to read from the output:
 
@@ -322,6 +326,15 @@ node tools/performance_ledger.cjs
 - **The morning session is the only high-probability window on Friday**
 
 ---
+
+# EFFICIENCY COMMANDS — The New Way
+
+| Instead of... | Use... |
+|---------------|--------|
+| 5 commands (session_start + 4 pair analyses) | `node tools/morning_briefing.cjs` — 1 command |
+| Manually checking "is anything ready?" | `node tools/trade_ready.cjs` — 10 seconds |
+| Remembering session times | `node tools/auto_scheduler.cjs` — runs 24/7 |
+| Manual trade execution decision | `node tools/auto_scheduler.cjs --execute` — autonomous |
 
 # HOW EACH MODULE IS USED — Quick Reference
 
