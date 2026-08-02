@@ -13,7 +13,8 @@
     "scan": "node tools/tv-mcp/scan_all_pairs.cjs",
     "journal": "node tools/ict_continuous_learn.cjs --run",
     "graph": "node tools/trade_graph.cjs --rebuild",
-    "calendar": "python tools/economic_calendar.py --today-only --output shared/today_events.json"
+    "calendar": "python tools/economic_calendar.py --today-only --output shared/today_events.json",
+    "test": "node --test tests/*.test.cjs"
   },
   "dependencies": {
     "discord.js": "^14.27.0"

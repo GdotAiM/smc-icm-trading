@@ -6,7 +6,7 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = "C:/Users/cash/smc-icm-trading";
+const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "../..");
 const DATE = new Date().toISOString().split("T")[0];
 const SESSION_DIR = path.join(ROOT, "shared", DATE);
 const LOG_FILE = path.join(SESSION_DIR, "ny_am_autonomous_log.jsonl");

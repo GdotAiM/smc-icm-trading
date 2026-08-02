@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "built": "2026-08-02T13:06:31.380Z",
+  "built": "2026-08-02T14:06:16.800Z",
   "nodes": {
     "concept:blog---ict": {
       "id": "concept:blog---ict",
@@ -1183,14 +1183,14 @@
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "trade:eurusd:2026-07-31": {
-      "id": "trade:eurusd:2026-07-31",
+    "trade:eurusd:2026-08-02": {
+      "id": "trade:eurusd:2026-08-02",
       "type": "trade",
-      "date": "2026-07-31",
+      "date": "2026-08-02",
       "pair": "EURUSD",
       "direction": "NO",
       "model": "MMXM Sell Model",
-      "session": "NY PM",
+      "session": "NY AM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1198,7 +1198,7 @@
       "id": "pair:eurusd",
       "type": "pair",
       "name": "Eurusd",
-      "totalTrades": 3,
+      "totalTrades": 4,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1212,11 +1212,11 @@
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "session:ny-pm": {
-      "id": "session:ny-pm",
+    "session:ny-am": {
+      "id": "session:ny-am",
       "type": "session",
-      "name": "NY PM",
-      "totalTrades": 3,
+      "name": "NY AM",
+      "totalTrades": 2,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1237,15 +1237,6 @@
       "outcome": "blocked",
       "decisionQuality": 3.75
     },
-    "session:ny-am": {
-      "id": "session:ny-am",
-      "type": "session",
-      "name": "NY AM",
-      "totalTrades": 1,
-      "winRate": 0,
-      "totalPnl": 0,
-      "avgPnl": 0
-    },
     "trade:nas100:2026-07-31": {
       "id": "trade:nas100:2026-07-31",
       "type": "trade",
@@ -1261,6 +1252,15 @@
       "id": "pair:nas100",
       "type": "pair",
       "name": "Nas100",
+      "totalTrades": 2,
+      "winRate": 0,
+      "totalPnl": 0,
+      "avgPnl": 0
+    },
+    "session:ny-pm": {
+      "id": "session:ny-pm",
+      "type": "session",
+      "name": "NY PM",
       "totalTrades": 2,
       "winRate": 0,
       "totalPnl": 0,
@@ -1314,6 +1314,18 @@
       "id": "trade:eurusd:2026-07-29",
       "type": "trade",
       "date": "2026-07-29",
+      "pair": "EURUSD",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.5,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
+    "trade:eurusd:2026-07-31": {
+      "id": "trade:eurusd:2026-07-31",
+      "type": "trade",
+      "date": "2026-07-31",
       "pair": "EURUSD",
       "pnl": 0,
       "outcome": "no_trade",
@@ -1869,22 +1881,22 @@
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-07-31",
+      "source": "trade:eurusd:2026-08-02",
       "target": "pair:eurusd",
       "type": "ON_PAIR",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-07-31",
+      "source": "trade:eurusd:2026-08-02",
       "target": "model:mmxm-sell-model",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-07-31",
-      "target": "session:ny-pm",
+      "source": "trade:eurusd:2026-08-02",
+      "target": "session:ny-am",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -1975,6 +1987,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-31",
+      "target": "pair:eurusd",
+      "type": "ON_PAIR",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-02",
       "target": "concept:ict-trading-strategy-2022",
       "type": "USED_CONCEPT",
       "weight": 0.9,
@@ -2863,10 +2882,10 @@
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-07-31",
+      "source": "trade:eurusd:2026-08-02",
       "target": "trade:gbpusd:2026-08-02",
       "type": "SIMILAR_TO",
-      "weight": 0.7,
+      "weight": 1,
       "metadata": {}
     },
     {
@@ -2885,6 +2904,13 @@
     },
     {
       "source": "trade:dxy:2026-07-29",
+      "target": "trade:eurusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
       "target": "trade:gbpusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -2948,6 +2974,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-28",
+      "target": "trade:eurusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-28",
       "target": "trade:gbpusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3004,6 +3037,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-29",
+      "target": "trade:eurusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-29",
       "target": "trade:gbpusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3053,6 +3093,62 @@
     },
     {
       "source": "trade:eurusd:2026-07-29",
+      "target": "trade:xauusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
+      "target": "trade:gbpusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
+      "target": "trade:gbpusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
+      "target": "trade:gbpusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
+      "target": "trade:gbpusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
+      "target": "trade:gold:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
+      "target": "trade:nas100:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
       "target": "trade:xauusd:2026-07-30",
       "type": "SIMILAR_TO",
       "weight": 0.5,

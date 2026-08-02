@@ -2,7 +2,7 @@
 
 ## Coherence Score: **9/10** (raw) → **10/10** (session-adjusted)
 
-> Session: **NY AM Killzone** (×1.4) | Killzone: ✅ NY AM Killzone Killzone | Silver Bullet: Inactive
+> Session: **NY AM Killzone** (×1.4) | Killzone: ✅ NY AM Killzone Killzone | Silver Bullet: ✅ NY AM Silver Bullet
 > Standard session — Highest volume, displacement
 > Best entry TF for NY AM Killzone: **5m**
 

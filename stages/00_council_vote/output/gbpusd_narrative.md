@@ -31,8 +31,8 @@ Model selection is narrative-driven, not pattern-matched. Each model tells a dif
 
 
 ### Silver Bullet
-**Fit**: TIME-MISMATCHED — wrong window for this model
-**Why**: Silver Bullet is NOT currently appropriate — we are in a killzone but outside the SB window. This model requires the 1-hour SB window (03-04, 10-11, or 14-15 NY). The killzone is active but the specific SB timing window is not.
+**Fit**: TIME-DRIVEN — this model is about WHEN, not WHAT
+**Why**: Silver Bullet is appropriate RIGHT NOW because we are inside the active killzone window. The model is time-gated — it only works during specific 2-hour windows when institutional flow is highest. The bullish bias provides directional context. FVGs are present for entry refinement.
 
 
 ### 2022 Model (MMXM)
@@ -122,5 +122,5 @@ This IS a trend trade. The structure is established and institutions are distrib
 
 ---
 
-*Generated: 2026-08-02T13:06:31.010Z | Narrative Engine v1.0*
+*Generated: 2026-08-02T14:06:16.247Z | Narrative Engine v1.0*
 *"The market is a storyteller. Our job is to listen, not to guess."*

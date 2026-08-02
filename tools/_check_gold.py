@@ -24,8 +24,10 @@ for i in range(len(ts)):
             't': str(ny_t).zfill(2) + ':' + str(t.minute).zfill(2)
         })
 
-# Save
-with open('C:/Users/cash/smc-icm-trading/shared/2026-07-28/GOLD/candles_1m.json', 'w') as f:
+import os
+root_dir = os.environ.get("WORKSPACE_ROOT", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+out_path = os.path.join(root_dir, "shared", "2026-07-28", "GOLD", "candles_1m.json")
+with open(out_path, 'w') as f:
     json.dump(candles, f)
 
 # Show last 20

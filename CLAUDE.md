@@ -213,6 +213,52 @@ Full audit at `shared/AUDIT_ICT_COHERENCE.md`. 10 gaps identified and closed:
 9. ✅ Daily open anchor (intraday price zone reference)
 10. ✅ IPDA cascade in confidence (fractal delivery alignment)
 
+## System Coherence — Weighted Bias + Inducement Gate (Jul 31-Aug 2)
+
+The system now grounds every decision in TIME + PRICE through a coherent top-to-bottom stack.
+
+### Stage 00 — Pre-Session Narrative (Aug 2 additions)
+```
+├── Time & Price Grid       ← Suspension blocks, space between, wick/body, delivery mode, CHAIN OF CUSTODY
+├── High Precision Secrets  ← 7-9AM range, tethering weight, body/wick confidence, ORG, gap classification
+├── Opening Ranges          ← 5-window 30-min framework (MOR/LOR/NYKZ/AMOR/PMOR)
+├── Weekly Range Profile    ← 12-profile weekly classification
+├── One Trade Setup         ← 5-session daily routing
+├── Bread and Butter        ← 4-session intraday scalp (buy+sell)
+└── Macro Context           ← Cycle phase, MMXM, PO3
+```
+
+### Authority Chain
+```
+TIME → Killzone active? NO → session multiplier ×0.4-0.5, monitor only
+PRICE → Weighted Bias (6 sources, timeframe-weighted vote)
+GATE → Inducement swept? NO → all models suppressed, skip scoring
+MODELS → Scored with direction from weighted bias, not model names
+COHERENCE → Single unified score, worst dimension wins (INVALIDATED = 0)
+EXECUTION → Entry only after all gates clear
+```
+
+### Weighted Bias System
+6 sources vote bullish/bearish with timeframe-based weights:
+| Source | Weight | Rationale |
+|--------|--------|-----------|
+| 1W | 3.0 | Highest timeframe — structural trend |
+| 1D | 2.5 | The daily anchor |
+| 4H | 2.0 | Intraday confirmation |
+| Weekly Profile | 1.5 | Multi-TF computed alignment |
+| One Trade Setup | 1.0 | Daily bias computation |
+| 1H | 0.5 | Entry context refinement |
+
+### ICT Coherence Audit — 10 gaps identified and closed (Jul 31)
+Full audit at `shared/AUDIT_ICT_COHERENCE.md`.
+
+### Aug 2 Additions
+- **Opening Ranges** (`opening_range.cjs`): 5-window 30-min framework, 3-condition PFVG, SD projections, CE confirmation
+- **Time & Price Grid** (`time_price_grid.cjs`): Suspension blocks, space between, octants/quadrants, wick/body, delivery mode, **Chain of Custody** (sequential PD array linking)
+- **High Precision Secrets** (`high_precision_secrets.cjs`): 7-9AM range, tethering weight, body/wick confidence, ORG grading, gap classification (inversion/breakaway/first utilisation)
+- **DST-aware clock fix**: 18 files converted from hardcoded UTC to `ny_time.cjs` DST-aware helpers
+- **Portability**: `WORKSPACE_ROOT` env var support in all modules
+
 ## ICT 2024 Lecture Models — Time-Based Entry Pipeline (Jul 31)
 
 Three ICT 2024 mentorship lectures are wired into the pipeline as automated setup detectors. Each fires at a specific NY time window with its own catalyst, entry logic, and SL/TP rules.

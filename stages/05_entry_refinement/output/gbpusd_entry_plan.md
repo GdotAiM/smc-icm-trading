@@ -3,25 +3,10 @@
 ## Data Freshness: 5/10 — ACCEPTABLE
 - **Price source**: 1H @ 1.34836
 - **1H close**: 1.34836 | **1m close**: 1.34836
-- **Data age**: 2408m since last candle
+- **Data age**: 2467m since last candle
 - ✅ Data is tradeable
 
 ## Model: **MMXM Sell Model** (0/12.6)
-
-## ⏳ Lecture 1 Monitoring (08:30 Liquidity Raid Model)
-- **Formation (08:00-08:30)**: ⏳ Not enough candles in 08:00–08:30 window yet
-- **Raid (post-08:30)**: ⏳ No pre-08:30 levels to raid
-- **MSS**: ⏳ Awaiting post-08:30 raid and MSS
-- **PD Arrays**: 0 discovered
-- **⚠️ ⚠️ 9:00 AM 30-MIN REVERSAL WINDOW ACTIVE — expect OPPOSITE direction. 24m remaining. Do NOT enter against the reversal.**
-
-## ⏳ Lecture 4 Monitoring (NDOG/NWOG News Model)
-- **Gaps**: Using Bearish FVG as gap substitute
-- **Draw**: ⏳ Awaiting draw UP toward premium Bearish FVG @ 1.34836
-- **MSS**: ⏳ Awaiting MSS at gap cluster
-- **Entry**: ⏳ Pending
-- **⭐ 09:30 A-PLUS WINDOW ACTIVE** — equity market open delivery
-- **⚠️ ⚠️ 9:00 AM 30-MIN REVERSAL WINDOW ACTIVE — expect OPPOSITE direction. 24m remaining. Do NOT enter against the reversal.**
 
 ## Setup
 - **Direction**: **NO TRADE** | **Entry TF**: 15m/5m

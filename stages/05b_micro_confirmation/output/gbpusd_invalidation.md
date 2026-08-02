@@ -1,6 +1,6 @@
 # Invalidation Awareness — GBPUSD — 2026-08-02
 
-## Overall Status: ❌ TRADE INVALID — At least one dimension has failed. Exit or do not enter.
+## Overall Status: ⚠️ HIGH RISK — Multiple warnings. Reduce size, tighten SL, or wait.
 
 | Dimension | Status | Detail |
 |-----------|--------|--------|
@@ -8,19 +8,21 @@
 | STRUCTURE | ✅ VALID | 4H BOS bullish — structure confirms direction |
 | STRUCTURE | ⚠️ WARNING | 1D bias is bearish — HTF may be opposing the trade |
 | STRUCTURE | ⚠️ WARNING | 1W bias is bearish — MACRO trend opposes trade direction. This may be a pullback, not a reversal. |
-| TIME | ✅ ACTIVE | Killzone active — 2h 0m remaining |
-| TIME | ⏳ INACTIVE | SB window not active — next: NY AM SB at 10:00 |
-| MODEL | ❌ INVALIDATED | Not in Silver Bullet window — model requires active SB killzone |
+| TIME | ✅ ACTIVE | Killzone active — 1h 0m remaining |
+| TIME | ✅ ACTIVE | Silver Bullet window ACTIVE — time-gated models eligible |
+| MODEL | ✅ VALID | SB window active — model conditions met |
 | MODEL | ✅ VALID | OB present + sweep detected — MMXM conditions met |
 | CYCLE | ✅ VALID | DISTRIBUTION phase — trend is active. Let winners run. |
 | MICRO | ✅ VALID | 15m bias bullish — aligned with HTF |
 | CORRELATION | ⚠️ WARNING | DXY is bullish, expected bearish — correlation weakening. Reduce size or tighten SL. |
 
 ## Invalidation Summary
-- **Invalidated**: 1 dimension(s) — EXIT OR DO NOT ENTER
+- **Invalidated**: 0 dimension(s) — None
 - **Warnings**: 3 — Trade with reduced size and awareness
-- **Confirmed**: 5 checks passed
+- **Confirmed**: 7 checks passed
 
 ## If Trade Is Active
-- **EXIT NOW** — the trade thesis is no longer valid.
+- **SL**: 1.32591 (224 pips risk)
+- **Next check**: Re-evaluate on 4H close or if price closes below 4H swing low
+- **Scale out**: Consider partial TP — warnings are accumulating
 - **Re-entry**: Only if ALL dimensions return to VALID status

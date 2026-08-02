@@ -4,7 +4,7 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = "C:/Users/cash/smc-icm-trading";
+const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "../..");
 const DATE = new Date().toISOString().split("T")[0];
 const PAIR = process.argv[2] || "XAUUSD";
 const DIRECTION = (process.argv[3] || "BUY").toUpperCase();

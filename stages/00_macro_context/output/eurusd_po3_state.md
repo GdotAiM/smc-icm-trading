@@ -1,4 +1,4 @@
-# Po3 State Machine — EURUSD — 2026-07-31
+# Po3 State Machine — EURUSD — 2026-08-02
 
 ## Current State: **DISTRIBUTION** (0.60 confidence)
 **BOS bullish — distribution beginning**
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for NY PM (18:00 UTC): DISTRIBUTION**
+**Expected phase for NY AM (09:00 NY): DISTRIBUTION**
 **Detected phase: DISTRIBUTION**
 ✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
 
@@ -39,7 +39,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 Daily Open (Midnight NY): 1.14667
 
 ## Accumulation Range
-Range: 1.14551–1.15376 (0.72% — WIDE). Not tight accumulation.
+Range: 1.14551–1.15476 (0.80% — WIDE). Not tight accumulation.
 
 ## Manipulation Direction Check
 ⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.

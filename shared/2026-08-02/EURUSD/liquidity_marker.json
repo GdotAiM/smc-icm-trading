@@ -1,7 +1,7 @@
 {
-  "pair": "GBPUSD",
-  "time": "10:06:11 NY",
-  "currentPrice": 1.34836,
+  "pair": "EURUSD",
+  "time": "09:54:58 NY",
+  "currentPrice": 1.15306,
   "htfBias": {
     "daily": "bearish",
     "h4": "bullish",
@@ -10,24 +10,24 @@
     "detail": "⚠️ NOT ALIGNED — 1D BEARISH, 4H BULLISH"
   },
   "pdhPdl": {
-    "pdh": 1.34768,
-    "pdl": 1.3333,
-    "range": 0.01438000000000006,
+    "pdh": 1.1537,
+    "pdl": 1.14344,
+    "range": 0.010259999999999936,
     "date": "2026-07-29",
-    "detail": "PDH: 1.34768 | PDL: 1.33330 | Range: 0.01438"
+    "detail": "PDH: 1.15370 | PDL: 1.14344 | Range: 0.01026"
   },
   "pwhPwl": {
-    "pwh": 1.34872,
-    "pwl": 1.34806,
-    "range": 0.0006599999999998829,
-    "detail": "PWH: 1.34872 | PWL: 1.34806 | Range: 0.00066"
+    "pwh": 1.15362,
+    "pwl": 1.1527,
+    "range": 0.0009200000000000319,
+    "detail": "PWH: 1.15362 | PWL: 1.15270 | Range: 0.00092"
   },
   "relEquals": {
     "highs": [],
     "lows": [
       {
-        "price": 1.33641,
-        "detail": "SSL @ 1.33641"
+        "price": 1.145765,
+        "detail": "SSL @ 1.14576"
       }
     ],
     "highCount": 0,
@@ -37,7 +37,7 @@
   "drawTargets": {
     "primary": {
       "level": "PDH",
-      "price": 1.34768,
+      "price": 1.1537,
       "type": "BSL",
       "priority": 1,
       "label": "Previous Day High"
@@ -46,65 +46,81 @@
     "allTargets": [
       {
         "level": "PDH",
-        "price": 1.34768,
+        "price": 1.1537,
         "type": "BSL",
         "priority": 1,
         "label": "Previous Day High"
       },
       {
         "level": "PDL",
-        "price": 1.3333,
+        "price": 1.14344,
         "type": "SSL",
         "priority": 1,
         "label": "Previous Day Low"
       },
       {
         "level": "PWL",
-        "price": 1.34806,
+        "price": 1.1527,
         "type": "SSL",
         "priority": 2,
         "label": "Previous Week Low"
       },
       {
         "level": "PWH",
-        "price": 1.34872,
+        "price": 1.15362,
         "type": "BSL",
         "priority": 2,
         "label": "Previous Week High"
       }
     ],
-    "detail": "Primary draw: Previous Day High (BSL) @ 1.34768 | Opposite (TP): N/A"
+    "detail": "Primary draw: Previous Day High (BSL) @ 1.15370 | Opposite (TP): N/A"
   },
   "sweepStatus": {
-    "swept": false,
-    "mss": false,
-    "sweptPool": null,
-    "structureEvent": "BOS",
-    "detail": "⏳ Previous Day High NOT swept yet | Awaiting sweep + MSS"
+    "swept": true,
+    "mss": true,
+    "sweptPool": {
+      "price": 1.1533,
+      "type": "BSL",
+      "strength": 3,
+      "score": 4.115243071905383,
+      "distance": 0.02081418139559242,
+      "session": "London",
+      "ageBars": 12,
+      "swept": true
+    },
+    "structureEvent": "CHoCH",
+    "detail": "✅ Previous Day High SWEPT at 1.15330 | MSS: ✅ Confirmed"
   },
   "entryGuidance": {
-    "ready": false,
-    "detail": "⏳ NOT READY — ⏳ Previous Day High NOT swept yet | Awaiting sweep + MSS. Wait for Previous Day High sweep + MSS."
+    "ready": true,
+    "direction": "SELL",
+    "entry": "On retest of PD array (FVG/OB/Breaker) after sweep + MSS",
+    "sl": {
+      "price": 1.1548536999999999,
+      "label": "Beyond swept Previous Day High"
+    },
+    "tp": null,
+    "detail": "🎯 SETUP READY: SELL on PD array retest. SL beyond Previous Day High @ 1.15485. TP: N/A @ N/A."
   },
   "hrlrLrlr": {
     "targets": [
       {
         "level": "PDH",
-        "price": 1.34768,
+        "price": 1.1537,
         "type": "BSL",
         "priority": 1,
         "label": "Previous Day High",
         "classification": "HRLR",
         "defenders": 0,
-        "hasNearbyFVG": false,
+        "hasNearbyFVG": true,
         "isLongTerm": true,
         "isWithTrend": false,
         "isCounterTrend": false,
-        "distPct": "0.05"
+        "distPct": "0.06"
       },
       {
         "level": "PDL",
-        "price": 1.3333,
+        "price": 1.14344,
         "type": "SSL",
         "priority": 1,
         "label": "Previous Day Low",
@@ -114,35 +130,35 @@
         "isLongTerm": true,
         "isWithTrend": false,
         "isCounterTrend": false,
-        "distPct": "1.12"
+        "distPct": "0.83"
       },
       {
         "level": "PWL",
-        "price": 1.34806,
+        "price": 1.1527,
         "type": "SSL",
         "priority": 2,
         "label": "Previous Week Low",
         "classification": "HRLR",
         "defenders": 0,
-        "hasNearbyFVG": false,
+        "hasNearbyFVG": true,
         "isLongTerm": true,
         "isWithTrend": false,
         "isCounterTrend": false,
-        "distPct": "0.02"
+        "distPct": "0.03"
       },
       {
         "level": "PWH",
-        "price": 1.34872,
+        "price": 1.15362,
         "type": "BSL",
         "priority": 2,
         "label": "Previous Week High",
         "classification": "HRLR",
         "defenders": 0,
-        "hasNearbyFVG": false,
+        "hasNearbyFVG": true,
         "isLongTerm": true,
         "isWithTrend": false,
         "isCounterTrend": false,
-        "distPct": "0.03"
+        "distPct": "0.05"
       }
     ],
     "lrlrCount": 0,
@@ -150,19 +166,31 @@
     "primaryLRLR": null,
     "stretchHRLR": {
       "level": "PDH",
-      "price": 1.34768,
+      "price": 1.1537,
       "type": "BSL",
       "priority": 1,
       "label": "Previous Day High",
       "classification": "HRLR",
       "defenders": 0,
-      "hasNearbyFVG": false,
+      "hasNearbyFVG": true,
       "isLongTerm": true,
       "isWithTrend": false,
       "isCounterTrend": false,
-      "distPct": "0.05"
+      "distPct": "0.06"
     },
-    "detail": "0 LRLR (easy, with-trend) | 4 HRLR (hard, needs catalyst) | Primary TP: N/A | Stretch: Previous Day High @ 1.34768"
+    "detail": "0 LRLR (easy, with-trend) | 4 HRLR (hard, needs catalyst) | Primary TP: N/A | Stretch: Previous Day High @ 1.15370"
   },
-  "sweepVsRun": null
+  "sweepVsRun": {
+    "classification": "SWEEP",
+    "action": "LOOK FOR SHORT ENTRY",
+    "sweptSide": "BUY-SIDE (above)",
+    "htfAgreesWithSwept": false,
+    "priceClosedBackInside": true,
+    "displacedAway": false,
+    "mssFound": true,
+    "mssDirection": "BEARISH",
+    "currentPrice": 1.15306,
+    "sweptLevel": 1.1537,
+    "detail": "🔄 LIQUIDITY SWEEP: BUY-SIDE (above) swept and REVERSED. HTF neutral disagrees with swept side. MSS BEARISH confirmed. Look for PD array retest entry."
+  }
 }

@@ -17,6 +17,8 @@ EXECUTION → IOFED pyramid entry + session-specific scalp parameters
 
 14 ICT tutorials verified against official innercircletrader.net source.
 
+**Aug 2 additions**: Opening Ranges (5-window 30-min), Time & Price Grid (Chain of Custody), High Precision Secrets (7-9AM + ORG), DST-aware clock fix (18 files).
+
 ## Quick Start
 
 ```bash
@@ -46,6 +48,9 @@ smc-icm-trading/
 │   ├── ny_time.cjs           # NY session time + killzone checker
 │   │
 │   ├── Context Layer (★★★ Tier 0)
+│   │   ├── time_price_grid.cjs        # Suspension blocks, space between, Chain of Custody
+│   │   ├── high_precision_secrets.cjs # 7-9AM range, tethering, body/wick, ORG, gap class
+│   │   ├── opening_range.cjs          # 5-window 30-min framework (MOR/LOR/NYKZ/AMOR/PMOR)
 │   │   ├── weekly_profile_engine.cjs  # 12-profile weekly classification
 │   │   ├── one_trade_setup.cjs        # 5-session daily routing framework
 │   │   ├── po3_state_machine.cjs      # Power of 3: Accum→Manip→Dist→Expansion

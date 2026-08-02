@@ -1,20 +1,20 @@
-# Macro-Micro Coherence — EURUSD — 2026-07-31
+# Macro-Micro Coherence — EURUSD — 2026-08-02
 
-## Coherence Score: **10/10** (raw) → **10/10** (session-adjusted)
+## Coherence Score: **9/10** (raw) → **10/10** (session-adjusted)
 
-> Session: **NY PM Session** (×1) | Killzone: ✅ NY PM Session Killzone | Silver Bullet: ✅ NY PM Silver Bullet
-> Standard session — Afternoon continuation / reversal
-> Best entry TF for NY PM Session: **5m**
+> Session: **NY AM Killzone** (×1.4) | Killzone: ✅ NY AM Killzone Killzone | Silver Bullet: Inactive
+> Standard session — Highest volume, displacement
+> Best entry TF for NY AM Killzone: **5m**
 
 | Component | Score | Detail |
 |-----------|-------|--------|
 | Bias alignment | 2/3 | 2/3 (✓ ✓ ✗) |
-| Structure | 2/2 | 2/2 (15m:BOS bullish, 5m:BOS bullish) |
-| Displacement | 1/2 | 1/2 (5m:weak 0.1253731343282488x, 1m:weak 0.2692307692309417x) |
-| Manipulation | 2/2 | 2/2 (15m sweep:true SSL,SSL,SSL,SSL,SSL,SSL, 5m:true BSL,SSL) |
+| Structure | 2/2 | 2/2 (15m:BOS bullish, 5m:CHoCH bullish) |
+| Displacement | 2/2 | 2/2 (5m:strong 1.50819672131149x, 1m:weak 0.31921824104239804x) |
+| Manipulation | 2/2 | 2/2 (15m sweep:true SSL,SSL,SSL,SSL,SSL, 5m:false none) |
 | Trigger readiness | 0/1 | 0/1 (5m FVG:false, 1m CHoCH:false) |
-| Liquidity | 3/3 | 3/3 — 5m draw is DOWN — not aligned with HTF bullish; Recent sweep detected — manipulation active (0 on 15m, 1 on 5m); Engineered liquidity (EQH/EQL) — higher probability draw |
-| **Session Adj** | ×1 | NY PM Session reliability multiplier |
+| Liquidity | 1/3 | 1/3 — 5m draw is DOWN — not aligned with HTF bullish; Engineered liquidity (EQH/EQL) — higher probability draw |
+| **Session Adj** | ×1.4 | NY AM Killzone reliability multiplier |
 
 ## Go/No-Go Decision
 

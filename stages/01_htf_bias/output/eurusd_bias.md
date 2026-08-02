@@ -1,4 +1,4 @@
-# HTF Bias — EURUSD — 2026-07-31
+# HTF Bias — EURUSD — 2026-08-02
 
 ## Structural Bias
 **BEARISH** — 1W BULLISH → 1D BEARISH → 4H BULLISH
@@ -9,15 +9,15 @@
 | 1D | bearish | BOS | 1.13775 | 1.00 | 6 | 2 | 0 |
 | 4H | bullish | BOS | 1.14053 | 1.00 | 6 | 1 | 2 |
 | 1H | bullish | CHoCH | 1.15262 | 1.00 | 6 | 0 | 1 |
-| 15m | bullish | BOS | 1.15192 | 1.00 | 6 | 0 | 3 |
-| 5m | bullish | BOS | 1.15192 | 1.00 | 5 | 2 | 0 |
-| 1m | bearish | CHoCH | 1.15320 | 1.00 | 4 | 1 | 1 |
+| 15m | bullish | BOS | 1.15376 | 1.00 | 6 | 0 | 3 |
+| 5m | bullish | CHoCH | 1.15362 | 1.00 | 4 | 1 | 0 |
+| 1m | bearish | CHoCH | 1.15330 | 1.00 | 2 | 0 | 2 |
 
 ## Key Observations
 - 1W: BULLISH | 1D: **BEARISH** | 4H: **BULLISH**
 - 1D & 4H diverging ⚠️ — reduced confidence
 - 1W 1D swing: H 1.16221 / L 1.13532
-- Current price: 1.15289
+- Current price: 1.15306
 
 ## Multi-TF Cascade
 ```

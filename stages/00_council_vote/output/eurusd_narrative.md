@@ -1,4 +1,4 @@
-# The Market's Story — EURUSD — 2026-07-31
+# The Market's Story — EURUSD — 2026-08-02
 
 ## The Narrative
 
@@ -20,7 +20,7 @@ The 15m and 5m both show bullish structure — LTF CONFIRMS HTF. This is the ide
 
 
 ### V. THE TRIGGER — 1m
-The 1m shows bearish bias with 1 FVGs. The 1m bearish is a micro-bounce WITHIN the bullish trend — Scalpers can trade it but should NOT hold against the HTF. Recent 1m sweep detected — micro-manipulation may have just occurred. 1 FVG(s) available for entry refinement.
+The 1m shows bearish bias with 2 FVGs. The 1m bearish is a micro-bounce WITHIN the bullish trend — Scalpers can trade it but should NOT hold against the HTF. Recent 1m sweep detected — micro-manipulation may have just occurred. 2 FVG(s) available for entry refinement.
 
 
 ---
@@ -31,8 +31,8 @@ Model selection is narrative-driven, not pattern-matched. Each model tells a dif
 
 
 ### Silver Bullet
-**Fit**: TIME-DRIVEN — this model is about WHEN, not WHAT
-**Why**: Silver Bullet is appropriate RIGHT NOW because we are inside the active killzone window. The model is time-gated — it only works during specific 2-hour windows when institutional flow is highest. The bullish bias provides directional context. FVGs are present for entry refinement.
+**Fit**: TIME-MISMATCHED — wrong window for this model
+**Why**: Silver Bullet is NOT currently appropriate — we are in a killzone but outside the SB window. This model requires the 1-hour SB window (03-04, 10-11, or 14-15 NY). The killzone is active but the specific SB timing window is not.
 
 
 ### 2022 Model (MMXM)
@@ -117,5 +117,5 @@ This IS a trend trade. The structure is established and institutions are distrib
 
 ---
 
-*Generated: 2026-07-31T18:49:34.927Z | Narrative Engine v1.0*
+*Generated: 2026-08-02T13:55:01.539Z | Narrative Engine v1.0*
 *"The market is a storyteller. Our job is to listen, not to guess."*

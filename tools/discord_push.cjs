@@ -4,7 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = "C:/Users/cash/smc-icm-trading";
+const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
 const DATE = new Date().toISOString().split("T")[0];
 const ALERT_FILE = path.join(ROOT, "shared", DATE, "discord_alerts.jsonl");
 

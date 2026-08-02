@@ -1,6 +1,6 @@
-# Coherence Audit — EURUSD — 2026-07-31
+# Coherence Audit — EURUSD — 2026-08-02
 
-## Overall Coherence: 60/100 — C — ADEQUATE coherence
+## Overall Coherence: 50/100 — D — POOR coherence
 
 ---
 
@@ -26,7 +26,7 @@
 | 4H | **BULLISH** | BOS | ⚠️ opposing |
 | 1H | **BULLISH** | CHoCH | ⚠️ opposing |
 | 15m | **BULLISH** | BOS | ⚠️ opposing |
-| 5m | **BULLISH** | BOS | ⚠️ opposing |
+| 5m | **BULLISH** | CHoCH | ⚠️ opposing |
 | 1m | **BEARISH** | CHoCH | ✅ aligned |
 
 **⚠️ TEMPORAL DIVERGENCE — 3 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
@@ -41,9 +41,10 @@
 
 ## 4. Self-Contradiction Check
 
+- **[WARNING]** DISPLACEMENT vs FVG: 5m has STRONG displacement but 0 FVGs. ICT says displacement MUST leave an FVG. The move may be noise.
 - **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
 
-**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
+**⚠️ 2 contradiction(s) — mostly expected in current cycle phase.**
 
 ---
 
@@ -54,8 +55,8 @@
 | Lens Coherence | 25/25 | ✅ |
 | Temporal Coherence | 15/25 | ⚠️ |
 | Archetype Coherence | 15/25 | ⚠️ |
-| No Contradictions | 25/25 | ✅ |
-| **TOTAL** | **60/100** | **C — ADEQUATE coherence** |
+| No Contradictions | 15/25 | ✅ |
+| **TOTAL** | **50/100** | **D — POOR coherence** |
 
 ---
 

@@ -4,7 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = "C:\\Users\\cash\\smc-icm-trading";
+const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
 const DATE = new Date().toISOString().split("T")[0];
 
 function r2(v) { return Number(v).toFixed(2); }

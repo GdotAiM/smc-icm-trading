@@ -12,7 +12,7 @@ const QTY = process.argv[6] || "10000";
 const TV_SYMBOLS = { DXY: "USDOLLAR" };
 const TV_SYM = TV_SYMBOLS[PAIR] || PAIR;
 const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
-const ROOT = "C:/Users/cash/smc-icm-trading";
+const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "../..");
 
 (async () => {
   const r = await fetch("http://127.0.0.1:9222/json/list");

@@ -1,6 +1,6 @@
 # Time & Price Grid — GBPUSD — 2026-08-02
 
-## Current: 10:17:15 NY | Price: 1.34836 | Bias: BEARISH
+## Current: 10:32:53 NY | Price: 1.34836 | Bias: BEARISH
 
 ## Suspension Blocks (137 on daily)
 - Bearish Suspension: 1.33594–1.34345 (body 61.68% of range) (2026-07-20)
@@ -26,3 +26,12 @@ Upper wick: extreme 1.34874, CE 1.34855. CE reached (bearish pressure) | Bodies:
 
 ## Narrative
 **Price outside controlled space but delivery is not yet efficient — still overlapping. Wait for tight channel to confirm direction.**
+
+## Chain of Custody (3 links)
+**SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT**
+- Dominant Half: BULLISH
+- Daily Suspension Block @ 1.34230 | Bodies in upper half | 2026-07-29
+- Premium Wick CE @ 1.34855 | CE reached | BEARISH (bodies in lower half)
+- ORG CE @ 1.34659 | Price in UPPER (premium) | FILLED
+
+Chain: SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT | 3 links active. Dominant half: UPPER (bullish delivery). Daily Suspension Block @ 1.34230 | Bodies in upper half | 2026-07-29 → ORG CE @ 1.34659 | Price in UPPER (premium) | FILLED

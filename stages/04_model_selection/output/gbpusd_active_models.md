@@ -13,7 +13,7 @@
 |-------|-----------|---------|-----|-------|--------|
 | MMXM Sell Model | 8/13 | ×1.40 | ×1.00 | ✅ | **0.00** | ★ PRIMARY |
 | MMXM Buy Model | 5/13 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
-| Silver Bullet | 5/10 | ×1.10 | ×1.00 | ✅ | **0.00** | Rejected |
+| Silver Bullet | 8/10 | ×1.10 | ×1.00 | ✅ | **0.00** | Rejected |
 | OTE + Institutional OB | 6/11 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
 | Turtle Soup | 7/9 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
 | Unicorn (OTE+FVG) | 6/11 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
@@ -26,7 +26,7 @@
 | Mitigation Block | 1/4 | ×0.50 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
 | Rejection Block | 3/4 | ×0.80 | ×1.00 | ✅ | **0.00** | Rejected |
 | London Hunt + IFVG | 1/10 | ×1.00 | ×1.00 | ✅ | **0.00** | Rejected |
-| NDOG/NWOG News Model | 3/15 | ×1.50 | ×1.00 | ✅ | **0.00** | Rejected |
+| NDOG/NWOG News Model | 0/15 | ×1.50 | ×1.00 | ✅ | **0.00** | Rejected |
 | 08:30 Liquidity Raid Model | 0/13 | ×1.30 | ×1.00 | ✅ | **0.00** | Rejected |
 
 ⚠️ **Turtle Soup**: Turtle Soup requires MANIPULATION phase, but we are in DISTRIBUTION

@@ -1,6 +1,6 @@
-# Liquidity Analysis — EURUSD — 2026-07-31
+# Liquidity Analysis — EURUSD — 2026-08-02
 
-## Current Price: 1.15289
+## Current Price: 1.15306
 
 ## Step 1: HTF Bias
 - **⚠️ NOT ALIGNED — 1D BEARISH, 4H BULLISH**
@@ -15,9 +15,9 @@
 ## Step 3: Previous Week Levels (PWH/PWL)
 | Level | Price |
 |-------|-------|
-| PWH | 1.15376 |
-| PWL | 1.15170 |
-| Range | 0.00206 |
+| PWH | 1.15362 |
+| PWL | 1.15270 |
+| Range | 0.00092 |
 
 ## Step 4: Relative Equal Levels
 - 0 equal highs, 1 equal lows inside daily range
@@ -27,8 +27,8 @@
 |----------|-------|-------|------|-------|
 | 1 | PDH | 1.15370 | BSL | Previous Day High |
 | 1 | PDL | 1.14344 | SSL | Previous Day Low |
-| 2 | PWH | 1.15376 | BSL | Previous Week High |
-| 2 | PWL | 1.15170 | SSL | Previous Week Low |
+| 2 | PWL | 1.15270 | SSL | Previous Week Low |
+| 2 | PWH | 1.15362 | BSL | Previous Week High |
 
 **Primary Draw**: Primary draw: Previous Day High (BSL) @ 1.15370 | Opposite (TP): N/A
 
@@ -44,15 +44,15 @@
 |-------|-------|------|-------|-----------|---------|------|
 | Previous Day High | 1.15370 | BSL | **HRLR** | 0 | ✅ | 📐 TP2 |
 | Previous Day Low | 1.14344 | SSL | **HRLR** | 1 | ✅ |  |
-| Previous Week High | 1.15376 | BSL | **HRLR** | 0 | ✅ |  |
-| Previous Week Low | 1.15170 | SSL | **HRLR** | 0 | ✅ |  |
+| Previous Week Low | 1.15270 | SSL | **HRLR** | 0 | ✅ |  |
+| Previous Week High | 1.15362 | BSL | **HRLR** | 0 | ✅ |  |
 
 ## Sweep vs Run Classification
-- **POTENTIAL_SWEEP**: ⏳ POTENTIAL SWEEP: BUY-SIDE (above) swept and price back inside range. HTF disagrees — likely reversal. Awaiting MSS confirmation on 1m.
+- **SWEEP**: 🔄 LIQUIDITY SWEEP: BUY-SIDE (above) swept and REVERSED. HTF neutral disagrees with swept side. MSS BEARISH confirmed. Look for PD array retest entry.
 - HTF Agrees: No → sweep expected
 - Price Back Inside: Yes
-- MSS Found: ⏳ No
-- Action: **WAIT FOR MSS**
+- MSS Found: ✅ BEARISH
+- Action: **LOOK FOR SHORT ENTRY**
 
 ### Trade Parameters
 | Param | Value |

@@ -15,7 +15,7 @@ const path = require("path");
 
 const L2 = require("./tv-mcp/lecture2_setup.cjs");
 
-const ROOT = "C:/Users/cash/smc-icm-trading";
+const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
 const DATE = new Date().toISOString().split("T")[0];
 const PAIR = process.argv[2] || "GBPUSD";
 
