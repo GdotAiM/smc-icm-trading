@@ -331,24 +331,26 @@ function generateImprovementReport(lessons, gaps, playbookResult, conceptTrackin
 }
 
 // ═══════════════ MAIN ═══════════════
-function main() {
+async function main() {
   const args = process.argv.slice(2);
   const mode = args[0];
 
   if (!mode || mode === "--help") {
     console.log(`
-ICT Continuous Learning — Phase 5: Knowledge Evolution
+ICT Continuous Learning — Phase 5: Knowledge Evolution (with LLM deep analysis)
 Usage:
   node tools/ict_continuous_learn.cjs --extract [pair] [date]   Extract lessons from today's trade
   node tools/ict_continuous_learn.cjs --gaps [pair] [date]       Detect knowledge gaps
   node tools/ict_continuous_learn.cjs --playbook [pair] [date]    Update playbook from lessons
   node tools/ict_continuous_learn.cjs --report [pair] [date]      Full improvement report
   node tools/ict_continuous_learn.cjs --run [pair]                Run all (extract + gaps + playbook + report)
+  node tools/ict_continuous_learn.cjs --deep-analyze [pair]       LLM cross-trade pattern recognition
   node tools/ict_continuous_learn.cjs --dashboard                 Learning dashboard
   node tools/ict_continuous_learn.cjs --sync-graph                Rebuild trade graph from all data
 
 Examples:
   node tools/ict_continuous_learn.cjs --run GBPUSD
+  node tools/ict_continuous_learn.cjs --deep-analyze GBPUSD
   node tools/ict_continuous_learn.cjs --report GBPUSD 2026-07-27
   node tools/ict_continuous_learn.cjs --dashboard
 `);
@@ -560,6 +562,89 @@ Examples:
     for (const l of allLessons.slice(-5).reverse()) {
       const pnlStr = (l.trade?.pnl || 0) >= 0 ? `+$${l.trade?.pnl || 0}` : `-$${Math.abs(l.trade?.pnl || 0)}`;
       console.log(`  ${l.date} ${l.pair}: ${pnlStr} | Quality: ${l.decisionQuality || "?"}/5 | Lessons: ${l.lessons.length}`);
+    }
+
+    return;
+  }
+
+  // ── Deep Analyze (LLM cross-trade pattern recognition) ────
+  if (mode === "--deep-analyze") {
+    const lessonDir = path.join(SHARED, "performance");
+    console.log(`\n🧠 Deep Analysis — Cross-Trade Pattern Recognition\n`);
+    console.log("═".repeat(55));
+
+    if (!fs.existsSync(lessonDir)) {
+      console.log("No performance data yet. Run --extract after trades first.");
+      return;
+    }
+
+    const files = fs.readdirSync(lessonDir).filter(f => f.startsWith("lessons_")).sort();
+    if (files.length < 3) {
+      console.log(`Need at least 3 trade sessions for pattern analysis. Found: ${files.length}`);
+      return;
+    }
+
+    // Load all recent trades
+    const allTrades = [];
+    const allLessons = [];
+    for (const f of files.slice(-50)) {
+      try {
+        const data = JSON.parse(fs.readFileSync(path.join(lessonDir, f), "utf8"));
+        allTrades.push({
+          pair: data.pair,
+          date: data.date,
+          direction: data.trade?.direction || "unknown",
+          pnl: data.trade?.pnl || 0,
+          model: data.conceptsUsed?.[0] || "unknown",
+          session: data.session || "unknown",
+          outcome: data.trade?.outcome || "unknown",
+          decisionQuality: data.decisionQuality,
+          ruleViolations: (data.ruleViolations || []).map(v => v.rule),
+          rulesFollowed: (data.rulesFollowed || []).map(v => v.rule),
+        });
+        allLessons.push(...(data.lessons || []));
+      } catch (e) {}
+    }
+
+    console.log(`Loaded ${allTrades.length} trades across ${new Set(allTrades.map(t => t.date)).size} sessions`);
+    console.log(`Total P&L: $${allTrades.reduce((s, t) => s + t.pnl, 0).toFixed(2)}`);
+    console.log(`Win rate: ${(allTrades.filter(t => t.pnl > 0).length / allTrades.filter(t => t.pnl !== 0).length * 100 || 0).toFixed(0)}%`);
+    console.log(`\nAnalyzing with LLM...\n`);
+
+    try {
+      const { chatCompletion } = require("./llm/llm_client.cjs");
+      const { journalAnalysis } = require("./llm/llm_prompts.cjs");
+      const { messages, config } = journalAnalysis(allTrades, allLessons, pair);
+
+      const response = await chatCompletion(messages, config);
+
+      if (response.text.startsWith("[LLM")) {
+        console.log(`⚠️  LLM unavailable: ${response.text}`);
+        console.log(`(Set GEMINI_API_KEY in .env for cross-trade analysis)`);
+        // Still output basic stats
+        console.log(`\n── Basic Stats (no LLM) ──`);
+        const modelStats = {};
+        for (const t of allTrades) {
+          const key = t.model || "unknown";
+          if (!modelStats[key]) modelStats[key] = { wins: 0, losses: 0, pnl: 0 };
+          modelStats[key][t.pnl > 0 ? "wins" : "losses"]++;
+          modelStats[key].pnl += t.pnl;
+        }
+        console.log(`\nModel Performance:`);
+        for (const [model, stats] of Object.entries(modelStats).sort((a, b) => b[1].pnl - a[1].pnl)) {
+          const total = stats.wins + stats.losses;
+          const wr = total > 0 ? Math.round(stats.wins / total * 100) : 0;
+          console.log(`  ${model}: ${wr}% win (${stats.wins}W/${stats.losses}L) | P&L: $${stats.pnl.toFixed(0)}`);
+        }
+      } else {
+        console.log(`📊 CROSS-TRADE PATTERN ANALYSIS (${response.provider}/${response.model}):\n`);
+        console.log(response.text);
+        console.log(`\n${"─".repeat(55)}`);
+        console.log(`💡 Based on ${allTrades.length} trades across ${new Set(allTrades.map(t => t.date)).size} sessions`);
+      }
+    } catch (e) {
+      console.log(`⚠️  Deep analysis skipped: ${e.message}`);
+      console.log(`(Requires: llm/llm_client.cjs and llm/llm_prompts.cjs)`);
     }
 
     return;

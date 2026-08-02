@@ -250,15 +250,17 @@ function lookupConcept(conceptName) {
 }
 
 // ═══════════════ MAIN ═══════════════
-function main() {
+async function main() {
   const args = process.argv.slice(2);
   const mode = args[0];
 
   if (!mode || mode === "--help") {
     console.log(`
-ICT Knowledge RAG — Phase 2
+ICT Knowledge RAG — Phase 2 (with LLM synthesis)
 Usage:
   node tools/ict_rag.cjs --query "<question>"     Semantic search (top 5)
+  node tools/ict_rag.cjs --synthesize "<q>"      Query + LLM synthesis (citation-backed answer)
+  node tools/ict_rag.cjs --ask "<question>"       Combined query+synthesize shortcut
   node tools/ict_rag.cjs --concept <name>          Concept lookup with rules
   node tools/ict_rag.cjs --build                    Rebuild RAG index
   node tools/ict_rag.cjs --list [tier]              List concepts by tier
@@ -266,7 +268,8 @@ Usage:
 
 Examples:
   node tools/ict_rag.cjs --query "Silver Bullet entry rules"
-  node tools/ict_rag.cjs --query "How to identify a fair value gap"
+  node tools/ict_rag.cjs --ask "What are the Silver Bullet entry criteria?"
+  node tools/ict_rag.cjs --synthesize "How to identify a fair value gap"
   node tools/ict_rag.cjs --concept "silver-bullet"
   node tools/ict_rag.cjs --list 2
 `);
@@ -346,6 +349,69 @@ Examples:
       console.log(`Cite: ${best.cite}`);
       console.log(`Tier: ${best.tierName} | Section: ${best.section}`);
     }
+    return;
+  }
+
+  // ── Synthesize (Query + LLM) ──────────────────────────
+  if (mode === "--synthesize" || mode === "--ask") {
+    const queryText = args.slice(1).join(" ");
+    if (!queryText) { console.log("Error: Provide a query"); return; }
+
+    const indexPath = path.join(RAG_DIR, "rag_index.json");
+    const chunksPath = path.join(RAG_DIR, "chunks.json");
+
+    if (!fs.existsSync(indexPath) || !fs.existsSync(chunksPath)) {
+      console.log("Index not found. Run --build first.");
+      return;
+    }
+
+    const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
+    const chunks = JSON.parse(fs.readFileSync(chunksPath, "utf8"));
+
+    const vectors = index.vectors.map(v => ({
+      ...v,
+      chunk: chunks[v.id] || chunks.find(c => c.conceptId === v.conceptId && c.section === v.section)
+    }));
+
+    const results = query(queryText, vectors, 5);
+
+    // Always show raw results first
+    console.log(`\n🔍 Query: "${queryText}"\n`);
+    console.log(`Retrieved ${results.length} relevant concepts\n`);
+    console.log("═".repeat(70));
+    for (let i = 0; i < results.length; i++) {
+      const r = results[i];
+      console.log(`\n${i + 1}. ${r.title} — Score: ${r.score}`);
+      console.log(`   Tier: ${r.tierName} | Section: ${r.section}`);
+      console.log(`   ${r.excerpt}`);
+      console.log(`   📄 ${r.cite}`);
+    }
+
+    // Attempt LLM synthesis
+    console.log(`\n${"=".repeat(70)}`);
+    console.log(`🧠 Synthesizing with LLM...\n`);
+
+    try {
+      const { chatCompletion } = require("./llm/llm_client.cjs");
+      const { ragSynthesis } = require("./llm/llm_prompts.cjs");
+      const { messages, config } = ragSynthesis(queryText, results);
+
+      const response = await chatCompletion(messages, config);
+
+      if (response.text.startsWith("[LLM")) {
+        console.log(`⚠️  LLM unavailable: ${response.text}`);
+        console.log(`(Showing raw chunks above — set GEMINI_API_KEY in .env for synthesis)`);
+      } else {
+        console.log(`📝 SYNTHESIZED ANSWER (${response.provider}/${response.model}):\n`);
+        console.log(response.text);
+        console.log(`\n${"─".repeat(70)}`);
+        console.log(`💡 Sources: ${results.map(r => r.cite).join(", ")}`);
+      }
+    } catch (e) {
+      console.log(`⚠️  LLM synthesis skipped: ${e.message}`);
+      console.log(`(Requires: llm/llm_client.cjs and llm/llm_prompts.cjs)`);
+    }
+
     return;
   }
 
