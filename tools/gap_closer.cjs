@@ -2,11 +2,11 @@
 // CISD refined | T-Spot | IRL/ERL | NWOG/NDOG | Engine Phase | CBDR/CRT/Quarterly
 const fs = require("fs");
 const path = require("path");
+const ny = require("./ny_time.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
-const UTC_HOUR = new Date().getUTCHours();
-const DAY_NUM = new Date().getDay();
+const DAY_NUM = ny.getNYDay();
 const EFFECTIVE_DAY = DAY_NUM === 0 ? 1 : DAY_NUM;
 
 function r2(v) { return Number(v).toFixed(2); }
@@ -242,17 +242,17 @@ function detectEnginePhase(report) {
 
 // ── GAP 6: CBDR / CRT / Quarterly Theory ───────────────────────────────
 function detectTemporalContext() {
-  const hour = UTC_HOUR;
+  const hour = ny.getNYHour();
   const day = EFFECTIVE_DAY;
-  const weekOfMonth = Math.ceil(new Date().getUTCDate() / 7);
+  const weekOfMonth = Math.ceil(ny.getNYDate().split("-")[2] / 7);
   const month = new Date().getUTCMonth();
 
-  // CBDR: Central Bank Dealers Range (2PM-8PM NY = 18:00-00:00 UTC)
-  const inCBDR = hour >= 18 && hour < 24;
+  // CBDR: Central Bank Dealers Range (2PM-8PM NY)
+  const inCBDR = hour >= 14 && hour < 20;
   const cbdr = {
     active: inCBDR,
     narrative: inCBDR ?
-      "CBDR ACTIVE (18:00-00:00 UTC) — Central Bank Dealers Range. Institutional positioning window. Wider stops, expect ranging." :
+      "CBDR ACTIVE (14:00-20:00 NY) — Central Bank Dealers Range. Institutional positioning window. Wider stops, expect ranging." :
       "CBDR inactive.",
   };
 

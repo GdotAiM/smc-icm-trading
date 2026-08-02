@@ -1,20 +1,17 @@
-# Cross-System Guard Report — GBPUSD — 2026-07-31
-## NY Time: 14:00 | Session: NY PM Session | Judas: Inactive | SB: ✅ NY PM Silver Bullet
+# Cross-System Guard Report — GBPUSD — 2026-08-02
+## NY Time: 09:00 | Session: NY AM Killzone | Judas: Inactive | SB: Inactive
 
-## Verdict: **⚠️ ENTER WITH CAUTION**
+## Verdict: **✅ ENTER**
 
 
-### ⚠️ WARNINGS (1)
-- **FRIDAY**: 📅 FRIDAY — No swing trades. Scalps only (Silver Bullet, lecture setups). Close all by NY close. Size ×0.5. → SCALPS ONLY — Silver Bullet + time-based lecture setups allowed at 50% size. Close all by 16:00 NY.
 
 ## All Guards
 | Guard | Severity | Blocked | Narrative |
 |-------|----------|---------|-----------|
-| SILVER_BULLET | INFO | ✅ | ✅ SILVER BULLET ACTIVE (NY PM Silver Bullet). This is the highest-probability 1-... |
+| SILVER_BULLET | INFO | ✅ | Killzone active but Silver Bullet window not yet. SB window at 10:00 NY AM SB.... |
 | IPDA_ZONE | INFO | ✅ | ✅ IPDA ZONE ALIGNED: DISCOUNT. Trade direction matches dealing range context.... |
-| FRIDAY | HIGH | ✅ | 📅 FRIDAY — No swing trades. Scalps only (Silver Bullet, lecture setups). Close ... |
 
 ## Adjustments
-- Size Multiplier: ×0.50
-- Confidence Adjustment: -8
+- Size Multiplier: ×1.00
+- Confidence Adjustment: +1
 - Entry Allowed: ✅

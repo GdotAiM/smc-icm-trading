@@ -1,10 +1,10 @@
 // Priority 2 Gap Closure: CISD engine + BPR + per-session Po3 + ISD Sequence
 const fs = require("fs");
 const path = require("path");
+const ny = require("./ny_time.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
-const UTC_HOUR = new Date().getUTCHours();
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }
@@ -86,18 +86,19 @@ function detectBPR(report) {
 // ═══════════════════════════════════════════════════════════════════
 function detectPo3PerSession() {
   const sessions = [];
-  // Asia: 00:00-07:00 UTC
-  if (UTC_HOUR >= 0 && UTC_HOUR < 7) sessions.push({ name: "Asia", phase: "ACCUMULATION", character: "Range-bound, building positions" });
-  // London: 07:00-12:00
-  if (UTC_HOUR >= 7 && UTC_HOUR < 10) sessions.push({ name: "London AM", phase: "MANIPULATION", character: "Judas Swing window — false breakout likely" });
-  if (UTC_HOUR >= 10 && UTC_HOUR < 12) sessions.push({ name: "London PM", phase: "DISTRIBUTION", character: "European distribution begins" });
-  // NY AM: 12:00-16:00
-  if (UTC_HOUR >= 12 && UTC_HOUR < 15) sessions.push({ name: "NY AM", phase: "DISTRIBUTION", character: "Highest volume — real displacement" });
-  if (UTC_HOUR >= 15 && UTC_HOUR < 17) sessions.push({ name: "NY Lunch/PM", phase: "ACCUMULATION", character: "Low liquidity chop" });
-  // NY PM: 17:00-21:00
-  if (UTC_HOUR >= 17 && UTC_HOUR < 21) sessions.push({ name: "NY PM", phase: "DISTRIBUTION", character: "Late continuation or reversal" });
+  const h = ny.getNYHour();
+  // Asia: 20:00-24:00 + 00:00-02:00 NY
+  if (h >= 20 || h < 2) sessions.push({ name: "Asia", phase: "ACCUMULATION", character: "Range-bound, building positions" });
+  // London AM (Judas Swing): 02:00-05:00
+  if (h >= 2 && h < 5) sessions.push({ name: "London AM", phase: "MANIPULATION", character: "Judas Swing window — false breakout likely" });
+  if (h >= 5 && h < 8) sessions.push({ name: "London PM", phase: "DISTRIBUTION", character: "European distribution begins" });
+  // NY AM: 08:00-11:00
+  if (h >= 8 && h < 11) sessions.push({ name: "NY AM", phase: "DISTRIBUTION", character: "Highest volume — real displacement" });
+  if (h >= 11 && h < 13) sessions.push({ name: "NY Lunch", phase: "ACCUMULATION", character: "Low liquidity chop" });
+  // NY PM: 13:00-16:00
+  if (h >= 13 && h < 16) sessions.push({ name: "NY PM", phase: "DISTRIBUTION", character: "Late continuation or reversal" });
   // Close
-  if (UTC_HOUR >= 20 && UTC_HOUR < 22) sessions.push({ name: "Close", phase: "COMPLETION", character: "End-of-session — no new entries" });
+  if (h >= 16 && h < 17) sessions.push({ name: "Close", phase: "COMPLETION", character: "End-of-session — no new entries" });
 
   const currentSession = sessions[0] || { name: "Off", phase: "UNKNOWN", character: "Low liquidity" };
 

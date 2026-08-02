@@ -8,7 +8,9 @@ export const SMC_CONFIG = {
   liquidityTolerance: 0.0015,
   equalLevelTolerance: 0.001,
   liquidityHalfLifeBars: 200,
-  sessionWeight: { Asia: 1.3, London: 1.1, "NY AM": 1.0, "NY PM": 0.9, Off: 0.8 },
+  // ICT-correct session quality ordering: killzones (London / NY AM) = highest
+  // liquidity/displacement; Asia = low liquidity. Inverted from the old UTC Asia=1.3.
+  sessionWeight: { "NY AM": 1.3, London: 1.2, "NY PM": 1.0, Asia: 0.5, Off: 0.6 },
 
   // ── Order Blocks ────────────────────────────────────────────────
   obBodyToRangeRatio: 0.6,
@@ -63,11 +65,32 @@ export const SMC_CONFIG = {
 
 export type SessionName = "Asia" | "London" | "NY AM" | "NY PM" | "Off";
 
+// NY offset from UTC: EST = -5, EDT = -4.
+// US DST transitions at 02:00 NY local → 07:00 UTC (start, EDT) / 06:00 UTC (end, EST).
+// 2nd Sunday March → 1st Sunday November.
+function nyOffsetFor(ts: number): number {
+  const d = new Date(ts);
+  const year = d.getUTCFullYear();
+  const mar1 = new Date(Date.UTC(year, 2, 1));
+  const mar2ndSun = new Date(Date.UTC(year, 2, (14 - mar1.getUTCDay()) % 7 + 8, 7));
+  const nov1 = new Date(Date.UTC(year, 10, 1));
+  const nov1stSun = new Date(Date.UTC(year, 10, (7 - nov1.getUTCDay()) % 7 + 1, 6));
+  return (ts >= mar2ndSun.getTime() && ts < nov1stSun.getTime()) ? -4 : -5;
+}
+
+function nyHourFor(ts: number): number {
+  let h = new Date(ts).getUTCHours() + nyOffsetFor(ts);
+  if (h < 0) h += 24;
+  if (h >= 24) h -= 24;
+  return h;
+}
+
 export function sessionForTime(ts: number): SessionName {
-  const h = new Date(ts).getUTCHours();
-  if (h >= 0 && h < 7) return "Asia";
-  if (h >= 7 && h < 12) return "London";
-  if (h >= 12 && h < 16) return "NY AM";
-  if (h >= 16 && h < 21) return "NY PM";
-  return "Off";
+  const h = nyHourFor(ts);
+  if (h >= 20 || h < 2) return "Asia";   // NY Asia 20:00–02:00 (prev-day evening + overnight)
+  if (h >= 2 && h < 8) return "London";  // London KZ 02:00–05:00 + London PM/pre-NY 05:00–08:00
+  if (h >= 8 && h < 11) return "NY AM";  // NY AM Killzone 08:00–11:00
+  if (h >= 11 && h < 13) return "Off";   // NY Lunch 11:00–13:00 (low liquidity)
+  if (h >= 13 && h < 16) return "NY PM"; // NY PM 13:00–16:00
+  return "Off";                          // NY Close 16:00–17:00 + off hours 17:00–20:00
 }

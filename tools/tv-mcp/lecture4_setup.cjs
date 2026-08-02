@@ -14,6 +14,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const ny = require("../ny_time.cjs");
 
 // ═══ Import shared helpers from Lecture 2 ═══
 const L2 = require("./lecture2_setup.cjs");
@@ -278,7 +279,7 @@ function getGapBasedEntry(gap, mss, candles1m, candles5m) {
   }
 
   // Fallback: find FVG near the gap zone
-  const post7am1m = L2.filterAfterUTCHour(candles1m, 11);
+  const post7am1m = L2.filterAfterUTCHour(candles1m, 7);
   if (post7am1m.length < 4) return { found: false, detail: "No entry — insufficient 1m data" };
 
   // Look for FVGs near the gap
@@ -435,8 +436,8 @@ function runLecture4Setup(pair, date, root) {
   const p = pair || PAIR;
 
   // ═══ TIME GATE: 08:30-10:00 NY only ═══
-  const nyHour = parseInt(new Date().toLocaleTimeString("en-US", {timeZone:"America/New_York", hour12:false, hour:"2-digit"}));
-  const nyMin = new Date().getMinutes();
+  const nyHour = ny.getNYHour();
+  const nyMin = new Date().getUTCMinutes();
   if (nyHour < 8 || (nyHour === 8 && nyMin < 30) || nyHour >= 10) {
     return { pair: p, time: new Date().toLocaleTimeString("en-US", {timeZone:"America/New_York", hour12:false}) + " NY",
       gapClusters: { hasGaps: false }, gapDraw: null, mss: { confirmed: false }, setupReady: false,
@@ -483,11 +484,11 @@ function runLecture4Setup(pair, date, root) {
   const candles1m = getCandles("1m", d, r, p);
   const atr5m = candles5m ? L2.calcATR(candles5m, 14) : 0;
 
-  // Step 6: Time window check (08:30–10:00 AM NY = 12:30–14:00 UTC EDT)
-  const utcHour = new Date().getUTCHours();
+  // Step 6: Time window check (08:30–10:00 AM NY)
+  const utcHour = ny.getNYHour();
   const utcMin = new Date().getUTCMinutes();
-  const inNewsWindow = (utcHour === 12 && utcMin >= 30) || (utcHour >= 13 && utcHour < 14) || (utcHour === 14 && utcMin === 0);
-  const inAPlusWindow = utcHour >= 13 && utcHour < 14; // 09:30-10:00 NY ≈ 13:30-14:00 UTC
+  const inNewsWindow = (utcHour === 8 && utcMin >= 30) || (utcHour >= 9 && utcHour < 10) || (utcHour === 10 && utcMin === 0);
+  const inAPlusWindow = utcHour >= 9 && utcHour < 10; // 09:30-10:00 NY (equity open)
 
   // Step 7: Detect gap draw (after 08:30)
   const gapDraw = detectGapDraw(gapClusters, candles5m, bias, atr5m);

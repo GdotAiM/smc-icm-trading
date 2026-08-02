@@ -6,7 +6,9 @@ const { execSync } = require("child_process");
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const now = new Date();
 const DATE = now.toISOString().split("T")[0];
-const UTC_HOUR = now.getUTCHours();
+const ny = require("./ny_time.cjs");
+const NY_HOUR = ny.getNYHour();
+const NY_SESSION = ny.getNYSession();
 
 const PAIR = process.argv[2] || "EURUSD";
 const pairLabel = PAIR === "GOLD" ? "XAUUSD" : PAIR;
@@ -533,6 +535,19 @@ try {
 
 // ═══════════════ STAGE 03 — Session ═══════════════
 // ═══ ORDER FLOW ZONES ═══
+// ═══ OPENING RANGES — 5-Window 30-Min Framework ═══
+console.log("\n═══ OPENING RANGES — 5-Window Framework ═══");
+try {
+  const { analyzeOpeningRanges } = require("./opening_range.cjs");
+  const or = analyzeOpeningRanges(PAIR);
+  console.log(`  ${or.detail}`);
+  for (const r of or.ranges) {
+    if (!r.range) continue;
+    const icon = r.isActive ? '⚡' : r.tradeable ? '✅' : r.hasPassed ? '  ' : '⏳';
+    console.log(`  ${icon} ${r.name.padEnd(30)} ${r.time} | ${r.tradeable ? 'TRADEABLE' : r.pfvg?.valid ? 'PFVG valid' : 'Range marked'}`);
+  }
+} catch(e) { console.log(`  Opening Ranges unavailable: ${e.message.slice(0, 80)}`); }
+
 console.log("\n═══ ORDER FLOW — Pullback Zones ═══");
 try {
   const { analyzeOrderFlow } = require("./order_flow.cjs");
@@ -546,16 +561,25 @@ try {
 } catch(e) { console.log(`  Order Flow unavailable: ${e.message.slice(0, 80)}`); }
 
 console.log("\n═══ STAGE 03 — Session ═══");
-let session, char;
-if (UTC_HOUR >= 0 && UTC_HOUR < 7) { session = "Asia"; char = "Accumulation"; }
-else if (UTC_HOUR >= 7 && UTC_HOUR < 12) { session = "London"; char = "Institutional flow"; }
-else if (UTC_HOUR >= 12 && UTC_HOUR < 16) { session = "NY AM"; char = "High volume"; }
-else if (UTC_HOUR >= 16 && UTC_HOUR < 21) { session = "NY PM"; char = "Late session"; }
-else { session = "Off"; char = "Low liquidity"; }
-const inKZ = session === "London" || session === "NY AM";
+// Session classification in NEW YORK LOCAL TIME (ICT mandate) — DST-aware via ny_time.cjs
+const NY_SESSION_MAP = {
+  asia:      { label: "Asia",      char: "Accumulation / low liquidity", kz: false },
+  asiaLate:  { label: "Asia",      char: "Overnight low-liquidity drift", kz: false },
+  london:    { label: "London",    char: "Institutional flow, manipulation", kz: true },
+  londonPM:  { label: "London PM", char: "European distribution / pre-NY", kz: true },
+  nyAM:      { label: "NY AM",     char: "High volume, displacement", kz: true },
+  nyLunch:   { label: "NY Lunch",  char: "Low liquidity, avoid entries", kz: false },
+  nyPM:      { label: "NY PM",     char: "Afternoon continuation / reversal", kz: true },
+  nyClose:   { label: "NY Close",  char: "Position squaring, no new entries", kz: false },
+  offHours:  { label: "Off",       char: "Low liquidity", kz: false },
+};
+const _sInfo = NY_SESSION_MAP[NY_SESSION.name] || { label: NY_SESSION.name, char: NY_SESSION.character, kz: false };
+let session = _sInfo.label;
+let char = _sInfo.char;
+const inKZ = _sInfo.kz;
 const gate = (bias1d !== "neutral" && inKZ) ? "ACTIVE" : inKZ ? "MONITOR" : "NO TRADE";
 
-writeMd("03_session_time", "session.md", `# Session Analysis — ${pairLabel} — ${DATE} ${String(UTC_HOUR).padStart(2,'0')}:00 UTC
+writeMd("03_session_time", "session.md", `# Session Analysis — ${pairLabel} — ${DATE} ${String(NY_HOUR).padStart(2,'0')}:00 NY (${ny.getNYOffset() > -5 ? 'EDT' : 'EST'})
 
 ## Current Session
 - **Session**: ${session} | Killzone: ${inKZ ? '✅ ACTIVE' : 'Inactive'}
@@ -563,11 +587,11 @@ writeMd("03_session_time", "session.md", `# Session Analysis — ${pairLabel} �
 - **Gate**: **${gate}**
 
 ## Silver Bullet
-| Window | UTC | Status |
-|--------|-----|--------|
-| London SB | 08-10 | ${UTC_HOUR >= 8 && UTC_HOUR < 10 ? '✅' : '—'} |
-| NY AM SB | 13-15 | ${UTC_HOUR >= 13 && UTC_HOUR < 15 ? '✅' : '—'} |
-| NY PM SB | 17-19 | ${UTC_HOUR >= 17 && UTC_HOUR < 19 ? '✅' : '—'} |
+| Window | NY Time | Status |
+|--------|---------|--------|
+| London SB | 03-04 | ${NY_HOUR >= 3 && NY_HOUR < 4 ? '✅' : '—'} |
+| NY AM SB | 10-11 | ${NY_HOUR >= 10 && NY_HOUR < 11 ? '✅' : '—'} |
+| NY PM SB | 14-15 | ${NY_HOUR >= 14 && NY_HOUR < 15 ? '✅' : '—'} |
 
 ## Alignment
 - Bias: **${bias1d}** | Session: ${session}
@@ -934,7 +958,7 @@ if (turtleSoupCheck.detected) console.log(`  🐢 ${turtleSoupCheck.detail}`);
 const models = [
   { name: "MMXM Sell Model", score: (bias1d === 'bearish' ? 3 : 0) + (hasOB ? 2 : 0) + (hasSweep ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 9 },
   { name: "MMXM Buy Model", score: (bias1d === 'bullish' ? 3 : 0) + (hasOB ? 2 : 0) + (hasSweep ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 9 },
-  { name: "Silver Bullet", score: ((UTC_HOUR >= 8 && UTC_HOUR < 10) || (UTC_HOUR >= 13 && UTC_HOUR < 15) || (UTC_HOUR >= 17 && UTC_HOUR < 19) ? 3 : 0) + (bias1d !== 'neutral' && inKZ ? 2 : 0) + (hasFVG ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 9 },
+  { name: "Silver Bullet", score: ((NY_HOUR >= 3 && NY_HOUR < 4) || (NY_HOUR >= 10 && NY_HOUR < 11) || (NY_HOUR >= 14 && NY_HOUR < 15) ? 3 : 0) + (bias1d !== 'neutral' && inKZ ? 2 : 0) + (hasFVG ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 9 },
   { name: "OTE + Institutional OB", score: (hasOB ? 3 : 0) + (inOTEZoneSimple ? 2 : 0) + (bias1d !== 'neutral' ? 2 : 0) + (smtDetected ? 1 : 0), max: 8 },
   { name: "Turtle Soup", score: turtleSoupCheck.score, max: turtleSoupCheck.max },
   { name: "Unicorn (OTE+FVG)", score: (hasOB ? 2 : 0) + (hasFVG ? 3 : 0) + (inOTEZoneSimple ? 2 : 0) + (smtDetected ? 1 : 0), max: 8 },
@@ -942,8 +966,8 @@ const models = [
   // ── Tier 2: Strong (phase-specific) ──
   { name: "SCOB", score: (hasOB && hasFVG ? 3 : 0) + (r1d.volumeDisplacement && r1d.volumeDisplacement.atrRatio > 1.0 ? 2 : 0) + (bias1d !== 'neutral' ? 1 : 0) + (smtDetected ? 1 : 0), max: 7 },
   { name: "2FVG Entry", score: (fvgs.length >= 2 ? 3 : 0) + (bias1d !== 'neutral' ? 2 : 0) + (hasSweep ? 1 : 0), max: 6 },
-  { name: "Judas Swing", score: ((UTC_HOUR >= 7 && UTC_HOUR < 8) || (UTC_HOUR >= 12 && UTC_HOUR < 13) ? 3 : 0) + (hasSweep ? 2 : 0) + (bias1d !== 'neutral' ? 2 : 0) + (smtDetected ? 1 : 0), max: 8 },
-  { name: "Asian Range Breakout", score: (UTC_HOUR >= 0 && UTC_HOUR < 7 ? 3 : 0) + (hasSweep ? 2 : 0) + (hasOB ? 1 : 0), max: 6 },
+  { name: "Judas Swing", score: ((NY_HOUR >= 2 && NY_HOUR < 3) || (NY_HOUR >= 8 && NY_HOUR < 9) ? 3 : 0) + (hasSweep ? 2 : 0) + (bias1d !== 'neutral' ? 2 : 0) + (smtDetected ? 1 : 0), max: 8 },
+  { name: "Asian Range Breakout", score: ((NY_HOUR >= 20 || NY_HOUR < 2) ? 3 : 0) + (hasSweep ? 2 : 0) + (hasOB ? 1 : 0), max: 6 },
   { name: "NWOG/NDOG", score: (r1w ? 2 : 0) + (bias1d !== 'neutral' ? 1 : 0) + (hasOB ? 1 : 0), max: 4 },
   // ── Tier 3: Situational ──
   { name: "Mitigation Block", score: (obs.filter(o => (o.mitigationFraction || 0) > 0.3 && (o.mitigationFraction || 0) < 0.7).length * 3) + (bias1d !== 'neutral' ? 1 : 0), max: 4 },
@@ -959,9 +983,13 @@ models.forEach(m => {
   m.structuralScore = m.score; // preserve original
   m.cycleMultiplier = cycleWeight;
   m.perfMultiplier = perfWeight;
-  // Killzone session multiplier: London/NY = 1.0, Asia/NY Lunch = reduced
-  const sessionMultiplier = (session === "London" || session === "NY AM") ? 1.0 :
-                            session === "NY PM" ? 0.8 : session === "Asia" ? 0.5 : session === "Off" ? 0.4 : 0.7;
+  // Killzone session multiplier (NY-local): London/NY AM = 1.0, NY PM = 0.8, Asia = 0.5, NY Lunch/Close = 0.4, Off = 0.3
+  const sessionMultiplier = (NY_SESSION.name === "london" || NY_SESSION.name === "londonPM" || NY_SESSION.name === "nyAM") ? 1.0 :
+                            NY_SESSION.name === "nyPM" ? 0.8 :
+                            NY_SESSION.name === "asia" || NY_SESSION.name === "asiaLate" ? 0.5 :
+                            NY_SESSION.name === "nyLunch" ? 0.4 :
+                            NY_SESSION.name === "nyClose" ? 0.4 :
+                            NY_SESSION.name === "offHours" ? 0.3 : 0.7;
   m.sessionMultiplier = sessionMultiplier;
   m.score = Math.round(m.score * cycleWeight * perfWeight * sessionMultiplier * 10) / 10;
   m.max = Math.round(m.max * Math.max(cycleWeight, 1.0) * Math.max(perfWeight, 1.0) * 10) / 10;
@@ -1020,7 +1048,7 @@ models.sort((a, b) => b.score - a.score);
 // ═══ SILVER BULLET WINDOW OVERRIDE ═══
 // During active SB windows (London 03:00-04:00, NY AM 10:00-11:00, NY PM 14:00-15:00),
 // the Silver Bullet model gets priority. This is THE scalp model for these windows.
-const inSBWindow = (UTC_HOUR >= 8 && UTC_HOUR < 10) || (UTC_HOUR >= 13 && UTC_HOUR < 15) || (UTC_HOUR >= 17 && UTC_HOUR < 19);
+const inSBWindow = (NY_HOUR >= 3 && NY_HOUR < 4) || (NY_HOUR >= 10 && NY_HOUR < 11) || (NY_HOUR >= 14 && NY_HOUR < 15);
 if (inSBWindow) {
   const sbModel = models.find(m => m.name === "Silver Bullet");
   if (sbModel && sbModel.score >= 5) {

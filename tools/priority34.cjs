@@ -1,10 +1,11 @@
 // Priority 3-4: MSS distinction, Rejection Blocks, Close session, Demo→Live, Mitigation Blocks, Fibonacci extensions, Venom Model
 const fs = require("fs");
 const path = require("path");
+const ny = require("./ny_time.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
-const UTC_HOUR = new Date().getUTCHours();
+const UTC_HOUR = ny.getNYHour();
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }
@@ -76,12 +77,12 @@ function detectRejectionBlocks(candles) {
 // GAP 5.2: Close Session Handling
 // ═══════════════════════════════════════════════════════════════════
 function checkCloseSession() {
-  const inClose = UTC_HOUR >= 20 && UTC_HOUR < 22;
-  const approachingClose = UTC_HOUR >= 19 && UTC_HOUR < 20;
+  const inClose = UTC_HOUR >= 16 && UTC_HOUR < 17;
+  const approachingClose = UTC_HOUR >= 15 && UTC_HOUR < 16;
   return {
     inCloseSession: inClose,
     approachingClose,
-    narrative: inClose ? "⚠️ CLOSE SESSION (20:00-22:00 UTC) — No new entries. Tighten existing stops. Close positions before 21:30." :
+    narrative: inClose ? "⚠️ CLOSE SESSION (16:00-17:00 NY) — No new entries. Tighten existing stops. Close positions before NY close." :
                approachingClose ? "⚠️ APPROACHING CLOSE — Last hour for entries. Tighten stops. Plan exits." :
                "Normal session — close session not active.",
     newEntriesAllowed: !inClose,

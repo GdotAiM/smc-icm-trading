@@ -9,7 +9,6 @@ const TMP = process.env.TEMP || "/tmp";
 const PAIR = "EURUSD";
 const now = new Date();
 const DATE = now.toISOString().split("T")[0];
-const UTC_HOUR = now.getUTCHours();
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }

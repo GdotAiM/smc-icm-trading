@@ -5,52 +5,57 @@ const NY_TIMEZONE = "America/New_York";
 
 // NY offset from UTC: EST = -5, EDT = -4
 // US DST: 2nd Sunday March → 1st Sunday November
-function getNYOffset() {
-  const now = new Date();
-  const year = now.getUTCFullYear();
+// DST transitions occur at 02:00 NY local: 07:00 UTC (start, EDT) / 06:00 UTC (end, EST).
+function getNYOffset(ts) {
+  const d = ts === undefined ? new Date() : new Date(ts);
+  const year = d.getUTCFullYear();
   // Compute 2nd Sunday of March
   const mar1 = new Date(Date.UTC(year, 2, 1)); // March 1
-  const mar2ndSun = new Date(Date.UTC(year, 2, (14 - mar1.getUTCDay()) % 7 + 8));
+  const mar2ndSun = new Date(Date.UTC(year, 2, (14 - mar1.getUTCDay()) % 7 + 8, 7)); // 07:00 UTC
   // Compute 1st Sunday of November
   const nov1 = new Date(Date.UTC(year, 10, 1)); // November 1
-  const nov1stSun = new Date(Date.UTC(year, 10, (7 - nov1.getUTCDay()) % 7 + 1));
-  const ts = now.getTime();
-  return (ts >= mar2ndSun.getTime() && ts < nov1stSun.getTime()) ? -4 : -5;
+  const nov1stSun = new Date(Date.UTC(year, 10, (7 - nov1.getUTCDay()) % 7 + 1, 6)); // 06:00 UTC
+  const t = d.getTime();
+  return (t >= mar2ndSun.getTime() && t < nov1stSun.getTime()) ? -4 : -5;
 }
 
-function getNYHour() {
-  const utcHour = new Date().getUTCHours();
-  const offset = getNYOffset();
-  let nyHour = utcHour + offset;
+// Timestamp-aware NY helpers — compute NY hour/day/date for an ARBITRARY epoch-ms
+// timestamp using the DST offset in effect on that date (not "now").
+function getNYHourFor(ts) {
+  const d = new Date(ts);
+  let nyHour = d.getUTCHours() + getNYOffset(ts);
   if (nyHour < 0) nyHour += 24;
   if (nyHour >= 24) nyHour -= 24;
   return nyHour;
 }
 
-function getNYDay() {
-  const utcHour = new Date().getUTCHours();
-  const offset = getNYOffset();
-  const nyHour = utcHour + offset;
-  const now = new Date();
-  // If UTC hour + offset < 0, it's still previous day in NY
-  if (nyHour < 0) {
-    const prev = new Date(now.getTime() - 86400000);
-    return prev.getDay();
-  }
-  return now.getDay();
+// Minutes are identical to UTC minutes (NY offset is always whole hours), but
+// keep a helper for symmetry and single-source readability.
+function getNYMinFor(ts) {
+  return new Date(ts).getUTCMinutes();
 }
 
-function getNYDate() {
-  const now = new Date();
-  const utcHour = now.getUTCHours();
-  const offset = getNYOffset();
-  const nyHour = utcHour + offset;
-  if (nyHour < 0) {
-    const prev = new Date(now.getTime() - 86400000);
-    return prev.toISOString().split("T")[0];
+function getNYMin() { return getNYMinFor(Date.now()); }
+
+function getNYDayFor(ts) {
+  const d = new Date(ts);
+  if (d.getUTCHours() + getNYOffset(ts) < 0) {
+    return new Date(ts - 86400000).getUTCDay();
   }
-  return now.toISOString().split("T")[0];
+  return d.getUTCDay();
 }
+
+function getNYDateFor(ts) {
+  const d = new Date(ts);
+  if (d.getUTCHours() + getNYOffset(ts) < 0) {
+    return new Date(ts - 86400000).toISOString().split("T")[0];
+  }
+  return d.toISOString().split("T")[0];
+}
+
+function getNYHour() { return getNYHourFor(Date.now()); }
+function getNYDay() { return getNYDayFor(Date.now()); }
+function getNYDate() { return getNYDateFor(Date.now()); }
 
 // ICT Killzone times in NY LOCAL time
 const NY_KILLZONES = {
@@ -78,8 +83,8 @@ const NY_JUDAS_SWING = {
   nyOpen:     { start: 8, end: 9, label: "NY Open Judas Swing" },
 };
 
-function getNYSession() {
-  const h = getNYHour();
+function getNYSessionFor(ts) {
+  const h = getNYHourFor(ts);
   for (const [key, zone] of Object.entries(NY_KILLZONES)) {
     if (h >= zone.start && h < zone.end) {
       return { name: key, ...zone, hour: h };
@@ -88,26 +93,31 @@ function getNYSession() {
   return { name: "unknown", label: "Unknown", character: "Unknown", hour: h };
 }
 
-function isInKillzoneNY() {
-  const s = getNYSession();
-  return ["london", "londonPM", "nyAM", "nyPM"].includes(s.name);
-}
-
-function isInSilverBulletNY() {
-  const h = getNYHour();
+function isInSilverBulletFor(ts) {
+  const h = getNYHourFor(ts);
   for (const [key, sb] of Object.entries(NY_SILVER_BULLET)) {
     if (h >= sb.start && h < sb.end) return { active: true, ...sb };
   }
   return { active: false };
 }
 
-function isInJudasSwingNY() {
-  const h = getNYHour();
+function isInJudasSwingFor(ts) {
+  const h = getNYHourFor(ts);
   for (const [key, js] of Object.entries(NY_JUDAS_SWING)) {
     if (h >= js.start && h < js.end) return { active: true, ...js };
   }
   return { active: false };
 }
+
+function getNYSession() { return getNYSessionFor(Date.now()); }
+
+function isInKillzoneNY() {
+  const s = getNYSession();
+  return ["london", "londonPM", "nyAM", "nyPM"].includes(s.name);
+}
+
+function isInSilverBulletNY() { return isInSilverBulletFor(Date.now()); }
+function isInJudasSwingNY() { return isInJudasSwingFor(Date.now()); }
 
 // NY day-of-week for ICT calendar
 const NY_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -242,7 +252,9 @@ if (require.main === module) {
 }
 
 module.exports = {
-  getNYHour, getNYDay, getNYDate, getNYOffset,
+  getNYHour, getNYDay, getNYDate, getNYOffset, getNYMin,
+  getNYHourFor, getNYDayFor, getNYDateFor, getNYMinFor,
   getNYSession, isInKillzoneNY, isInSilverBulletNY, isInJudasSwingNY,
+  getNYSessionFor, isInSilverBulletFor, isInJudasSwingFor,
   NY_KILLZONES, NY_SILVER_BULLET, NY_JUDAS_SWING, NY_DAYS,
 };

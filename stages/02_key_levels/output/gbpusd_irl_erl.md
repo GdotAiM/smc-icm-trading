@@ -1,6 +1,6 @@
-# IRL / ERL Analysis — GBPUSD — 2026-07-31
+# IRL / ERL Analysis — GBPUSD — 2026-08-02
 
-## Current Price: 1.34758
+## Current Price: 1.34836
 
 ## Dealing Range (1D)
 - **Range**: 1.32735 — 1.35582 (0.02847)
@@ -18,7 +18,7 @@
 
 | TF | Type | Price (CE) | Fill % | Distance |
 |-----|------|------------|--------|----------|
-| 15m | bullish | 1.33885 | 1.24% | 0.65% |
+| 15m | bullish | 1.33885 | 1.24% | 0.71% |
 
 ## ERL — External Range Liquidity
 - **Dominant**: BALANCED

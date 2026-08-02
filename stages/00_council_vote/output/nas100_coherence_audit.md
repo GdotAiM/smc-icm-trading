@@ -1,6 +1,6 @@
-# Coherence Audit — NAS100 — 2026-07-29
+# Coherence Audit — NAS100 — 2026-07-31
 
-## Overall Coherence: 90/100 — A — EXCELLENT coherence
+## Overall Coherence: 70/100 — C — ADEQUATE coherence
 
 ---
 
@@ -8,42 +8,42 @@
 
 | Lens | Reading | Direction | vs Structure |
 |------|---------|-----------|-------------|
-| STRUCTURE | BEARISH (BOS) | BEARISH | — |
+| STRUCTURE | BULLISH (CHoCH) | BULLISH | — |
 | IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
-| CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
-| LIQUIDITY | UP (BSL magnet) | 1 swept | BULLISH | — |
+| CYCLE PHASE | DISTRIBUTION → expects BEARISH | BEARISH | — |
+| LIQUIDITY | UP (BSL magnet) | 3 swept | BULLISH | — |
 
-**⚠️ LENS DIVERGENCE — 1 lens(es) disagree with structure (bearish). The IPDA says bearish while structure says bearish. This is a concern — lenses should align in UNKNOWN phase.**
+**⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in DISTRIBUTION phase.**
 
 ---
 
-## 2. Temporal Coherence (✅ 3/4 LTFs aligned)
+## 2. Temporal Coherence (⚠️ 2/4 LTFs aligned)
 
 | TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
 | 1W | **BEARISH** | CHoCH | ✅ aligned |
 | 1D | **BEARISH** | CHoCH | ✅ aligned |
-| 4H | **BEARISH** | BOS | ✅ aligned |
-| 1H | **BEARISH** | BOS | ✅ aligned |
+| 4H | **BULLISH** | CHoCH | ⚠️ opposing |
+| 1H | **BULLISH** | BOS | ⚠️ opposing |
 | 15m | **BEARISH** | BOS | ✅ aligned |
-| 5m | **BEARISH** | CHoCH | ✅ aligned |
-| 1m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 5m | **BULLISH** | BOS | ⚠️ opposing |
+| 1m | **BEARISH** | CHoCH | ✅ aligned |
 
-**✅ TEMPORAL COHERENCE — 3/4 LTFs aligned with HTF BEARISH. 1 opposing (micro pullback — normal).**
+**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
 
 ---
 
 ## 3. Archetype Coherence (✅)
 
-**✅ ARCHETYPE COHERENCE — BEARISH majority (3/4). 80% confidence. Archetypes agree.**
+**✅ ARCHETYPE COHERENCE — BULLISH majority (4/4). 100% confidence. Archetypes agree.**
 
 ---
 
 ## 4. Self-Contradiction Check
 
-- **[WARNING]** STRUCTURE vs PD ARRAY: Structure is BEARISH but price is in DISCOUNT (buy zone). This is a counter-trend sell within the buy zone. The move may exhaust soon.
+✅ No self-contradictions detected.
 
-**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
+**✅ NO SELF-CONTRADICTIONS — The system is internally consistent.**
 
 ---
 
@@ -52,10 +52,10 @@
 | Dimension | Score | Status |
 |-----------|-------|--------|
 | Lens Coherence | 15/25 | ⚠️ |
-| Temporal Coherence | 25/25 | ✅ |
+| Temporal Coherence | 15/25 | ⚠️ |
 | Archetype Coherence | 25/25 | ✅ |
 | No Contradictions | 25/25 | ✅ |
-| **TOTAL** | **90/100** | **A — EXCELLENT coherence** |
+| **TOTAL** | **70/100** | **C — ADEQUATE coherence** |
 
 ---
 

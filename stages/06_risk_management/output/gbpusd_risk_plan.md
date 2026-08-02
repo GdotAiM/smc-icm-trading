@@ -1,4 +1,4 @@
-# Risk Plan — GBPUSD — 2026-07-29
+# Risk Plan — GBPUSD — 2026-08-02
 
 
 ## Account
@@ -11,22 +11,22 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 1.33036 |
-| SL | 1.33169 (structural invalidation) |
-| Stop Distance | 13 pips |
-| **Position** | **0.77 std lots** |
+| Entry | 1.34836 |
+| SL | 0.00000 (structural invalidation) |
+| Stop Distance | 13484 pips |
+| **Position** | **0 micro lots** |
 | Risk | $100.00 |
 | Max Gain (TP1) | $100.00 |
 
 ## Trade Ticket
 ```
 PAIR:       GBPUSD
-DIRECTION:  SHORT
-ENTRY:      1.33036
-SL:         1.33169
-TP1:        1.32903 (close 50%)
-TP2:        1.32771 (close 50%)
-R:R:        1.00:1 / 2.00:1
+DIRECTION:  NO TRADE
+ENTRY:      1.34836
+SL:         0.00000
+TP1:        0.00000 (close 50%)
+TP2:        0.00000 (close 50%)
+R:R:        1.00:1 / 1.00:1
 ```
 
 ## Execution: **PAPER**

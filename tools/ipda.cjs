@@ -4,6 +4,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const ny = require("./ny_time.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
@@ -375,26 +376,29 @@ function detectFalseBreakout(nested, reports) {
 // ═══════════════════════════════════════════════════════════════════
 
 function getKillZoneAlignment() {
-  const utcHour = new Date().getUTCHours();
-  const utcMin = new Date().getUTCMinutes();
+  const nyHour = ny.getNYHour();
+  const nyMin = ny.getNYMin();
 
-  // Kill zone windows in UTC (EDT = UTC-4)
+  // Kill zone windows in NY local time
   const zones = {
-    asia:       { start: 0, end: 2, label: "Asia", weight: 0.5 },
-    londonKZ:   { start: 6, end: 10, label: "London KZ", weight: 1.2 },
-    londonSB:   { start: 7, end: 8, label: "London SB", weight: 1.5 },
-    nyAMKZ:     { start: 12, end: 15, label: "NY AM KZ", weight: 1.3 },
-    nyAMSB:     { start: 14, end: 15, label: "NY AM SB", weight: 1.5 },
-    nyLunch:    { start: 15, end: 17, label: "NY Lunch", weight: 0.4 },
-    nyPM:       { start: 17, end: 20, label: "NY PM", weight: 1.0 },
-    nyPMSB:     { start: 18, end: 19, label: "NY PM SB", weight: 1.2 },
+    asia:       { start: 20, end: 24, label: "Asia", weight: 0.5 },
+    asiaLate:   { start: 0, end: 2, label: "Asia (overnight)", weight: 0.5 },
+    londonKZ:   { start: 2, end: 5, label: "London KZ", weight: 1.2 },
+    londonSB:   { start: 3, end: 4, label: "London SB", weight: 1.5 },
+    londonPM:   { start: 5, end: 8, label: "London PM", weight: 1.0 },
+    nyAMKZ:     { start: 8, end: 11, label: "NY AM KZ", weight: 1.3 },
+    nyAMSB:     { start: 10, end: 11, label: "NY AM SB", weight: 1.5 },
+    nyLunch:    { start: 11, end: 13, label: "NY Lunch", weight: 0.4 },
+    nyPM:       { start: 13, end: 16, label: "NY PM", weight: 1.0 },
+    nyPMSB:     { start: 14, end: 15, label: "NY PM SB", weight: 1.2 },
+    nyClose:    { start: 16, end: 17, label: "NY Close", weight: 0.4 },
   };
 
   let activeZone = null;
   for (const [key, z] of Object.entries(zones)) {
     const startMins = z.start * 60;
     const endMins = z.end * 60;
-    const currentMins = utcHour * 60 + utcMin;
+    const currentMins = nyHour * 60 + nyMin;
     if (currentMins >= startMins && currentMins < endMins) {
       activeZone = { id: key, ...z };
       break;

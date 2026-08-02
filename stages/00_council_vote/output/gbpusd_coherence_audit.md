@@ -1,50 +1,50 @@
-# Coherence Audit — GBPUSD — 2026-07-29
+# Coherence Audit — GBPUSD — 2026-08-02
 
 ## Overall Coherence: 40/100 — D — POOR coherence
 
 ---
 
-## 1. Lens Coherence (⚠️ 1/4 agree)
+## 1. Lens Coherence (✅ 3/4 agree)
 
 | Lens | Reading | Direction | vs Structure |
 |------|---------|-----------|-------------|
-| STRUCTURE | BEARISH (BOS) | BEARISH | — |
+| STRUCTURE | BULLISH (BOS) | BULLISH | — |
 | IPDA RANGE | DISCOUNT → BULLISH bias | BULLISH | — |
-| CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
-| LIQUIDITY | UP (BSL magnet) | 2 swept | BULLISH | — |
+| CYCLE PHASE | DISTRIBUTION → expects BULLISH | BULLISH | — |
+| LIQUIDITY | BALANCED | 6 swept | NEUTRAL | — |
 
-**⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bearish). The IPDA says bullish while structure says bearish. This is a concern — lenses should align in UNKNOWN phase.**
+**✅ LENS COHERENCE — All 3 lenses agree on BULLISH. No contradictions.**
 
 ---
 
-## 2. Temporal Coherence (⚠️ 0/4 LTFs aligned)
+## 2. Temporal Coherence (⚠️ 1/4 LTFs aligned)
 
 | TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
-| 1W | **BULLISH** | CHoCH | ⚠️ opposing |
+| 1W | **BEARISH** | CHoCH | ✅ aligned |
 | 1D | **BEARISH** | BOS | ✅ aligned |
-| 4H | **BEARISH** | BOS | ✅ aligned |
+| 4H | **BULLISH** | BOS | ⚠️ opposing |
 | 1H | **BULLISH** | BOS | ⚠️ opposing |
-| 15m | **BULLISH** | CHoCH | ⚠️ opposing |
-| 5m | **BULLISH** | BOS | ⚠️ opposing |
-| 1m | **BULLISH** | BOS | ⚠️ opposing |
+| 15m | **BULLISH** | BOS | ⚠️ opposing |
+| 5m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 1m | **BEARISH** | CHoCH | ✅ aligned |
 
-**⚠️ TEMPORAL DIVERGENCE — 4 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
+**⚠️ TEMPORAL DIVERGENCE — 3 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
 
 ---
 
 ## 3. Archetype Coherence (⚠️)
 
-**⚠️ ARCHETYPE PARTIAL — 3/4 agree but only 40% confidence. Some dissent.**
+**❌ ARCHETYPE DIVERGENCE — Council split. No consensus (0%).**
 
 ---
 
 ## 4. Self-Contradiction Check
 
-- **[WARNING]** STRUCTURE vs PD ARRAY: Structure is BEARISH but price is in DISCOUNT (buy zone). This is a counter-trend sell within the buy zone. The move may exhaust soon.
-- **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
+- **[WARNING]** STRUCTURE vs PD ARRAY: Structure is BULLISH but price is in PREMIUM (sell zone). This is a counter-trend buy within the sell zone.
+- **[CRITICAL]** HTF-LTF DIVERGENCE: 3 consecutive timeframes oppose HTF (bearish). Possible macro reversal.
 
-**⚠️ 2 contradiction(s) — mostly expected in current cycle phase.**
+**❌ 2 contradiction(s) including CRITICAL issues. The system is fighting itself.**
 
 ---
 
@@ -52,10 +52,10 @@
 
 | Dimension | Score | Status |
 |-----------|-------|--------|
-| Lens Coherence | 15/25 | ⚠️ |
+| Lens Coherence | 25/25 | ✅ |
 | Temporal Coherence | 15/25 | ⚠️ |
 | Archetype Coherence | 15/25 | ⚠️ |
-| No Contradictions | 15/25 | ✅ |
+| No Contradictions | 5/25 | ❌ |
 | **TOTAL** | **40/100** | **D — POOR coherence** |
 
 ---

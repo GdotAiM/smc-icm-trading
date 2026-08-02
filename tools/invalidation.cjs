@@ -5,8 +5,9 @@ const path = require("path");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
-const UTC_HOUR = new Date().getUTCHours();
-const DAY_NUM = new Date().getDay();
+const ny = require("./ny_time.cjs");
+const NY_HOUR = ny.getNYHour();
+const DAY_NUM = ny.getNYDay();
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }
@@ -68,17 +69,18 @@ if (r1w && r1w.structure.bias !== "neutral" && r1w.structure.bias !== htfBias) {
 const structureValid = structureChecks.every(c => c.status !== "INVALIDATED");
 const structureWarnings = structureChecks.filter(c => c.status === "WARNING").length;
 
-// 3. TIME INVALIDATION — Session/killzone/window expiry
+// 3. TIME INVALIDATION — Session/killzone/window expiry (NEW YORK local time)
 const timeChecks = [];
-const inKillzone = (UTC_HOUR >= 7 && UTC_HOUR < 10) || (UTC_HOUR >= 12 && UTC_HOUR < 15);
-const inSB = (UTC_HOUR >= 8 && UTC_HOUR < 10) || (UTC_HOUR >= 13 && UTC_HOUR < 15) || (UTC_HOUR >= 17 && UTC_HOUR < 19);
+const inKillzone = (NY_HOUR >= 2 && NY_HOUR < 11) || (NY_HOUR >= 13 && NY_HOUR < 16); // London 02-08, NY AM 08-11, NY PM 13-16
+const inSB = (NY_HOUR >= 3 && NY_HOUR < 4) || (NY_HOUR >= 10 && NY_HOUR < 11) || (NY_HOUR >= 14 && NY_HOUR < 15);
 
 if (inKillzone) {
-  const remaining = UTC_HOUR < 10 ? (10 - UTC_HOUR) * 60 : (15 - UTC_HOUR) * 60;
+  const kzEnd = NY_HOUR < 11 ? 11 : 16;
+  const remaining = (kzEnd - NY_HOUR) * 60;
   timeChecks.push({ status: "ACTIVE", detail: `Killzone active — ${Math.floor(remaining/60)}h ${remaining%60}m remaining` });
-} else if (UTC_HOUR >= 0 && UTC_HOUR < 7) {
+} else if (NY_HOUR >= 20 || NY_HOUR < 2) {
   timeChecks.push({ status: "WARNING", detail: "Asia session — lower probability. If trade is active, tighten stops." });
-} else if (UTC_HOUR >= 21) {
+} else if (NY_HOUR >= 17) {
   timeChecks.push({ status: "INVALIDATED", detail: "OFF HOURS — no new entries. Close existing positions." });
 } else {
   timeChecks.push({ status: "MONITOR", detail: "Between killzones — reduced displacement probability" });
@@ -86,12 +88,12 @@ if (inKillzone) {
 
 if (inSB) {
   timeChecks.push({ status: "ACTIVE", detail: "Silver Bullet window ACTIVE — time-gated models eligible" });
-} else if (UTC_HOUR >= 7 && UTC_HOUR < 21) {
-  const nextSB = UTC_HOUR < 8 ? "London SB at 08:00" : UTC_HOUR < 13 ? "NY AM SB at 13:00" : UTC_HOUR < 17 ? "NY PM SB at 17:00" : "tomorrow";
+} else if (NY_HOUR >= 2 && NY_HOUR < 21) {
+  const nextSB = NY_HOUR < 3 ? "London SB at 03:00" : NY_HOUR < 10 ? "NY AM SB at 10:00" : NY_HOUR < 14 ? "NY PM SB at 14:00" : "tomorrow";
   timeChecks.push({ status: "INACTIVE", detail: `SB window not active — next: ${nextSB}` });
 }
 
-if (DAY_NUM === 5 && UTC_HOUR >= 16) {
+if (DAY_NUM === 5 && NY_HOUR >= 16) {
   timeChecks.push({ status: "INVALIDATED", detail: "Friday PM — close all positions by NY close. No weekend holds." });
 }
 

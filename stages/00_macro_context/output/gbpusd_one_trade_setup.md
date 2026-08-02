@@ -1,4 +1,4 @@
-# One Trade Setup for Life — GBPUSD — 2026-07-31
+# One Trade Setup for Life — GBPUSD — 2026-08-02
 
 ## Daily Bias
 **NEUTRAL** (0.00 confidence)
@@ -14,8 +14,8 @@
 ## Session Raid Priority Queue
 | P | Session | Range | Status | Detail |
 |---|---------|-------|--------|--------|
-| 1 | PM Session | H 1.34768 L 1.32865 | ⏳ | No bias or no range |
-| 2 | London Session | H 1.35425 L 1.32735 | ⏳ | No bias or no range |
+| 1 | PM Session | H 1.34882 L 1.32867 | ⏳ | No bias or no range |
+| 2 | London Session | H 1.35425 L 1.32798 | ⏳ | No bias or no range |
 | 3 | Opening Gap | — | ⏳ | Delegated to Lecture 4 gap model |
 | 4 | NY Lunch | — | ⏳ | Window not yet open |
 

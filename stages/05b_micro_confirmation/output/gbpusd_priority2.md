@@ -1,4 +1,4 @@
-# Priority 2 Report — GBPUSD — 2026-07-31
+# Priority 2 Report — GBPUSD — 2026-08-02
 
 ## CISD (Engine-Quality)
 **No CISD detected.**
@@ -11,11 +11,11 @@
 
 
 ## Per-Session Po3
-**Current session: NY PM — DISTRIBUTION phase. Late continuation or reversal.**
-- NY PM: DISTRIBUTION — Late continuation or reversal
+**Current session: NY AM — DISTRIBUTION phase. Highest volume — real displacement.**
+- NY AM: DISTRIBUTION — Highest volume — real displacement
 
 ## ISD Sequence
-**⏳ ISD 2/3 — Near complete. One more confirmation needed.**
+**✅ ISD COMPLETE (3/3) — Inducement → Sweep → Displacement confirmed. HIGHEST confidence entry.**
 - ✅ Inducement: 10 pool(s) swept across 4H/15m
-- ✅ Structural Sweep: BOS confirms on 15m/5m
-- ✗ Displacement: weak on 5m (0.07x) — below threshold
+- ✅ Structural Sweep: CHoCH confirms on 15m/5m
+- ✅ Displacement: moderate on 5m (1.45x), moderate on 15m

@@ -17,6 +17,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const ny = require("./ny_time.cjs");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
@@ -111,14 +112,10 @@ function markPMSessionRange(dailyCandles, candles15m) {
     };
   }
 
-  // Filter 15m candles to PM session hours: 18:30-21:00 UTC (EDT)
+  // Filter 15m candles to PM session: 13:30–16:00 NY
   const pmCandles = candles15m.filter(c => {
-    const h = new Date(c.time).getUTCHours();
-    const m = new Date(c.time).getUTCMinutes();
-    const mins = h * 60 + m;
-    // 1:30 PM NY = 17:30 UTC (EST) or 18:30 UTC (EDT)
-    // 4:00 PM NY = 20:00 UTC (EST) or 21:00 UTC (EDT)
-    return mins >= (18 * 60 + 30) && mins <= (21 * 60);
+    const mins = ny.getNYHourFor(c.time) * 60 + ny.getNYMinFor(c.time);
+    return mins >= (13 * 60 + 30) && mins <= (16 * 60);
   });
 
   if (pmCandles.length < 4) {

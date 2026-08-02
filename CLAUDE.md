@@ -263,6 +263,8 @@ Three ICT 2024 mentorship lectures are wired into the pipeline as automated setu
 All three modules import shared helpers from `lecture2_setup.cjs`:
 `findSwings`, `findRelativeEqualLevels`, `confirmMSS`, `detectBreakerBlock`, `detectIFVG`, `check30MinReversal`, `calcATR`, `filterAfterUTCHour`, `findFirstCandleAtUTCHour`
 
+> `filterAfterUTCHour` / `findFirstCandleAtUTCHour` take a **New York** hour argument (DST-aware, via `ny_time.cjs`), despite the historical names. Pass e.g. `7` for 07:00 NY, never `11`.
+
 Lecture 4 additionally imports from `lecture2_setup.cjs` for gap-based detection.
 Lecture 1 additionally reads SMC engine reports for order blocks and FVGs.
 

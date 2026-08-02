@@ -6,7 +6,8 @@ const path = require("path");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
-const UTC_HOUR = new Date().getUTCHours();
+const ny = require("./ny_time.cjs");
+const NY_HOUR = ny.getNYHour();
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }
@@ -89,14 +90,17 @@ function detectNextTransition(currentState, report) {
 // ═══════════════════════════════════════════════════════════════════
 
 function getExpectedPo3Phase() {
-  if (UTC_HOUR >= 0 && UTC_HOUR < 7) return { phase: "ACCUMULATION", session: "Asia", expected: true };
-  if (UTC_HOUR >= 7 && UTC_HOUR < 8.5) return { phase: "MANIPULATION", session: "London Open", expected: true };
-  if (UTC_HOUR >= 8.5 && UTC_HOUR < 12) return { phase: "DISTRIBUTION", session: "London PM", expected: true };
-  if (UTC_HOUR >= 12 && UTC_HOUR < 13) return { phase: "MANIPULATION", session: "NY Open", expected: true };
-  if (UTC_HOUR >= 13 && UTC_HOUR < 16) return { phase: "DISTRIBUTION", session: "NY AM", expected: true };
-  if (UTC_HOUR >= 16 && UTC_HOUR < 17) return { phase: "ACCUMULATION", session: "NY Lunch", expected: true };
-  if (UTC_HOUR >= 17 && UTC_HOUR < 20) return { phase: "DISTRIBUTION", session: "NY PM", expected: true };
-  return { phase: "ACCUMULATION", session: "Off-hours", expected: false };
+  // Expected AMD phase in NEW YORK LOCAL time (DST-aware).
+  const h = NY_HOUR;
+  if (h >= 20) return { phase: "ACCUMULATION", session: "Asia (prev day evening)", expected: true };
+  if (h >= 0 && h < 2) return { phase: "ACCUMULATION", session: "Asia (overnight)", expected: true };
+  if (h >= 2 && h < 3) return { phase: "MANIPULATION", session: "London Open", expected: true };
+  if (h >= 3 && h < 8) return { phase: "DISTRIBUTION", session: "London PM", expected: true };
+  if (h >= 8 && h < 9) return { phase: "MANIPULATION", session: "NY Open", expected: true };
+  if (h >= 9 && h < 11) return { phase: "DISTRIBUTION", session: "NY AM", expected: true };
+  if (h >= 11 && h < 13) return { phase: "ACCUMULATION", session: "NY Lunch", expected: true };
+  if (h >= 13 && h < 16) return { phase: "DISTRIBUTION", session: "NY PM", expected: true };
+  return { phase: "ACCUMULATION", session: "NY Close / Off-hours", expected: false };
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -121,8 +125,7 @@ function getDailyOpen(candles1h) {
   if (!candles1h || candles1h.length < 5) return null;
   // Midnight NY = 04:00 UTC (EDT) or 05:00 UTC (EST)
   const midnightCandle = candles1h.find(c => {
-    const h = new Date(c.time).getUTCHours();
-    return h === 4 || h === 5; // Midnight NY
+    return ny.getNYHourFor(c.time) === 0; // Midnight NY
   });
   if (!midnightCandle) return candles1h[0]; // Fallback to first available
   return { price: midnightCandle.open, time: midnightCandle.time, detail: `Daily Open (Midnight NY): ${r5(midnightCandle.open)}` };
@@ -236,7 +239,7 @@ ${nextTransition ? `- Probability: ${r2(nextTransition.probability * 100)}%` : '
 
 ## Timing Gate Check
 
-**Expected phase for ${expected.session} (${String(UTC_HOUR).padStart(2,'0')}:00 UTC): ${expected.phase}**
+**Expected phase for ${expected.session} (${String(NY_HOUR).padStart(2,'0')}:00 NY): ${expected.phase}**
 **Detected phase: ${current4h.state}**
 ${timingAligned ? '✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.' : '⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.'}
 

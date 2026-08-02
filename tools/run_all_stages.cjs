@@ -9,7 +9,9 @@ const TMP = process.env.TEMP || "/tmp";
 const PAIR = "EURUSD";
 const now = new Date();
 const DATE = now.toISOString().split("T")[0];
-const UTC_HOUR = now.getUTCHours();
+const ny = require("./ny_time.cjs");
+const NY_HOUR = ny.getNYHour();
+const NY_SESSION = ny.getNYSession();
 
 function engine(tf, input) {
   const cmd = `npx tsx "${ENGINE}\\src\\cli.ts" --pair ${PAIR} --tf ${tf} --input "${input}"`;
@@ -146,18 +148,27 @@ ${r4h.alt ? `**${r4h.alt.side.toUpperCase()}** @ ${r5(r4h.alt.price)} — ${r4h.
 // STAGE 03 — Session & Time
 // ═══════════════════════════════════════════════════
 console.log("═══ STAGE 03 — Session & Time ═══");
-let session, char;
-if (UTC_HOUR >= 0 && UTC_HOUR < 7) { session = "Asia"; char = "Accumulation / Range-bound"; }
-else if (UTC_HOUR >= 7 && UTC_HOUR < 12) { session = "London"; char = "Institutional flow, manipulation"; }
-else if (UTC_HOUR >= 12 && UTC_HOUR < 16) { session = "NY AM"; char = "Highest volume, displacement"; }
-else if (UTC_HOUR >= 16 && UTC_HOUR < 21) { session = "NY PM"; char = "Late continuation / reversal"; }
-else { session = "Off"; char = "Low liquidity, avoid"; }
+// Session classification in NEW YORK LOCAL TIME (DST-aware via ny_time.cjs)
+const NY_SESSION_MAP = {
+  asia:      { label: "Asia",      char: "Accumulation / Range-bound" },
+  asiaLate:  { label: "Asia",      char: "Overnight low-liquidity drift" },
+  london:    { label: "London",    char: "Institutional flow, manipulation" },
+  londonPM:  { label: "London PM", char: "European distribution / pre-NY" },
+  nyAM:      { label: "NY AM",     char: "Highest volume, displacement" },
+  nyLunch:   { label: "NY Lunch",  char: "Low liquidity, avoid entries" },
+  nyPM:      { label: "NY PM",     char: "Late continuation / reversal" },
+  nyClose:   { label: "NY Close",  char: "Position squaring, no new entries" },
+  offHours:  { label: "Off",       char: "Low liquidity, avoid" },
+};
+const _sInfo = NY_SESSION_MAP[NY_SESSION.name] || { label: NY_SESSION.name, char: NY_SESSION.character };
+const session = _sInfo.label;
+const char = _sInfo.char;
 
-const inKillzone = session === "London" || session === "NY AM";
+const inKillzone = ["london", "londonPM", "nyAM", "nyPM"].includes(NY_SESSION.name);
 const biasAligned = bias1d !== "neutral" && inKillzone;
-const sbLondon = UTC_HOUR >= 8 && UTC_HOUR < 10;
-const sbNYAM = UTC_HOUR >= 13 && UTC_HOUR < 15;
-const sbNYPM = UTC_HOUR >= 17 && UTC_HOUR < 19;
+const sbLondon = NY_HOUR >= 3 && NY_HOUR < 4;
+const sbNYAM = NY_HOUR >= 10 && NY_HOUR < 11;
+const sbNYPM = NY_HOUR >= 14 && NY_HOUR < 15;
 const sbActive = sbLondon || sbNYAM || sbNYPM;
 
 let gate;
@@ -165,7 +176,7 @@ if (biasAligned) gate = "ACTIVE — Proceed to Model Selection";
 else if (inKillzone) gate = "MONITOR — Bias unclear but inside killzone";
 else gate = "NO TRADE — Outside active session or bias neutral";
 
-writeMd("03_session_time", "session.md", `# Session Analysis — ${PAIR} — ${DATE} ${String(UTC_HOUR).padStart(2,'0')}:00 UTC
+writeMd("03_session_time", "session.md", `# Session Analysis — ${PAIR} — ${DATE} ${String(NY_HOUR).padStart(2,'0')}:00 NY (${ny.getNYOffset() > -5 ? 'EDT' : 'EST'})
 
 ## Current Session
 - **Session**: ${session}
@@ -173,11 +184,11 @@ writeMd("03_session_time", "session.md", `# Session Analysis — ${PAIR} — ${D
 - **Killzone**: ${inKillzone ? 'ACTIVE — ' + session + ' Killzone' : 'Inactive'}
 
 ## Silver Bullet Windows
-| Window | Time (UTC) | Status |
+| Window | Time (NY) | Status |
 |--------|-----------|--------|
-| London SB | 08:00-10:00 | ${sbLondon ? 'ACTIVE' : 'Inactive'} |
-| NY AM SB | 13:00-15:00 | ${sbNYAM ? 'ACTIVE' : 'Inactive'} |
-| NY PM SB | 17:00-19:00 | ${sbNYPM ? 'ACTIVE' : 'Inactive'} |
+| London SB | 03:00-04:00 | ${sbLondon ? 'ACTIVE' : 'Inactive'} |
+| NY AM SB | 10:00-11:00 | ${sbNYAM ? 'ACTIVE' : 'Inactive'} |
+| NY PM SB | 14:00-15:00 | ${sbNYPM ? 'ACTIVE' : 'Inactive'} |
 
 ## Session Alignment
 - Bias: **${bias1d}**
@@ -190,7 +201,7 @@ writeMd("03_session_time", "session.md", `# Session Analysis — ${PAIR} — ${D
 
 ## Notes for Model Selection
 - Time-gated models eligible: ${sbActive ? 'Silver Bullet, Judas Swing' : 'Standard models only (no time gate)'}
-- Session weight: ${session === 'London' || session === 'NY AM' ? '1.3x' : session === 'Asia' ? '0.8x' : '1.0x'}
+- Session weight: ${inKillzone ? '1.3x' : NY_SESSION.name === 'asia' || NY_SESSION.name === 'asiaLate' ? '0.8x' : '1.0x'}
 `);
 
 // ═══════════════════════════════════════════════════

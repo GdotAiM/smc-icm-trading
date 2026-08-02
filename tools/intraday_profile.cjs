@@ -7,10 +7,18 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const { getNYHour, getNYSession, isInKillzoneNY, isInSilverBulletNY, isInJudasSwingNY } = require(path.join(ROOT, "tools", "ny_time.cjs"));
+const { getNYHour, getNYDate, getNYSession, isInKillzoneNY, isInSilverBulletNY, isInJudasSwingNY } = require(path.join(ROOT, "tools", "ny_time.cjs"));
 
 const NY_HOUR = getNYHour();
 const DATE = new Date().toISOString().split("T")[0];
+
+// NY-midnight-anchored windows: NY offsets are always whole hours and DST never
+// changes at midnight, so anchoring to today's NY date (00:00 UTC of that date)
+// and adding/subtracting fixed hours gives exact NY-local window boundaries.
+function nyWindowStart(dayOffset, nyHour) {
+  const todayStartUtc = Date.parse(getNYDate() + "T00:00:00.000Z");
+  return todayStartUtc + dayOffset * 86400000 + nyHour * 3600000;
+}
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }
@@ -42,15 +50,13 @@ const dailyBias = r1d?.structure?.bias || r4h?.structure?.bias || "neutral";
 function computeCBDR(candles) {
   if (!candles || candles.length === 0) return null;
 
-  // CBDR is formed during 14:00-20:00 NY (18:00-00:00 UTC in summer)
-  // Filter candles in that window from yesterday
-  const now = new Date();
-  const yesterdayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1, 18, 0, 0);
-  const yesterdayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+  // CBDR is formed during 14:00-20:00 NY (yesterday)
+  const cbdrStart = nyWindowStart(-1, 14);
+  const cbdrEnd = nyWindowStart(-1, 20);
 
   const cbdrCandles = candles.filter(c => {
-    const ct = new Date(c.time);
-    return ct >= yesterdayStart && ct < yesterdayEnd;
+    const t = new Date(c.time).getTime();
+    return t >= cbdrStart && t < cbdrEnd;
   });
 
   if (cbdrCandles.length < 5) {
@@ -89,13 +95,13 @@ function computeCBDR(candles) {
 function computeAsianRange(candles) {
   if (!candles || candles.length === 0) return null;
 
-  const now = new Date();
-  const asianStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1, 20, 0, 0);
-  const asianEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+  // Asian range: 20:00-00:00 NY (overnight into today)
+  const asianStart = nyWindowStart(-1, 20);
+  const asianEnd = nyWindowStart(0, 0);
 
   const asianCandles = candles.filter(c => {
-    const ct = new Date(c.time);
-    return ct >= asianStart && ct < asianEnd;
+    const t = new Date(c.time).getTime();
+    return t >= asianStart && t < asianEnd;
   });
 
   if (asianCandles.length < 3) {

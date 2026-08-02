@@ -13,6 +13,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const ny = require("../ny_time.cjs");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
@@ -63,14 +64,14 @@ function findSwings(candles, lookback) {
   return swings;
 }
 
-// ═══ HELPER: Filter candles after a given UTC hour ═══
-function filterAfterUTCHour(candles, utcHour) {
-  return candles.filter(c => new Date(c.time).getUTCHours() >= utcHour);
+// ═══ HELPER: Filter candles after a given NEW YORK hour (DST-aware) ═══
+function filterAfterUTCHour(candles, nyHour) {
+  return candles.filter(c => ny.getNYHourFor(c.time) >= nyHour);
 }
 
-// ═══ HELPER: Find first candle at/after a given UTC hour ═══
-function findFirstCandleAtUTCHour(candles, utcHour) {
-  return candles.find(c => new Date(c.time).getUTCHours() >= utcHour) || null;
+// ═══ HELPER: Find first candle at/after a given NEW YORK hour ═══
+function findFirstCandleAtUTCHour(candles, nyHour) {
+  return candles.find(c => ny.getNYHourFor(c.time) >= nyHour) || null;
 }
 
 // ═══ HELPER: Calculate ATR from candles ═══
@@ -94,8 +95,8 @@ function getLondonRange(rootOverride, pairOverride) {
   if (!candles1h || candles1h.length < 4) return null;
 
   const londonCandles = candles1h.filter(c => {
-    const hour = new Date(c.time).getUTCHours();
-    return hour >= 6 && hour <= 10;
+    const hour = ny.getNYHourFor(c.time);
+    return hour >= 2 && hour <= 5;
   });
 
   const source = londonCandles.length >= 3 ? londonCandles : candles1h.slice(-6);
@@ -175,8 +176,8 @@ function detectHunt(candles5m, candles1m, atr5m) {
   }
 
   // Only look at post-07:00 AM candles
-  const post7am5m = filterAfterUTCHour(candles5m, 11); // 07:00 NY = 11:00 UTC (EDT)
-  const post7am1m = filterAfterUTCHour(candles1m, 11);
+  const post7am5m = filterAfterUTCHour(candles5m, 7); // 07:00 NY
+  const post7am1m = filterAfterUTCHour(candles1m, 7);
 
   if (post7am5m.length < 10) {
     return { active: false, detail: "Not enough post-07:00 AM candles yet" };
@@ -392,7 +393,7 @@ function detectIFVG(candles1m, hunt, candles5m) {
   const isBullish = hunt.direction.includes("BULLISH");
 
   // Find all FVGs formed AFTER 07:00 AM and BEFORE the hunt sweep
-  const post7am1m = filterAfterUTCHour(candles1m, 11);
+  const post7am1m = filterAfterUTCHour(candles1m, 7);
   if (post7am1m.length < 4) return { found: false, detail: "Not enough post-07:00 1m candles for IFVG" };
 
   // Find sweep candle time and index
@@ -538,7 +539,7 @@ function detectBreakerBlock(candles5m, hunt, mss) {
 function getPostHuntSL(candles5m, hunt, mss) {
   if (!hunt?.active || !candles5m || candles5m.length < 10) return null;
 
-  const post7am5m = filterAfterUTCHour(candles5m, 11);
+  const post7am5m = filterAfterUTCHour(candles5m, 7);
   if (post7am5m.length < 5) return null;
 
   const isBearish = hunt.direction.includes("BEARISH");
@@ -597,9 +598,8 @@ function getPostHuntSL(candles5m, hunt, mss) {
 // expect something opposite."
 function check30MinReversal() {
   const now = new Date();
-  const nyHour = parseInt(new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York", hour12: false, hour: "2-digit" }));
-  const nyMinute = now.getMinutes();
-  const minutesIntoHour = nyMinute;
+  const nyHour = ny.getNYHour();
+  const minutesIntoHour = now.getUTCMinutes();
 
   const reversalWindows = [7, 8, 9]; // 07:00, 08:00, 09:00 AM NY
   for (const h of reversalWindows) {
@@ -626,7 +626,7 @@ function calculateFibTargets(candles5m, hunt, mss) {
   const isBullish = mss.direction === "BULLISH";
 
   // Find 07:00 AM opening price (first candle at/after 07:00 NY)
-  const post7am5m = filterAfterUTCHour(candles5m, 11);
+  const post7am5m = filterAfterUTCHour(candles5m, 7);
   if (post7am5m.length < 2) return null;
   const sevenAMOpen = post7am5m[0].open;
 
@@ -686,7 +686,7 @@ function runLecture2Setup(pair, date, root) {
   const p = pair || PAIR;
 
   // ═══ TIME GATE: 07:00-08:00 NY only ═══
-  const nyHour = parseInt(new Date().toLocaleTimeString("en-US", {timeZone:"America/New_York", hour12:false, hour:"2-digit"}));
+  const nyHour = ny.getNYHour();
   if (nyHour < 7 || nyHour >= 8) {
     return { pair: p, time: new Date().toLocaleTimeString("en-US", {timeZone:"America/New_York", hour12:false}) + " NY",
       hunt: { active: false }, mss: { confirmed: false }, ifvg: { found: false }, setupReady: false,

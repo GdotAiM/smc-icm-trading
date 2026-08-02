@@ -1,6 +1,6 @@
-# Coherence Audit — XAUUSD — 2026-07-30
+# Coherence Audit — XAUUSD — 2026-07-31
 
-## Overall Coherence: 60/100 — C — ADEQUATE coherence
+## Overall Coherence: 70/100 — C — ADEQUATE coherence
 
 ---
 
@@ -10,10 +10,10 @@
 |------|---------|-----------|-------------|
 | STRUCTURE | BULLISH (CHoCH) | BULLISH | — |
 | IPDA RANGE | undefined → NEUTRAL bias | NEUTRAL | — |
-| CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
+| CYCLE PHASE | DISTRIBUTION → expects NEUTRAL | NEUTRAL | — |
 | LIQUIDITY | DOWN (SSL magnet) | 3 swept | BEARISH | — |
 
-**⚠️ LENS DIVERGENCE — 1 lens(es) disagree with structure (bullish). The IPDA says neutral while structure says bullish. This is a concern — lenses should align in UNKNOWN phase.**
+**⚠️ LENS DIVERGENCE — 1 lens(es) disagree with structure (bullish). The IPDA says neutral while structure says bullish. This is a concern — lenses should align in DISTRIBUTION phase.**
 
 ---
 
@@ -21,13 +21,13 @@
 
 | TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
-| 1W | **BULLISH** | CHoCH | ⚠️ opposing |
+| 1W | **BEARISH** | CHoCH | ✅ aligned |
 | 1D | **BEARISH** | BOS | ✅ aligned |
 | 4H | **BULLISH** | CHoCH | ⚠️ opposing |
-| 1H | **BULLISH** | CHoCH | ⚠️ opposing |
-| 15m | **BEARISH** | CHoCH | ✅ aligned |
-| 5m | **BEARISH** | BOS | ✅ aligned |
-| 1m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 1H | **BEARISH** | CHoCH | ✅ aligned |
+| 15m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 5m | **BULLISH** | BOS | ⚠️ opposing |
+| 1m | **BEARISH** | CHoCH | ✅ aligned |
 
 **⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
 
@@ -35,15 +35,15 @@
 
 ## 3. Archetype Coherence (⚠️)
 
-**Council data unavailable**
+**⚠️ ARCHETYPE PARTIAL — 3/4 agree but only 60% confidence. Some dissent.**
 
 ---
 
 ## 4. Self-Contradiction Check
 
-- **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
+✅ No self-contradictions detected.
 
-**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
+**✅ NO SELF-CONTRADICTIONS — The system is internally consistent.**
 
 ---
 
@@ -53,9 +53,9 @@
 |-----------|-------|--------|
 | Lens Coherence | 15/25 | ⚠️ |
 | Temporal Coherence | 15/25 | ⚠️ |
-| Archetype Coherence | 5/25 | ⚠️ |
+| Archetype Coherence | 15/25 | ⚠️ |
 | No Contradictions | 25/25 | ✅ |
-| **TOTAL** | **60/100** | **C — ADEQUATE coherence** |
+| **TOTAL** | **70/100** | **C — ADEQUATE coherence** |
 
 ---
 

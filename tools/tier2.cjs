@@ -1,10 +1,11 @@
 // Tier 2 — 99 Path: Judas Swing + Pyramiding + Time Stops + Correlation + Win Rate
 const fs = require("fs");
 const path = require("path");
+const ny = require("./ny_time.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
-const UTC_HOUR = new Date().getUTCHours();
+const UTC_HOUR = ny.getNYHour();
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }
@@ -26,13 +27,13 @@ const r4h = loadEngine("4h"), r1h = loadEngine("1h"), r15m = loadEngine("15m"), 
 
 function detectJudasSwing() {
   // Judas Swing = Session open sweep + immediate reversal
-  // London Open: 07:00 UTC, NY Open: 12:00 UTC
-  const inLondonOpen = UTC_HOUR >= 7 && UTC_HOUR <= 8;
-  const inNYOpen = UTC_HOUR >= 12 && UTC_HOUR <= 13;
+  // London Open: 02:00-03:00 NY, NY Open: 08:00-09:00 NY
+  const inLondonOpen = UTC_HOUR >= 2 && UTC_HOUR <= 3;
+  const inNYOpen = UTC_HOUR >= 8 && UTC_HOUR <= 9;
   const inJudasWindow = inLondonOpen || inNYOpen;
 
   if (!inJudasWindow) {
-    return { detected: false, narrative: `Not in Judas Swing window. Next: ${UTC_HOUR < 7 ? 'London at 07:00' : UTC_HOUR < 12 ? 'NY at 12:00' : 'Tomorrow.'}` };
+    return { detected: false, narrative: `Not in Judas Swing window. Next: ${UTC_HOUR < 2 ? 'London at 02:00 NY' : UTC_HOUR < 8 ? 'NY at 08:00 NY' : 'Tomorrow.'}` };
   }
 
   // Check 5m for sweep + reversal in first hour

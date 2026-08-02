@@ -12,6 +12,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const ny = require("./ny_time.cjs");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
@@ -36,9 +37,9 @@ function loadCandles(tf) {
 
 // ═══ GET NY TIME + ACTIVE SESSION ═══
 function getNYSession() {
+  const nyHour = ny.getNYHour();
+  const nyMin = ny.getNYMin();
   const nyTime = new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York", hour12: false });
-  const nyHour = parseInt(nyTime.split(":")[0]);
-  const nyMin = parseInt(nyTime.split(":")[1]);
 
   let session = null;
   // NY local time session windows

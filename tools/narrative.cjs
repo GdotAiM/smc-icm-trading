@@ -8,8 +8,9 @@ const path = require("path");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
-const UTC_HOUR = new Date().getUTCHours();
-const DAY_NUM = new Date().getDay();
+const ny = require("./ny_time.cjs");
+const NY_HOUR = ny.getNYHour();
+const DAY_NUM = ny.getNYDay();
 const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const DAY = DAYS[DAY_NUM];
 
@@ -173,8 +174,8 @@ function explainModelFit() {
   const hasOB = (r4h?.orderBlocks || []).length > 0 || (r1d?.orderBlocks || []).length > 0;
   const hasSweep = (r4h?.liquidity || []).some(p => p.swept) || (r1d?.liquidity || []).some(p => p.swept);
   const hasFVG = (r4h?.fvgs || []).length > 0 || (r15m?.fvgs || []).length > 0;
-  const inKZ = UTC_HOUR >= 7 && UTC_HOUR < 10 || UTC_HOUR >= 12 && UTC_HOUR < 15;
-  const inSB = (UTC_HOUR >= 8 && UTC_HOUR < 10) || (UTC_HOUR >= 13 && UTC_HOUR < 15) || (UTC_HOUR >= 17 && UTC_HOUR < 19);
+  const inKZ = (NY_HOUR >= 2 && NY_HOUR < 11) || (NY_HOUR >= 13 && NY_HOUR < 16); // London 02-08, NY AM 08-11, NY PM 13-16
+  const inSB = (NY_HOUR >= 3 && NY_HOUR < 4) || (NY_HOUR >= 10 && NY_HOUR < 11) || (NY_HOUR >= 14 && NY_HOUR < 15);
 
   const explanations = [];
 
@@ -188,7 +189,7 @@ function explainModelFit() {
   } else {
     explanations.push({
       model: "Silver Bullet",
-      why: `Silver Bullet is NOT currently appropriate — we are ${inKZ ? 'in a killzone but outside the SB window' : 'outside the killzone entirely'}. This model requires the 2-hour SB window (08-10, 13-15, or 17-19 UTC). ${inKZ ? 'The killzone is active but the specific SB timing window is not.' : 'Wait for the next killzone.'}`,
+      why: `Silver Bullet is NOT currently appropriate — we are ${inKZ ? 'in a killzone but outside the SB window' : 'outside the killzone entirely'}. This model requires the 1-hour SB window (03-04, 10-11, or 14-15 NY). ${inKZ ? 'The killzone is active but the specific SB timing window is not.' : 'Wait for the next killzone.'}`,
       fit: "TIME-MISMATCHED — wrong window for this model",
     });
   }

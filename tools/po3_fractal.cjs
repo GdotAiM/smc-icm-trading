@@ -81,14 +81,18 @@ function fractalBar(tf, state) {
   return `${tf.padEnd(4)} ${bar} ${state}`;
 }
 
-// Session Po3
-const UTC_HOUR = new Date().getUTCHours();
+// Session Po3 — NEW YORK LOCAL time (DST-aware), consistent with po3_state_machine.cjs
+const ny = require("./ny_time.cjs");
+const NY_HOUR = ny.getNYHour();
 let sessionPhase;
-if (UTC_HOUR >= 0 && UTC_HOUR < 7) sessionPhase = "ACCUMULATION";
-else if (UTC_HOUR >= 7 && UTC_HOUR < 10) sessionPhase = "MANIPULATION";
-else if (UTC_HOUR >= 10 && UTC_HOUR < 16) sessionPhase = "DISTRIBUTION";
-else if (UTC_HOUR >= 16 && UTC_HOUR < 21) sessionPhase = "DISTRIBUTION";
-else sessionPhase = "ACCUMULATION";
+if (NY_HOUR >= 20 || NY_HOUR < 2) sessionPhase = "ACCUMULATION";   // Asia
+else if (NY_HOUR >= 2 && NY_HOUR < 3) sessionPhase = "MANIPULATION"; // London open
+else if (NY_HOUR >= 3 && NY_HOUR < 8) sessionPhase = "DISTRIBUTION"; // London KZ/PM
+else if (NY_HOUR >= 8 && NY_HOUR < 9) sessionPhase = "MANIPULATION"; // NY open
+else if (NY_HOUR >= 9 && NY_HOUR < 11) sessionPhase = "DISTRIBUTION"; // NY AM
+else if (NY_HOUR >= 11 && NY_HOUR < 13) sessionPhase = "ACCUMULATION"; // NY lunch
+else if (NY_HOUR >= 13 && NY_HOUR < 16) sessionPhase = "DISTRIBUTION"; // NY PM
+else sessionPhase = "ACCUMULATION";                                   // NY close / off
 
 const sessionAlignsWithMicro = sessionPhase === microState;
 

@@ -17,6 +17,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const ny = require("./ny_time.cjs");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
@@ -162,11 +163,10 @@ function checkSkipWeekRisk() {
 
 // ═══ DAY OF WEEK ═══
 function getDayInfo() {
-  const today = new Date();
-  const dayOfWeek = today.getDay(); // 0=Sun, 1=Mon...5=Fri
+  const dayOfWeek = ny.getNYDay(); // 0=Sun, 1=Mon...5=Fri (NY local)
   const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const nyTime = new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York", hour12: false });
-  const nyHour = parseInt(nyTime.split(":")[0]);
+  const nyHour = ny.getNYHour();
 
   return {
     dayOfWeek,

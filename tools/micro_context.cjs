@@ -6,7 +6,6 @@ const path = require("path");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
-const UTC_HOUR = new Date().getUTCHours();
 const { getNYHour, getNYSession, isInKillzoneNY, isInSilverBulletNY } = require("./ny_time.cjs");
 const NY_HOUR = getNYHour();
 // Use NY session for ICT-correct killzone detection

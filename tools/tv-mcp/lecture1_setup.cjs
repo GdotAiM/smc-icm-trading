@@ -17,10 +17,16 @@ const path = require("path");
 
 // ═══ Import shared helpers from Lecture 2 ═══
 const L2 = require("./lecture2_setup.cjs");
+const ny = require("../ny_time.cjs");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
 const PAIR = process.argv[2] || "XAUUSD";
+
+// NY-hour/minute helpers for candle timestamps (DST-aware via ny_time.cjs)
+function nyHM(candle) {
+return { h: ny.getNYHourFor(candle.time), m: ny.getNYMinFor(candle.time) };
+}
 
 function getCandles(tf, dateOverride, rootOverride, pairOverride) {
   try {
@@ -95,11 +101,10 @@ function detectPre0830Formation(candles1m) {
     return { formed: false, levels: [], detail: "Insufficient 1m candle data" };
   }
 
-  // 08:00 AM NY = 12:00 UTC (EDT). Filter to 08:00–08:30 window
+  // 08:00–08:30 NY local window (DST-aware)
   const pre0830 = candles1m.filter(c => {
-    const h = new Date(c.time).getUTCHours();
-    const m = new Date(c.time).getUTCMinutes();
-    return (h === 12 && m >= 0 && m < 30) || (h === 11 && m >= 30); // Handle EST too
+    const { h, m } = nyHM(c);
+    return h === 8 && m >= 0 && m < 30;
   });
 
   if (pre0830.length < 10) {
@@ -129,11 +134,10 @@ function detectPost0830Raid(candles1m, pre0830Levels) {
     return { active: false, detail: "No pre-08:30 levels to raid" };
   }
 
-  // Post-08:30 candles (12:30+ UTC)
+  // Post-08:30 NY candles (08:30 → 11:00 NY)
   const post0830 = candles1m.filter(c => {
-    const h = new Date(c.time).getUTCHours();
-    const m = new Date(c.time).getUTCMinutes();
-    return (h === 12 && m >= 30) || h >= 13;
+    const { h, m } = nyHM(c);
+    return (h === 8 && m >= 30) || (h > 8 && h < 11);
   });
 
   if (post0830.length < 3) {
@@ -294,11 +298,10 @@ function discoverPDArrays(engine5m, engine1m, raid, mss, candles1m) {
 function getPost0830RangeSL(candles1m, mss) {
   if (!candles1m || candles1m.length < 5) return null;
 
-  // Post-08:30 candles
+  // Post-08:30 NY candles
   const post0830 = candles1m.filter(c => {
-    const h = new Date(c.time).getUTCHours();
-    const m = new Date(c.time).getUTCMinutes();
-    return (h === 12 && m >= 30) || h >= 13;
+    const { h, m } = nyHM(c);
+    return (h === 8 && m >= 30) || (h > 8 && h < 11);
   });
 
   if (post0830.length < 3) return null;
@@ -371,9 +374,8 @@ function getLecture1TP(raid, mss, pre0830Levels, candles1m) {
   // Secondary: previous session high/low from 1m candles
   if (candles1m && candles1m.length > 30) {
     const pre0830 = candles1m.filter(c => {
-      const h = new Date(c.time).getUTCHours();
-      const m = new Date(c.time).getUTCMinutes();
-      return (h === 12 && m < 30) || h < 12;
+      const { h, m } = nyHM(c);
+      return h < 8 || (h === 8 && m < 30);
     });
     if (pre0830.length > 10) {
       if (isBearish) {
@@ -440,8 +442,8 @@ function runLecture1Setup(pair, date, root) {
   const p = pair || PAIR;
 
   // ═══ TIME GATE: 08:00-10:00 NY only ═══
-  const nyHour = parseInt(new Date().toLocaleTimeString("en-US", {timeZone:"America/New_York", hour12:false, hour:"2-digit"}));
-  if (nyHour < 8 || nyHour >= 10) {
+  const nyHourGate = ny.getNYHour();
+  if (nyHourGate < 8 || nyHourGate >= 10) {
     return { pair: p, time: new Date().toLocaleTimeString("en-US", {timeZone:"America/New_York", hour12:false}) + " NY",
       formation: { formed: false }, raid: null, mss: { confirmed: false }, setupReady: false,
       detail: `Outside Lecture 1 window (08:00-10:00 NY). Current: ${nyHour}:00 NY.` };
@@ -458,9 +460,9 @@ function runLecture1Setup(pair, date, root) {
   // Step 2: Get 1m candles
   const candles1m = getCandles("1m", d, r, p);
 
-  // Step 3: Time window check
-  const nyHour = new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York", hour12: false, hour: "2-digit" });
-  const nyMinute = new Date().getMinutes();
+  // Step 3: Time window check (NY local)
+  const nyHour = ny.getNYHour();
+  const nyMinute = new Date().getUTCMinutes();
   const inFormationWindow = parseInt(nyHour) === 8 && nyMinute < 30;
   const inTriggerWindow = (parseInt(nyHour) === 8 && nyMinute >= 30) || (parseInt(nyHour) >= 9 && parseInt(nyHour) < 10);
   const inWindow = inFormationWindow || inTriggerWindow;
