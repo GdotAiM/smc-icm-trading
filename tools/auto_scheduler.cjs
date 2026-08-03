@@ -82,6 +82,7 @@ function scanAll() {
 
   scanInProgress = true;
   lastScanTime = now;
+  const scanStart = Date.now();
   log("SCAN", `Scanning ${PAIRS.length} pairs...`);
 
   const setups = [];
@@ -102,10 +103,14 @@ function scanAll() {
     if (output.includes("LECTURE 4 SETUP READY")) lectures.push("L4");
 
     if (tradeable) {
-      setups.push({ pair, entry, model, rr, coh, sl, tp, lectures });
+      setups.push({ pair, entry, model, rr, coh, sl, tp, lectures, output });
       log("SETUP", `${pair}: ${entry} | ${model}${lectures.length ? ' ['+lectures.join(',')+']' : ''} | R:R ${rr}:1`);
     }
   }
+
+  // ═══ WATCHDOG: If scan took > 10 min, log warning ═══
+  const scanElapsed = (Date.now() - scanStart) / 1000;
+  if (scanElapsed > 600) log("WATCHDOG", `Scan took ${scanElapsed.toFixed(0)}s — possible timeout or slow pair`);
 
   // Rank and report best
   setups.sort((a, b) => (b.coh + b.rr * 10) - (a.coh + a.rr * 10));
@@ -131,13 +136,25 @@ function executeTrade(setup) {
   }
 
   const direction = setup.entry.split(" @ ")[0];
-  const qty = 5000; // Default micro — adjust per risk params
+  const qty = setup.pair === "NAS100" || setup.pair === "XAUUSD" ? 1 : 5000; // Indices: 1 contract, Forex: 5000 units
   const cmd = `node "${path.join(ROOT, "tools", "tv-mcp", "market_order.cjs")}" ${setup.pair} ${direction} ${setup.sl} ${setup.tp} ${qty}`;
   log("EXECUTING", `${setup.pair} ${direction} Qty:${qty} SL:${setup.sl} TP:${setup.tp}`);
 
   const result = run(cmd, 30000);
-  if (result && result.includes("Verified")) {
-    log("TRADE_EXECUTED", `${setup.pair} ${direction} ${qty} units — VERIFIED ✅`);
+  if (result && (result.includes("Verified") || result.includes("filled"))) {
+    log("TRADE_EXECUTED", `${setup.pair} ${direction} ${qty} — VERIFIED ✅`);
+
+    // ═══ AUTO-JOURNAL: Write decision entry on trade execution ═══
+    const journalFile = path.join(ROOT, "shared", DATE, "decision_journal.md");
+    const ts = nyTime();
+    const reason = `${setup.model} | R:R ${setup.rr}:1 | Coh: ${setup.coh}/100 | Lectures: ${setup.lectures?.join(',') || 'none'}`;
+    const entry = `| ${ts} NY | TRADE_EXECUTED | ${setup.pair} ${direction} ${qty} @ ${setup.entry} | ${reason} |`;
+    try {
+      if (!fs.existsSync(journalFile)) {
+        fs.writeFileSync(journalFile, `# Decision Journal — ${DATE}\n\n| Time (NY) | Event | Detail | Reasoning |\n|-----------|-------|--------|----------|\n`);
+      }
+      fs.appendFileSync(journalFile, entry + "\n");
+    } catch {}
   } else {
     log("TRADE_FAILED", `${setup.pair} ${direction} — order might not have filled`);
   }
@@ -167,6 +184,20 @@ async function runCycle() {
 
   // Determine scan interval
   let scanInterval = 1800000; // 30 min default
+  // Log active session + time remaining
+  const sessionLabel = inLondonKZ ? `London KZ (ends 05:00, ${60 - nyMin()}m left)` :
+                       inNYKZ ? `NY AM KZ (ends 11:00, ${(11*60 - now)}m left)` :
+                       inNYPM ? `NY PM (ends 16:00, ${(16*60 - now)}m left)` :
+                       inPreMarket ? `Pre-market` : `Off-hours`;
+  if (inActiveSession || inPreMarket) {
+    // Only log on session transitions or every 30 min
+    const lastSessionLog = parseInt(process.env.LAST_SESSION_LOG || "0");
+    if (now - lastSessionLog > 1800) {
+      log("SESSION", `${sessionLabel} | Scanning every ${scanInterval/60000}min`);
+      process.env.LAST_SESSION_LOG = String(now);
+    }
+  }
+
   if (inActiveSession) scanInterval = 600000;  // 10 min during killzones (scan takes ~8 min)
   else if (inPreMarket) scanInterval = 900000; // 15 min pre-market
 
@@ -199,6 +230,9 @@ async function runCycle() {
     run(`node "${path.join(ROOT, "tools", "tv-mcp", "check_orders.cjs")}"`, 15000);
   }
 
+  // Heartbeat every 30 min — proves the scheduler is alive
+  if (now % 1800 < 5) log("HEARTBEAT", `Scheduler alive | ${sessionLabel} | ${setups?.length || 0} tradeable`);
+
   if (ONCE) {
     log("CYCLE_COMPLETE", "Single cycle done");
     return;
@@ -207,15 +241,23 @@ async function runCycle() {
   setTimeout(runCycle, scanInterval);
 }
 
+// ═══ CODE VERSION CHECK ═══
+function checkVersion() {
+  try {
+    const rev = execSync("git rev-parse --short HEAD", { encoding: "utf8", timeout: 5000, stdio: ["ignore","pipe","ignore"] }).trim();
+    return rev || "unknown";
+  } catch { return "unknown"; }
+}
+
 // ═══ START ═══
 console.log("═══════════════════════════════════════════════════════════");
 console.log(`  AUTO SCHEDULER — ${DATE} — ${nyTime()} NY`);
 console.log(`  Mode: ${EXECUTE ? '🤖 AUTONOMOUS (will execute trades)' : '👁️ MONITOR (reports only)'}`);
 console.log(`  Pairs: ${PAIRS.join(', ')} | Schedule: ${SCHEDULE.length} events`);
-console.log(`  Log: ${LOG_FILE}`);
+console.log(`  Version: ${checkVersion()} | Log: ${LOG_FILE}`);
 console.log("═══════════════════════════════════════════════════════════\n");
 
 fs.mkdirSync(path.dirname(LOG_FILE), { recursive: true });
-log("SCHEDULER_START", `Mode: ${EXECUTE ? 'AUTONOMOUS' : 'MONITOR'} | Day: ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()]}`);
+log("SCHEDULER_START", `Mode: ${EXECUTE ? 'AUTONOMOUS' : 'MONITOR'} | Day: ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()]} | Version: ${checkVersion()}`);
 
 runCycle();
