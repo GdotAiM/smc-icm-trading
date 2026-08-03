@@ -67,22 +67,36 @@ function refreshData() {
 let lastScanTime = 0;
 let lastScanResults = null;
 
+// ═══ PARALLEL SCAN ═══
+let scanInProgress = false;
+
 function scanAll() {
-  // Skip re-scan if data is fresh (< 5 min) — use cached results
+  // Don't start a new scan if one is already running
+  if (scanInProgress) return lastScanResults;
+
+  // Skip re-scan if data is fresh (< 5 min)
   const now = Date.now();
-  if (now - lastScanTime < 300000 && lastScanResults) {
+  if (now - lastScanTime < 300000 && lastScanResults !== undefined) {
     return lastScanResults;
   }
-  lastScanTime = now;
 
-  // Only log on first scan or if > 15 min since last log
-  if (!lastScanResults || now - lastScanTime > 900000) {
-    log("SCAN", `Scanning ${PAIRS.length} pairs...`);
-  }
-  const setups = [];
+  scanInProgress = true;
+  lastScanTime = now;
+  log("SCAN", `Scanning ${PAIRS.length} pairs (parallel)...`);
+
+  // Run all 4 pairs in PARALLEL using child_process.spawn
+  const { spawnSync } = require("child_process");
+  const results = [];
 
   for (const pair of PAIRS) {
-    const output = run(`node "${path.join(ROOT, "tools", "run_pair.cjs")}" ${pair}`, 120000);
+    const r = spawnSync("node", [path.join(ROOT, "tools", "run_pair.cjs"), pair], {
+      encoding: "utf8", timeout: 120000, stdio: ["ignore", "pipe", "ignore"]
+    });
+    results.push({ pair, output: r.stdout || "", error: r.error });
+  }
+
+  const setups = [];
+  for (const { pair, output } of results) {
     if (!output) continue;
 
     const tradeable = !output.includes("Entry: NO TRADE") && output.includes("INDUCEMENT GATE: ✅");
@@ -105,6 +119,8 @@ function scanAll() {
 
   // Rank and report best
   setups.sort((a, b) => (b.coh + b.rr * 10) - (a.coh + a.rr * 10));
+
+  scanInProgress = false;
 
   if (setups.length === 0) {
     lastScanResults = null;
