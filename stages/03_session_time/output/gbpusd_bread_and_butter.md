@@ -1,7 +1,14 @@
-# Bread and Butter — GBPUSD — 2026-08-02
+# Bread and Butter — GBPUSD — 2026-08-03
 
-## Session: London Close (Counter-Trend) (10:00 AM-1:00 PM NY)
+## Session: London Open (00:00-05:00 NY)
 ## HTF Bias: NOT ALIGNED
 
-## No Active Setup
-London Close: HTF not aligned — London+NY must move together.
+## Active Setup
+- **Direction**: SELL
+- **Engine**: OFFSET-DISTRIBUTION
+- **Confidence**: MEDIUM
+- **TP**: 20-30 pips
+- **SL**: Beyond swept extreme
+- **Risk**: 0.5-1%
+- **Max Hold**: 1-2 hours
+- London Open: OFFSET-DISTRIBUTION → SELL. Confidence: MEDIUM. TP: 20-30 pips. SL: Beyond swept extreme. Offset: Session high swept @ 1.34728, price reversed back below. Fake breakout → sell.

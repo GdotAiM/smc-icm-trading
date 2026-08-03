@@ -1,7 +1,7 @@
-# Inducement Check — EURUSD — 2026-08-02
+# Inducement Check — EURUSD — 2026-08-03
 
 ## Structural Event
-BOS bullish @ 1.15376 | Impulse: 7 candles, range 0.00676
+CHOCH bullish @ 1.15354 | Impulse: 7 candles, range 0.00676
 
 ## First Pullback
 First pullback: low @ 1.14694 | Retracement: 100.00% — ✅ VALID (≥50%)

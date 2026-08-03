@@ -1,17 +1,17 @@
-# Session Analysis — NAS100 — 2026-07-31 18:00 UTC
+# Session Analysis — NAS100 — 2026-08-03 03:00 NY (EDT)
 
 ## Current Session
-- **Session**: NY PM | Killzone: Inactive
-- **Character**: Late session
-- **Gate**: **NO TRADE**
+- **Session**: London | Killzone: ✅ ACTIVE
+- **Character**: Institutional flow, manipulation
+- **Gate**: **ACTIVE**
 
 ## Silver Bullet
-| Window | UTC | Status |
-|--------|-----|--------|
-| London SB | 08-10 | — |
-| NY AM SB | 13-15 | — |
-| NY PM SB | 17-19 | ✅ |
+| Window | NY Time | Status |
+|--------|---------|--------|
+| London SB | 03-04 | ✅ |
+| NY AM SB | 10-11 | — |
+| NY PM SB | 14-15 | — |
 
 ## Alignment
-- Bias: **bearish** | Session: NY PM
-- ⚠️ NOT ALIGNED
+- Bias: **bearish** | Session: London
+- ✅ ALIGNED — Active killzone with directional bias

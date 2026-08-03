@@ -149,6 +149,7 @@ for (let i = 0; i < ranked.length; i++) {
 
 // ═══ STEP 6: Best Candidate ═══
 const best = ranked[0];
+if (!best) { console.log(`\n═══ NO CANDIDATES — all pairs failed ═══\n`); process.exit(0); }
 console.log(`\n═══ BEST CANDIDATE: ${best.pair} ═══`);
 if (best.tradeable) {
   console.log(`  ✅ TRADEABLE — ${best.entry} | Gate: OPEN | R:R ${best.rr}:1 | Coherence: ${best.coherence}/100`);

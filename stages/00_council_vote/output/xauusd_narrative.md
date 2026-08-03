@@ -1,10 +1,10 @@
-# The Market's Story — XAUUSD — 2026-07-31
+# The Market's Story — XAUUSD — 2026-08-03
 
 ## The Narrative
 
 
 ### I. MACRO FOUNDATION — 1W
-The weekly chart shows a BEARISH structure with potential change. This is the macro foundation — all lower timeframe analysis must be read through this lens. The trade direction OPPOSES the weekly trend — this is a counter-trend move within a larger structure, not a standalone trend.
+The weekly chart shows a BEARISH structure with continuation. This is the macro foundation — all lower timeframe analysis must be read through this lens. The trade direction OPPOSES the weekly trend — this is a counter-trend move within a larger structure, not a standalone trend.
 
 
 ### II. THE TRANSITION — 1D
@@ -12,11 +12,11 @@ The daily CONTINUES the weekly. The daily bearish bias confirms the larger pictu
 
 
 ### III. THE TRADE CONTEXT — 4H
-The 4H is our trade timeframe. CHoCH at 4040.81500 confirms the bullish structure. Liquidity sweep detected: SSL @ 4020.45000, SSL @ 3983.24750, BSL @ 4063.48000. This is the INDUCEMENT — the manipulation that traps traders before the real move. No clear OBs — entry will use measured moves. Displacement is weak.
+The 4H is our trade timeframe. CHoCH at 4040.81500 confirms the bullish structure. Liquidity sweep detected: BSL @ 4081.52000, BSL @ 4095.98500. This is the INDUCEMENT — the manipulation that traps traders before the real move. No clear OBs — entry will use measured moves. Displacement is weak.
 
 
 ### IV. MICRO CONFIRMATION — 15m/5m
-The 15m and 5m both show bullish structure — LTF CONFIRMS HTF. This is the ideal entry environment: the lower timeframes agree with the higher timeframe direction.
+The 15m is bearish while HTF is bullish. This is a PULLBACK within the larger trend, not a reversal. The bearish move on 15m is counter-trend and likely to exhaust. Wait for LTF to realign with HTF before entering.
 
 
 ### V. THE TRIGGER — 1m
@@ -42,7 +42,7 @@ Model selection is narrative-driven, not pattern-matched. Each model tells a dif
 
 ### Turtle Soup
 **Fit**: SWEEP-DRIVEN — sweep detected, reversal expected
-**Why**: Turtle Soup is the pure manipulation entry — enter ON the sweep reversal. A sweep just occurred (SSL, SSL, BSL), making Turtle Soup eligible. This model fades the sweep: it assumes the breakout is FALSE and price will reverse. The cycle phase may not be optimal for Turtle Soup — it works best in manipulation.
+**Why**: Turtle Soup is the pure manipulation entry — enter ON the sweep reversal. A sweep just occurred (BSL, BSL), making Turtle Soup eligible. This model fades the sweep: it assumes the breakout is FALSE and price will reverse. The cycle phase may not be optimal for Turtle Soup — it works best in manipulation.
 
 
 ---
@@ -68,7 +68,7 @@ The BULLISH bias is built on 4 pieces of structural evidence, not a single indic
 The invalidation story is: "We are long because the structure is bullish. We are WRONG if price proves the structure has changed — a close below the swing low. Everything else supports the thesis but that level is the invalidation."
 
 ### Primary Invalidation (The Line in the Sand)
-If price CLOSES below 3996.05500 (4H swing low) — the bullish structure is invalidated. A close below the swing low means sellers have overwhelmed buyers. EXIT the long immediately.
+If price CLOSES below 4020.97500 (4H swing low) — the bullish structure is invalidated. A close below the swing low means sellers have overwhelmed buyers. EXIT the long immediately.
 
 ### Secondary Invalidations (Early Warnings)
 1. If the 1D flips to BEARISH — the daily trend has changed. The HTF thesis is no longer valid. Close all positions and re-evaluate.
@@ -102,18 +102,18 @@ The market is telling us a coherent story:
 
 **XAUUSD is in a DISTRIBUTION phase within a larger BEARISH weekly structure.**
 
-The weekly chart shows a BEARISH structure with potential change. The daily CONTINUES the weekly. The 4H is our trade timeframe.
+The weekly chart shows a BEARISH structure with continuation. The daily CONTINUES the weekly. The 4H is our trade timeframe.
 
 This IS a trend trade. The structure is established and institutions are distributing. Ride the trend, trail stops, and let winners run.
 
 **The Council sees this**: BULLISH MAJORITY — 3/4 archetypes (60%). Moderate conviction — most archetypes agree but some dissent.
 
-**The invalidation is clear**: If price CLOSES below 3996.
+**The invalidation is clear**: If price CLOSES below 4020.
 
 **This is not pattern matching.** This is understanding the story the market is telling, at every timeframe, with every archetype, and knowing exactly where the story would be wrong.
 
 
 ---
 
-*Generated: 2026-07-31T18:10:52.065Z | Narrative Engine v1.0*
+*Generated: 2026-08-03T07:59:09.155Z | Narrative Engine v1.0*
 *"The market is a storyteller. Our job is to listen, not to guess."*

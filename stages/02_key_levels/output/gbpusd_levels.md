@@ -1,16 +1,16 @@
-# Key Levels — GBPUSD — 2026-08-02
+# Key Levels — GBPUSD — 2026-08-03
 
 ## Bias Reminder — **BEARISH**
 
 ## Liquidity Pools (6 on 4H)
 | Type | Price | Role | Touches | Score | Distance | Swept |
 |------|-------|------|---------|-------|----------|-------|
-| SSL | 1.33521 | Support | 3 | 3.68 | 0.98% | ⚡ |
-| SSL | 1.33036 | Support | 3 | 3.63 | 1.33% | ⚡ |
-| SSL | 1.34168 | Support | 3 | 3.22 | 0.50% | ⚡ |
-| SSL | 1.33252 | Support | 3 | 2.99 | 1.18% | ⚡ |
-| SSL | 1.34020 | Support | 3 | 2.53 | 0.61% | ⚡ |
-| SSL | 1.33742 | Support | 2 | 2.03 | 0.81% | ⚡ |
+| BSL | 1.34808 | Resistance | 6 | 7.56 | 0.14% | ⚡ |
+| SSL | 1.34016 | Support | 4 | 6.67 | 0.45% | Active |
+| SSL | 1.34168 | Support | 3 | 4.15 | 0.34% | ⚡ |
+| SSL | 1.33521 | Support | 3 | 3.98 | 0.82% | ⚡ |
+| SSL | 1.33036 | Support | 3 | 3.92 | 1.18% | ⚡ |
+| SSL | 1.33252 | Support | 3 | 3.23 | 1.02% | ⚡ |
 
 ## Order Blocks (4 across 1D/4H/1H)
 | Type | Proximal | Distal | Impulse | FVG | TF |
@@ -29,5 +29,5 @@
 | bullish | 1.33462 | 1.33068 | 2.34x | 3.61x | 33.50% |
 
 ## Draw Targets
-- **Primary**: DOWN @ 1.34168 — SSL pool Â· 3 touches (0.74)
-- **Alternate**: None
+- **Primary**: UP @ 1.34808 — BSL pool Â· 6 touches (0.99)
+- **Alternate**: DOWN @ 1.34016 — SSL pool Â· 4 touches (0.83)

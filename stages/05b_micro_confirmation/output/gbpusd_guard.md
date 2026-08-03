@@ -1,17 +1,23 @@
-# Cross-System Guard Report — GBPUSD — 2026-08-02
-## NY Time: 10:00 | Session: NY AM Killzone | Judas: Inactive | SB: ✅ NY AM Silver Bullet
+# Cross-System Guard Report — GBPUSD — 2026-08-03
+## NY Time: 04:00 | Session: London Killzone | Judas: Inactive | SB: Inactive
 
-## Verdict: **✅ ENTER**
+## Verdict: **❌ DO NOT ENTER**
 
+### ❌ BLOCKED (1)
+- **INVERSION_MISSING**: ❌ 1m Inversion NOT DETECTED. ICT requires the entry sentence to be written on the 1m before entering. Wait for CHoCH + sweep + FVG on 1m. → WAIT — No entry without 1m Inversion.
 
+### ⚠️ WARNINGS (1)
+- **IPDA_ZONE**: ⚠️ IPDA ZONE CONFLICT: PREMIUM across all TFs. You are BUYING into the SELL ZONE. This is a counter-trend trade within the IPDA context. → TRADE WITH CAUTION — Buying into premium zone.
 
 ## All Guards
 | Guard | Severity | Blocked | Narrative |
 |-------|----------|---------|-----------|
-| SILVER_BULLET | INFO | ✅ | ✅ SILVER BULLET ACTIVE (NY AM Silver Bullet). This is the highest-probability 1-... |
-| IPDA_ZONE | INFO | ✅ | ✅ IPDA ZONE ALIGNED: DISCOUNT. Trade direction matches dealing range context.... |
+| SILVER_BULLET | INFO | ✅ | Killzone active but Silver Bullet window not yet. SB window at 10:00 NY AM SB.... |
+| IPDA_ZONE | WARNING | ✅ | ⚠️ IPDA ZONE CONFLICT: PREMIUM across all TFs. You are BUYING into the SELL ZONE... |
+| INVERSION_MISSING | HIGH | ❌ | ❌ 1m Inversion NOT DETECTED. ICT requires the entry sentence to be written on th... |
+| MONDAY | INFO | ✅ | 📅 MONDAY — Weekly range not yet established. Reduce size, avoid early London en... |
 
 ## Adjustments
-- Size Multiplier: ×1.00
-- Confidence Adjustment: +2
-- Entry Allowed: ✅
+- Size Multiplier: ×0.56
+- Confidence Adjustment: -1
+- Entry Allowed: ❌

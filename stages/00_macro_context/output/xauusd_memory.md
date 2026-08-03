@@ -1,12 +1,15 @@
 
 ## Ghost of Trades Past (Graph Memory)
 
-**Last 4 similar setups (XAUUSD)**:
+**Last 5 similar setups (XAUUSD)**:
 
-- **2026-07-31**: ⚪ NO | Silver Bullet | NY PM | Outcome: ➖ | PnL: $0 | Quality: ?/5
+- **2026-08-03**: ⚪ NO | MMXM Sell Model | London | Outcome: ➖ | PnL: $0 | Quality: ?/5
+- **2026-08-02**: ⚪ N/A | undefined | undefined | Outcome: ➖ | PnL: $0 | Quality: 4/5
+- **2026-07-31**: ⚪ N/A | undefined | undefined | Outcome: ➖ | PnL: $0 | Quality: 4/5
 - **2026-07-30**: ⚪ N/A | undefined | undefined | Outcome: ➖ | PnL: $0 | Quality: 3.5/5
 - **2026-07-29**: ⚪ N/A | undefined | undefined | Outcome: ➖ | PnL: $0 | Quality: 3.5/5
-- **2026-07-28**: 🔴 SHORT | Breaker Block | London | Outcome: ➖ | PnL: $0 | Quality: ?/5
+
+**Session cluster**: 2/6 trades (33%) in **London** session.
 
 ### 🔴 Unresolved Gaps
 

@@ -11,20 +11,10 @@
   },
   "liquidity": [
     {
-      "price": 28279.140000000003,
-      "type": "BSL",
-      "strength": 5,
-      "score": 5.71282515446943,
-      "distance": 0.4013335179524482,
-      "session": "NY PM",
-      "ageBars": 4,
-      "swept": false
-    },
-    {
       "price": 28383.140000000003,
       "type": "BSL",
       "strength": 5,
-      "score": 5.592280107923391,
+      "score": 6.213644564359322,
       "distance": 0.7705717156439995,
       "session": "NY PM",
       "ageBars": 13,
@@ -34,17 +24,27 @@
       "price": 28338.725000000002,
       "type": "BSL",
       "strength": 4,
-      "score": 4.291578922197861,
+      "score": 4.768421024664289,
       "distance": 0.6128821526587055,
       "session": "NY PM",
       "ageBars": 25,
       "swept": true
     },
     {
+      "price": 28279.140000000003,
+      "type": "BSL",
+      "strength": 5,
+      "score": 3.8085501029796194,
+      "distance": 0.4013335179524482,
+      "session": "Off",
+      "ageBars": 4,
+      "swept": false
+    },
+    {
       "price": 28497.625,
       "type": "BSL",
       "strength": 4,
-      "score": 3.8000414283160233,
+      "score": 4.1454997399811155,
       "distance": 1.1770355143239621,
       "session": "London",
       "ageBars": 118,
@@ -54,21 +54,21 @@
       "price": 28232.1,
       "type": "BSL",
       "strength": 2,
-      "score": 1.7095789764122367,
+      "score": 2.2224526693359077,
       "distance": 0.2343242408427152,
       "session": "NY AM",
       "ageBars": 73,
       "swept": true
     },
     {
-      "price": 27972.5,
-      "type": "SSL",
+      "price": 28442.4,
+      "type": "BSL",
       "strength": 2,
-      "score": 1.8745317182902501,
-      "distance": 0.6873511064719594,
-      "session": "NY AM",
-      "ageBars": 65,
-      "swept": false
+      "score": 2.138421175768337,
+      "distance": 0.9809664809824681,
+      "session": "London",
+      "ageBars": 109,
+      "swept": true
     }
   ],
   "orderBlocks": [],
@@ -80,13 +80,7 @@
     "reason": "BSL pool Â· 5 touches",
     "score": 0.8370773163483747
   },
-  "alt": {
-    "price": 27972.5,
-    "side": "down",
-    "distance": 0.6873511064719594,
-    "reason": "SSL pool Â· 2 touches",
-    "score": 0.7950119114822431
-  },
+  "alt": null,
   "volumeDisplacement": {
     "atrRatio": 1.1795958279009182,
     "label": "moderate",

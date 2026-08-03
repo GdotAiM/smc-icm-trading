@@ -1,20 +1,19 @@
-# Order Flow Zones — XAUUSD — 2026-07-31
+# Order Flow Zones — XAUUSD — 2026-08-03
 
 ## BOS Leg
-CHoCH bearish @ 4028.69000 (1H) | Leg: 11 candles from low @ 4050.69000
+BOS bearish @ 4059.50000 (15m) | Leg: 8 candles from low @ 4054.17000
 
-## OF Zones (3 marked)
+## OF Zones (2 marked)
 | Zone | Type | Price (Mid) | High | Low | Candles |
 |------|------|-------------|------|-----|--------|
-| 1st OF | BEARISH OF (Resistance) | 4026.77250 | 4032.57000 | 4020.97500 | 2 |
-| 2nd OF | BEARISH OF (Resistance) | 4041.36500 | 4047.03500 | 4035.69500 | 1 |
-| 3rd OF | BEARISH OF (Resistance) | 4055.41000 | 4059.47500 | 4051.34500 | 2 |
+| 1st OF | BEARISH OF (Resistance) | 4068.86750 | 4072.18500 | 4065.55000 | 1 |
+| 2nd OF | BEARISH OF (Resistance) | 4062.10750 | 4070.04500 | 4054.17000 | 3 |
 
 ## Retracement
-✅ Price INSIDE 3rd OF (BEARISH OF (Resistance)) — look for LTF confirmation
-- Tested Zone: 3rd OF
+✅ Price INSIDE 2nd OF (BEARISH OF (Resistance)) — look for LTF confirmation
+- Tested Zone: 2nd OF
 
 ## Entry Confirmation
-✅ OF CONFIRMED: 3rd OF — MSS bullish +  + 2 OB(s)
-- MSS: ✅ bullish
-- FVGs in zone: 0 | OBs in zone: 2
+✅ OF CONFIRMED: 2nd OF — MSS bearish +  + 1 OB(s)
+- MSS: ✅ bearish
+- FVGs in zone: 0 | OBs in zone: 1

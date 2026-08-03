@@ -1,4 +1,4 @@
-# Risk Plan — XAUUSD — 2026-07-31
+# Risk Plan — XAUUSD — 2026-08-03
 
 
 ## Account
@@ -11,9 +11,9 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 4051.87 |
+| Entry | 4063.43 |
 | SL | 0.00 (structural invalidation) |
-| Stop Distance | 40519 points |
+| Stop Distance | 40634 points |
 | **Position** | **0 micro lots** |
 | Risk | $100.00 |
 | Max Gain (TP1) | $100.00 |
@@ -22,7 +22,7 @@
 ```
 PAIR:       XAUUSD
 DIRECTION:  NO TRADE
-ENTRY:      4051.87
+ENTRY:      4063.43
 SL:         0.00
 TP1:        0.00 (close 50%)
 TP2:        0.00 (close 50%)

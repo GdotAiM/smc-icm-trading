@@ -1,4 +1,4 @@
-# MMXM Analysis — XAUUSD — 2026-08-02
+# MMXM Analysis — XAUUSD — 2026-08-03
 
 ## Smart Money Reversal
 **⏳ Not detected**
@@ -8,7 +8,7 @@ Liquidity purged but no displacement yet — SMR forming.
 No SMR and no bias alignment — flat.
 
 ## Symmetry
-Symmetry target: 4045.16500 - 124.44000 = 3920.72500
+Symmetry target: 4063.66000 - 99.52000 = 3964.14000
 Target: N/A
 
 ## Entry Phase: **PRE-SMR**

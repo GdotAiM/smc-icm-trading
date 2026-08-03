@@ -1,4 +1,4 @@
-# ICT Intraday Profile — NAS100 — 2026-08-02
+# ICT Intraday Profile — NAS100 — 2026-08-03
 
 ## Profile: **DEGRADED** (INVALID)
 

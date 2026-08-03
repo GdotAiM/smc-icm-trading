@@ -1,17 +1,16 @@
-# Order Flow Zones — NAS100 — 2026-07-31
+# Order Flow Zones — NAS100 — 2026-08-03
 
 ## BOS Leg
-BOS bullish @ 28448.00000 (1H) | Leg: 10 candles from high @ 28501.10000
+BOS bullish @ 28448.00000 (1H) | Leg: 5 candles from high @ 28539.60000
 
-## OF Zones (3 marked)
+## OF Zones (1 marked)
 | Zone | Type | Price (Mid) | High | Low | Candles |
 |------|------|-------------|------|-----|--------|
-| 1st OF | BULLISH OF (Support) | 28343.05000 | 28379.00000 | 28307.10000 | 1 |
-| 2nd OF | BULLISH OF (Support) | 28392.40000 | 28430.20000 | 28354.60000 | 1 |
-| 3rd OF | BULLISH OF (Support) | 28437.05000 | 28474.10000 | 28400.00000 | 2 |
+| 1st OF | BULLISH OF (Support) | 28497.35000 | 28539.60000 | 28455.10000 | 4 |
 
 ## Retracement
-⏳ Price 37.85 from nearest zone: 1st OF
+✅ Price INSIDE 1st OF (BULLISH OF (Support)) — look for LTF confirmation
+- Tested Zone: 1st OF
 
 ## Entry Confirmation
-Price not at OF zone yet
+MSS confirmed but no PD array in zone — waiting for FVG/OB formation

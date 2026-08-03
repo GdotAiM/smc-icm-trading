@@ -1,8 +1,8 @@
-# Session Analysis — EURUSD — 2026-08-02 09:00 NY (EDT)
+# Session Analysis — EURUSD — 2026-08-03 04:00 NY (EDT)
 
 ## Current Session
-- **Session**: NY AM | Killzone: ✅ ACTIVE
-- **Character**: High volume, displacement
+- **Session**: London | Killzone: ✅ ACTIVE
+- **Character**: Institutional flow, manipulation
 - **Gate**: **ACTIVE**
 
 ## Silver Bullet
@@ -13,5 +13,5 @@
 | NY PM SB | 14-15 | — |
 
 ## Alignment
-- Bias: **bearish** | Session: NY AM
+- Bias: **bearish** | Session: London
 - ✅ ALIGNED — Active killzone with directional bias

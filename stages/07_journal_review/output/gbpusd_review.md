@@ -1,4 +1,4 @@
-# Session Review — GBPUSD — 2026-08-02
+# Session Review — GBPUSD — 2026-08-03
 
 ## Setup Summary
 | | |
@@ -6,8 +6,8 @@
 | **Direction** | NO TRADE |
 | **Model** | MMXM Sell Model (0/12.6) |
 | **Bias** | 1W bearish → 1D bearish → 4H bullish |
-| **Session** | NY AM (Killzone ✅) |
-| **Entry** | 1.34836 | SL: 0.00000 | TP1: 0.00000 |
+| **Session** | London (Killzone ✅) |
+| **Entry** | 1.34622 | SL: 0.00000 | TP1: 0.00000 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment

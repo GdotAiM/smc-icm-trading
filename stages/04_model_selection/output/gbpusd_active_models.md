@@ -1,8 +1,8 @@
-# Model Selection — GBPUSD — 2026-08-02
+# Model Selection — GBPUSD — 2026-08-03
 
 ## Market Context
 - Bias: **BEARISH** (1D/4H)
-- Session: NY AM (ACTIVE)
+- Session: London (ACTIVE)
 - **Cycle Phase**: DISTRIBUTION | **MMXM Step**: undefined/4
 - Levels: 4 OBs | 4 FVGs | 6 pools
 - Sweeps: Yes — liquidity sweep detected
@@ -13,7 +13,7 @@
 |-------|-----------|---------|-----|-------|--------|
 | MMXM Sell Model | 8/13 | ×1.40 | ×1.00 | ✅ | **0.00** | ★ PRIMARY |
 | MMXM Buy Model | 5/13 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
-| Silver Bullet | 8/10 | ×1.10 | ×1.00 | ✅ | **0.00** | Rejected |
+| Silver Bullet | 5/10 | ×1.10 | ×1.00 | ✅ | **0.00** | Rejected |
 | OTE + Institutional OB | 6/11 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
 | Turtle Soup | 7/9 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
 | Unicorn (OTE+FVG) | 6/11 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |

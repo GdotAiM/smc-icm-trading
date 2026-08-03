@@ -1,4 +1,4 @@
-# Risk Plan — EURUSD — 2026-08-02
+# Risk Plan — EURUSD — 2026-08-03
 
 
 ## Account
@@ -11,9 +11,9 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 1.15306 |
+| Entry | 1.15270 |
 | SL | 0.00000 (structural invalidation) |
-| Stop Distance | 11531 pips |
+| Stop Distance | 11527 pips |
 | **Position** | **0 micro lots** |
 | Risk | $100.00 |
 | Max Gain (TP1) | $100.00 |
@@ -22,7 +22,7 @@
 ```
 PAIR:       EURUSD
 DIRECTION:  NO TRADE
-ENTRY:      1.15306
+ENTRY:      1.15270
 SL:         0.00000
 TP1:        0.00000 (close 50%)
 TP2:        0.00000 (close 50%)

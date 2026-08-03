@@ -1,4 +1,4 @@
-# LTF Cycle Analysis — XAUUSD — 2026-07-31
+# LTF Cycle Analysis — XAUUSD — 2026-08-03
 
 ## Macro Context (from Stage 00)
 - **HTF Bias**: BULLISH
@@ -9,11 +9,11 @@
 
 | Timeframe | Bias | Event | Direction | Displacement | Sweeps | FVGs | OBs |
 |-----------|------|-------|-----------|-------------|--------|------|-----|
-| 15m | **BULLISH** | CHoCH | bullish | weak (0.27x) | SSL,SSL | 0 | 2 |
-| 5m | **BULLISH** | BOS | bullish | weak (0.26x) | none | 0 | 2 |
-| 1m | **BEARISH** | CHoCH | bearish | weak (0.42x) | BSL,SSL | 0 | 0 |
+| 15m | **BEARISH** | BOS | bearish | weak (0.08x) | SSL | 0 | 2 |
+| 5m | **BEARISH** | CHoCH | bearish | weak (0.16x) | BSL,SSL,BSL | 1 | 4 |
+| 1m | **BEARISH** | BOS | bearish | weak (0.47x) | SSL,BSL | 0 | 1 |
 
 ## LTF Alignment
-- **15m vs HTF**: ✅ ALIGNED
-- **5m vs HTF**: ✅ ALIGNED
+- **15m vs HTF**: ⚠️ OPPOSING
+- **5m vs HTF**: ⚠️ OPPOSING
 - **1m vs HTF**: ⚠️ OPPOSING

@@ -1,0 +1,132 @@
+{
+  "price": 12670,
+  "structure": {
+    "bias": "bearish",
+    "lastEvent": "BOS",
+    "lastEventPrice": 12666,
+    "lastEventTime": 1785731700000,
+    "confidence": 1,
+    "lastSwingHigh": 12669.9,
+    "lastSwingLow": 12661
+  },
+  "liquidity": [
+    {
+      "price": 12660.666666666666,
+      "type": "SSL",
+      "strength": 6,
+      "score": 8.916691661691251,
+      "distance": 0.07366482504604531,
+      "session": "London",
+      "ageBars": 14,
+      "swept": false
+    },
+    {
+      "price": 12713.8,
+      "type": "BSL",
+      "strength": 5,
+      "score": 4.1524170288536855,
+      "distance": 0.34569850039462724,
+      "session": "NY AM",
+      "ageBars": 205,
+      "swept": true
+    },
+    {
+      "price": 12687,
+      "type": "BSL",
+      "strength": 3,
+      "score": 2.4090663423975114,
+      "distance": 0.13417521704814522,
+      "session": "NY PM",
+      "ageBars": 139,
+      "swept": true
+    }
+  ],
+  "orderBlocks": [],
+  "fvgs": [
+    {
+      "top": 12685,
+      "bottom": 12682,
+      "type": "bearish",
+      "index": 167,
+      "time": 1785528600000,
+      "gapAtr": 1.2352941176470589,
+      "displacementAtr": 1.647058823529412,
+      "fillFraction": 0,
+      "distance": 0.10655090765588004
+    }
+  ],
+  "draw": {
+    "price": 12660.666666666666,
+    "side": "down",
+    "distance": 0.07366482504604531,
+    "reason": "SSL pool Â· 6 touches",
+    "score": 0.9941068139963165
+  },
+  "alt": {
+    "price": 12713.8,
+    "side": "up",
+    "distance": 0.34569850039462724,
+    "reason": "BSL pool Â· 5 touches",
+    "score": 0.8421957379636944
+  },
+  "volumeDisplacement": {
+    "atrRatio": 0.8484848484848485,
+    "label": "moderate",
+    "volumeConfirmed": false,
+    "volumeRatio": 0.9032258064516129
+  },
+  "pdArray": {
+    "rangeHigh": 12708,
+    "rangeLow": 12697,
+    "midpoint": 12702.5,
+    "currentZone": "discount",
+    "zoneDistance": -5.909090909090909,
+    "description": "Price in discount (-245% of range). 295.5% below midpoint"
+  },
+  "inversionFvgs": [
+    {
+      "top": 12669,
+      "bottom": 12667.2,
+      "type": "inversion",
+      "index": 213,
+      "time": 1785715200000,
+      "gapAtr": 0.659685863873972,
+      "reversalAtr": 3.442622950819467,
+      "confirmationLag": 3,
+      "distance": 0.014996053670083949
+    },
+    {
+      "top": 12667,
+      "bottom": 12665,
+      "type": "inversion",
+      "index": 238,
+      "time": 1785722700000,
+      "gapAtr": 0.7,
+      "reversalAtr": 1,
+      "confirmationLag": 4,
+      "distance": 0.03157063930544593
+    },
+    {
+      "top": 12664,
+      "bottom": 12663,
+      "type": "inversion",
+      "index": 284,
+      "time": 1785736500000,
+      "gapAtr": 0.5599999999999999,
+      "reversalAtr": 1.1666666666666667,
+      "confirmationLag": 3,
+      "distance": -0.05130228887134965
+    },
+    {
+      "top": 12685,
+      "bottom": 12683,
+      "type": "inversion",
+      "index": 161,
+      "time": 1785526800000,
+      "gapAtr": 0.9032258064516129,
+      "reversalAtr": 1.8064516129032258,
+      "confirmationLag": 1,
+      "distance": 0.11049723756906078
+    }
+  ]
+}

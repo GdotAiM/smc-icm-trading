@@ -1,6 +1,6 @@
 {
   "pair": "EURUSD",
-  "time": "09:54:58 NY",
+  "time": "13:20:18 NY",
   "currentPrice": 1.15306,
   "htfBias": {
     "daily": "bearish",
@@ -82,7 +82,7 @@
       "price": 1.1533,
       "type": "BSL",
       "strength": 3,
-      "score": 4.115243071905383,
+      "score": 4.489356078442237,
       "distance": 0.02081418139559242,
       "session": "London",
       "ageBars": 12,

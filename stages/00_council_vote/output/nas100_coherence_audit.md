@@ -1,6 +1,6 @@
-# Coherence Audit — NAS100 — 2026-07-31
+# Coherence Audit — NAS100 — 2026-08-03
 
-## Overall Coherence: 70/100 — C — ADEQUATE coherence
+## Overall Coherence: 60/100 — C — ADEQUATE coherence
 
 ---
 
@@ -11,25 +11,25 @@
 | STRUCTURE | BULLISH (CHoCH) | BULLISH | — |
 | IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
 | CYCLE PHASE | DISTRIBUTION → expects BEARISH | BEARISH | — |
-| LIQUIDITY | UP (BSL magnet) | 3 swept | BULLISH | — |
+| LIQUIDITY | UP (BSL magnet) | 4 swept | BULLISH | — |
 
 **⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in DISTRIBUTION phase.**
 
 ---
 
-## 2. Temporal Coherence (⚠️ 2/4 LTFs aligned)
+## 2. Temporal Coherence (⚠️ 0/4 LTFs aligned)
 
 | TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
-| 1W | **BEARISH** | CHoCH | ✅ aligned |
+| 1W | **BULLISH** | CHoCH | ⚠️ opposing |
 | 1D | **BEARISH** | CHoCH | ✅ aligned |
 | 4H | **BULLISH** | CHoCH | ⚠️ opposing |
 | 1H | **BULLISH** | BOS | ⚠️ opposing |
-| 15m | **BEARISH** | BOS | ✅ aligned |
-| 5m | **BULLISH** | BOS | ⚠️ opposing |
-| 1m | **BEARISH** | CHoCH | ✅ aligned |
+| 15m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 5m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 1m | **BULLISH** | CHoCH | ⚠️ opposing |
 
-**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
+**⚠️ TEMPORAL DIVERGENCE — 4 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
 
 ---
 
@@ -41,9 +41,9 @@
 
 ## 4. Self-Contradiction Check
 
-✅ No self-contradictions detected.
+- **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
 
-**✅ NO SELF-CONTRADICTIONS — The system is internally consistent.**
+**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
 
 ---
 
@@ -55,7 +55,7 @@
 | Temporal Coherence | 15/25 | ⚠️ |
 | Archetype Coherence | 25/25 | ✅ |
 | No Contradictions | 25/25 | ✅ |
-| **TOTAL** | **70/100** | **C — ADEQUATE coherence** |
+| **TOTAL** | **60/100** | **C — ADEQUATE coherence** |
 
 ---
 

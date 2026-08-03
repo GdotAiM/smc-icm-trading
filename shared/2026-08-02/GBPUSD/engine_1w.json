@@ -14,9 +14,9 @@
       "price": 1.347021052631579,
       "type": "SSL",
       "strength": 19,
-      "score": 18.758025147970294,
+      "score": 12.505350098646861,
       "distance": 0.09930191999325894,
-      "session": "NY PM",
+      "session": "Off",
       "ageBars": 49,
       "swept": false
     },
@@ -24,9 +24,9 @@
       "price": 1.3489725000000001,
       "type": "BSL",
       "strength": 4,
-      "score": 4.5362763432561035,
+      "score": 3.0241842288374023,
       "distance": 0.04542555400635786,
-      "session": "NY PM",
+      "session": "Off",
       "ageBars": 9,
       "swept": true
     },
@@ -34,9 +34,9 @@
       "price": 1.3482725,
       "type": "SSL",
       "strength": 4,
-      "score": 4.203259505096812,
+      "score": 2.8021730033978742,
       "distance": 0.006489364858051122,
-      "session": "NY PM",
+      "session": "Off",
       "ageBars": 31,
       "swept": true
     }

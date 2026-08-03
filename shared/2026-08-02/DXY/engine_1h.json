@@ -11,12 +11,12 @@
   },
   "liquidity": [
     {
-      "price": 12800.714285714286,
+      "price": 12800.728571428572,
       "type": "BSL",
       "strength": 7,
-      "score": 6.839370060118344,
-      "distance": 1.0396581080928742,
-      "session": "NY PM",
+      "score": 4.559580040078895,
+      "distance": 1.0397708692759629,
+      "session": "Off",
       "ageBars": 52,
       "swept": true
     },
@@ -24,30 +24,30 @@
       "price": 12783.333333333334,
       "type": "BSL",
       "strength": 3,
-      "score": 3.773694535707249,
+      "score": 4.1167576753169985,
       "distance": 0.9024653353329698,
       "session": "London",
       "ageBars": 37,
       "swept": false
     },
     {
-      "price": 12760.719999999998,
-      "type": "BSL",
-      "strength": 5,
-      "score": 2.8803983525126493,
-      "distance": 0.7239718999131544,
-      "session": "Off",
-      "ageBars": 166,
-      "swept": true
-    },
-    {
       "price": 12739.333333333334,
       "type": "BSL",
       "strength": 3,
-      "score": 2.2846699227184546,
+      "score": 2.1089260825093428,
       "distance": 0.5551608914147442,
-      "session": "Asia",
+      "session": "London",
       "ageBars": 230,
+      "swept": true
+    },
+    {
+      "price": 12760.719999999998,
+      "type": "BSL",
+      "strength": 5,
+      "score": 2.160298764384487,
+      "distance": 0.7239718999131544,
+      "session": "Off",
+      "ageBars": 166,
       "swept": true
     }
   ],
@@ -101,15 +101,15 @@
       "distance": 0.47754361038756016
     },
     {
-      "top": 12798,
-      "bottom": 12778,
+      "top": 12798.4,
+      "bottom": 12778.2,
       "type": "bearish",
       "index": 249,
       "time": 1785348000000,
-      "gapAtr": 2.4778761061946906,
-      "displacementAtr": 4.460176991150442,
-      "fillFraction": 0.25,
-      "distance": 0.9393006551424739
+      "gapAtr": 2.474190726159112,
+      "displacementAtr": 4.188976377952871,
+      "fillFraction": 0.23762376237621444,
+      "distance": 0.941668639987365
     }
   ],
   "draw": {

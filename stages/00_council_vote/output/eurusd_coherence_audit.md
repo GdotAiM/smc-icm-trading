@@ -1,23 +1,23 @@
-# Coherence Audit — EURUSD — 2026-08-02
+# Coherence Audit — EURUSD — 2026-08-03
 
 ## Overall Coherence: 50/100 — D — POOR coherence
 
 ---
 
-## 1. Lens Coherence (✅ 3/4 agree)
+## 1. Lens Coherence (⚠️ 1/4 agree)
 
 | Lens | Reading | Direction | vs Structure |
 |------|---------|-----------|-------------|
 | STRUCTURE | BULLISH (BOS) | BULLISH | — |
-| IPDA RANGE | DISCOUNT → BULLISH bias | BULLISH | — |
-| CYCLE PHASE | DISTRIBUTION → expects BULLISH | BULLISH | — |
+| IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
+| CYCLE PHASE | DISTRIBUTION → expects BEARISH | BEARISH | — |
 | LIQUIDITY | BALANCED | 4 swept | NEUTRAL | — |
 
-**✅ LENS COHERENCE — All 3 lenses agree on BULLISH. No contradictions.**
+**⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in DISTRIBUTION phase.**
 
 ---
 
-## 2. Temporal Coherence (⚠️ 1/4 LTFs aligned)
+## 2. Temporal Coherence (⚠️ 2/4 LTFs aligned)
 
 | TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
@@ -25,11 +25,11 @@
 | 1D | **BEARISH** | BOS | ✅ aligned |
 | 4H | **BULLISH** | BOS | ⚠️ opposing |
 | 1H | **BULLISH** | CHoCH | ⚠️ opposing |
-| 15m | **BULLISH** | BOS | ⚠️ opposing |
-| 5m | **BULLISH** | CHoCH | ⚠️ opposing |
-| 1m | **BEARISH** | CHoCH | ✅ aligned |
+| 15m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 5m | **BEARISH** | CHoCH | ✅ aligned |
+| 1m | **BEARISH** | BOS | ✅ aligned |
 
-**⚠️ TEMPORAL DIVERGENCE — 3 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
+**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
 
 ---
 
@@ -41,10 +41,9 @@
 
 ## 4. Self-Contradiction Check
 
-- **[WARNING]** DISPLACEMENT vs FVG: 5m has STRONG displacement but 0 FVGs. ICT says displacement MUST leave an FVG. The move may be noise.
 - **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
 
-**⚠️ 2 contradiction(s) — mostly expected in current cycle phase.**
+**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
 
 ---
 
@@ -52,10 +51,10 @@
 
 | Dimension | Score | Status |
 |-----------|-------|--------|
-| Lens Coherence | 25/25 | ✅ |
+| Lens Coherence | 15/25 | ⚠️ |
 | Temporal Coherence | 15/25 | ⚠️ |
 | Archetype Coherence | 15/25 | ⚠️ |
-| No Contradictions | 15/25 | ✅ |
+| No Contradictions | 25/25 | ✅ |
 | **TOTAL** | **50/100** | **D — POOR coherence** |
 
 ---

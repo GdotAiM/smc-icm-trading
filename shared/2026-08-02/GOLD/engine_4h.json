@@ -11,20 +11,10 @@
   },
   "liquidity": [
     {
-      "price": 4020.4500000000003,
-      "type": "SSL",
-      "strength": 3,
-      "score": 4.5176512067321575,
-      "distance": 0.6109763136979504,
-      "session": "Asia",
-      "ageBars": 33,
-      "swept": true
-    },
-    {
       "price": 4118.056,
       "type": "BSL",
       "strength": 5,
-      "score": 5.945891372324838,
+      "score": 7.7296587840222895,
       "distance": 1.8019289695228657,
       "session": "NY AM",
       "ageBars": 7,
@@ -34,27 +24,27 @@
       "price": 3959.7183333333337,
       "type": "SSL",
       "strength": 3,
-      "score": 3.156824644534893,
+      "score": 4.103872037895361,
       "distance": 2.112315978870238,
       "session": "NY AM",
       "ageBars": 61,
       "swept": false
     },
     {
-      "price": 3983.2475,
+      "price": 4020.4500000000003,
       "type": "SSL",
-      "strength": 2,
-      "score": 1.5600405488572506,
-      "distance": 1.530654497406163,
-      "session": "Off",
-      "ageBars": 83,
+      "strength": 3,
+      "score": 1.737558156435445,
+      "distance": 0.6109763136979504,
+      "session": "Asia",
+      "ageBars": 33,
       "swept": true
     },
     {
       "price": 3996.055,
       "type": "SSL",
       "strength": 1,
-      "score": 1.2427289128718646,
+      "score": 1.6155475867334241,
       "distance": 1.214041948845106,
       "session": "NY AM",
       "ageBars": 13,
@@ -64,10 +54,20 @@
       "price": 4063.48,
       "type": "BSL",
       "strength": 1,
-      "score": 0.6305220027639531,
+      "score": 0.819678603593139,
       "distance": 0.45276274268169664,
       "session": "NY AM",
       "ageBars": 138,
+      "swept": true
+    },
+    {
+      "price": 3983.2475,
+      "type": "SSL",
+      "strength": 2,
+      "score": 1.1700304116429379,
+      "distance": 1.530654497406163,
+      "session": "Off",
+      "ageBars": 83,
       "swept": true
     }
   ],
@@ -91,7 +91,7 @@
     "atrRatio": 0.048246475277857165,
     "label": "weak",
     "volumeConfirmed": false,
-    "volumeRatio": 0.6576890259736818
+    "volumeRatio": 0.6576811255232919
   },
   "pdArray": {
     "rangeHigh": 4462.58,

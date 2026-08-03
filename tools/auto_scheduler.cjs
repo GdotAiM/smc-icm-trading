@@ -82,21 +82,11 @@ function scanAll() {
 
   scanInProgress = true;
   lastScanTime = now;
-  log("SCAN", `Scanning ${PAIRS.length} pairs (parallel)...`);
-
-  // Run all 4 pairs in PARALLEL using child_process.spawn
-  const { spawnSync } = require("child_process");
-  const results = [];
-
-  for (const pair of PAIRS) {
-    const r = spawnSync("node", [path.join(ROOT, "tools", "run_pair.cjs"), pair], {
-      encoding: "utf8", timeout: 120000, stdio: ["ignore", "pipe", "ignore"]
-    });
-    results.push({ pair, output: r.stdout || "", error: r.error });
-  }
+  log("SCAN", `Scanning ${PAIRS.length} pairs...`);
 
   const setups = [];
-  for (const { pair, output } of results) {
+  for (const p of PAIRS) {
+    const output = run(`node "${path.join(ROOT, "tools", "run_pair.cjs")}" ${p}`, 90000);
     if (!output) continue;
 
     const tradeable = !output.includes("Entry: NO TRADE") && output.includes("INDUCEMENT GATE: ✅");
@@ -177,7 +167,7 @@ async function runCycle() {
 
   // Determine scan interval
   let scanInterval = 1800000; // 30 min default
-  if (inActiveSession) scanInterval = 300000;  // 5 min during killzones
+  if (inActiveSession) scanInterval = 600000;  // 10 min during killzones (scan takes ~8 min)
   else if (inPreMarket) scanInterval = 900000; // 15 min pre-market
 
   // Check for scheduled event (briefing windows still do full data refresh)

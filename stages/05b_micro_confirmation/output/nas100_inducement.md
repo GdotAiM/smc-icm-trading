@@ -1,16 +1,16 @@
-# Inducement Check — NAS100 — 2026-07-31
+# Inducement Check — NAS100 — 2026-08-03
 
 ## Structural Event
-BOS bearish @ 28307.10000 | Impulse: 7 candles, range 114.10000
+CHOCH bullish @ 28515.80000 | Impulse: 12 candles, range 189.90000
 
 ## First Pullback
-First pullback: high @ 28287.60000 | Retracement: 88.61% — ✅ VALID (≥50%)
+First pullback: low @ 28326.70000 | Retracement: 100.00% — ✅ VALID (≥50%)
 
 ## Inducement Level
-Inducement: BSL (Buy-Side) @ 28287.60000 — Buy-side trap above pullback high
+Inducement: SSL (Sell-Side) @ 28326.70000 — Sell-side trap below pullback low
 
 ## Sweep Status
-⚡ Inducement swept — awaiting reversal back
+⏳ Inducement NOT swept — entry gate CLOSED. Waiting for dip below 28326.70000.
 
 ## Entry Gate
-**🛑 GATE CLOSED — ⚡ Inducement swept — awaiting reversal back**
+**🛑 GATE CLOSED — ⏳ Inducement NOT swept — entry gate CLOSED. Waiting for dip below 28326.70000.**

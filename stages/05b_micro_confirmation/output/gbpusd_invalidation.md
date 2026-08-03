@@ -1,6 +1,6 @@
-# Invalidation Awareness — GBPUSD — 2026-08-02
+# Invalidation Awareness — GBPUSD — 2026-08-03
 
-## Overall Status: ⚠️ HIGH RISK — Multiple warnings. Reduce size, tighten SL, or wait.
+## Overall Status: ❌ TRADE INVALID — At least one dimension has failed. Exit or do not enter.
 
 | Dimension | Status | Detail |
 |-----------|--------|--------|
@@ -8,21 +8,20 @@
 | STRUCTURE | ✅ VALID | 4H BOS bullish — structure confirms direction |
 | STRUCTURE | ⚠️ WARNING | 1D bias is bearish — HTF may be opposing the trade |
 | STRUCTURE | ⚠️ WARNING | 1W bias is bearish — MACRO trend opposes trade direction. This may be a pullback, not a reversal. |
-| TIME | ✅ ACTIVE | Killzone active — 1h 0m remaining |
-| TIME | ✅ ACTIVE | Silver Bullet window ACTIVE — time-gated models eligible |
-| MODEL | ✅ VALID | SB window active — model conditions met |
+| TIME | ✅ ACTIVE | Killzone active — 7h 0m remaining |
+| TIME | ⏳ INACTIVE | SB window not active — next: NY AM SB at 10:00 |
+| MODEL | ❌ INVALIDATED | Not in Silver Bullet window — model requires active SB killzone |
 | MODEL | ✅ VALID | OB present + sweep detected — MMXM conditions met |
 | CYCLE | ✅ VALID | DISTRIBUTION phase — trend is active. Let winners run. |
-| MICRO | ✅ VALID | 15m bias bullish — aligned with HTF |
-| CORRELATION | ⚠️ WARNING | DXY is bullish, expected bearish — correlation weakening. Reduce size or tighten SL. |
+| MICRO | ⚠️ WARNING | 15m bias bearish — OPPOSING HTF. This is a pullback. Hold if SL not threatened. |
+| MICRO | ⚠️ WARNING | 5m CHoCH flipped to bearish — micro reversal. Check if SL threatened. |
+| CORRELATION | ✅ VALID | DXY is bearish — confirms USD direction for bullish GBPUSD |
 
 ## Invalidation Summary
-- **Invalidated**: 0 dimension(s) — None
-- **Warnings**: 3 — Trade with reduced size and awareness
-- **Confirmed**: 7 checks passed
+- **Invalidated**: 1 dimension(s) — EXIT OR DO NOT ENTER
+- **Warnings**: 4 — Trade with reduced size and awareness
+- **Confirmed**: 5 checks passed
 
 ## If Trade Is Active
-- **SL**: 1.32591 (224 pips risk)
-- **Next check**: Re-evaluate on 4H close or if price closes below 4H swing low
-- **Scale out**: Consider partial TP — warnings are accumulating
+- **EXIT NOW** — the trade thesis is no longer valid.
 - **Re-entry**: Only if ALL dimensions return to VALID status

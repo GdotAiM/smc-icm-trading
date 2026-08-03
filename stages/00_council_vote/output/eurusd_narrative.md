@@ -1,4 +1,4 @@
-# The Market's Story — EURUSD — 2026-08-02
+# The Market's Story — EURUSD — 2026-08-03
 
 ## The Narrative
 
@@ -12,15 +12,15 @@ The daily DIVERGES from the weekly. This divergence is the KEY to understanding 
 
 
 ### III. THE TRADE CONTEXT — 4H
-The 4H is our trade timeframe. BOS at 1.14053 confirms the bullish structure. Liquidity sweep detected: SSL @ 1.13814, SSL @ 1.14036, BSL @ 1.15804, BSL @ 1.15370. This is the INDUCEMENT — the manipulation that traps traders before the real move. Order blocks present — institutional reference points for entry. Displacement is weak.
+The 4H is our trade timeframe. BOS at 1.15370 confirms the bullish structure. Liquidity sweep detected: SSL @ 1.13814, SSL @ 1.14036, BSL @ 1.15804, BSL @ 1.15370. This is the INDUCEMENT — the manipulation that traps traders before the real move. Order blocks present — institutional reference points for entry. Displacement is weak.
 
 
 ### IV. MICRO CONFIRMATION — 15m/5m
-The 15m and 5m both show bullish structure — LTF CONFIRMS HTF. This is the ideal entry environment: the lower timeframes agree with the higher timeframe direction.
+LTF structure is neutral — no clear micro confirmation yet. Wait for 5m/15m to commit to a direction.
 
 
 ### V. THE TRIGGER — 1m
-The 1m shows bearish bias with 2 FVGs. The 1m bearish is a micro-bounce WITHIN the bullish trend — Scalpers can trade it but should NOT hold against the HTF. Recent 1m sweep detected — micro-manipulation may have just occurred. 2 FVG(s) available for entry refinement.
+The 1m shows bearish bias with 0 FVGs. The 1m bearish is a micro-bounce WITHIN the bullish trend — Scalpers can trade it but should NOT hold against the HTF.  No 1m FVG — wait for displacement to create entry inefficiency.
 
 
 ---
@@ -58,7 +58,7 @@ The BULLISH bias is built on 6 pieces of structural evidence, not a single indic
 - 1D BOS — daily structure intact
 - Liquidity sweep — institutional manipulation detected
 - 1 Order Block(s) — institutional reference levels present
-- 2 FVG(s) — price inefficiencies to fill
+- 1 FVG(s) — price inefficiencies to fill
 - 1D and 4H diverging — HTF conflict, reduced conviction
 
 **Cycle context**: This bullish bias exists within a DISTRIBUTION cycle phase. In distribution, bias is HIGHLY reliable — the trend is established and continuing.
@@ -70,7 +70,7 @@ The BULLISH bias is built on 6 pieces of structural evidence, not a single indic
 The invalidation story is: "We are long because the structure is bullish. We are WRONG if price proves the structure has changed — a close below the swing low. Everything else supports the thesis but that level is the invalidation."
 
 ### Primary Invalidation (The Line in the Sand)
-If price CLOSES below 1.13746 (4H swing low) — the bullish structure is invalidated. A close below the swing low means sellers have overwhelmed buyers. EXIT the long immediately.
+If price CLOSES below 1.14551 (4H swing low) — the bullish structure is invalidated. A close below the swing low means sellers have overwhelmed buyers. EXIT the long immediately.
 
 ### Secondary Invalidations (Early Warnings)
 1. If the 1D flips to BEARISH — the daily trend has changed. The HTF thesis is no longer valid. Close all positions and re-evaluate.
@@ -117,5 +117,5 @@ This IS a trend trade. The structure is established and institutions are distrib
 
 ---
 
-*Generated: 2026-08-02T13:55:01.539Z | Narrative Engine v1.0*
+*Generated: 2026-08-03T08:04:35.291Z | Narrative Engine v1.0*
 *"The market is a storyteller. Our job is to listen, not to guess."*

@@ -1,7 +1,7 @@
-# Po3 State Machine — XAUUSD — 2026-08-02
+# Po3 State Machine — XAUUSD — 2026-08-03
 
 ## Current State: **MANIPULATION** (0.85 confidence)
-**3 sweep(s) + CHoCH — manipulation active**
+**2 sweep(s) + CHoCH — manipulation active**
 
 ## State Timeline
 
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for NY Lunch (12:00 NY): ACCUMULATION**
+**Expected phase for London PM (03:00 NY): DISTRIBUTION**
 **Detected phase: MANIPULATION**
 ⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.
 
@@ -27,26 +27,26 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 | TF | State | Confidence | Reason |
 |----|-------|------------|--------|
-| 1D | DISTRIBUTION | 0.80 | BOS bearish + displacement (0.69x) — trend is distributing |
-| 4H | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
-| 1H | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
+| 1D | DISTRIBUTION | 0.60 | BOS bearish — distribution beginning |
+| 4H | MANIPULATION | 0.85 | 2 sweep(s) + CHoCH — manipulation active |
+| 1H | MANIPULATION | 0.85 | 2 sweep(s) + CHoCH — manipulation active |
 
 ## Entry Rules for MANIPULATION
 
 **Manipulation is the TRAP phase. Enter on the reversal after the sweep. Turtle Soup and Breaker Block are primary.**
 
 ## Daily Open Anchor
-Daily Open (Midnight NY): 4031.45000
+Daily Open (Midnight NY): 4036.43500
 
 ## Accumulation Range
-Range: 4020.97500–4055.66500 (0.86% — WIDE). Near open but wide — accumulation may be extending.
+Range: 4047.34500–4079.18500 (0.78% — WIDE). Not tight accumulation.
 
 ## Manipulation Direction Check
 ⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.
 - Daily Bias: BEARISH
-- Swept Above (BSL): 1 | Swept Below (SSL): 2
+- Swept Above (BSL): 2 | Swept Below (SSL): 0
 - Is Manipulation: ⚠️ YES — do not trade with the sweep
-- With Bias: ✅ Yes — likely distribution
+- With Bias: No
 - Entries: AFTER sweep reversal confirmed
 - Models: Turtle Soup, Breaker Block, Judas Swing, Silver Bullet
 - Size: ×0.75

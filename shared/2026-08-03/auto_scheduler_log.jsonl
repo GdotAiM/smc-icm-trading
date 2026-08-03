@@ -1,0 +1,13 @@
+{"time":"2026-08-03T05:53:55.638Z","nyTime":"01:53:55","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon"}
+{"time":"2026-08-03T05:53:55.644Z","nyTime":"01:53:55","event":"EVENT","detail":"01:55 — PRE-LONDON: Pre-London data refresh + briefing"}
+{"time":"2026-08-03T05:53:55.646Z","nyTime":"01:53:55","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-03T07:26:31.048Z","nyTime":"03:26:31","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon"}
+{"time":"2026-08-03T07:27:40.711Z","nyTime":"03:27:40","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon"}
+{"time":"2026-08-03T07:37:50.124Z","nyTime":"03:37:50","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon"}
+{"time":"2026-08-03T07:37:50.129Z","nyTime":"03:37:50","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T07:43:43.169Z","nyTime":"03:43:43","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T07:49:36.644Z","nyTime":"03:49:36","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T07:55:29.595Z","nyTime":"03:55:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T07:58:28.376Z","nyTime":"03:58:28","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon"}
+{"time":"2026-08-03T07:58:28.379Z","nyTime":"03:58:28","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T08:04:22.191Z","nyTime":"04:04:22","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}

@@ -1,20 +1,24 @@
-# IRL / ERL Analysis — XAUUSD — 2026-07-31
+# IRL / ERL Analysis — XAUUSD — 2026-08-03
 
-## Current Price: 4051.87000
+## Current Price: 4063.43000
 
 ## Dealing Range (1D)
-- **Range**: 3959.80000 — 4166.13000 (206.33000)
-- **Midpoint (Equilibrium)**: 4062.96500
+- **Range**: 3996.05500 — 4166.13000 (170.07500)
+- **Midpoint (Equilibrium)**: 4081.09250
 - **Validation**: ⚠️ PARTIAL — high NOT swept, low NOT swept
-- **Premium Zone**: 4166.13000 — 4062.96500
-- **Discount Zone**: 4062.96500 — 3959.80000
+- **Premium Zone**: 4166.13000 — 4081.09250
+- **Discount Zone**: 4081.09250 — 3996.05500
 
-## IRL — Internal Range Liquidity (0 FVGs)
+## IRL — Internal Range Liquidity (1 FVGs)
 | Status | Count |
 |--------|-------|
-| Unfilled (<30%) | 0 |
+| Unfilled (<30%) | 1 |
 | Partial (30-70%) | 0 |
 | Filled (>70%) | 0 |
+
+| TF | Type | Price (CE) | Fill % | Distance |
+|-----|------|------------|--------|----------|
+| 5m | bearish | 4074.30750 | 0.00% | 0.27% |
 
 ## ERL — External Range Liquidity
 - **Dominant**: BALANCED

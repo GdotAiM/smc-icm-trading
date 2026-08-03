@@ -1,15 +1,15 @@
-# PD Array Matrix — XAUUSD — 2026-08-02
+# PD Array Matrix — XAUUSD — 2026-08-03
 
 ## 20-Day Look-Back Range
-20-Day Range: 3959.80000–4202.70500 (242.90500) | EQ 4081.25250 | Q25 4020.52625 | Q75 4141.97875
+20-Day Range: 3959.80000–4180.52000 (220.72000) | EQ 4070.16000 | Q25 4014.98000 | Q75 4125.34000
 ## Current: MID-LOW | Bias: BEARISH
-## DXY: DXY: BULLISH → RISK-OFF (DXY rallying → favor shorts in indices)
+## DXY: DXY: BEARISH → RISK-ON (DXY declining → favor longs in indices)
 
 ## Quadrant Confluence
 | Quadrant | Arrays | Stacks | Confluence |
 |----------|--------|--------|------------|
 | LOWER (Discount) | 3 | 1 | **HIGH** |
-| MID-LOW | 3 | 1 | **HIGH** |
+| MID-LOW | 5 | 2 | **HIGH** |
 | MID-HIGH | 2 | 1 | **MODERATE** |
 | UPPER (Premium) | 1 | 0 | **MODERATE** |
 

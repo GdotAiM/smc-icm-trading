@@ -14,61 +14,61 @@
       "price": 4020.131,
       "type": "SSL",
       "strength": 5,
-      "score": 6.3662319343150235,
+      "score": 8.27610151460953,
       "distance": 0.6188622713783023,
       "session": "NY AM",
       "ageBars": 6,
       "swept": false
     },
     {
-      "price": 4026.635,
-      "type": "SSL",
-      "strength": 3,
-      "score": 4.444391007072298,
-      "distance": 0.45807772983301653,
-      "session": "Asia",
-      "ageBars": 38,
-      "swept": true
-    },
-    {
-      "price": 4038.5749999999994,
-      "type": "SSL",
-      "strength": 3,
-      "score": 3.098013630825825,
-      "distance": 0.16291053640582276,
-      "session": "Asia",
-      "ageBars": 84,
-      "swept": true
-    },
-    {
       "price": 4047.5375000000004,
       "type": "BSL",
       "strength": 2,
-      "score": 1.9893176872002885,
+      "score": 2.170164749673041,
       "distance": 0.05865026519314788,
       "session": "London",
       "ageBars": 59,
       "swept": true
     },
     {
-      "price": 4083.78,
-      "type": "BSL",
-      "strength": 4,
-      "score": 3.1123010458377802,
-      "distance": 0.9545964132489091,
+      "price": 3998.1,
+      "type": "SSL",
+      "strength": 3,
+      "score": 4.233895751501832,
+      "distance": 1.1634877687313139,
       "session": "NY AM",
-      "ageBars": 120,
+      "ageBars": 52,
+      "swept": false
+    },
+    {
+      "price": 4026.635,
+      "type": "SSL",
+      "strength": 3,
+      "score": 1.7093811565662682,
+      "distance": 0.45807772983301653,
+      "session": "Asia",
+      "ageBars": 38,
       "swept": true
     },
     {
       "price": 4117.6525,
       "type": "BSL",
       "strength": 4,
-      "score": 4.321429214213567,
+      "score": 2.8809528094757115,
       "distance": 1.7919540982877136,
-      "session": "NY PM",
+      "session": "Off",
       "ageBars": 23,
       "swept": false
+    },
+    {
+      "price": 4038.5749999999994,
+      "type": "SSL",
+      "strength": 3,
+      "score": 1.1915437041637786,
+      "distance": 0.16291053640582276,
+      "session": "Asia",
+      "ageBars": 84,
+      "swept": true
     }
   ],
   "orderBlocks": [
@@ -121,11 +121,11 @@
     "score": 0.9504910182897359
   },
   "alt": {
-    "price": 4083.78,
+    "price": 4117.6525,
     "side": "up",
-    "distance": 0.9545964132489091,
+    "distance": 1.7919540982877136,
     "reason": "BSL pool Â· 4 touches",
-    "score": 0.7861771299811003
+    "score": 0.7091402229575304
   },
   "volumeDisplacement": {
     "atrRatio": 0.4149698438063832,

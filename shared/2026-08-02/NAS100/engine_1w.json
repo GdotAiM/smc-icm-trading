@@ -11,30 +11,30 @@
   },
   "liquidity": [
     {
-      "price": 28266.211111111115,
-      "type": "BSL",
-      "strength": 9,
-      "score": 10.277614440973643,
-      "distance": 0.35543121380353254,
-      "session": "NY PM",
-      "ageBars": 7,
-      "swept": false
-    },
-    {
       "price": 28325,
       "type": "BSL",
       "strength": 10,
-      "score": 7.745920125813073,
+      "score": 8.60657791757008,
       "distance": 0.5641533616652695,
       "session": "NY PM",
       "ageBars": 119,
       "swept": true
     },
     {
+      "price": 28266.211111111115,
+      "type": "BSL",
+      "strength": 9,
+      "score": 6.851742960649095,
+      "distance": 0.35543121380353254,
+      "session": "Off",
+      "ageBars": 7,
+      "swept": false
+    },
+    {
       "price": 28357.557142857146,
       "type": "BSL",
       "strength": 7,
-      "score": 6.142659661125425,
+      "score": 6.825177401250472,
       "distance": 0.6797431765744889,
       "session": "NY PM",
       "ageBars": 83,
@@ -44,7 +44,7 @@
       "price": 28394.95,
       "type": "BSL",
       "strength": 2,
-      "score": 1.8680182240745604,
+      "score": 2.0755758045272894,
       "distance": 0.8125015532856952,
       "session": "NY PM",
       "ageBars": 65,
@@ -54,9 +54,9 @@
       "price": 28198.4,
       "type": "BSL",
       "strength": 2,
-      "score": 0.8078412211294406,
+      "score": 0.5385608140862937,
       "distance": 0.11467686332152095,
-      "session": "NY PM",
+      "session": "Off",
       "ageBars": 275,
       "swept": true
     },
@@ -64,9 +64,9 @@
       "price": 28123.199999999997,
       "type": "SSL",
       "strength": 2,
-      "score": 0.7773628312551397,
+      "score": 0.5182418875034264,
       "distance": 0.15231075654777004,
-      "session": "NY PM",
+      "session": "Off",
       "ageBars": 283,
       "swept": false
     }

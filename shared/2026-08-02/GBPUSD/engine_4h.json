@@ -14,7 +14,7 @@
       "price": 1.34168,
       "type": "SSL",
       "strength": 3,
-      "score": 3.223156240801425,
+      "score": 4.190103113041852,
       "distance": 0.4954166543059731,
       "session": "NY AM",
       "ageBars": 55,
@@ -24,27 +24,17 @@
       "price": 1.3352133333333331,
       "type": "SSL",
       "strength": 3,
-      "score": 3.683245722317963,
+      "score": 4.018086242528686,
       "distance": 0.975011619053284,
       "session": "London",
       "ageBars": 44,
       "swept": true
     },
     {
-      "price": 1.3402,
-      "type": "SSL",
-      "strength": 3,
-      "score": 2.5262295662686447,
-      "distance": 0.6051796256192667,
-      "session": "Asia",
-      "ageBars": 201,
-      "swept": true
-    },
-    {
       "price": 1.3303633333333333,
       "type": "SSL",
       "strength": 3,
-      "score": 3.634970078416386,
+      "score": 3.965421903726966,
       "distance": 1.3347078426137426,
       "session": "London",
       "ageBars": 32,
@@ -54,7 +44,7 @@
       "price": 1.3325166666666666,
       "type": "SSL",
       "strength": 3,
-      "score": 2.9917251643216196,
+      "score": 3.2637001792599483,
       "distance": 1.1750076636308873,
       "session": "London",
       "ageBars": 104,
@@ -64,11 +54,21 @@
       "price": 1.3374199999999998,
       "type": "SSL",
       "strength": 2,
-      "score": 2.030554058405066,
+      "score": 2.2151498818964357,
       "distance": 0.8113560176807508,
       "session": "London",
       "ageBars": 98,
       "swept": true
+    },
+    {
+      "price": 1.32762,
+      "type": "SSL",
+      "strength": 2,
+      "score": 2.9722305538970843,
+      "distance": 1.538164881782312,
+      "session": "London",
+      "ageBars": 14,
+      "swept": false
     }
   ],
   "orderBlocks": [
@@ -122,7 +122,7 @@
     "atrRatio": 0.4422043010752931,
     "label": "weak",
     "volumeConfirmed": false,
-    "volumeRatio": 1.2383271825367181
+    "volumeRatio": 1.238318643163928
   },
   "pdArray": {
     "rangeHigh": 1.34514,

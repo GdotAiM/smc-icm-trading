@@ -1,0 +1,93 @@
+{
+  "pair": "NAS100",
+  "time": "13:20:58 NY",
+  "currentPrice": 28166.1,
+  "dealingRange": {
+    "high": 29861.4,
+    "low": 28217.3,
+    "range": 1644.1000000000022,
+    "midpoint": 29039.35,
+    "source": "1D",
+    "valid": false,
+    "validation": {
+      "highSwept": false,
+      "lowSwept": true,
+      "detail": "⚠️ PARTIAL — high NOT swept, low swept"
+    },
+    "premium": {
+      "high": 29861.4,
+      "low": 29039.35
+    },
+    "discount": {
+      "high": 29039.35,
+      "low": 28217.3
+    },
+    "detail": "Partial dealing range: 28217.30000 — 29861.40000 (1644.10000 range)"
+  },
+  "irl": {
+    "count": 0,
+    "fvgs": [],
+    "unfilled": 0,
+    "partial": 0,
+    "filled": 0
+  },
+  "erl": {
+    "buySide": [],
+    "sellSide": [
+      {
+        "price": 27346.833333333332,
+        "type": "SSL",
+        "strength": 3,
+        "score": 2.8908796108770134,
+        "distance": 2.9086975714304306,
+        "session": "London",
+        "ageBars": 139,
+        "swept": false,
+        "tf": "15m"
+      },
+      {
+        "price": 27600.933333333334,
+        "type": "SSL",
+        "strength": 3,
+        "score": 1.9608898951229994,
+        "distance": 2.0065492441859694,
+        "session": "London",
+        "ageBars": 251,
+        "swept": true,
+        "tf": "15m"
+      }
+    ],
+    "buySideClusters": 0,
+    "sellSideClusters": 0,
+    "dominant": "SELL-SIDE (below)",
+    "largerPool": "BELOW",
+    "detail": "ERL: 0 buy-side pools above, 2 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: SELL-SIDE (below)"
+  },
+  "cycle": {
+    "position": "OUTSIDE RANGE",
+    "phase": "BELOW range — ERL raid possible",
+    "nextTarget": "Opposite ERL or re-enter range toward IRL",
+    "erlAboveSwept": 0,
+    "erlBelowSwept": 0,
+    "unfilledIRL": 0,
+    "partiallyFilledIRL": 0,
+    "recentlyFilled": 0,
+    "priceInRange": false,
+    "currentPrice": 0,
+    "detail": "OUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 0 unfilled, 0 filled | ERL sweeps: 0 above, 0 below"
+  },
+  "bias": {
+    "bias": "bullish",
+    "confidence": 0.5,
+    "reasoning": "Price outside below dealing range. Expected to re-enter range toward IRL.",
+    "detail": "BULLISH bias (0.50): Price outside below dealing range. Expected to re-enter range toward IRL."
+  },
+  "entryGuidance": [
+    {
+      "action": "WAIT",
+      "direction": "neutral",
+      "detail": "Unclear cycle position — wait for ERL raid or IRL fill to establish direction."
+    }
+  ],
+  "detail": "Partial dealing range: 28217.30000 — 29861.40000 (1644.10000 range)\nIRL: 0 FVGs inside range (0 unfilled)\nERL: 0 buy-side pools above, 2 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: SELL-SIDE (below)\nOUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 0 unfilled, 0 filled | ERL sweeps: 0 above, 0 below\nBULLISH bias (0.50): Price outside below dealing range. Expected to re-enter range toward IRL."
+}

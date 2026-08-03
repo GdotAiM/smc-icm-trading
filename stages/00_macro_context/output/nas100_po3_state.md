@@ -1,4 +1,4 @@
-# Po3 State Machine — NAS100 — 2026-08-02
+# Po3 State Machine — NAS100 — 2026-08-03
 
 ## Current State: **MANIPULATION** (0.85 confidence)
 **4 sweep(s) + CHoCH — manipulation active**
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for NY Lunch (12:00 NY): ACCUMULATION**
+**Expected phase for London PM (03:00 NY): DISTRIBUTION**
 **Detected phase: MANIPULATION**
 ⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.
 
@@ -29,7 +29,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 |----|-------|------------|--------|
 | 1D | MANIPULATION | 0.85 | 2 sweep(s) + CHoCH — manipulation active |
 | 4H | MANIPULATION | 0.85 | 4 sweep(s) + CHoCH — manipulation active |
-| 1H | DISTRIBUTION | 0.80 | BOS bullish + displacement (0.71x) — trend is distributing |
+| 1H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
 
 ## Entry Rules for MANIPULATION
 
@@ -39,12 +39,12 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 Daily Open (Midnight NY): 29545.50000
 
 ## Accumulation Range
-Range: 27956.30000–28601.70000 (2.28% — WIDE). Not tight accumulation.
+Range: 28414.00000–28575.90000 (0.57% — WIDE). Not tight accumulation.
 
 ## Manipulation Direction Check
 ⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.
 - Daily Bias: BEARISH
-- Swept Above (BSL): 2 | Swept Below (SSL): 2
+- Swept Above (BSL): 1 | Swept Below (SSL): 2
 - Is Manipulation: ⚠️ YES — do not trade with the sweep
 - With Bias: ✅ Yes — likely distribution
 - Entries: AFTER sweep reversal confirmed
