@@ -64,8 +64,21 @@ function refreshData() {
 }
 
 // ═══ SCAN ALL PAIRS ═══
+let lastScanTime = 0;
+let lastScanResults = null;
+
 function scanAll() {
-  log("SCAN", `Scanning ${PAIRS.length} pairs...`);
+  // Skip re-scan if data is fresh (< 5 min) — use cached results
+  const now = Date.now();
+  if (now - lastScanTime < 300000 && lastScanResults) {
+    return lastScanResults;
+  }
+  lastScanTime = now;
+
+  // Only log on first scan or if > 15 min since last log
+  if (!lastScanResults || now - lastScanTime > 900000) {
+    log("SCAN", `Scanning ${PAIRS.length} pairs...`);
+  }
   const setups = [];
 
   for (const pair of PAIRS) {
@@ -94,12 +107,13 @@ function scanAll() {
   setups.sort((a, b) => (b.coh + b.rr * 10) - (a.coh + a.rr * 10));
 
   if (setups.length === 0) {
-    log("SCAN_RESULT", "No tradeable setups — all pairs blocked or no entry");
+    lastScanResults = null;
     return null;
   }
 
   const best = setups[0];
   log("BEST", `${best.pair}: ${best.entry} | ${best.model} | R:R ${best.rr}:1 | Coh: ${best.coh}`);
+  lastScanResults = best;
   return best;
 }
 
@@ -126,34 +140,54 @@ function executeTrade(setup) {
 // ═══ MAIN CYCLE ═══
 async function runCycle() {
   const now = nyMins();
+  const nyH = nyHour();
   const dayOfWeek = new Date().getDay();
+
   if (dayOfWeek === 0 || dayOfWeek === 6) {
-    log("WEEKEND", "Markets closed — scheduler paused");
-    if (!ONCE) setTimeout(runCycle, 3600000); // Check again in 1 hour
+    if (!ONCE) setTimeout(runCycle, 1800000); // Weekend: check every 30 min
     return;
   }
 
-  // Find the current/next schedule event
+  // ═══ CONTINUOUS SCAN — Never miss a setup ═══
+  // Active killzones: scan every 5 minutes
+  // Between sessions: scan every 15 minutes
+  // Off-hours: every 30 minutes
+
+  const inLondonKZ = nyH >= 2 && nyH < 5;
+  const inNYKZ = nyH >= 8 && nyH < 11;
+  const inNYPM = nyH >= 13 && nyH < 16;
+  const inActiveSession = inLondonKZ || inNYKZ || inNYPM;
+  const inPreMarket = (nyH >= 5 && nyH < 8) || (nyH >= 11 && nyH < 13);
+
+  // Determine scan interval
+  let scanInterval = 1800000; // 30 min default
+  if (inActiveSession) scanInterval = 300000;  // 5 min during killzones
+  else if (inPreMarket) scanInterval = 900000; // 15 min pre-market
+
+  // Check for scheduled event (briefing windows still do full data refresh)
   let currentEvent = null;
   for (const s of SCHEDULE) {
     const [h, m] = s.time.split(":").map(Number);
     const sMins = h * 60 + m;
-    if (Math.abs(now - sMins) <= 3) { currentEvent = s; break; } // Within 3 min window
+    if (Math.abs(now - sMins) <= 3) { currentEvent = s; break; }
   }
 
   if (currentEvent) {
     log("EVENT", `${currentEvent.time} — ${currentEvent.event}: ${currentEvent.desc}`);
-
     if (currentEvent.action === "briefing") {
       refreshData();
       scanAll();
-    } else if (currentEvent.action === "scan") {
-      const best = scanAll();
-      if (best) executeTrade(best);
     }
   }
 
-  // Friday close: exit all positions
+  // ═══ EVERY CYCLE: Scan for setups ═══
+  // During active sessions, scan on every cycle (not just at event times)
+  if (inActiveSession || inPreMarket) {
+    const best = scanAll();
+    if (best) executeTrade(best);
+  }
+
+  // Friday close
   if (dayOfWeek === 5 && now >= 15 * 60 + 50) {
     log("FRIDAY_CLOSE", "Closing all positions — Friday 4:00 PM rule");
     run(`node "${path.join(ROOT, "tools", "tv-mcp", "check_orders.cjs")}"`, 15000);
@@ -164,8 +198,7 @@ async function runCycle() {
     return;
   }
 
-  // Schedule next check in 60 seconds
-  setTimeout(runCycle, 60000);
+  setTimeout(runCycle, scanInterval);
 }
 
 // ═══ START ═══
