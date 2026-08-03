@@ -1,6 +1,6 @@
 # Time & Price Grid — GBPUSD — 2026-08-03
 
-## Current: 04:04:35 NY | Price: 1.34622 | Bias: BEARISH
+## Current: 14:19:33 NY | Price: 1.34284 | Bias: BEARISH
 
 ## Suspension Blocks (136 on daily)
 - Bearish Suspension: 1.33594–1.34345 (body 61.68% of range) (2026-07-20)
@@ -22,13 +22,12 @@ Quadrants: Q1 1.33447 | Q2(CE) 1.34159 | Q3 1.34870 | Octants: 1.33091 | 1.33447
 | 2026-07-27 | DISCOUNT WICK | 1.32894–1.33112 | 1.33003 | 1.32949 | 1.33058 |
 
 ## Wick & Body Confirmation
-Upper wick: extreme 1.34634, CE 1.34627. CE reached (bearish pressure) | Bodies: upper half ✅ | Turn: ⏳ Not confirmed
+Upper wick: extreme 1.34282, CE 1.34281. CE NOT reached (bullish) | Bodies: upper half ✅ | Turn: ✅ BULLISH CONFIRMED
 
 ## Delivery Mode
 🐢 CONTROLLED delivery (100.00% overlap) — measured, overlapping candles
 
-## Tethered PD Arrays (4)
-- bullish FVG tethered to Octant 5/8 @ 1.34514
+## Tethered PD Arrays (3)
 - bullish FVG tethered to Q1 (25%) @ 1.33447
 - bullish OB tethered to CE (Midpoint) @ 1.34159
 - bearish OB tethered to Q3 (75%) @ 1.34870
@@ -40,7 +39,7 @@ Upper wick: extreme 1.34634, CE 1.34627. CE reached (bearish pressure) | Bodies:
 **SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT**
 - Dominant Half: BULLISH
 - Daily Suspension Block @ 1.34230 | Bodies in upper half | 2026-07-29
-- Premium Wick CE @ 1.34627 | CE reached | BULLISH (bodies in upper half)
+- Premium Wick CE @ 1.34281 | CE NOT reached — respecting | BULLISH (bodies in upper half)
 - ORG CE @ 1.34891 | Price in LOWER (discount) | FILLED
 
 Chain: SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT | 3 links active. Dominant half: UPPER (bullish delivery). Daily Suspension Block @ 1.34230 | Bodies in upper half | 2026-07-29 → ORG CE @ 1.34891 | Price in LOWER (discount) | FILLED

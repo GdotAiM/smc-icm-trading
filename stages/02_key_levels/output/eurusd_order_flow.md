@@ -1,19 +1,19 @@
 # Order Flow Zones — EURUSD — 2026-08-03
 
 ## BOS Leg
-CHoCH bullish @ 1.15262 (1H) | Leg: 5 candles from high @ 1.15388
+CHoCH bearish @ 1.15169 (1H) | Leg: 5 candles from low @ 1.15004
 
 ## OF Zones (2 marked)
 | Zone | Type | Price (Mid) | High | Low | Candles |
 |------|------|-------------|------|-----|--------|
-| 1st OF | BULLISH OF (Support) | 1.15293 | 1.15346 | 1.15240 | 1 |
-| 2nd OF | BULLISH OF (Support) | 1.15359 | 1.15388 | 1.15329 | 1 |
+| 1st OF | BEARISH OF (Resistance) | 1.15058 | 1.15072 | 1.15044 | 1 |
+| 2nd OF | BEARISH OF (Resistance) | 1.15065 | 1.15098 | 1.15033 | 1 |
 
 ## Retracement
-✅ Price INSIDE 1st OF (BULLISH OF (Support)) — look for LTF confirmation
+✅ Price INSIDE 1st OF (BEARISH OF (Resistance)) — look for LTF confirmation
 - Tested Zone: 1st OF
 
 ## Entry Confirmation
-✅ OF CONFIRMED: 1st OF — MSS bullish +  + 1 OB(s)
-- MSS: ✅ bullish
-- FVGs in zone: 0 | OBs in zone: 1
+✅ OF CONFIRMED: 1st OF — MSS bearish + 2 FVG(s)
+- MSS: ✅ bearish
+- FVGs in zone: 2 | OBs in zone: 0

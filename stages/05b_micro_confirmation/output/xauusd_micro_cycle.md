@@ -9,11 +9,11 @@
 
 | Timeframe | Bias | Event | Direction | Displacement | Sweeps | FVGs | OBs |
 |-----------|------|-------|-----------|-------------|--------|------|-----|
-| 15m | **BEARISH** | BOS | bearish | weak (0.08x) | SSL | 0 | 2 |
-| 5m | **BEARISH** | CHoCH | bearish | weak (0.16x) | BSL,SSL,BSL | 1 | 4 |
-| 1m | **BEARISH** | BOS | bearish | weak (0.47x) | SSL,BSL | 0 | 1 |
+| 15m | **BEARISH** | BOS | bearish | weak (0.05x) | BSL,BSL,BSL | 1 | 2 |
+| 5m | **BEARISH** | CHoCH | bearish | weak (0.16x) | BSL,BSL | 1 | 4 |
+| 1m | **BULLISH** | CHoCH | bullish | weak (0.00x) | none | 1 | 2 |
 
 ## LTF Alignment
 - **15m vs HTF**: ⚠️ OPPOSING
 - **5m vs HTF**: ⚠️ OPPOSING
-- **1m vs HTF**: ⚠️ OPPOSING
+- **1m vs HTF**: ✅ ALIGNED

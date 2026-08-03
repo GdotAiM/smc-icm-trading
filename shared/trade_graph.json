@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "built": "2026-08-03T08:04:48.927Z",
+  "built": "2026-08-03T18:20:16.563Z",
   "nodes": {
     "concept:blog---ict": {
       "id": "concept:blog---ict",
@@ -1148,7 +1148,7 @@
       "id": "session:london",
       "type": "session",
       "name": "London",
-      "totalTrades": 6,
+      "totalTrades": 2,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1190,7 +1190,7 @@
       "pair": "EURUSD",
       "direction": "NO",
       "model": "MMXM Sell Model",
-      "session": "London",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1212,6 +1212,15 @@
       "totalPnl": 0,
       "avgPnl": 0
     },
+    "session:ny-pm": {
+      "id": "session:ny-pm",
+      "type": "session",
+      "name": "NY PM",
+      "totalTrades": 4,
+      "winRate": 0,
+      "totalPnl": 0,
+      "avgPnl": 0
+    },
     "trade:gbpusd:2026-08-03": {
       "id": "trade:gbpusd:2026-08-03",
       "type": "trade",
@@ -1219,7 +1228,7 @@
       "pair": "GBPUSD",
       "direction": "NO",
       "model": "MMXM Sell Model",
-      "session": "London",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback",
       "pnl": 0,
@@ -1235,7 +1244,7 @@
       "pair": "NAS100",
       "direction": "NO",
       "model": "MMXM Sell Model",
-      "session": "London",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1255,7 +1264,7 @@
       "pair": "XAUUSD",
       "direction": "NO",
       "model": "MMXM Sell Model",
-      "session": "London",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -2005,7 +2014,7 @@
     },
     {
       "source": "trade:eurusd:2026-08-03",
-      "target": "session:london",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -2026,7 +2035,7 @@
     },
     {
       "source": "trade:gbpusd:2026-08-03",
-      "target": "session:london",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -2047,7 +2056,7 @@
     },
     {
       "source": "trade:nas100:2026-08-03",
-      "target": "session:london",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -2068,7 +2077,7 @@
     },
     {
       "source": "trade:xauusd:2026-08-03",
-      "target": "session:london",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}

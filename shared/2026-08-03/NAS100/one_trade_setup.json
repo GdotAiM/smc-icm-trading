@@ -1,14 +1,14 @@
 {
   "pair": "NAS100",
-  "time": "03:59:09 NY",
-  "currentPrice": 28494.4,
+  "time": "14:20:02 NY",
+  "currentPrice": 28704.9,
   "dailyBias": {
-    "bias": "bullish",
-    "confidence": "0.75",
-    "alignment": "bullish→bearish→bullish→bullish",
+    "bias": "neutral",
+    "confidence": "0.00",
+    "alignment": "bearish→bearish→bullish→bullish",
     "pdZone": "PREMIUM",
-    "tradeable": true,
-    "detail": "BULLISH bias (75.00% confidence) | 3B/1S aligned | PREMIUM zone"
+    "tradeable": false,
+    "detail": "NEUTRAL — 2B/2S aligned. No clear daily bias."
   },
   "sessions": {
     "pm": {
@@ -25,10 +25,7 @@
       "raidStatus": {
         "raided": false,
         "mssConfirmed": false,
-        "mssDirection": null,
-        "validRaid": false,
-        "sweepPrice": null,
-        "detail": "⏳ Not yet raided"
+        "detail": "No bias or no range"
       }
     },
     "london": {
@@ -36,7 +33,7 @@
         "high": 29547.1,
         "low": 27195.1,
         "range": 2352,
-        "sourceCount": 50,
+        "sourceCount": 52,
         "source": "London session"
       },
       "priority": 2,
@@ -44,10 +41,7 @@
       "raidStatus": {
         "raided": false,
         "mssConfirmed": false,
-        "mssDirection": null,
-        "validRaid": false,
-        "sweepPrice": null,
-        "detail": "⏳ Not yet raided"
+        "detail": "No bias or no range"
       }
     },
     "openingGap": {
@@ -90,10 +84,10 @@
     "detail": "Prev Day AM Session (2026-07-30): H 28601.70000 | L 27956.30000"
   },
   "raidSummary": [
-    "P1 PM Session (prev day 1:30-4:00 PM): ⏳ — ⏳ Not yet raided",
-    "P2 London Session (today 2:00-5:00 AM): ⏳ — ⏳ Not yet raided",
+    "P1 PM Session (prev day 1:30-4:00 PM): ⏳ — No bias or no range",
+    "P2 London Session (today 2:00-5:00 AM): ⏳ — No bias or no range",
     "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
     "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
   ],
-  "detail": "Bias: BULLISH bias (75.00% confidence) | 3B/1S aligned | PREMIUM zone\nTarget: Prev Day AM Session (2026-07-30): H 28601.70000 | L 27956.30000\nPM: PM Session (1:30-4:00 PM prev day): H 28397.90000 | L 27061.70000 | 33 candles\nLondon: H 29547.10000 L 27195.10000\nNo session raid + MSS confirmed yet. Monitoring all sessions in priority order."
+  "detail": "Bias: NEUTRAL — 2B/2S aligned. No clear daily bias.\nTarget: Prev Day AM Session (2026-07-30): H 28601.70000 | L 27956.30000\nPM: PM Session (1:30-4:00 PM prev day): H 28397.90000 | L 27061.70000 | 33 candles\nLondon: H 29547.10000 L 27195.10000\nNo session raid + MSS confirmed yet. Monitoring all sessions in priority order."
 }

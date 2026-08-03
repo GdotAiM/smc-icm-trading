@@ -4,15 +4,15 @@
 
 
 ### I. MACRO FOUNDATION — 1W
-The weekly chart shows a BEARISH structure with continuation. This is the macro foundation — all lower timeframe analysis must be read through this lens. The trade direction OPPOSES the weekly trend — this is a counter-trend move within a larger structure, not a standalone trend.
+The weekly chart shows a BULLISH structure with potential change. This is the macro foundation — all lower timeframe analysis must be read through this lens. The trade direction ALIGNS with the weekly trend — the macro wind is at our back.
 
 
 ### II. THE TRANSITION — 1D
-The daily CONTINUES the weekly. The daily bearish bias confirms the larger picture — both timeframes agree, increasing conviction.
+The daily DIVERGES from the weekly. This divergence is the KEY to understanding today's market: the daily move against the weekly trend is MANIPULATION, not a genuine reversal. Institutions are engineering a bearish move to sweep liquidity before the real bullish move resumes.
 
 
 ### III. THE TRADE CONTEXT — 4H
-The 4H is our trade timeframe. CHoCH at 4040.81500 confirms the bullish structure. Liquidity sweep detected: BSL @ 4081.52000, BSL @ 4095.98500. This is the INDUCEMENT — the manipulation that traps traders before the real move. No clear OBs — entry will use measured moves. Displacement is weak.
+The 4H is our trade timeframe. CHoCH at 4040.81500 confirms the bullish structure. Liquidity sweep detected: SSL @ 4020.58125, BSL @ 4042.47750. This is the INDUCEMENT — the manipulation that traps traders before the real move. No clear OBs — entry will use measured moves. Displacement is weak.
 
 
 ### IV. MICRO CONFIRMATION — 15m/5m
@@ -20,7 +20,7 @@ The 15m is bearish while HTF is bullish. This is a PULLBACK within the larger tr
 
 
 ### V. THE TRIGGER — 1m
-The 1m shows bearish bias with 0 FVGs. The 1m bearish is a micro-bounce WITHIN the bullish trend — Scalpers can trade it but should NOT hold against the HTF. Recent 1m sweep detected — micro-manipulation may have just occurred. No 1m FVG — wait for displacement to create entry inefficiency.
+The 1m shows bullish bias with 1 FVGs. The 1m bullish aligns with HTF — trigger may be imminent.  1 FVG(s) available for entry refinement.
 
 
 ---
@@ -32,17 +32,17 @@ Model selection is narrative-driven, not pattern-matched. Each model tells a dif
 
 ### Silver Bullet
 **Fit**: TIME-DRIVEN — this model is about WHEN, not WHAT
-**Why**: Silver Bullet is appropriate RIGHT NOW because we are inside the active killzone window. The model is time-gated — it only works during specific 2-hour windows when institutional flow is highest. The bullish bias provides directional context. Waiting for a displacement FVG to form for the entry trigger.
+**Why**: Silver Bullet is appropriate RIGHT NOW because we are inside the active killzone window. The model is time-gated — it only works during specific 2-hour windows when institutional flow is highest. The bullish bias provides directional context. FVGs are present for entry refinement.
 
 
 ### 2022 Model (MMXM)
 **Fit**: NOT APPLICABLE — missing HTF POI
-**Why**: MMXM requires a clear HTF Point of Interest (unmitigated OB or significant FVG). Currently no clear POI is present — no OBs, no FVGs. Without a POI, the MMXM framework cannot be applied.
+**Why**: MMXM requires a clear HTF Point of Interest (unmitigated OB or significant FVG). Currently no clear POI is present — no OBs, FVGs found. Without a POI, the MMXM framework cannot be applied.
 
 
 ### Turtle Soup
 **Fit**: SWEEP-DRIVEN — sweep detected, reversal expected
-**Why**: Turtle Soup is the pure manipulation entry — enter ON the sweep reversal. A sweep just occurred (BSL, BSL), making Turtle Soup eligible. This model fades the sweep: it assumes the breakout is FALSE and price will reverse. The cycle phase may not be optimal for Turtle Soup — it works best in manipulation.
+**Why**: Turtle Soup is the pure manipulation entry — enter ON the sweep reversal. A sweep just occurred (SSL, BSL), making Turtle Soup eligible. This model fades the sweep: it assumes the breakout is FALSE and price will reverse. The cycle phase may not be optimal for Turtle Soup — it works best in manipulation.
 
 
 ---
@@ -84,7 +84,7 @@ If price CLOSES below 4020.97500 (4H swing low) — the bullish structure is inv
 
 | Archetype | Direction | Sees |
 |-----------|-----------|------|
-| Position (1W) | BULLISH | Note: weekly structure may conflict with this vote |
+| Position (1W) | BULLISH | The weekly structure supports this read |
 | Swing (4H/1D) | BULLISH | Aligned with 4H structure |
 | Day (15m/1H) | BEARISH | Entry timing and session context |
 | Scalp (1m/5m) | BULLISH | Micro trigger readiness |
@@ -100,9 +100,9 @@ If price CLOSES below 4020.97500 (4H swing low) — the bullish structure is inv
 
 The market is telling us a coherent story:
 
-**XAUUSD is in a DISTRIBUTION phase within a larger BEARISH weekly structure.**
+**XAUUSD is in a DISTRIBUTION phase within a larger BULLISH weekly structure.**
 
-The weekly chart shows a BEARISH structure with continuation. The daily CONTINUES the weekly. The 4H is our trade timeframe.
+The weekly chart shows a BULLISH structure with potential change. The daily DIVERGES from the weekly. The 4H is our trade timeframe.
 
 This IS a trend trade. The structure is established and institutions are distributing. Ride the trend, trail stops, and let winners run.
 
@@ -115,5 +115,5 @@ This IS a trend trade. The structure is established and institutions are distrib
 
 ---
 
-*Generated: 2026-08-03T07:59:09.155Z | Narrative Engine v1.0*
+*Generated: 2026-08-03T18:20:01.606Z | Narrative Engine v1.0*
 *"The market is a storyteller. Our job is to listen, not to guess."*

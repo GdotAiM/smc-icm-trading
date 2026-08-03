@@ -1,6 +1,6 @@
 # IRL / ERL Analysis — NAS100 — 2026-08-03
 
-## Current Price: 28494.40000
+## Current Price: 28704.90000
 
 ## Dealing Range (1D)
 - **Range**: 28217.30000 — 29861.40000 (1644.10000)
@@ -17,10 +17,10 @@
 | Filled (>70%) | 0 |
 
 ## ERL — External Range Liquidity
-- **Dominant**: BALANCED
-- **Larger Pool**: ABOVE
+- **Dominant**: SELL-SIDE (below)
+- **Larger Pool**: BELOW
 - **Buy-Side (above range)**: 0 pools | 0 equal-high clusters
-- **Sell-Side (below range)**: 0 pools | 0 equal-low clusters
+- **Sell-Side (below range)**: 3 pools | 1 equal-low clusters
 
 ## Delivery Cycle
 - **Position**: OUTSIDE RANGE

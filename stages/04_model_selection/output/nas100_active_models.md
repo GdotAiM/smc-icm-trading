@@ -2,9 +2,9 @@
 
 ## Market Context
 - Bias: **BEARISH** (1D/4H)
-- Session: London (ACTIVE)
+- Session: NY PM (ACTIVE)
 - **Cycle Phase**: DISTRIBUTION | **MMXM Step**: undefined/4
-- Levels: 0 OBs | 1 FVGs | 6 pools
+- Levels: 0 OBs | 2 FVGs | 6 pools
 - Sweeps: Yes — liquidity sweep detected
 
 ## Model Scores (Cycle-Weighted)
@@ -19,7 +19,7 @@
 | Unicorn (OTE+FVG) | 4/11 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
 | Breaker Block | 2/7 | ×0.50 | ×1.00 | ✅ | **0.00** | Rejected |
 | SCOB | 2/10 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
-| 2FVG Entry | 3/7 | ×1.10 | ×1.00 | ✅ | **0.00** | Rejected |
+| 2FVG Entry | 6/7 | ×1.10 | ×1.00 | ✅ | **0.00** | Rejected |
 | Judas Swing | 5/8 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
 | Asian Range Breakout | 2/6 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
 | NWOG/NDOG | 3/4 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |

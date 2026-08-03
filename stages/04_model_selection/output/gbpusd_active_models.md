@@ -2,9 +2,9 @@
 
 ## Market Context
 - Bias: **BEARISH** (1D/4H)
-- Session: London (ACTIVE)
+- Session: NY PM (ACTIVE)
 - **Cycle Phase**: DISTRIBUTION | **MMXM Step**: undefined/4
-- Levels: 4 OBs | 4 FVGs | 6 pools
+- Levels: 4 OBs | 3 FVGs | 6 pools
 - Sweeps: Yes — liquidity sweep detected
 
 ## Model Scores (Cycle-Weighted)
@@ -13,10 +13,10 @@
 |-------|-----------|---------|-----|-------|--------|
 | MMXM Sell Model | 8/13 | ×1.40 | ×1.00 | ✅ | **0.00** | ★ PRIMARY |
 | MMXM Buy Model | 5/13 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
-| Silver Bullet | 5/10 | ×1.10 | ×1.00 | ✅ | **0.00** | Rejected |
-| OTE + Institutional OB | 6/11 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
+| Silver Bullet | 8/10 | ×1.10 | ×1.00 | ✅ | **0.00** | Rejected |
+| OTE + Institutional OB | 8/11 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
 | Turtle Soup | 7/9 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| Unicorn (OTE+FVG) | 6/11 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
+| Unicorn (OTE+FVG) | 8/11 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
 | Breaker Block | 5/7 | ×0.50 | ×1.00 | ✅ | **0.00** | Rejected |
 | SCOB | 5/10 | ×1.40 | ×1.00 | ✅ | **0.00** | Rejected |
 | 2FVG Entry | 6/7 | ×1.10 | ×1.00 | ✅ | **0.00** | Rejected |
@@ -40,7 +40,7 @@
 ⚠️ **Mitigation Block**: Mitigation Block requires ACCUMULATION/MANIPULATION phase, but we are in DISTRIBUTION
 
 ## Primary: MMXM Sell Model (0.00 — structural 8 × cycle 1.40 × perf 1.00)
-**SMT**: ✅ Indirect SMT: 9 sweeps across 1H/4H suggest manipulation
+**SMT**: ✅ Indirect SMT: 8 sweeps across 1H/4H suggest manipulation
 
 ## Conflict Check
 ✅ **NO CONFLICTS** — All top models are compatible.

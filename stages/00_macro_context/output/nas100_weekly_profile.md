@@ -1,30 +1,30 @@
 # Weekly Range Profile — NAS100 — 2026-08-03
 
-## Day: Monday 03:59:09 NY
+## Day: Monday 14:20:02 NY
 
 ## HTF Context
 HTF Arrays: Premium @ 22916.10000 (touched) | Discount @ 22583.70000 (UNTOUCHED) | Price in PREMIUM zone
 
 ## Bias
-bullish→bearish→bullish — MIXED
+bearish→bearish→bullish — ALIGNED
 
 ## Profile Classification
-**Wednesday Low** (100% confidence)
-- Direction: BULLISH
+**Wednesday High** (100% confidence)
+- Direction: BEARISH
 - Target Day: Wednesday
-- Behavior: Mon-Tue manipulation → Wednesday drop into discount → rally
+- Behavior: Mon-Tue manipulation → Wednesday rally into premium → drop
 - Skip Week: ✅ No
 - Slight IX/X risk (Summer) — monitor.
 
 ### Candidate Profiles
 | ID | Profile | Score | Day of Extreme | Reasons |
 |----|---------|-------|----------------|----------|
-| III | Wednesday Low | 6 | Wednesday | Monday — eligible, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
-| XI | Wednesday Weekly Bullish Rev | 6 | Wednesday | Monday — eligible, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
-| I | Classic Tuesday Low | 4 | Tuesday | Monday — eligible, Discount untouched — target below |
-| V | Consolidation Thu Bullish Rev | 4 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Discount untouched — target below |
+| IV | Wednesday High | 4 | Wednesday | Monday — eligible, Monday reached array — Tue profiles eliminated |
+| VIII | Consolidation Midweek Decline | 4 | Wed→Friday | Monday — eligible, Monday reached array — Tue profiles eliminated |
+| XII | Wednesday Weekly Bearish Rev | 4 | Wednesday | Monday — eligible, Monday reached array — Tue profiles eliminated |
+| II | Classic Tuesday High | 2 | Tuesday | Monday — eligible |
 
 ## Weekly Anchor
-- Direction: **BUY**
+- Direction: **SELL**
 - Boost: ×1.4 (agreeing) / ×0.3 (opposing)
-- Weekly Anchor: BULLISH — Wednesday LOW expected. Aligned models ×1.4, opposing ×0.7.
+- Weekly Anchor: BEARISH — Wednesday HIGH expected. Aligned models ×1.4, opposing ×0.7.

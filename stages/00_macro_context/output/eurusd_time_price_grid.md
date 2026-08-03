@@ -1,6 +1,6 @@
 # Time & Price Grid — EURUSD — 2026-08-03
 
-## Current: 04:04:22 NY | Price: 1.15270 | Bias: BEARISH
+## Current: 14:19:19 NY | Price: 1.15060 | Bias: BEARISH
 
 ## Suspension Blocks (129 on daily)
 - Bearish Suspension: 1.13974–1.14148 (body 53.67% of range) (2026-07-20)
@@ -22,15 +22,15 @@ Quadrants: Q1 1.14204 | Q2(CE) 1.14877 | Q3 1.15549 | Octants: 1.13868 | 1.14204
 | 2026-07-26 | DISCOUNT WICK | 1.13958–1.14184 | 1.14071 | 1.14014 | 1.14128 |
 
 ## Wick & Body Confirmation
-Lower wick: extreme 1.15251, CE 1.15255. CE reached (bullish pressure) | Bodies: upper half ✅ | Turn: ⏳ Not confirmed
+Lower wick: extreme 1.15059, CE 1.15062. CE NOT reached (bearish) | Bodies: mixed | Turn: ⏳ Not confirmed
 
 ## Delivery Mode
 🐢 CONTROLLED delivery (100.00% overlap) — measured, overlapping candles
 
 ## Tethered PD Arrays (3)
+- bearish FVG tethered to Octant 5/8 @ 1.15213
 - bullish FVG tethered to Q1 (25%) @ 1.14204
-- bearish OB tethered to Q3 (75%) @ 1.15549
-- bullish OB tethered to CE (Midpoint) @ 1.14877
+- bullish OB tethered to Q3 (75%) @ 1.15549
 
 ## Narrative
 **Price outside controlled space but delivery is not yet efficient — still overlapping. Wait for tight channel to confirm direction.**
@@ -39,7 +39,7 @@ Lower wick: extreme 1.15251, CE 1.15255. CE reached (bullish pressure) | Bodies:
 **SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT**
 - Dominant Half: BEARISH
 - Daily Suspension Block @ 1.14985 | Bodies in upper half | 2026-07-29
-- Discount Wick CE @ 1.15255 | CE reached | BULLISH (bodies in upper half)
+- Discount Wick CE @ 1.15062 | CE NOT reached — respecting | NEUTRAL
 - ORG CE @ 1.15395 | Price in LOWER (discount) | FILLED
 
 Chain: SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT | 3 links active. Dominant half: LOWER (bearish delivery). Daily Suspension Block @ 1.14985 | Bodies in upper half | 2026-07-29 → ORG CE @ 1.15395 | Price in LOWER (discount) | FILLED

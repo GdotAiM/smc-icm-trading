@@ -1,7 +1,7 @@
 {
   "pair": "GBPUSD",
-  "time": "04:04:35 NY",
-  "currentPrice": 1.34622,
+  "time": "14:19:33 NY",
+  "currentPrice": 1.34284,
   "dailyBias": {
     "bias": "bearish",
     "confidence": "0.75",
@@ -27,7 +27,7 @@
         "mssConfirmed": false,
         "mssDirection": null,
         "validRaid": false,
-        "sweepPrice": 1.347278,
+        "sweepPrice": 1.3481233333333333,
         "detail": "⚡ RAIDED — awaiting MSS: High swept"
       }
     },
@@ -36,7 +36,7 @@
         "high": 1.35425,
         "low": 1.32798,
         "range": 0.026270000000000016,
-        "sourceCount": 50,
+        "sourceCount": 52,
         "source": "London session"
       },
       "priority": 2,

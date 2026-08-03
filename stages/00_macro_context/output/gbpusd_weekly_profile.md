@@ -1,6 +1,6 @@
 # Weekly Range Profile — GBPUSD — 2026-08-03
 
-## Day: Monday 04:04:35 NY
+## Day: Monday 14:19:33 NY
 
 ## HTF Context
 HTF Arrays: Premium @ 1.37710 (UNTOCUHED) | Discount @ 1.33704 (UNTOUCHED) | Price in DISCOUNT zone

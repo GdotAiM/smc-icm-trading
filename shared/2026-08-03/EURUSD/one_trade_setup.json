@@ -1,53 +1,47 @@
 {
   "pair": "EURUSD",
-  "time": "02:08:50 NY",
-  "currentPrice": 28511.3,
+  "time": "11:20:22 NY",
+  "currentPrice": 1.1517,
   "dailyBias": {
-    "bias": "bullish",
-    "confidence": "0.75",
-    "alignment": "bullish→bearish→bullish→bullish",
+    "bias": "neutral",
+    "confidence": "0.00",
+    "alignment": "bullish→bearish→bullish→bearish",
     "pdZone": "PREMIUM",
-    "tradeable": true,
-    "detail": "BULLISH bias (75.00% confidence) | 3B/1S aligned | PREMIUM zone"
+    "tradeable": false,
+    "detail": "NEUTRAL — 2B/2S aligned. No clear daily bias."
   },
   "sessions": {
     "pm": {
       "range": {
-        "high": 28397.9,
-        "low": 27061.7,
-        "range": 1336.2000000000007,
+        "high": 1.15376,
+        "low": 1.13892,
+        "range": 0.014839999999999964,
         "candleCount": 33,
         "source": "15m PM candles",
-        "detail": "PM Session (1:30-4:00 PM prev day): H 28397.90000 | L 27061.70000 | 33 candles"
+        "detail": "PM Session (1:30-4:00 PM prev day): H 1.15376 | L 1.13892 | 33 candles"
       },
       "priority": 1,
       "label": "PM Session (prev day 1:30-4:00 PM)",
       "raidStatus": {
         "raided": false,
-        "mssConfirmed": true,
-        "mssDirection": "bearish",
-        "validRaid": false,
-        "sweepPrice": null,
-        "detail": "⏳ Not yet raided"
+        "mssConfirmed": false,
+        "detail": "No bias or no range"
       }
     },
     "london": {
       "range": {
-        "high": 28516.6,
-        "low": 28326.7,
-        "range": 189.89999999999782,
-        "sourceCount": 48,
+        "high": 1.15388,
+        "low": 1.13559,
+        "range": 0.018289999999999917,
+        "sourceCount": 52,
         "source": "London session"
       },
       "priority": 2,
       "label": "London Session (today 2:00-5:00 AM)",
       "raidStatus": {
-        "raided": true,
-        "mssConfirmed": true,
-        "mssDirection": "bearish",
-        "validRaid": false,
-        "sweepPrice": 28326.4,
-        "detail": "⏳ Not yet raided"
+        "raided": false,
+        "mssConfirmed": false,
+        "detail": "No bias or no range"
       }
     },
     "openingGap": {
@@ -90,10 +84,10 @@
     "detail": "Prev Day AM Session (2026-07-30): H 1.15476 | L 1.14551"
   },
   "raidSummary": [
-    "P1 PM Session (prev day 1:30-4:00 PM): ⏳ — ⏳ Not yet raided",
-    "P2 London Session (today 2:00-5:00 AM): ⚡ RAIDED — ⏳ Not yet raided",
+    "P1 PM Session (prev day 1:30-4:00 PM): ⏳ — No bias or no range",
+    "P2 London Session (today 2:00-5:00 AM): ⏳ — No bias or no range",
     "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
     "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
   ],
-  "detail": "Bias: BULLISH bias (75.00% confidence) | 3B/1S aligned | PREMIUM zone\nTarget: Prev Day AM Session (2026-07-30): H 1.15476 | L 1.14551\nPM: PM Session (1:30-4:00 PM prev day): H 28397.90000 | L 27061.70000 | 33 candles\nLondon: H 28516.60000 L 28326.70000\nNo session raid + MSS confirmed yet. Monitoring all sessions in priority order."
+  "detail": "Bias: NEUTRAL — 2B/2S aligned. No clear daily bias.\nTarget: Prev Day AM Session (2026-07-30): H 1.15476 | L 1.14551\nPM: PM Session (1:30-4:00 PM prev day): H 1.15376 | L 1.13892 | 33 candles\nLondon: H 1.15388 L 1.13559\nNo session raid + MSS confirmed yet. Monitoring all sessions in priority order."
 }

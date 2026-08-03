@@ -1,6 +1,6 @@
 # IRL / ERL Analysis — EURUSD — 2026-08-03
 
-## Current Price: 1.15270
+## Current Price: 1.15060
 
 ## Dealing Range (1D)
 - **Range**: 1.13532 — 1.16221 (0.02689)
@@ -18,9 +18,9 @@
 
 | TF | Type | Price (CE) | Fill % | Distance |
 |-----|------|------------|--------|----------|
-| 15m | bullish | 1.14948 | 0.00% | 0.28% |
-| 15m | bullish | 1.14318 | 0.00% | 0.83% |
-| 15m | bullish | 1.14423 | 5.71% | 0.73% |
+| 15m | bullish | 1.14948 | 0.00% | 0.10% |
+| 15m | bullish | 1.14318 | 0.00% | 0.65% |
+| 15m | bullish | 1.14423 | 5.71% | 0.55% |
 
 ## ERL — External Range Liquidity
 - **Dominant**: BALANCED

@@ -21,13 +21,13 @@
 
 | TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
-| 1W | **BEARISH** | BOS | ✅ aligned |
+| 1W | **BEARISH** | CHoCH | ✅ aligned |
 | 1D | **BEARISH** | BOS | ✅ aligned |
 | 4H | **BULLISH** | BOS | ⚠️ opposing |
 | 1H | **BULLISH** | BOS | ⚠️ opposing |
 | 15m | **BEARISH** | BOS | ✅ aligned |
-| 5m | **BEARISH** | CHoCH | ✅ aligned |
-| 1m | **BEARISH** | BOS | ✅ aligned |
+| 5m | **BEARISH** | BOS | ✅ aligned |
+| 1m | **BEARISH** | CHoCH | ✅ aligned |
 
 **✅ TEMPORAL COHERENCE — 3/4 LTFs aligned with HTF BEARISH. 1 opposing (micro pullback — normal).**
 
@@ -41,9 +41,9 @@
 
 ## 4. Self-Contradiction Check
 
-- **[WARNING]** STRUCTURE vs PD ARRAY: Structure is BULLISH but price is in PREMIUM (sell zone). This is a counter-trend buy within the sell zone.
+✅ No self-contradictions detected.
 
-**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
+**✅ NO SELF-CONTRADICTIONS — The system is internally consistent.**
 
 ---
 

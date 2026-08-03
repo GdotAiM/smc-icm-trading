@@ -8,7 +8,7 @@ Liquidity purged but no displacement yet — SMR forming.
 No SMR and no bias alignment — flat.
 
 ## Symmetry
-Symmetry target: 4063.66000 - 99.52000 = 3964.14000
+Symmetry target: 4037.58000 - 58.21000 = 3979.37000
 Target: N/A
 
 ## Entry Phase: **PRE-SMR**

@@ -1,7 +1,7 @@
 {
   "pair": "EURUSD",
-  "time": "04:04:33 NY",
-  "currentPrice": 1.1527,
+  "time": "14:19:31 NY",
+  "currentPrice": 1.1506,
   "htfBias": {
     "daily": "bearish",
     "h4": "bullish",
@@ -17,17 +17,17 @@
     "detail": "PDH: 1.15476 | PDL: 1.14551 | Range: 0.00925"
   },
   "pwhPwl": {
-    "pwh": 1.15388,
-    "pwl": 1.15236,
-    "range": 0.0015199999999999658,
-    "detail": "PWH: 1.15388 | PWL: 1.15236 | Range: 0.00152"
+    "pwh": 1.1506,
+    "pwl": 1.15058,
+    "range": 0.000020000000000131024,
+    "detail": "PWH: 1.15060 | PWL: 1.15058 | Range: 0.00002"
   },
   "relEquals": {
     "highs": [],
     "lows": [
       {
-        "price": 1.145765,
-        "detail": "SSL @ 1.14576"
+        "price": 1.14551,
+        "detail": "SSL @ 1.14551"
       }
     ],
     "highCount": 0,
@@ -59,18 +59,18 @@
         "label": "Previous Day Low"
       },
       {
-        "level": "PWL",
-        "price": 1.15236,
-        "type": "SSL",
-        "priority": 2,
-        "label": "Previous Week Low"
-      },
-      {
         "level": "PWH",
-        "price": 1.15388,
+        "price": 1.1506,
         "type": "BSL",
         "priority": 2,
         "label": "Previous Week High"
+      },
+      {
+        "level": "PWL",
+        "price": 1.15058,
+        "type": "SSL",
+        "priority": 2,
+        "label": "Previous Week Low"
       }
     ],
     "detail": "Primary draw: Previous Day High (BSL) @ 1.15476 | Opposite (TP): N/A"
@@ -79,17 +79,17 @@
     "swept": true,
     "mss": true,
     "sweptPool": {
-      "price": 1.1533,
+      "price": 1.15346,
       "type": "BSL",
-      "strength": 3,
-      "score": 4.321429214213567,
-      "distance": 0.05205170469332297,
-      "session": "London",
-      "ageBars": 23,
+      "strength": 5,
+      "score": 8.333666352968885,
+      "distance": 0.24856596558316207,
+      "session": "NY AM",
+      "ageBars": 4,
       "swept": true
     },
     "structureEvent": "CHoCH",
-    "detail": "✅ Previous Day High SWEPT at 1.15330 | MSS: ✅ Confirmed"
+    "detail": "✅ Previous Day High SWEPT at 1.15346 | MSS: ✅ Confirmed"
   },
   "entryGuidance": {
     "ready": true,
@@ -116,7 +116,7 @@
         "isLongTerm": true,
         "isWithTrend": false,
         "isCounterTrend": false,
-        "distPct": "0.18"
+        "distPct": "0.36"
       },
       {
         "level": "PDL",
@@ -125,30 +125,16 @@
         "priority": 1,
         "label": "Previous Day Low",
         "classification": "HRLR",
-        "defenders": 0,
+        "defenders": 1,
         "hasNearbyFVG": true,
         "isLongTerm": true,
         "isWithTrend": false,
         "isCounterTrend": false,
-        "distPct": "0.62"
-      },
-      {
-        "level": "PWL",
-        "price": 1.15236,
-        "type": "SSL",
-        "priority": 2,
-        "label": "Previous Week Low",
-        "classification": "HRLR",
-        "defenders": 0,
-        "hasNearbyFVG": true,
-        "isLongTerm": true,
-        "isWithTrend": false,
-        "isCounterTrend": false,
-        "distPct": "0.03"
+        "distPct": "0.44"
       },
       {
         "level": "PWH",
-        "price": 1.15388,
+        "price": 1.1506,
         "type": "BSL",
         "priority": 2,
         "label": "Previous Week High",
@@ -158,7 +144,21 @@
         "isLongTerm": true,
         "isWithTrend": false,
         "isCounterTrend": false,
-        "distPct": "0.10"
+        "distPct": "0.00"
+      },
+      {
+        "level": "PWL",
+        "price": 1.15058,
+        "type": "SSL",
+        "priority": 2,
+        "label": "Previous Week Low",
+        "classification": "HRLR",
+        "defenders": 0,
+        "hasNearbyFVG": true,
+        "isLongTerm": true,
+        "isWithTrend": false,
+        "isCounterTrend": false,
+        "distPct": "0.00"
       }
     ],
     "lrlrCount": 0,
@@ -176,7 +176,7 @@
       "isLongTerm": true,
       "isWithTrend": false,
       "isCounterTrend": false,
-      "distPct": "0.18"
+      "distPct": "0.36"
     },
     "detail": "0 LRLR (easy, with-trend) | 4 HRLR (hard, needs catalyst) | Primary TP: N/A | Stretch: Previous Day High @ 1.15476"
   },
@@ -189,7 +189,7 @@
     "displacedAway": false,
     "mssFound": false,
     "mssDirection": null,
-    "currentPrice": 1.1527,
+    "currentPrice": 1.15064,
     "sweptLevel": 1.15476,
     "detail": "⏳ POTENTIAL SWEEP: BUY-SIDE (above) swept and price back inside range. HTF disagrees — likely reversal. Awaiting MSS confirmation on 1m."
   }

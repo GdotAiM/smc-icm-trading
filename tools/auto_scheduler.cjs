@@ -143,11 +143,14 @@ function executeTrade(setup) {
   const result = run(cmd, 30000);
   if (result && (result.includes("Verified") || result.includes("filled"))) {
     log("TRADE_EXECUTED", `${setup.pair} ${direction} ${qty} — VERIFIED ✅`);
+    // Track this position for pyramid monitoring
+    activePositions.push({ pair: setup.pair, direction, entry: parseFloat(setup.entry.split('@')[1] || '0'), sl: parseFloat(setup.sl), tp: parseFloat(setup.tp), qty, pyramidAdded: [] });
+    saveState();
 
-    // ═══ AUTO-JOURNAL: Write decision entry on trade execution ═══
+    // ═══ AUTO-JOURNAL ═══
     const journalFile = path.join(ROOT, "shared", DATE, "decision_journal.md");
     const ts = nyTime();
-    const reason = `${setup.model} | R:R ${setup.rr}:1 | Coh: ${setup.coh}/100 | Lectures: ${setup.lectures?.join(',') || 'none'}`;
+    const reason = `${setup.model} | R:R ${setup.rr}:1 | Coh: ${setup.coh}/100`;
     const entry = `| ${ts} NY | TRADE_EXECUTED | ${setup.pair} ${direction} ${qty} @ ${setup.entry} | ${reason} |`;
     try {
       if (!fs.existsSync(journalFile)) {
@@ -157,6 +160,70 @@ function executeTrade(setup) {
     } catch {}
   } else {
     log("TRADE_FAILED", `${setup.pair} ${direction} — order might not have filled`);
+  }
+}
+
+// ═══ PYRAMID MONITOR — Auto-add at IOFED levels ═══
+const STATE_FILE = path.join(ROOT, "shared", DATE, "pyramid_state.json");
+let activePositions = [];
+let pyramidFilled = {}; // Track which levels were already added
+
+// Load previous state (survives scheduler restarts)
+try {
+  if (fs.existsSync(STATE_FILE)) {
+    const state = JSON.parse(fs.readFileSync(STATE_FILE, "utf8"));
+    activePositions = state.positions || [];
+    pyramidFilled = state.filled || {};
+    if (activePositions.length > 0) log("STATE_LOADED", `${activePositions.length} positions restored, ${Object.keys(pyramidFilled).length} pyramid levels filled`);
+  }
+} catch {}
+function saveState() {
+  try { fs.writeFileSync(STATE_FILE, JSON.stringify({ positions: activePositions, filled: pyramidFilled })); } catch {}
+}
+
+function checkPyramidLevels() {
+  if (activePositions.length === 0) return;
+
+  for (const pos of activePositions) {
+    // Get current price from the latest engine data
+    let currentPrice = 0;
+    try {
+      const dir = pos.pair === "XAUUSD" ? "GOLD" : pos.pair;
+      const e = JSON.parse(fs.readFileSync(path.join(ROOT, "shared", DATE, dir, "engine_5m.json"), "utf8"));
+      currentPrice = e.price;
+    } catch { continue; }
+
+    const range = pos.tp - pos.sl;
+    if (range <= 0) continue;
+
+    const pyramidLevels = [
+      { label: "Far Edge", price: pos.sl + range * 0.25, pct: 0.25 },
+      { label: "CE 50%", price: pos.sl + range * 0.50, pct: 0.35 },
+      { label: "IOFED Edge", price: pos.sl + range * 0.75, pct: 0.40 },
+    ];
+
+    for (const level of pyramidLevels) {
+      const key = `${pos.pair}_${level.label}`;
+      if (pyramidFilled[key]) continue; // Already added at this level
+
+      if (currentPrice > level.price && pos.direction === "BUY") {
+        // Price crossed above pyramid level — ADD
+        const addQty = pos.pair === "NAS100" || pos.pair === "XAUUSD" ? 1 : Math.round(pos.qty * level.pct);
+        const cmd = `node "${path.join(ROOT, "tools", "tv-mcp", "market_order.cjs")}" ${pos.pair} ${pos.direction} ${pos.sl} ${pos.tp} ${addQty}`;
+        log("PYRAMID", `${pos.pair}: ${level.label} @ ${level.price.toFixed(1)} crossed (now ${currentPrice.toFixed(1)}) — adding ${addQty}`);
+        const result = run(cmd, 30000);
+        if (result && (result.includes("Verified") || result.includes("filled"))) {
+          pyramidFilled[key] = true;
+          pos.pyramidAdded.push(level.label);
+          saveState();
+          log("PYRAMID_EXECUTED", `${pos.pair}: +${addQty} at ${level.label} — TOTAL: ${pos.qty + pos.pyramidAdded.length} contracts`);
+
+          // Auto-journal pyramid add
+          const jf = path.join(ROOT, "shared", DATE, "decision_journal.md");
+          try { fs.appendFileSync(jf, `| ${nyTime()} NY | PYRAMID_ADD | ${pos.pair} ${pos.direction} +${addQty} @ ${level.label} (${level.price.toFixed(1)}) | Price: ${currentPrice.toFixed(1)} |\n`); } catch {}
+        }
+      }
+    }
   }
 }
 
@@ -217,11 +284,11 @@ async function runCycle() {
     }
   }
 
-  // ═══ EVERY CYCLE: Scan for setups ═══
-  // During active sessions, scan on every cycle (not just at event times)
+  // ═══ EVERY CYCLE: Scan for setups + check pyramid levels ═══
   if (inActiveSession || inPreMarket) {
     const best = scanAll();
     if (best) executeTrade(best);
+    checkPyramidLevels(); // Auto-add at crossed IOFED levels
   }
 
   // Friday close

@@ -1,7 +1,7 @@
 # Po3 State Machine — EURUSD — 2026-08-03
 
-## Current State: **DISTRIBUTION** (0.60 confidence)
-**BOS bullish — distribution beginning**
+## Current State: **DISTRIBUTION** (0.80 confidence)
+**BOS bullish + displacement (0.71x) — trend is distributing**
 
 ## State Timeline
 
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for London PM (04:00 NY): DISTRIBUTION**
+**Expected phase for NY PM (14:00 NY): DISTRIBUTION**
 **Detected phase: DISTRIBUTION**
 ✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
 
@@ -27,8 +27,8 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 | TF | State | Confidence | Reason |
 |----|-------|------------|--------|
-| 1D | DISTRIBUTION | 0.60 | BOS bearish — distribution beginning |
-| 4H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
+| 1D | DISTRIBUTION | 0.80 | BOS bearish + displacement (0.73x) — trend is distributing |
+| 4H | DISTRIBUTION | 0.80 | BOS bullish + displacement (0.71x) — trend is distributing |
 | 1H | MANIPULATION | 0.85 | 4 sweep(s) + CHoCH — manipulation active |
 
 ## Entry Rules for DISTRIBUTION
@@ -36,10 +36,10 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 **Distribution is the TREND phase. Enter on retracements to OBs/FVGs. Full size.**
 
 ## Daily Open Anchor
-Daily Open (Midnight NY): 1.14667
+Daily Open (Midnight NY): 1.14395
 
 ## Accumulation Range
-✅ Accumulation Range: 1.15224–1.15560 (0.29% — TIGHT). Institutions building positions.
+Range: 1.15004–1.15352 (0.30% — WIDE). Not tight accumulation.
 
 ## Manipulation Direction Check
 ⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.

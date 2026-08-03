@@ -11,11 +11,11 @@
 
 
 ## Per-Session Po3
-**Current session: London AM — MANIPULATION phase. Judas Swing window — false breakout likely.**
-- London AM: MANIPULATION — Judas Swing window — false breakout likely
+**Current session: NY PM — DISTRIBUTION phase. Late continuation or reversal.**
+- NY PM: DISTRIBUTION — Late continuation or reversal
 
 ## ISD Sequence
 **⏳ ISD 2/3 — Near complete. One more confirmation needed.**
 - ✅ Inducement: 9 pool(s) swept across 4H/15m
-- ✅ Structural Sweep: CHoCH confirms on 15m/5m
-- ✗ Displacement: weak on 5m (0.41x) — below threshold
+- ✅ Structural Sweep: BOS confirms on 15m/5m
+- ✗ Displacement: weak on 5m (0.05x) — below threshold

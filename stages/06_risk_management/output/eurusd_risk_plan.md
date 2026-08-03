@@ -11,9 +11,9 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 1.15270 |
+| Entry | 1.15060 |
 | SL | 0.00000 (structural invalidation) |
-| Stop Distance | 11527 pips |
+| Stop Distance | 11506 pips |
 | **Position** | **0 micro lots** |
 | Risk | $100.00 |
 | Max Gain (TP1) | $100.00 |
@@ -22,7 +22,7 @@
 ```
 PAIR:       EURUSD
 DIRECTION:  NO TRADE
-ENTRY:      1.15270
+ENTRY:      1.15060
 SL:         0.00000
 TP1:        0.00000 (close 50%)
 TP2:        0.00000 (close 50%)

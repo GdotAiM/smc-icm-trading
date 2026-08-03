@@ -11,9 +11,9 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 4063.43 |
+| Entry | 4037.58 |
 | SL | 0.00 (structural invalidation) |
-| Stop Distance | 40634 points |
+| Stop Distance | 40376 points |
 | **Position** | **0 micro lots** |
 | Risk | $100.00 |
 | Max Gain (TP1) | $100.00 |
@@ -22,7 +22,7 @@
 ```
 PAIR:       XAUUSD
 DIRECTION:  NO TRADE
-ENTRY:      4063.43
+ENTRY:      4037.58
 SL:         0.00
 TP1:        0.00 (close 50%)
 TP2:        0.00 (close 50%)

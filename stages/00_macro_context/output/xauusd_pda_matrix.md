@@ -9,8 +9,8 @@
 | Quadrant | Arrays | Stacks | Confluence |
 |----------|--------|--------|------------|
 | LOWER (Discount) | 3 | 1 | **HIGH** |
-| MID-LOW | 5 | 2 | **HIGH** |
-| MID-HIGH | 2 | 1 | **MODERATE** |
+| MID-LOW | 4 | 0 | **MODERATE** |
+| MID-HIGH | 3 | 1 | **HIGH** |
 | UPPER (Premium) | 1 | 0 | **MODERATE** |
 
 **Target**: UPPER (Premium) — MODERATE confluence

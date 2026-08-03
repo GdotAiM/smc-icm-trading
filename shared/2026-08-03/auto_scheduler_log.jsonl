@@ -11,3 +11,70 @@
 {"time":"2026-08-03T07:58:28.376Z","nyTime":"03:58:28","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon"}
 {"time":"2026-08-03T07:58:28.379Z","nyTime":"03:58:28","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
 {"time":"2026-08-03T08:04:22.191Z","nyTime":"04:04:22","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T08:10:14.717Z","nyTime":"04:10:14","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T08:16:05.506Z","nyTime":"04:16:05","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T08:21:56.158Z","nyTime":"04:21:56","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T08:27:45.763Z","nyTime":"04:27:45","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T08:33:37.493Z","nyTime":"04:33:37","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T08:39:27.918Z","nyTime":"04:39:27","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T08:45:18.057Z","nyTime":"04:45:18","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T08:51:10.457Z","nyTime":"04:51:10","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T08:56:59.847Z","nyTime":"04:56:59","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T09:02:49.887Z","nyTime":"05:02:49","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T09:18:38.803Z","nyTime":"05:18:38","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T09:34:27.925Z","nyTime":"05:34:27","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T09:50:19.241Z","nyTime":"05:50:19","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T10:06:08.562Z","nyTime":"06:06:08","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T10:21:58.903Z","nyTime":"06:21:58","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T10:37:49.059Z","nyTime":"06:37:49","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T10:53:39.235Z","nyTime":"06:53:39","event":"EVENT","detail":"06:55 — PRE_LECTURE2: Pre-07:00 data refresh"}
+{"time":"2026-08-03T10:53:39.253Z","nyTime":"06:53:39","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-03T10:56:49.655Z","nyTime":"06:56:49","event":"DATA_REFRESH","detail":"Complete in 190s — OK"}
+{"time":"2026-08-03T10:56:49.656Z","nyTime":"06:56:49","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T11:12:39.645Z","nyTime":"07:12:39","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T11:28:28.902Z","nyTime":"07:28:28","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T11:44:18.470Z","nyTime":"07:44:18","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:00:07.818Z","nyTime":"08:00:07","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:05:58.370Z","nyTime":"08:05:58","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:11:53.344Z","nyTime":"08:11:53","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:17:44.417Z","nyTime":"08:17:44","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:23:36.521Z","nyTime":"08:23:36","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:29:26.502Z","nyTime":"08:29:26","event":"EVENT","detail":"08:30 — LECTURES_1_4: Lectures 1+4 — NY AM complex"}
+{"time":"2026-08-03T12:29:26.504Z","nyTime":"08:29:26","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:35:17.035Z","nyTime":"08:35:17","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:41:07.005Z","nyTime":"08:41:07","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:46:57.359Z","nyTime":"08:46:57","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:52:47.220Z","nyTime":"08:52:47","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T12:58:37.763Z","nyTime":"08:58:37","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T13:04:28.083Z","nyTime":"09:04:28","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T13:10:20.683Z","nyTime":"09:10:20","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T13:16:10.407Z","nyTime":"09:16:10","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T13:22:00.605Z","nyTime":"09:22:00","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T13:27:53.625Z","nyTime":"09:27:53","event":"EVENT","detail":"09:30 — AMOR: AM Session Opening Range"}
+{"time":"2026-08-03T13:27:53.628Z","nyTime":"09:27:53","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T13:33:45.333Z","nyTime":"09:33:45","event":"EVENT","detail":"09:30 — AMOR: AM Session Opening Range"}
+{"time":"2026-08-03T13:33:45.335Z","nyTime":"09:33:45","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T13:39:36.011Z","nyTime":"09:39:36","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T13:45:25.820Z","nyTime":"09:45:25","event":"EVENT","detail":"09:45 — PRE_MACRO: Pre-09:50 macro data refresh"}
+{"time":"2026-08-03T13:45:25.838Z","nyTime":"09:45:25","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-03T13:48:33.937Z","nyTime":"09:48:33","event":"DATA_REFRESH","detail":"Complete in 188s — OK"}
+{"time":"2026-08-03T13:48:33.938Z","nyTime":"09:48:33","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T13:54:24.210Z","nyTime":"09:54:24","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T14:00:15.635Z","nyTime":"10:00:15","event":"EVENT","detail":"10:00 — SILVER_BULLET: Silver Bullet scalp window"}
+{"time":"2026-08-03T14:00:15.644Z","nyTime":"10:00:15","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T14:06:06.134Z","nyTime":"10:06:06","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T14:11:56.111Z","nyTime":"10:11:56","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T14:17:46.558Z","nyTime":"10:17:46","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T14:23:40.888Z","nyTime":"10:23:40","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T14:29:35.921Z","nyTime":"10:29:35","event":"SCAN","detail":"Scanning 4 pairs (parallel)..."}
+{"time":"2026-08-03T14:34:57.638Z","nyTime":"10:34:57","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon"}
+{"time":"2026-08-03T14:34:57.640Z","nyTime":"10:34:57","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T14:43:52.899Z","nyTime":"10:43:52","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon"}
+{"time":"2026-08-03T14:43:52.901Z","nyTime":"10:43:52","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T14:45:49.400Z","nyTime":"10:45:49","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T15:16:42.885Z","nyTime":"11:16:42","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon"}
+{"time":"2026-08-03T15:16:42.889Z","nyTime":"11:16:42","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T17:57:26.441Z","nyTime":"13:57:26","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon"}
+{"time":"2026-08-03T17:57:26.447Z","nyTime":"13:57:26","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T18:08:22.717Z","nyTime":"14:08:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T18:19:16.404Z","nyTime":"14:19:16","event":"SCAN","detail":"Scanning 4 pairs..."}

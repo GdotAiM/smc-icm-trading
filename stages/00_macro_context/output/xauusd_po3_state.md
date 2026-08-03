@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for London PM (03:00 NY): DISTRIBUTION**
+**Expected phase for NY PM (14:00 NY): DISTRIBUTION**
 **Detected phase: MANIPULATION**
 ⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.
 
@@ -39,7 +39,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 Daily Open (Midnight NY): 4036.43500
 
 ## Accumulation Range
-Range: 4047.34500–4079.18500 (0.78% — WIDE). Not tight accumulation.
+Range: 4019.24000–4064.74000 (1.13% — WIDE). Near open but wide — accumulation may be extending.
 
 ## Manipulation Direction Check
 ⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.

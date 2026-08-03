@@ -7,8 +7,7 @@
 | PRICE | ⏳ undefined |  |
 | STRUCTURE | ⏳ MONITOR | 4H structure: bullish with CHoCH |
 | STRUCTURE | ⚠️ WARNING | 1D bias is bearish — HTF may be opposing the trade |
-| STRUCTURE | ⚠️ WARNING | 1W bias is bearish — MACRO trend opposes trade direction. This may be a pullback, not a reversal. |
-| TIME | ✅ ACTIVE | Killzone active — 8h 0m remaining |
+| TIME | ✅ ACTIVE | Killzone active — 2h 0m remaining |
 | TIME | ✅ ACTIVE | Silver Bullet window ACTIVE — time-gated models eligible |
 | MODEL | ✅ VALID | SB window active — model conditions met |
 | MODEL | ❌ INVALIDATED | No unmitigated OB — MMXM requires HTF POI |
@@ -19,7 +18,7 @@
 
 ## Invalidation Summary
 - **Invalidated**: 1 dimension(s) — EXIT OR DO NOT ENTER
-- **Warnings**: 4 — Trade with reduced size and awareness
+- **Warnings**: 3 — Trade with reduced size and awareness
 - **Confirmed**: 5 checks passed
 
 ## If Trade Is Active

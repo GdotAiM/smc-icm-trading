@@ -10,7 +10,7 @@
 |----------|--------|--------|------------|
 | LOWER (Discount) | 3 | 1 | **HIGH** |
 | MID-LOW | 3 | 1 | **HIGH** |
-| MID-HIGH | 2 | 1 | **MODERATE** |
+| MID-HIGH | 2 | 0 | **MODERATE** |
 | UPPER (Premium) | 1 | 0 | **MODERATE** |
 
 **Target**: UPPER (Premium) — MODERATE confluence
