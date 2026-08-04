@@ -1,6 +1,6 @@
 # Weekly Range Profile — EURUSD — 2026-08-04
 
-## Day: Tuesday 15:20:50 NY
+## Day: Tuesday 15:53:29 NY
 
 ## HTF Context
 HTF Arrays: Premium @ 1.16221 (UNTOCUHED) | Discount @ 1.13532 (UNTOUCHED) | Price in PREMIUM zone

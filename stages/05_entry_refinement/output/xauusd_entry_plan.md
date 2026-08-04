@@ -1,9 +1,9 @@
 # Entry Plan — XAUUSD — 2026-08-04
 
-## Data Freshness: 7/10 — ACCEPTABLE
+## Data Freshness: 5/10 — ACCEPTABLE
 - **Price source**: 1H @ 4080.64
 - **1H close**: 4080.64 | **1m close**: 4080.68
-- **Data age**: 20m since last candle
+- **Data age**: 53m since last candle
 - ✅ Data is tradeable
 
 ## Model: **MMXM Sell Model** (0/12.6)

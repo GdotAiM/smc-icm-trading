@@ -1,16 +1,16 @@
 # Inducement Check — GBPUSD — 2026-08-04
 
 ## Structural Event
-CHOCH bullish @ 1.34334 | Impulse: 10 candles, range 0.00178
+CHOCH bullish @ 1.34334 | Impulse: 6 candles, range 0.00613
 
 ## First Pullback
-First pullback: low @ 1.34482 | Retracement: 83.15% — ✅ VALID (≥50%)
+First pullback: low @ 1.33672 | Retracement: 99.84% — ✅ VALID (≥50%)
 
 ## Inducement Level
-Inducement: SSL (Sell-Side) @ 1.34482 — Sell-side trap below pullback low
+Inducement: SSL (Sell-Side) @ 1.33672 — Sell-side trap below pullback low
 
 ## Sweep Status
-⚡ Inducement swept + reversed — awaiting MSS confirmation
+⏳ Inducement NOT swept — entry gate CLOSED. Waiting for dip below 1.33672.
 
 ## Entry Gate
-**🛑 GATE CLOSED — ⚡ Inducement swept + reversed — awaiting MSS confirmation**
+**🛑 GATE CLOSED — ⏳ Inducement NOT swept — entry gate CLOSED. Waiting for dip below 1.33672.**

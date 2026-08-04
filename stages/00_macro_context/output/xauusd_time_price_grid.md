@@ -1,6 +1,6 @@
 # Time & Price Grid — XAUUSD — 2026-08-04
 
-## Current: 15:21:16 NY | Price: 4080.64500 | Bias: BEARISH
+## Current: 15:53:55 NY | Price: 4080.64500 | Bias: BEARISH
 
 ## Suspension Blocks (140 on daily)
 - Bullish Suspension: 4008.10500–4087.13500 (body 79.36% of range) (2026-07-20)

@@ -1,6 +1,6 @@
 # Weekly Range Profile — XAUUSD — 2026-08-04
 
-## Day: Tuesday 15:21:16 NY
+## Day: Tuesday 15:53:55 NY
 
 ## HTF Context
 HTF Arrays: Premium @ 3393.64000 (touched) | Discount @ 3295.31500 (UNTOUCHED) | Price in PREMIUM zone

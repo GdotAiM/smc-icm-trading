@@ -115,5 +115,5 @@ This IS a trend trade. The structure is established and institutions are distrib
 
 ---
 
-*Generated: 2026-08-04T19:21:28.382Z | Narrative Engine v1.0*
+*Generated: 2026-08-04T19:54:07.389Z | Narrative Engine v1.0*
 *"The market is a storyteller. Our job is to listen, not to guess."*

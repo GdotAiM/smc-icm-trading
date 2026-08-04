@@ -88,3 +88,7 @@
 {"time":"2026-08-04T18:58:43.526Z","nyTime":"14:58:43","event":"SCAN","detail":"Scanning 4 pairs..."}
 {"time":"2026-08-04T19:10:01.712Z","nyTime":"15:10:01","event":"SCAN","detail":"Scanning 4 pairs..."}
 {"time":"2026-08-04T19:20:50.334Z","nyTime":"15:20:50","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T19:31:41.352Z","nyTime":"15:31:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T19:42:33.991Z","nyTime":"15:42:33","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T19:53:29.184Z","nyTime":"15:53:29","event":"EVENT","detail":"15:50 — PRE_CLOSE: Pre-close — close positions if Friday"}
+{"time":"2026-08-04T19:53:29.197Z","nyTime":"15:53:29","event":"SCAN","detail":"Scanning 4 pairs..."}

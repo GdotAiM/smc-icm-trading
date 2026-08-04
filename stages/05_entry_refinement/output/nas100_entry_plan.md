@@ -1,9 +1,9 @@
 # Entry Plan — NAS100 — 2026-08-04
 
-## Data Freshness: 7/10 — ACCEPTABLE
+## Data Freshness: 5/10 — ACCEPTABLE
 - **Price source**: 1H @ 29794.9
 - **1H close**: 29794.9 | **1m close**: 29794.7
-- **Data age**: 21m since last candle
+- **Data age**: 53m since last candle
 - ✅ Data is tradeable
 
 ## Model: **MMXM Sell Model** (0/12.6)

@@ -1,5 +1,5 @@
 {
-  "price": 12675,
+  "price": 12676,
   "structure": {
     "bias": "bearish",
     "lastEvent": "CHoCH",
@@ -14,10 +14,10 @@
       "price": 12680.75,
       "type": "BSL",
       "strength": 4,
-      "score": 4.719099607649236,
-      "distance": 0.045364891518737675,
+      "score": 3.7934528950244553,
+      "distance": 0.037472388766172295,
       "session": "NY PM",
-      "ageBars": 28,
+      "ageBars": 91,
       "swept": false
     }
   ],
@@ -26,16 +26,16 @@
   "draw": {
     "price": 12680.75,
     "side": "up",
-    "distance": 0.045364891518737675,
+    "distance": 0.037472388766172295,
     "reason": "BSL pool Â· 4 touches",
-    "score": 0.756370808678501
+    "score": 0.7570022088987063
   },
   "alt": null,
   "volumeDisplacement": {
     "atrRatio": 0,
     "label": "weak",
     "volumeConfirmed": false,
-    "volumeRatio": 0.9554655870445344
+    "volumeRatio": 0.48834628190899004
   },
   "pdArray": {
     "rangeHigh": 0,
@@ -50,45 +50,45 @@
       "top": 12678,
       "bottom": 12677,
       "type": "inversion",
-      "index": 130,
+      "index": 97,
       "time": 1785859920000,
       "gapAtr": 1.5555555555555554,
       "reversalAtr": 1.4,
       "confirmationLag": 2,
-      "distance": 0.01972386587771203
+      "distance": 0.011833385926159672
     },
     {
       "top": 12679,
       "bottom": 12678,
       "type": "inversion",
-      "index": 34,
+      "index": 1,
       "time": 1785854160000,
-      "gapAtr": 0.9333333333333333,
-      "reversalAtr": 0.9333333333333333,
+      "gapAtr": 0.6666666666666666,
+      "reversalAtr": 0.7142857142857143,
       "confirmationLag": 1,
-      "distance": -0.027613412228796843
+      "distance": -0.019722309876932787
     },
     {
       "top": 12679,
       "bottom": 12678,
       "type": "inversion",
-      "index": 123,
+      "index": 90,
       "time": 1785859500000,
       "gapAtr": 1.75,
       "reversalAtr": 1.5555555555555554,
       "confirmationLag": 5,
-      "distance": -0.027613412228796843
+      "distance": -0.019722309876932787
     },
     {
       "top": 12680,
       "bottom": 12679,
       "type": "inversion",
-      "index": 45,
+      "index": 12,
       "time": 1785854820000,
-      "gapAtr": 1.0769230769230769,
+      "gapAtr": 1.0833333333333333,
       "reversalAtr": 1.4,
       "confirmationLag": 3,
-      "distance": -0.03550295857988166
+      "distance": -0.0276112338277059
     }
   ]
 }
