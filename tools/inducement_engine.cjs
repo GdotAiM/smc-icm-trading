@@ -188,7 +188,10 @@ function markInducement(pullback, structuralEvent) {
 }
 
 // ═══ 4. CHECK IF INDUCEMENT HAS BEEN SWEPT ═══
-function checkInducementSweep(inducement, structuralEvent, candles1m) {
+// ICT: Confirms sweep on 1m (primary) AND 5m (fallback).
+// 1m is precise but noisy. 5m is less noisy — if 1m doesn't confirm
+// but 5m does, the gate still opens. Both are ICT-valid MSS timeframes.
+function checkInducementSweep(inducement, structuralEvent, candles1m, candles5m) {
   if (!inducement || !candles1m || candles1m.length < 5) {
     return { swept: false, detail: "No inducement or insufficient data" };
   }
@@ -237,7 +240,9 @@ function checkInducementSweep(inducement, structuralEvent, candles1m) {
   }
 
   // Check for MSS after sweep
+  // Check MSS on 1m (primary) and 5m (fallback)
   let mssConfirmed = false;
+  let mssSource = null;
   if (swept && reversed) {
     const fakeHunt = {
       active: true, reversed: true,
@@ -246,20 +251,33 @@ function checkInducementSweep(inducement, structuralEvent, candles1m) {
       sweepPrice: inducement.price,
       sweepTime: sweepCandle?.time || new Date().toISOString(),
     };
-    const mssCheck = L2.confirmMSS(candles1m, fakeHunt);
-    mssConfirmed = mssCheck?.confirmed || false;
+    // Primary: 1m MSS
+    const mss1m = L2.confirmMSS(candles1m, fakeHunt);
+    if (mss1m?.confirmed) {
+      mssConfirmed = true;
+      mssSource = "1m";
+    }
+    // Fallback: 5m MSS (less noisy, ICT-valid)
+    if (!mssConfirmed && candles5m && candles5m.length >= 10) {
+      const mss5m = L2.confirmMSS(candles5m, fakeHunt);
+      if (mss5m?.confirmed) {
+        mssConfirmed = true;
+        mssSource = "5m (fallback)";
+      }
+    }
   }
 
   return {
     swept,
     reversed,
     mssConfirmed,
+    mssSource,
     sweepCandle: sweepCandle ? { time: sweepCandle.time, price: isBullish ? sweepCandle.low : sweepCandle.high } : null,
     currentPrice: postEvent[postEvent.length - 1]?.close || 0,
     detail: swept && reversed && mssConfirmed
-      ? `✅ Inducement SWEPT + REVERSED + MSS CONFIRMED — entry gate OPEN`
+      ? `✅ Inducement SWEPT + REVERSED + MSS CONFIRMED (${mssSource}) — entry gate OPEN`
       : swept && reversed
-        ? `⚡ Inducement swept + reversed — awaiting MSS confirmation`
+        ? `⚡ Inducement swept + reversed — awaiting MSS (1m/5m)`
         : swept
           ? `⚡ Inducement swept — awaiting reversal back`
           : `⏳ Inducement NOT swept — entry gate CLOSED. Waiting for ${isBullish ? 'dip below' : 'spike above'} ${r5(inducement.price)}.`,
@@ -284,6 +302,7 @@ function getEntryGate(sweepStatus, inducement) {
 function runInducementCheck(pair) {
   const p = pair || PAIR;
   const candles15m = loadCandles("15m");
+  const candles5m = loadCandles("5m");
   const candles1m = loadCandles("1m");
 
   if (!candles15m || !candles1m) {
@@ -301,8 +320,8 @@ function runInducementCheck(pair) {
   // Step 3: Mark inducement
   const inducement = markInducement(pullback, structuralEvent);
 
-  // Step 4: Check inducement sweep
-  const sweepStatus = checkInducementSweep(inducement, structuralEvent, candles1m);
+  // Step 4: Check inducement sweep (1m primary, 5m fallback)
+  const sweepStatus = checkInducementSweep(inducement, structuralEvent, candles1m, candles5m);
 
   // Step 5: Entry gate
   const gate = getEntryGate(sweepStatus, inducement);
