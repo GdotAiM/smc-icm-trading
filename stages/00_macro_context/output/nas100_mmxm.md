@@ -1,4 +1,4 @@
-# MMXM Analysis — NAS100 — 2026-08-03
+# MMXM Analysis — NAS100 — 2026-08-04
 
 ## Smart Money Reversal
 **⏳ Not detected**
@@ -8,7 +8,7 @@ Liquidity purged but no displacement yet — SMR forming.
 No SMR and no bias alignment — flat.
 
 ## Symmetry
-Symmetry target: 28704.90000 - 645.40000 = 28059.50000
+Symmetry target: 29796.30000 - 409.70000 = 29386.60000
 Target: N/A
 
 ## Entry Phase: **PRE-SMR**

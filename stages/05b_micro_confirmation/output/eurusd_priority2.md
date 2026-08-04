@@ -1,4 +1,4 @@
-# Priority 2 Report — EURUSD — 2026-08-03
+# Priority 2 Report — EURUSD — 2026-08-04
 
 ## CISD (Engine-Quality)
 **No CISD detected.**
@@ -16,6 +16,6 @@
 
 ## ISD Sequence
 **⏳ ISD 2/3 — Near complete. One more confirmation needed.**
-- ✅ Inducement: 9 pool(s) swept across 4H/15m
-- ✅ Structural Sweep: CHoCH confirms on 15m/5m
-- ✗ Displacement: weak on 5m (0.03x) — below threshold
+- ✅ Inducement: 5 pool(s) swept across 4H/15m
+- ✅ Structural Sweep: BOS confirms on 15m/5m
+- ✗ Displacement: weak on 5m (0.31x) — below threshold

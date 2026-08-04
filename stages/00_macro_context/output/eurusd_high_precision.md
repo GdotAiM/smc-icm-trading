@@ -1,24 +1,21 @@
-# High Precision Secrets — EURUSD — 2026-08-03
+# High Precision Secrets — EURUSD — 2026-08-04
 
-## Current: 14:19:19 NY | Price: 1.15060 | Bias: BEARISH
+## Current: 15:20:50 NY | Price: 1.15327 | Bias: BEARISH
 
-## Part 1: 7:00-9:00 AM Pre-Session Range
-7-9AM Range: 1.15228–1.15352 (0.00124) | CE 1.15290 | -0.5 Proj: 1.15414 above / 1.15166 below
-- -0.5 Projection (daily high obj): 1.15414
-- -0.5 Projection (daily low obj): 1.15166
+## Part 1: 7:00-9:00 AM Range — not yet formed (before 9:00 AM?)
 
 ## Tethering
-⚠️ Only 2 tethered — ×1.1
+No graded levels
 
 ## Body vs Wick
-✅ Bodies confirming (3B/2W) — +5 confidence
+✅ Bodies confirming (4B/1W) — +10 confidence
 
 ## Part 2: Opening Range Gap
-ORG: 1.15306–1.15485 (0.00179) | CE 1.15395 | FILLED | Proj: -0.5 @ 1.15217
+ORG: 1.15084–1.15118 (0.00034) | CE 1.15101 | FILLED | Proj: -0.5 @ 1.15067
 - Filled: Yes
-- -0.5 Projection: 1.15217 | -1.0: 1.15127
+- -0.5 Projection: 1.15067 | -1.0: 1.15050
 
 ## Gap Classification
-- BREAKAWAY GAP (above/below CE, not revisited) @ 1.15180
+- BREAKAWAY GAP (above/below CE, not revisited) @ 1.15296
 
-## Composite Confidence: +15 pts
+## Composite Confidence: +10 pts

@@ -1,4 +1,4 @@
-# LTF Cycle Analysis — GBPUSD — 2026-08-03
+# LTF Cycle Analysis — GBPUSD — 2026-08-04
 
 ## Macro Context (from Stage 00)
 - **HTF Bias**: BULLISH
@@ -9,11 +9,11 @@
 
 | Timeframe | Bias | Event | Direction | Displacement | Sweeps | FVGs | OBs |
 |-----------|------|-------|-----------|-------------|--------|------|-----|
-| 15m | **BEARISH** | BOS | bearish | weak (0.15x) | BSL,SSL,BSL,SSL | 3 | 3 |
-| 5m | **BEARISH** | BOS | bearish | weak (0.05x) | BSL | 0 | 0 |
-| 1m | **BEARISH** | CHoCH | bearish | weak (0.27x) | SSL | 0 | 0 |
+| 15m | **BULLISH** | CHoCH | bullish | weak (0.13x) | BSL | 2 | 4 |
+| 5m | **BEARISH** | CHoCH | bearish | weak (0.25x) | BSL,SSL | 0 | 0 |
+| 1m | **BULLISH** | CHoCH | bullish | weak (0.07x) | SSL | 1 | 0 |
 
 ## LTF Alignment
-- **15m vs HTF**: ⚠️ OPPOSING
+- **15m vs HTF**: ✅ ALIGNED
 - **5m vs HTF**: ⚠️ OPPOSING
-- **1m vs HTF**: ⚠️ OPPOSING
+- **1m vs HTF**: ✅ ALIGNED

@@ -1,7 +1,7 @@
-# Po3 State Machine — NAS100 — 2026-08-03
+# Po3 State Machine — NAS100 — 2026-08-04
 
 ## Current State: **DISTRIBUTION** (0.80 confidence)
-**BOS bullish + displacement (0.74x) — trend is distributing**
+**BOS bullish + displacement (0.65x) — trend is distributing**
 
 ## State Timeline
 
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for NY PM (14:00 NY): DISTRIBUTION**
+**Expected phase for NY PM (15:00 NY): DISTRIBUTION**
 **Detected phase: DISTRIBUTION**
 ✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
 
@@ -27,8 +27,8 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 | TF | State | Confidence | Reason |
 |----|-------|------------|--------|
-| 1D | MANIPULATION | 0.85 | 4 sweep(s) + CHoCH — manipulation active |
-| 4H | DISTRIBUTION | 0.80 | BOS bullish + displacement (0.74x) — trend is distributing |
+| 1D | MANIPULATION | 0.85 | 2 sweep(s) + CHoCH — manipulation active |
+| 4H | DISTRIBUTION | 0.80 | BOS bullish + displacement (0.65x) — trend is distributing |
 | 1H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
 
 ## Entry Rules for DISTRIBUTION
@@ -36,16 +36,16 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 **Distribution is the TREND phase. Enter on retracements to OBs/FVGs. Full size.**
 
 ## Daily Open Anchor
-Daily Open (Midnight NY): 29545.50000
+Daily Open (Midnight NY): 28717.70000
 
 ## Accumulation Range
-Range: 28192.00000–28724.60000 (1.87% — WIDE). Not tight accumulation.
+Range: 29070.20000–29796.60000 (2.47% — WIDE). Not tight accumulation.
 
 ## Manipulation Direction Check
-⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.
+✅ Sweep WITH daily bearish bias — likely distribution, not manipulation.
 - Daily Bias: BEARISH
-- Swept Above (BSL): 1 | Swept Below (SSL): 1
-- Is Manipulation: ⚠️ YES — do not trade with the sweep
+- Swept Above (BSL): 0 | Swept Below (SSL): 2
+- Is Manipulation: No
 - With Bias: ✅ Yes — likely distribution
 - Entries: ON retracement to PD Array
 - Models: MMXM Sell Model, MMXM Buy Model, OTE + Institutional OB, Unicorn (OTE+FVG), SCOB

@@ -1,8 +1,8 @@
-# Time & Price Grid — XAUUSD — 2026-08-03
+# Time & Price Grid — XAUUSD — 2026-08-04
 
-## Current: 14:19:47 NY | Price: 4037.58000 | Bias: BEARISH
+## Current: 15:21:16 NY | Price: 4080.64500 | Bias: BEARISH
 
-## Suspension Blocks (141 on daily)
+## Suspension Blocks (140 on daily)
 - Bullish Suspension: 4008.10500–4087.13500 (body 79.36% of range) (2026-07-20)
 - Bullish Suspension: 4078.67500–4166.13000 (body 57.16% of range) (2026-07-21)
 - Bearish Suspension: 4040.18500–4119.63500 (body 69.10% of range) (2026-07-22)
@@ -10,9 +10,9 @@
 - Bearish Suspension: 4020.97500–4103.36000 (body 63.93% of range) (2026-07-30)
 
 ## Graded Levels (Octants & Quadrants)
-Quadrants: Q1 4038.57375 | Q2(CE) 4081.09250 | Q3 4123.61125 | Octants: 4017.31437 | 4038.57375 | 4059.83313 | 4081.09250 | 4102.35188 | 4123.61125 | 4144.87063
+Quadrants: Q1 4027.16500 | Q2(CE) 4058.27500 | Q3 4089.38500 | Octants: 4011.61000 | 4027.16500 | 4042.72000 | 4058.27500 | 4073.83000 | 4089.38500 | 4104.94000
 
-## Daily Wick Grading (6 graded)
+## Daily Wick Grading (8 graded)
 | Date | Type | Range | CE | Q25 | Q75 |
 |------|------|-------|----|-----|-----|
 | 2026-07-21 | PREMIUM WICK | 4129.76000–4166.13000 | 4147.94500 | 4138.85250 | 4157.03750 |
@@ -22,28 +22,25 @@ Quadrants: Q1 4038.57375 | Q2(CE) 4081.09250 | Q3 4123.61125 | Octants: 4017.314
 | 2026-07-28 | PREMIUM WICK | 4066.34000–4116.41500 | 4091.37750 | 4078.85875 | 4103.89625 |
 
 ## Wick & Body Confirmation
-Lower wick: extreme 4037.23500, CE 4037.53500. CE reached (bullish pressure) | Bodies: mixed | Turn: ⏳ Not confirmed
+Lower wick: extreme 4079.97000, CE 4080.25250. CE reached (bullish pressure) | Bodies: lower half ✅ | Turn: ⏳ Not confirmed
 
 ## Delivery Mode
 🐢 CONTROLLED delivery (100.00% overlap) — measured, overlapping candles
 
-## Tethered PD Arrays (7)
-- bearish FVG tethered to CE (Midpoint) @ 4081.09250
-- bearish OB tethered to Q1 (25%) @ 4038.57375
-- bullish OB tethered to Octant 3/8 @ 4059.83313
-- bearish OB tethered to CE (Midpoint) @ 4081.09250
-- bullish OB tethered to Octant 3/8 @ 4059.83313
-- bearish OB tethered to Octant 3/8 @ 4059.83313
-- bullish OB tethered to Q1 (25%) @ 4038.57375
+## Tethered PD Arrays (4)
+- bullish FVG tethered to Octant 5/8 @ 4073.83000
+- bullish FVG tethered to CE (Midpoint) @ 4058.27500
+- bullish FVG tethered to Q1 (25%) @ 4027.16500
+- bearish OB tethered to CE (Midpoint) @ 4058.27500
 
 ## Narrative
 **Price outside controlled space but delivery is not yet efficient — still overlapping. Wait for tight channel to confirm direction.**
 
 ## Chain of Custody (3 links)
 **SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT**
-- Dominant Half: BEARISH
-- Daily Suspension Block @ 4062.16750 | Bodies in lower half | 2026-07-30
-- Discount Wick CE @ 4037.53500 | CE reached | NEUTRAL
-- ORG CE @ 4060.11000 | Price in LOWER (discount) | FILLED
+- Dominant Half: BULLISH
+- Daily Suspension Block @ 4062.16750 | Bodies in upper half | 2026-07-30
+- Discount Wick CE @ 4080.25250 | CE reached | BEARISH (bodies in lower half)
+- ORG CE @ 4053.72500 | Price in UPPER (premium) | FILLED
 
-Chain: SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT | 3 links active. Dominant half: LOWER (bearish delivery). Daily Suspension Block @ 4062.16750 | Bodies in lower half | 2026-07-30 → ORG CE @ 4060.11000 | Price in LOWER (discount) | FILLED
+Chain: SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT | 3 links active. Dominant half: UPPER (bullish delivery). Daily Suspension Block @ 4062.16750 | Bodies in upper half | 2026-07-30 → ORG CE @ 4053.72500 | Price in UPPER (premium) | FILLED

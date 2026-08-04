@@ -1,26 +1,28 @@
-# Key Levels — NAS100 — 2026-08-03
+# Key Levels — NAS100 — 2026-08-04
 
 ## Bias Reminder — **BEARISH**
 
 ## Liquidity Pools (6 on 4H)
 | Type | Price | Role | Touches | Score | Distance | Swept |
 |------|-------|------|---------|-------|----------|-------|
-| BSL | 29193.1 | Resistance | 3 | 3.76 | 1.70% | Active |
-| BSL | 29780.5 | Resistance | 3 | 2.75 | 3.75% | ⚡ |
-| SSL | 28201.0 | Support | 2 | 2.69 | 1.76% | ⚡ |
-| BSL | 29011.6 | Resistance | 1 | 1.06 | 1.07% | ⚡ |
-| SSL | 28681.3 | Support | 1 | 0.99 | 0.08% | ⚡ |
-| BSL | 28861.6 | Resistance | 1 | 0.80 | 0.55% | ⚡ |
+| SSL | 28198.0 | Support | 3 | 4.55 | 5.36% | Active |
+| SSL | 28974.6 | Support | 3 | 2.74 | 2.76% | ⚡ |
+| BSL | 30647.2 | Resistance | 3 | 2.65 | 2.86% | Active |
+| SSL | 29199.4 | Support | 2 | 2.30 | 2.00% | ⚡ |
+| BSL | 30314.5 | Resistance | 2 | 1.55 | 1.74% | Active |
+| BSL | 29855.6 | Resistance | 3 | 1.44 | 0.20% | Active |
 
-## Order Blocks (0 across 1D/4H/1H)
-| None detected | — | — | — | — | — |
+## Order Blocks (1 across 1D/4H/1H)
+| Type | Proximal | Distal | Impulse | FVG | TF |
+|------|----------|--------|---------|-----|-----|
+| bullish OB | 29119.3 | 29070.2 | 2.35x | ✓ | — |
 
 ## FVGs (2 across 1D/4H/1H)
 | Type | Top | Bottom | Gap ATR | Disp ATR | Fill % |
 |------|-----|--------|---------|----------|--------|
-| bearish | 29657.4 | 29540.3 | 0.48x | 1.95x | 48.16% |
+| bullish | 29309.0 | 29119.3 | 1.74x | 2.35x | 0.00% |
 | bullish | 28597.2 | 28505.4 | 0.82x | 1.68x | 0.00% |
 
 ## Draw Targets
-- **Primary**: UP @ 29193.1 — BSL pool Â· 3 touches (0.79)
-- **Alternate**: DOWN @ 28681.3 — SSL pool Â· 1 touch (0.53)
+- **Primary**: UP @ 29855.6 — BSL pool Â· 3 touches (1.05)
+- **Alternate**: DOWN @ 28974.6 — SSL pool Â· 3 touches (0.46)

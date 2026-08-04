@@ -1,0 +1,90 @@
+{"time":"2026-08-04T05:55:36.084Z","nyTime":"01:55:36","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Tue | Version: c5dad36"}
+{"time":"2026-08-04T05:55:36.088Z","nyTime":"01:55:36","event":"EVENT","detail":"01:55 — PRE-LONDON: Pre-London data refresh + briefing"}
+{"time":"2026-08-04T05:55:36.090Z","nyTime":"01:55:36","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-04T05:58:53.298Z","nyTime":"01:58:53","event":"DATA_REFRESH","detail":"Complete in 197s — OK"}
+{"time":"2026-08-04T05:58:53.299Z","nyTime":"01:58:53","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T06:29:45.388Z","nyTime":"02:29:45","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T06:36:59.807Z","nyTime":"02:36:59","event":"STATE_LOADED","detail":"1 positions restored, 0 pyramid levels filled"}
+{"time":"2026-08-04T06:37:00.078Z","nyTime":"02:37:00","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Tue | Version: c5dad36"}
+{"time":"2026-08-04T06:37:00.081Z","nyTime":"02:37:00","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T06:37:51.078Z","nyTime":"02:37:51","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28943.3) — adding 1"}
+{"time":"2026-08-04T06:38:03.047Z","nyTime":"02:38:03","event":"PYRAMID_EXECUTED","detail":"NAS100: +1 at Far Edge — TOTAL: 2 contracts"}
+{"time":"2026-08-04T06:38:03.050Z","nyTime":"02:38:03","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28943.3) — adding 1"}
+{"time":"2026-08-04T06:38:14.881Z","nyTime":"02:38:14","event":"PYRAMID_EXECUTED","detail":"NAS100: +1 at CE 50% — TOTAL: 3 contracts"}
+{"time":"2026-08-04T06:38:14.884Z","nyTime":"02:38:14","event":"PYRAMID","detail":"NAS100: IOFED Edge @ 28784.6 crossed (now 28943.3) — adding 1"}
+{"time":"2026-08-04T06:38:26.691Z","nyTime":"02:38:26","event":"PYRAMID_EXECUTED","detail":"NAS100: +1 at IOFED Edge — TOTAL: 4 contracts"}
+{"time":"2026-08-04T06:48:26.716Z","nyTime":"02:48:26","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T06:59:18.495Z","nyTime":"02:59:18","event":"EVENT","detail":"03:00 — LONDON_SB: London Silver Bullet window"}
+{"time":"2026-08-04T06:59:18.508Z","nyTime":"02:59:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T07:10:09.957Z","nyTime":"03:10:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T07:21:02.855Z","nyTime":"03:21:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T07:31:54.725Z","nyTime":"03:31:54","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T07:42:46.483Z","nyTime":"03:42:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T07:53:38.277Z","nyTime":"03:53:38","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T08:04:29.721Z","nyTime":"04:04:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T08:15:02.410Z","nyTime":"04:15:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T08:25:53.998Z","nyTime":"04:25:53","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T08:36:47.471Z","nyTime":"04:36:47","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T08:47:41.643Z","nyTime":"04:47:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T08:58:34.073Z","nyTime":"04:58:34","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T09:09:25.883Z","nyTime":"05:09:25","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T09:25:18.403Z","nyTime":"05:25:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T09:41:14.550Z","nyTime":"05:41:14","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T09:57:13.766Z","nyTime":"05:57:13","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T10:13:09.356Z","nyTime":"06:13:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T10:29:06.846Z","nyTime":"06:29:06","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T10:45:01.851Z","nyTime":"06:45:01","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T11:00:56.704Z","nyTime":"07:00:56","event":"EVENT","detail":"07:00 — LECTURE2: Lecture 2 — London Hunt + IFVG"}
+{"time":"2026-08-04T11:00:56.720Z","nyTime":"07:00:56","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T11:16:51.910Z","nyTime":"07:16:51","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T11:32:46.041Z","nyTime":"07:32:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T11:38:58.285Z","nyTime":"07:38:58","event":"STATE_LOADED","detail":"1 positions restored, 3 pyramid levels filled"}
+{"time":"2026-08-04T11:38:58.692Z","nyTime":"07:38:58","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Tue | Version: c5dad36"}
+{"time":"2026-08-04T11:38:58.695Z","nyTime":"07:38:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T11:43:39.388Z","nyTime":"07:43:39","event":"STATE_LOADED","detail":"1 positions restored, 3 pyramid levels filled"}
+{"time":"2026-08-04T11:43:39.836Z","nyTime":"07:43:39","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Tue | Version: c5dad36"}
+{"time":"2026-08-04T11:43:39.839Z","nyTime":"07:43:39","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T11:59:30.670Z","nyTime":"07:59:30","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T12:15:22.268Z","nyTime":"08:15:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T12:26:14.274Z","nyTime":"08:26:14","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T12:37:04.103Z","nyTime":"08:37:04","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T12:47:53.180Z","nyTime":"08:47:53","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T12:58:42.693Z","nyTime":"08:58:42","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T13:09:15.039Z","nyTime":"09:09:15","event":"STATE_LOADED","detail":"1 positions restored, 3 pyramid levels filled"}
+{"time":"2026-08-04T13:09:15.687Z","nyTime":"09:09:15","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Tue | Version: c5dad36"}
+{"time":"2026-08-04T13:09:15.690Z","nyTime":"09:09:15","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T13:20:20.409Z","nyTime":"09:20:20","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T13:31:17.081Z","nyTime":"09:31:17","event":"EVENT","detail":"09:30 — AMOR: AM Session Opening Range"}
+{"time":"2026-08-04T13:31:17.091Z","nyTime":"09:31:17","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T13:42:19.217Z","nyTime":"09:42:19","event":"EVENT","detail":"09:45 — PRE_MACRO: Pre-09:50 macro data refresh"}
+{"time":"2026-08-04T13:42:19.243Z","nyTime":"09:42:19","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-04T13:45:31.975Z","nyTime":"09:45:31","event":"DATA_REFRESH","detail":"Complete in 193s — OK"}
+{"time":"2026-08-04T13:45:31.982Z","nyTime":"09:45:31","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T13:56:26.553Z","nyTime":"09:56:26","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T14:07:28.596Z","nyTime":"10:07:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T14:18:22.739Z","nyTime":"10:18:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T14:29:21.705Z","nyTime":"10:29:21","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T14:40:16.916Z","nyTime":"10:40:16","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T14:51:10.357Z","nyTime":"10:51:10","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T15:02:06.630Z","nyTime":"11:02:06","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T15:18:05.447Z","nyTime":"11:18:05","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T15:33:59.193Z","nyTime":"11:33:59","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T15:50:07.190Z","nyTime":"11:50:07","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T16:06:09.979Z","nyTime":"12:06:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T16:22:04.088Z","nyTime":"12:22:04","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T16:37:56.152Z","nyTime":"12:37:56","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T16:53:48.687Z","nyTime":"12:53:48","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T17:09:46.061Z","nyTime":"13:09:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T17:20:39.306Z","nyTime":"13:20:39","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T17:31:33.618Z","nyTime":"13:31:33","event":"EVENT","detail":"13:30 — PMOR: PM Session Opening Range"}
+{"time":"2026-08-04T17:31:33.627Z","nyTime":"13:31:33","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T17:42:32.781Z","nyTime":"13:42:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T17:53:23.845Z","nyTime":"13:53:23","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T18:04:20.505Z","nyTime":"14:04:20","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T18:15:15.951Z","nyTime":"14:15:15","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T18:26:09.978Z","nyTime":"14:26:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T18:37:02.198Z","nyTime":"14:37:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T18:47:55.879Z","nyTime":"14:47:55","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T18:58:43.526Z","nyTime":"14:58:43","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T19:10:01.712Z","nyTime":"15:10:01","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T19:20:50.334Z","nyTime":"15:20:50","event":"SCAN","detail":"Scanning 4 pairs..."}

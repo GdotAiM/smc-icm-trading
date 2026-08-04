@@ -1,24 +1,24 @@
-# Macro-Micro Coherence — XAUUSD — 2026-08-03
+# Macro-Micro Coherence — XAUUSD — 2026-08-04
 
-## Coherence Score: **8/10** (raw) → **8/10** (session-adjusted)
+## Coherence Score: **6/10** (raw) → **6/10** (session-adjusted)
 
-> Session: **NY PM Session** (×1) | Killzone: ✅ NY PM Session Killzone | Silver Bullet: ✅ NY PM Silver Bullet
+> Session: **NY PM Session** (×1) | Killzone: ✅ NY PM Session Killzone | Silver Bullet: Inactive
 > Standard session — Afternoon continuation / reversal
 > Best entry TF for NY PM Session: **5m**
 
 | Component | Score | Detail |
 |-----------|-------|--------|
-| Bias alignment | 1/3 | 1/3 (✗ ✗ ✓) |
-| Structure | 1/2 | 1/2 (15m:BOS bearish, 5m:CHoCH bearish) |
-| Displacement | 0/2 | 0/2 (5m:weak 0.15843429636539358x, 1m:weak 0x) |
-| Manipulation | 1/2 | 1/2 (15m sweep:true BSL,BSL,BSL, 5m:true BSL,BSL) |
-| Trigger readiness | 0/1 | 0/1 (5m FVG:false, 1m CHoCH:true) |
-| Liquidity | 5/3 | 5/3 — 5m draw aligns with HTF bias; Recent sweep detected — manipulation active (1 on 15m, 0 on 5m); Engineered liquidity (EQH/EQL) — higher probability draw |
+| Bias alignment | 1/3 | 1/3 (✓ ✗ ✗) |
+| Structure | 2/2 | 2/2 (15m:CHoCH bullish, 5m:BOS bearish) |
+| Displacement | 0/2 | 0/2 (5m:weak 0.20123839009291233x, 1m:weak 0.5710267229254263x) |
+| Manipulation | 2/2 | 2/2 (15m sweep:true SSL,BSL, 5m:true BSL,BSL) |
+| Trigger readiness | 0/1 | 0/1 (5m FVG:false, 1m CHoCH:false) |
+| Liquidity | 1/3 | 1/3 — 5m draw is DOWN — not aligned with HTF bullish; Engineered liquidity (EQH/EQL) — higher probability draw |
 | **Session Adj** | ×1 | NY PM Session reliability multiplier |
 
 ## Go/No-Go Decision
 
-**✅ GO — All conditions met for entry**
+**⏳ NEARLY — Wait 1-3 candles for trigger**
 
 | Score Range | Action |
 |-------------|--------|
@@ -31,5 +31,5 @@
 ## Macro-Micro Relationship
 
 - **Macro says**: DISTRIBUTION phase, HTF BULLISH, MMXM Step 3
-- **Micro says**: 15m bearish, 5m bearish, 1m bullish
-- **Interpretation**: LTF confirms HTF — bullish trend is intact on lower timeframes. Entry signal is valid.
+- **Micro says**: 15m bullish, 5m bearish, 1m bearish
+- **Interpretation**: LTF partially confirms HTF — some alignment but not full. Wait for clearer LTF structure.

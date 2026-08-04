@@ -1,0 +1,94 @@
+{
+  "price": 12675,
+  "structure": {
+    "bias": "bearish",
+    "lastEvent": "CHoCH",
+    "lastEventPrice": 12678,
+    "lastEventTime": 1785869520000,
+    "confidence": 0.5833333333333334,
+    "lastSwingHigh": 12681,
+    "lastSwingLow": 12674
+  },
+  "liquidity": [
+    {
+      "price": 12680.75,
+      "type": "BSL",
+      "strength": 4,
+      "score": 4.719099607649236,
+      "distance": 0.045364891518737675,
+      "session": "NY PM",
+      "ageBars": 28,
+      "swept": false
+    }
+  ],
+  "orderBlocks": [],
+  "fvgs": [],
+  "draw": {
+    "price": 12680.75,
+    "side": "up",
+    "distance": 0.045364891518737675,
+    "reason": "BSL pool Â· 4 touches",
+    "score": 0.756370808678501
+  },
+  "alt": null,
+  "volumeDisplacement": {
+    "atrRatio": 0,
+    "label": "weak",
+    "volumeConfirmed": false,
+    "volumeRatio": 0.9554655870445344
+  },
+  "pdArray": {
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
+    "currentZone": "discount",
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
+  },
+  "inversionFvgs": [
+    {
+      "top": 12678,
+      "bottom": 12677,
+      "type": "inversion",
+      "index": 130,
+      "time": 1785859920000,
+      "gapAtr": 1.5555555555555554,
+      "reversalAtr": 1.4,
+      "confirmationLag": 2,
+      "distance": 0.01972386587771203
+    },
+    {
+      "top": 12679,
+      "bottom": 12678,
+      "type": "inversion",
+      "index": 34,
+      "time": 1785854160000,
+      "gapAtr": 0.9333333333333333,
+      "reversalAtr": 0.9333333333333333,
+      "confirmationLag": 1,
+      "distance": -0.027613412228796843
+    },
+    {
+      "top": 12679,
+      "bottom": 12678,
+      "type": "inversion",
+      "index": 123,
+      "time": 1785859500000,
+      "gapAtr": 1.75,
+      "reversalAtr": 1.5555555555555554,
+      "confirmationLag": 5,
+      "distance": -0.027613412228796843
+    },
+    {
+      "top": 12680,
+      "bottom": 12679,
+      "type": "inversion",
+      "index": 45,
+      "time": 1785854820000,
+      "gapAtr": 1.0769230769230769,
+      "reversalAtr": 1.4,
+      "confirmationLag": 3,
+      "distance": -0.03550295857988166
+    }
+  ]
+}

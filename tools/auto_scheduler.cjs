@@ -71,8 +71,12 @@ let lastScanResults = null;
 let scanInProgress = false;
 
 function scanAll() {
-  // Don't start a new scan if one is already running
-  if (scanInProgress) return lastScanResults;
+  // Don't start a new scan if one is already running (but force-reset if stuck > 15 min)
+  if (scanInProgress) {
+    if (Date.now() - lastScanTime < 900000) return lastScanResults;
+    log("WATCHDOG", "Scan stuck for >15min — force-resetting");
+    scanInProgress = false;
+  }
 
   // Skip re-scan if data is fresh (< 5 min)
   const now = Date.now();

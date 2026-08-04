@@ -1,33 +1,33 @@
-# HTF Bias — GBPUSD — 2026-08-03
+# HTF Bias — GBPUSD — 2026-08-04
 
 ## Structural Bias
-**BEARISH** — 1W BEARISH → 1D BEARISH → 4H BULLISH
+**BEARISH** — 1W BULLISH → 1D BEARISH → 4H BULLISH
 
 | Timeframe | Bias | Last Event | Price | Confidence | Pools | OBs | FVGs |
 |-----------|------|------------|-------|------------|-------|-----|------|
-| 1W | bearish | CHoCH | 1.34272 | 1.00 | 3 | 0 | 0 |
+| 1W | bullish | CHoCH | 1.34434 | 1.00 | 1 | 0 | 1 |
 | 1D | bearish | BOS | 1.33424 | 1.00 | 6 | 1 | 0 |
 | 4H | bullish | BOS | 1.34768 | 1.00 | 6 | 1 | 2 |
-| 1H | bullish | BOS | 1.33757 | 1.00 | 6 | 2 | 1 |
-| 15m | bearish | BOS | 1.34481 | 1.00 | 6 | 3 | 3 |
-| 5m | bearish | BOS | 1.34444 | 1.00 | 5 | 0 | 0 |
-| 1m | bearish | CHoCH | 1.34272 | 1.00 | 3 | 0 | 0 |
+| 1H | bullish | BOS | 1.34682 | 1.00 | 6 | 1 | 1 |
+| 15m | bullish | CHoCH | 1.34334 | 1.00 | 5 | 4 | 2 |
+| 5m | bearish | CHoCH | 1.34482 | 1.00 | 3 | 0 | 0 |
+| 1m | bullish | CHoCH | 1.34434 | 1.00 | 1 | 0 | 1 |
 
 ## Key Observations
-- 1W: BEARISH | 1D: **BEARISH** | 4H: **BULLISH**
+- 1W: BULLISH | 1D: **BEARISH** | 4H: **BULLISH**
 - 1D & 4H diverging ⚠️ — reduced confidence
 - 1W 1D swing: H 1.35582 / L 1.32735
-- Current price: 1.34283
+- Current price: 1.34530
 
 ## Multi-TF Cascade
 ```
-1W  🔴 BEARISH
+1W  🟢 BULLISH
 1D  🔴 BEARISH ← TRADE BIAS
 4H  🟢 BULLISH
 1H  🟢 BULLISH ← ENTRY TF
-15m 🔴 BEARISH
+15m 🟢 BULLISH
 5m  🔴 BEARISH
-1m  🔴 BEARISH
+1m  🟢 BULLISH
 ```
 
 ## Final Bias

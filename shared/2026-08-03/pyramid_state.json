@@ -1,1 +1,1 @@
-{"positions":[{"pair":"NAS100","direction":"BUY","entry":28642.2,"sl":28168.7,"tp":28989.9,"qty":1,"pyramidAdded":[]}],"filled":{}}
+{"positions":[{"pair":"NAS100","direction":"BUY","entry":28642.2,"sl":28168.7,"tp":28989.9,"qty":1,"pyramidAdded":["Far Edge","CE 50%"]}],"filled":{"NAS100_Far Edge":true,"NAS100_CE 50%":true}}

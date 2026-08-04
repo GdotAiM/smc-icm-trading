@@ -1,21 +1,21 @@
-# One Trade Setup for Life — EURUSD — 2026-08-03
+# One Trade Setup for Life — EURUSD — 2026-08-04
 
 ## Daily Bias
-**NEUTRAL** (0.00 confidence)
-- Alignment: bullish→bearish→bullish→bearish
+**BULLISH** (0.75 confidence)
+- Alignment: bullish→bearish→bullish→bullish
 - Zone: PREMIUM
-- Tradeable: ❌ No — NEUTRAL day
+- Tradeable: ✅ Yes
 
 ## TP Target: Previous Day AM Session
-- **Bullish TP**: Prev AM HIGH @ 1.15476
-- **Bearish TP**: Prev AM LOW @ 1.14551
-- Date: 2026-07-30
+- **Bullish TP**: Prev AM HIGH @ 1.15590
+- **Bearish TP**: Prev AM LOW @ 1.15004
+- Date: 2026-08-02
 
 ## Session Raid Priority Queue
 | P | Session | Range | Status | Detail |
 |---|---------|-------|--------|--------|
-| 1 | PM Session | H 1.15376 L 1.13892 | ⏳ | No bias or no range |
-| 2 | London Session | H 1.15388 L 1.13559 | ⏳ | No bias or no range |
+| 1 | PM Session | H 1.15376 L 1.15014 | ⚡ RAIDED | ⚡ RAIDED — awaiting MSS: Low swept |
+| 2 | London Session | H 1.15388 L 1.13559 | ⚡ RAIDED | ⚡ RAIDED — awaiting MSS: Low swept |
 | 3 | Opening Gap | — | ⏳ | Delegated to Lecture 4 gap model |
 | 4 | NY Lunch | — | ⏳ | Window not yet open |
 

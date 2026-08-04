@@ -78,3 +78,92 @@
 {"time":"2026-08-03T17:57:26.447Z","nyTime":"13:57:26","event":"SCAN","detail":"Scanning 4 pairs..."}
 {"time":"2026-08-03T18:08:22.717Z","nyTime":"14:08:22","event":"SCAN","detail":"Scanning 4 pairs..."}
 {"time":"2026-08-03T18:19:16.404Z","nyTime":"14:19:16","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T18:30:16.698Z","nyTime":"14:30:16","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T18:41:11.608Z","nyTime":"14:41:11","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T18:43:39.590Z","nyTime":"14:43:39","event":"STATE_LOADED","detail":"1 positions restored, 0 pyramid levels filled"}
+{"time":"2026-08-03T18:43:40.131Z","nyTime":"14:43:40","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon | Version: c5dad36"}
+{"time":"2026-08-03T18:43:40.136Z","nyTime":"14:43:40","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T18:44:01.654Z","nyTime":"14:44:01","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T18:44:01.948Z","nyTime":"14:44:01","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T18:44:01.949Z","nyTime":"14:44:01","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T18:44:02.199Z","nyTime":"14:44:02","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T18:52:07.188Z","nyTime":"14:52:07","event":"STATE_LOADED","detail":"1 positions restored, 0 pyramid levels filled"}
+{"time":"2026-08-03T18:52:07.481Z","nyTime":"14:52:07","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon | Version: c5dad36"}
+{"time":"2026-08-03T18:52:07.485Z","nyTime":"14:52:07","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T18:52:27.311Z","nyTime":"14:52:27","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T18:52:27.654Z","nyTime":"14:52:27","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T18:52:27.655Z","nyTime":"14:52:27","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T18:52:27.891Z","nyTime":"14:52:27","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T18:54:02.289Z","nyTime":"14:54:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T18:54:21.861Z","nyTime":"14:54:21","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T18:54:22.133Z","nyTime":"14:54:22","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T18:54:22.135Z","nyTime":"14:54:22","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T18:54:22.357Z","nyTime":"14:54:22","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:02:28.002Z","nyTime":"15:02:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:02:43.856Z","nyTime":"15:02:43","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:02:44.113Z","nyTime":"15:02:44","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:02:44.115Z","nyTime":"15:02:44","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:02:44.331Z","nyTime":"15:02:44","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:04:22.435Z","nyTime":"15:04:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:04:36.740Z","nyTime":"15:04:36","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:04:36.969Z","nyTime":"15:04:36","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:04:36.971Z","nyTime":"15:04:36","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:04:37.202Z","nyTime":"15:04:37","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:12:44.344Z","nyTime":"15:12:44","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:12:58.555Z","nyTime":"15:12:58","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:12:58.769Z","nyTime":"15:12:58","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:12:58.770Z","nyTime":"15:12:58","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:12:59.033Z","nyTime":"15:12:59","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:14:37.240Z","nyTime":"15:14:37","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:14:51.414Z","nyTime":"15:14:51","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:14:51.642Z","nyTime":"15:14:51","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:14:51.644Z","nyTime":"15:14:51","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:14:51.883Z","nyTime":"15:14:51","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:22:59.074Z","nyTime":"15:22:59","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:23:14.868Z","nyTime":"15:23:14","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:23:15.148Z","nyTime":"15:23:15","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:23:15.149Z","nyTime":"15:23:15","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:23:15.401Z","nyTime":"15:23:15","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:24:51.894Z","nyTime":"15:24:51","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:25:06.191Z","nyTime":"15:25:06","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:25:06.425Z","nyTime":"15:25:06","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:25:06.426Z","nyTime":"15:25:06","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:25:06.644Z","nyTime":"15:25:06","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:33:15.419Z","nyTime":"15:33:15","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:33:30.879Z","nyTime":"15:33:30","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:33:31.114Z","nyTime":"15:33:31","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:33:31.117Z","nyTime":"15:33:31","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:33:31.335Z","nyTime":"15:33:31","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:35:06.662Z","nyTime":"15:35:06","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:35:21.098Z","nyTime":"15:35:21","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:35:21.319Z","nyTime":"15:35:21","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:35:21.323Z","nyTime":"15:35:21","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:35:21.544Z","nyTime":"15:35:21","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:43:31.363Z","nyTime":"15:43:31","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:43:46.288Z","nyTime":"15:43:46","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:43:46.506Z","nyTime":"15:43:46","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:43:46.508Z","nyTime":"15:43:46","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:43:46.727Z","nyTime":"15:43:46","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:45:21.566Z","nyTime":"15:45:21","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:45:35.889Z","nyTime":"15:45:35","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:45:36.105Z","nyTime":"15:45:36","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:45:36.106Z","nyTime":"15:45:36","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:45:36.323Z","nyTime":"15:45:36","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:53:46.746Z","nyTime":"15:53:46","event":"EVENT","detail":"15:50 — PRE_CLOSE: Pre-close — close positions if Friday"}
+{"time":"2026-08-03T19:53:46.751Z","nyTime":"15:53:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:54:01.555Z","nyTime":"15:54:01","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:54:01.763Z","nyTime":"15:54:01","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:54:01.771Z","nyTime":"15:54:01","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:54:01.982Z","nyTime":"15:54:01","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:55:36.334Z","nyTime":"15:55:36","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-03T19:55:50.534Z","nyTime":"15:55:50","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:55:50.745Z","nyTime":"15:55:50","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-03T19:55:50.747Z","nyTime":"15:55:50","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-03T19:55:50.953Z","nyTime":"15:55:50","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-04T06:05:52.128Z","nyTime":"02:05:52","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T06:06:42.756Z","nyTime":"02:06:42","event":"PYRAMID","detail":"NAS100: Far Edge @ 28374.0 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-04T06:06:54.885Z","nyTime":"02:06:54","event":"PYRAMID_EXECUTED","detail":"NAS100: +1 at Far Edge — TOTAL: 2 contracts"}
+{"time":"2026-08-04T06:06:54.887Z","nyTime":"02:06:54","event":"PYRAMID","detail":"NAS100: CE 50% @ 28579.3 crossed (now 28707.8) — adding 1"}
+{"time":"2026-08-04T06:07:06.709Z","nyTime":"02:07:06","event":"PYRAMID_EXECUTED","detail":"NAS100: +1 at CE 50% — TOTAL: 3 contracts"}
+{"time":"2026-08-04T06:17:06.738Z","nyTime":"02:17:06","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-04T06:27:58.004Z","nyTime":"02:27:58","event":"SCAN","detail":"Scanning 4 pairs..."}

@@ -1,6 +1,6 @@
-# Coherence Audit — GBPUSD — 2026-08-03
+# Coherence Audit — GBPUSD — 2026-08-04
 
-## Overall Coherence: 60/100 — C — ADEQUATE coherence
+## Overall Coherence: 30/100 — F — BROKEN coherence
 
 ---
 
@@ -11,25 +11,25 @@
 | STRUCTURE | BULLISH (BOS) | BULLISH | — |
 | IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
 | CYCLE PHASE | DISTRIBUTION → expects BEARISH | BEARISH | — |
-| LIQUIDITY | DOWN (SSL magnet) | 5 swept | BEARISH | — |
+| LIQUIDITY | DOWN (SSL magnet) | 4 swept | BEARISH | — |
 
 **⚠️ LENS DIVERGENCE — 3 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in DISTRIBUTION phase.**
 
 ---
 
-## 2. Temporal Coherence (✅ 3/4 LTFs aligned)
+## 2. Temporal Coherence (⚠️ 1/4 LTFs aligned)
 
 | TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
-| 1W | **BEARISH** | CHoCH | ✅ aligned |
+| 1W | **BULLISH** | CHoCH | ⚠️ opposing |
 | 1D | **BEARISH** | BOS | ✅ aligned |
 | 4H | **BULLISH** | BOS | ⚠️ opposing |
 | 1H | **BULLISH** | BOS | ⚠️ opposing |
-| 15m | **BEARISH** | BOS | ✅ aligned |
-| 5m | **BEARISH** | BOS | ✅ aligned |
-| 1m | **BEARISH** | CHoCH | ✅ aligned |
+| 15m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 5m | **BEARISH** | CHoCH | ✅ aligned |
+| 1m | **BULLISH** | CHoCH | ⚠️ opposing |
 
-**✅ TEMPORAL COHERENCE — 3/4 LTFs aligned with HTF BEARISH. 1 opposing (micro pullback — normal).**
+**⚠️ TEMPORAL DIVERGENCE — 3 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
 
 ---
 
@@ -41,9 +41,10 @@
 
 ## 4. Self-Contradiction Check
 
-✅ No self-contradictions detected.
+- **[WARNING]** STRUCTURE vs PD ARRAY: Structure is BULLISH but price is in PREMIUM (sell zone). This is a counter-trend buy within the sell zone.
+- **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
 
-**✅ NO SELF-CONTRADICTIONS — The system is internally consistent.**
+**⚠️ 2 contradiction(s) — mostly expected in current cycle phase.**
 
 ---
 
@@ -52,10 +53,10 @@
 | Dimension | Score | Status |
 |-----------|-------|--------|
 | Lens Coherence | 15/25 | ⚠️ |
-| Temporal Coherence | 25/25 | ✅ |
+| Temporal Coherence | 15/25 | ⚠️ |
 | Archetype Coherence | 15/25 | ⚠️ |
-| No Contradictions | 25/25 | ✅ |
-| **TOTAL** | **60/100** | **C — ADEQUATE coherence** |
+| No Contradictions | 15/25 | ✅ |
+| **TOTAL** | **30/100** | **F — BROKEN coherence** |
 
 ---
 

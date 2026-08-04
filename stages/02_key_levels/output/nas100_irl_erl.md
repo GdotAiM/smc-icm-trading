@@ -1,26 +1,31 @@
-# IRL / ERL Analysis — NAS100 — 2026-08-03
+# IRL / ERL Analysis — NAS100 — 2026-08-04
 
-## Current Price: 28704.90000
+## Current Price: 29794.90000
 
 ## Dealing Range (1D)
-- **Range**: 28217.30000 — 29861.40000 (1644.10000)
-- **Midpoint (Equilibrium)**: 29039.35000
-- **Validation**: ⚠️ PARTIAL — high NOT swept, low swept
-- **Premium Zone**: 29861.40000 — 29039.35000
-- **Discount Zone**: 29039.35000 — 28217.30000
+- **Range**: 26980.60000 — 29861.40000 (2880.80000)
+- **Midpoint (Equilibrium)**: 28421.00000
+- **Validation**: ⚠️ PARTIAL — high NOT swept, low NOT swept
+- **Premium Zone**: 29861.40000 — 28421.00000
+- **Discount Zone**: 28421.00000 — 26980.60000
 
-## IRL — Internal Range Liquidity (0 FVGs)
+## IRL — Internal Range Liquidity (2 FVGs)
 | Status | Count |
 |--------|-------|
-| Unfilled (<30%) | 0 |
+| Unfilled (<30%) | 2 |
 | Partial (30-70%) | 0 |
 | Filled (>70%) | 0 |
 
+| TF | Type | Price (CE) | Fill % | Distance |
+|-----|------|------------|--------|----------|
+| 15m | bullish | 28770.80000 | 0.00% | 3.44% |
+| 15m | bullish | 28806.00000 | 26.13% | 3.32% |
+
 ## ERL — External Range Liquidity
-- **Dominant**: SELL-SIDE (below)
-- **Larger Pool**: BELOW
+- **Dominant**: BALANCED
+- **Larger Pool**: ABOVE
 - **Buy-Side (above range)**: 0 pools | 0 equal-high clusters
-- **Sell-Side (below range)**: 3 pools | 1 equal-low clusters
+- **Sell-Side (below range)**: 0 pools | 0 equal-low clusters
 
 ## Delivery Cycle
 - **Position**: OUTSIDE RANGE

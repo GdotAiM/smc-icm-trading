@@ -1,0 +1,131 @@
+{
+  "pair": "XAUUSD",
+  "time": "15:21:26 NY",
+  "currentPrice": 4080.645,
+  "dealingRange": {
+    "high": 4120.495,
+    "low": 3996.055,
+    "range": 124.44000000000005,
+    "midpoint": 4058.2749999999996,
+    "source": "1D",
+    "valid": false,
+    "validation": {
+      "highSwept": false,
+      "lowSwept": false,
+      "detail": "⚠️ PARTIAL — high NOT swept, low NOT swept"
+    },
+    "premium": {
+      "high": 4120.495,
+      "low": 4058.2749999999996
+    },
+    "discount": {
+      "high": 4058.2749999999996,
+      "low": 3996.055
+    },
+    "detail": "Partial dealing range: 3996.05500 — 4120.49500 (124.44000 range)"
+  },
+  "irl": {
+    "count": 4,
+    "fvgs": [
+      {
+        "top": 4034.995,
+        "bottom": 4032.425,
+        "type": "bullish",
+        "index": 12,
+        "time": 1785780300000,
+        "gapAtr": 1.080879974118275,
+        "displacementAtr": 1.9451633775477,
+        "fillFraction": 0,
+        "distance": 1.1501858162128766,
+        "tf": "5m",
+        "midpoint": 4033.71,
+        "isIRL": true,
+        "fillPct": "0.00"
+      },
+      {
+        "top": 4052.475,
+        "bottom": 4050.68,
+        "type": "bullish",
+        "index": 199,
+        "time": 1785840000000,
+        "gapAtr": 0.6106925880923819,
+        "displacementAtr": 1.2486026731470727,
+        "fillFraction": 0.019498607242257972,
+        "distance": 0.7123261151117068,
+        "tf": "5m",
+        "midpoint": 4051.5775,
+        "isIRL": true,
+        "fillPct": "1.95"
+      },
+      {
+        "top": 4077.565,
+        "bottom": 4065.555,
+        "type": "bullish",
+        "index": 231,
+        "time": 1785849600000,
+        "gapAtr": 1.707005076142171,
+        "displacementAtr": 2.510761421319868,
+        "fillFraction": 0.25104079933387324,
+        "distance": 0.22263637243622117,
+        "tf": "5m",
+        "midpoint": 4071.56,
+        "isIRL": true,
+        "fillPct": "25.10"
+      },
+      {
+        "top": 4076.045,
+        "bottom": 4071.76,
+        "type": "bullish",
+        "index": 276,
+        "time": 1785849300000,
+        "gapAtr": 0.3930677499672235,
+        "displacementAtr": 1.3516577119643605,
+        "fillFraction": 0.34889148191363867,
+        "distance": 0.16523123182731742,
+        "tf": "15m",
+        "midpoint": 4073.9025,
+        "isIRL": true,
+        "fillPct": "34.89"
+      }
+    ],
+    "unfilled": 3,
+    "partial": 1,
+    "filled": 0
+  },
+  "erl": {
+    "buySide": [],
+    "sellSide": [],
+    "buySideClusters": 0,
+    "sellSideClusters": 0,
+    "dominant": "BALANCED",
+    "largerPool": "ABOVE",
+    "detail": "ERL: 0 buy-side pools above, 0 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: BALANCED"
+  },
+  "cycle": {
+    "position": "OUTSIDE RANGE",
+    "phase": "BELOW range — ERL raid possible",
+    "nextTarget": "Opposite ERL or re-enter range toward IRL",
+    "erlAboveSwept": 0,
+    "erlBelowSwept": 0,
+    "unfilledIRL": 3,
+    "partiallyFilledIRL": 1,
+    "recentlyFilled": 0,
+    "priceInRange": false,
+    "currentPrice": 0,
+    "detail": "OUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 3 unfilled, 0 filled | ERL sweeps: 0 above, 0 below"
+  },
+  "bias": {
+    "bias": "neutral",
+    "confidence": 0,
+    "reasoning": "",
+    "detail": "NEUTRAL bias (0.00): "
+  },
+  "entryGuidance": [
+    {
+      "action": "WAIT",
+      "direction": "neutral",
+      "detail": "Unclear cycle position — wait for ERL raid or IRL fill to establish direction."
+    }
+  ],
+  "detail": "Partial dealing range: 3996.05500 — 4120.49500 (124.44000 range)\nIRL: 4 FVGs inside range (3 unfilled)\nERL: 0 buy-side pools above, 0 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: BALANCED\nOUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 3 unfilled, 0 filled | ERL sweeps: 0 above, 0 below\nNEUTRAL bias (0.00): "
+}

@@ -1,4 +1,4 @@
-# Priority 2 Report — NAS100 — 2026-08-03
+# Priority 2 Report — NAS100 — 2026-08-04
 
 ## CISD (Engine-Quality)
 **No CISD detected.**
@@ -15,7 +15,7 @@
 - NY PM: DISTRIBUTION — Late continuation or reversal
 
 ## ISD Sequence
-**⏳ ISD 2/3 — Near complete. One more confirmation needed.**
-- ✅ Inducement: 8 pool(s) swept across 4H/15m
+**✅ ISD COMPLETE (3/3) — Inducement → Sweep → Displacement confirmed. HIGHEST confidence entry.**
+- ✅ Inducement: 5 pool(s) swept across 4H/15m
 - ✅ Structural Sweep: BOS confirms on 15m/5m
-- ✗ Displacement: weak on 5m (0.23x) — below threshold
+- ✅ Displacement: moderate on 5m (1.37x), moderate on 15m
