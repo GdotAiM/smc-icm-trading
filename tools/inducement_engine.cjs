@@ -56,8 +56,13 @@ function findStructuralEvent(candles, swings) {
   if (!isCHOCH && !isBOS) return null;
 
   // Find the impulse leg that led to this structural event
-  // The impulse leg = the move that broke the prior swing
-  const eventIdx = candles.findIndex(c => Math.abs(c.close - lastEventPrice) / lastEventPrice < 0.001);
+  // Search BACKWARDS from the end — event price may match old candles at the start
+  let eventIdx = -1;
+  for (let i = candles.length - 1; i >= 0; i--) {
+    if (Math.abs(candles[i].close - lastEventPrice) / lastEventPrice < 0.001) {
+      eventIdx = i; break;
+    }
+  }
   const searchIdx = eventIdx >= 0 ? eventIdx : candles.length - 3;
 
   // Find the swing point that was broken (the prior extreme)
