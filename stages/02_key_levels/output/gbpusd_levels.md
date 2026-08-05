@@ -1,23 +1,25 @@
-# Key Levels — GBPUSD — 2026-08-04
+# Key Levels — GBPUSD — 2026-08-05
 
 ## Bias Reminder — **BEARISH**
 
 ## Liquidity Pools (6 on 4H)
 | Type | Price | Role | Touches | Score | Distance | Swept |
 |------|-------|------|---------|-------|----------|-------|
-| BSL | 1.34808 | Resistance | 6 | 7.33 | 0.21% | ⚡ |
-| SSL | 1.34016 | Support | 4 | 6.46 | 0.38% | Active |
-| SSL | 1.34170 | Support | 4 | 5.09 | 0.27% | Active |
-| SSL | 1.33521 | Support | 3 | 3.85 | 0.75% | ⚡ |
-| SSL | 1.33036 | Support | 3 | 3.80 | 1.11% | ⚡ |
-| SSL | 1.33252 | Support | 3 | 3.13 | 0.95% | ⚡ |
+| SSL | 1.33997 | Support | 5 | 7.94 | 0.51% | Active |
+| BSL | 1.34808 | Resistance | 6 | 7.20 | 0.09% | ⚡ |
+| SSL | 1.33034 | Support | 4 | 5.27 | 1.22% | ⚡ |
+| SSL | 1.34170 | Support | 4 | 5.01 | 0.38% | Active |
+| SSL | 1.33521 | Support | 3 | 3.79 | 0.86% | ⚡ |
+| SSL | 1.33745 | Support | 3 | 3.14 | 0.70% | ⚡ |
 
-## Order Blocks (3 across 1D/4H/1H)
+## Order Blocks (5 across 1D/4H/1H)
 | Type | Proximal | Distal | Impulse | FVG | TF |
 |------|----------|--------|---------|-----|-----|
 | bearish OB | 1.37424 | 1.38481 | 1.21x | ✓ | — |
+| bullish Breaker | 1.32077 | 1.29732 | 1.76x | ✓ | — |
 | bullish Breaker | 1.34024 | 1.33818 | 1.28x | ✓ | — |
 | bullish OB | 1.34333 | 1.34003 | 2.39x | ✓ | — |
+| bearish OB | 1.34964 | 1.35174 | 1.50x | ✓ | — |
 
 ## FVGs (3 across 1D/4H/1H)
 | Type | Top | Bottom | Gap ATR | Disp ATR | Fill % |
@@ -27,5 +29,5 @@
 | bullish | 1.33462 | 1.33068 | 2.34x | 3.61x | 33.50% |
 
 ## Draw Targets
-- **Primary**: UP @ 1.34808 — BSL pool Â· 6 touches (0.98)
-- **Alternate**: DOWN @ 1.34170 — SSL pool Â· 4 touches (0.85)
+- **Primary**: UP @ 1.34808 — BSL pool Â· 6 touches (0.99)
+- **Alternate**: DOWN @ 1.34170 — SSL pool Â· 4 touches (0.73)

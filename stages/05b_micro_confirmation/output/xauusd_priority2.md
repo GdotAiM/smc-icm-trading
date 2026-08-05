@@ -1,4 +1,4 @@
-# Priority 2 Report — XAUUSD — 2026-08-04
+# Priority 2 Report — XAUUSD — 2026-08-05
 
 ## CISD (Engine-Quality)
 **Insufficient data**
@@ -16,6 +16,6 @@
 
 ## ISD Sequence
 **⏳ ISD 2/3 — Near complete. One more confirmation needed.**
-- ✅ Inducement: 4 pool(s) swept across 4H/15m
+- ✅ Inducement: 5 pool(s) swept across 4H/15m
 - ✅ Structural Sweep: CHoCH confirms on 15m/5m
-- ✗ Displacement: weak on 5m (0.20x) — below threshold
+- ✗ Displacement: weak on 5m (0.06x) — below threshold

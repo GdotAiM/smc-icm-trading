@@ -1,56 +1,49 @@
-# Liquidity Analysis — EURUSD — 2026-08-04
+# Liquidity Analysis — EURUSD — 2026-08-05
 
-## Current Price: 1.15327
+## Current Price: 1.15456
 
 ## Step 1: HTF Bias
-- **⚠️ NOT ALIGNED — 1D BEARISH, 4H BULLISH**
+- **✅ ALIGNED — 1D BULLISH + 4H BULLISH**
 
 ## Step 2: Previous Day Levels (PDH/PDL)
 | Level | Price |
 |-------|-------|
-| PDH | 1.15590 |
-| PDL | 1.15004 |
-| Range | 0.00586 |
+| PDH | 1.15341 |
+| PDL | 1.15022 |
+| Range | 0.00319 |
 
 ## Step 3: Previous Week Levels (PWH/PWL)
 | Level | Price |
 |-------|-------|
-| PWH | 1.15338 |
-| PWL | 1.15228 |
-| Range | 0.00110 |
+| PWH | 1.15572 |
+| PWL | 1.15448 |
+| Range | 0.00124 |
 
 ## Step 4: Relative Equal Levels
-- 1 equal highs, 2 equal lows inside daily range
+- 0 equal highs, 2 equal lows inside daily range
 
 ## Step 5: Next Draw-on-Liquidity
 | Priority | Level | Price | Type | Label |
 |----------|-------|-------|------|-------|
-| 1 | PDH | 1.15590 | BSL | Previous Day High |
-| 1 | PDL | 1.15004 | SSL | Previous Day Low |
-| 2 | PWH | 1.15338 | BSL | Previous Week High |
-| 2 | PWL | 1.15228 | SSL | Previous Week Low |
+| 1 | PDL | 1.15022 | SSL | Previous Day Low |
+| 2 | PWL | 1.15448 | SSL | Previous Week Low |
+| 3 | EQL | 1.15312 | SSL | Relative Equal Low |
+| 3 | EQL | 1.15054 | SSL | Relative Equal Low |
 
-**Primary Draw**: Primary draw: Previous Day High (BSL) @ 1.15590 | Opposite (TP): N/A
+**Primary Draw**: Primary draw: Previous Day Low (SSL) @ 1.15022 | Opposite (TP): N/A
 
 ## Step 6-7: Sweep & MSS Status
-- ✅ Previous Day High SWEPT at 1.15804 | MSS: ⏳ Pending
+- ⏳ Previous Day Low NOT swept yet | Awaiting sweep + MSS
 
 ## Step 8: Entry Guidance
-- ⏳ NOT READY — ✅ Previous Day High SWEPT at 1.15804 | MSS: ⏳ Pending. Wait for Previous Day High sweep + MSS.
+- ⏳ NOT READY — ⏳ Previous Day Low NOT swept yet | Awaiting sweep + MSS. Wait for Previous Day Low sweep + MSS.
 
 ## HRLR / LRLR Classification
-- 0 LRLR (easy, with-trend) | 4 HRLR (hard, needs catalyst) | Primary TP: N/A | Stretch: Previous Day High @ 1.15590
+- 2 LRLR (easy, with-trend) | 2 HRLR (hard, needs catalyst) | Primary TP: Relative Equal Low @ 1.15312 | Stretch: Previous Day Low @ 1.15022
 | Level | Price | Type | Class | Defenders | FVG Sig | Role |
 |-------|-------|------|-------|-----------|---------|------|
-| Previous Day High | 1.15590 | BSL | **HRLR** | 0 | ✅ | 📐 TP2 |
-| Previous Day Low | 1.15004 | SSL | **HRLR** | 1 | ✅ |  |
-| Previous Week High | 1.15338 | BSL | **HRLR** | 0 | ✅ |  |
-| Previous Week Low | 1.15228 | SSL | **HRLR** | 0 | ✅ |  |
-
-## Sweep vs Run Classification
-- **POTENTIAL_SWEEP**: ⏳ POTENTIAL SWEEP: BUY-SIDE (above) swept and price back inside range. HTF disagrees — likely reversal. Awaiting MSS confirmation on 1m.
-- HTF Agrees: No → sweep expected
-- Price Back Inside: Yes
-- MSS Found: ⏳ No
-- Action: **WAIT FOR MSS**
+| Previous Day Low | 1.15022 | SSL | **HRLR** | 1 | ✅ | 📐 TP2 |
+| Previous Week Low | 1.15448 | SSL | **HRLR** | 0 | ✅ |  |
+| Relative Equal Low | 1.15312 | SSL | **LRLR** | 0 | ✅ | 🎯 TP1 |
+| Relative Equal Low | 1.15054 | SSL | **LRLR** | 1 | ✅ |  |
 

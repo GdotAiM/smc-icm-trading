@@ -1,4 +1,4 @@
-# LTF Cycle Analysis — NAS100 — 2026-08-04
+# LTF Cycle Analysis — NAS100 — 2026-08-05
 
 ## Macro Context (from Stage 00)
 - **HTF Bias**: BULLISH
@@ -9,11 +9,11 @@
 
 | Timeframe | Bias | Event | Direction | Displacement | Sweeps | FVGs | OBs |
 |-----------|------|-------|-----------|-------------|--------|------|-----|
-| 15m | **BULLISH** | BOS | bullish | moderate (0.88x) | SSL,SSL,SSL | 2 | 2 |
-| 5m | **BULLISH** | BOS | bullish | moderate (1.37x) | none | 0 | 0 |
-| 1m | **BULLISH** | CHoCH | bullish | strong (1.56x) | none | 0 | 0 |
+| 15m | **BULLISH** | CHoCH | bullish | moderate (1.00x) | SSL,SSL,SSL | 2 | 2 |
+| 5m | **BULLISH** | BOS | bullish | weak (0.57x) | SSL | 0 | 0 |
+| 1m | **BEARISH** | CHoCH | bearish | weak (0.00x) | BSL,SSL | 0 | 0 |
 
 ## LTF Alignment
 - **15m vs HTF**: ✅ ALIGNED
 - **5m vs HTF**: ✅ ALIGNED
-- **1m vs HTF**: ✅ ALIGNED
+- **1m vs HTF**: ⚠️ OPPOSING

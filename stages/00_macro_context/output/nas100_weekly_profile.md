@@ -1,12 +1,12 @@
-# Weekly Range Profile — NAS100 — 2026-08-04
+# Weekly Range Profile — NAS100 — 2026-08-05
 
-## Day: Tuesday 15:54:07 NY
+## Day: Wednesday 14:41:54 NY
 
 ## HTF Context
-HTF Arrays: Premium @ 22916.10000 (touched) | Discount @ 22583.70000 (UNTOUCHED) | Price in PREMIUM zone
+HTF Arrays: Premium @ 29861.40000 (touched) | Discount @ 26980.60000 (UNTOUCHED) | Price in PREMIUM zone
 
 ## Bias
-bullish→bearish→bullish — MIXED
+bearish→bullish→bullish — ALIGNED
 
 ## Profile Classification
 **Wednesday Low** (100% confidence)
@@ -19,10 +19,10 @@ bullish→bearish→bullish — MIXED
 ### Candidate Profiles
 | ID | Profile | Score | Day of Extreme | Reasons |
 |----|---------|-------|----------------|----------|
-| III | Wednesday Low | 7 | Wednesday | Tuesday — primary delivery day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
-| XI | Wednesday Weekly Bullish Rev | 6 | Wednesday | Tuesday — primary delivery day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
-| I | Classic Tuesday Low | 5 | Tuesday | Tuesday — primary delivery day, Discount untouched — target below |
-| V | Consolidation Thu Bullish Rev | 5 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles, Discount untouched — target below |
+| III | Wednesday Low | 7 | Wednesday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
+| V | Consolidation Thu Bullish Rev | 7 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles, Discount untouched — target below |
+| VII | Consolidation Midweek Rally | 7 | Wed→Friday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles |
+| XI | Wednesday Weekly Bullish Rev | 7 | Wednesday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
 
 ## Weekly Anchor
 - Direction: **BUY**

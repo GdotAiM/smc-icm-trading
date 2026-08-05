@@ -1,8 +1,8 @@
-# ICT Intraday Profile — EURUSD — 2026-08-04
+# ICT Intraday Profile — EURUSD — 2026-08-05
 
-## Profile: **SELL PROFILE** (VALID)
+## Profile: **BUY PROFILE** (VALID)
 
-**SELL PROFILE — DELAYED (move arriving after 02:00 NY — London open).  Enter at premium after 5m MSS.**
+**BUY PROFILE — DELAYED (move arriving after 02:00 NY — London open).  Enter at discount after 5m MSS.**
 
 ## Key Levels
 
@@ -26,14 +26,14 @@ Judas Swing window has passed. Classify as Delayed — London open has occurred.
 
 | # | Step | Status | Detail |
 |---|------|--------|--------|
-| 1 | Daily directional bias | ✅ | BEARISH on 1D/4H |
+| 1 | Daily directional bias | ✅ | BULLISH on 1D/4H |
 | 2 | Mark CBDR < 40 pips | ✅ | 36 pips |
 | 3 | Mark Asian range 20-30 pips | ✅ | 28 pips |
 | 4 | Plot 1σ/2σ/3σ projections | ✅ | 2σ: 1.14012/1.13650 |
 | 5 | Watch 00:00-02:00 NY Judas Swing | ✅ | Window passed |
 | 6 | Classify Normal vs Delayed | ✅ | DELAYED (move arriving after 02:00 NY — London open) |
 | 7 | Wait for 5m MSS | ⏳ | Monitor 5m for CHoCH in profile direction |
-| 8 | Enter on retest at premium/discount | ⏳ | Entry at PREMIUM (above equilibrium) |
+| 8 | Enter on retest at premium/discount | ⏳ | Entry at DISCOUNT (below equilibrium) |
 | 9 | Stop placement | ⏳ | Dealing range high (shorts) / Dealing range low (longs) |
 | 10 | Target HTF DOL or opposite PD Array | ⏳ | 50-70 pips default or nearest liquidity pool |
 
@@ -41,7 +41,7 @@ Judas Swing window has passed. Classify as Delayed — London open has occurred.
 
 ## Daily Bias
 
-**BEARISH** — Looking for SELL setups. Target downside liquidity.
+**BULLISH** — Looking for BUY setups. Target upside liquidity.
 
 ---
 

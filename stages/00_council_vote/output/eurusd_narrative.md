@@ -1,4 +1,4 @@
-# The Market's Story — EURUSD — 2026-08-04
+# The Market's Story — EURUSD — 2026-08-05
 
 ## The Narrative
 
@@ -8,19 +8,19 @@ The weekly chart shows a BULLISH structure with continuation. This is the macro 
 
 
 ### II. THE TRANSITION — 1D
-The daily DIVERGES from the weekly. This divergence is the KEY to understanding today's market: the daily move against the weekly trend is MANIPULATION, not a genuine reversal. Institutions are engineering a bearish move to sweep liquidity before the real bullish move resumes.
+The daily CONTINUES the weekly. The daily bullish bias confirms the larger picture — both timeframes agree, increasing conviction.
 
 
 ### III. THE TRADE CONTEXT — 4H
-The 4H is our trade timeframe. BOS at 1.15370 confirms the bullish structure. Liquidity sweep detected: SSL @ 1.13814, SSL @ 1.14036, BSL @ 1.15804. This is the INDUCEMENT — the manipulation that traps traders before the real move. Order blocks present — institutional reference points for entry. Displacement is weak.
+The 4H is our trade timeframe. BOS at 1.14053 confirms the bullish structure. Liquidity sweep detected: SSL @ 1.13814, SSL @ 1.14036, BSL @ 1.15804. This is the INDUCEMENT — the manipulation that traps traders before the real move. Order blocks present — institutional reference points for entry. Displacement is weak.
 
 
 ### IV. MICRO CONFIRMATION — 15m/5m
-The 15m and 5m both show bullish structure — LTF CONFIRMS HTF. This is the ideal entry environment: the lower timeframes agree with the higher timeframe direction.
+LTF structure is neutral — no clear micro confirmation yet. Wait for 5m/15m to commit to a direction.
 
 
 ### V. THE TRIGGER — 1m
-The 1m shows bullish bias with 2 FVGs. The 1m bullish aligns with HTF — trigger may be imminent.  2 FVG(s) available for entry refinement.
+The 1m shows bearish bias with 1 FVGs. The 1m bearish is a micro-bounce WITHIN the bullish trend — Scalpers can trade it but should NOT hold against the HTF. Recent 1m sweep detected — micro-manipulation may have just occurred. 1 FVG(s) available for entry refinement.
 
 
 ---
@@ -31,8 +31,8 @@ Model selection is narrative-driven, not pattern-matched. Each model tells a dif
 
 
 ### Silver Bullet
-**Fit**: TIME-MISMATCHED — wrong window for this model
-**Why**: Silver Bullet is NOT currently appropriate — we are in a killzone but outside the SB window. This model requires the 1-hour SB window (03-04, 10-11, or 14-15 NY). The killzone is active but the specific SB timing window is not.
+**Fit**: TIME-DRIVEN — this model is about WHEN, not WHAT
+**Why**: Silver Bullet is appropriate RIGHT NOW because we are inside the active killzone window. The model is time-gated — it only works during specific 2-hour windows when institutional flow is highest. The bullish bias provides directional context. FVGs are present for entry refinement.
 
 
 ### 2022 Model (MMXM)
@@ -51,15 +51,14 @@ Model selection is narrative-driven, not pattern-matched. Each model tells a dif
 
 **Direction**: BULLISH — STRONG
 
-The BULLISH bias is built on 6 pieces of structural evidence, not a single indicator. Confidence is high because multiple confirmations align.
+The BULLISH bias is built on 5 pieces of structural evidence, not a single indicator. Confidence is high because multiple confirmations align.
 
 **Evidence chain**:
 - 4H BOS (Break of Structure) — continuation confirmed
-- 1D BOS — daily structure intact
 - Liquidity sweep — institutional manipulation detected
 - 1 Order Block(s) — institutional reference levels present
 - 1 FVG(s) — price inefficiencies to fill
-- 1D and 4H diverging — HTF conflict, reduced conviction
+- 1D and 4H aligned — no timeframe conflict
 
 **Cycle context**: This bullish bias exists within a DISTRIBUTION cycle phase. In distribution, bias is HIGHLY reliable — the trend is established and continuing.
 
@@ -104,7 +103,7 @@ The market is telling us a coherent story:
 
 **EURUSD is in a DISTRIBUTION phase within a larger BULLISH weekly structure.**
 
-The weekly chart shows a BULLISH structure with continuation. The daily DIVERGES from the weekly. The 4H is our trade timeframe.
+The weekly chart shows a BULLISH structure with continuation. The daily CONTINUES the weekly. The 4H is our trade timeframe.
 
 This IS a trend trade. The structure is established and institutions are distributing. Ride the trend, trail stops, and let winners run.
 
@@ -117,5 +116,5 @@ This IS a trend trade. The structure is established and institutions are distrib
 
 ---
 
-*Generated: 2026-08-04T19:53:42.185Z | Narrative Engine v1.0*
+*Generated: 2026-08-05T18:41:14.915Z | Narrative Engine v1.0*
 *"The market is a storyteller. Our job is to listen, not to guess."*

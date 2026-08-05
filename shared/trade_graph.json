@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "built": "2026-08-04T19:54:19.899Z",
+  "built": "2026-08-05T18:42:11.665Z",
   "nodes": {
     "concept:blog---ict": {
       "id": "concept:blog---ict",
@@ -1130,7 +1130,7 @@
       "id": "pair:gbpusd",
       "type": "pair",
       "name": "Gbpusd",
-      "totalTrades": 8,
+      "totalTrades": 9,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1169,7 +1169,7 @@
       "id": "pair:xauusd",
       "type": "pair",
       "name": "Xauusd",
-      "totalTrades": 7,
+      "totalTrades": 8,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1183,10 +1183,10 @@
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "trade:eurusd:2026-08-04": {
-      "id": "trade:eurusd:2026-08-04",
+    "trade:eurusd:2026-08-05": {
+      "id": "trade:eurusd:2026-08-05",
       "type": "trade",
-      "date": "2026-08-04",
+      "date": "2026-08-05",
       "pair": "EURUSD",
       "direction": "NO",
       "model": "MMXM Sell Model",
@@ -1198,7 +1198,7 @@
       "id": "pair:eurusd",
       "type": "pair",
       "name": "Eurusd",
-      "totalTrades": 6,
+      "totalTrades": 7,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1221,10 +1221,10 @@
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "trade:gbpusd:2026-08-04": {
-      "id": "trade:gbpusd:2026-08-04",
+    "trade:gbpusd:2026-08-05": {
+      "id": "trade:gbpusd:2026-08-05",
       "type": "trade",
-      "date": "2026-08-04",
+      "date": "2026-08-05",
       "pair": "GBPUSD",
       "direction": "NO",
       "model": "MMXM Sell Model",
@@ -1235,12 +1235,12 @@
       "entries": 2,
       "blocked": 6,
       "outcome": "blocked",
-      "decisionQuality": 3.5
+      "decisionQuality": 3.75
     },
-    "trade:nas100:2026-08-04": {
-      "id": "trade:nas100:2026-08-04",
+    "trade:nas100:2026-08-05": {
+      "id": "trade:nas100:2026-08-05",
       "type": "trade",
-      "date": "2026-08-04",
+      "date": "2026-08-05",
       "pair": "NAS100",
       "direction": "NO",
       "model": "MMXM Sell Model",
@@ -1252,15 +1252,15 @@
       "id": "pair:nas100",
       "type": "pair",
       "name": "Nas100",
-      "totalTrades": 5,
+      "totalTrades": 6,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "trade:xauusd:2026-08-04": {
-      "id": "trade:xauusd:2026-08-04",
+    "trade:xauusd:2026-08-05": {
+      "id": "trade:xauusd:2026-08-05",
       "type": "trade",
-      "date": "2026-08-04",
+      "date": "2026-08-05",
       "pair": "XAUUSD",
       "direction": "NO",
       "model": "MMXM Sell Model",
@@ -1345,6 +1345,18 @@
       "pnl": 0,
       "outcome": "no_trade",
       "decisionQuality": 3.75,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
+    "trade:eurusd:2026-08-04": {
+      "id": "trade:eurusd:2026-08-04",
+      "type": "trade",
+      "date": "2026-08-04",
+      "pair": "EURUSD",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.5,
       "entries": 0,
       "blocked": 0,
       "source": "performance"
@@ -1806,6 +1818,18 @@
       "date": "2026-08-03",
       "active": true
     },
+    "trade:gbpusd:2026-08-04": {
+      "id": "trade:gbpusd:2026-08-04",
+      "type": "trade",
+      "date": "2026-08-04",
+      "pair": "GBPUSD",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.5,
+      "entries": 2,
+      "blocked": 6,
+      "source": "performance"
+    },
     "lesson:gbpusd:2026-08-04:0": {
       "id": "lesson:gbpusd:2026-08-04:0",
       "type": "lesson",
@@ -1859,6 +1883,61 @@
       "source": "journal",
       "pair": "GBPUSD",
       "date": "2026-08-04",
+      "active": true
+    },
+    "lesson:gbpusd:2026-08-05:0": {
+      "id": "lesson:gbpusd:2026-08-05:0",
+      "type": "lesson",
+      "title": "Judas Swing guard works.",
+      "detail": "Entering at 02:00 during London Open manipulation = trap confirmed. Guard prevented -1R.",
+      "category": "risk-management",
+      "source": "journal",
+      "pair": "GBPUSD",
+      "date": "2026-08-05",
+      "active": true
+    },
+    "lesson:gbpusd:2026-08-05:1": {
+      "id": "lesson:gbpusd:2026-08-05:1",
+      "type": "lesson",
+      "title": "1m Inversion can fade fast.",
+      "detail": "7/8 at 02:00 → 2/8 at 03:00 → 0/8 at 03:26. Re-validate at entry time, not signal time.",
+      "category": "entry-execution",
+      "source": "journal",
+      "pair": "GBPUSD",
+      "date": "2026-08-05",
+      "active": true
+    },
+    "lesson:gbpusd:2026-08-05:2": {
+      "id": "lesson:gbpusd:2026-08-05:2",
+      "type": "lesson",
+      "title": "SB displacement must occur during SB window.",
+      "detail": "The move already happened during Judas. By SB time, displacement was gone.",
+      "category": "entry-execution",
+      "source": "journal",
+      "pair": "GBPUSD",
+      "date": "2026-08-05",
+      "active": true
+    },
+    "lesson:gbpusd:2026-08-05:3": {
+      "id": "lesson:gbpusd:2026-08-05:3",
+      "type": "lesson",
+      "title": "The forecast should run BEFORE every signal.",
+      "detail": "5m forecast at 02:00 would have shown the bounce projection and prevented premature entries.",
+      "category": "forecast-usage",
+      "source": "journal",
+      "pair": "GBPUSD",
+      "date": "2026-08-05",
+      "active": true
+    },
+    "lesson:gbpusd:2026-08-05:4": {
+      "id": "lesson:gbpusd:2026-08-05:4",
+      "type": "lesson",
+      "title": "The reload is cleaner than the original signal.",
+      "detail": "The bounce exhausted, the 5m flipped, and now all TFs can align with the HTF direction.",
+      "category": "directional-bias",
+      "source": "journal",
+      "pair": "GBPUSD",
+      "date": "2026-08-05",
       "active": true
     },
     "trade:gold:2026-07-28": {
@@ -1941,6 +2020,18 @@
       "blocked": 0,
       "source": "performance"
     },
+    "trade:nas100:2026-08-04": {
+      "id": "trade:nas100:2026-08-04",
+      "type": "trade",
+      "date": "2026-08-04",
+      "pair": "NAS100",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.5,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
     "gap:xauusd:2026-07-28:0": {
       "id": "gap:xauusd:2026-07-28:0",
       "type": "gap",
@@ -2008,6 +2099,18 @@
       "pnl": 0,
       "outcome": "no_trade",
       "decisionQuality": 3.5,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
+    "trade:xauusd:2026-08-04": {
+      "id": "trade:xauusd:2026-08-04",
+      "type": "trade",
+      "date": "2026-08-04",
+      "pair": "XAUUSD",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.75,
       "entries": 0,
       "blocked": 0,
       "source": "performance"
@@ -2102,84 +2205,84 @@
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-08-04",
+      "source": "trade:eurusd:2026-08-05",
       "target": "pair:eurusd",
       "type": "ON_PAIR",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-08-04",
+      "source": "trade:eurusd:2026-08-05",
       "target": "model:mmxm-sell-model",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-08-04",
+      "source": "trade:eurusd:2026-08-05",
       "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-08-04",
+      "source": "trade:gbpusd:2026-08-05",
       "target": "pair:gbpusd",
       "type": "ON_PAIR",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-08-04",
+      "source": "trade:gbpusd:2026-08-05",
       "target": "model:mmxm-sell-model",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-08-04",
+      "source": "trade:gbpusd:2026-08-05",
       "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:nas100:2026-08-04",
+      "source": "trade:nas100:2026-08-05",
       "target": "pair:nas100",
       "type": "ON_PAIR",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:nas100:2026-08-04",
+      "source": "trade:nas100:2026-08-05",
       "target": "model:mmxm-sell-model",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:nas100:2026-08-04",
+      "source": "trade:nas100:2026-08-05",
       "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:xauusd:2026-08-04",
+      "source": "trade:xauusd:2026-08-05",
       "target": "pair:xauusd",
       "type": "ON_PAIR",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:xauusd:2026-08-04",
+      "source": "trade:xauusd:2026-08-05",
       "target": "model:mmxm-sell-model",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:xauusd:2026-08-04",
+      "source": "trade:xauusd:2026-08-05",
       "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
@@ -2229,6 +2332,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-04",
+      "target": "pair:eurusd",
+      "type": "ON_PAIR",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-05",
       "target": "concept:ict-trading-strategy-2022",
       "type": "USED_CONCEPT",
       "weight": 0.9,
@@ -3167,6 +3277,13 @@
     },
     {
       "source": "trade:gbpusd:2026-08-04",
+      "target": "pair:gbpusd",
+      "type": "ON_PAIR",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
       "target": "lesson:gbpusd:2026-08-04:0",
       "type": "GENERATED_LESSON",
       "weight": 1,
@@ -3292,7 +3409,133 @@
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-08-04",
+      "source": "trade:gbpusd:2026-08-05",
+      "target": "lesson:gbpusd:2026-08-05:0",
+      "type": "GENERATED_LESSON",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:0",
+      "target": "concept:judas-swing",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:0",
+      "target": "concept:swing-high",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:0",
+      "target": "concept:swing-low-formation",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-05",
+      "target": "lesson:gbpusd:2026-08-05:1",
+      "type": "GENERATED_LESSON",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:1",
+      "target": "concept:3-step-guide-to-master-valid-pullback",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:1",
+      "target": "concept:institutional-order-flow-entry-drill",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:1",
+      "target": "concept:inversion-fair-value-gap",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:1",
+      "target": "concept:optimal-trade-entry-ote-pattern",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:1",
+      "target": "concept:reaper-inversion-fair-value-gap",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:1",
+      "target": "concept:valid-ict-fair-value-gap",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-05",
+      "target": "lesson:gbpusd:2026-08-05:2",
+      "type": "GENERATED_LESSON",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:2",
+      "target": "concept:displacement-move",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:2",
+      "target": "concept:judas-swing",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:2",
+      "target": "concept:silver-bullet",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "lesson:gbpusd:2026-08-05:2",
+      "target": "concept:killzone-silver-bullet-overlap",
+      "type": "LESSON_RELATES_TO",
+      "weight": 0.8,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-05",
+      "target": "lesson:gbpusd:2026-08-05:3",
+      "type": "GENERATED_LESSON",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-05",
+      "target": "lesson:gbpusd:2026-08-05:4",
+      "type": "GENERATED_LESSON",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-05",
       "target": "concept:ict-trading-strategy-2022",
       "type": "USED_CONCEPT",
       "weight": 0.9,
@@ -3342,6 +3585,13 @@
     },
     {
       "source": "trade:nas100:2026-08-04",
+      "target": "pair:nas100",
+      "type": "ON_PAIR",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-05",
       "target": "concept:ict-trading-strategy-2022",
       "type": "USED_CONCEPT",
       "weight": 0.9,
@@ -3398,49 +3648,56 @@
     },
     {
       "source": "trade:xauusd:2026-08-04",
+      "target": "pair:xauusd",
+      "type": "ON_PAIR",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:xauusd:2026-08-05",
       "target": "concept:ict-trading-strategy-2022",
       "type": "USED_CONCEPT",
       "weight": 0.9,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-08-04",
-      "target": "trade:gbpusd:2026-08-04",
+      "source": "trade:eurusd:2026-08-05",
+      "target": "trade:gbpusd:2026-08-05",
       "type": "SIMILAR_TO",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-08-04",
-      "target": "trade:nas100:2026-08-04",
+      "source": "trade:eurusd:2026-08-05",
+      "target": "trade:nas100:2026-08-05",
       "type": "SIMILAR_TO",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-08-04",
-      "target": "trade:xauusd:2026-08-04",
+      "source": "trade:eurusd:2026-08-05",
+      "target": "trade:xauusd:2026-08-05",
       "type": "SIMILAR_TO",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-08-04",
-      "target": "trade:nas100:2026-08-04",
+      "source": "trade:gbpusd:2026-08-05",
+      "target": "trade:nas100:2026-08-05",
       "type": "SIMILAR_TO",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-08-04",
-      "target": "trade:xauusd:2026-08-04",
+      "source": "trade:gbpusd:2026-08-05",
+      "target": "trade:xauusd:2026-08-05",
       "type": "SIMILAR_TO",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:nas100:2026-08-04",
-      "target": "trade:xauusd:2026-08-04",
+      "source": "trade:nas100:2026-08-05",
+      "target": "trade:xauusd:2026-08-05",
       "type": "SIMILAR_TO",
       "weight": 1,
       "metadata": {}
@@ -3482,6 +3739,13 @@
     },
     {
       "source": "trade:dxy:2026-07-29",
+      "target": "trade:eurusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
       "target": "trade:gbpusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3524,6 +3788,13 @@
     },
     {
       "source": "trade:dxy:2026-07-29",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3559,6 +3830,13 @@
     },
     {
       "source": "trade:dxy:2026-07-29",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3588,6 +3866,13 @@
     {
       "source": "trade:dxy:2026-07-29",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -3622,6 +3907,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-28",
+      "target": "trade:eurusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-28",
       "target": "trade:gbpusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3664,6 +3956,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-28",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-28",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3699,6 +3998,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-28",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-28",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3728,6 +4034,13 @@
     {
       "source": "trade:eurusd:2026-07-28",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-28",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -3755,6 +4068,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-29",
+      "target": "trade:eurusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-29",
       "target": "trade:gbpusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3797,6 +4117,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-29",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-29",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3832,6 +4159,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-29",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-29",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3861,6 +4195,13 @@
     {
       "source": "trade:eurusd:2026-07-29",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-29",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -3881,6 +4222,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-31",
+      "target": "trade:eurusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
       "target": "trade:gbpusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3923,6 +4271,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-31",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3958,6 +4313,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-31",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3987,6 +4349,13 @@
     {
       "source": "trade:eurusd:2026-07-31",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4000,6 +4369,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-02",
+      "target": "trade:eurusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-02",
       "target": "trade:gbpusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4042,6 +4418,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-02",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-02",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4077,6 +4460,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-02",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-02",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4106,6 +4496,20 @@
     {
       "source": "trade:eurusd:2026-08-02",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-02",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-03",
+      "target": "trade:eurusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4154,6 +4558,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-03",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-03",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4189,6 +4600,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-03",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-03",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4218,6 +4636,146 @@
     {
       "source": "trade:eurusd:2026-08-03",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-03",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:gbpusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:gbpusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:gbpusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:gbpusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:gbpusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:gbpusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:gold:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:nas100:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:nas100:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:nas100:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:nas100:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:xauusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:xauusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:xauusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4259,6 +4817,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-28",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-28",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4294,6 +4859,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-28",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-28",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4323,6 +4895,13 @@
     {
       "source": "trade:gbpusd:2026-07-28",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-28",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4357,6 +4936,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-29",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-29",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4392,6 +4978,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-29",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-29",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4421,6 +5014,13 @@
     {
       "source": "trade:gbpusd:2026-07-29",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-29",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4448,6 +5048,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-30",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-30",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4483,6 +5090,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-30",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-30",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4512,6 +5126,13 @@
     {
       "source": "trade:gbpusd:2026-07-30",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-30",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4532,6 +5153,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-31",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4567,6 +5195,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-31",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4596,6 +5231,13 @@
     {
       "source": "trade:gbpusd:2026-07-31",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4609,6 +5251,13 @@
     },
     {
       "source": "trade:gbpusd:2026-08-02",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-02",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4644,6 +5293,13 @@
     },
     {
       "source": "trade:gbpusd:2026-08-02",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-02",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4673,6 +5329,20 @@
     {
       "source": "trade:gbpusd:2026-08-02",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-02",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-03",
+      "target": "trade:gbpusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4714,6 +5384,13 @@
     },
     {
       "source": "trade:gbpusd:2026-08-03",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-03",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4743,6 +5420,97 @@
     {
       "source": "trade:gbpusd:2026-08-03",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-03",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:gold:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:nas100:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:nas100:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:nas100:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:nas100:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:xauusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:xauusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:xauusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4777,6 +5545,13 @@
     },
     {
       "source": "trade:gold:2026-07-28",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gold:2026-07-28",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4806,6 +5581,13 @@
     {
       "source": "trade:gold:2026-07-28",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gold:2026-07-28",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4833,6 +5615,13 @@
     },
     {
       "source": "trade:nas100:2026-07-29",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-07-29",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4862,6 +5651,13 @@
     {
       "source": "trade:nas100:2026-07-29",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-07-29",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4882,6 +5678,13 @@
     },
     {
       "source": "trade:nas100:2026-07-31",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-07-31",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4911,6 +5714,13 @@
     {
       "source": "trade:nas100:2026-07-31",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-07-31",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4924,6 +5734,13 @@
     },
     {
       "source": "trade:nas100:2026-08-02",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-02",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4958,6 +5775,20 @@
       "metadata": {}
     },
     {
+      "source": "trade:nas100:2026-08-02",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-03",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:nas100:2026-08-03",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
@@ -4993,6 +5824,55 @@
       "metadata": {}
     },
     {
+      "source": "trade:nas100:2026-08-03",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-04",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-04",
+      "target": "trade:xauusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-04",
+      "target": "trade:xauusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-04",
+      "target": "trade:xauusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-04",
+      "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-04",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-07-29",
       "target": "trade:xauusd:2026-07-30",
       "type": "SIMILAR_TO",
@@ -5021,6 +5901,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:xauusd:2026-07-29",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-07-30",
       "target": "trade:xauusd:2026-07-31",
       "type": "SIMILAR_TO",
@@ -5042,6 +5929,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:xauusd:2026-07-30",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-07-31",
       "target": "trade:xauusd:2026-08-02",
       "type": "SIMILAR_TO",
@@ -5051,6 +5945,13 @@
     {
       "source": "trade:xauusd:2026-07-31",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:xauusd:2026-07-31",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5058,6 +5959,20 @@
     {
       "source": "trade:xauusd:2026-08-02",
       "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:xauusd:2026-08-02",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:xauusd:2026-08-03",
+      "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}

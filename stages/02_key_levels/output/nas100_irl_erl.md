@@ -1,6 +1,6 @@
-# IRL / ERL Analysis — NAS100 — 2026-08-04
+# IRL / ERL Analysis — NAS100 — 2026-08-05
 
-## Current Price: 29794.90000
+## Current Price: 29874.40000
 
 ## Dealing Range (1D)
 - **Range**: 26980.60000 — 29861.40000 (2880.80000)
@@ -18,8 +18,8 @@
 
 | TF | Type | Price (CE) | Fill % | Distance |
 |-----|------|------------|--------|----------|
-| 15m | bullish | 28770.80000 | 0.00% | 3.44% |
-| 15m | bullish | 28806.00000 | 26.13% | 3.32% |
+| 15m | bullish | 28770.80000 | 0.00% | 3.69% |
+| 15m | bullish | 28806.00000 | 26.13% | 3.58% |
 
 ## ERL — External Range Liquidity
 - **Dominant**: BALANCED
@@ -34,8 +34,8 @@
 - **ERL Sweeps**: 0 above, 0 below
 
 ## IRL/ERL Bias
-- **Bias**: **NEUTRAL** (confidence: 0.00)
-- **Reasoning**: 
+- **Bias**: **BEARISH** (confidence: 0.50)
+- **Reasoning**: Price outside above dealing range. Expected to re-enter range toward IRL.
 
 ## Entry Guidance
 - **WAIT** (neutral) — Unclear cycle position — wait for ERL raid or IRL fill to establish direction.

@@ -1,4 +1,4 @@
-# Session Analysis — GBPUSD — 2026-08-04 15:00 NY (EDT)
+# Session Analysis — GBPUSD — 2026-08-05 14:00 NY (EDT)
 
 ## Current Session
 - **Session**: NY PM | Killzone: ✅ ACTIVE
@@ -10,7 +10,7 @@
 |--------|---------|--------|
 | London SB | 03-04 | — |
 | NY AM SB | 10-11 | — |
-| NY PM SB | 14-15 | — |
+| NY PM SB | 14-15 | ✅ |
 
 ## Alignment
 - Bias: **bearish** | Session: NY PM

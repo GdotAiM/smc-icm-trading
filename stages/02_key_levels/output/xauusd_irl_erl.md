@@ -1,32 +1,29 @@
-# IRL / ERL Analysis — XAUUSD — 2026-08-04
+# IRL / ERL Analysis — XAUUSD — 2026-08-05
 
-## Current Price: 4080.64500
+## Current Price: 4201.57500
 
 ## Dealing Range (1D)
 - **Range**: 3996.05500 — 4120.49500 (124.44000)
 - **Midpoint (Equilibrium)**: 4058.27500
-- **Validation**: ⚠️ PARTIAL — high NOT swept, low NOT swept
+- **Validation**: ⚠️ PARTIAL — high swept, low NOT swept
 - **Premium Zone**: 4120.49500 — 4058.27500
 - **Discount Zone**: 4058.27500 — 3996.05500
 
-## IRL — Internal Range Liquidity (4 FVGs)
+## IRL — Internal Range Liquidity (1 FVGs)
 | Status | Count |
 |--------|-------|
-| Unfilled (<30%) | 3 |
-| Partial (30-70%) | 1 |
+| Unfilled (<30%) | 1 |
+| Partial (30-70%) | 0 |
 | Filled (>70%) | 0 |
 
 | TF | Type | Price (CE) | Fill % | Distance |
 |-----|------|------------|--------|----------|
-| 5m | bullish | 4033.71000 | 0.00% | 1.15% |
-| 5m | bullish | 4051.57750 | 1.95% | 0.71% |
-| 5m | bullish | 4071.56000 | 25.10% | 0.22% |
-| 15m | bullish | 4073.90250 | 34.89% | 0.17% |
+| 15m | bullish | 4116.65500 | 0.00% | 2.02% |
 
 ## ERL — External Range Liquidity
-- **Dominant**: BALANCED
+- **Dominant**: BUY-SIDE (above)
 - **Larger Pool**: ABOVE
-- **Buy-Side (above range)**: 0 pools | 0 equal-high clusters
+- **Buy-Side (above range)**: 1 pools | 0 equal-high clusters
 - **Sell-Side (below range)**: 0 pools | 0 equal-low clusters
 
 ## Delivery Cycle
@@ -36,8 +33,8 @@
 - **ERL Sweeps**: 0 above, 0 below
 
 ## IRL/ERL Bias
-- **Bias**: **NEUTRAL** (confidence: 0.00)
-- **Reasoning**: 
+- **Bias**: **BEARISH** (confidence: 0.50)
+- **Reasoning**: Price outside above dealing range. Expected to re-enter range toward IRL.
 
 ## Entry Guidance
 - **WAIT** (neutral) — Unclear cycle position — wait for ERL raid or IRL fill to establish direction.

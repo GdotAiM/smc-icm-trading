@@ -1,4 +1,4 @@
-# PD Array Matrix — GBPUSD — 2026-08-04
+# PD Array Matrix — GBPUSD — 2026-08-05
 
 ## 20-Day Look-Back Range
 20-Day Range: 1.32735–1.35582 (0.02847) | EQ 1.34159 | Q25 1.33447 | Q75 1.34870
@@ -10,7 +10,7 @@
 |----------|--------|--------|------------|
 | LOWER (Discount) | 3 | 1 | **HIGH** |
 | MID-LOW | 4 | 1 | **HIGH** |
-| MID-HIGH | 3 | 1 | **HIGH** |
-| UPPER (Premium) | 0 | 0 | **LOW** |
+| MID-HIGH | 4 | 2 | **HIGH** |
+| UPPER (Premium) | 1 | 0 | **MODERATE** |
 
-**Target**: UPPER (Premium) — LOW confluence
+**Target**: UPPER (Premium) — MODERATE confluence

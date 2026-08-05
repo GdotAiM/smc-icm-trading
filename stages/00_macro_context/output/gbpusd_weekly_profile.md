@@ -1,30 +1,30 @@
-# Weekly Range Profile — GBPUSD — 2026-08-04
+# Weekly Range Profile — GBPUSD — 2026-08-05
 
-## Day: Tuesday 15:53:42 NY
+## Day: Wednesday 14:41:15 NY
 
 ## HTF Context
-HTF Arrays: Premium @ 1.37710 (UNTOCUHED) | Discount @ 1.33704 (UNTOUCHED) | Price in DISCOUNT zone
+HTF Arrays: Premium @ 1.34442 (touched) | Discount @ 1.32340 (UNTOUCHED) | Price in PREMIUM zone
 
 ## Bias
-bullish→bearish→bullish — MIXED
+bearish→bearish→bullish — ALIGNED
 
 ## Profile Classification
-**Wednesday Low** (100% confidence)
-- Direction: BULLISH
-- Target Day: Wednesday
-- Behavior: Mon-Tue manipulation → Wednesday drop into discount → rally
+**Consolidation Midweek Decline** (100% confidence)
+- Direction: BEARISH
+- Target Day: Wed→Friday
+- Behavior: Mon-Wed consolidation → expansion down through lows into Friday
 - Skip Week: ✅ No
 - Slight IX/X risk (Summer) — monitor.
 
 ### Candidate Profiles
 | ID | Profile | Score | Day of Extreme | Reasons |
 |----|---------|-------|----------------|----------|
-| III | Wednesday Low | 7 | Wednesday | Tuesday — primary delivery day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
-| XI | Wednesday Weekly Bullish Rev | 6 | Wednesday | Tuesday — primary delivery day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
-| I | Classic Tuesday Low | 5 | Tuesday | Tuesday — primary delivery day, Discount untouched — target below |
-| V | Consolidation Thu Bullish Rev | 5 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles, Discount untouched — target below |
+| VIII | Consolidation Midweek Decline | 7 | Wed→Friday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles |
+| IV | Wednesday High | 5 | Wednesday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated |
+| VI | Consolidation Thu Bearish Rev | 5 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles |
+| XII | Wednesday Weekly Bearish Rev | 5 | Wednesday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated |
 
 ## Weekly Anchor
-- Direction: **BUY**
+- Direction: **SELL**
 - Boost: ×1.4 (agreeing) / ×0.3 (opposing)
-- Weekly Anchor: BULLISH — Wednesday LOW expected. Aligned models ×1.4, opposing ×0.7.
+- Weekly Anchor: BEARISH — Wed→Friday HIGH expected. Aligned models ×1.4, opposing ×0.7.

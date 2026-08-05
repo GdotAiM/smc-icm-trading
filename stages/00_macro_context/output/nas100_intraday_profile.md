@@ -1,4 +1,4 @@
-# ICT Intraday Profile — NAS100 — 2026-08-04
+# ICT Intraday Profile — NAS100 — 2026-08-05
 
 ## Profile: **DEGRADED** (INVALID)
 
@@ -26,7 +26,7 @@ Judas Swing window has passed. Classify as Delayed — London open has occurred.
 
 | # | Step | Status | Detail |
 |---|------|--------|--------|
-| 1 | Daily directional bias | ✅ | BEARISH on 1D/4H |
+| 1 | Daily directional bias | ✅ | BULLISH on 1D/4H |
 | 2 | Mark CBDR < 40 pips | ✗ | 5217000 pips |
 | 3 | Mark Asian range 20-30 pips | ✗ | 5217000 pips |
 | 4 | Plot 1σ/2σ/3σ projections | ✅ | 2σ: 28574.00000/28052.30000 |
@@ -41,7 +41,7 @@ Judas Swing window has passed. Classify as Delayed — London open has occurred.
 
 ## Daily Bias
 
-**BEARISH** — Looking for SELL setups. Target downside liquidity.
+**BULLISH** — Looking for BUY setups. Target upside liquidity.
 
 ---
 

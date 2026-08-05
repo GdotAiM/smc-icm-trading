@@ -1,30 +1,30 @@
-# Weekly Range Profile — XAUUSD — 2026-08-04
+# Weekly Range Profile — XAUUSD — 2026-08-05
 
-## Day: Tuesday 15:53:55 NY
+## Day: Wednesday 14:41:37 NY
 
 ## HTF Context
-HTF Arrays: Premium @ 3393.64000 (touched) | Discount @ 3295.31500 (UNTOUCHED) | Price in PREMIUM zone
+HTF Arrays: Premium @ 3435.05500 (touched) | Discount @ 3201.95500 (UNTOUCHED) | Price in PREMIUM zone
 
 ## Bias
-bearish→bearish→bullish — ALIGNED
+bearish→bullish→bullish — ALIGNED
 
 ## Profile Classification
-**Wednesday High** (100% confidence)
-- Direction: BEARISH
+**Wednesday Low** (100% confidence)
+- Direction: BULLISH
 - Target Day: Wednesday
-- Behavior: Mon-Tue manipulation → Wednesday rally into premium → drop
+- Behavior: Mon-Tue manipulation → Wednesday drop into discount → rally
 - Skip Week: ✅ No
 - Slight IX/X risk (Summer) — monitor.
 
 ### Candidate Profiles
 | ID | Profile | Score | Day of Extreme | Reasons |
 |----|---------|-------|----------------|----------|
-| IV | Wednesday High | 5 | Wednesday | Tuesday — primary delivery day, Monday reached array — Tue profiles eliminated |
-| XII | Wednesday Weekly Bearish Rev | 4 | Wednesday | Tuesday — primary delivery day, Monday reached array — Tue profiles eliminated |
-| II | Classic Tuesday High | 3 | Tuesday | Tuesday — primary delivery day |
-| VI | Consolidation Thu Bearish Rev | 3 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles |
+| III | Wednesday Low | 7 | Wednesday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
+| V | Consolidation Thu Bullish Rev | 7 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles, Discount untouched — target below |
+| VII | Consolidation Midweek Rally | 7 | Wed→Friday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles |
+| XI | Wednesday Weekly Bullish Rev | 7 | Wednesday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
 
 ## Weekly Anchor
-- Direction: **SELL**
+- Direction: **BUY**
 - Boost: ×1.4 (agreeing) / ×0.3 (opposing)
-- Weekly Anchor: BEARISH — Wednesday HIGH expected. Aligned models ×1.4, opposing ×0.7.
+- Weekly Anchor: BULLISH — Wednesday LOW expected. Aligned models ×1.4, opposing ×0.7.

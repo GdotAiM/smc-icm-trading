@@ -1,16 +1,16 @@
-# Inducement Check — XAUUSD — 2026-08-04
+# Inducement Check — XAUUSD — 2026-08-05
 
 ## Structural Event
-CHOCH bullish @ 4072.97000 | Impulse: 8 candles, range 18.26500
+BOS bullish @ 4172.68000 | Impulse: 14 candles, range 30.54000
 
 ## First Pullback
-First pullback: low @ 4059.47500 | Retracement: 100.00% — ✅ VALID (≥50%)
+First pullback: low @ 4159.04500 | Retracement: 71.30% — ✅ VALID (≥50%)
 
 ## Inducement Level
-Inducement: SSL (Sell-Side) @ 4059.47500 — Sell-side trap below pullback low
+Inducement: SSL (Sell-Side) @ 4159.04500 — Sell-side trap below pullback low
 
 ## Sweep Status
-⏳ Inducement NOT swept — entry gate CLOSED. Waiting for dip below 4059.47500.
+⏳ Inducement NOT swept — entry gate CLOSED. Waiting for dip below 4159.04500.
 
 ## Entry Gate
-**🛑 GATE CLOSED — ⏳ Inducement NOT swept — entry gate CLOSED. Waiting for dip below 4059.47500.**
+**🛑 GATE CLOSED — ⏳ Inducement NOT swept — entry gate CLOSED. Waiting for dip below 4159.04500.**

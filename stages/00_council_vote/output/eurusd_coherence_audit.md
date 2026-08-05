@@ -1,6 +1,6 @@
-# Coherence Audit — EURUSD — 2026-08-04
+# Coherence Audit — EURUSD — 2026-08-05
 
-## Overall Coherence: 40/100 — D — POOR coherence
+## Overall Coherence: 50/100 — D — POOR coherence
 
 ---
 
@@ -17,19 +17,19 @@
 
 ---
 
-## 2. Temporal Coherence (⚠️ 0/4 LTFs aligned)
+## 2. Temporal Coherence (⚠️ 2/4 LTFs aligned)
 
-| TF | Bias | Event | vs HTF (BEARISH) |
+| TF | Bias | Event | vs HTF (BULLISH) |
 |----|------|-------|------------------|
-| 1W | **BULLISH** | BOS | ⚠️ opposing |
-| 1D | **BEARISH** | BOS | ✅ aligned |
-| 4H | **BULLISH** | BOS | ⚠️ opposing |
-| 1H | **BULLISH** | BOS | ⚠️ opposing |
-| 15m | **BULLISH** | BOS | ⚠️ opposing |
-| 5m | **BULLISH** | BOS | ⚠️ opposing |
-| 1m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 1W | **BULLISH** | BOS | ✅ aligned |
+| 1D | **BULLISH** | CHoCH | ✅ aligned |
+| 4H | **BULLISH** | BOS | ✅ aligned |
+| 1H | **BULLISH** | BOS | ✅ aligned |
+| 15m | **BULLISH** | BOS | ✅ aligned |
+| 5m | **BEARISH** | CHoCH | ⚠️ opposing |
+| 1m | **BEARISH** | BOS | ⚠️ opposing |
 
-**⚠️ TEMPORAL DIVERGENCE — 4 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
+**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BULLISH. Possible reversal or deep pullback.**
 
 ---
 
@@ -41,9 +41,9 @@
 
 ## 4. Self-Contradiction Check
 
-- **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
+✅ No self-contradictions detected.
 
-**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
+**✅ NO SELF-CONTRADICTIONS — The system is internally consistent.**
 
 ---
 
@@ -55,7 +55,7 @@
 | Temporal Coherence | 15/25 | ⚠️ |
 | Archetype Coherence | 15/25 | ⚠️ |
 | No Contradictions | 25/25 | ✅ |
-| **TOTAL** | **40/100** | **D — POOR coherence** |
+| **TOTAL** | **50/100** | **D — POOR coherence** |
 
 ---
 

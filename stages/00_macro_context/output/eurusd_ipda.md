@@ -1,25 +1,25 @@
-# IPDA Dealing Range Analysis — EURUSD — 2026-08-04
+# IPDA Dealing Range Analysis — EURUSD — 2026-08-05
 
 ## Nested Dealing Ranges (Macro → Micro)
 
 | Timeframe | IPDA20 EQ | IPDA40 EQ | IPDA60 EQ | Zone | Position |
 |-----------|-----------|-----------|-----------|------|----------|
-| 1W | 1.15180 | — | — | PREMIUM (sell) | 95.57% |
-| 1D | 1.14561 | 1.14733 | 1.15332 | PREMIUM (sell) | 87.22% |
-| 4H | 1.15070 | 1.14561 | — | PREMIUM (sell) | 74.69% |
-| 1H | 1.15180 | 1.15196 | — | PREMIUM (sell) | 96.52% |
-| 15m | 1.15236 | — | — | PREMIUM (sell) | 94.61% |
+| 1W | 1.15400 | — | — | PREMIUM (sell) | 65.70% |
+| 1D | 1.14561 | 1.14733 | 1.15231 | PREMIUM (sell) | 93.39% |
+| 4H | 1.15070 | 1.14561 | — | PREMIUM (sell) | 87.87% |
+| 1H | 1.15400 | 1.15297 | — | PREMIUM (sell) | 66.28% |
+| 15m | 1.15454 | — | — | PREMIUM (sell) | 53.81% |
 
 ## Equilibrium Cascade (Stepping Stones)
 
 Price delivers from one equilibrium to another. Each level acts as a checkpoint.
 
 ```
-1W   EQ 1.15180      PREMIUM (sell)     █ 95.57%
-1D   EQ 1.14561      PREMIUM (sell)     ███ 87.22%
-4H   EQ 1.15070      PREMIUM (sell)     █ 74.69%
-1H   EQ 1.15180      PREMIUM (sell)     █ 96.52%
-15m  EQ 1.15236      PREMIUM (sell)      94.61%
+1W   EQ 1.15400      PREMIUM (sell)      65.70%
+1D   EQ 1.14561      PREMIUM (sell)     ████ 93.39%
+4H   EQ 1.15070      PREMIUM (sell)     ██ 87.87%
+1H   EQ 1.15400      PREMIUM (sell)      66.28%
+15m  EQ 1.15454      PREMIUM (sell)      53.81%
 ```
 
 ## IPDA Draw Direction
@@ -32,7 +32,7 @@ Price is in PREMIUM across macro (1W) and micro (15m). IPDA is drawing price DOW
 ## AMD on the Dealing Range
 
 **DISTRIBUTION ZONE — Price expanding from equilibrium toward extreme.**
-Daily range: PREMIUM (sell) at 69.95% of range. DISTRIBUTION ZONE — Price expanding from equilibrium toward extreme. EQ @ 1.14733.
+Daily range: PREMIUM (sell) at 74.22% of range. DISTRIBUTION ZONE — Price expanding from equilibrium toward extreme. EQ @ 1.14733.
 
 ## Quarterly Shift
 
@@ -41,12 +41,12 @@ Daily range: PREMIUM (sell) at 69.95% of range. DISTRIBUTION ZONE — Price expa
 ## How the IPDA Lens Changes Your Trade
 
 - **Macro (1W)**: Price is PREMIUM (sell) — institutional sell zone. Look for SHORTS only when LTF confirms.
-- **Meso (1D)**: Price is PREMIUM (sell) at 87.22% of range.
+- **Meso (1D)**: Price is PREMIUM (sell) at 93.39% of range.
 - **Micro (4H)**: Price is PREMIUM (sell). ✅ ALIGNED with macro — trade with confidence.
 
-- **Equilibrium Gravity**: The 1W equilibrium at 1.15180 is the macro fair value. Price is 0.13% above it. The algorithm will seek to return to this level.
+- **Equilibrium Gravity**: The 1W equilibrium at 1.15400 is the macro fair value. Price is 0.05% above it. The algorithm will seek to return to this level.
 
-- **Cascading Delivery**: Price must pass through each equilibrium checkpoint: 1W @ 1.15180 → 1D @ 1.14561 → 4H @ 1.15070 → 1H @ 1.15180 → 15m @ 1.15236. Each is a potential reaction zone.
+- **Cascading Delivery**: Price must pass through each equilibrium checkpoint: 1W @ 1.15400 → 1D @ 1.14561 → 4H @ 1.15070 → 1H @ 1.15400 → 15m @ 1.15454. Each is a potential reaction zone.
 
 ---
 
@@ -62,20 +62,20 @@ Daily range: PREMIUM (sell) at 69.95% of range. DISTRIBUTION ZONE — Price expa
 ⏳ NY PM active (weight: 1) — lower conviction. Prefer London KZ, NY AM KZ, or NY PM KZ.
 - Active Zone: NY PM (weight: 1)
 
-## IPDA Objective: EQUILIBRIUM
-No clear dominant objective. IPDA balanced — wait for displacement to reveal next move.
-- Unfilled FVGs: 1 | Swept Pools: 6 | Unswept: 6
+## IPDA Objective: HUNT LIQUIDITY
+7 unswept pools vs 5 swept. IPDA hunting liquidity — expect sweep of nearest BSL/SSL before rebalancing.
+- Unfilled FVGs: 1 | Swept Pools: 5 | Unswept: 7
 
-## Weekly Reference Levels (Marked 2026-08-04)
-20-Day: H 1.15590 L 1.13532 EQ 1.14561 | 40-Day: H 1.16221 L 1.13246 EQ 1.14733 | 60-Day: H 1.17418 L 1.13246 EQ 1.15332
+## Weekly Reference Levels (Marked 2026-08-05)
+20-Day: H 1.15590 L 1.13532 EQ 1.14561 | 40-Day: H 1.16221 L 1.13246 EQ 1.14733 | 60-Day: H 1.17216 L 1.13246 EQ 1.15231
 
 ## PD Array Matrix — 20-Day IPDA Data Range
 
 **Graded Levels**: Q1(25%) 1.14047 | EQ(50%) 1.14561 | Q3(75%) 1.15075 | Octants: 1.13789 | 1.14047 | 1.14304 | 1.14561 | 1.14818 | 1.15075 | 1.15333
 
-**Focus Zone**: EXTREME UPPER (above upper quadrant) — secondary unless reversal/regime change (price at 87.22% of 20-day range)
+**Focus Zone**: EXTREME UPPER (above upper quadrant) — secondary unless reversal/regime change (price at 93.39% of 20-day range)
 
-**Matrix Weighting**: ENHANCED — 5 PD arrays inside the 20-day matrix, 4 in the middle focus zone (Q1 → EQ → Q3). High-probability arrays present.
+**Matrix Weighting**: ENHANCED — 7 PD arrays inside the 20-day matrix, 4 in the middle focus zone (Q1 → EQ → Q3). High-probability arrays present.
 
 In-focus PD arrays (carry extra algorithmic weight):
 - FVG bullish @ 1.14261 (4H)

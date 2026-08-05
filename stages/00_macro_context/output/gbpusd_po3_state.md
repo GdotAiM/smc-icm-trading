@@ -1,4 +1,4 @@
-# Po3 State Machine — GBPUSD — 2026-08-04
+# Po3 State Machine — GBPUSD — 2026-08-05
 
 ## Current State: **DISTRIBUTION** (0.60 confidence)
 **BOS bullish — distribution beginning**
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for NY PM (15:00 NY): DISTRIBUTION**
+**Expected phase for NY PM (14:00 NY): DISTRIBUTION**
 **Detected phase: DISTRIBUTION**
 ✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
 
@@ -36,17 +36,17 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 **Distribution is the TREND phase. Enter on retracements to OBs/FVGs. Full size.**
 
 ## Daily Open Anchor
-Daily Open (Midnight NY): 1.34606
+Daily Open (Midnight NY): 1.35332
 
 ## Accumulation Range
-✅ Accumulation Range: 1.34379–1.34562 (0.14% — TIGHT). Institutions building positions. Near daily open.
+✅ Accumulation Range: 1.34510–1.34840 (0.25% — TIGHT). Institutions building positions.
 
 ## Manipulation Direction Check
 ⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.
 - Daily Bias: BEARISH
-- Swept Above (BSL): 1 | Swept Below (SSL): 1
+- Swept Above (BSL): 1 | Swept Below (SSL): 0
 - Is Manipulation: ⚠️ YES — do not trade with the sweep
-- With Bias: ✅ Yes — likely distribution
+- With Bias: No
 - Entries: ON retracement to PD Array
 - Models: MMXM Sell Model, MMXM Buy Model, OTE + Institutional OB, Unicorn (OTE+FVG), SCOB
 - Size: ×1

@@ -1,0 +1,77 @@
+{"time":"2026-08-05T05:16:19.328Z","nyTime":"01:16:19","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Wed | Version: a95bc48"}
+{"time":"2026-08-05T05:19:29.411Z","nyTime":"01:19:29","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Wed | Version: a95bc48"}
+{"time":"2026-08-05T06:12:50.912Z","nyTime":"02:12:50","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Wed | Version: a95bc48"}
+{"time":"2026-08-05T06:12:50.918Z","nyTime":"02:12:50","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T06:23:50.907Z","nyTime":"02:23:50","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T06:34:42.706Z","nyTime":"02:34:42","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T06:45:39.174Z","nyTime":"02:45:39","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T06:56:34.508Z","nyTime":"02:56:34","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T07:03:23.061Z","nyTime":"03:03:23","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Wed | Version: 6c9be20"}
+{"time":"2026-08-05T07:03:23.107Z","nyTime":"03:03:23","event":"EVENT","detail":"03:00 — LONDON_SB: London Silver Bullet window"}
+{"time":"2026-08-05T07:03:23.109Z","nyTime":"03:03:23","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T07:14:20.440Z","nyTime":"03:14:20","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T07:25:11.246Z","nyTime":"03:25:11","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T07:36:02.025Z","nyTime":"03:36:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T07:46:51.126Z","nyTime":"03:46:51","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T07:57:40.626Z","nyTime":"03:57:40","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T08:08:30.767Z","nyTime":"04:08:30","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T08:19:24.011Z","nyTime":"04:19:24","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T08:30:16.936Z","nyTime":"04:30:16","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T08:41:06.037Z","nyTime":"04:41:06","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T08:51:58.052Z","nyTime":"04:51:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T09:02:49.342Z","nyTime":"05:02:49","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T09:18:42.563Z","nyTime":"05:18:42","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T09:34:35.387Z","nyTime":"05:34:35","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T09:50:26.832Z","nyTime":"05:50:26","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T09:59:35.802Z","nyTime":"05:59:35","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Wed | Version: 6c9be20"}
+{"time":"2026-08-05T09:59:35.830Z","nyTime":"05:59:35","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T10:06:16.263Z","nyTime":"06:06:16","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T10:15:32.847Z","nyTime":"06:15:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T10:22:06.868Z","nyTime":"06:22:06","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T10:37:57.698Z","nyTime":"06:37:57","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T10:53:31.883Z","nyTime":"06:53:31","event":"EVENT","detail":"06:55 — PRE_LECTURE2: Pre-07:00 data refresh"}
+{"time":"2026-08-05T10:53:31.949Z","nyTime":"06:53:31","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-05T10:56:31.173Z","nyTime":"06:56:31","event":"DATA_REFRESH","detail":"Complete in 179s — OK"}
+{"time":"2026-08-05T10:56:31.174Z","nyTime":"06:56:31","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T11:12:03.155Z","nyTime":"07:12:03","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T11:28:11.422Z","nyTime":"07:28:11","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T11:44:02.949Z","nyTime":"07:44:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T11:59:55.599Z","nyTime":"07:59:55","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T12:15:46.109Z","nyTime":"08:15:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T12:26:38.668Z","nyTime":"08:26:38","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T12:37:28.144Z","nyTime":"08:37:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T12:48:18.963Z","nyTime":"08:48:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T12:59:09.910Z","nyTime":"08:59:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T13:09:58.697Z","nyTime":"09:09:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T13:20:49.826Z","nyTime":"09:20:49","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T13:31:40.037Z","nyTime":"09:31:40","event":"EVENT","detail":"09:30 — AMOR: AM Session Opening Range"}
+{"time":"2026-08-05T13:31:40.040Z","nyTime":"09:31:40","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T13:42:44.761Z","nyTime":"09:42:44","event":"EVENT","detail":"09:45 — PRE_MACRO: Pre-09:50 macro data refresh"}
+{"time":"2026-08-05T13:42:44.770Z","nyTime":"09:42:44","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-05T13:45:44.533Z","nyTime":"09:45:44","event":"DATA_REFRESH","detail":"Complete in 180s — OK"}
+{"time":"2026-08-05T13:45:44.536Z","nyTime":"09:45:44","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T13:56:34.369Z","nyTime":"09:56:34","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T14:07:34.498Z","nyTime":"10:07:34","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T14:18:25.915Z","nyTime":"10:18:25","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T14:29:22.637Z","nyTime":"10:29:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T14:40:27.839Z","nyTime":"10:40:27","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T14:51:21.285Z","nyTime":"10:51:21","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T15:02:12.443Z","nyTime":"11:02:12","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T15:18:16.287Z","nyTime":"11:18:16","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T15:34:22.682Z","nyTime":"11:34:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T15:50:18.830Z","nyTime":"11:50:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T16:06:10.185Z","nyTime":"12:06:10","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T16:22:06.133Z","nyTime":"12:22:06","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T16:37:58.145Z","nyTime":"12:37:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T16:53:49.161Z","nyTime":"12:53:49","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T17:09:42.724Z","nyTime":"13:09:42","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T17:20:36.067Z","nyTime":"13:20:36","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T17:31:29.180Z","nyTime":"13:31:29","event":"EVENT","detail":"13:30 — PMOR: PM Session Opening Range"}
+{"time":"2026-08-05T17:31:29.188Z","nyTime":"13:31:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T17:42:20.566Z","nyTime":"13:42:20","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T17:53:11.497Z","nyTime":"13:53:11","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T18:04:08.925Z","nyTime":"14:04:08","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T18:15:05.620Z","nyTime":"14:15:05","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T18:26:38.862Z","nyTime":"14:26:38","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T18:28:20.229Z","nyTime":"14:28:20","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-05T18:40:54.320Z","nyTime":"14:40:54","event":"SCAN","detail":"Scanning 4 pairs..."}

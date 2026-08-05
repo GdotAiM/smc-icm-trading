@@ -1,6 +1,6 @@
-# Coherence Audit — XAUUSD — 2026-08-04
+# Coherence Audit — XAUUSD — 2026-08-05
 
-## Overall Coherence: 40/100 — D — POOR coherence
+## Overall Coherence: 50/100 — D — POOR coherence
 
 ---
 
@@ -11,25 +11,25 @@
 | STRUCTURE | BULLISH (BOS) | BULLISH | — |
 | IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
 | CYCLE PHASE | DISTRIBUTION → expects BEARISH | BEARISH | — |
-| LIQUIDITY | DOWN (SSL magnet) | 2 swept | BEARISH | — |
+| LIQUIDITY | DOWN (SSL magnet) | 3 swept | BEARISH | — |
 
 **⚠️ LENS DIVERGENCE — 3 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in DISTRIBUTION phase.**
 
 ---
 
-## 2. Temporal Coherence (⚠️ 2/4 LTFs aligned)
+## 2. Temporal Coherence (✅ 3/4 LTFs aligned)
 
-| TF | Bias | Event | vs HTF (BEARISH) |
+| TF | Bias | Event | vs HTF (BULLISH) |
 |----|------|-------|------------------|
-| 1W | **BEARISH** | BOS | ✅ aligned |
-| 1D | **BEARISH** | BOS | ✅ aligned |
-| 4H | **BULLISH** | BOS | ⚠️ opposing |
-| 1H | **BULLISH** | CHoCH | ⚠️ opposing |
-| 15m | **BULLISH** | CHoCH | ⚠️ opposing |
-| 5m | **BEARISH** | BOS | ✅ aligned |
-| 1m | **BEARISH** | BOS | ✅ aligned |
+| 1W | **BEARISH** | CHoCH | ⚠️ opposing |
+| 1D | **BULLISH** | CHoCH | ✅ aligned |
+| 4H | **BULLISH** | BOS | ✅ aligned |
+| 1H | **BULLISH** | BOS | ✅ aligned |
+| 15m | **BULLISH** | BOS | ✅ aligned |
+| 5m | **BULLISH** | CHoCH | ✅ aligned |
+| 1m | **BEARISH** | CHoCH | ⚠️ opposing |
 
-**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
+**✅ TEMPORAL COHERENCE — 3/4 LTFs aligned with HTF BULLISH. 1 opposing (micro pullback — normal).**
 
 ---
 
@@ -42,8 +42,9 @@
 ## 4. Self-Contradiction Check
 
 - **[CRITICAL]** HTF-LTF DIVERGENCE: 3 consecutive timeframes oppose HTF (bearish). Possible macro reversal.
+- **[INFO]** WEEKLY vs DAILY: 1W is BEARISH but 1D is BULLISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
 
-**❌ 1 contradiction(s) including CRITICAL issues. The system is fighting itself.**
+**❌ 2 contradiction(s) including CRITICAL issues. The system is fighting itself.**
 
 ---
 
@@ -52,10 +53,10 @@
 | Dimension | Score | Status |
 |-----------|-------|--------|
 | Lens Coherence | 15/25 | ⚠️ |
-| Temporal Coherence | 15/25 | ⚠️ |
+| Temporal Coherence | 25/25 | ✅ |
 | Archetype Coherence | 15/25 | ⚠️ |
 | No Contradictions | 5/25 | ❌ |
-| **TOTAL** | **40/100** | **D — POOR coherence** |
+| **TOTAL** | **50/100** | **D — POOR coherence** |
 
 ---
 

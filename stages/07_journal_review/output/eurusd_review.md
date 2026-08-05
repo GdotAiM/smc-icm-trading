@@ -1,32 +1,32 @@
-# Session Review — EURUSD — 2026-08-04
+# Session Review — EURUSD — 2026-08-05
 
 ## Setup Summary
 | | |
 |---|---|
 | **Direction** | NO TRADE |
 | **Model** | MMXM Sell Model (0/12.6) |
-| **Bias** | 1W bullish → 1D bearish → 4H bullish |
+| **Bias** | 1W bullish → 1D bullish → 4H bullish |
 | **Session** | NY PM (Killzone ✅) |
-| **Entry** | 1.15327 | SL: 0.00000 | TP1: 0.00000 |
+| **Entry** | 1.15456 | SL: 0.00000 | TP1: 0.00000 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment
 ```
-1W  ⚠️ BULLISH
-1D  ✅ BEARISH ← TRADE BIAS
-4H  ⚠️ BULLISH
-1H  ⚠️ BULLISH
+1W  ✅ BULLISH
+1D  ✅ BULLISH ← TRADE BIAS
+4H  ✅ BULLISH
+1H  ✅ BULLISH
 ```
 
 ## Decision Quality
 | Decision | Rating (1-5) |
 |----------|-------------|
-| HTF Bias | 3 |
+| HTF Bias | 4 |
 | Levels | 4 |
 | Model | 3 |
 | R:R | 4 |
-| **Overall** | **3.50/5** |
+| **Overall** | **3.75/5** |
 
 ## Confluence Check
-- DXY correlation: EURUSD + GBPUSD both bearish → DXY should be bullish
+- DXY correlation: EURUSD + GBPUSD both bullish → DXY should be bearish
 - FVGs present for entry refinement ✅

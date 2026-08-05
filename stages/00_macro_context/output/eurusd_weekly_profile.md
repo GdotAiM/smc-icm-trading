@@ -1,12 +1,12 @@
-# Weekly Range Profile — EURUSD — 2026-08-04
+# Weekly Range Profile — EURUSD — 2026-08-05
 
-## Day: Tuesday 15:53:29 NY
+## Day: Wednesday 14:40:59 NY
 
 ## HTF Context
-HTF Arrays: Premium @ 1.16221 (UNTOCUHED) | Discount @ 1.13532 (UNTOUCHED) | Price in PREMIUM zone
+HTF Arrays: Premium @ 1.15734 (UNTOCUHED) | Discount @ 1.07330 (UNTOUCHED) | Price in PREMIUM zone
 
 ## Bias
-bullish→bearish→bullish — MIXED
+bullish→bullish→bullish — ALIGNED
 
 ## Profile Classification
 **Wednesday Low** (100% confidence)
@@ -19,10 +19,10 @@ bullish→bearish→bullish — MIXED
 ### Candidate Profiles
 | ID | Profile | Score | Day of Extreme | Reasons |
 |----|---------|-------|----------------|----------|
-| III | Wednesday Low | 7 | Wednesday | Tuesday — primary delivery day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
-| XI | Wednesday Weekly Bullish Rev | 6 | Wednesday | Tuesday — primary delivery day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
-| I | Classic Tuesday Low | 5 | Tuesday | Tuesday — primary delivery day, Discount untouched — target below |
-| V | Consolidation Thu Bullish Rev | 5 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles, Discount untouched — target below |
+| III | Wednesday Low | 7 | Wednesday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
+| XI | Wednesday Weekly Bullish Rev | 7 | Wednesday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
+| V | Consolidation Thu Bullish Rev | 4 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Discount untouched — target below |
+| VII | Consolidation Midweek Rally | 4 | Wed→Friday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated |
 
 ## Weekly Anchor
 - Direction: **BUY**
