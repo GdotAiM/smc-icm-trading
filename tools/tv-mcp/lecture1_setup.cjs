@@ -442,8 +442,9 @@ function runLecture1Setup(pair, date, root) {
   const p = pair || PAIR;
 
   // ═══ TIME GATE: 08:00-10:00 NY only ═══
-  const nyHourGate = ny.getNYHour();
-  if (nyHourGate < 8 || nyHourGate >= 10) {
+  const nyHour = ny.getNYHour();
+  const nyMinute = new Date().getUTCMinutes();
+  if (nyHour < 8 || nyHour >= 10) {
     return { pair: p, time: new Date().toLocaleTimeString("en-US", {timeZone:"America/New_York", hour12:false}) + " NY",
       formation: { formed: false }, raid: null, mss: { confirmed: false }, setupReady: false,
       detail: `Outside Lecture 1 window (08:00-10:00 NY). Current: ${nyHour}:00 NY.` };
@@ -461,8 +462,6 @@ function runLecture1Setup(pair, date, root) {
   const candles1m = getCandles("1m", d, r, p);
 
   // Step 3: Time window check (NY local)
-  const nyHour = ny.getNYHour();
-  const nyMinute = new Date().getUTCMinutes();
   const inFormationWindow = parseInt(nyHour) === 8 && nyMinute < 30;
   const inTriggerWindow = (parseInt(nyHour) === 8 && nyMinute >= 30) || (parseInt(nyHour) >= 9 && parseInt(nyHour) < 10);
   const inWindow = inFormationWindow || inTriggerWindow;

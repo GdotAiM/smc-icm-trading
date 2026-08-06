@@ -13,7 +13,13 @@ const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
 const TFS = ["1m", "5m", "15m", "1h", "4h", "1d", "1w"];
 const ALL_PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100"];
-const TV_SYMBOLS = { XAUUSD: "XAUUSD", NAS100: "NAS100", DXY: "USDOLLAR" };
+const TV_SYMBOLS = {
+  EURUSD: "OANDA:EURUSD",
+  GBPUSD: "OANDA:GBPUSD",
+  XAUUSD: "OANDA:XAUUSD",
+  NAS100: "CAPITALCOM:NAS100",
+  DXY: "FX:USDOLLAR"
+};
 
 const targetPairs = process.argv[2] ? [process.argv[2].toUpperCase()] : ALL_PAIRS;
 

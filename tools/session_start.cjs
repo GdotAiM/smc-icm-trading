@@ -20,7 +20,14 @@ const path = require("path");
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
 const PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100", "DXY"];
-const TV_SYMBOLS = { DXY: "USDOLLAR" }; // TV symbol overrides
+// Use full broker prefixes for reliable TV symbol resolution
+const TV_SYMBOLS = {
+  EURUSD: "OANDA:EURUSD",
+  GBPUSD: "OANDA:GBPUSD",
+  XAUUSD: "OANDA:XAUUSD",
+  NAS100: "CAPITALCOM:NAS100",
+  DXY: "FX:USDOLLAR"
+};
 const TFS = ["1w", "1d", "4h", "1h", "15m", "5m", "1m"];
 const TV_TF_MAP = { "1d": "1D", "4h": "240", "1h": "60", "15m": "15", "5m": "5", "1m": "1" };
 const TV_WAIT = { "1d": 3000, "4h": 2500, "1h": 2000, "15m": 2000, "5m": 2000, "1m": 1500 };
@@ -119,12 +126,36 @@ async function fetchFromTV() {
     const tvSymbol = TV_SYMBOLS[pair] || pair;
     log(`  ${pair} (TV: ${tvSymbol})`);
 
-    // Switch symbol
+    // Switch symbol with verification
     await evalExpr(`(function() {
       window.TradingViewApi._activeChartWidgetWV.value().setSymbol("${tvSymbol}", {});
       return "ok";
     })()`);
-    await sleep(3500);
+    await sleep(5000); // Increased from 3500ms for reliability
+
+    // Verify symbol actually switched before fetching data
+    const actualSymbol = await evalExpr(`(function() {
+      try {
+        return window.TradingViewApi._activeChartWidgetWV.value().symbol();
+      } catch(e) { return "ERROR: " + e.message; }
+    })()`);
+    if (actualSymbol !== tvSymbol) {
+      log(`  ⚠️ Symbol mismatch: requested ${tvSymbol}, got ${actualSymbol} — retrying...`);
+      await evalExpr(`(function() {
+        window.TradingViewApi._activeChartWidgetWV.value().setSymbol("${tvSymbol}", {});
+        return "ok";
+      })()`);
+      await sleep(4000);
+      const retrySymbol = await evalExpr(`(function() {
+        try { return window.TradingViewApi._activeChartWidgetWV.value().symbol(); }
+        catch(e) { return "ERROR"; }
+      })()`);
+      if (retrySymbol !== tvSymbol) {
+        log(`  ❌ Retry failed: still showing ${retrySymbol} instead of ${tvSymbol}`);
+      } else {
+        log(`  ✅ Retry OK: ${retrySymbol}`);
+      }
+    }
 
     for (const tf of TFS) {
       const resolution = TV_TF_MAP[tf];
