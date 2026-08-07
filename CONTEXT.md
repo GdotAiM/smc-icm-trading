@@ -77,10 +77,13 @@ Follow this sequence unless the user explicitly requests a different path:
 
 For high-impact events (FOMC, NFP, CPI):
 - See `shared/2026-07-29/ICT_NEWS_TRADING_STRATEGY.md` for full strategy
+- See `_config/nfp_strategy.md` for NFP-specific playbook (built Aug 7, 2026)
 - Use `node tools/tv-mcp/news_trade.cjs --event "NAME" --time "HH:MM"`
-- Gold (XAUUSD) is the #1 FOMC instrument per ICT Lecture 4
+- Fallback: `node tools/tv-mcp/market_order.cjs PAIR DIR SL TP QTY`
+- Gold (XAUUSD) is the #1 FOMC/NFP instrument per ICT Lecture 4
 - Never take both EURUSD AND GBPUSD on the same news event (correlated dollar risk)
 - SL = 2.5× normal, TP = 3.5× normal for news trades
+- NFP journal: `shared/2026-08-07/NFP_SESSION_JOURNAL.md`
 
 ## Stage Selection
 

@@ -1,4 +1,6 @@
-# Friday August 7, 2026 — Consolidation & Weekly Close
+# Friday August 7, 2026 — 🔴 NFP + Consolidation & Weekly Close
+
+> ⚠️ **NFP DAY**: Non-Farm Payrolls @ 08:30 AM NY. See `_config/nfp_strategy.md` for full playbook.
 
 ## ICT Context: The Friday Profile
 

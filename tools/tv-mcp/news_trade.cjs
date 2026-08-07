@@ -75,9 +75,8 @@ function minutesUntil(targetTime) {
   if (minsUntil < 0) {
     console.log("\n⚠️  Event already passed. Use for post-news analysis only.");
   } else if (minsUntil > NEWS_MULTIPLIERS.entryWindow) {
-    console.log("\n⏳ Too early — waiting until " + NEWS_MULTIPLIERS.entryWindow + " min before event");
-    console.log("   Re-run at " + new Date(Date.now() + (minsUntil - NEWS_MULTIPLIERS.entryWindow) * 60000).toLocaleTimeString());
-    process.exit(0);
+    console.log("\n⚠️  " + minsUntil.toFixed(0) + " min until event — placing EARLY (NFP override). Entry window normally " + NEWS_MULTIPLIERS.entryWindow + " min.");
+    // NFP override: allow early placement
   }
 
   // Connect to TV
@@ -155,7 +154,7 @@ function minutesUntil(targetTime) {
 
     setups.push({
       pair: pair.name, qty: pair.baseQty, price: Number(current.toFixed(decimals)),
-      trend15m: trend15, trend5m: trend5m, trend1m: trend1m,
+      trend15m: trend15, trend5m: trend5m, trend1m: trend1,
       alignment: trendAlignment, atr: Number(atr.toFixed(decimals)),
       side, sl, tp,
       slDist: (side === "SELL" ? sl - current : current - sl).toFixed(decimals),
