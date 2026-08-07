@@ -64,6 +64,13 @@ console.log(`\n${"=".repeat(55)}`);
 console.log(`  ICM Pipeline — ${pairLabel} — ${DATE}`);
 console.log(`${"=".repeat(55)}`);
 
+// ═══════════════ TRACE START — Session Tracer ═══════════════
+try {
+  execSync(`node "${path.join(ROOT, "evaluation", "traces", "session_tracer.cjs")}" start ${PAIR}`, {
+    timeout: 5000, stdio: "ignore",
+  });
+} catch {}
+
 // ═══════════════ GRAPH MEMORY — Rebuild + Inject Context ═══════════════
 console.log("\n═══ GRAPH MEMORY ═══");
 try {
@@ -2018,4 +2025,24 @@ try {
   console.log(`  Graph synced: ${t2} trades, ${l2} lessons`);
 } catch (e) {
   console.log(`  ⚠️  Graph sync skipped: ${e.message}`);
+}
+
+// ═══════════════ EVALUATION — Quality Gates ═══════════════
+console.log("\n═══ EVALUATION — Quality Gates ═══");
+try {
+  const evalResult = execSync(
+    `node "${path.join(ROOT, "evaluation", "run_evaluation.cjs")}" ${PAIR}`,
+    { encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] }
+  );
+  const lines = evalResult.split("\n");
+  const verdictLine = lines.find(l => l.includes("VERDICT:"));
+  const scoreLine = lines.find(l => l.includes("Score:"));
+  if (verdictLine) console.log(`  ${verdictLine.trim()}`);
+  if (scoreLine) console.log(`  ${scoreLine.trim()}`);
+  if (evalResult.includes("BLOCKED")) {
+    console.log("  ⚠️ EVALUATION BLOCKED — review before trading");
+  }
+} catch (e) {
+  const stderr = e.stderr ? String(e.stderr).slice(0, 300) : "";
+  console.log(`  ⚠️  Evaluation skipped: ${e.message} ${stderr}`);
 }

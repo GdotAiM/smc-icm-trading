@@ -1,0 +1,133 @@
+{
+  "timestamp": "2026-08-07T18:05:12.821Z",
+  "passed": 31,
+  "failed": 0,
+  "skipped": 0,
+  "total": 31,
+  "results": [
+    {
+      "name": "Load: tools/ny_time.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: tools/coherence_audit.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: tools/invalidation.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: tools/ict_decision_validator.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: tools/performance_ledger.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: tools/ict_continuous_learn.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: tools/pipeline/coherence_calculator.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: tools/inducement_engine.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: tools/weekly_profile_engine.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: evaluation/resilience/corrupt_detector.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: evaluation/judge/llm_judge.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: evaluation/metrics/output_quality.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: evaluation/benchmarks/bias_accuracy/scorer.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Load: evaluation/traces/session_tracer.cjs",
+      "status": "PASS"
+    },
+    {
+      "name": "Engine data: XAUUSD has 7 timeframe reports",
+      "status": "PASS"
+    },
+    {
+      "name": "Candle data: XAUUSD has 7 timeframe candle files",
+      "status": "PASS"
+    },
+    {
+      "name": "Engine data: EURUSD has 7 timeframe reports",
+      "status": "PASS"
+    },
+    {
+      "name": "Candle data: EURUSD has 7 timeframe candle files",
+      "status": "PASS"
+    },
+    {
+      "name": "Engine data: GBPUSD has 7 timeframe reports",
+      "status": "PASS"
+    },
+    {
+      "name": "Candle data: GBPUSD has 7 timeframe candle files",
+      "status": "PASS"
+    },
+    {
+      "name": "Engine data: NAS100 has 7 timeframe reports",
+      "status": "PASS"
+    },
+    {
+      "name": "Candle data: NAS100 has 7 timeframe candle files",
+      "status": "PASS"
+    },
+    {
+      "name": "Engine report has required top-level keys",
+      "status": "PASS"
+    },
+    {
+      "name": "Structure section has bias + lastEvent",
+      "status": "PASS"
+    },
+    {
+      "name": "ny_time returns valid session data",
+      "status": "PASS"
+    },
+    {
+      "name": "coherence_calculator exports expected functions",
+      "status": "PASS"
+    },
+    {
+      "name": "corrupt_detector returns valid JSON for XAUUSD",
+      "status": "PASS"
+    },
+    {
+      "name": "output_quality returns valid JSON with score",
+      "status": "PASS"
+    },
+    {
+      "name": "llm_judge returns valid JSON with dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "Corrupt detector blocks EURUSD at impossible price",
+      "status": "PASS"
+    },
+    {
+      "name": "Corrupt detector catches inverted SL for long",
+      "status": "PASS"
+    }
+  ]
+}

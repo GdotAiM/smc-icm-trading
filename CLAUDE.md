@@ -56,6 +56,27 @@ After it completes (~3-4 min), run: `node tools/run_pair.cjs <PAIR>` for each pa
 - **Memory**: `memory_injector.cjs` (graph-powered trade context), `performance_ledger.cjs` (model/session stats)
 - **System**: `system_audit.cjs` (health checks), `summarizer.cjs` (data compression)
 - **Backtest**: `backtest_runner.cjs`, `backtest_distill.cjs`
+- **Evaluation** (NEW Aug 7): `evaluation/run_evaluation.cjs` (master runner), `evaluation/regression/suite.cjs` (31 tests), `evaluation/resilience/corrupt_detector.cjs` (price/SL/session gates), `evaluation/judge/llm_judge.cjs` (quality scoring), `evaluation/benchmarks/bias_accuracy/scorer.cjs` (directional tracking), `evaluation/metrics/output_quality.cjs` (completeness), `evaluation/metrics/pipeline_latency.cjs` (timing), `evaluation/traces/session_tracer.cjs` (unified traces)
+
+## Evaluation System
+
+Every `run_pair.cjs` automatically runs the evaluation pipeline. The system checks:
+
+| Module | What It Catches |
+|--------|----------------|
+| **Resilience** | Corrupt prices (EURUSD=29446), inverted SL/TP, stale data, session violations, position limits, correlated pairs |
+| **Output Quality** | Missing stage outputs, placeholder content, incomplete entry/risk plans — 29 checks per pair |
+| **LLM Judge** | 5-dimension quality score: directional correctness (30), ICT adherence (25), reasoning (20), actionability (15), completeness (10) |
+| **Bias Accuracy** | Compares directional calls vs actual price movement — tracks precision/recall over time |
+
+**Verdict levels**: CLEAR (all pass) → CAUTION (warnings) → BLOCKED (critical — do not trade)
+
+**Manual commands:**
+- Full evaluation: `node evaluation/run_evaluation.cjs XAUUSD`
+- Regression suite: `node evaluation/regression/suite.cjs`
+- Quick corrupt check: `node evaluation/resilience/corrupt_detector.cjs XAUUSD`
+- Quality judge: `node evaluation/judge/llm_judge.cjs XAUUSD`
+- Pipeline timing: `node evaluation/metrics/pipeline_latency.cjs report`
 
 ## Hard Rules (from _config/trading_rules.md)
 
