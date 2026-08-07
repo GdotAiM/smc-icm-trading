@@ -6,12 +6,20 @@
 const path = require("path");
 const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 const fs = require("fs");
-const path = require("path");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
 const PAIR = process.argv[2] || "GBPUSD";
 const RES = process.argv[3] || "15";
-const TV_SYMBOLS = { DXY: "USDOLLAR" };
+// Broker-prefixed TV symbols — plain names resolve to wrong instruments
+const TV_SYMBOLS = {
+  EURUSD: "OANDA:EURUSD",
+  GBPUSD: "OANDA:GBPUSD",
+  XAUUSD: "OANDA:XAUUSD",
+  GOLD: "OANDA:XAUUSD",
+  NAS100: "CAPITALCOM:NAS100",
+  DXY: "FX:USDOLLAR",
+  USDOLLAR: "FX:USDOLLAR"
+};
 const TV_SYM = TV_SYMBOLS[PAIR] || PAIR;
 
 (async () => {

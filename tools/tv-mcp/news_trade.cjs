@@ -5,7 +5,6 @@
 const path = require("path");
 const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 const fs = require("fs");
-const path = require("path");
 
 // ═══ CONFIG ═══
 const ROOT = "C:/Users/cash/smc-icm-trading";
@@ -19,11 +18,12 @@ const NEWS_MULTIPLIERS = {
   cooldown: 3,     // minutes after event before re-entry
 };
 
+// Pairs with broker-prefixed TV symbols — plain names resolve to wrong instruments
 const PAIRS = [
-  { name: "EURUSD", tv: "EURUSD", type: "forex", baseQty: 10000, normalSlPips: 8,  normalTpPips: 15 },
-  { name: "GBPUSD", tv: "GBPUSD", type: "forex", baseQty: 5000,  normalSlPips: 10, normalTpPips: 20 },
-  { name: "XAUUSD", tv: "XAUUSD", type: "metal", baseQty: 100,   normalSlPts: 15,  normalTpPts: 25 },
-  { name: "NAS100", tv: "NAS100", type: "index", baseQty: 1,     normalSlPts: 150, normalTpPts: 400 },
+  { name: "EURUSD", tv: "OANDA:EURUSD", type: "forex", baseQty: 10000, normalSlPips: 8,  normalTpPips: 15 },
+  { name: "GBPUSD", tv: "OANDA:GBPUSD", type: "forex", baseQty: 5000,  normalSlPips: 10, normalTpPips: 20 },
+  { name: "XAUUSD", tv: "OANDA:XAUUSD", type: "metal", baseQty: 100,   normalSlPts: 15,  normalTpPts: 25 },
+  { name: "NAS100", tv: "CAPITALCOM:NAS100", type: "index", baseQty: 1,     normalSlPts: 150, normalTpPts: 400 },
 ];
 
 // ═══ HELPERS ═══

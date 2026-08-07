@@ -9,7 +9,16 @@ const SIDE = (process.argv[3] || "SELL").toUpperCase();
 const STOP = process.argv[4] || "1.32875";
 const TARGET = process.argv[5] || "1.32805";
 const QTY = process.argv[6] || "10000";
-const TV_SYMBOLS = { DXY: "USDOLLAR" };
+// Broker-prefixed TV symbols — plain names resolve to wrong instruments
+const TV_SYMBOLS = {
+  EURUSD: "OANDA:EURUSD",
+  GBPUSD: "OANDA:GBPUSD",
+  XAUUSD: "OANDA:XAUUSD",
+  GOLD: "OANDA:XAUUSD",
+  NAS100: "CAPITALCOM:NAS100",
+  DXY: "FX:USDOLLAR",
+  USDOLLAR: "FX:USDOLLAR"
+};
 const TV_SYM = TV_SYMBOLS[PAIR] || PAIR;
 const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "../..");

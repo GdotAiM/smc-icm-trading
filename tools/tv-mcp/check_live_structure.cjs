@@ -6,9 +6,11 @@ const CDP = require("chrome-remote-interface");
 const fs = require("fs");
 const path = require("path");
 
+// Broker-prefixed TV symbols — plain names resolve to wrong instruments
 const TV_SYMBOLS = {
-  GBPUSD: "GBPUSD", EURUSD: "EURUSD", GOLD: "XAUUSD", XAUUSD: "XAUUSD",
-  DXY: "USDOLLAR", NAS100: "NAS100",
+  GBPUSD: "OANDA:GBPUSD", EURUSD: "OANDA:EURUSD",
+  GOLD: "OANDA:XAUUSD", XAUUSD: "OANDA:XAUUSD",
+  DXY: "FX:USDOLLAR", NAS100: "CAPITALCOM:NAS100",
 };
 const TV_RESOLUTIONS = { "1m":"1","5m":"5","15m":"15","1h":"60","4h":"240","1d":"1D","1w":"1W" };
 

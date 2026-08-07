@@ -7,11 +7,12 @@ const fs = require("fs");
 const path = require("path");
 
 // ── Config ────────────────────────────────────────────
+// Broker-prefixed TV symbols — plain names resolve to wrong instruments
 const TV_SYMBOLS = {
-  GBPUSD: "GBPUSD", EURUSD: "EURUSD", USDJPY: "USDJPY",
-  AUDUSD: "AUDUSD", USDCAD: "USDCAD", NZDUSD: "NZDUSD",
-  GOLD: "XAUUSD", XAUUSD: "XAUUSD",
-  DXY: "USDOLLAR", NAS100: "NAS100",
+  GBPUSD: "OANDA:GBPUSD", EURUSD: "OANDA:EURUSD", USDJPY: "OANDA:USDJPY",
+  AUDUSD: "OANDA:AUDUSD", USDCAD: "OANDA:USDCAD", NZDUSD: "OANDA:NZDUSD",
+  GOLD: "OANDA:XAUUSD", XAUUSD: "OANDA:XAUUSD",
+  DXY: "FX:USDOLLAR", NAS100: "CAPITALCOM:NAS100",
 };
 const TV_RESOLUTIONS = {
   "1m": "1", "5m": "5", "15m": "15", "1h": "60",

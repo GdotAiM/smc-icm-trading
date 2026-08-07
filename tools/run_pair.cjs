@@ -1357,7 +1357,7 @@ try {
         if(!c){console.log(JSON.stringify({error:'no chart'}));return;}
         const cl=await CDP({host:'127.0.0.1',port:9222,target:c.id});
         await cl.Runtime.enable();
-        const sym='${PAIR==='DXY'?'USDOLLAR':PAIR==='GOLD'?'XAUUSD':PAIR}';
+        const sym='${PAIR==='DXY'?'FX:USDOLLAR':PAIR==='GOLD'||PAIR==='XAUUSD'?'OANDA:XAUUSD':PAIR==='NAS100'?'CAPITALCOM:NAS100':'OANDA:'+PAIR}';
         await cl.Runtime.evaluate({expression:'window.TradingViewApi._activeChartWidgetWV.value().setSymbol(\\\"'+sym+'\\\",{})',returnByValue:true});
         await new Promise(r=>setTimeout(r,2000));
         const v=await cl.Runtime.evaluate({expression:'(function(){var a=window.TradingViewApi._activeChartWidgetWV.value();var b=a._chartWidget.model().mainSeries().bars();var i=b.lastIndex();var x=b.valueAt(i);return JSON.stringify({price:x[4],time:x[0]*1000});})()',returnByValue:true});

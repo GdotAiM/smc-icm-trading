@@ -4,7 +4,12 @@
 
 const CDP = require("chrome-remote-interface");
 
-const TV_SYMBOLS = { GBPUSD:"GBPUSD", EURUSD:"EURUSD", GOLD:"XAUUSD", XAUUSD:"XAUUSD", DXY:"USDOLLAR", NAS100:"NAS100" };
+// Broker-prefixed TV symbols — plain names resolve to wrong instruments
+const TV_SYMBOLS = {
+  GBPUSD: "OANDA:GBPUSD", EURUSD: "OANDA:EURUSD",
+  GOLD: "OANDA:XAUUSD", XAUUSD: "OANDA:XAUUSD",
+  DXY: "FX:USDOLLAR", NAS100: "CAPITALCOM:NAS100"
+};
 
 function parseArgs() {
   const args = {};

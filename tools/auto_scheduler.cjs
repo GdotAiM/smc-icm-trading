@@ -16,6 +16,23 @@ const DATE = new Date().toISOString().split("T")[0];
 const EXECUTE = process.argv.includes("--execute");
 const ONCE = process.argv.includes("--once");
 const PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100"];
+// Broker-prefixed TV symbols — plain names resolve to wrong instruments on TradingView
+const TV_SYMBOLS = {
+  EURUSD: "OANDA:EURUSD",
+  GBPUSD: "OANDA:GBPUSD",
+  XAUUSD: "OANDA:XAUUSD",
+  NAS100: "CAPITALCOM:NAS100",
+  DXY: "FX:USDOLLAR"
+};
+// Price range guards — reject trades with SL/TP outside these bounds
+// Prevents cross-pair contamination (e.g., EURUSD getting NAS100 prices)
+const PRICE_GUARDS = {
+  EURUSD: { min: 1.05, max: 1.25, label: "forex" },
+  GBPUSD: { min: 1.20, max: 1.45, label: "forex" },
+  XAUUSD: { min: 3500, max: 5000, label: "gold" },
+  NAS100: { min: 20000, max: 35000, label: "index" },
+  DXY: { min: 12000, max: 13500, label: "dxy" },
+};
 
 // ═══ CONFIG ═══
 const SCHEDULE = [
@@ -60,7 +77,9 @@ function refreshData() {
   const start = Date.now();
   const result = run(`node "${path.join(ROOT, "tools", "session_start.cjs")}"`, 300000);
   const sec = ((Date.now() - start) / 1000).toFixed(0);
-  log("DATA_REFRESH", `Complete in ${sec}s — ${result ? 'OK' : 'FAILED'}`);
+  const success = result && !result.includes("FAILED");
+  log("DATA_REFRESH", `Complete in ${sec}s — ${success ? 'OK' : 'FAILED'}`);
+  return success;
 }
 
 // ═══ SCAN ALL PAIRS ═══
@@ -139,10 +158,42 @@ function executeTrade(setup) {
     return;
   }
 
+  // ═══ SAFETY: Validate SL/TP are in reasonable range for this pair ═══
+  const guard = PRICE_GUARDS[setup.pair];
+  const slNum = parseFloat(setup.sl);
+  const tpNum = parseFloat(setup.tp);
+  if (guard) {
+    if (slNum < guard.min || slNum > guard.max) {
+      log("SAFETY_BLOCK", `${setup.pair} SL=${slNum} outside ${guard.label} range [${guard.min}-${guard.max}] — REJECTED (probable data contamination)`);
+      return;
+    }
+    if (tpNum < guard.min || tpNum > guard.max) {
+      log("SAFETY_BLOCK", `${setup.pair} TP=${tpNum} outside ${guard.label} range [${guard.min}-${guard.max}] — REJECTED (probable data contamination)`);
+      return;
+    }
+    // SL and TP must be on opposite sides of entry
+    const entryNum = parseFloat(setup.entry.split('@')[1] || '0');
+    if (setup.entry.startsWith("BUY")) {
+      if (slNum >= entryNum) { log("SAFETY_BLOCK", `${setup.pair} BUY but SL ${slNum} >= entry ${entryNum} — REJECTED`); return; }
+      if (tpNum <= entryNum) { log("SAFETY_BLOCK", `${setup.pair} BUY but TP ${tpNum} <= entry ${entryNum} — REJECTED`); return; }
+    } else if (setup.entry.startsWith("SELL")) {
+      if (slNum <= entryNum) { log("SAFETY_BLOCK", `${setup.pair} SELL but SL ${slNum} <= entry ${entryNum} — REJECTED`); return; }
+      if (tpNum >= entryNum) { log("SAFETY_BLOCK", `${setup.pair} SELL but TP ${tpNum} >= entry ${entryNum} — REJECTED`); return; }
+    }
+  }
+
+  // ═══ SAFETY: Don't execute if SL or TP is zero ═══
+  if (slNum === 0 || tpNum === 0 || isNaN(slNum) || isNaN(tpNum)) {
+    log("SAFETY_BLOCK", `${setup.pair} Invalid SL/TP — SL:${setup.sl} TP:${setup.tp} — REJECTED`);
+    return;
+  }
+
+  // Use broker-prefixed symbol for TV
+  const tvSymbol = TV_SYMBOLS[setup.pair] || setup.pair;
   const direction = setup.entry.split(" @ ")[0];
-  const qty = setup.pair === "NAS100" || setup.pair === "XAUUSD" ? 1 : 5000; // Indices: 1 contract, Forex: 5000 units
-  const cmd = `node "${path.join(ROOT, "tools", "tv-mcp", "market_order.cjs")}" ${setup.pair} ${direction} ${setup.sl} ${setup.tp} ${qty}`;
-  log("EXECUTING", `${setup.pair} ${direction} Qty:${qty} SL:${setup.sl} TP:${setup.tp}`);
+  const qty = setup.pair === "NAS100" || setup.pair === "XAUUSD" ? 1 : 5000;
+  const cmd = `node "${path.join(ROOT, "tools", "tv-mcp", "market_order.cjs")}" ${tvSymbol} ${direction} ${setup.sl} ${setup.tp} ${qty}`;
+  log("EXECUTING", `${setup.pair} (TV:${tvSymbol}) ${direction} Qty:${qty} SL:${setup.sl} TP:${setup.tp}`);
 
   const result = run(cmd, 30000);
   if (result && (result.includes("Verified") || result.includes("filled"))) {
@@ -283,7 +334,13 @@ async function runCycle() {
   if (currentEvent) {
     log("EVENT", `${currentEvent.time} — ${currentEvent.event}: ${currentEvent.desc}`);
     if (currentEvent.action === "briefing") {
-      refreshData();
+      const refreshOk = refreshData();
+      if (!refreshOk) {
+        log("SAFETY", "Session startup FAILED — skipping scan to avoid contaminated data");
+        if (ONCE) return;
+        setTimeout(runCycle, 300000); // Retry in 5 min
+        return;
+      }
       scanAll();
     }
   }

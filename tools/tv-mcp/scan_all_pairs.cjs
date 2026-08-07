@@ -2,12 +2,13 @@
 const path = require("path");
 const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 
+// Broker-prefixed TV symbols — plain names resolve to wrong instruments
 const PAIRS = [
-  { name: "EURUSD", tv: "EURUSD" },
-  { name: "GBPUSD", tv: "GBPUSD" },
-  { name: "XAUUSD", tv: "XAUUSD" },
-  { name: "NAS100", tv: "NAS100" },
-  { name: "DXY",    tv: "USDOLLAR" },
+  { name: "EURUSD", tv: "OANDA:EURUSD" },
+  { name: "GBPUSD", tv: "OANDA:GBPUSD" },
+  { name: "XAUUSD", tv: "OANDA:XAUUSD" },
+  { name: "NAS100", tv: "CAPITALCOM:NAS100" },
+  { name: "DXY",    tv: "FX:USDOLLAR" },
 ];
 
 (async () => {

@@ -9,7 +9,16 @@ const path = require("path");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
-const TV_SYMBOLS = { DXY: "USDOLLAR" };
+// Broker-prefixed TV symbols — plain names resolve to wrong instruments
+const TV_SYMBOLS = {
+  EURUSD: "OANDA:EURUSD",
+  GBPUSD: "OANDA:GBPUSD",
+  XAUUSD: "OANDA:XAUUSD",
+  GOLD: "OANDA:XAUUSD",
+  NAS100: "CAPITALCOM:NAS100",
+  DXY: "FX:USDOLLAR",
+  USDOLLAR: "FX:USDOLLAR"
+};
 const ALL_PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100"];
 
 // ═══════════════ SESSION CONFIG ═══════════════
