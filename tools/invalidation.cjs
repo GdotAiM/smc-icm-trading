@@ -2,10 +2,12 @@
 // Know where you're wrong before you enter. Check ALL invalidation dimensions.
 const fs = require("fs");
 const path = require("path");
+const { calcATR, loadCandles } = require("./lib/metrics.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
 const ny = require("./ny_time.cjs");
+const time = require("./lib/time.cjs");
 const NY_HOUR = ny.getNYHour();
 const DAY_NUM = ny.getNYDay();
 
@@ -32,7 +34,10 @@ const htfBias = r4h.structure.bias;
 const entryPrice = r1h ? r1h.price : r4h.price;
 const swingHigh = r4h.structure.lastSwingHigh || r1d.structure.lastSwingHigh || entryPrice + 0.003;
 const swingLow = r4h.structure.lastSwingLow || r1d.structure.lastSwingLow || entryPrice - 0.003;
-const atrBuffer = Math.abs(swingHigh - swingLow) * 0.1;
+// Real ATR-14 (WP-1 / audit Gap 4.1). Fallback only when candles unavailable.
+const c4h = loadCandles(sharedDir, "4h");
+const realATR = calcATR(c4h, 14);
+const atrBuffer = realATR != null && realATR > 0 ? realATR * 0.5 : Math.abs(swingHigh - swingLow) * 0.1;
 const slPrice = htfBias === "bearish" ? swingHigh + atrBuffer : swingLow - atrBuffer;
 const slDistance = Math.abs(entryPrice - slPrice);
 const slPips = Math.round(slDistance * (pairLabel === "XAUUSD" ? 10 : 10000));
@@ -71,7 +76,7 @@ const structureWarnings = structureChecks.filter(c => c.status === "WARNING").le
 
 // 3. TIME INVALIDATION — Session/killzone/window expiry (NEW YORK local time)
 const timeChecks = [];
-const inKillzone = (NY_HOUR >= 2 && NY_HOUR < 11) || (NY_HOUR >= 13 && NY_HOUR < 16); // London 02-08, NY AM 08-11, NY PM 13-16
+const inKillzone = time.isKillzoneHour(NY_HOUR); // London 02-05 | NY AM 08-11 | NY PM 13-16 (ICT-correct, WP-2)
 const inSB = (NY_HOUR >= 3 && NY_HOUR < 4) || (NY_HOUR >= 10 && NY_HOUR < 11) || (NY_HOUR >= 14 && NY_HOUR < 15);
 
 if (inKillzone) {

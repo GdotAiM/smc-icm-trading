@@ -1,28 +1,24 @@
-# Invalidation Awareness — EURUSD — 2026-08-05
+# Invalidation Awareness — EURUSD — 2026-08-07
 
-## Overall Status: ⚡ CAUTION — Minor warnings. Trade with awareness.
+## Overall Status: ❌ TRADE INVALID — At least one dimension has failed. Exit or do not enter.
 
 | Dimension | Status | Detail |
 |-----------|--------|--------|
 | PRICE | ⏳ undefined |  |
 | STRUCTURE | ✅ VALID | 4H BOS bullish — structure confirms direction |
 | STRUCTURE | ✅ VALID | 1D bias bullish — HTF confirms |
-| TIME | ✅ ACTIVE | Killzone active — 2h 0m remaining |
-| TIME | ✅ ACTIVE | Silver Bullet window ACTIVE — time-gated models eligible |
-| MODEL | ✅ VALID | SB window active — model conditions met |
+| TIME | ✅ ACTIVE | Killzone active — 4h 0m remaining |
+| TIME | ⏳ INACTIVE | SB window not active — next: NY AM SB at 10:00 |
+| MODEL | ❌ INVALIDATED | Not in Silver Bullet window — model requires active SB killzone |
 | MODEL | ✅ VALID | OB present + sweep detected — MMXM conditions met |
-| CYCLE | ✅ VALID | DISTRIBUTION phase — trend is active. Let winners run. |
 | MICRO | ✅ VALID | 15m bias bullish — aligned with HTF |
-| MICRO | ⚠️ WARNING | 5m CHoCH flipped to bearish — micro reversal. Check if SL threatened. |
 | CORRELATION | ✅ VALID | DXY is bearish — confirms USD direction for bullish EURUSD |
 
 ## Invalidation Summary
-- **Invalidated**: 0 dimension(s) — None
-- **Warnings**: 1 — Trade with reduced size and awareness
-- **Confirmed**: 9 checks passed
+- **Invalidated**: 1 dimension(s) — EXIT OR DO NOT ENTER
+- **Warnings**: 0 — None
+- **Confirmed**: 6 checks passed
 
 ## If Trade Is Active
-- **SL**: 1.14945 (51 pips risk)
-- **Next check**: Re-evaluate on 4H close or if price closes below 4H swing low
-- **Scale out**: Hold full position
+- **EXIT NOW** — the trade thesis is no longer valid.
 - **Re-entry**: Only if ALL dimensions return to VALID status

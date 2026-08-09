@@ -1,7 +1,7 @@
-# Bread and Butter — XAUUSD — 2026-08-05
+# Bread and Butter — XAUUSD — 2026-08-09
 
-## Session: NY PM Session (1:00-4:00 PM NY)
-## HTF Bias: BULLISH aligned 1D+4H
+## Session: London Open (00:00-05:00 NY)
+## HTF Bias: NOT ALIGNED
 
 ## No Active Setup
-NY PM Session: No engine active — no sweep or PD array retest.
+London Open: No engine active — no sweep or PD array retest.

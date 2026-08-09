@@ -111,9 +111,13 @@ function isInJudasSwingFor(ts) {
 
 function getNYSession() { return getNYSessionFor(Date.now()); }
 
+// ICT-correct killzone set (Remediation WP-2 / audit Gap 1.1):
+//   London 02-05 | NY AM 08-11 | NY PM 13-16
+//   "londonPM" (05-08) is the London-close / NY-pre-open DEAD ZONE — NOT a killzone.
+//   SSOT for these semantics lives in tools/lib/time.cjs.
 function isInKillzoneNY() {
   const s = getNYSession();
-  return ["london", "londonPM", "nyAM", "nyPM"].includes(s.name);
+  return ["london", "nyAM", "nyPM"].includes(s.name);
 }
 
 function isInSilverBulletNY() { return isInSilverBulletFor(Date.now()); }
@@ -123,14 +127,18 @@ function isInJudasSwingNY() { return isInJudasSwingFor(Date.now()); }
 const NY_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 // ═══════════════ ICT DAY PROFILES ═══════════════
+// WP-12 Gap 4.6: the day *type* (range/expansion/reversal) is a NARRATIVE prior
+// (the `character`/`bestModels`/`notes` fields), NOT a score multiplier. The old
+// fixed weekday multipliers (Mon 0.8, Thu 1.3, Fri 0.6, ...) were historical
+// performance repackaged — they are removed. `open` only reflects market hours.
 const DAY_PROFILES = {
-  0: { name: "Sunday",     character: "Weekly prep. Low volume, gap analysis only.", risk: "None", multiplier: 0.0, bestModels: [], notes: "No trading. Prepare for the week." },
-  1: { name: "Monday",     character: "Range Set Day. Weekly range established.", risk: "Low", multiplier: 0.8, bestModels: ["Asian Range","NWOG/NDOG","Judas Swing"], notes: "Don't trade first 2h of London. Wait for weekly range to set." },
-  2: { name: "Tuesday",    character: "Continuation Day. Monday extends or reverses.", risk: "Medium", multiplier: 1.0, bestModels: ["Breaker Block","OTE + OB","Silver Bullet"], notes: "If Monday range-bound, Tuesday expands. Watch for turnaround." },
-  3: { name: "Wednesday",  character: "Reversal Day. Often marks weekly high/low.", risk: "Medium-High", multiplier: 1.2, bestModels: ["Turtle Soup","Judas Swing","Silver Bullet (NY AM)"], notes: "Highest probability reversal day. NY AM critical." },
-  4: { name: "Thursday",   character: "Expansion Day. Strongest trending day.", risk: "High", multiplier: 1.3, bestModels: ["MMXM","Unicorn","SCOB","2FVG","OTE + OB"], notes: "Best day for trend trades. Highest MMXM win rate." },
-  5: { name: "Friday",     character: "Position Squaring. Profit-taking dominates.", risk: "Low", multiplier: 0.6, bestModels: ["Silver Bullet (AM only)"], notes: "Close all positions by NY close. No new swings. No weekend holds." },
-  6: { name: "Saturday",   character: "Market closed.", risk: "None", multiplier: 0.0, bestModels: [], notes: "No trading." },
+  0: { name: "Sunday",     character: "Weekly prep. Low volume, gap analysis only.", risk: "None", open: false, bestModels: [], notes: "No trading. Prepare for the week." },
+  1: { name: "Monday",     character: "Range Set Day. Weekly range established.", risk: "Low", open: true, bestModels: ["Asian Range","NWOG/NDOG","Judas Swing"], notes: "Don't trade first 2h of London. Wait for weekly range to set." },
+  2: { name: "Tuesday",    character: "Continuation Day. Monday extends or reverses.", risk: "Medium", open: true, bestModels: ["Breaker Block","OTE + OB","Silver Bullet"], notes: "If Monday range-bound, Tuesday expands. Watch for turnaround." },
+  3: { name: "Wednesday",  character: "Reversal Day. Often marks weekly high/low.", risk: "Medium-High", open: true, bestModels: ["Turtle Soup","Judas Swing","Silver Bullet (NY AM)"], notes: "Highest probability reversal day. NY AM critical." },
+  4: { name: "Thursday",   character: "Expansion Day. Strongest trending day.", risk: "High", open: true, bestModels: ["MMXM","Unicorn","SCOB","2FVG","OTE + OB"], notes: "Best day for trend trades. Highest MMXM win rate." },
+  5: { name: "Friday",     character: "Position Squaring. Profit-taking dominates.", risk: "Low", open: true, bestModels: ["Silver Bullet (AM only)"], notes: "Close all positions by NY close. No new swings. No weekend holds." },
+  6: { name: "Saturday",   character: "Market closed.", risk: "None", open: false, bestModels: [], notes: "No trading." },
 };
 
 // Weekly cycle position based on day + session
@@ -171,17 +179,6 @@ function getMacroEvents() {
   return events;
 }
 
-// Day-of-week cycle estimate (fallback when macro_context returns UNKNOWN)
-// Based on model_cycle_map.md day+cycle combined table
-function getCycleEstimate(nyDay, nyHour) {
-  if (nyDay === 1) return "ACCUMULATION";
-  if (nyDay === 2) return "MANIPULATION";
-  if (nyDay === 3) return "MANIPULATION";
-  if (nyDay === 4) return nyHour < 12 ? "DISTRIBUTION" : "EXPANSION";
-  if (nyDay === 5) return nyHour < 12 ? "EXPANSION" : "ACCUMULATION";
-  return "ACCUMULATION";
-}
-
 // Next Silver Bullet window
 function getNextSB(nyHour) {
   if (nyHour < 3) return { window: "London SB", time: "03:00-04:00 NY", countdown: (3 - nyHour) + "h" };
@@ -208,21 +205,20 @@ if (require.main === module) {
   const weeklyPosition = getWeeklyPosition(nyHour, nyDay);
 
   const reliability = sb.active ? 1.5 : kz ? 1.3 : session.name === "nyLunch" ? 0.4 : session.name === "offHours" ? 0.3 : 1.0;
-  const dayMultiplier = dayProfile.multiplier;
-  const combinedMultiplier = (reliability * dayMultiplier).toFixed(2);
-  const cycleEstimate = getCycleEstimate(nyDay, nyHour);
+  // WP-12 Gap 4.6: no weekday confidence multiplier — the day *type* is a
+  // narrative prior, never a conviction/size boost. Combined = session only.
+  const combinedMultiplier = reliability.toFixed(2);
 
   const output = {
     now: new Date().toISOString(),
     nyTime: { hour: nyHour, day: NY_DAYS[nyDay], dayIndex: nyDay },
     session: { name: session.label, character: session.character, killzone: kz, reliability: reliability },
-    cycleEstimate: cycleEstimate,
-    dayProfile: { name: dayProfile.name, character: dayProfile.character, risk: dayProfile.risk, multiplier: dayMultiplier, bestModels: dayProfile.bestModels, notes: dayProfile.notes },
+    dayProfile: { name: dayProfile.name, character: dayProfile.character, risk: dayProfile.risk, open: dayProfile.open, bestModels: dayProfile.bestModels, notes: dayProfile.notes },
     silverBullet: { active: sb.active, current: sb.active ? sb.label : null, next: nextSB },
     judasSwing: { active: js.active, current: js.active ? js.label : null },
     weeklyPosition: weeklyPosition,
-    multipliers: { session: reliability, day: dayMultiplier, combined: combinedMultiplier },
-    tradeable: kz && !["nyLunch","offHours","nyClose"].includes(session.name) && dayMultiplier > 0,
+    multipliers: { session: reliability, day: 1, combined: combinedMultiplier },
+    tradeable: kz && !["nyLunch","offHours","nyClose"].includes(session.name) && dayProfile.open !== false,
     macroEvents: macroEvents,
     rules: {
       noTrade: session.name === "offHours" ? "Off hours — no liquidity" :
@@ -240,8 +236,7 @@ if (require.main === module) {
     console.log(JSON.stringify({
       nyTime: output.nyTime,
       session: output.session,
-      cycleEstimate: output.cycleEstimate,
-      dayProfile: { name: output.dayProfile.name, multiplier: output.dayProfile.multiplier },
+      dayProfile: { name: output.dayProfile.name, open: output.dayProfile.open },
       silverBullet: output.silverBullet,
       combinedMultiplier: output.multipliers.combined,
       tradeable: output.tradeable,

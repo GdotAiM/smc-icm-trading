@@ -1,13 +1,13 @@
-# IRL / ERL Analysis — GBPUSD — 2026-08-05
+# IRL / ERL Analysis — GBPUSD — 2026-08-07
 
-## Current Price: 1.34683
+## Current Price: 1.34554
 
 ## Dealing Range (1D)
-- **Range**: 1.32735 — 1.35582 (0.02847)
-- **Midpoint (Equilibrium)**: 1.34159
-- **Validation**: ⚠️ PARTIAL — high swept, low NOT swept
-- **Premium Zone**: 1.35582 — 1.34159
-- **Discount Zone**: 1.34159 — 1.32735
+- **Range**: 1.32735 — 1.35065 (0.02330)
+- **Midpoint (Equilibrium)**: 1.33900
+- **Validation**: ⚠️ PARTIAL — high NOT swept, low NOT swept
+- **Premium Zone**: 1.35065 — 1.33900
+- **Discount Zone**: 1.33900 — 1.32735
 
 ## IRL — Internal Range Liquidity (0 FVGs)
 | Status | Count |

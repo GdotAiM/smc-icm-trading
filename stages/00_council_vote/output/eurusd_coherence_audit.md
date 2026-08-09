@@ -1,6 +1,6 @@
-# Coherence Audit — EURUSD — 2026-08-05
+# Coherence Audit — EURUSD — 2026-08-07
 
-## Overall Coherence: 50/100 — D — POOR coherence
+## Overall Coherence: 60/100 — C — ADEQUATE coherence
 
 ---
 
@@ -10,32 +10,32 @@
 |------|---------|-----------|-------------|
 | STRUCTURE | BULLISH (BOS) | BULLISH | — |
 | IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
-| CYCLE PHASE | DISTRIBUTION → expects BEARISH | BEARISH | — |
+| CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
 | LIQUIDITY | DOWN (SSL magnet) | 3 swept | BEARISH | — |
 
-**⚠️ LENS DIVERGENCE — 3 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in DISTRIBUTION phase.**
+**⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in UNKNOWN phase.**
 
 ---
 
-## 2. Temporal Coherence (⚠️ 2/4 LTFs aligned)
+## 2. Temporal Coherence (✅ 4/4 LTFs aligned)
 
 | TF | Bias | Event | vs HTF (BULLISH) |
 |----|------|-------|------------------|
 | 1W | **BULLISH** | BOS | ✅ aligned |
 | 1D | **BULLISH** | CHoCH | ✅ aligned |
 | 4H | **BULLISH** | BOS | ✅ aligned |
-| 1H | **BULLISH** | BOS | ✅ aligned |
+| 1H | **BULLISH** | CHoCH | ✅ aligned |
 | 15m | **BULLISH** | BOS | ✅ aligned |
-| 5m | **BEARISH** | CHoCH | ⚠️ opposing |
-| 1m | **BEARISH** | BOS | ⚠️ opposing |
+| 5m | **BULLISH** | CHoCH | ✅ aligned |
+| 1m | **BULLISH** | BOS | ✅ aligned |
 
-**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BULLISH. Possible reversal or deep pullback.**
+**✅ TEMPORAL COHERENCE — 4/4 LTFs aligned with HTF BULLISH. Perfect alignment.**
 
 ---
 
 ## 3. Archetype Coherence (⚠️)
 
-**❌ ARCHETYPE DIVERGENCE — Council split. No consensus (0%).**
+**Council data unavailable**
 
 ---
 
@@ -52,10 +52,10 @@
 | Dimension | Score | Status |
 |-----------|-------|--------|
 | Lens Coherence | 15/25 | ⚠️ |
-| Temporal Coherence | 15/25 | ⚠️ |
-| Archetype Coherence | 15/25 | ⚠️ |
+| Temporal Coherence | 25/25 | ✅ |
+| Archetype Coherence | 5/25 | ⚠️ |
 | No Contradictions | 25/25 | ✅ |
-| **TOTAL** | **50/100** | **D — POOR coherence** |
+| **TOTAL** | **60/100** | **C — ADEQUATE coherence** |
 
 ---
 

@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
+const { calcATR, loadCandles } = require("./lib/metrics.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
@@ -191,7 +192,11 @@ function atrDynamicSL(report, entryPrice, htfBias) {
 
   const swHi = report.structure.lastSwingHigh || entryPrice;
   const swLo = report.structure.lastSwingLow || entryPrice;
-  const atrValue = Math.abs(swHi - swLo) * 0.15; // approximate ATR from swing range
+  // Real ATR-14 from raw candles (WP-1 / audit Gap 4.1). Fallback only when
+  // candle data is unavailable — never the preferred path.
+  const c4h = loadCandles(sharedDir, "4h") || loadCandles(sharedDir, "1h");
+  const realATR = calcATR(c4h, 14);
+  const atrValue = realATR != null && realATR > 0 ? realATR : Math.abs(swHi - swLo) * 0.15;
 
   // ICT: SL = swing point + (ATR × multiplier)
   // Multiplier varies by pair volatility

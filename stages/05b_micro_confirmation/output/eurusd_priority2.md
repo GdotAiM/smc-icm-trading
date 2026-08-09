@@ -1,4 +1,4 @@
-# Priority 2 Report — EURUSD — 2026-08-05
+# Priority 2 Report — EURUSD — 2026-08-07
 
 ## CISD (Engine-Quality)
 **No CISD detected.**
@@ -11,11 +11,11 @@
 
 
 ## Per-Session Po3
-**Current session: NY PM — DISTRIBUTION phase. Late continuation or reversal.**
-- NY PM: DISTRIBUTION — Late continuation or reversal
+**Current session: London PM — DISTRIBUTION phase. European distribution begins.**
+- London PM: DISTRIBUTION — European distribution begins
 
 ## ISD Sequence
-**⏳ ISD 2/3 — Near complete. One more confirmation needed.**
+**✅ ISD COMPLETE (3/3) — Inducement → Sweep → Displacement confirmed. HIGHEST confidence entry.**
 - ✅ Inducement: 4 pool(s) swept across 4H/15m
 - ✅ Structural Sweep: CHoCH confirms on 15m/5m
-- ✗ Displacement: weak on 5m (0.47x) — below threshold
+- ✅ Displacement: moderate on 5m (0.83x), weak on 15m

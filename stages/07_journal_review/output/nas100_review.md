@@ -1,21 +1,21 @@
-# Session Review — NAS100 — 2026-08-05
+# Session Review — NAS100 — 2026-08-07
 
 ## Setup Summary
 | | |
 |---|---|
 | **Direction** | NO TRADE |
-| **Model** | MMXM Sell Model (0/12.6) |
-| **Bias** | 1W bearish → 1D bullish → 4H bullish |
-| **Session** | NY PM (Killzone ✅) |
-| **Entry** | 29874.4 | SL: 0.0 | TP1: 0.0 |
+| **Model** | MMXM Sell Model (0/9) |
+| **Bias** | 1W bullish → 1D bearish → 4H bullish |
+| **Session** | London (Killzone ✅) |
+| **Entry** | 29467.2 | SL: 0.0 | TP1: 0.0 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment
 ```
-1W  ⚠️ BEARISH
-1D  ✅ BULLISH ← TRADE BIAS
-4H  ✅ BULLISH
-1H  ✅ BULLISH
+1W  ⚠️ BULLISH
+1D  ✅ BEARISH ← TRADE BIAS
+4H  ⚠️ BULLISH
+1H  ✅ BEARISH
 ```
 
 ## Decision Quality
@@ -28,5 +28,5 @@
 | **Overall** | **3.50/5** |
 
 ## Confluence Check
-- DXY correlation: EURUSD + GBPUSD both bullish → DXY should be bearish
+- DXY correlation: EURUSD + GBPUSD both bearish → DXY should be bullish
 - FVGs present for entry refinement ✅

@@ -74,14 +74,28 @@ function gradeRange(high, low, eq, positionPct) {
 // ═══════════════════════════════════════════════════════════════════
 
 function computeIPDARange(candles, label, lookbacks = [20, 40, 60]) {
+  const { computeDealingRange } = require("./lib/dealing_range.cjs");
   if (!candles || candles.length < 20) return null;
 
   const ranges = {};
   for (const lb of lookbacks) {
     if (candles.length < lb) continue;
-    const window = candles.slice(-lb);
-    const high = Math.max(...window.map(c => c.high));
-    const low = Math.min(...window.map(c => c.low));
+
+    // WP-5 (audit Gap 2.2/2.3): the IPDA20 equilibrium is anchored to the
+    // SWEEP-DEFINED dealing range, not a rolling 20-bar max/min. No sweep on
+    // either side -> no operative IPDA20 (cascade falls to IPDA40/60).
+    let high, low;
+    if (lb === 20) {
+      const sweep = computeDealingRange(candles, { lookback: 20 });
+      if (!sweep) continue;
+      high = sweep.high;
+      low = sweep.low;
+    } else {
+      const window = candles.slice(-lb);
+      high = Math.max(...window.map(c => c.high));
+      low = Math.min(...window.map(c => c.low));
+    }
+
     const eq = (high + low) / 2;
     const currentPrice = candles[candles.length - 1].close;
     const zone = currentPrice >= eq ? "PREMIUM (sell)" : "DISCOUNT (buy)";
@@ -468,7 +482,7 @@ function getKillZoneAlignment() {
     asiaLate:   { start: 0, end: 2, label: "Asia (overnight)", weight: 0.5 },
     londonKZ:   { start: 2, end: 5, label: "London KZ", weight: 1.2 },
     londonSB:   { start: 3, end: 4, label: "London SB", weight: 1.5 },
-    londonPM:   { start: 5, end: 8, label: "London PM", weight: 1.0 },
+    londonPM:   { start: 5, end: 8, label: "London PM (dead zone)", weight: 0.4 },
     nyAMKZ:     { start: 8, end: 11, label: "NY AM KZ", weight: 1.3 },
     nyAMSB:     { start: 10, end: 11, label: "NY AM SB", weight: 1.5 },
     nyLunch:    { start: 11, end: 13, label: "NY Lunch", weight: 0.4 },

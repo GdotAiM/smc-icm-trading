@@ -1,7 +1,7 @@
-# Po3 State Machine — XAUUSD — 2026-08-05
+# Po3 State Machine — XAUUSD — 2026-08-07
 
-## Current State: **DISTRIBUTION** (0.80 confidence)
-**BOS bullish + displacement (0.93x) — trend is distributing**
+## Current State: **DISTRIBUTION** (0.60 confidence)
+**BOS bullish — distribution beginning**
 
 ## State Timeline
 
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for NY AM (09:00 NY): DISTRIBUTION**
+**Expected phase for London PM (03:00 NY): DISTRIBUTION**
 **Detected phase: DISTRIBUTION**
 ✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
 
@@ -27,26 +27,26 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 | TF | State | Confidence | Reason |
 |----|-------|------------|--------|
-| 1D | MANIPULATION | 0.85 | 2 sweep(s) + CHoCH — manipulation active |
-| 4H | DISTRIBUTION | 0.80 | BOS bullish + displacement (0.93x) — trend is distributing |
-| 1H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
+| 1D | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
+| 4H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
+| 1H | MANIPULATION | 0.85 | 1 sweep(s) + CHoCH — manipulation active |
 
 ## Entry Rules for DISTRIBUTION
 
 **Distribution is the TREND phase. Enter on retracements to OBs/FVGs. Full size.**
 
 ## Daily Open Anchor
-Daily Open (Midnight NY): 4036.43500
+Daily Open (Midnight NY): 3991.41500
 
 ## Accumulation Range
-Range: 4150.28000–4213.54000 (1.51% — WIDE). Not tight accumulation.
+Range: 4229.87500–4291.52000 (1.45% — WIDE). Not tight accumulation.
 
 ## Manipulation Direction Check
-⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bullish bias — this is the trap. Do NOT enter with the sweep direction.
+✅ Sweep WITH daily bullish bias — likely distribution, not manipulation.
 - Daily Bias: BULLISH
-- Swept Above (BSL): 0 | Swept Below (SSL): 1
-- Is Manipulation: ⚠️ YES — do not trade with the sweep
-- With Bias: No
+- Swept Above (BSL): 1 | Swept Below (SSL): 0
+- Is Manipulation: No
+- With Bias: ✅ Yes — likely distribution
 - Entries: ON retracement to PD Array
 - Models: MMXM Sell Model, MMXM Buy Model, OTE + Institutional OB, Unicorn (OTE+FVG), SCOB
 - Size: ×1
@@ -57,6 +57,6 @@ Range: 4150.28000–4213.54000 (1.51% — WIDE). Not tight accumulation.
 | Transition | Signal | Status |
 |-----------|--------|--------|
 | ACCUMULATION→MANIPULATION | Sweep of range extreme (BSL above or SSL below) | ✅  |
-| MANIPULATION→DISTRIBUTION | BOS in reversal direction + displacement > 1.0x | ✅  |
+| MANIPULATION→DISTRIBUTION | BOS in reversal direction + displacement > 1.0x | ✗  |
 | DISTRIBUTION→EXPANSION | ATR > 2.0x OR consecutive FVGs ≥ 3 | ✗ ← CURRENT |
-| EXPANSION→ACCUMULATION | Exhaustion (CHoCH) OR sweep of opposite extreme | ✅  |
+| EXPANSION→ACCUMULATION | Exhaustion (CHoCH) OR sweep of opposite extreme | ✗  |

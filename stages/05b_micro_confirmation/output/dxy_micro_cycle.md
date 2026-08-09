@@ -1,7 +1,7 @@
-# LTF Cycle Analysis — DXY — 2026-07-29
+# LTF Cycle Analysis — DXY — 2026-08-07
 
 ## Macro Context (from Stage 00)
-- **HTF Bias**: BULLISH
+- **HTF Bias**: BEARISH
 - **Cycle Phase**: UNKNOWN
 - **MMXM Step**: 0/4
 
@@ -9,11 +9,11 @@
 
 | Timeframe | Bias | Event | Direction | Displacement | Sweeps | FVGs | OBs |
 |-----------|------|-------|-----------|-------------|--------|------|-----|
-| 15m | **BULLISH** | BOS | bullish | weak (0.36x) | BSL | 1 | 0 |
-| 5m | **BULLISH** | CHoCH | bullish | weak (0.67x) | SSL | 0 | 1 |
-| 1m | **BEARISH** | BOS | bearish | weak (0.00x) | none | 0 | 0 |
+| 15m | **BULLISH** | BOS | bullish | weak (0.00x) | none | 1 | 2 |
+| 5m | **BEARISH** | BOS | bearish | moderate (0.93x) | SSL | 1 | 0 |
+| 1m | **BEARISH** | CHoCH | bearish | weak (0.00x) | none | 0 | 0 |
 
 ## LTF Alignment
-- **15m vs HTF**: ✅ ALIGNED
+- **15m vs HTF**: ⚠️ OPPOSING
 - **5m vs HTF**: ✅ ALIGNED
-- **1m vs HTF**: ⚠️ OPPOSING
+- **1m vs HTF**: ✅ ALIGNED

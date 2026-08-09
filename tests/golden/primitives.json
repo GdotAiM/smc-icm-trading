@@ -1,0 +1,110 @@
+{
+  "_meta": {
+    "generatedBy": "golden_master.cjs",
+    "generatedAt": "2026-08-09T07:44:23.478Z"
+  },
+  "time": {
+    "janOffset": -5,
+    "julOffset": -4,
+    "jan0730": {
+      "name": "londonPM",
+      "label": "London PM (dead zone)",
+      "hour": 7,
+      "killzone": false
+    },
+    "jul0630": {
+      "name": "londonPM",
+      "label": "London PM (dead zone)",
+      "hour": 6,
+      "killzone": false
+    },
+    "jul0700": {
+      "name": "londonPM",
+      "label": "London PM (dead zone)",
+      "hour": 7,
+      "killzone": false
+    },
+    "jul0900": {
+      "name": "nyAM",
+      "label": "NY AM Killzone",
+      "hour": 9,
+      "killzone": true
+    },
+    "jul1400": {
+      "name": "nyPM",
+      "label": "NY PM Killzone",
+      "hour": 14,
+      "killzone": true
+    },
+    "killzoneChecks": {
+      "jan0730": false,
+      "jul0630": false,
+      "jul0900": true,
+      "jul1400": true
+    },
+    "sbActive": true,
+    "judasActive": false
+  },
+  "metrics": {
+    "atr14": 6,
+    "atrShortSeriesNull": null,
+    "structuralSLShort": 103,
+    "structuralSLNull": null
+  },
+  "cycle": {
+    "nullState": "UNKNOWN",
+    "ambiguousState": "ACCUMULATION",
+    "manipulationState": "MANIPULATION",
+    "distributionState": "DISTRIBUTION",
+    "expansionState": "EXPANSION",
+    "accumulationState": "ACCUMULATION",
+    "resolveEmpty": "UNKNOWN",
+    "resolvePrioritySource": "4H",
+    "resolveFallbackSource": "1D"
+  },
+  "config": {
+    "atrPeriod": 14,
+    "inversionMinScore": 5,
+    "londonPMIsKillzone": false
+  },
+  "narrative": {
+    "wGoverns": "bullish",
+    "dGoverns": "bearish",
+    "hGoverns": "bullish",
+    "allNeutral": "neutral",
+    "pullback1H": true,
+    "aligned1H": false,
+    "govTF": "4H",
+    "confNone": 0,
+    "confWindow": 40,
+    "confWindowArray": 70,
+    "confAllCapped": 95,
+    "pdInside": true,
+    "pdFar": false,
+    "pdMitigated": false,
+    "pdFilledFvg": false
+  },
+  "dealingRange": {
+    "nullWhenFlat": null,
+    "nullWhenBelowOnly": null,
+    "sweepHigh": 108,
+    "sweepLow": 94,
+    "equilibrium": 101,
+    "zone": "DISCOUNT",
+    "positionPct": 42.86,
+    "pdAbove": "PREMIUM",
+    "pdBelow": "DISCOUNT",
+    "pdAtEq": "MID",
+    "pdNoRange": null
+  },
+  "liquidity": {
+    "eqHighCount": 0,
+    "eqHighTop": null,
+    "eqHighBottom": null,
+    "eqHighSwept": null,
+    "eqLowCount": 0,
+    "tolRefused": 0,
+    "tolAtWideATR": 0,
+    "toleranceConst": 0.15
+  }
+}

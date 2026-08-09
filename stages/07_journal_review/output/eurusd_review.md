@@ -1,13 +1,13 @@
-# Session Review — EURUSD — 2026-08-05
+# Session Review — EURUSD — 2026-08-07
 
 ## Setup Summary
 | | |
 |---|---|
 | **Direction** | NO TRADE |
-| **Model** | MMXM Sell Model (0/12.6) |
+| **Model** | MMXM Sell Model (0/9) |
 | **Bias** | 1W bullish → 1D bullish → 4H bullish |
-| **Session** | NY PM (Killzone ✅) |
-| **Entry** | 1.15456 | SL: 0.00000 | TP1: 0.00000 |
+| **Session** | London PM (Killzone ✅) |
+| **Entry** | 1.15287 | SL: 0.00000 | TP1: 0.00000 |
 | **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment

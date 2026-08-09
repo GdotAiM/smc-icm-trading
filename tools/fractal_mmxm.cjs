@@ -5,6 +5,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { CONFIG } = require("./lib/engine_config.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
@@ -132,7 +133,9 @@ function detectInversion(report1m, report5m, htfBias) {
   const strongDisp = disp1m === "strong" || disp1m === "moderate";
 
   const score = (hasCHoCH ? 2 : 0) + (hasRecentSweep ? 2 : 0) + (alignedWithHTF ? 2 : 0) + (hasEntryFVG ? 1 : 0) + (strongDisp ? 1 : 0);
-  const detected = score >= 5;
+  // Threshold sourced from engine_config so the gate and the detector can
+  // never disagree (Remediation WP-13 / audit Bug 6.5).
+  const detected = score >= CONFIG.inversion.minScore;
 
   return {
     detected,
@@ -141,7 +144,7 @@ function detectInversion(report1m, report5m, htfBias) {
     hasCHoCH, hasRecentSweep, alignedWithHTF, hasEntryFVG, strongDisp,
     narrative: detected ?
       `✅ 1m INVERSION DETECTED — CHoCH + sweep + FVG aligned with HTF ${htfBias}. This is the entry sentence within the larger MMXM story.` :
-      score >= 4 ?
+      score >= CONFIG.inversion.minScore - 1 ?
       `⏳ 1m Inversion BUILDING — ${score}/8 signals. ${hasCHoCH ? 'CHoCH ✓' : 'Waiting for CHoCH'}. ${hasRecentSweep ? 'Sweep ✓' : 'Waiting for sweep'}.` :
       `⏳ 1m Inversion NOT YET — ${score}/8 signals. Wait for CHoCH + sweep on 1m.`,
   };

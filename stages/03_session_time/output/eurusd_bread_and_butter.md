@@ -1,14 +1,14 @@
-# Bread and Butter — EURUSD — 2026-08-05
+# Bread and Butter — EURUSD — 2026-08-07
 
-## Session: NY PM Session (1:00-4:00 PM NY)
+## Session: London Retest Window (05:00-08:00 NY)
 ## HTF Bias: BULLISH aligned 1D+4H
 
 ## Active Setup
-- **Direction**: BUY
-- **Engine**: OFFSET-ACCUMULATION
-- **Confidence**: HIGH
-- **TP**: 15-25 pips
+- **Direction**: SELL
+- **Engine**: OFFSET-DISTRIBUTION
+- **Confidence**: LOW (counter-bias)
+- **TP**: 20-30 pips
 - **SL**: Beyond swept extreme
 - **Risk**: 0.5-1%
 - **Max Hold**: 1-2 hours
-- NY PM Session: OFFSET-ACCUMULATION → BUY. Confidence: HIGH. TP: 15-25 pips. SL: Beyond swept extreme. Offset: Session low swept @ 1.13636, price reversed back above. Fake breakout → buy.
+- London Retest Window: OFFSET-DISTRIBUTION → SELL. Confidence: LOW (counter-bias). TP: 20-30 pips. SL: Beyond swept extreme. Offset: Session high swept @ 1.15394, price reversed back below. Fake breakout → sell.

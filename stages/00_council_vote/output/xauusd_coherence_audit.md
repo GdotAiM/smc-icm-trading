@@ -1,6 +1,6 @@
-# Coherence Audit — XAUUSD — 2026-08-05
+# Coherence Audit — XAUUSD — 2026-08-09
 
-## Overall Coherence: 50/100 — D — POOR coherence
+## Overall Coherence: 40/100 — D — POOR coherence
 
 ---
 
@@ -9,33 +9,33 @@
 | Lens | Reading | Direction | vs Structure |
 |------|---------|-----------|-------------|
 | STRUCTURE | BULLISH (BOS) | BULLISH | — |
-| IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
-| CYCLE PHASE | DISTRIBUTION → expects BEARISH | BEARISH | — |
+| IPDA RANGE | undefined → NEUTRAL bias | NEUTRAL | — |
+| CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
 | LIQUIDITY | DOWN (SSL magnet) | 3 swept | BEARISH | — |
 
-**⚠️ LENS DIVERGENCE — 3 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in DISTRIBUTION phase.**
+**⚠️ LENS DIVERGENCE — 1 lens(es) disagree with structure (bullish). The IPDA says neutral while structure says bullish. This is a concern — lenses should align in UNKNOWN phase.**
 
 ---
 
-## 2. Temporal Coherence (✅ 3/4 LTFs aligned)
+## 2. Temporal Coherence (⚠️ 2/4 LTFs aligned)
 
 | TF | Bias | Event | vs HTF (BULLISH) |
 |----|------|-------|------------------|
-| 1W | **BEARISH** | CHoCH | ⚠️ opposing |
+| 1W | **BEARISH** | BOS | ⚠️ opposing |
 | 1D | **BULLISH** | CHoCH | ✅ aligned |
 | 4H | **BULLISH** | BOS | ✅ aligned |
-| 1H | **BULLISH** | BOS | ✅ aligned |
+| 1H | **BULLISH** | CHoCH | ✅ aligned |
 | 15m | **BULLISH** | BOS | ✅ aligned |
-| 5m | **BULLISH** | CHoCH | ✅ aligned |
-| 1m | **BEARISH** | CHoCH | ⚠️ opposing |
+| 5m | **BEARISH** | CHoCH | ⚠️ opposing |
+| 1m | **BEARISH** | BOS | ⚠️ opposing |
 
-**✅ TEMPORAL COHERENCE — 3/4 LTFs aligned with HTF BULLISH. 1 opposing (micro pullback — normal).**
+**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BULLISH. Possible reversal or deep pullback.**
 
 ---
 
 ## 3. Archetype Coherence (⚠️)
 
-**⚠️ ARCHETYPE PARTIAL — 3/4 agree but only 60% confidence. Some dissent.**
+**Council data unavailable**
 
 ---
 
@@ -53,10 +53,10 @@
 | Dimension | Score | Status |
 |-----------|-------|--------|
 | Lens Coherence | 15/25 | ⚠️ |
-| Temporal Coherence | 25/25 | ✅ |
-| Archetype Coherence | 15/25 | ⚠️ |
+| Temporal Coherence | 15/25 | ⚠️ |
+| Archetype Coherence | 5/25 | ⚠️ |
 | No Contradictions | 5/25 | ❌ |
-| **TOTAL** | **50/100** | **D — POOR coherence** |
+| **TOTAL** | **40/100** | **D — POOR coherence** |
 
 ---
 

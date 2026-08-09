@@ -1,6 +1,6 @@
-# IRL / ERL Analysis — XAUUSD — 2026-08-05
+# IRL / ERL Analysis — XAUUSD — 2026-08-07
 
-## Current Price: 4201.57500
+## Current Price: 4337.53000
 
 ## Dealing Range (1D)
 - **Range**: 3996.05500 — 4120.49500 (124.44000)
@@ -18,7 +18,7 @@
 
 | TF | Type | Price (CE) | Fill % | Distance |
 |-----|------|------------|--------|----------|
-| 15m | bullish | 4116.65500 | 0.00% | 2.02% |
+| 15m | bullish | 4116.65500 | 0.00% | 5.09% |
 
 ## ERL — External Range Liquidity
 - **Dominant**: BUY-SIDE (above)

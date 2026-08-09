@@ -1,4 +1,4 @@
-# The Market's Story — EURUSD — 2026-08-05
+# The Market's Story — EURUSD — 2026-08-07
 
 ## The Narrative
 
@@ -12,15 +12,15 @@ The daily CONTINUES the weekly. The daily bullish bias confirms the larger pictu
 
 
 ### III. THE TRADE CONTEXT — 4H
-The 4H is our trade timeframe. BOS at 1.14053 confirms the bullish structure. Liquidity sweep detected: SSL @ 1.13814, SSL @ 1.14036, BSL @ 1.15804. This is the INDUCEMENT — the manipulation that traps traders before the real move. Order blocks present — institutional reference points for entry. Displacement is weak.
+The 4H is our trade timeframe. BOS at 1.14053 confirms the bullish structure. Liquidity sweep detected: SSL @ 1.13814, SSL @ 1.14036, BSL @ 1.15578. This is the INDUCEMENT — the manipulation that traps traders before the real move. Order blocks present — institutional reference points for entry. Displacement is weak.
 
 
 ### IV. MICRO CONFIRMATION — 15m/5m
-LTF structure is neutral — no clear micro confirmation yet. Wait for 5m/15m to commit to a direction.
+The 15m and 5m both show bullish structure — LTF CONFIRMS HTF. This is the ideal entry environment: the lower timeframes agree with the higher timeframe direction.
 
 
 ### V. THE TRIGGER — 1m
-The 1m shows bearish bias with 1 FVGs. The 1m bearish is a micro-bounce WITHIN the bullish trend — Scalpers can trade it but should NOT hold against the HTF. Recent 1m sweep detected — micro-manipulation may have just occurred. 1 FVG(s) available for entry refinement.
+The 1m shows bullish bias with 1 FVGs. The 1m bullish aligns with HTF — trigger may be imminent.  1 FVG(s) available for entry refinement.
 
 
 ---
@@ -31,8 +31,8 @@ Model selection is narrative-driven, not pattern-matched. Each model tells a dif
 
 
 ### Silver Bullet
-**Fit**: TIME-DRIVEN — this model is about WHEN, not WHAT
-**Why**: Silver Bullet is appropriate RIGHT NOW because we are inside the active killzone window. The model is time-gated — it only works during specific 2-hour windows when institutional flow is highest. The bullish bias provides directional context. FVGs are present for entry refinement.
+**Fit**: TIME-MISMATCHED — wrong window for this model
+**Why**: Silver Bullet is NOT currently appropriate — we are in a killzone but outside the SB window. This model requires the 1-hour SB window (03-04, 10-11, or 14-15 NY). The killzone is active but the specific SB timing window is not.
 
 
 ### 2022 Model (MMXM)
@@ -60,7 +60,7 @@ The BULLISH bias is built on 5 pieces of structural evidence, not a single indic
 - 1 FVG(s) — price inefficiencies to fill
 - 1D and 4H aligned — no timeframe conflict
 
-**Cycle context**: This bullish bias exists within a DISTRIBUTION cycle phase. In distribution, bias is HIGHLY reliable — the trend is established and continuing.
+**Cycle context**: No cycle context available — bias is based on structure alone.
 
 ---
 
@@ -69,12 +69,12 @@ The BULLISH bias is built on 5 pieces of structural evidence, not a single indic
 The invalidation story is: "We are long because the structure is bullish. We are WRONG if price proves the structure has changed — a close below the swing low. Everything else supports the thesis but that level is the invalidation."
 
 ### Primary Invalidation (The Line in the Sand)
-If price CLOSES below 1.15004 (4H swing low) — the bullish structure is invalidated. A close below the swing low means sellers have overwhelmed buyers. EXIT the long immediately.
+If price CLOSES below 1.15147 (4H swing low) — the bullish structure is invalidated. A close below the swing low means sellers have overwhelmed buyers. EXIT the long immediately.
 
 ### Secondary Invalidations (Early Warnings)
 1. If the 1D flips to BEARISH — the daily trend has changed. The HTF thesis is no longer valid. Close all positions and re-evaluate.
 2. If DXY correlation breaks (DXY moves WITH EURUSD instead of against it) — the dollar-direction thesis is weakening. Reduce position size by 50%.
-3. If DISTRIBUTION shifts to ACCUMULATION — the cycle context has changed. Re-evaluate model appropriateness.
+3. If UNKNOWN shifts to a different phase — the cycle context has changed. Re-evaluate model appropriateness.
 4. If the killzone window closes without an entry trigger — TIME invalidation. The setup didn't fire in time. Cancel pending orders and wait for the next window.
 5. If 1m and 5m both flip BEARISH for 3+ consecutive candles — MICRO invalidation. The LTF is no longer pulling back; it's reversing. Tighten SL.
 
@@ -82,17 +82,7 @@ If price CLOSES below 1.15004 (4H swing low) — the bullish structure is invali
 
 ## The Council's Read
 
-
-| Archetype | Direction | Sees |
-|-----------|-----------|------|
-| Position (1W) | NEUTRAL | Note: weekly structure may conflict with this vote |
-| Swing (4H/1D) | NEUTRAL | May be seeing something the 4H alone does not capture |
-| Day (15m/1H) | NEUTRAL | Entry timing and session context |
-| Scalp (1m/5m) | NEUTRAL | Micro trigger readiness |
-
-**Verdict**: SPLIT — No consensus (0%)
-**Action**: WAIT — The Council is divided. Let the market resolve the conflict before entering.
-
+Council data unavailable — run tools/council.cjs first.
 
 ---
 
@@ -101,13 +91,13 @@ If price CLOSES below 1.15004 (4H swing low) — the bullish structure is invali
 
 The market is telling us a coherent story:
 
-**EURUSD is in a DISTRIBUTION phase within a larger BULLISH weekly structure.**
+**EURUSD is in a UNKNOWN phase within a larger BULLISH weekly structure.**
 
 The weekly chart shows a BULLISH structure with continuation. The daily CONTINUES the weekly. The 4H is our trade timeframe.
 
-This IS a trend trade. The structure is established and institutions are distributing. Ride the trend, trail stops, and let winners run.
+The cycle phase is unclear — trade with caution and reduced size.
 
-**The Council sees this**: SPLIT — No consensus (0%). Low conviction — the Council is divided. The story may not be clear yet.
+**The Council sees this**: N/A (N/A). Low conviction — the Council is divided. The story may not be clear yet.
 
 **The invalidation is clear**: If price CLOSES below 1.
 
@@ -116,5 +106,5 @@ This IS a trend trade. The structure is established and institutions are distrib
 
 ---
 
-*Generated: 2026-08-05T18:41:14.915Z | Narrative Engine v1.0*
+*Generated: 2026-08-07T11:09:01.881Z | Narrative Engine v1.0*
 *"The market is a storyteller. Our job is to listen, not to guess."*

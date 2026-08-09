@@ -1,16 +1,16 @@
-# Inducement Check — EURUSD — 2026-08-05
+# Inducement Check — EURUSD — 2026-08-07
 
 ## Structural Event
-BOS bullish @ 1.15427 | Impulse: 7 candles, range 0.00170
+BOS bullish @ 1.15250 | Impulse: 6 candles, range 0.00056
 
 ## First Pullback
-First pullback: low @ 1.15424 | Retracement: 87.06% — ✅ VALID (≥50%)
+First pullback: low @ 1.15256 | Retracement: 100.00% — ✅ VALID (≥50%)
 
 ## Inducement Level
-Inducement: SSL (Sell-Side) @ 1.15424 — Sell-side trap below pullback low
+Inducement: SSL (Sell-Side) @ 1.15256 — Sell-side trap below pullback low
 
 ## Sweep Status
-⚡ Inducement swept + reversed — awaiting MSS (1m/5m)
+⏳ Inducement NOT swept — entry gate CLOSED. Waiting for dip below 1.15256.
 
 ## Entry Gate
-**🛑 GATE CLOSED — ⚡ Inducement swept + reversed — awaiting MSS (1m/5m)**
+**🛑 GATE CLOSED — ⏳ Inducement NOT swept — entry gate CLOSED. Waiting for dip below 1.15256.**

@@ -1,8 +1,8 @@
-# Session Analysis — XAUUSD — 2026-08-05 14:00 NY (EDT)
+# Session Analysis — XAUUSD — 2026-08-09 04:00 NY (EDT)
 
 ## Current Session
-- **Session**: NY PM | Killzone: ✅ ACTIVE
-- **Character**: Afternoon continuation / reversal
+- **Session**: London | Killzone: ✅ ACTIVE
+- **Character**: Institutional flow, manipulation
 - **Gate**: **ACTIVE**
 
 ## Silver Bullet
@@ -10,8 +10,8 @@
 |--------|---------|--------|
 | London SB | 03-04 | — |
 | NY AM SB | 10-11 | — |
-| NY PM SB | 14-15 | ✅ |
+| NY PM SB | 14-15 | — |
 
 ## Alignment
-- Bias: **bullish** | Session: NY PM
+- Bias: **bullish** | Session: London
 - ✅ ALIGNED — Active killzone with directional bias

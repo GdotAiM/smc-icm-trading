@@ -1,0 +1,52 @@
+{"time":"2026-08-07T06:11:48.935Z","event":"PHASE_1","detail":"Session startup"}
+{"time":"2026-08-07T06:11:49.106Z","event":"KILL_MONITORS","detail":"Stopping intel_monitor only (preserving Discord)"}
+{"time":"2026-08-07T06:11:49.783Z","event":"MONITORS_CLEAN","detail":"Intel monitor stopped, Discord preserved"}
+{"time":"2026-08-07T06:11:49.963Z","event":"TV_CDP_OK","detail":"Chrome/140.0.7339.133"}
+{"time":"2026-08-07T06:11:50.085Z","event":"NY_TIME","detail":"London Killzone | tradeable: true | multiplier: 0.78"}
+{"time":"2026-08-07T06:11:50.085Z","event":"STARTUP","detail":"Running session_start.cjs..."}
+{"time":"2026-08-07T06:12:50.102Z","event":"STARTUP_COMPLETE","detail":"FAILED"}
+{"time":"2026-08-07T06:12:50.103Z","event":"PHASE_2","detail":"Initial pair scan"}
+{"time":"2026-08-07T06:13:08.748Z","event":"SCAN_RESULTS","detail":"4 pairs scanned"}
+{"time":"2026-08-07T06:13:08.749Z","event":"PLACING","detail":"EURUSD BUY SL:29446.59920 TP:29446.60150"}
+{"time":"2026-08-07T06:13:38.244Z","event":"PLACED","detail":"EURUSD BUY"}
+{"time":"2026-08-07T06:13:38.244Z","event":"PLACING","detail":"GBPUSD BUY SL:1.34444 TP:1.34744"}
+{"time":"2026-08-07T06:14:06.764Z","event":"PLACED","detail":"GBPUSD BUY"}
+{"time":"2026-08-07T06:14:06.764Z","event":"PLACING","detail":"XAUUSD BUY SL:4272.95 TP:4312.95"}
+{"time":"2026-08-07T06:14:35.345Z","event":"PLACED","detail":"XAUUSD BUY"}
+{"time":"2026-08-07T06:14:35.345Z","event":"PLACING","detail":"NAS100 BUY SL:12536.0 TP:13086.0"}
+{"time":"2026-08-07T06:15:03.837Z","event":"PLACED","detail":"NAS100 BUY"}
+{"time":"2026-08-07T06:15:03.838Z","event":"PHASE_3","detail":"Monitoring 4 positions — refreshing data each cycle"}
+{"time":"2026-08-07T12:59:06.969Z","event":"PHASE_1","detail":"Session startup"}
+{"time":"2026-08-07T12:59:07.165Z","event":"KILL_MONITORS","detail":"Stopping intel_monitor only (preserving Discord)"}
+{"time":"2026-08-07T12:59:07.749Z","event":"MONITORS_CLEAN","detail":"Intel monitor stopped, Discord preserved"}
+{"time":"2026-08-07T12:59:07.843Z","event":"TV_CDP_OK","detail":"Chrome/140.0.7339.133"}
+{"time":"2026-08-07T12:59:07.984Z","event":"NY_TIME","detail":"NY AM Killzone | tradeable: true | multiplier: 0.78"}
+{"time":"2026-08-07T12:59:07.984Z","event":"STARTUP","detail":"Running session_start.cjs..."}
+{"time":"2026-08-07T13:00:07.995Z","event":"STARTUP_COMPLETE","detail":"FAILED"}
+{"time":"2026-08-07T13:00:07.996Z","event":"PHASE_2","detail":"Initial pair scan"}
+{"time":"2026-08-07T13:00:27.120Z","event":"SCAN_RESULTS","detail":"4 pairs scanned"}
+{"time":"2026-08-07T13:00:27.124Z","event":"PLACING","detail":"EURUSD BUY SL:29731.09920 TP:29731.10150"}
+{"time":"2026-08-07T13:00:56.754Z","event":"PLACED","detail":"EURUSD BUY"}
+{"time":"2026-08-07T13:00:56.756Z","event":"PLACING","detail":"GBPUSD BUY SL:1.34902 TP:1.35202"}
+{"time":"2026-08-07T13:01:14.156Z","event":"PLACED","detail":"GBPUSD BUY"}
+{"time":"2026-08-07T13:01:14.157Z","event":"PLACING","detail":"XAUUSD BUY SL:4344.35 TP:4384.35"}
+{"time":"2026-08-07T13:01:30.335Z","event":"PLACED","detail":"XAUUSD BUY"}
+{"time":"2026-08-07T13:01:30.336Z","event":"PLACING","detail":"NAS100 BUY SL:12502.0 TP:13052.0"}
+{"time":"2026-08-07T13:02:00.868Z","event":"PLACED","detail":"NAS100 BUY"}
+{"time":"2026-08-07T13:02:00.870Z","event":"PHASE_3","detail":"Monitoring 4 positions — refreshing data each cycle"}
+{"time":"2026-08-07T13:12:00.886Z","event":"CHECK","detail":"#1 — refreshing data"}
+{"time":"2026-08-07T13:12:04.626Z","event":"POSITIONS","detail":"=== POSITIONS ===\n2 positions:\n  OANDA:GBPUSDLong5,0001.350051.352021.349021.34961−2.20USD−0.03%6,750.25USD6,748.05USD50:1134.96USD\n  OANDA:XAUUSDLong1004,354.6704,384.3504,344.3504,348.060−661.00USD−"}
+{"time":"2026-08-07T13:22:04.641Z","event":"CHECK","detail":"#2 — refreshing data"}
+{"time":"2026-08-07T13:22:08.144Z","event":"POSITIONS","detail":"=== POSITIONS ===\n1 positions:\n  OANDA:GBPUSDLong5,0001.350051.352021.349021.35002−0.15USD0.00%6,750.25USD6,750.10USD50:1135.00USD\n\n=== ORDERS ===\n1 orders:\n  OANDA:GBPUSDLong5,0001.350051.352021.3490"}
+{"time":"2026-08-07T13:32:08.157Z","event":"CHECK","detail":"#3 — refreshing data"}
+{"time":"2026-08-07T13:32:08.159Z","event":"FULL_REFRESH","detail":"Running full session_start.cjs (all pairs, all TFs)"}
+{"time":"2026-08-07T13:33:08.183Z","event":"FULL_REFRESH_DONE","detail":"Completed in 60s — FAILED"}
+{"time":"2026-08-07T13:33:11.892Z","event":"POSITIONS","detail":"=== POSITIONS ===\n1 positions:\n  OANDA:GBPUSDLong5,0001.350051.352021.349021.34976−1.45USD−0.02%6,750.25USD6,748.80USD50:1134.98USD\n\n=== ORDERS ===\n1 orders:\n  OANDA:GBPUSDLong5,0001.350051.352021.349"}
+{"time":"2026-08-07T13:43:11.910Z","event":"CHECK","detail":"#4 — refreshing data"}
+{"time":"2026-08-07T13:43:15.564Z","event":"POSITIONS","detail":"=== POSITIONS ===\n1 positions:\n  OANDA:GBPUSDLong5,0001.350051.352021.349021.35059+2.70USD+0.04%6,750.25USD6,752.95USD50:1135.06USD\n\n=== ORDERS ===\n1 orders:\n  OANDA:GBPUSDLong5,0001.350051.352021.349"}
+{"time":"2026-08-07T13:53:15.575Z","event":"CHECK","detail":"#5 — refreshing data"}
+{"time":"2026-08-07T13:53:19.240Z","event":"POSITIONS","detail":"=== POSITIONS ===\n1 positions:\n  OANDA:GBPUSDLong5,0001.350051.352021.349021.34938−3.35USD−0.05%6,750.25USD6,746.90USD50:1134.94USD\n\n=== ORDERS ===\n1 orders:\n  OANDA:GBPUSDLong5,0001.350051.352021.349"}
+{"time":"2026-08-07T14:03:19.247Z","event":"CHECK","detail":"#6 — refreshing data"}
+{"time":"2026-08-07T14:03:19.248Z","event":"FULL_REFRESH","detail":"Running full session_start.cjs (all pairs, all TFs)"}
+{"time":"2026-08-07T14:04:19.322Z","event":"FULL_REFRESH_DONE","detail":"Completed in 60s — FAILED"}
+{"time":"2026-08-07T14:04:23.004Z","event":"POSITIONS","detail":"=== POSITIONS ===\n1 positions:\n  There are no open positions in your trading account yet\n\n=== ORDERS ===\n6 orders:\n  OANDA:XAUUSDSellTake Profit1004,384.350cancelled2026-08-07 15:01:2233801853632026-1"}

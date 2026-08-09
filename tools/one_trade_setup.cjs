@@ -43,6 +43,7 @@ function loadCandles(tf) {
 // ═══ DAILY BIAS — THE ANCHOR ═══
 // From weekly structure + 15-min bias + HTF PD array
 function getDailyBias(reports) {
+  const { computeDealingRange, getPremiumDiscount } = require("./lib/dealing_range.cjs");
   const wBias = reports["1W"]?.structure?.bias || "neutral";
   const dBias = reports["1D"]?.structure?.bias || "neutral";
   const h4Bias = reports["4H"]?.structure?.bias || "neutral";
@@ -58,18 +59,19 @@ function getDailyBias(reports) {
   else if (dBias === h4Bias && dBias !== "neutral") { bias = dBias; confidence = 0.5; }
   else { bias = "neutral"; confidence = 0; }
 
-  const pdArray = reports["1D"]?.pdArray;
-  const inPremium = pdArray && reports["1D"]?.price > pdArray.midpoint;
-  const inDiscount = pdArray && reports["1D"]?.price < pdArray.midpoint;
+  // Premium/Discount is read against the SWEEP-DEFINED dealing range (WP-5),
+  // never a fixed midpoint or 20-bar average. No operative range -> NONE.
+  const dealingRange = computeDealingRange(loadCandles("1d"));
+  const pdZone = getPremiumDiscount(dealingRange, reports["1D"]?.price) || "NONE";
 
   return {
     bias,
     confidence: r2(confidence),
     alignment: `${wBias}→${dBias}→${h4Bias}→${m15Bias}`,
-    pdZone: inPremium ? "PREMIUM" : inDiscount ? "DISCOUNT" : "MID",
+    pdZone,
     tradeable: bias !== "neutral",
     detail: bias !== "neutral"
-      ? `${bias.toUpperCase()} bias (${r2(confidence * 100)}% confidence) | ${bullishCount}B/${bearishCount}S aligned | ${inPremium ? 'PREMIUM' : inDiscount ? 'DISCOUNT' : 'MID'} zone`
+      ? `${bias.toUpperCase()} bias (${r2(confidence * 100)}% confidence) | ${bullishCount}B/${bearishCount}S aligned | ${pdZone} zone`
       : `NEUTRAL — ${bullishCount}B/${bearishCount}S aligned. No clear daily bias.`,
   };
 }

@@ -7,6 +7,9 @@ const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
 const now = new Date();
 const DATE = now.toISOString().split("T")[0];
 const ny = require("./ny_time.cjs");
+const { calcATR, loadCandles } = require("./lib/metrics.cjs");
+const { resolveCyclePhase } = require("./lib/cycle_phase.cjs");
+const { logDisagreement } = require("./shadow/shadow_log.cjs");
 const NY_HOUR = ny.getNYHour();
 const NY_SESSION = ny.getNYSession();
 
@@ -212,34 +215,35 @@ try {
   const modelFilterFile = path.join(ROOT, "stages", "00_macro_context", "output", "model_filter.md");
   const dayFile = path.join(ROOT, "stages", "00_macro_context", "output", "day_context.md");
 
+  // WP-3: the cycle phase is derived from PRICE STRUCTURE via
+  // lib/cycle_phase.cjs after the engine reports load below. The old
+  // markdown-regex parser (`/\*\*([A-Z]+)\*\*/`) is removed — phase never
+  // comes from parsing narrative text. We keep the markdown ONLY for the
+  // MMXM step narrative.
   if (fs.existsSync(cycleFile)) {
-    // Parse cycle phase from markdown
     const cycleMd = fs.readFileSync(cycleFile, "utf8");
-    const phaseMatch = cycleMd.match(/\*\*([A-Z]+)\*\*/); // First bold text = phase
     const mmxmMatch = cycleMd.match(/MMXM Step[* ]*: (\d)/);
     macroContext = {
-      phase: phaseMatch ? phaseMatch[1] : "UNKNOWN",
+      phase: null,
       mmxmStep: mmxmMatch ? parseInt(mmxmMatch[1]) : 0,
       source: "pre-generated",
     };
-    console.log(`  Cycle: ${macroContext.phase} | MMXM Step: ${macroContext.mxmStep}/4 (from Stage 00 output)`);
+    console.log(`  Macro context loaded (MMXM step ${macroContext.mxmStep}/4 from Stage 00 output)`);
   } else {
     // Run macro context engine inline
     console.log(`  Generating macro context...`);
     try {
       const { execSync } = require("child_process");
       execSync(`node "${ROOT}/tools/macro_context.cjs"`, { stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 10000 });
-      // Re-read after generation
       if (fs.existsSync(cycleFile)) {
         const cycleMd = fs.readFileSync(cycleFile, "utf8");
-        const phaseMatch = cycleMd.match(/\*\*([A-Z]+)\*\*/);
         const mmxmMatch = cycleMd.match(/MMXM Step[* ]*: (\d)/);
         macroContext = {
-          phase: phaseMatch ? phaseMatch[1] : "UNKNOWN",
+          phase: null,
           mmxmStep: mmxmMatch ? parseInt(mmxmMatch[1]) : 0,
           source: "auto-generated",
         };
-        console.log(`  Cycle: ${macroContext.phase} | MMXM Step: ${macroContext.mxmStep}/4`);
+        console.log(`  Macro context auto-generated (MMXM step ${macroContext.mxmStep}/4)`);
       }
     } catch (e) {
       console.log(`  Macro context unavailable — skipping (${e.message.slice(0, 50)})`);
@@ -259,20 +263,6 @@ const CYCLE_MODEL_WEIGHTS = {
   UNKNOWN:      { "MMXM Sell Model": 1.0, "MMXM Buy Model": 1.0, "Silver Bullet": 1.0, "OTE + Institutional OB": 1.0, "Turtle Soup": 1.0, "Breaker Block": 1.0, "Unicorn (OTE+FVG)": 1.0, "SCOB": 1.0, "2FVG Entry": 1.0, "Judas Swing": 1.0, "Asian Range Breakout": 1.0, "NWOG/NDOG": 1.0, "Mitigation Block": 1.0, "Rejection Block": 1.0, "London Hunt + IFVG": 1.0, "NDOG/NWOG News Model": 1.0, "08:30 Liquidity Raid Model": 1.0 },
 };
 
-// Determine cycle phase — try macro_context first, fall back to day-of-week estimate
-let effectivePhase = macroContext ? (macroContext.phase || "UNKNOWN") : "UNKNOWN";
-if (effectivePhase === "UNKNOWN") {
-  try {
-    const nyCheck = execSync(`node "${ROOT}/tools/ny_time.cjs" --now`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 5000 });
-    const nyData = JSON.parse(nyCheck);
-    if (nyData.cycleEstimate) {
-      effectivePhase = nyData.cycleEstimate;
-      console.log(`  Cycle fallback: ${effectivePhase} (from day-of-week — macro_context returned UNKNOWN)`);
-    }
-  } catch(e) { /* ny_time.cjs may fail, use UNKNOWN */ }
-}
-const cycleWeights = CYCLE_MODEL_WEIGHTS[effectivePhase] || CYCLE_MODEL_WEIGHTS["UNKNOWN"];
-
 // Load engine reports
 const TFS = ["1W", "1D", "4H", "1H", "15m", "5m", "1m"];
 const reports = {};
@@ -286,6 +276,29 @@ const r1d = reports["1D"]; const r4h = reports["4H"]; const r1h = reports["1H"];
 const r15m = reports["15m"]; const r5m = reports["5m"]; const r1m = reports["1m"];
 const r1w = reports["1W"];
 if (!r1d || !r4h || !r1h) { console.error("Missing engine reports"); process.exit(1); }
+
+// Determine cycle phase — structure-based ONLY (Remediation WP-3 / audit Gap 1.2).
+// The PO3/AMD cycle is a price-and-time delivery cycle, never a calendar
+// artifact. resolveCyclePhase (lib/cycle_phase.cjs) reads engine structure
+// (sweeps, BOS/CHoCH, displacement, FVGs) and is the SOLE source. If structure
+// is ambiguous, the honest answer is UNKNOWN (which drops confidence) — never
+// a fabricated phase.
+const resolvedCycle = resolveCyclePhase({ "4H": reports["4H"], "1H": reports["1H"], "1D": reports["1D"] });
+let effectivePhase = resolvedCycle.phase;
+if (effectivePhase === "UNKNOWN") {
+  logDisagreement({
+    area: "cycle_phase",
+    oldValue: "(day-of-week fallback removed)",
+    newValue: "UNKNOWN",
+    detail: `Cycle phase UNKNOWN from structure — ${resolvedCycle.reason}. No fabricated phase.`,
+    pair: PAIR,
+    source: "run_pair.cjs",
+  });
+  console.log(`  Cycle: UNKNOWN (structure ambiguous — no calendar fallback; confidence reduced)`);
+} else {
+  console.log(`  Cycle: ${effectivePhase} (from ${resolvedCycle.source}, structure-based)`);
+}
+const cycleWeights = CYCLE_MODEL_WEIGHTS[effectivePhase] || CYCLE_MODEL_WEIGHTS["UNKNOWN"];
 
 // Load 1m candles early (needed by Turtle Soup, inducement, and freshness checks)
 let candles1m = null;
@@ -426,42 +439,42 @@ try {
   }
 } catch(e) { console.log(`  IPDA unavailable: ${e.message.slice(0,80)}`); }
 
-// ═══ WEIGHTED BIAS — Multiple Sources, One Direction ═══
-// ICT: Bias is binary — bullish or bearish. There is no third way.
-// Multiple sources each vote. Higher TFs carry more weight.
-// Agreement = high confidence. Disagreement = reduced confidence but still directional.
+// ═══ DOMINANCE-CHAIN BIAS — The Big Context Wins (WP-4) ═══
+// ICT: Bias is a hierarchy of dominance (1W → 1D → 4H), NOT a democratic vote.
+// A lower TF opposing the governing HTF is a pullback — an entry within the
+// trend — never a swing in confidence. Confidence comes from confluence quality
+// (killzone window + PD array proximity + liquidity draw), never vote margin.
+
+const { resolveBias, confidenceFromConfluence, nearUnmitigatedPdArray, describeBias } = require("./lib/narrative.cjs");
+const { nextDraw, drawTargets, drawReason } = require("./lib/draw.cjs");
 
 const bias1w = r1w ? r1w.structure.bias : null;
 const bias1d = r1d.structure.bias;
 const bias4h = r4h.structure.bias;
 const bias1h = r1h.structure.bias;
-const biasWeeklyProfile = weeklyProfile?.classification?.direction === "BULLISH" ? "bullish" : weeklyProfile?.classification?.direction === "BEARISH" ? "bearish" : null;
-const biasOneTrade = oneTradeSetup?.dailyBias?.bias || null;
 
-// Weighted vote: bullish = +1, bearish = -1
-const votes = [
-  { source: "1W", bias: bias1w, weight: 3 },
-  { source: "1D", bias: bias1d, weight: 2.5 },
-  { source: "4H", bias: bias4h, weight: 2 },
-  { source: "1H", bias: bias1h, weight: 0.5 },
-  { source: "Weekly Profile", bias: biasWeeklyProfile, weight: 1.5 },
-  { source: "One Trade", bias: biasOneTrade, weight: 1 },
-];
+const narrative = resolveBias({ bias1W: bias1w, bias1D: bias1d, bias4H: bias4h, bias1H: bias1h });
+const governingBias = narrative.direction;
+const inKillzone = ny.isInKillzoneNY();
+const nearPdArray = nearUnmitigatedPdArray(r1d.price, {
+  orderBlocks: [...(r1d.orderBlocks || []), ...(r4h.orderBlocks || []), ...(r1h.orderBlocks || [])],
+  fvgs: [...(r1d.fvgs || []), ...(r4h.fvgs || []), ...(r1h.fvgs || [])],
+});
+const hasDraw = !!nextDraw({
+  direction: governingBias,
+  price: r1d.price,
+  liquidityMap: [
+    ...(r4h.liquidity || []),
+    ...(r1h.liquidity || []),
+    ...(oneTradeSetup?.prevAM?.high ? [{ type: "BSL", price: oneTradeSetup.prevAM.high }] : []),
+    ...(oneTradeSetup?.prevAM?.low ? [{ type: "SSL", price: oneTradeSetup.prevAM.low }] : []),
+  ],
+}); // WP-7 draw-on-liquidity engine — an external draw in bias direction boosts confidence
+const conf = confidenceFromConfluence({ inKillzone, nearPdArray, hasDraw });
+const biasConfidence = conf.confidence;
+const biasAgreement = conf.agreement;
 
-let bullishWeight = 0, bearishWeight = 0, totalWeight = 0;
-const voteDetails = [];
-for (const v of votes) {
-  if (!v.bias || v.bias === "neutral") continue;
-  totalWeight += v.weight;
-  if (v.bias === "bullish") { bullishWeight += v.weight; voteDetails.push(`${v.source}:🟢`); }
-  else if (v.bias === "bearish") { bearishWeight += v.weight; voteDetails.push(`${v.source}:🔴`); }
-}
-
-const weightedBias = bullishWeight > bearishWeight ? "bullish" : bearishWeight > bullishWeight ? "bearish" : "neutral";
-const biasConfidence = totalWeight > 0 ? Math.round((Math.max(bullishWeight, bearishWeight) / totalWeight) * 100) : 0;
-const biasAgreement = biasConfidence >= 80 ? "STRONG" : biasConfidence >= 60 ? "MODERATE" : "WEAK";
-
-console.log(`  🎯 Weighted Bias: ${weightedBias.toUpperCase()} (${biasConfidence}% — ${biasAgreement}) | Votes: ${voteDetails.join(' ')} | Bull:${bullishWeight.toFixed(1)} Bear:${bearishWeight.toFixed(1)}`);
+console.log(`  🎯 Dominance Bias: ${governingBias.toUpperCase()} (${biasConfidence}% — ${biasAgreement}) | ${describeBias(narrative)}`);
 console.log(`  📍 Current Price: ${r5(r1d.price)} | 1D Range: ${r5(r1d.structure.lastSwingLow || 0)}–${r5(r1d.structure.lastSwingHigh || 0)}`);
 const aligned = bias1d === bias4h;
 
@@ -502,9 +515,23 @@ ${TFS.map(tf => {
 // ═══════════════ STAGE 02 — Key Levels ═══════════════
 console.log("═══ STAGE 02 — Key Levels ═══");
 const pools = r4h.liquidity.sort((a, b) => b.score - a.score);
-const obs = [...(r1d.orderBlocks || []), ...(r4h.orderBlocks || []), ...(r1h.orderBlocks || [])];
 const fvgs = [...(r1d.fvgs || []), ...(r4h.fvgs || []), ...(r1h.fvgs || [])];
-const uniqueOBs = obs.filter((o, i, arr) => arr.findIndex(x => r5(x.proximal) === r5(o.proximal)) === i);
+// WP-11 (audit Gap 4.3): every OB gets an explicit grade — fresh (unmitigated),
+// used (mitigated), or broken (consumed). Only displacement-backed fresh blocks
+// count as tradeable arrays. Computed once, in the fact layer (lib/ob_grading.cjs).
+const { gradeOrderBlocks, unmitigatedOf, mitigatedOf, consumedOf, arrayInPlayFor } = require("./lib/ob_grading.cjs");
+const OB_TFS = ["1D", "4H", "1H"];
+const gradedObs = [];
+for (const tf of OB_TFS) {
+  const tfObs = reports[tf]?.orderBlocks || [];
+  if (tfObs.length === 0) continue;
+  gradedObs.push(...gradeOrderBlocks(tfObs, loadCandles(sharedDir, tf.toLowerCase()) || null, { minImpulseAtr: 1.0 }));
+}
+const unmitigatedOBs = unmitigatedOf(gradedObs);
+const mitigatedOBs = mitigatedOf(gradedObs);
+const consumedOBs = consumedOf(gradedObs);
+const obs = gradedObs;
+const uniqueOBs = unmitigatedOBs.filter((o, i, arr) => arr.findIndex(x => r5(x.proximal) === r5(o.proximal)) === i);
 
 writeMd("02_key_levels", "levels.md", `# Key Levels — ${pairLabel} — ${DATE}
 
@@ -515,10 +542,10 @@ writeMd("02_key_levels", "levels.md", `# Key Levels — ${pairLabel} — ${DATE}
 |------|-------|------|---------|-------|----------|-------|
 ${pools.slice(0, 8).map(p => `| ${p.type} | ${r5(p.price)} | ${p.type === 'BSL' ? 'Resistance' : 'Support'} | ${p.strength} | ${r2(p.score)} | ${r2(p.distance)}% | ${p.swept ? '⚡' : 'Active'} |`).join("\n")}
 
-## Order Blocks (${uniqueOBs.length} across 1D/4H/1H)
-${uniqueOBs.length > 0 ? `| Type | Proximal | Distal | Impulse | FVG | TF |
-|------|----------|--------|---------|-----|-----|
-${uniqueOBs.map(ob => `| ${ob.type} ${ob.kind || 'OB'} | ${r5(ob.proximal)} | ${r5(ob.distal)} | ${r2(ob.impulseAtr || 0)}x | ${ob.hasFvg ? '✓' : '—'} | — |`).join("\n")}` : '| None detected | — | — | — | — | — |'}
+## Order Blocks (${uniqueOBs.length} unmitigated across 1D/4H/1H)
+${gradedObs.length > 0 ? `| Type | Proximal | Distal | Impulse | FVG | Grade |
+|------|----------|--------|---------|-----|-------|
+${gradedObs.map(ob => `| ${ob.type} ${ob.kind || 'OB'} | ${r5(ob.proximal)} | ${r5(ob.distal)} | ${r2(ob.impulseAtr || 0)}x | ${ob.hasFvg ? '✓' : '—'} | ${ob.consumed ? '❌ consumed' : ob.mitigated ? '⚠️ mitigated' : '✅ unmitigated'} |`).join("\n")}` : '| None detected | — | — | — | — | — |'}
 
 ## FVGs (${fvgs.length} across 1D/4H/1H)
 ${fvgs.length > 0 ? `| Type | Top | Bottom | Gap ATR | Disp ATR | Fill % |
@@ -620,7 +647,7 @@ const NY_SESSION_MAP = {
   asia:      { label: "Asia",      char: "Accumulation / low liquidity", kz: false },
   asiaLate:  { label: "Asia",      char: "Overnight low-liquidity drift", kz: false },
   london:    { label: "London",    char: "Institutional flow, manipulation", kz: true },
-  londonPM:  { label: "London PM", char: "European distribution / pre-NY", kz: true },
+  londonPM:  { label: "London PM", char: "Dead zone (London close / NY pre-open) — NOT a killzone", kz: false },
   nyAM:      { label: "NY AM",     char: "High volume, displacement", kz: true },
   nyLunch:   { label: "NY Lunch",  char: "Low liquidity, avoid entries", kz: false },
   nyPM:      { label: "NY PM",     char: "Afternoon continuation / reversal", kz: true },
@@ -631,6 +658,18 @@ const _sInfo = NY_SESSION_MAP[NY_SESSION.name] || { label: NY_SESSION.name, char
 let session = _sInfo.label;
 let char = _sInfo.char;
 const inKZ = _sInfo.kz;
+// SAFETY NET (WP-2): the dead zone (05-08 NY) was previously mislabeled a killzone.
+// Record the corrected verdict so the behavior change is auditable in shadow mode.
+if (NY_SESSION.name === "londonPM") {
+  logDisagreement({
+    area: "session_killzone",
+    oldValue: "killzone=true (legacy londonPM)",
+    newValue: "killzone=false (ICT dead zone)",
+    detail: "London PM 05-08 NY is the London-close / NY-pre-open dead zone, not a killzone (audit Gap 1.1).",
+    pair: PAIR,
+    source: "run_pair.cjs",
+  });
+}
 const gate = (bias1d !== "neutral" && inKZ) ? "ACTIVE" : inKZ ? "MONITOR" : "NO TRADE";
 
 writeMd("03_session_time", "session.md", `# Session Analysis — ${pairLabel} — ${DATE} ${String(NY_HOUR).padStart(2,'0')}:00 NY (${ny.getNYOffset() > -5 ? 'EDT' : 'EST'})
@@ -813,19 +852,19 @@ try {
   console.log(`  Lecture 4 setup unavailable: ${e.message.slice(0, 80)}`);
 }
 
-// ═══════════════ INDUCEMENT PRE-CHECK (before model scoring) ═══════════════
-// ICT: "Do not enter until inducement is swept." Check gate FIRST.
-// If gate is closed, skip model scoring — no point scoring setups that can't be entered.
-let inducementBlocked = false;
+// ═══════════════ INDUCEMENT CHECK — structure TF (WP-9) ═══════════════
+// ICT: "Do not enter until inducement is swept." The inducement library now
+// validates BOS/CHOCH, first pullback, sweep, reversal, AND MSS all on the
+// SAME timeframe as the structure break (15m by default). The 1m is never used
+// to confirm a 15m-sized fact (audit Bug 6.6 / WP-9).
+// This is informational pre-scoring context. The registry evaluator's
+// sweep/reversal/mss gates consume these structure-TF facts per-model, instead
+// of a single hard gate zeroing every model.
+let inducement15m = null;
 try {
   const { runInducementCheck } = require("./inducement_engine.cjs");
-  const preInducement = runInducementCheck(PAIR);
-  console.log(`\n═══ INDUCEMENT PRE-CHECK ═══`);
-  console.log(`  ${preInducement.gate.reason}`);
-  if (!preInducement.gate.open) {
-    inducementBlocked = true;
-    console.log(`  🛑 GATE CLOSED — skipping model scoring. No entry possible until inducement swept.`);
-  }
+  inducement15m = runInducementCheck(PAIR, { structureTF: "15m", confirmTF: "15m" });
+  console.log(`  Inducement (${inducement15m.structureTF} structure / ${inducement15m.confirmTF} confirm): ${inducement15m.gate?.open ? '✅ GATE OPEN — swept + reversed + MSS confirmed' : '⏳ informational — swept status feeds per-model registry gates (WP-9)'}`);
 } catch(e) { /* inducement engine may not be available */ }
 
 // ═══════════════ STAGE 04 — Model Selection ═══════════════
@@ -888,7 +927,7 @@ const PO3_MODEL_PHASE_MAP = {
   "NDOG/NWOG News Model": ["MANIPULATION", "DISTRIBUTION"],
   "08:30 Liquidity Raid Model": ["MANIPULATION", "DISTRIBUTION"],
 };
-const currentPhase = macroContext?.phase || "UNKNOWN";
+const currentPhase = effectivePhase;
 function isPhaseValid(modelName) {
   const validPhases = PO3_MODEL_PHASE_MAP[modelName];
   if (!validPhases) return true; // Models not in map pass through
@@ -924,19 +963,20 @@ try {
   }
 } catch(e) {}
 
-// ═══════════════ PERFORMANCE WEIGHTS ═══════════════
-// Load model/session/pair performance stats from trade history
-let perfWeights = {}; // { "Silver Bullet": 1.3, "Turtle Soup": 0.8, ... }
+// ═══════════════ PERFORMANCE LEDGER — AUDIT ONLY (WP-10) ═══════════════
+// WP-10 (audit Gap 3.3): past performance is for LEARNING, not for VOTING.
+// The ledger still runs and its report is written for the operator/dashboard,
+// but its model weights are NEVER fed back into live scoring. Today's setup is
+// validated by today's price/time facts, not by what happened on other days.
+let perfAudit = null;
 try {
   const perfOutput = execSync(`node "${ROOT}/tools/performance_ledger.cjs"`, {
     stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 10000
   });
   const perfData = JSON.parse(perfOutput);
-  perfWeights = perfData.modelWeights || {};
-  if (Object.keys(perfWeights).length > 0) {
-    console.log(`  📊 Performance: ${perfData.totalTrades || 0} trades | Edge: ${perfData.edgeScore || 0}/100 | Top model: ${perfData.topModel || 'N/A'}`);
-  }
-} catch(e) { console.log(`  Performance ledger unavailable — using neutral weights`); }
+  perfAudit = perfData;
+  console.log(`  📊 Audit only: ${perfData.totalTrades || 0} trades | Edge: ${perfData.edgeScore || 0}/100 | Top model: ${perfData.topModel || 'N/A'} (not used as a weight — WP-10)`);
+} catch(e) { console.log(`  Performance ledger unavailable — audit report skipped`); }
 
 // ═══ TURTLE SOUP DETECTION ═══
 // ICT: Failed breakout — price spikes through level, sweeps stops, fails to hold, reverses.
@@ -1024,19 +1064,18 @@ const models = [
   { name: "Asian Range Breakout", score: ((NY_HOUR >= 20 || NY_HOUR < 2) ? 3 : 0) + (hasSweep ? 2 : 0) + (hasOB ? 1 : 0), max: 6 },
   { name: "NWOG/NDOG", score: (r1w ? 2 : 0) + (bias1d !== 'neutral' ? 1 : 0) + (hasOB ? 1 : 0), max: 4 },
   // ── Tier 3: Situational ──
-  { name: "Mitigation Block", score: (obs.filter(o => (o.mitigationFraction || 0) > 0.3 && (o.mitigationFraction || 0) < 0.7).length * 3) + (bias1d !== 'neutral' ? 1 : 0), max: 4 },
+  { name: "Mitigation Block", score: (mitigatedOBs.length * 3) + (bias1d !== 'neutral' ? 1 : 0), max: 4 },
   { name: "Rejection Block", score: (hasOB ? 2 : 0) + (r1h && r1h.volumeDisplacement && r1h.volumeDisplacement.atrRatio > 0.8 ? 1 : 0) + (bias1d !== 'neutral' ? 1 : 0), max: 4 },
   { name: "London Hunt + IFVG", score: (lecture2?.setupReady ? 4 : 0) + (lecture2?.hunt?.active ? 2 : 0) + (lecture2?.direction && ((lecture2.direction === 'BUY' && bias1d === 'bullish') || (lecture2.direction === 'SELL' && bias1d === 'bearish')) ? 2 : 0) + (smtDetected ? 1 : 0) + (cisdDetected ? 1 : 0), max: 10 },
   { name: "NDOG/NWOG News Model", score: (lecture4?.setupReady ? 4 : 0) + (lecture4?.gapClusters?.hasGaps || lecture4?.substituteGap ? 2 : 0) + (lecture4?.gapDraw?.drawing ? 2 : 0) + (lecture4?.mss?.confirmed ? 1 : 0) + (lecture4?.inNewsWindow ? 1 : 0), max: 10 },
   { name: "08:30 Liquidity Raid Model", score: (lecture1?.setupReady ? 4 : 0) + (lecture1?.formation?.formed ? 2 : 0) + (lecture1?.raid?.active ? 2 : 0) + (lecture1?.mss?.confirmed ? 1 : 0) + (lecture1?.pdArrays?.length >= 2 ? 1 : 0), max: 10 },
 ];
-// Apply cycle-aware weighting from Stage 00 + performance weights from trade history
+// Apply cycle-aware weighting from Stage 00. Performance is audit-only (WP-10):
+// the ledger's historical model weights are never fed into today's score.
 models.forEach(m => {
   const cycleWeight = cycleWeights[m.name] || 1.0;
-  const perfWeight = perfWeights[m.name] || 1.0; // From performance ledger (neutral if <5 trades)
   m.structuralScore = m.score; // preserve original
   m.cycleMultiplier = cycleWeight;
-  m.perfMultiplier = perfWeight;
   // Killzone session multiplier (NY-local): London/NY AM = 1.0, NY PM = 0.8, Asia = 0.5, NY Lunch/Close = 0.4, Off = 0.3
   const sessionMultiplier = (NY_SESSION.name === "london" || NY_SESSION.name === "londonPM" || NY_SESSION.name === "nyAM") ? 1.0 :
                             NY_SESSION.name === "nyPM" ? 0.8 :
@@ -1045,8 +1084,8 @@ models.forEach(m => {
                             NY_SESSION.name === "nyClose" ? 0.4 :
                             NY_SESSION.name === "offHours" ? 0.3 : 0.7;
   m.sessionMultiplier = sessionMultiplier;
-  m.score = Math.round(m.score * cycleWeight * perfWeight * sessionMultiplier * 10) / 10;
-  m.max = Math.round(m.max * Math.max(cycleWeight, 1.0) * Math.max(perfWeight, 1.0) * 10) / 10;
+  m.score = Math.round(m.score * cycleWeight * sessionMultiplier * 10) / 10;
+  m.max = Math.round(m.max * Math.max(cycleWeight, 1.0) * 10) / 10;
 
   // PRIORITY 1: Po3 Phase Filter — zero out models outside their phase
   if (!isPhaseValid(m.name)) {
@@ -1062,8 +1101,8 @@ models.forEach(m => {
   // Skip-weeks (IX/X) suppress all models to ×0.3
   // ═══ DIRECTION FROM PRICE, NOT NAME ═══
   // ICT: The chart tells you the direction. Not the model name.
-  // All models trade in the direction of the 1D bias — the single authority.
-  const modelDirection = weightedBias === "bullish" ? "BUY" : weightedBias === "bearish" ? "SELL" : null;
+  // All models trade in the direction of the governing bias — the single authority.
+  const modelDirection = governingBias === "bullish" ? "BUY" : governingBias === "bearish" ? "SELL" : null;
 
   // PRIORITY 2: Weekly Profile direction boost
   if (weeklyAnchor) {
@@ -1091,11 +1130,6 @@ models.forEach(m => {
     }
   }
 });
-
-// ═══ INDUCEMENT GATE: Zero all scores if gate is closed ═══
-if (inducementBlocked) {
-  models.forEach(m => { m.score = 0; m.inducementBlocked = true; });
-}
 
 models.sort((a, b) => b.score - a.score);
 
@@ -1209,6 +1243,127 @@ const conflicts = detectConflicts(models);
 const phaseConflicts = detectPhaseConflicts(models, effectivePhase);
 const primary = models[0];
 
+// ═══ WP-8 SHADOW — Model registry evaluator (non-destructive) ═══
+// The registry (tools/models/registry.cjs) is the target decision path:
+// eligibility + sequence booleans, no rank. It runs alongside the legacy
+// pipeline to surface disagreements BEFORE the flip (plan D2 — shadow mode).
+let registryShadow = null;
+try {
+  const { runRegistry } = require("./models/registry.cjs");
+  const sweptPools = (pools || []).filter(p => p.swept);
+  // WP-9: sweep / reversal / MSS facts come from the structure-TF inducement
+  // check (15m) first; pool-based 1m composites are the fallback.
+  const inducementSwept = !!inducement15m?.sweepStatus?.swept;
+  const inducementReversed = !!inducement15m?.sweepStatus?.reversed;
+  const inducementMss = !!inducement15m?.sweepStatus?.mssConfirmed;
+  // WP-12 facts (audit 5.1/5.4/5.5/5.7/5.8): objective facts computed ONCE.
+  const { killzoneFor } = require("./lib/killzone.cjs");
+  const { detectRejection } = require("./lib/rejection.cjs");
+  const { previousSessionHL } = require("./lib/session_levels.cjs");
+  const { LIQUIDITY_RAID_CONFIRMATION } = require("./lib/raid_config.cjs");
+  const { findRelativeEqualLevels } = require("./lib/liquidity.cjs");
+  const kzFact = killzoneFor(NY_HOUR);
+  const rejectionFact = detectRejection(candles1m, { direction: governingBias === "bullish" ? "bullish" : "bearish" });
+  const prevHLFact = previousSessionHL(loadCandles(sharedDir, "1d"));
+  const poolTarget = nextDraw({ direction: governingBias, liquidityMap: pools, price: r1d.price });
+  // WP-12 Gap 4.4: equal highs/lows as facts on the structure TF (1h) — a stop
+  // cluster is a stop cluster whether the right shoulder is higher or lower.
+  const eqCandles = loadCandles(sharedDir, "1h") || [];
+  const eqFact = findRelativeEqualLevels(eqCandles, calcATR(eqCandles, 14));
+  const registryCtx = {
+    hour: NY_HOUR,
+    bias: governingBias,
+    lastSweepType: sweptPools.length ? sweptPools[sweptPools.length - 1].type : null,
+    hasSweep: inducementSwept || hasSweep,
+    hasReversal: inducementReversed || sweptPools.some(p => (p.type === 'BSL' && r1h.price < p.price) || (p.type === 'SSL' && r1h.price > p.price)),
+    mss: inducementMss || !!(turtleSoupCheck?.mssConfirmed || lecture2?.mss?.confirmed || lecture1?.mss?.confirmed || lecture4?.mss?.confirmed),
+    hasOB,
+    uniqueOBs,
+    mitigatedOBs,
+    consumedOBs,
+    hasFVG,
+    fvgs,
+    // WP-12: event-time quality (5.4) — when did the sweep/MSS happen?
+    killzone: kzFact.inKillzone,
+    killzoneName: kzFact.name,
+    // WP-12: rejection as leading signal (5.8 / Gap 4.2)
+    rejection: rejectionFact.detected,
+    rejectionCandle: rejectionFact.candle?.time || null,
+    // WP-12: draw-on-liquidity, nearest first (5.1)
+    poolTarget,
+    // WP-12: raid confirmation basis (5.7) — the decision constant
+    raid: hasSweep,
+    raidBasis: LIQUIDITY_RAID_CONFIRMATION,
+    raidCandle: sweptPools.length ? `${sweptPools[sweptPools.length - 1].type} raid` : null,
+    // WP-12: previous-session H/L draws (5.5)
+    prevSessionHigh: prevHLFact?.high ?? null,
+    prevSessionLow: prevHLFact?.low ?? null,
+    // WP-12: equal highs/lows — the facts layer knows the engineered liquidity
+    // clusters (Gap 4.4), not just the lecture-window ones.
+    equalHighs: eqFact.highs,
+    equalLows: eqFact.lows,
+    // WP-11: "array in play" means price is at a FRESH (unmitigated) array.
+    // Consumed blocks are never counted — a broken spring can't be re-entered.
+    arrayInPlay: arrayInPlayFor(r1d.price, unmitigatedOBs)
+      || fvgs.some(f => { const ff = f.fillFraction || 0; return ff >= 0.2 && ff <= 0.8; }),
+    // Defensive step-level guard: if the ONLY array near price is consumed, the
+    // array_mitigated step must fail (consumed blocks never satisfy it).
+    consumedAtPrice: consumedOBs.some(ob => {
+      const top = ob.top ?? ob.distal, bottom = ob.bottom ?? ob.proximal;
+      return r1d.price >= bottom && r1d.price <= top;
+    }),
+    oteZone: inOTEZoneSimple,
+    cisd: cisdDetected,
+    smt: smtDetected,
+    htfRanging: !!turtleSoupCheck?.htfRanging,
+    displacement: !!(turtleSoupCheck?.hasDisplacementFVG || turtleSoupCheck?.hasDisplacementOB),
+    hasDraw,
+    lecture2,
+    lecture1,
+    lecture4,
+  };
+  registryShadow = runRegistry(registryCtx);
+  const legacyPrimaryName = primary.name;
+  const agree = !!(registryShadow.primary && registryShadow.primary.name === legacyPrimaryName);
+  console.log(`\n═══ WP-8 SHADOW — Registry Evaluator ═══`);
+  console.log(`  Verdict: ${registryShadow.verdict} | Complete setups: ${registryShadow.count}`);
+  console.log(`  Registry primary: ${registryShadow.primary ? `${registryShadow.primary.name} (tier ${registryShadow.primary.tier})` : 'NONE'}`);
+  console.log(`  Legacy primary:   ${legacyPrimaryName}${agree ? ' — ✅ AGREE' : ' — ⚠️ DISAGREE'}`);
+  if (registryShadow.count > 1) console.log(`  ⚠️  ${registryShadow.count} complete setups — tie resolved by tier/draw proximity`);
+  if (registryShadow.primary) {
+    const t = registryShadow.primary.gateTrace;
+    console.log(`  Primary gates: window=${t.window.pass ? '✅' : '❌'} direction=${t.direction.pass ? '✅' : '❌'} purge=${t.purge.pass ? '✅' : '❌'} seq=${t.sequence.map(s => `${s.name}${s.pass ? '✓' : '✗'}`).join(' ')}`);
+  }
+  const shadowDir = path.join(ROOT, "stages", "04_model_selection", "shadow");
+  fs.mkdirSync(shadowDir, { recursive: true });
+  const gateTable = registryShadow.results.map(r => {
+    const eligible = [r.gateTrace.window.pass, r.gateTrace.direction.pass, r.gateTrace.purge.pass].every(Boolean);
+    return `| ${r.name} | ${eligible ? '✅' : '❌'} | ${r.complete ? '✅ COMPLETE' : '—'} | ${r.gateTrace.sequence.map(s => `${s.name}:${s.pass ? '✓' : '✗'}`).join(', ')} |`;
+  }).join('\n');
+  fs.writeFileSync(path.join(shadowDir, `${PAIR.toLowerCase()}_registry.md`),
+`# WP-8 Registry Shadow — ${pairLabel} — ${DATE}
+
+Legacy pipeline ran in parallel; the decision path is NOT yet flipped (shadow mode, plan D2).
+
+| Model | Eligible | Verdict | Sequence gates |
+|-------|----------|---------|----------------|
+${gateTable}
+
+## Verdict: ${registryShadow.verdict}
+- **Complete setups**: ${registryShadow.count}
+- **Registry primary**: ${registryShadow.primary ? registryShadow.primary.name : 'NONE'}
+- **Legacy primary**: ${legacyPrimaryName}
+- **Agreement**: ${agree ? '✅ AGREE' : '⚠️ DISAGREE'}
+
+> Next step (plan D2): review disagreements across live days, tune the sequence
+> matrices, then flip the decision path to the registry (delete the legacy
+> ranking block from \`run_pair.cjs\`).
+`, "utf8");
+  console.log(`  ✓ WP-8 shadow report → stages/04_model_selection/shadow/${PAIR.toLowerCase()}_registry.md`);
+} catch(e) {
+  console.log(`  ⚠️  WP-8 shadow unavailable: ${e.message.slice(0, 80)}`);
+}
+
 writeMd("04_model_selection", "active_models.md", `# Model Selection — ${pairLabel} — ${DATE}
 
 ## Market Context
@@ -1220,13 +1375,13 @@ writeMd("04_model_selection", "active_models.md", `# Model Selection — ${pairL
 
 ## Model Scores (Cycle-Weighted)
 
-| Model | Structural | Cycle × | Perf × | Po3 | Final | Status |
-|-------|-----------|---------|-----|-------|--------|
-${models.map(m => `| ${m.name} | ${m.structuralScore}/${m.max.toFixed(0)} | ×${r2(m.cycleMultiplier)} | ×${r2(m.perfMultiplier||1.0)} | ${m.po3Blocked ? '⚠️ BLOCKED' : '✅'} | **${r2(m.score)}** | ${m === primary ? '★ PRIMARY' : m.score >= 3 ? 'Alternative' : 'Rejected'} |`).join("\n")}
+| Model | Structural | Cycle × | Session × | Po3 | Final | Status |
+|-------|-----------|---------|-----------|-----|--------|
+${models.map(m => `| ${m.name} | ${m.structuralScore}/${m.max.toFixed(0)} | ×${r2(m.cycleMultiplier)} | ×${r2(m.sessionMultiplier)} | ${m.po3Blocked ? '⚠️ BLOCKED' : '✅'} | **${r2(m.score)}** | ${m === primary ? '★ PRIMARY' : m.score >= 3 ? 'Alternative' : 'Rejected'} |`).join("\n")}
 
 ${models.filter(m => m.po3Blocked).map(m => `⚠️ **${m.name}**: ${m.po3BlockReason}`).join('\n\n')}
 
-## Primary: ${primary.name} (${r2(primary.score)} — structural ${primary.structuralScore} × cycle ${r2(primary.cycleMultiplier)} × perf ${r2(primary.perfMultiplier||1.0)})
+## Primary: ${primary.name} (${r2(primary.score)} — structural ${primary.structuralScore} × cycle ${r2(primary.cycleMultiplier)} × session ${r2(primary.sessionMultiplier)})
 ${smtDetected ? `**SMT**: ✅ ${smtDetails}` : '**SMT**: ⚠️ Not detected — check correlated pairs manually'}
 
 ## Conflict Check
@@ -1447,12 +1602,18 @@ for (const w of stalenessWarnings) console.log(`  ${w}`);
 console.log(`  Freshness: ${freshnessScore}/10 — ${freshnessLabel}`);
 console.log(`  Entry price source: ${priceSource} @ ${r5(entryPrice)}`);
 
-// ═══════════════ INDUCEMENT GATE STATUS (checked before Stage 04) ═══════════════
-console.log(`\n═══ INDUCEMENT GATE: ${inducementBlocked ? '🛑 CLOSED' : '✅ OPEN'} ═══`);
+// ═══════════════ INDUCEMENT GATE STATUS (structure-TF fact, informational) ═══════════════
+console.log(`\n═══ INDUCEMENT GATE (${inducement15m?.structureTF || '15m'} structure): ${inducement15m?.gate?.open ? '✅ OPEN — inducement swept + MSS confirmed' : '⏳ status informational — per-model registry gates consume these facts (WP-9)'} ═══`);
 
 // ═══════════════ STAGE 05 — Entry Refinement ═══════════════
 console.log("\n═══ STAGE 05 — Entry Refinement ═══");
-const atrValue = Math.abs((r4h.structure.lastSwingHigh || entryPrice + 0.003) - (r4h.structure.lastSwingLow || entryPrice - 0.003)) * 0.15;
+// Real ATR-14 (Remediation WP-1 / audit Gap 4.1). The old "ATR" was
+// 15% of the 4H swing range — a guess at volatility, not a measurement.
+const _c4hCandles = loadCandles(sharedDir, "4h");
+const _realATR = calcATR(_c4hCandles, 14);
+const atrValue = (_realATR != null && _realATR > 0)
+  ? _realATR
+  : Math.abs((r4h.structure.lastSwingHigh || entryPrice + 0.003) - (r4h.structure.lastSwingLow || entryPrice - 0.003)) * 0.15;
 
 // ── PRIORITY 0: 3rd Daily Candle OTE (Simple ICT Scalping Strategy) ──
 // "Once a new swing low (bullish) or swing high (bearish) forms on the daily,
@@ -1496,40 +1657,62 @@ const otePips = toPips(distanceToIdeal);
 
 let slPrice, tp1Price, tp2Price, entryType, slReason, tp1Reason, tp2Reason;
 
-if (weightedBias === 'bearish') {
+// ═══ WP-7 DRAW MAP — external liquidity + session draw references ═══
+// Targets are draws on liquidity, never measured moves. The map fuses engine
+// pools with the operative window's own references: previous NY-AM H/L and
+// London H/L (Missing 5.5). Extreme levels give TP2 a destination when only one
+// external pool exists.
+const drawRefs = [
+  ...(pools || []).map(p => ({ type: p.type, price: p.price, swept: p.swept, label: `${p.type} pool`, detail: `${p.type} pool @ ${r5(p.price)}` })),
+  ...(oneTradeSetup?.prevAM?.high ? [{ type: "BSL", price: oneTradeSetup.prevAM.high, label: "Prev NY AM High", detail: `Previous NY AM high @ ${r5(oneTradeSetup.prevAM.high)}` }] : []),
+  ...(oneTradeSetup?.prevAM?.low ? [{ type: "SSL", price: oneTradeSetup.prevAM.low, label: "Prev NY AM Low", detail: `Previous NY AM low @ ${r5(oneTradeSetup.prevAM.low)}` }] : []),
+  ...(lecture2?.londonRange?.high ? [{ type: "BSL", price: lecture2.londonRange.high, label: "London High", detail: `London high @ ${r5(lecture2.londonRange.high)}` }] : []),
+  ...(lecture2?.londonRange?.low ? [{ type: "SSL", price: lecture2.londonRange.low, label: "London Low", detail: `London low @ ${r5(lecture2.londonRange.low)}` }] : []),
+];
+const drawExtremes = {
+  above: [r1d?.structure?.lastSwingHigh, r1w?.structure?.lastSwingHigh, ipdaContext?.weeklyRefs?.twentyDay?.high].filter(Number.isFinite),
+  below: [r1d?.structure?.lastSwingLow, r1w?.structure?.lastSwingLow, ipdaContext?.weeklyRefs?.twentyDay?.low].filter(Number.isFinite),
+};
+let noDrawDir = null; // set when a required external draw is absent → NO TRADE
+
+if (governingBias === 'bearish') {
   entryType = 'SHORT';
   const swingHigh = r4h.structure.lastSwingHigh || r1d.structure.lastSwingHigh || (entryPrice + 0.003);
   slPrice = swingHigh + atrValue;
   slReason = `4H Swing High @ ${r5(swingHigh)} + ATR buffer`;
   const slDist = Math.abs(entryPrice - slPrice);
-  const sslPools = pools.filter(p => p.type === 'SSL' && p.price < entryPrice && (entryPrice - p.price) >= slDist).sort((a, b) => a.price - b.price);
-  if (sslPools.length > 0) {
-    tp1Price = sslPools[0].price;
-    tp1Reason = `SSL pool @ ${r5(tp1Price)} (≥ SL distance)`;
+  const draw = drawTargets({ direction: 'bearish', price: entryPrice, liquidityMap: drawRefs, extremes: drawExtremes.below, minDistance: slDist });
+  if (draw) {
+    tp1Price = draw.tp1.price;
+    tp1Reason = drawReason(draw.tp1, 'TP1');
+    tp2Price = draw.tp2 ? draw.tp2.price : 0;
+    tp2Reason = draw.tp2 ? drawReason(draw.tp2, 'TP2') : '';
   } else {
-    tp1Price = entryPrice - slDist;
-    tp1Reason = `1:1 measured move (${toPips(slDist)} ${pipLabel()})`;
+    entryType = 'NO TRADE'; tp1Price = 0; tp2Price = 0;
+    tp1Reason = 'No SSL draw ≥ SL distance — no external liquidity target (no 1:1 fallback)';
+    tp2Reason = '';
+    noDrawDir = 'sell-side (SSL) below';
+    console.log('  ⛔ NO TRADE — no draw on liquidity (sell-side SSL below) in range');
   }
-  const tp1Dist = Math.abs(entryPrice - tp1Price);
-  tp2Price = entryPrice - tp1Dist * 2;
-  tp2Reason = `2:1 measured move (${toPips(tp1Dist * 2)} ${pipLabel()})`;
-} else if (weightedBias === 'bullish') {
+} else if (governingBias === 'bullish') {
   entryType = 'LONG';
   const swingLow = r4h.structure.lastSwingLow || r1d.structure.lastSwingLow || (entryPrice - 0.003);
   slPrice = swingLow - atrValue;
   slReason = `4H Swing Low @ ${r5(swingLow)} - ATR buffer`;
   const slDist = Math.abs(entryPrice - slPrice);
-  const bslPools = pools.filter(p => p.type === 'BSL' && p.price > entryPrice && (p.price - entryPrice) >= slDist).sort((a, b) => a.price - b.price);
-  if (bslPools.length > 0) {
-    tp1Price = bslPools[0].price;
-    tp1Reason = `BSL pool @ ${r5(tp1Price)} (≥ SL distance)`;
+  const draw = drawTargets({ direction: 'bullish', price: entryPrice, liquidityMap: drawRefs, extremes: drawExtremes.above, minDistance: slDist });
+  if (draw) {
+    tp1Price = draw.tp1.price;
+    tp1Reason = drawReason(draw.tp1, 'TP1');
+    tp2Price = draw.tp2 ? draw.tp2.price : 0;
+    tp2Reason = draw.tp2 ? drawReason(draw.tp2, 'TP2') : '';
   } else {
-    tp1Price = entryPrice + slDist;
-    tp1Reason = `1:1 measured move (${toPips(slDist)} ${pipLabel()})`;
+    entryType = 'NO TRADE'; tp1Price = 0; tp2Price = 0;
+    tp1Reason = 'No BSL draw ≥ SL distance — no external liquidity target (no 1:1 fallback)';
+    tp2Reason = '';
+    noDrawDir = 'buy-side (BSL) above';
+    console.log('  ⛔ NO TRADE — no draw on liquidity (buy-side BSL above) in range');
   }
-  const tp1Dist = Math.abs(entryPrice - tp1Price);
-  tp2Price = entryPrice + tp1Dist * 2;
-  tp2Reason = `2:1 measured move (${toPips(tp1Dist * 2)} ${pipLabel()})`;
 } else {
   entryType = 'NO TRADE'; slPrice = 0; tp1Price = 0; tp2Price = 0;
   slReason = ''; tp1Reason = ''; tp2Reason = '';
@@ -1541,49 +1724,50 @@ if (weightedBias === 'bearish') {
 if (primary.name === "Silver Bullet" && inSBWindow && entryType !== 'NO TRADE') {
   const r15mSwing = r15m?.structure?.lastSwingHigh || r1h?.structure?.lastSwingHigh;
   const r15mSwingLow = r15m?.structure?.lastSwingLow || r1h?.structure?.lastSwingLow;
-  const sbAtr = Math.abs((r15mSwing || entryPrice) - (r15mSwingLow || entryPrice)) * 0.1;
+  // Real ATR from 15m candles (fallback 1h), WP-1. Old code used 10% of the swing range.
+  const _sbAtrReal = calcATR(loadCandles(sharedDir, "15m") || loadCandles(sharedDir, "1h"), 14);
+  const sbAtr = (_sbAtrReal != null && _sbAtrReal > 0)
+    ? _sbAtrReal * 0.25
+    : Math.abs((r15mSwing || entryPrice) - (r15mSwingLow || entryPrice)) * 0.1;
 
   if (entryType === 'SHORT') {
     const sbSL = (r15mSwing || (entryPrice + sbAtr * 2)) + sbAtr;
     slPrice = sbSL;
     slReason = `SB Scalp: 15m/1H Swing High @ ${r5(r15mSwing || 0)} + ATR`;
     const sbRisk = Math.abs(entryPrice - slPrice);
-    const sbPools = pools.filter(p => p.type === 'SSL' && p.price < entryPrice).sort((a, b) => a.price - b.price);
-    if (sbPools.length > 0 && Math.abs(entryPrice - sbPools[0].price) >= sbRisk * 0.5) {
-      tp1Price = sbPools[0].price;
-      tp1Reason = `SB Scalp: SSL pool @ ${r5(tp1Price)}`;
+    const sbDraw = drawTargets({ direction: 'bearish', price: entryPrice, liquidityMap: drawRefs, extremes: drawExtremes.below, minDistance: sbRisk * 0.5 });
+    if (sbDraw) {
+      tp1Price = sbDraw.tp1.price;
+      tp1Reason = `SB Scalp: ${drawReason(sbDraw.tp1, 'TP1')}`;
+      tp2Price = sbDraw.tp2 ? sbDraw.tp2.price : 0;
+      tp2Reason = sbDraw.tp2 ? `SB Scalp: ${drawReason(sbDraw.tp2, 'TP2')}` : '';
     } else {
-      tp1Price = entryPrice - sbRisk;
-      tp1Reason = `SB Scalp: 1:1 (${toPips(sbRisk)} ${pipLabel()})`;
+      entryType = 'NO TRADE'; tp1Price = 0; tp2Price = 0;
+      tp1Reason = 'SB Scalp: no SSL draw in range — no external liquidity target';
+      tp2Reason = '';
+      noDrawDir = 'sell-side (SSL) below';
+      console.log('  ⛔ SB Scalp NO TRADE — no draw on liquidity (sell-side SSL below) in range');
     }
-    tp2Price = entryPrice - sbRisk * 2;
-    tp2Reason = `SB Scalp: 2:1 (${toPips(sbRisk * 2)} ${pipLabel()})`;
   } else {
     const sbSL = (r15mSwingLow || (entryPrice - sbAtr * 2)) - sbAtr;
     slPrice = sbSL;
     slReason = `SB Scalp: 15m/1H Swing Low @ ${r5(r15mSwingLow || 0)} - ATR`;
     const sbRisk = Math.abs(entryPrice - slPrice);
-    const sbPools = pools.filter(p => p.type === 'BSL' && p.price > entryPrice).sort((a, b) => a.price - b.price);
-    if (sbPools.length > 0 && Math.abs(sbPools[0].price - entryPrice) >= sbRisk * 0.5) {
-      tp1Price = sbPools[0].price;
-      tp1Reason = `SB Scalp: BSL pool @ ${r5(tp1Price)}`;
+    const sbDraw = drawTargets({ direction: 'bullish', price: entryPrice, liquidityMap: drawRefs, extremes: drawExtremes.above, minDistance: sbRisk * 0.5 });
+    if (sbDraw) {
+      tp1Price = sbDraw.tp1.price;
+      tp1Reason = `SB Scalp: ${drawReason(sbDraw.tp1, 'TP1')}`;
+      tp2Price = sbDraw.tp2 ? sbDraw.tp2.price : 0;
+      tp2Reason = sbDraw.tp2 ? `SB Scalp: ${drawReason(sbDraw.tp2, 'TP2')}` : '';
     } else {
-      tp1Price = entryPrice + sbRisk;
-      tp1Reason = `SB Scalp: 1:1 (${toPips(sbRisk)} ${pipLabel()})`;
+      entryType = 'NO TRADE'; tp1Price = 0; tp2Price = 0;
+      tp1Reason = 'SB Scalp: no BSL draw in range — no external liquidity target';
+      tp2Reason = '';
+      noDrawDir = 'buy-side (BSL) above';
+      console.log('  ⛔ SB Scalp NO TRADE — no draw on liquidity (buy-side BSL above) in range');
     }
-    tp2Price = entryPrice + sbRisk * 2;
-    tp2Reason = `SB Scalp: 2:1 (${toPips(sbRisk * 2)} ${pipLabel()})`;
   }
   console.log(`  ⚡ SB Scalp SL/TP: SL ${r5(slPrice)} | TP1 ${r5(tp1Price)} | Risk ${toPips(Math.abs(entryPrice-slPrice))} ${pipLabel()}`);
-}
-
-// ═══ INDUCEMENT GATE OVERRIDE — Force NO TRADE if inducement not swept ═══
-if (inducementBlocked) {
-  entryType = 'NO TRADE';
-  slPrice = 0; tp1Price = 0; tp2Price = 0;
-  slReason = `🛑 Inducement not swept — entry gate closed at pre-check`;
-  tp1Reason = ''; tp2Reason = '';
-  console.log(`  🛑 Inducement Gate: Entry blocked — inducement must be swept before any entry.`);
 }
 
 // ═══ LECTURE 2 OVERRIDE — Use post-hunt swing SL + IFVG CE entry ═══
@@ -1599,24 +1783,26 @@ if (lecture2?.setupReady && primary.name === "London Hunt + IFVG") {
     slPrice = l2SL;
     entryType = lecture2.direction; // "BUY" or "SELL"
     slReason = `Lecture 2: ${lecture2.slSource || 'Post-hunt swing'} @ ${r5(slPrice)} (ICT structural invalidation)`;
-    // Use Fib targets if available, otherwise 1:1 / 2:1
+    // Use Fib targets if available, otherwise draw-on-liquidity targets
     if (lecture2.fibTargets) {
       tp1Price = lecture2.fibTargets.tp1;
       tp1Reason = `Fib ${lecture2.fibTargets.tp1Label} @ ${r5(tp1Price)}`;
       tp2Price = lecture2.fibTargets.tp2;
       tp2Reason = `Fib ${lecture2.fibTargets.tp2Label} @ ${r5(tp2Price)}`;
     } else {
-      const l2Risk = Math.abs(entryPrice - slPrice);
-      if (entryType === 'BUY') {
-        tp1Price = entryPrice + l2Risk;
-        tp1Reason = `1:1 from entry (${toPips(l2Risk)} ${pipLabel()})`;
-        tp2Price = entryPrice + l2Risk * 2;
-        tp2Reason = `2:1 from entry (${toPips(l2Risk * 2)} ${pipLabel()})`;
+      const l2Dir = entryType; // "BUY" | "SELL" — before any NO TRADE override
+      const l2Draw = drawTargets({ direction: l2Dir, price: entryPrice, liquidityMap: drawRefs, extremes: l2Dir === 'BUY' ? drawExtremes.above : drawExtremes.below });
+      if (l2Draw) {
+        tp1Price = l2Draw.tp1.price;
+        tp1Reason = drawReason(l2Draw.tp1, 'TP1');
+        tp2Price = l2Draw.tp2 ? l2Draw.tp2.price : 0;
+        tp2Reason = l2Draw.tp2 ? drawReason(l2Draw.tp2, 'TP2') : '';
       } else {
-        tp1Price = entryPrice - l2Risk;
-        tp1Reason = `1:1 from entry (${toPips(l2Risk)} ${pipLabel()})`;
-        tp2Price = entryPrice - l2Risk * 2;
-        tp2Reason = `2:1 from entry (${toPips(l2Risk * 2)} ${pipLabel()})`;
+        entryType = 'NO TRADE'; tp1Price = 0; tp2Price = 0;
+        tp1Reason = 'Lecture 2: no external liquidity draw — no trade';
+        tp2Reason = '';
+        noDrawDir = l2Dir === 'BUY' ? 'buy-side (BSL) above' : 'sell-side (SSL) below';
+        console.log(`  ⛔ Lecture 2 NO TRADE — no draw on liquidity (${noDrawDir}) in range`);
       }
     }
     const source = lecture2.ifvg?.found ? 'IFVG CE' : 'Breaker';
@@ -1646,17 +1832,19 @@ if (!lecture2Override && lecture1?.setupReady && primary.name === "08:30 Liquidi
       tp2Reason = lecture1.tpTargets.tp2.detail;
     }
     if (!lecture1.tpTargets?.tp1) {
-      const l1Risk = Math.abs(entryPrice - slPrice);
-      if (entryType === 'BUY') {
-        tp1Price = entryPrice + l1Risk;
-        tp1Reason = `1:1 from entry (${toPips(l1Risk)} ${pipLabel()})`;
-        tp2Price = entryPrice + l1Risk * 2;
-        tp2Reason = `2:1 from entry (${toPips(l1Risk * 2)} ${pipLabel()})`;
+      const l1Dir = entryType;
+      const l1Draw = drawTargets({ direction: l1Dir, price: entryPrice, liquidityMap: drawRefs, extremes: l1Dir === 'BUY' ? drawExtremes.above : drawExtremes.below });
+      if (l1Draw) {
+        tp1Price = l1Draw.tp1.price;
+        tp1Reason = drawReason(l1Draw.tp1, 'TP1');
+        tp2Price = l1Draw.tp2 ? l1Draw.tp2.price : 0;
+        tp2Reason = l1Draw.tp2 ? drawReason(l1Draw.tp2, 'TP2') : '';
       } else {
-        tp1Price = entryPrice - l1Risk;
-        tp1Reason = `1:1 from entry (${toPips(l1Risk)} ${pipLabel()})`;
-        tp2Price = entryPrice - l1Risk * 2;
-        tp2Reason = `2:1 from entry (${toPips(l1Risk * 2)} ${pipLabel()})`;
+        entryType = 'NO TRADE'; tp1Price = 0; tp2Price = 0;
+        tp1Reason = 'Lecture 1: no external liquidity draw — no trade';
+        tp2Reason = '';
+        noDrawDir = l1Dir === 'BUY' ? 'buy-side (BSL) above' : 'sell-side (SSL) below';
+        console.log(`  ⛔ Lecture 1 NO TRADE — no draw on liquidity (${noDrawDir}) in range`);
       }
     }
     console.log(`  📐 Lecture 1 Override (${lecture1.entrySource || 'PD Array'}): Entry ${r5(prevEntry)}→${r5(entryPrice)} | SL ${r5(prevSL)}→${r5(slPrice)} | Dir: ${entryType}`);
@@ -1686,18 +1874,19 @@ if (!lecture2Override && !lecture1Override && lecture4?.setupReady && primary.na
       tp2Reason = lecture4.tpTargets.tp2.detail;
     }
     if (!lecture4.tpTargets?.tp1) {
-      // Fallback: 1:1 / 2:1 from entry
-      const l4Risk = Math.abs(entryPrice - slPrice);
-      if (entryType === 'BUY') {
-        tp1Price = entryPrice + l4Risk;
-        tp1Reason = `1:1 from entry (${toPips(l4Risk)} ${pipLabel()})`;
-        tp2Price = entryPrice + l4Risk * 2;
-        tp2Reason = `2:1 from entry (${toPips(l4Risk * 2)} ${pipLabel()})`;
+      const l4Dir = entryType;
+      const l4Draw = drawTargets({ direction: l4Dir, price: entryPrice, liquidityMap: drawRefs, extremes: l4Dir === 'BUY' ? drawExtremes.above : drawExtremes.below });
+      if (l4Draw) {
+        tp1Price = l4Draw.tp1.price;
+        tp1Reason = drawReason(l4Draw.tp1, 'TP1');
+        tp2Price = l4Draw.tp2 ? l4Draw.tp2.price : 0;
+        tp2Reason = l4Draw.tp2 ? drawReason(l4Draw.tp2, 'TP2') : '';
       } else {
-        tp1Price = entryPrice - l4Risk;
-        tp1Reason = `1:1 from entry (${toPips(l4Risk)} ${pipLabel()})`;
-        tp2Price = entryPrice - l4Risk * 2;
-        tp2Reason = `2:1 from entry (${toPips(l4Risk * 2)} ${pipLabel()})`;
+        entryType = 'NO TRADE'; tp1Price = 0; tp2Price = 0;
+        tp1Reason = 'Lecture 4: no external liquidity draw — no trade';
+        tp2Reason = '';
+        noDrawDir = l4Dir === 'BUY' ? 'buy-side (BSL) above' : 'sell-side (SSL) below';
+        console.log(`  ⛔ Lecture 4 NO TRADE — no draw on liquidity (${noDrawDir}) in range`);
       }
     }
     const l4source = lecture4.entry?.source || 'Gap entry';
@@ -1709,7 +1898,7 @@ if (!lecture2Override && !lecture1Override && lecture4?.setupReady && primary.na
 // ICT: Enter at FVG edge (starter) → CE 50% (add) → Far edge (add)
 // "Many setups reverse from the very edge without retracing to the 50% level."
 let iofedPyramid = null;
-const iofedDirection = weightedBias === 'bearish' ? 'SHORT' : weightedBias === 'bullish' ? 'LONG' : 'NO TRADE';
+const iofedDirection = governingBias === 'bearish' ? 'SHORT' : governingBias === 'bullish' ? 'LONG' : 'NO TRADE';
 if (iofedDirection !== 'NO TRADE' && fvgs.length > 0) {
   // Find the nearest FVG in the trade direction for IOFED entry
   const tradeFvgs = fvgs.filter(f => {
@@ -1745,7 +1934,7 @@ if (iofedDirection !== 'NO TRADE' && fvgs.length > 0) {
 
 const risk = Math.abs(entryPrice - slPrice);
 const reward1 = Math.abs(tp1Price - entryPrice);
-const reward2 = Math.abs(tp2Price - entryPrice);
+const reward2 = tp2Price > 0 ? Math.abs(tp2Price - entryPrice) : 0;
 const rr1 = risk > 0 ? reward1 / risk : 0;
 const rr2 = risk > 0 ? reward2 / risk : 0;
 
@@ -1839,7 +2028,7 @@ ${thirdCandleOTE ? `
 | Entry | ${r5(entryPrice)} | — | Current 1H price |
 | SL | ${r5(slPrice)} | ${riskPips} ${pipLabelStr} | ${slReason} |
 | TP1 | ${r5(tp1Price)} | ${reward1Pips} ${pipLabelStr} | ${tp1Reason} |
-| TP2 | ${r5(tp2Price)} | ${reward2Pips} ${pipLabelStr} | ${tp2Reason} |
+| TP2 | ${tp2Price > 0 ? `${r5(tp2Price)} | ${reward2Pips} ${pipLabelStr}` : '— (single draw — manage runner)'} | ${tp2Reason || '—'} |
 
 ## Risk-Reward
 - **R:R TP1**: ${r2(rr1)}:1 ${rr1 >= 1.0 ? '✅' : '✗ Below 1:1'}
@@ -2003,6 +2192,11 @@ if (conflicts.length > 0) console.log(`⚠️  Conflicts: ${conflicts.length} mu
 if (phaseConflicts.length > 0) console.log(`⚠️  Phase conflicts: ${phaseConflicts.length} model(s) inappropriate for ${effectivePhase} phase`);
 console.log(`Entry: ${entryType} @ ${r5(entryPrice)}`);
 console.log(`SL: ${r5(slPrice)} | TP1: ${r5(tp1Price)} | TP2: ${r5(tp2Price)}`);
+if (entryType === 'NO TRADE' && noDrawDir) {
+  console.log(`⛔ NO TRADE — no draw on liquidity (${noDrawDir}) in range`);
+} else if (entryType !== 'NO TRADE') {
+  console.log(`🎯 TPs: ${r5(tp1Price)} → ${r5(tp2Price || tp1Price)} (draws: ${tp1Reason}${tp2Reason ? `, ${tp2Reason}` : ''})`);
+}
 console.log(`R:R: ${r2(rr1)}:1 / ${r2(rr2)}:1 | ${rr1 >= 1.0 ? '✅ MEETS 1:1' : '✗ BELOW 1:1'}`);
 console.log(`Position: ${lots} lots | Risk: $${r2(Math.abs(maxLoss))}`);
 

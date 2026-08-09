@@ -75,7 +75,6 @@ function checkTimeContext() {
     const reliability = ny.session?.reliability || 1;
     const sbActive = ny.silverBullet?.active || false;
     const day = ny.dayProfile?.name || "?";
-    const dayMult = ny.dayProfile?.multiplier || 1;
     const combined = parseFloat(ny.combinedMultiplier) || 1;
 
     const warnings = [];
@@ -83,7 +82,6 @@ function checkTimeContext() {
     // Context, not blocks:
     if (hour >= 2 && hour < 3) warnings.push("London manipulation hour (02:00-03:00) — expect sweeps. Consider wider SL or wait for SB overlap.");
     if (hour >= 8 && hour < 9) warnings.push("NY AM manipulation hour (08:00-09:00) — expect sweeps. Yesterday's 08:00 entry won +$9,922 here — price confirmed.");
-    if (dayMult < 0.7) warnings.push(`Friday ×${dayMult} — low conviction day. Reduce size, not skip.`);
     if (sbActive) warnings.unshift("🔫 SB WINDOW ACTIVE — highest probability entry window.");
 
     // ICT Macro Times (20-min high-conviction windows)

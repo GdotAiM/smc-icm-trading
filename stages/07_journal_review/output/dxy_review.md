@@ -1,32 +1,32 @@
-# Session Review — DXY — 2026-07-29
+# Session Review — DXY — 2026-08-07
 
 ## Setup Summary
 | | |
 |---|---|
-| **Direction** | LONG |
-| **Model** | MMXM Buy Model (2.4/9) |
-| **Bias** | 1W N/A → 1D bullish → 4H bullish |
-| **Session** | NY PM  |
-| **Entry** | 12794.00 | SL: 12780.70 | TP1: 12826.00 |
-| **R:R** | 2.41:1 | Meets 1:1 ✓ |
+| **Direction** | NO TRADE |
+| **Model** | MMXM Sell Model (0/9) |
+| **Bias** | 1W bearish → 1D bearish → 4H bearish |
+| **Session** | London (Killzone ✅) |
+| **Entry** | 12685.00 | SL: 0.00 | TP1: 0.00 |
+| **R:R** | 1.00:1 | Meets 1:1 ✓ |
 
 ## Multi-TF Alignment
 ```
-1W  ⚠️ N/A
-1D  ✅ BULLISH ← TRADE BIAS
-4H  ✅ BULLISH
-1H  ✅ BULLISH
+1W  ✅ BEARISH
+1D  ✅ BEARISH ← TRADE BIAS
+4H  ✅ BEARISH
+1H  ⚠️ BULLISH
 ```
 
 ## Decision Quality
 | Decision | Rating (1-5) |
 |----------|-------------|
-| HTF Bias | 3 |
+| HTF Bias | 4 |
 | Levels | 4 |
 | Model | 3 |
 | R:R | 4 |
-| **Overall** | **3.50/5** |
+| **Overall** | **3.75/5** |
 
 ## Confluence Check
-- DXY correlation: EURUSD + GBPUSD both bullish → DXY should be bearish
+- DXY correlation: EURUSD + GBPUSD both bearish → DXY should be bullish
 - FVGs present for entry refinement ✅

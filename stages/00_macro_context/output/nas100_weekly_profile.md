@@ -1,30 +1,30 @@
-# Weekly Range Profile — NAS100 — 2026-08-05
+# Weekly Range Profile — NAS100 — 2026-08-07
 
-## Day: Wednesday 14:41:54 NY
+## Day: Friday 02:34:06 NY
 
 ## HTF Context
-HTF Arrays: Premium @ 29861.40000 (touched) | Discount @ 26980.60000 (UNTOUCHED) | Price in PREMIUM zone
+HTF Arrays: Premium @ 29861.40000 (UNTOCUHED) | Discount @ 26980.60000 (UNTOUCHED) | Price in PREMIUM zone
 
 ## Bias
-bearish→bullish→bullish — ALIGNED
+bullish→bearish→bullish — MIXED
 
 ## Profile Classification
-**Wednesday Low** (100% confidence)
+**Consolidation Thu Bullish Rev** (100% confidence)
 - Direction: BULLISH
-- Target Day: Wednesday
-- Behavior: Mon-Tue manipulation → Wednesday drop into discount → rally
+- Target Day: Thursday 2PM
+- Behavior: Mon-Wed consolidation → Thursday run intra-wk low → reject → reverse up
 - Skip Week: ✅ No
-- Slight IX/X risk (Summer) — monitor.
+- ⚠️ ELEVATED SEEK & DESTROY RISK (Summer, NFP Week) — Profiles IX/X likely. Consider skipping.
 
 ### Candidate Profiles
 | ID | Profile | Score | Day of Extreme | Reasons |
 |----|---------|-------|----------------|----------|
-| III | Wednesday Low | 7 | Wednesday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
-| V | Consolidation Thu Bullish Rev | 7 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles, Discount untouched — target below |
-| VII | Consolidation Midweek Rally | 7 | Wed→Friday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles |
-| XI | Wednesday Weekly Bullish Rev | 7 | Wednesday | Wednesday — delivery/reversal day, Monday reached array — Tue profiles eliminated, Discount untouched — target below |
+| V | Consolidation Thu Bullish Rev | 5 | Thursday 2PM | Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles, Discount untouched — target below |
+| VII | Consolidation Midweek Rally | 5 | Wed→Friday | Friday — resolution day, Monday reached array — Tue profiles eliminated, Tuesday reached — Thu/Fri profiles |
+| IX | Seek & Destroy Bullish Friday | 5 | Friday | Friday — resolution day, Skip risk elevated — IX/X likely |
+| X | Seek & Destroy Bearish Friday | 5 | Friday | Friday — resolution day, Skip risk elevated — IX/X likely |
 
 ## Weekly Anchor
 - Direction: **BUY**
 - Boost: ×1.4 (agreeing) / ×0.3 (opposing)
-- Weekly Anchor: BULLISH — Wednesday LOW expected. Aligned models ×1.4, opposing ×0.7.
+- Weekly Anchor: BULLISH — Thursday 2PM LOW expected. Aligned models ×1.4, opposing ×0.7.

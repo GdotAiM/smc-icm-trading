@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
+const { CONFIG } = require("./lib/engine_config.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const { getNYHour, getNYSession, isInKillzoneNY, isInSilverBulletNY, isInJudasSwingNY } = require(path.join(ROOT, "tools", "ny_time.cjs"));
@@ -180,13 +181,13 @@ try {
 try {
   const fractalOutput2 = execSync(`node "${ROOT}/tools/fractal_mmxm.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
   const fractal2 = JSON.parse(fractalOutput2);
-  if (!fractal2.inversionDetected && fractal2.inversionScore < 4) {
+  if (fractal2.inversionScore < CONFIG.inversion.minScore) {
     guards.push({
       id: "INVERSION_MISSING",
       severity: "HIGH",
       blocked: true,
       entryAllowed: false,
-      narrative: "❌ 1m Inversion NOT DETECTED. ICT requires the entry sentence to be written on the 1m before entering. Wait for CHoCH + sweep + FVG on 1m.",
+      narrative: `❌ 1m Inversion NOT DETECTED (score ${fractal2.inversionScore}/${CONFIG.inversion.maxScore}). ICT requires the entry sentence to be written on the 1m before entering. Wait for CHoCH + sweep + FVG on 1m.`,
       action: "WAIT — No entry without 1m Inversion.",
     });
   }

@@ -1,4 +1,4 @@
-# Order Flow Zones — XAUUSD — 2026-08-05
+# Order Flow Zones — XAUUSD — 2026-08-07
 
 ## OF Zones (0 marked)
 | Zone | Type | Price (Mid) | High | Low | Candles |

@@ -1,6 +1,6 @@
-# IRL / ERL Analysis — EURUSD — 2026-08-05
+# IRL / ERL Analysis — EURUSD — 2026-08-07
 
-## Current Price: 1.15456
+## Current Price: 1.15287
 
 ## Dealing Range (1D)
 - **Range**: 1.13532 — 1.14824 (0.01292)
@@ -19,7 +19,7 @@
 ## ERL — External Range Liquidity
 - **Dominant**: BUY-SIDE (above)
 - **Larger Pool**: ABOVE
-- **Buy-Side (above range)**: 1 pools | 0 equal-high clusters
+- **Buy-Side (above range)**: 2 pools | 0 equal-high clusters
 - **Sell-Side (below range)**: 0 pools | 0 equal-low clusters
 
 ## Delivery Cycle

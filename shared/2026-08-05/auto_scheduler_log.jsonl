@@ -75,3 +75,48 @@
 {"time":"2026-08-05T18:26:38.862Z","nyTime":"14:26:38","event":"SCAN","detail":"Scanning 4 pairs..."}
 {"time":"2026-08-05T18:28:20.229Z","nyTime":"14:28:20","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
 {"time":"2026-08-05T18:40:54.320Z","nyTime":"14:40:54","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T18:52:11.714Z","nyTime":"14:52:11","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-05T21:54:55.154Z","nyTime":"17:54:55","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-06T05:33:07.957Z","nyTime":"01:33:07","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-06T05:33:09.199Z","nyTime":"01:33:09","event":"WATCHDOG","detail":"Scan took 38457s — possible timeout or slow pair"}
+{"time":"2026-08-06T06:13:10.333Z","nyTime":"02:13:10","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T06:24:03.729Z","nyTime":"02:24:03","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T06:35:00.844Z","nyTime":"02:35:00","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T06:35:52.242Z","nyTime":"02:35:52","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-06T06:45:52.278Z","nyTime":"02:45:52","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T06:46:32.318Z","nyTime":"02:46:32","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-06T06:56:32.349Z","nyTime":"02:56:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T06:57:11.197Z","nyTime":"02:57:11","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-06T07:07:11.247Z","nyTime":"03:07:11","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T07:07:56.940Z","nyTime":"03:07:56","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-06T07:17:56.962Z","nyTime":"03:17:56","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T07:28:48.382Z","nyTime":"03:28:48","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T07:39:38.692Z","nyTime":"03:39:38","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T07:50:33.618Z","nyTime":"03:50:33","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:01:26.795Z","nyTime":"04:01:26","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:12:17.150Z","nyTime":"04:12:17","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:23:07.387Z","nyTime":"04:23:07","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:33:57.177Z","nyTime":"04:33:57","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:44:58.414Z","nyTime":"04:44:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:55:54.254Z","nyTime":"04:55:54","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T09:06:50.825Z","nyTime":"05:06:50","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T09:22:41.624Z","nyTime":"05:22:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T09:38:31.098Z","nyTime":"05:38:31","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T09:54:26.212Z","nyTime":"05:54:26","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T10:10:22.413Z","nyTime":"06:10:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T10:26:13.504Z","nyTime":"06:26:13","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T10:42:10.674Z","nyTime":"06:42:10","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T10:58:01.657Z","nyTime":"06:58:01","event":"EVENT","detail":"06:55 — PRE_LECTURE2: Pre-07:00 data refresh"}
+{"time":"2026-08-06T10:58:01.673Z","nyTime":"06:58:01","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-06T11:01:02.728Z","nyTime":"07:01:02","event":"DATA_REFRESH","detail":"Complete in 181s — OK"}
+{"time":"2026-08-06T11:01:02.740Z","nyTime":"07:01:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T11:16:52.234Z","nyTime":"07:16:52","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T11:32:41.273Z","nyTime":"07:32:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T11:48:51.414Z","nyTime":"07:48:51","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:04:45.789Z","nyTime":"08:04:45","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:15:42.484Z","nyTime":"08:15:42","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:26:36.594Z","nyTime":"08:26:36","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:37:27.671Z","nyTime":"08:37:27","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:48:27.853Z","nyTime":"08:48:27","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:00:25.272Z","nyTime":"09:00:25","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:12:02.720Z","nyTime":"09:12:02","event":"SCAN","detail":"Scanning 4 pairs..."}

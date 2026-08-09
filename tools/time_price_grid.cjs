@@ -390,9 +390,10 @@ function analyzeTimePriceGrid(pair) {
   const octants = computeOctantsQuadrants(spaceBetween, dailyRange);
 
   // Step 4a: Daily wick grading (on daily chart — per ICT spec)
-  const range20 = dailyCandles && dailyCandles.length >= 20
-    ? (() => { const w = dailyCandles.slice(-20); const h = Math.max(...w.map(c => c.high)); const l = Math.min(...w.map(c => c.low)); return { high: h, low: l, eq: (h + l) / 2 }; })()
-    : null;
+  // WP-5: graded against the SWEEP-DEFINED dealing range, not a 20-bar average.
+  const { computeDealingRange } = require("./lib/dealing_range.cjs");
+  const sweepRange = computeDealingRange(dailyCandles);
+  const range20 = sweepRange ? { high: sweepRange.high, low: sweepRange.low, eq: sweepRange.equilibrium } : null;
   const dailyWicks = gradeDailyWicks(dailyCandles, range20);
 
   // Step 4: Wick/body turn confirmation (intraday)

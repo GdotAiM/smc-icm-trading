@@ -1,4 +1,4 @@
-# ICT Intraday Profile — EURUSD — 2026-08-05
+# ICT Intraday Profile — EURUSD — 2026-08-07
 
 ## Profile: **BUY PROFILE** (VALID)
 

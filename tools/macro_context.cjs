@@ -54,51 +54,23 @@ if (!r1d) r1d = loadEngine("GBPUSD", "1d");
 if (!r4h) r4h = loadEngine("GBPUSD", "4h");
 
 // ── Cycle Phase Detection ────────────────────────────────────────────────
-function detectCycle(r1w, r1d) {
-  if (!r1w || !r1d) return { phase: "UNKNOWN", confidence: 0, narrative: "Engine reports not available" };
+// WP-3 (audit Gap 1.2): cycle phase comes from STRUCTURE ONLY via
+// lib/cycle_phase.cjs — the single cycle authority. No calendar heuristic.
+const { resolveCyclePhase } = require("./lib/cycle_phase.cjs");
 
-  const wBias = r1w.structure.bias;
-  const dBias = r1d.structure.bias;
-  const dConf = r1d.structure.confidence;
-  const hasSweep = (r1d.liquidity || []).some(p => p.swept);
-  const dispRatio = r1d.volumeDisplacement ? r1d.volumeDisplacement.atrRatio : 0;
-  const dispLabel = r1d.volumeDisplacement ? r1d.volumeDisplacement.label : "weak";
+function detectCycle(r1w, r1d, r4h) {
+  if (!r1w && !r1d && !r4h) return { phase: "UNKNOWN", confidence: 0, narrative: "Engine reports not available" };
 
-  // Algorithm
-  if (wBias === "neutral" && dBias === "neutral") {
-    return { phase: "ACCUMULATION", confidence: 0.7, narrative: "No trend on weekly or daily — price is accumulating. Wait for displacement to establish direction." };
-  }
-
-  if (wBias !== "neutral" && dBias === "neutral") {
-    return { phase: "ACCUMULATION", confidence: 0.6, narrative: `Weekly ${wBias} but daily ranging. Accumulation within the larger ${wBias} trend. Wait for daily breakout.` };
-  }
-
-  if (dispRatio > 2.0) {
-    return { phase: "EXPANSION", confidence: 0.85, narrative: `Strong displacement (${r2(dispRatio)}x ATR) — blow-off phase. Trail stops tightly. Late entries are dangerous.` };
-  }
-
-  if (wBias === dBias && dConf > 0.6) {
-    if (hasSweep) {
-      return { phase: "DISTRIBUTION", confidence: 0.8, narrative: `${wBias.toUpperCase()} trend intact on both weekly and daily. Sweep confirms institutional involvement. The trend is distributing.` };
-    }
-    return { phase: "DISTRIBUTION", confidence: 0.7, narrative: `${wBias.toUpperCase()} on both weekly and daily. Trend is established and continuing.` };
-  }
-
-  if (wBias !== "neutral" && dBias !== "neutral" && wBias !== dBias) {
-    if (hasSweep) {
-      return { phase: "MANIPULATION", confidence: 0.85, narrative: `Weekly ${wBias} but daily ${dBias}. Sweep detected — this is a MANIPULATION. The daily move is likely a trap within the larger weekly trend. Look for reversal at the POI.` };
-    }
-    return { phase: "MANIPULATION", confidence: 0.65, narrative: `Weekly ${wBias} but daily ${dBias}. Potential manipulation — daily counter-trend move may exhaust. Watch for sweep confirmation.` };
-  }
-
-  if (wBias === "neutral" && dBias !== "neutral") {
-    return { phase: "DISTRIBUTION", confidence: 0.55, narrative: `Weekly neutral but daily ${dBias}. Daily trend may be early distribution. Monitor if weekly confirms.` };
-  }
-
-  return { phase: "DISTRIBUTION", confidence: 0.5, narrative: "Mixed signals — defaulting to distribution with low confidence." };
+  const resolved = resolveCyclePhase({ "4H": r4h, "1D": r1d, "1W": r1w });
+  return {
+    phase: resolved.phase,
+    confidence: resolved.confidence,
+    narrative: resolved.reason || "Cycle phase derived from structure.",
+    source: resolved.source,
+  };
 }
 
-const cycle = detectCycle(r1w, r1d);
+const cycle = detectCycle(r1w, r1d, r4h);
 
 // ── Liquidity State Analysis (Macro Layer) ───────────────────────────────
 function analyzeLiquidityMacro(report, label) {

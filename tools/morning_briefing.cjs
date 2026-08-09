@@ -79,7 +79,7 @@ for (const pair of PAIRS) {
   if (!output) { console.log(`    ❌ Pipeline failed`); continue; }
 
   // Extract key metrics
-  const weightedBias = output.match(/Weighted Bias: (\w+) \((\d+)%/);
+  const weightedBias = output.match(/Dominance Bias: (\w+) \((\d+)%/);
   const entryLine = output.match(/Entry: (\w+) @ ([\d.]+)/);
   const modelLine = output.match(/Model: (.+?) \(([\d.]+)\//);
   const rrLine = output.match(/R:R: ([\d.]+):1/);

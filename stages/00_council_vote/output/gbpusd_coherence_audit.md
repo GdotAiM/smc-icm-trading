@@ -1,4 +1,4 @@
-# Coherence Audit — GBPUSD — 2026-08-05
+# Coherence Audit — GBPUSD — 2026-08-07
 
 ## Overall Coherence: 30/100 — F — BROKEN coherence
 
@@ -10,10 +10,10 @@
 |------|---------|-----------|-------------|
 | STRUCTURE | BULLISH (BOS) | BULLISH | — |
 | IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
-| CYCLE PHASE | DISTRIBUTION → expects BEARISH | BEARISH | — |
+| CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
 | LIQUIDITY | DOWN (SSL magnet) | 4 swept | BEARISH | — |
 
-**⚠️ LENS DIVERGENCE — 3 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in DISTRIBUTION phase.**
+**⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in UNKNOWN phase.**
 
 ---
 
@@ -24,9 +24,9 @@
 | 1W | **BEARISH** | CHoCH | ✅ aligned |
 | 1D | **BEARISH** | BOS | ✅ aligned |
 | 4H | **BULLISH** | BOS | ⚠️ opposing |
-| 1H | **BULLISH** | BOS | ⚠️ opposing |
-| 15m | **BULLISH** | BOS | ⚠️ opposing |
-| 5m | **BEARISH** | BOS | ✅ aligned |
+| 1H | **BULLISH** | CHoCH | ⚠️ opposing |
+| 15m | **BULLISH** | CHoCH | ⚠️ opposing |
+| 5m | **BEARISH** | CHoCH | ✅ aligned |
 | 1m | **BEARISH** | CHoCH | ✅ aligned |
 
 **⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
@@ -35,7 +35,7 @@
 
 ## 3. Archetype Coherence (⚠️)
 
-**❌ ARCHETYPE DIVERGENCE — Council split. No consensus (0%).**
+**Council data unavailable**
 
 ---
 
@@ -53,7 +53,7 @@
 |-----------|-------|--------|
 | Lens Coherence | 15/25 | ⚠️ |
 | Temporal Coherence | 15/25 | ⚠️ |
-| Archetype Coherence | 15/25 | ⚠️ |
+| Archetype Coherence | 5/25 | ⚠️ |
 | No Contradictions | 5/25 | ❌ |
 | **TOTAL** | **30/100** | **F — BROKEN coherence** |
 

@@ -1,4 +1,4 @@
-# MMXM Analysis — GBPUSD — 2026-08-05
+# MMXM Analysis — GBPUSD — 2026-08-07
 
 ## Smart Money Reversal
 **⏳ Not detected**
@@ -8,7 +8,7 @@ Liquidity purged but no displacement yet — SMR forming.
 No SMR and no bias alignment — flat.
 
 ## Symmetry
-Symmetry target: 1.34683 - 0.00889 = 1.33794
+Symmetry target: 1.34554 - 0.00618 = 1.33936
 Target: N/A
 
 ## Entry Phase: **PRE-SMR**

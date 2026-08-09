@@ -1,0 +1,128 @@
+{
+  "pair": "EURUSD",
+  "time": "15:56:39 NY",
+  "currentPrice": 1.15228,
+  "htfBias": {
+    "daily": "bullish",
+    "h4": "bullish",
+    "aligned": true,
+    "direction": "bullish",
+    "detail": "✅ ALIGNED — 1D BULLISH + 4H BULLISH"
+  },
+  "pdhPdl": {
+    "pdh": 1.15594,
+    "pdl": 1.15268,
+    "range": 0.0032600000000000406,
+    "date": "2026-08-04",
+    "detail": "PDH: 1.15594 | PDL: 1.15268 | Range: 0.00326"
+  },
+  "pwhPwl": {
+    "pwh": 1.15229,
+    "pwl": 1.15176,
+    "range": 0.0005300000000001415,
+    "detail": "PWH: 1.15229 | PWL: 1.15176 | Range: 0.00053"
+  },
+  "relEquals": {
+    "highs": [],
+    "lows": [],
+    "highCount": 0,
+    "lowCount": 0,
+    "detail": "0 equal highs, 0 equal lows inside daily range"
+  },
+  "drawTargets": {
+    "primary": {
+      "level": "PWL",
+      "price": 1.15176,
+      "type": "SSL",
+      "priority": 2,
+      "label": "Previous Week Low"
+    },
+    "oppositePool": null,
+    "allTargets": [
+      {
+        "level": "PWL",
+        "price": 1.15176,
+        "type": "SSL",
+        "priority": 2,
+        "label": "Previous Week Low"
+      }
+    ],
+    "detail": "Primary draw: Previous Week Low (SSL) @ 1.15176 | Opposite (TP): N/A"
+  },
+  "sweepStatus": {
+    "swept": true,
+    "mss": true,
+    "sweptPool": {
+      "price": 1.1539400000000002,
+      "type": "BSL",
+      "strength": 8,
+      "score": 12.180876374487282,
+      "distance": 0.1440622071024592,
+      "session": "London",
+      "ageBars": 7,
+      "swept": true
+    },
+    "structureEvent": "CHoCH",
+    "detail": "✅ Previous Week Low SWEPT at 1.15394 | MSS: ✅ Confirmed"
+  },
+  "entryGuidance": {
+    "ready": true,
+    "direction": "BUY",
+    "entry": "On retest of PD array (FVG/OB/Breaker) after sweep + MSS",
+    "sl": {
+      "price": 1.15060824,
+      "label": "Beyond swept Previous Week Low"
+    },
+    "tp": null,
+    "detail": "🎯 SETUP READY: BUY on PD array retest. SL beyond Previous Week Low @ 1.15061. TP: N/A @ N/A."
+  },
+  "hrlrLrlr": {
+    "targets": [
+      {
+        "level": "PWL",
+        "price": 1.15176,
+        "type": "SSL",
+        "priority": 2,
+        "label": "Previous Week Low",
+        "classification": "HRLR",
+        "defenders": 0,
+        "hasNearbyFVG": false,
+        "isLongTerm": true,
+        "isWithTrend": true,
+        "isCounterTrend": false,
+        "distPct": "0.05"
+      }
+    ],
+    "lrlrCount": 0,
+    "hrlrCount": 1,
+    "primaryLRLR": null,
+    "stretchHRLR": {
+      "level": "PWL",
+      "price": 1.15176,
+      "type": "SSL",
+      "priority": 2,
+      "label": "Previous Week Low",
+      "classification": "HRLR",
+      "defenders": 0,
+      "hasNearbyFVG": false,
+      "isLongTerm": true,
+      "isWithTrend": true,
+      "isCounterTrend": false,
+      "distPct": "0.05"
+    },
+    "detail": "0 LRLR (easy, with-trend) | 1 HRLR (hard, needs catalyst) | Primary TP: N/A | Stretch: Previous Week Low @ 1.15176"
+  },
+  "sweepVsRun": {
+    "classification": "INDUCEMENT",
+    "action": "WAIT — possible trap",
+    "sweptSide": "SELL-SIDE (below)",
+    "htfAgreesWithSwept": true,
+    "priceClosedBackInside": true,
+    "displacedAway": false,
+    "mssFound": false,
+    "mssDirection": null,
+    "currentPrice": 1.15229,
+    "sweptLevel": 1.15176,
+    "detail": "⚠️ INDUCEMENT: SELL-SIDE (below) swept, price reversed back… but HTF agrees with swept side. First sweep of session may be a trap. Wait for second move to confirm real direction."
+  }
+}

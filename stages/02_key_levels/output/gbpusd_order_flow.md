@@ -1,18 +1,19 @@
-# Order Flow Zones — GBPUSD — 2026-08-05
+# Order Flow Zones — GBPUSD — 2026-08-07
 
 ## BOS Leg
-BOS bullish @ 1.34562 (1H) | Leg: 10 candles from high @ 1.34825
+BOS bullish @ 1.34726 (1H) | Leg: 6 candles from high @ 1.34560
 
-## OF Zones (3 marked)
+## OF Zones (2 marked)
 | Zone | Type | Price (Mid) | High | Low | Candles |
 |------|------|-------------|------|-----|--------|
-| 1st OF | BULLISH OF (Support) | 1.34712 | 1.34760 | 1.34664 | 1 |
-| 2nd OF | BULLISH OF (Support) | 1.34756 | 1.34840 | 1.34672 | 2 |
-| 3rd OF | BULLISH OF (Support) | 1.34777 | 1.34814 | 1.34740 | 2 |
+| 1st OF | BULLISH OF (Support) | 1.34556 | 1.34582 | 1.34530 | 1 |
+| 2nd OF | BULLISH OF (Support) | 1.34537 | 1.34558 | 1.34516 | 1 |
 
 ## Retracement
 ✅ Price INSIDE 1st OF (BULLISH OF (Support)) — look for LTF confirmation
 - Tested Zone: 1st OF
 
 ## Entry Confirmation
-⏳ Awaiting MSS + PD array inside 1st OF
+✅ OF CONFIRMED: 1st OF — MSS bearish + 1 FVG(s)
+- MSS: ✅ bearish
+- FVGs in zone: 1 | OBs in zone: 0

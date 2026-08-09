@@ -37,49 +37,45 @@ function loadCandles(tf) {
 // ═══ 1. FIND VALID DEALING RANGE ═══
 // ICT: "The swing high must have taken liquidity above an old high,
 // and the swing low must have taken liquidity below an old low."
-// Without confirmed sweeps at BOTH boundaries, the range is not valid.
+// WP-5 (audit Gap 2.2): the range is built from SWEEP-TO-SWEEP extremes —
+// the last external liquidity sweep above and the last external sweep below.
+// If either side is missing, there is NO operative range: return null and
+// block the trade. Never fall back to last internal swings.
 function findDealingRange(engineDaily, engine4h, engine1h) {
-  // Use daily for primary range, fall back to 4H then 1H
-  const report = engineDaily || engine4h || engine1h;
-  if (!report) return null;
-
-  const price = report.price;
-  const swHi = report.structure?.lastSwingHigh;
-  const swLo = report.structure?.lastSwingLow;
-  if (!swHi || !swLo || swHi === swLo) return null;
-
-  // Validate: swing high must have swept prior highs (BSL above)
-  // and swing low must have swept prior lows (SSL below)
-  const pools = report.liquidity || [];
-  const sweptAbove = pools.filter(p => p.type === "BSL" && p.swept && p.price > swHi * 0.999).length;
-  const sweptBelow = pools.filter(p => p.type === "SSL" && p.swept && p.price < swLo * 1.001).length;
-
-  // Also check structure events for CHoCH/BOS at range boundaries
-  const hasSweepAtHigh = sweptAbove > 0 || (report.structure?.lastEvent === "CHoCH" && report.structure?.lastEventPrice > swHi);
-  const hasSweepAtLow = sweptBelow > 0 || (report.structure?.lastEvent === "CHoCH" && report.structure?.lastEventPrice < swLo);
-
-  const range = swHi - swLo;
-  const midpoint = swLo + range / 2;
-
-  return {
-    high: swHi,
-    low: swLo,
-    range,
-    midpoint,
-    source: engineDaily ? "1D" : engine4h ? "4H" : "1H",
-    valid: hasSweepAtHigh && hasSweepAtLow,
-    validation: {
-      highSwept: hasSweepAtHigh,
-      lowSwept: hasSweepAtLow,
-      detail: hasSweepAtHigh && hasSweepAtLow
-        ? "✅ VALID — both extremes have swept prior liquidity"
-        : `⚠️ PARTIAL — high ${hasSweepAtHigh ? 'swept' : 'NOT swept'}, low ${hasSweepAtLow ? 'swept' : 'NOT swept'}`,
-    },
-    // Premium/Discount zones
-    premium: { high: swHi, low: midpoint },
-    discount: { high: midpoint, low: swLo },
-    detail: `${hasSweepAtHigh && hasSweepAtLow ? 'Valid' : 'Partial'} dealing range: ${r5(swLo)} — ${r5(swHi)} (${r5(range)} range)`
-  };
+  const { computeDealingRange } = require("./lib/dealing_range.cjs");
+  const tiers = [
+    { tf: "1d", label: "1D", report: engineDaily },
+    { tf: "4h", label: "4H", report: engine4h },
+    { tf: "1h", label: "1H", report: engine1h },
+  ];
+  for (const { tf, label, report } of tiers) {
+    const candles = loadCandles(tf);
+    if (!candles || !candles.length) continue;
+    const range = computeDealingRange(candles);
+    if (!range) continue; // no sweep on one/both sides on this TF — try next
+    const price = report?.price || range.price;
+    return {
+      high: range.high,
+      low: range.low,
+      range: range.range,
+      midpoint: range.equilibrium,
+      equilibrium: range.equilibrium,
+      positionPct: range.positionPct,
+      zone: range.zone,
+      source: label,
+      valid: true,
+      validation: {
+        highSwept: true,
+        lowSwept: true,
+        detail: `Sweep-to-sweep — high swept @ ${r5(range.sweepAbove.price)}, low swept @ ${r5(range.sweepBelow.price)}`,
+      },
+      // Premium/Discount zones
+      premium: { high: range.high, low: range.equilibrium },
+      discount: { high: range.equilibrium, low: range.low },
+      detail: range.detail,
+    };
+  }
+  return null; // no operative dealing range — trade is blocked
 }
 
 // ═══ 2. MARK IRL — FAIR VALUE GAPS INSIDE THE RANGE ═══
@@ -89,8 +85,10 @@ function findDealingRange(engineDaily, engine4h, engine1h) {
 function markIRL(dealingRange, reports) {
   if (!dealingRange) return [];
 
-  const allFvgs = [];
-  // Collect FVGs from 15m, 5m, 1H reports
+  const price = reports["1H"]?.price || reports["4H"]?.price || 0;
+  const irl = [];
+
+  // 1) FVGs inside the range — unfilled/partially filled (fillFraction < 0.7)
   for (const tf of ["15m", "5m", "1h", "4h"]) {
     const r = reports[tf];
     if (!r || !r.fvgs) continue;
@@ -100,22 +98,74 @@ function markIRL(dealingRange, reports) {
       if (fvgMid >= dealingRange.low && fvgMid <= dealingRange.high) {
         // Only unfilled or partially filled FVGs
         if ((fvg.fillFraction || 0) < 0.7) {
-          allFvgs.push({
+          irl.push({
             ...fvg,
             tf,
+            kind: "FVG",
             midpoint: fvgMid,
             isIRL: true,
             fillPct: r2((fvg.fillFraction || 0) * 100),
+            distance: Math.abs(price - fvgMid),
           });
         }
       }
     }
   }
 
-  // Sort by fill fraction (least filled = most potent IRL)
-  allFvgs.sort((a, b) => (a.fillFraction || 0) - (b.fillFraction || 0));
+  // 2) Equal highs/lows inside the range — ATR-relative clusters, unswept
+  //    (WP-6 / Gap 2.1: fuel is fuel — a stop cluster is a stop cluster).
+  //    Unswept cluster = 0% filled, ranked by distance like every other IRL.
+  const { findRelativeEqualLevels } = require("./lib/liquidity.cjs");
+  const { calcATR } = require("./lib/metrics.cjs");
+  const candles5m = loadCandles("5m");
+  const candles15m = loadCandles("15m");
+  const src = candles5m || candles15m;
+  if (src) {
+    const atr = calcATR(src, 14) || 1;
+    const rel = findRelativeEqualLevels(src, atr);
+    const srcTf = candles5m ? "5m" : "15m";
+    for (const h of rel.highs || []) {
+      if (!h.swept && h.price >= dealingRange.low && h.price <= dealingRange.high) {
+        irl.push({
+          kind: "equalHighs",
+          type: "equalHighs",
+          price: h.price,
+          top: h.top,
+          bottom: h.bottom,
+          tf: srcTf,
+          midpoint: h.price,
+          isIRL: true,
+          fillFraction: 0,
+          fillPct: r2(0),
+          distance: Math.abs(price - h.price),
+          detail: h.detail,
+        });
+      }
+    }
+    for (const l of rel.lows || []) {
+      if (!l.swept && l.price >= dealingRange.low && l.price <= dealingRange.high) {
+        irl.push({
+          kind: "equalLows",
+          type: "equalLows",
+          price: l.price,
+          top: l.top,
+          bottom: l.bottom,
+          tf: srcTf,
+          midpoint: l.price,
+          isIRL: true,
+          fillFraction: 0,
+          fillPct: r2(0),
+          distance: Math.abs(price - l.price),
+          detail: l.detail,
+        });
+      }
+    }
+  }
 
-  return allFvgs;
+  // Rank by nearest unmitigated internal liquidity (distance from current price).
+  irl.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
+
+  return irl;
 }
 
 // ═══ 3. MARK ERL — LIQUIDITY OUTSIDE THE RANGE ═══
@@ -391,7 +441,7 @@ function analyzeIRLERL(pair) {
     entryGuidance,
     detail: [
       dealingRange?.detail || "No valid dealing range",
-      `IRL: ${irlFvgs.length} FVGs inside range (${irlFvgs.filter(f => (f.fillFraction||0) < 0.3).length} unfilled)`,
+      `IRL: ${irlFvgs.length} liquidity objects inside range (${irlFvgs.filter(f => (f.fillFraction||0) < 0.3).length} unfilled)`,
       erl.detail,
       cycle.detail,
       bias.detail,
@@ -419,7 +469,7 @@ if (result.dealingRange) {
   md += `- **Discount Zone**: ${r5(dr.discount.high)} — ${r5(dr.discount.low)}\n\n`;
 }
 
-md += `## IRL — Internal Range Liquidity (${result.irl.count} FVGs)\n`;
+md += `## IRL — Internal Range Liquidity (${result.irl.count} objects: FVGs + equal highs/lows)\n`;
 md += `| Status | Count |\n|--------|-------|\n`;
 md += `| Unfilled (<30%) | ${result.irl.unfilled} |\n`;
 md += `| Partial (30-70%) | ${result.irl.partial} |\n`;

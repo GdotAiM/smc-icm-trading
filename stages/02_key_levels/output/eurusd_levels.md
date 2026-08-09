@@ -1,16 +1,16 @@
-# Key Levels — EURUSD — 2026-08-05
+# Key Levels — EURUSD — 2026-08-07
 
 ## Bias Reminder — **BULLISH**
 
 ## Liquidity Pools (6 on 4H)
 | Type | Price | Role | Touches | Score | Distance | Swept |
 |------|-------|------|---------|-------|----------|-------|
-| SSL | 1.13814 | Support | 5 | 7.01 | 1.43% | ⚡ |
-| BSL | 1.16526 | Resistance | 9 | 5.72 | 0.92% | Active |
-| SSL | 1.13610 | Support | 4 | 5.49 | 1.61% | Active |
-| SSL | 1.14036 | Support | 4 | 3.80 | 1.24% | ⚡ |
-| SSL | 1.15010 | Support | 3 | 3.38 | 0.39% | Active |
-| BSL | 1.15804 | Resistance | 3 | 1.61 | 0.29% | ⚡ |
+| SSL | 1.13814 | Support | 5 | 6.74 | 1.28% | ⚡ |
+| SSL | 1.13610 | Support | 4 | 5.28 | 1.46% | Active |
+| BSL | 1.16515 | Resistance | 8 | 4.90 | 1.06% | Active |
+| SSL | 1.15044 | Support | 4 | 4.75 | 0.21% | Active |
+| SSL | 1.14036 | Support | 4 | 3.65 | 1.09% | ⚡ |
+| BSL | 1.15578 | Resistance | 3 | 1.76 | 0.25% | ⚡ |
 
 ## Order Blocks (3 across 1D/4H/1H)
 | Type | Proximal | Distal | Impulse | FVG | TF |
@@ -26,5 +26,5 @@
 | bullish | 1.14398 | 1.14000 | 2.89x | 4.06x | 13.57% |
 
 ## Draw Targets
-- **Primary**: UP @ 1.16526 — BSL pool Â· 9 touches (0.93)
-- **Alternate**: DOWN @ 1.14036 — SSL pool Â· 4 touches (0.66)
+- **Primary**: UP @ 1.16515 — BSL pool Â· 8 touches (0.91)
+- **Alternate**: DOWN @ 1.15044 — SSL pool Â· 4 touches (0.74)

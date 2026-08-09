@@ -1,25 +1,26 @@
-# IRL / ERL Analysis — NAS100 — 2026-08-05
+# IRL / ERL Analysis — NAS100 — 2026-08-07
 
-## Current Price: 29874.40000
+## Current Price: 29467.20000
 
 ## Dealing Range (1D)
 - **Range**: 26980.60000 — 29861.40000 (2880.80000)
 - **Midpoint (Equilibrium)**: 28421.00000
-- **Validation**: ⚠️ PARTIAL — high NOT swept, low NOT swept
+- **Validation**: ⚠️ PARTIAL — high swept, low NOT swept
 - **Premium Zone**: 29861.40000 — 28421.00000
 - **Discount Zone**: 28421.00000 — 26980.60000
 
-## IRL — Internal Range Liquidity (2 FVGs)
+## IRL — Internal Range Liquidity (3 FVGs)
 | Status | Count |
 |--------|-------|
-| Unfilled (<30%) | 2 |
+| Unfilled (<30%) | 3 |
 | Partial (30-70%) | 0 |
 | Filled (>70%) | 0 |
 
 | TF | Type | Price (CE) | Fill % | Distance |
 |-----|------|------------|--------|----------|
-| 15m | bullish | 28770.80000 | 0.00% | 3.69% |
-| 15m | bullish | 28806.00000 | 26.13% | 3.58% |
+| 15m | bullish | 29284.45000 | 0.00% | 0.62% |
+| 15m | bullish | 28770.80000 | 0.00% | 2.36% |
+| 15m | bullish | 28806.00000 | 26.13% | 2.24% |
 
 ## ERL — External Range Liquidity
 - **Dominant**: BALANCED
@@ -34,8 +35,8 @@
 - **ERL Sweeps**: 0 above, 0 below
 
 ## IRL/ERL Bias
-- **Bias**: **BEARISH** (confidence: 0.50)
-- **Reasoning**: Price outside above dealing range. Expected to re-enter range toward IRL.
+- **Bias**: **NEUTRAL** (confidence: 0.00)
+- **Reasoning**: 
 
 ## Entry Guidance
 - **WAIT** (neutral) — Unclear cycle position — wait for ERL raid or IRL fill to establish direction.

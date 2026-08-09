@@ -1,4 +1,4 @@
-# Risk Plan — DXY — 2026-07-29
+# Risk Plan — DXY — 2026-08-07
 
 
 ## Account
@@ -11,22 +11,22 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 12794.00 |
-| SL | 12780.70 (structural invalidation) |
-| Stop Distance | 1330 ticks |
-| **Position** | **1 micro lots** |
+| Entry | 12685.00 |
+| SL | 0.00 (structural invalidation) |
+| Stop Distance | 1268500 ticks |
+| **Position** | **0 micro lots** |
 | Risk | $100.00 |
-| Max Gain (TP1) | $240.60 |
+| Max Gain (TP1) | $100.00 |
 
 ## Trade Ticket
 ```
 PAIR:       DXY
-DIRECTION:  LONG
-ENTRY:      12794.00
-SL:         12780.70
-TP1:        12826.00 (close 50%)
-TP2:        12858.00 (close 50%)
-R:R:        2.41:1 / 4.81:1
+DIRECTION:  NO TRADE
+ENTRY:      12685.00
+SL:         0.00
+TP1:        0.00 (close 50%)
+TP2:        0.00 (close 50%)
+R:R:        1.00:1 / 1.00:1
 ```
 
 ## Execution: **PAPER**

@@ -1,8 +1,13 @@
 // Po3 State Machine — Formal Power of 3 with transition tracking
 // ICT: Accumulation → Manipulation → Distribution → Expansion → (cycle repeats)
 // Each transition has CONFIRMATION SIGNALS from the engine.
+//
+// WP-3 (audit Gap 1.2): cycle phase comes from STRUCTURE ONLY via
+// lib/cycle_phase.cjs — the single cycle authority. The calendar never
+// fabricates a phase; UNKNOWN is a valid, honest answer.
 const fs = require("fs");
 const path = require("path");
+const { determineState, resolveCyclePhase, TRANSITIONS, detectNextTransition } = require("./lib/cycle_phase.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const DATE = new Date().toISOString().split("T")[0];
@@ -22,68 +27,9 @@ function loadEngine(tf) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// Po3 STATE MACHINE
+// STATE MACHINE (imported from lib/cycle_phase.cjs — sole cycle source)
+// determineState, TRANSITIONS, detectNextTransition
 // ═══════════════════════════════════════════════════════════════════
-
-const STATES = ["ACCUMULATION", "MANIPULATION", "DISTRIBUTION", "EXPANSION"];
-const TRANSITIONS = {
-  "ACCUMULATION→MANIPULATION": { signal: "Sweep of range extreme (BSL above or SSL below)", check: (r) => (r.liquidity || []).some(p => p.swept) && r.structure.bias !== "neutral" },
-  "MANIPULATION→DISTRIBUTION": { signal: "BOS in reversal direction + displacement > 1.0x", check: (r) => r.structure.lastEvent === "BOS" && (r.volumeDisplacement?.atrRatio || 0) > 0.8 },
-  "DISTRIBUTION→EXPANSION": { signal: "ATR > 2.0x OR consecutive FVGs ≥ 3", check: (r) => (r.volumeDisplacement?.atrRatio || 0) > 2.0 || (r.fvgs || []).length >= 3 },
-  "EXPANSION→ACCUMULATION": { signal: "Exhaustion (CHoCH) OR sweep of opposite extreme", check: (r) => r.structure.lastEvent === "CHoCH" || (r.liquidity || []).filter(p => p.swept).length >= 2 },
-};
-
-function determineState(report) {
-  if (!report) return { state: "UNKNOWN", confidence: 0 };
-
-  const bias = report.structure.bias;
-  const event = report.structure.lastEvent || "none";
-  const swept = (report.liquidity || []).filter(p => p.swept).length;
-  const displabel = report.volumeDisplacement?.label || "weak";
-  const dispRatio = report.volumeDisplacement?.atrRatio || 0;
-  const fvgs = (report.fvgs || []).length;
-  const obs = (report.orderBlocks || []).length;
-
-  // Expansion
-  if (dispRatio > 2.0 && fvgs >= 2) return { state: "EXPANSION", confidence: 0.85, reason: `Strong displacement (${r2(dispRatio)}x) + ${fvgs} FVGs — blow-off phase` };
-
-  // Distribution
-  if (event === "BOS" && bias !== "neutral" && dispRatio > 0.5)
-    return { state: "DISTRIBUTION", confidence: 0.8, reason: `BOS ${bias} + displacement (${r2(dispRatio)}x) — trend is distributing` };
-  if (event === "BOS" && bias !== "neutral")
-    return { state: "DISTRIBUTION", confidence: 0.6, reason: `BOS ${bias} — distribution beginning` };
-
-  // Manipulation
-  if (swept > 0 && (event === "CHoCH" || displabel === "strong" || displabel === "moderate"))
-    return { state: "MANIPULATION", confidence: 0.85, reason: `${swept} sweep(s) + ${event} — manipulation active` };
-  if (swept > 0 && displabel !== "strong")
-    return { state: "MANIPULATION", confidence: 0.7, reason: `${swept} sweep(s) detected — manipulation in progress` };
-
-  // Accumulation
-  if (bias === "neutral" || displabel === "weak")
-    return { state: "ACCUMULATION", confidence: 0.7, reason: `Ranging/weak displacement — accumulation. ${obs} OBs building.` };
-
-  return { state: "ACCUMULATION", confidence: 0.5, reason: "Default — no clear Po3 signals" };
-}
-
-function detectNextTransition(currentState, report) {
-  const transitionKeys = Object.keys(TRANSITIONS).filter(k => k.startsWith(currentState + "→"));
-  if (transitionKeys.length === 0) return null;
-
-  const nextKey = transitionKeys[0];
-  const nextState = nextKey.split("→")[1];
-  const config = TRANSITIONS[nextKey];
-  const ready = config.check(report);
-
-  return {
-    from: currentState,
-    to: nextState,
-    signal: config.signal,
-    ready,
-    probability: ready ? 0.8 : 0.2,
-    narrative: ready ? `✅ Transition to ${nextState} is CONFIRMED — ${config.signal}.` : `⏳ Waiting for transition to ${nextState}. Need: ${config.signal}.`,
-  };
-}
 
 // ═══════════════════════════════════════════════════════════════════
 // Po3 TIMING GATES
@@ -209,10 +155,12 @@ const manipCheck = checkManipulationDirection({ "1H": r1h, "1D": r1d });
 const current4h = determineState(r4h);
 const current1h = determineState(r1h);
 const current1d = determineState(r1d);
+const resolved = resolveCyclePhase({ "4H": r4h, "1H": r1h, "1D": r1d });
+const authoritativeState = resolved.phase; // structure-only (WP-3)
 const nextTransition = detectNextTransition(current4h.state, r4h);
 const expected = getExpectedPo3Phase();
 const timingAligned = current4h.state === expected.phase;
-const entryRules = getPo3EntryRules(current4h.state);
+const entryRules = getPo3EntryRules(authoritativeState);
 
 // ── Output ──────────────────────────────────────────────────────────
 const outDir = path.join(ROOT, "stages", "00_macro_context", "output");
@@ -220,14 +168,14 @@ fs.mkdirSync(outDir, { recursive: true });
 
 const md = `# Po3 State Machine — ${pairLabel} — ${DATE}
 
-## Current State: **${current4h.state}** (${r2(current4h.confidence)} confidence)
-**${current4h.reason}**
+## Current State: **${authoritativeState}** (${r2(resolved.confidence)} confidence, from ${resolved.source || 'structure'})
+${resolved.reason}
 
 ## State Timeline
 
 \`\`\`
 ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
-     ${current4h.state === 'ACCUMULATION' ? '●' : '○'}            ${current4h.state === 'MANIPULATION' ? '●' : '○'}           ${current4h.state === 'DISTRIBUTION' ? '●' : '○'}          ${current4h.state === 'EXPANSION' ? '●' : '○'}
+     ${authoritativeState === 'ACCUMULATION' ? '●' : '○'}            ${authoritativeState === 'MANIPULATION' ? '●' : '○'}           ${authoritativeState === 'DISTRIBUTION' ? '●' : '○'}          ${authoritativeState === 'EXPANSION' ? '●' : '○'}
 \`\`\`
 
 ## Transition Status
@@ -240,7 +188,7 @@ ${nextTransition ? `- Probability: ${r2(nextTransition.probability * 100)}%` : '
 ## Timing Gate Check
 
 **Expected phase for ${expected.session} (${String(NY_HOUR).padStart(2,'0')}:00 NY): ${expected.phase}**
-**Detected phase: ${current4h.state}**
+**Detected phase: ${authoritativeState}**
 ${timingAligned ? '✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.' : '⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.'}
 
 ## Per-TF States
@@ -251,7 +199,7 @@ ${timingAligned ? '✅ TIMING ALIGNED — Detected phase matches expected phase 
 | 4H | ${current4h.state} | ${r2(current4h.confidence)} | ${current4h.reason} |
 | 1H | ${current1h.state} | ${r2(current1h.confidence)} | ${current1h.reason} |
 
-## Entry Rules for ${current4h.state}
+## Entry Rules for ${authoritativeState}
 
 **${entryRules.narrative}**
 
@@ -285,10 +233,23 @@ ${Object.entries(TRANSITIONS).map(([key, config]) => {
 
 fs.writeFileSync(path.join(outDir, `${PAIR.toLowerCase()}_po3_state.md`), md, "utf8");
 
+// WP-3: machine-readable cycle phase for run_pair.cjs — no markdown regex.
+// This is the sole structure-derived phase consumed by the decision pipeline.
+const cycleJson = {
+  pair: pairLabel,
+  phase: authoritativeState,
+  confidence: resolved.confidence,
+  reason: resolved.reason,
+  source: resolved.source,
+  timestamp: new Date().toISOString(),
+  structureOnly: true,
+};
+fs.writeFileSync(path.join(outDir, `${PAIR.toLowerCase()}_cycle_phase.json`), JSON.stringify(cycleJson, null, 2), "utf8");
+
 console.log(JSON.stringify({
   pair: pairLabel,
-  state: current4h.state,
-  confidence: current4h.confidence,
+  state: authoritativeState,
+  confidence: resolved.confidence,
   nextTransition: nextTransition ? `${nextTransition.from}→${nextTransition.to} (${r2(nextTransition.probability * 100)}%)` : "none",
   timingAligned,
   expected: expected.phase,

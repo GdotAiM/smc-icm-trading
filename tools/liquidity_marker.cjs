@@ -335,10 +335,21 @@ function analyzeLiquidity(pair) {
   // Step 3: PWH/PWL
   const pwhPwl = markPWH_PWL(weeklyCandles);
 
-  // Step 4: Relative equal levels (from engine liquidity)
-  const allPools = (reports["4H"]?.liquidity || []).concat(reports["1H"]?.liquidity || []);
-  const relHighs = allPools.filter(p => p.type === "BSL" && !p.swept).map(p => ({ price: p.price, detail: `BSL @ ${r5(p.price)}` }));
-  const relLows = allPools.filter(p => p.type === "SSL" && !p.swept).map(p => ({ price: p.price, detail: `SSL @ ${r5(p.price)}` }));
+  // Step 4: Relative equal levels — ATR-relative equal highs/lows from
+  // structure (WP-6 / Gap 2.4). The lib is the ONLY producer of equal-high/low
+  // liquidity objects; this is no longer a filter over engine BSL/SSL pools.
+  const { findRelativeEqualLevels } = require("./lib/liquidity.cjs");
+  const { calcATR } = require("./lib/metrics.cjs");
+  const candles5m = loadCandles("5m");
+  const candles15m = loadCandles("15m");
+  const relSource = candles5m || candles15m;
+  let relHighs = [], relLows = [];
+  if (relSource) {
+    const atr = calcATR(relSource, 14) || 1;
+    const rel = findRelativeEqualLevels(relSource, atr);
+    relHighs = (rel.highs || []).filter(h => !h.swept).map(h => ({ price: h.price, detail: h.detail }));
+    relLows = (rel.lows || []).filter(l => !l.swept).map(l => ({ price: l.price, detail: l.detail }));
+  }
   const relEquals = classifyRelativeEquals(relHighs, relLows, pdhPdl, currentPrice);
 
   // Step 5: Next draw-on-liquidity

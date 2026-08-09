@@ -1,4 +1,4 @@
-# Priority 2 Report — DXY — 2026-07-29
+# Priority 2 Report — DXY — 2026-08-07
 
 ## CISD (Engine-Quality)
 **No CISD detected.**
@@ -11,11 +11,11 @@
 
 
 ## Per-Session Po3
-**Current session: NY Lunch/PM — ACCUMULATION phase. Low liquidity chop.**
-- NY Lunch/PM: ACCUMULATION — Low liquidity chop
+**Current session: London AM — MANIPULATION phase. Judas Swing window — false breakout likely.**
+- London AM: MANIPULATION — Judas Swing window — false breakout likely
 
 ## ISD Sequence
 **⏳ ISD 2/3 — Near complete. One more confirmation needed.**
-- ✅ Inducement: 3 pool(s) swept across 4H/15m
-- ✅ Structural Sweep: CHoCH confirms on 15m/5m
-- ✗ Displacement: weak on 5m (0.67x) — below threshold
+- ✅ Inducement: 4 pool(s) swept across 4H/15m
+- ✗ Structural Sweep: No CHoCH or sweep-confirmed BOS on entry TF
+- ✅ Displacement: moderate on 5m (0.93x), weak on 15m

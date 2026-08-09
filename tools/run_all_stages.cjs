@@ -164,7 +164,7 @@ const _sInfo = NY_SESSION_MAP[NY_SESSION.name] || { label: NY_SESSION.name, char
 const session = _sInfo.label;
 const char = _sInfo.char;
 
-const inKillzone = ["london", "londonPM", "nyAM", "nyPM"].includes(NY_SESSION.name);
+const inKillzone = ["london", "nyAM", "nyPM"].includes(NY_SESSION.name);
 const biasAligned = bias1d !== "neutral" && inKillzone;
 const sbLondon = NY_HOUR >= 3 && NY_HOUR < 4;
 const sbNYAM = NY_HOUR >= 10 && NY_HOUR < 11;

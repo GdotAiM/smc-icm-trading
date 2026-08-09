@@ -1,6 +1,6 @@
-# Coherence Audit — NAS100 — 2026-08-05
+# Coherence Audit — NAS100 — 2026-08-07
 
-## Overall Coherence: 60/100 — C — ADEQUATE coherence
+## Overall Coherence: 50/100 — D — POOR coherence
 
 ---
 
@@ -10,41 +10,40 @@
 |------|---------|-----------|-------------|
 | STRUCTURE | BULLISH (CHoCH) | BULLISH | — |
 | IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
-| CYCLE PHASE | DISTRIBUTION → expects BEARISH | BEARISH | — |
+| CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
 | LIQUIDITY | UP (BSL magnet) | 3 swept | BULLISH | — |
 
-**⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in DISTRIBUTION phase.**
+**⚠️ LENS DIVERGENCE — 1 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in UNKNOWN phase.**
 
 ---
 
-## 2. Temporal Coherence (✅ 3/4 LTFs aligned)
+## 2. Temporal Coherence (⚠️ 1/4 LTFs aligned)
 
-| TF | Bias | Event | vs HTF (BULLISH) |
+| TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
-| 1W | **BEARISH** | CHoCH | ⚠️ opposing |
-| 1D | **BULLISH** | CHoCH | ✅ aligned |
-| 4H | **BULLISH** | CHoCH | ✅ aligned |
-| 1H | **BULLISH** | BOS | ✅ aligned |
-| 15m | **BULLISH** | CHoCH | ✅ aligned |
-| 5m | **BULLISH** | BOS | ✅ aligned |
-| 1m | **BEARISH** | CHoCH | ⚠️ opposing |
+| 1W | **BULLISH** | BOS | ⚠️ opposing |
+| 1D | **BEARISH** | CHoCH | ✅ aligned |
+| 4H | **BULLISH** | CHoCH | ⚠️ opposing |
+| 1H | **BEARISH** | BOS | ✅ aligned |
+| 15m | **BULLISH** | BOS | ⚠️ opposing |
+| 5m | **BULLISH** | BOS | ⚠️ opposing |
+| 1m | **BULLISH** | BOS | ⚠️ opposing |
 
-**✅ TEMPORAL COHERENCE — 3/4 LTFs aligned with HTF BULLISH. 1 opposing (micro pullback — normal).**
+**⚠️ TEMPORAL DIVERGENCE — 3 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
 
 ---
 
-## 3. Archetype Coherence (✅)
+## 3. Archetype Coherence (⚠️)
 
-**✅ ARCHETYPE COHERENCE — BULLISH majority (4/4). 100% confidence. Archetypes agree.**
+**Council data unavailable**
 
 ---
 
 ## 4. Self-Contradiction Check
 
-- **[CRITICAL]** HTF-LTF DIVERGENCE: 3 consecutive timeframes oppose HTF (bearish). Possible macro reversal.
-- **[INFO]** WEEKLY vs DAILY: 1W is BEARISH but 1D is BULLISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
+- **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
 
-**❌ 2 contradiction(s) including CRITICAL issues. The system is fighting itself.**
+**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
 
 ---
 
@@ -53,10 +52,10 @@
 | Dimension | Score | Status |
 |-----------|-------|--------|
 | Lens Coherence | 15/25 | ⚠️ |
-| Temporal Coherence | 25/25 | ✅ |
-| Archetype Coherence | 25/25 | ✅ |
-| No Contradictions | 5/25 | ❌ |
-| **TOTAL** | **60/100** | **C — ADEQUATE coherence** |
+| Temporal Coherence | 15/25 | ⚠️ |
+| Archetype Coherence | 5/25 | ⚠️ |
+| No Contradictions | 25/25 | ✅ |
+| **TOTAL** | **50/100** | **D — POOR coherence** |
 
 ---
 

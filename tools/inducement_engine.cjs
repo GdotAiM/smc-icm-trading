@@ -1,4 +1,4 @@
-// ICT Inducement (IDM) Engine — Entry Gate
+// ICT Inducement (IDM) Engine — structure-timeframe library (WP-9)
 // Audited against innercircletrader.net 2026-07-31
 //
 // Inducement = the first valid pullback after a BOS or CHOCH.
@@ -8,12 +8,21 @@
 // Sequence: BOS/CHOCH → first pullback (≥0.5 Fib) → inducement level
 //           → wait for sweep → MSS confirmation → entry gate OPEN
 //
-// Usage: node tools/inducement_engine.cjs PAIR
+// WP-9 (audit Bug 6.6): the structural event, pullback, sweep, and MSS are all
+// evaluated on the SAME timeframe as the structure break (default 15m). 1m is
+// only used when a model explicitly specifies a fine "sentence" on 1m
+// (`confirmTF: "1m"`). Confirming a 15m-sized fact with 1m candles is reading
+// a fingerprint to check a door was unlocked — the scale of the fact must be
+// the scale of the confirmation.
+//
+// Usage (CLI): node tools/inducement_engine.cjs PAIR
+// Usage (lib): runInducementCheck(pair, { structureTF: "15m", confirmTF: "15m" })
 
 const fs = require("fs");
 const path = require("path");
 
 const L2 = require("./tv-mcp/lecture2_setup.cjs");
+const { LIQUIDITY_RAID_CONFIRMATION } = require("./lib/raid_config.cjs");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
 const DATE = new Date().toISOString().split("T")[0];
@@ -22,30 +31,33 @@ const PAIR = process.argv[2] || "GBPUSD";
 function r5(v) { return Number(v).toFixed(5); }
 function r2(v) { return Number(v).toFixed(2); }
 
-function loadCandles(tf) {
+function loadCandles(tf, pair, date) {
   try {
-    const dir = PAIR === "XAUUSD" ? "GOLD" : PAIR;
-    return JSON.parse(fs.readFileSync(path.join(ROOT, "shared", DATE, dir, `candles_${tf}.json`), "utf8"));
+    const p = pair || PAIR;
+    const dir = p === "XAUUSD" ? "GOLD" : p;
+    return JSON.parse(fs.readFileSync(path.join(ROOT, date || DATE, dir, `candles_${tf}.json`), "utf8"));
   } catch { return null; }
 }
 
-function loadEngine(tf) {
+function loadEngine(tf, pair, date) {
   try {
-    const dir = PAIR === "XAUUSD" ? "GOLD" : PAIR;
-    return JSON.parse(fs.readFileSync(path.join(ROOT, "shared", DATE, dir, `engine_${tf}.json`), "utf8"));
+    const p = pair || PAIR;
+    const dir = p === "XAUUSD" ? "GOLD" : p;
+    return JSON.parse(fs.readFileSync(path.join(ROOT, date || DATE, dir, `engine_${tf}.json`), "utf8"));
   } catch { return null; }
 }
 
 // ═══ 1. FIND MOST RECENT BOS OR CHOCH ═══
-function findStructuralEvent(candles, swings) {
+// `engines` = { [tf]: engineReport, ... }; the structure TF's report is read
+// first, then the next-higher TF as fallback (both are structure-scale).
+function findStructuralEvent(candles, swings, engines, structureTF = "15m") {
   if (!candles || candles.length < 10 || swings.length < 3) return null;
 
-  // Use engine report for confirmed structure events
-  const engine15m = loadEngine("15m");
-  const engine1h = loadEngine("1h");
-  const lastEvent = engine15m?.structure?.lastEvent || engine1h?.structure?.lastEvent || null;
-  const lastEventPrice = engine15m?.structure?.lastEventPrice || engine1h?.structure?.lastEventPrice || null;
-  const bias = engine15m?.structure?.bias || engine1h?.structure?.bias || "neutral";
+  const eng = engines || {};
+  const fallbackTF = structureTF === "15m" ? "1h" : structureTF === "5m" ? "15m" : "1h";
+  const lastEvent = eng[structureTF]?.structure?.lastEvent || eng[fallbackTF]?.structure?.lastEvent || null;
+  const lastEventPrice = eng[structureTF]?.structure?.lastEventPrice || eng[fallbackTF]?.structure?.lastEventPrice || null;
+  const bias = eng[structureTF]?.structure?.bias || eng[fallbackTF]?.structure?.bias || "neutral";
 
   if (!lastEvent || !lastEventPrice) return null;
 
@@ -99,6 +111,7 @@ function findStructuralEvent(candles, swings) {
   return {
     type: isCHOCH ? "CHOCH" : "BOS",
     direction: bias,
+    structureTF,
     eventPrice: lastEventPrice,
     priorSwing: { index: priorSwing.index, price: priorSwing.price, type: priorSwing.type },
     impulseStart, impulseEnd,
@@ -192,13 +205,14 @@ function markInducement(pullback, structuralEvent) {
   };
 }
 
-// ═══ 4. CHECK IF INDUCEMENT HAS BEEN SWEPT ═══
-// ICT: Confirms sweep on 1m (primary) AND 5m (fallback).
-// 1m is precise but noisy. 5m is less noisy — if 1m doesn't confirm
-// but 5m does, the gate still opens. Both are ICT-valid MSS timeframes.
-function checkInducementSweep(inducement, structuralEvent, candles1m, candles5m) {
-  if (!inducement || !candles1m || candles1m.length < 5) {
-    return { swept: false, detail: "No inducement or insufficient data" };
+// ═══ 4. CHECK IF INDUCEMENT HAS BEEN SWEPT (STRUCTURE TF) ═══
+// WP-9: the sweep, the reversal, AND the MSS are confirmed on the SAME
+// timeframe as the structure break (default 15m). A model that specifies a fine
+// 1m "sentence" passes `confirmTF: "1m"` explicitly — nothing defaults to 1m.
+function checkInducementSweep(inducement, structuralEvent, confirmCandles, opts = {}) {
+  const confirmTF = opts.confirmTF || structuralEvent?.structureTF || "15m";
+  if (!inducement || !confirmCandles || confirmCandles.length < 5) {
+    return { swept: false, confirmTF, detail: "No inducement or insufficient data" };
   }
 
   const isBullish = inducement.direction === "bullish";
@@ -207,19 +221,23 @@ function checkInducementSweep(inducement, structuralEvent, candles1m, candles5m)
   // Find candles AFTER the structural event (impulse end)
   const eventTime = structuralEvent.impulseCandles[structuralEvent.impulseCandles.length - 1]?.time;
   const postEvent = eventTime
-    ? candles1m.filter(c => c.time > eventTime)
-    : candles1m.slice(-20);
+    ? confirmCandles.filter(c => c.time > eventTime)
+    : confirmCandles.slice(-20);
 
   if (postEvent.length < 3) {
-    return { swept: false, detail: "Not enough post-structure candles for sweep check" };
+    return { swept: false, confirmTF, detail: "Not enough post-structure candles for sweep check" };
   }
 
   let swept = false, sweepCandle = null, reversed = false;
 
+  // WP-12 audit 5.7: raid confirmation by WICK (touch through the level) or by
+  // CLOSE (body through the level) — one decision constant from config.
+  const raidByClose = LIQUIDITY_RAID_CONFIRMATION === "close";
+
   if (isBullish) {
     // Bullish: price must dip BELOW inducement (sell-side sweep), then close back above
     for (const c of postEvent) {
-      if (c.low < inducement.price) {
+      if (raidByClose ? c.close < inducement.price : c.low < inducement.price) {
         swept = true;
         sweepCandle = c;
         break;
@@ -232,7 +250,7 @@ function checkInducementSweep(inducement, structuralEvent, candles1m, candles5m)
   } else {
     // Bearish: price must spike ABOVE inducement (buy-side sweep), then close back below
     for (const c of postEvent) {
-      if (c.high > inducement.price) {
+      if (raidByClose ? c.close > inducement.price : c.high > inducement.price) {
         swept = true;
         sweepCandle = c;
         break;
@@ -244,8 +262,7 @@ function checkInducementSweep(inducement, structuralEvent, candles1m, candles5m)
     }
   }
 
-  // Check for MSS after sweep
-  // Check MSS on 1m (primary) and 5m (fallback)
+  // Check for MSS after sweep — on the SAME confirmation timeframe.
   let mssConfirmed = false;
   let mssSource = null;
   if (swept && reversed) {
@@ -256,19 +273,10 @@ function checkInducementSweep(inducement, structuralEvent, candles1m, candles5m)
       sweepPrice: inducement.price,
       sweepTime: sweepCandle?.time || new Date().toISOString(),
     };
-    // Primary: 1m MSS
-    const mss1m = L2.confirmMSS(candles1m, fakeHunt);
-    if (mss1m?.confirmed) {
+    const mss = L2.confirmMSS(confirmCandles, fakeHunt);
+    if (mss?.confirmed) {
       mssConfirmed = true;
-      mssSource = "1m";
-    }
-    // Fallback: 5m MSS (less noisy, ICT-valid)
-    if (!mssConfirmed && candles5m && candles5m.length >= 10) {
-      const mss5m = L2.confirmMSS(candles5m, fakeHunt);
-      if (mss5m?.confirmed) {
-        mssConfirmed = true;
-        mssSource = "5m (fallback)";
-      }
+      mssSource = confirmTF;
     }
   }
 
@@ -277,12 +285,13 @@ function checkInducementSweep(inducement, structuralEvent, candles1m, candles5m)
     reversed,
     mssConfirmed,
     mssSource,
+    confirmTF,
     sweepCandle: sweepCandle ? { time: sweepCandle.time, price: isBullish ? sweepCandle.low : sweepCandle.high } : null,
     currentPrice: postEvent[postEvent.length - 1]?.close || 0,
     detail: swept && reversed && mssConfirmed
-      ? `✅ Inducement SWEPT + REVERSED + MSS CONFIRMED (${mssSource}) — entry gate OPEN`
+      ? `✅ Inducement SWEPT + REVERSED + MSS CONFIRMED (${confirmTF}) — entry gate OPEN`
       : swept && reversed
-        ? `⚡ Inducement swept + reversed — awaiting MSS (1m/5m)`
+        ? `⚡ Inducement swept + reversed — awaiting MSS (${confirmTF})`
         : swept
           ? `⚡ Inducement swept — awaiting reversal back`
           : `⏳ Inducement NOT swept — entry gate CLOSED. Waiting for ${isBullish ? 'dip below' : 'spike above'} ${r5(inducement.price)}.`,
@@ -296,7 +305,7 @@ function getEntryGate(sweepStatus, inducement) {
   return {
     open: gateOpen,
     reason: gateOpen
-      ? "✅ GATE OPEN — Inducement swept, reversed, MSS confirmed. Entry allowed."
+      ? `✅ GATE OPEN — Inducement swept, reversed, MSS confirmed (${sweepStatus.confirmTF || 'structure TF'}). Entry allowed.`
       : `🛑 GATE CLOSED — ${sweepStatus.detail}`,
     inducementPrice: inducement?.price || null,
     slReference: inducement ? inducement.price : null, // SL beyond inducement extreme
@@ -304,35 +313,45 @@ function getEntryGate(sweepStatus, inducement) {
 }
 
 // ═══ MAIN ═══
-function runInducementCheck(pair) {
+// Everything runs on the structure TF (default 15m): event, pullback,
+// inducement, sweep, reversal, and MSS all on the same candles.
+function runInducementCheck(pair, opts = {}) {
   const p = pair || PAIR;
-  const candles15m = loadCandles("15m");
-  const candles5m = loadCandles("5m");
-  const candles1m = loadCandles("1m");
+  const structureTF = opts.structureTF || "15m";
+  const confirmTF = opts.confirmTF || structureTF;
+  const date = opts.date || DATE;
 
-  if (!candles15m || !candles1m) {
-    return { gateOpen: false, detail: "Insufficient candle data" };
+  const candlesStruct = loadCandles(structureTF, p, date);
+  const candlesConfirm = confirmTF === structureTF ? candlesStruct : loadCandles(confirmTF, p, date);
+
+  if (!candlesStruct || !candlesConfirm) {
+    return { pair: p, structureTF, confirmTF, gateOpen: false, detail: "Insufficient candle data" };
   }
 
-  const swings15m = L2.findSwings(candles15m, 2);
+  const swingsStruct = L2.findSwings(candlesStruct, 2);
+  const engines = { [structureTF]: loadEngine(structureTF, p, date) };
+  if (structureTF === "15m") engines["1h"] = loadEngine("1h", p, date);
+  if (structureTF === "5m") engines["15m"] = loadEngine("15m", p, date);
 
-  // Step 1: Find structural event
-  const structuralEvent = findStructuralEvent(candles15m, swings15m);
+  // Step 1: Find structural event on the structure TF
+  const structuralEvent = findStructuralEvent(candlesStruct, swingsStruct, engines, structureTF);
 
-  // Step 2: Find first pullback
-  const pullback = findFirstPullback(structuralEvent, candles15m);
+  // Step 2: Find first pullback (same candles, same scale)
+  const pullback = findFirstPullback(structuralEvent, candlesStruct);
 
   // Step 3: Mark inducement
   const inducement = markInducement(pullback, structuralEvent);
 
-  // Step 4: Check inducement sweep (1m primary, 5m fallback)
-  const sweepStatus = checkInducementSweep(inducement, structuralEvent, candles1m, candles5m);
+  // Step 4: Check inducement sweep — structure-TF confirmation (no 1m default)
+  const sweepStatus = checkInducementSweep(inducement, structuralEvent, candlesConfirm, { confirmTF });
 
   // Step 5: Entry gate
   const gate = getEntryGate(sweepStatus, inducement);
 
   return {
     pair: p,
+    structureTF,
+    confirmTF,
     time: new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York", hour12: false }) + " NY",
     structuralEvent,
     pullback,
@@ -349,13 +368,13 @@ function runInducementCheck(pair) {
   };
 }
 
-// ═══ OUTPUT ═══
+// ═══ OUTPUT (CLI) ═══
 const result = runInducementCheck(PAIR);
 
 const outDir = path.join(ROOT, "stages", "05b_micro_confirmation", "output");
 fs.mkdirSync(outDir, { recursive: true });
 
-let md = `# Inducement Check — ${result.pair} — ${DATE}\n\n`;
+let md = `# Inducement Check — ${result.pair} — ${DATE} (${result.structureTF} confirm)\n\n`;
 
 if (result.structuralEvent) {
   md += `## Structural Event\n${result.structuralEvent.detail}\n\n`;
@@ -366,9 +385,9 @@ if (result.pullback) {
 if (result.inducement) {
   md += `## Inducement Level\n${result.inducement.detail}\n\n`;
 }
-md += `## Sweep Status\n${result.sweepStatus.detail}\n\n`;
-md += `## Entry Gate\n**${result.gate.reason}**\n`;
-if (result.gate.open) {
+md += `## Sweep Status\n${result.sweepStatus?.detail || "No sweep analysis — insufficient data"}\n\n`;
+md += `## Entry Gate\n**${result.gate?.reason || "GATE CLOSED — insufficient data"}**\n`;
+if (result.gate?.open) {
   md += `- SL Reference: Beyond inducement @ ${r5(result.gate.inducementPrice)}\n`;
 }
 
@@ -377,11 +396,11 @@ fs.writeFileSync(outFile, md, "utf8");
 console.log(`  ✓ Inducement → ${outFile}`);
 
 // Console
-console.log(`\n═══ INDUCEMENT CHECK — ${PAIR} ═══`);
+console.log(`\n═══ INDUCEMENT CHECK — ${PAIR} (${result.structureTF} confirm) ═══`);
 console.log(`  Structure: ${result.structuralEvent?.detail || 'None'}`);
 console.log(`  Pullback: ${result.pullback?.detail || 'None'}`);
 console.log(`  Inducement: ${result.inducement?.detail || 'None'}`);
-console.log(`  Sweep: ${result.sweepStatus.detail}`);
-console.log(`  Gate: ${result.gate.reason}`);
+console.log(`  Sweep: ${result.sweepStatus?.detail || 'No sweep analysis — insufficient data'}`);
+console.log(`  Gate: ${result.gate?.reason || 'GATE CLOSED — insufficient data'}`);
 
 module.exports = { runInducementCheck, findStructuralEvent, findFirstPullback, markInducement, checkInducementSweep, getEntryGate };

@@ -112,58 +112,12 @@ function getLondonRange(rootOverride, pairOverride) {
 // ═══ 2. FIND RELATIVE EQUAL LEVELS (post-07:00 AM) ═══
 // ICT: "Look for relative equal highs or relative equal lows forming on the
 // 5-minute or 1-minute chart after 07:00 AM."
-// Relative Equal High = a swing high with a LOWER swing high to its right
-// Relative Equal Low  = a swing low with a HIGHER swing low to its right
+// WP-6 (audit Gap 2.4): delegated to tools/lib/liquidity.cjs — ATR-relative
+// tolerance, symmetric in both directions (no one-sided shoulder constraint),
+// each cluster carries swept/unswept state.
 function findRelativeEqualLevels(candles, atr) {
-  const swings = findSwings(candles, 2);
-  if (swings.length < 3) return { highs: [], lows: [] };
-
-  const tolerance = atr * 0.15; // 15% of ATR for "equal" price tolerance
-  const relEqualHighs = [];
-  const relEqualLows = [];
-
-  // Group swing highs by proximity and check for lower right shoulder
-  const highs = swings.filter(s => s.type === "high");
-  for (let i = 0; i < highs.length - 1; i++) {
-    for (let j = i + 1; j < highs.length; j++) {
-      if (Math.abs(highs[i].price - highs[j].price) / (atr || 1) < 0.15) {
-        // If the right one is lower OR price already dropped below the level → relative equal high
-        if (highs[j].price <= highs[i].price * 1.001) {
-          relEqualHighs.push({
-            price: Math.max(highs[i].price, highs[j].price),
-            firstIndex: highs[i].index,
-            secondIndex: highs[j].index,
-            firstTime: highs[i].time,
-            secondTime: highs[j].time,
-            detail: `Relative equal high: ${highs[i].price.toFixed(5)} → ${highs[j].price.toFixed(5)} (lower right shoulder)`
-          });
-          break; // One match per level
-        }
-      }
-    }
-  }
-
-  // Group swing lows by proximity and check for higher right shoulder
-  const lows = swings.filter(s => s.type === "low");
-  for (let i = 0; i < lows.length - 1; i++) {
-    for (let j = i + 1; j < lows.length; j++) {
-      if (Math.abs(lows[i].price - lows[j].price) / (atr || 1) < 0.15) {
-        if (lows[j].price >= lows[i].price * 0.999) {
-          relEqualLows.push({
-            price: Math.min(lows[i].price, lows[j].price),
-            firstIndex: lows[i].index,
-            secondIndex: lows[j].index,
-            firstTime: lows[i].time,
-            secondTime: lows[j].time,
-            detail: `Relative equal low: ${lows[i].price.toFixed(5)} → ${lows[j].price.toFixed(5)} (higher right shoulder)`
-          });
-          break;
-        }
-      }
-    }
-  }
-
-  return { highs: relEqualHighs, lows: relEqualLows };
+  const lib = require("../lib/liquidity.cjs");
+  return lib.findRelativeEqualLevels(candles, atr, { lookback: 2 });
 }
 
 // ═══ 3. DETECT LIQUIDITY HUNT ═══
