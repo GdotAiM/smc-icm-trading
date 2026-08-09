@@ -1241,13 +1241,17 @@ function detectPhaseConflicts(models, cyclePhase) {
 
 const conflicts = detectConflicts(models);
 const phaseConflicts = detectPhaseConflicts(models, effectivePhase);
-const primary = models[0];
+// ═══ WP-8 FLIP — the registry is the DECISION; legacy ranking is shadow ═══
+const legacyPrimary = models[0];   // legacy ranked pick (read-only shadow reporter)
+let primary = null;                 // registry decision primary (null = NO TRADE)
 
-// ═══ WP-8 SHADOW — Model registry evaluator (non-destructive) ═══
-// The registry (tools/models/registry.cjs) is the target decision path:
-// eligibility + sequence booleans, no rank. It runs alongside the legacy
-// pipeline to surface disagreements BEFORE the flip (plan D2 — shadow mode).
-let registryShadow = null;
+// ═══ WP-8 — Model registry evaluator (THE DECISION PATH) ═══
+// Eligibility + sequence booleans, no rank. A model is either COMPLETE or it
+// is nothing. Exactly one complete model → SETUP COMPLETE (primary = its
+// registry entry). Zero or several → NO TRADE. The legacy ranked scoring above
+// now runs as a READ-ONLY shadow reporter — disagreements are logged, never
+// consumed (plan D2, flipped).
+let registryDecision = null;
 try {
   const { runRegistry } = require("./models/registry.cjs");
   const sweptPools = (pools || []).filter(p => p.swept);
@@ -1322,46 +1326,63 @@ try {
     lecture1,
     lecture4,
   };
-  registryShadow = runRegistry(registryCtx);
-  const legacyPrimaryName = primary.name;
-  const agree = !!(registryShadow.primary && registryShadow.primary.name === legacyPrimaryName);
-  console.log(`\n═══ WP-8 SHADOW — Registry Evaluator ═══`);
-  console.log(`  Verdict: ${registryShadow.verdict} | Complete setups: ${registryShadow.count}`);
-  console.log(`  Registry primary: ${registryShadow.primary ? `${registryShadow.primary.name} (tier ${registryShadow.primary.tier})` : 'NONE'}`);
-  console.log(`  Legacy primary:   ${legacyPrimaryName}${agree ? ' — ✅ AGREE' : ' — ⚠️ DISAGREE'}`);
-  if (registryShadow.count > 1) console.log(`  ⚠️  ${registryShadow.count} complete setups — tie resolved by tier/draw proximity`);
-  if (registryShadow.primary) {
-    const t = registryShadow.primary.gateTrace;
+  registryDecision = runRegistry(registryCtx);
+  // WP-8 FLIP: the registry verdict is the decision. A single complete setup
+  // → its entry is primary. Zero or several complete → NO TRADE (ties are
+  // never multiplied; a model is COMPLETE or it is nothing).
+  primary = registryDecision.verdict === "SETUP COMPLETE" && registryDecision.primary
+    ? registryDecision.primary
+    : null;
+  const legacyPrimaryName = legacyPrimary.name;
+  const agree = !!(registryDecision.primary && registryDecision.primary.name === legacyPrimaryName);
+  logDisagreement({
+    area: "wp8_model_registry",
+    oldValue: `${legacyPrimaryName} (legacy rank)`,
+    newValue: registryDecision.verdict === "SETUP COMPLETE"
+      ? `${registryDecision.primary.name} (registry complete)`
+      : `NO TRADE (${registryDecision.count} complete)`,
+    detail: `verdict=${registryDecision.verdict} complete=${registryDecision.count} registryPrimary=${registryDecision.primary ? registryDecision.primary.name : 'none'}`,
+    pair: PAIR,
+    source: "run_pair.cjs",
+  });
+  console.log(`\n═══ WP-8 — Registry Evaluator (DECISION PATH) ═══`);
+  console.log(`  Verdict: ${registryDecision.verdict} | Complete setups: ${registryDecision.count}`);
+  console.log(`  Registry primary: ${registryDecision.primary ? `${registryDecision.primary.name} (tier ${registryDecision.primary.tier})` : 'NONE'}`);
+  console.log(`  Legacy shadow:    ${legacyPrimaryName}${agree ? ' — ✅ AGREE' : ' — ⚠️ DISAGREE (legacy is read-only now)'}`);
+  if (registryDecision.count > 1) console.log(`  ⚠️  ${registryDecision.count} complete setups — tie rule: NO TRADE unless exactly one complete`);
+  if (registryDecision.primary) {
+    const t = registryDecision.primary.gateTrace;
     console.log(`  Primary gates: window=${t.window.pass ? '✅' : '❌'} direction=${t.direction.pass ? '✅' : '❌'} purge=${t.purge.pass ? '✅' : '❌'} seq=${t.sequence.map(s => `${s.name}${s.pass ? '✓' : '✗'}`).join(' ')}`);
   }
   const shadowDir = path.join(ROOT, "stages", "04_model_selection", "shadow");
   fs.mkdirSync(shadowDir, { recursive: true });
-  const gateTable = registryShadow.results.map(r => {
+  const gateTable = registryDecision.results.map(r => {
     const eligible = [r.gateTrace.window.pass, r.gateTrace.direction.pass, r.gateTrace.purge.pass].every(Boolean);
     return `| ${r.name} | ${eligible ? '✅' : '❌'} | ${r.complete ? '✅ COMPLETE' : '—'} | ${r.gateTrace.sequence.map(s => `${s.name}:${s.pass ? '✓' : '✗'}`).join(', ')} |`;
   }).join('\n');
   fs.writeFileSync(path.join(shadowDir, `${PAIR.toLowerCase()}_registry.md`),
-`# WP-8 Registry Shadow — ${pairLabel} — ${DATE}
+`# WP-8 Registry — ${pairLabel} — ${DATE}
 
-Legacy pipeline ran in parallel; the decision path is NOT yet flipped (shadow mode, plan D2).
+The registry is now the DECISION path (flipped, plan D2). Legacy ranked scoring
+runs read-only as the disagreement shadow.
 
 | Model | Eligible | Verdict | Sequence gates |
 |-------|----------|---------|----------------|
 ${gateTable}
 
-## Verdict: ${registryShadow.verdict}
-- **Complete setups**: ${registryShadow.count}
-- **Registry primary**: ${registryShadow.primary ? registryShadow.primary.name : 'NONE'}
-- **Legacy primary**: ${legacyPrimaryName}
-- **Agreement**: ${agree ? '✅ AGREE' : '⚠️ DISAGREE'}
+## Verdict: ${registryDecision.verdict}
+- **Complete setups**: ${registryDecision.count}
+- **Registry primary**: ${registryDecision.primary ? registryDecision.primary.name : 'NONE'}
+- **Legacy shadow primary**: ${legacyPrimaryName}
+- **Agreement**: ${agree ? '✅ AGREE' : '⚠️ DISAGREE (legacy is read-only)'}
 
-> Next step (plan D2): review disagreements across live days, tune the sequence
-> matrices, then flip the decision path to the registry (delete the legacy
-> ranking block from \`run_pair.cjs\`).
+> Decision path = eligibility + sequence only. A model is COMPLETE or it is
+> nothing. No numeric rank survives.
 `, "utf8");
-  console.log(`  ✓ WP-8 shadow report → stages/04_model_selection/shadow/${PAIR.toLowerCase()}_registry.md`);
+  console.log(`  ✓ WP-8 registry report → stages/04_model_selection/shadow/${PAIR.toLowerCase()}_registry.md`);
 } catch(e) {
-  console.log(`  ⚠️  WP-8 shadow unavailable: ${e.message.slice(0, 80)}`);
+  console.log(`  ⚠️  WP-8 registry decision unavailable: ${e.message.slice(0, 80)}`);
+  primary = null; // fail-closed: registry is the gate, so no registry → no trade
 }
 
 writeMd("04_model_selection", "active_models.md", `# Model Selection — ${pairLabel} — ${DATE}
@@ -1373,18 +1394,31 @@ writeMd("04_model_selection", "active_models.md", `# Model Selection — ${pairL
 - Levels: ${uniqueOBs.length} OBs | ${fvgs.length} FVGs | ${pools.length} pools
 - Sweeps: ${hasSweep ? 'Yes — liquidity sweep detected' : 'None'}
 
-## Model Scores (Cycle-Weighted)
+## WP-8 Decision — Model Registry (eligibility + sequence, no rank)
 
-| Model | Structural | Cycle × | Session × | Po3 | Final | Status |
-|-------|-----------|---------|-----------|-----|--------|
-${models.map(m => `| ${m.name} | ${m.structuralScore}/${m.max.toFixed(0)} | ×${r2(m.cycleMultiplier)} | ×${r2(m.sessionMultiplier)} | ${m.po3Blocked ? '⚠️ BLOCKED' : '✅'} | **${r2(m.score)}** | ${m === primary ? '★ PRIMARY' : m.score >= 3 ? 'Alternative' : 'Rejected'} |`).join("\n")}
+${registryDecision ? `
+### Verdict: **${registryDecision.verdict}** — ${registryDecision.count} complete setup(s)
+- **Primary model**: ${primary ? `**${primary.name}** (tier ${primary.tier})` : 'NONE — NO TRADE'}
+- **Rules**: exactly one complete sequence → SETUP COMPLETE; zero or several → NO TRADE (ties by tier, never multiplication).
+
+| Model | Window | Direction | Purge | Sequence gates | Verdict |
+|-------|--------|-----------|-------|----------------|---------|
+${registryDecision.results.map(r => {
+  const el = r.gateTrace;
+  const elig = [el.window.pass, el.direction.pass, el.purge.pass];
+  return `| ${r.name} | ${el.window.pass ? '✅' : '❌'} | ${el.direction.pass ? '✅' : '❌'} | ${el.purge.pass ? '✅' : '❌'} | ${el.sequence.map(s => `${s.name}:${s.pass ? '✓' : '✗'}`).join(', ')} | ${r.complete ? '✅ COMPLETE' : '—'} |`;
+}).join('\n')}
+` : `⚠️ Registry decision unavailable — ${'NO TRADE'} (fail-closed).`}
+
+## Legacy Shadow Scores (read-only — NOT the decision)
+${models.map(m => `| ${m.name} | ${m.structuralScore}/${m.max.toFixed(0)} | ×${r2(m.cycleMultiplier)} | ×${r2(m.sessionMultiplier)} | ${m.po3Blocked ? '⚠️ BLOCKED' : '✅'} | **${r2(m.score)}** | ${m === legacyPrimary ? '★ legacy primary' : m.score >= 3 ? 'Alternative' : 'Rejected'} |`).join("\n")}
 
 ${models.filter(m => m.po3Blocked).map(m => `⚠️ **${m.name}**: ${m.po3BlockReason}`).join('\n\n')}
 
-## Primary: ${primary.name} (${r2(primary.score)} — structural ${primary.structuralScore} × cycle ${r2(primary.cycleMultiplier)} × session ${r2(primary.sessionMultiplier)})
+## Primary: ${primary ? primary.name : 'NO TRADE — no single complete model'}
 ${smtDetected ? `**SMT**: ✅ ${smtDetails}` : '**SMT**: ⚠️ Not detected — check correlated pairs manually'}
 
-## Conflict Check
+## Conflict Check (legacy shadow, read-only)
 ${conflicts.length === 0 && phaseConflicts.length === 0 ? '✅ **NO CONFLICTS** — All top models are compatible.' : ''}
 ${conflicts.map(c => `⚠️ **MUTUAL EXCLUSIVITY**: **${c.modelA}** vs **${c.modelB}** — ${c.reason} ${c.winner ? '→ **' + c.winner + '** takes priority (higher score).' : '→ Scores too close to resolve automatically. MANUAL REVIEW needed.'}`).join('\n\n')}
 ${phaseConflicts.map(c => `⚠️ **PHASE CONFLICT**: **${c.model}** scored ${models.find(m => m.name === c.model)?.score || '?'} but is not designed for ${c.phase} phase. ${c.issue}`).join('\n\n')}
@@ -1396,7 +1430,7 @@ ${phaseConflicts.map(c => `⚠️ **PHASE CONFLICT**: **${c.model}** scored ${mo
 | Key Levels | ${(hasOB || hasFVG) ? '✓' : '✗'} | 2 |
 | Session | ${inKZ ? '✓' : '✗'} | 1 |
 | Sweep | ${hasSweep ? '✓' : '✗'} | 2 |
-| **Total** | **${primary.score}/${primary.max}** | |
+| **Registry verdict** | **${registryDecision ? registryDecision.verdict : 'NO TRADE (fail-closed)'}** | |
 `);
 
 // ═══════════════ STAGE 05b — Micro Confirmation ═══════════════
@@ -1718,10 +1752,19 @@ if (governingBias === 'bearish') {
   slReason = ''; tp1Reason = ''; tp2Reason = '';
 }
 
+// ═══ WP-8 REGISTRY GATE — the registry is the decision ═══
+// No complete registry setup (zero OR several complete) → NO TRADE, regardless
+// of the draw-map entry logic above. This is the fail-closed gate.
+if (!primary) {
+  entryType = 'NO TRADE'; slPrice = 0; tp1Price = 0; tp2Price = 0;
+  slReason = ''; tp1Reason = ''; tp2Reason = '';
+  console.log(`  ⛔ WP-8 REGISTRY GATE — verdict ${registryDecision ? registryDecision.verdict : 'UNAVAILABLE'} (${registryDecision ? registryDecision.count : 0} complete setups). No single complete model → NO TRADE.`);
+}
+
 // ═══ SILVER BULLET SCALP OVERRIDE — Tighter SL/TP for SB window ═══
 // During Silver Bullet windows, use 15m/1H levels instead of 4H/1D swing levels.
 // This is a SCALP, not a swing trade. SL must be tight enough for valid R:R.
-if (primary.name === "Silver Bullet" && inSBWindow && entryType !== 'NO TRADE') {
+if (primary?.name === "Silver Bullet" && inSBWindow && entryType !== 'NO TRADE') {
   const r15mSwing = r15m?.structure?.lastSwingHigh || r1h?.structure?.lastSwingHigh;
   const r15mSwingLow = r15m?.structure?.lastSwingLow || r1h?.structure?.lastSwingLow;
   // Real ATR from 15m candles (fallback 1h), WP-1. Old code used 10% of the swing range.
@@ -1772,7 +1815,7 @@ if (primary.name === "Silver Bullet" && inSBWindow && entryType !== 'NO TRADE') 
 
 // ═══ LECTURE 2 OVERRIDE — Use post-hunt swing SL + IFVG CE entry ═══
 let lecture2Override = false;
-if (lecture2?.setupReady && primary.name === "London Hunt + IFVG") {
+if (lecture2?.setupReady && primary?.name === "London Hunt + IFVG") {
   lecture2Override = true;
   const l2Entry = lecture2.entryPrice; // IFVG CE or breaker entry
   const l2SL = lecture2.slReference;   // post-hunt swing + buffer
@@ -1812,7 +1855,7 @@ if (lecture2?.setupReady && primary.name === "London Hunt + IFVG") {
 
 // ═══ LECTURE 1 OVERRIDE — Use first-tagged PD array entry + post-08:30 range SL ═══
 let lecture1Override = false;
-if (!lecture2Override && lecture1?.setupReady && primary.name === "08:30 Liquidity Raid Model") {
+if (!lecture2Override && lecture1?.setupReady && primary?.name === "08:30 Liquidity Raid Model") {
   lecture1Override = true;
   const l1Entry = lecture1.entryPrice;
   const l1SL = lecture1.slReference;
@@ -1853,7 +1896,7 @@ if (!lecture2Override && lecture1?.setupReady && primary.name === "08:30 Liquidi
 
 // ═══ LECTURE 4 OVERRIDE — Use gap-based entry + post-MSS SL + gap TP ═══
 let lecture4Override = false;
-if (!lecture2Override && !lecture1Override && lecture4?.setupReady && primary.name === "NDOG/NWOG News Model") {
+if (!lecture2Override && !lecture1Override && lecture4?.setupReady && primary?.name === "NDOG/NWOG News Model") {
   lecture4Override = true;
   const l4Entry = lecture4.entryPrice;
   const l4SL = lecture4.slReference;
@@ -1951,7 +1994,7 @@ writeMd("05_entry_refinement", "entry_plan.md", `# Entry Plan — ${pairLabel} �
 - **Data age**: ${Math.round(dataAgeMin)}m since last candle
 - ${freshnessScore >= 5 ? '✅ Data is tradeable' : '⛔ DO NOT TRADE — refresh data first'}
 
-## Model: **${primary.name}** (${primary.score}/${primary.max})
+## Model: **${primary ? primary.name : 'NO TRADE — registry'}**${primary ? ` (sequence complete, tier ${primary.tier})` : ' (no single complete model)'}
 ${lecture2?.setupReady ? `
 ## 📐 Lecture 2 Override ACTIVE
 - **Entry Source**: ${lecture2.ifvg?.found ? `IFVG CE @ ${r5(lecture2.ifvg.ce)} (${lecture2.ifvg.type})` : `Breaker Block @ ${r5(lecture2.breaker?.entry || 0)}`}
@@ -2134,7 +2177,7 @@ writeMd("07_journal_review", "review.md", `# Session Review — ${pairLabel} —
 | | |
 |---|---|
 | **Direction** | ${entryType} |
-| **Model** | ${primary.name} (${primary.score}/${primary.max}) |
+| **Model** | ${primary ? `${primary.name} (sequence complete)` : 'NO TRADE — no single complete model'} |
 | **Bias** | 1W ${bias1w} → 1D ${bias1d} → 4H ${bias4h} |
 | **Session** | ${session} ${inKZ ? '(Killzone ✅)' : ''} |
 | **Entry** | ${r5(entryPrice)} | SL: ${r5(slPrice)} | TP1: ${r5(tp1Price)} |
@@ -2153,9 +2196,9 @@ writeMd("07_journal_review", "review.md", `# Session Review — ${pairLabel} —
 |----------|-------------|
 | HTF Bias | ${bias1w === bias1d ? 4 : 3} |
 | Levels | ${(hasOB || hasFVG) ? 4 : 2} |
-| Model | ${primary.score >= 5 ? 4 : 3} |
+| Model | ${primary ? 4 : 2} |
 | R:R | ${rr1 >= 1.0 ? 4 : 2} |
-| **Overall** | **${r2(((bias1w === bias1d ? 4 : 3) + (hasOB || hasFVG ? 4 : 2) + (primary.score >= 5 ? 4 : 3) + (rr1 >= 1.0 ? 4 : 2)) / 4)}/5** |
+| **Overall** | **${r2(((bias1w === bias1d ? 4 : 3) + (hasOB || hasFVG ? 4 : 2) + (primary ? 4 : 2) + (rr1 >= 1.0 ? 4 : 2)) / 4)}/5** |
 
 ## Confluence Check
 - DXY correlation: EURUSD + GBPUSD both ${r1d.structure.bias} → DXY should be ${r1d.structure.bias === 'bearish' ? 'bullish' : 'bearish'}
@@ -2187,9 +2230,9 @@ const unifiedLabel = isInvalid ? "🛑 INVALIDATED" : unifiedCoh >= 70 ? "✅ ST
 console.log(`Unified Coherence: ${unifiedCoh}/100 — ${unifiedLabel}${isInvalid ? ' (invalidation overrides all)' : ''}`);
 console.log(`Cycle: ${effectivePhase} | Coherence: ${coherenceScore || '?'}/100 | Invalidation: ${invalidationResult ? invalidationResult.overallStatus : '?'}`);
 console.log(`Bias: ${bias1d.toUpperCase()} | 1W→${bias1w} 1D→${bias1d} 4H→${bias4h}`);
-console.log(`Model: ${primary.name} (${r2(primary.score)}/${primary.max.toFixed(0)}) — ${models.length} models scored`);
-if (conflicts.length > 0) console.log(`⚠️  Conflicts: ${conflicts.length} mutual exclusivity issue(s) detected`);
-if (phaseConflicts.length > 0) console.log(`⚠️  Phase conflicts: ${phaseConflicts.length} model(s) inappropriate for ${effectivePhase} phase`);
+console.log(`Model: ${primary ? primary.name : 'NO TRADE'} (${registryDecision ? registryDecision.verdict : 'registry unavailable'}) — ${registryDecision ? registryDecision.count : 0} complete of ${models.length} registry models`);
+if (conflicts.length > 0) console.log(`⚠️  Legacy-shadow conflicts: ${conflicts.length} mutual exclusivity issue(s) detected (read-only)`);
+if (phaseConflicts.length > 0) console.log(`⚠️  Legacy-shadow phase conflicts: ${phaseConflicts.length} model(s) inappropriate for ${effectivePhase} phase (read-only)`);
 console.log(`Entry: ${entryType} @ ${r5(entryPrice)}`);
 console.log(`SL: ${r5(slPrice)} | TP1: ${r5(tp1Price)} | TP2: ${r5(tp2Price)}`);
 if (entryType === 'NO TRADE' && noDrawDir) {

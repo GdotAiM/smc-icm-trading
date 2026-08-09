@@ -1,6 +1,6 @@
 # Weekly Range Profile — GBPUSD — 2026-08-09
 
-## Day: Sunday 05:58:04 NY
+## Day: Sunday 06:40:44 NY
 
 ## HTF Context
 N/A
