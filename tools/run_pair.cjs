@@ -9,7 +9,6 @@ const DATE = now.toISOString().split("T")[0];
 const ny = require("./ny_time.cjs");
 const { calcATR, loadCandles } = require("./lib/metrics.cjs");
 const { resolveCyclePhase } = require("./lib/cycle_phase.cjs");
-const { logDisagreement } = require("./shadow/shadow_log.cjs");
 const NY_HOUR = ny.getNYHour();
 const NY_SESSION = ny.getNYSession();
 
@@ -210,7 +209,7 @@ try {
 console.log("\n═══ STAGE 00 — Macro Context ═══");
 let macroContext = null;
 try {
-  // Try to read pre-generated macro context (from run_all_stages or manual)
+  // Try to read pre-generated macro context (from session_start or manual)
   const cycleFile = path.join(ROOT, "stages", "00_macro_context", "output", "cycle_phase.md");
   const modelFilterFile = path.join(ROOT, "stages", "00_macro_context", "output", "model_filter.md");
   const dayFile = path.join(ROOT, "stages", "00_macro_context", "output", "day_context.md");
@@ -286,14 +285,6 @@ if (!r1d || !r4h || !r1h) { console.error("Missing engine reports"); process.exi
 const resolvedCycle = resolveCyclePhase({ "4H": reports["4H"], "1H": reports["1H"], "1D": reports["1D"] });
 let effectivePhase = resolvedCycle.phase;
 if (effectivePhase === "UNKNOWN") {
-  logDisagreement({
-    area: "cycle_phase",
-    oldValue: "(day-of-week fallback removed)",
-    newValue: "UNKNOWN",
-    detail: `Cycle phase UNKNOWN from structure — ${resolvedCycle.reason}. No fabricated phase.`,
-    pair: PAIR,
-    source: "run_pair.cjs",
-  });
   console.log(`  Cycle: UNKNOWN (structure ambiguous — no calendar fallback; confidence reduced)`);
 } else {
   console.log(`  Cycle: ${effectivePhase} (from ${resolvedCycle.source}, structure-based)`);
@@ -658,17 +649,9 @@ const _sInfo = NY_SESSION_MAP[NY_SESSION.name] || { label: NY_SESSION.name, char
 let session = _sInfo.label;
 let char = _sInfo.char;
 const inKZ = _sInfo.kz;
-// SAFETY NET (WP-2): the dead zone (05-08 NY) was previously mislabeled a killzone.
-// Record the corrected verdict so the behavior change is auditable in shadow mode.
+// WP-2: the dead zone (05-08 NY) is NOT a killzone (ICT London-close / NY-pre-open).
 if (NY_SESSION.name === "londonPM") {
-  logDisagreement({
-    area: "session_killzone",
-    oldValue: "killzone=true (legacy londonPM)",
-    newValue: "killzone=false (ICT dead zone)",
-    detail: "London PM 05-08 NY is the London-close / NY-pre-open dead zone, not a killzone (audit Gap 1.1).",
-    pair: PAIR,
-    source: "run_pair.cjs",
-  });
+  console.log(`  ℹ️  London PM dead zone (05-08 NY) — not a killzone (WP-2)`);
 }
 const gate = (bias1d !== "neutral" && inKZ) ? "ACTIVE" : inKZ ? "MONITOR" : "NO TRADE";
 
@@ -1335,16 +1318,6 @@ try {
     : null;
   const legacyPrimaryName = legacyPrimary.name;
   const agree = !!(registryDecision.primary && registryDecision.primary.name === legacyPrimaryName);
-  logDisagreement({
-    area: "wp8_model_registry",
-    oldValue: `${legacyPrimaryName} (legacy rank)`,
-    newValue: registryDecision.verdict === "SETUP COMPLETE"
-      ? `${registryDecision.primary.name} (registry complete)`
-      : `NO TRADE (${registryDecision.count} complete)`,
-    detail: `verdict=${registryDecision.verdict} complete=${registryDecision.count} registryPrimary=${registryDecision.primary ? registryDecision.primary.name : 'none'}`,
-    pair: PAIR,
-    source: "run_pair.cjs",
-  });
   console.log(`\n═══ WP-8 — Registry Evaluator (DECISION PATH) ═══`);
   console.log(`  Verdict: ${registryDecision.verdict} | Complete setups: ${registryDecision.count}`);
   console.log(`  Registry primary: ${registryDecision.primary ? `${registryDecision.primary.name} (tier ${registryDecision.primary.tier})` : 'NONE'}`);
@@ -1354,32 +1327,6 @@ try {
     const t = registryDecision.primary.gateTrace;
     console.log(`  Primary gates: window=${t.window.pass ? '✅' : '❌'} direction=${t.direction.pass ? '✅' : '❌'} purge=${t.purge.pass ? '✅' : '❌'} seq=${t.sequence.map(s => `${s.name}${s.pass ? '✓' : '✗'}`).join(' ')}`);
   }
-  const shadowDir = path.join(ROOT, "stages", "04_model_selection", "shadow");
-  fs.mkdirSync(shadowDir, { recursive: true });
-  const gateTable = registryDecision.results.map(r => {
-    const eligible = [r.gateTrace.window.pass, r.gateTrace.direction.pass, r.gateTrace.purge.pass].every(Boolean);
-    return `| ${r.name} | ${eligible ? '✅' : '❌'} | ${r.complete ? '✅ COMPLETE' : '—'} | ${r.gateTrace.sequence.map(s => `${s.name}:${s.pass ? '✓' : '✗'}`).join(', ')} |`;
-  }).join('\n');
-  fs.writeFileSync(path.join(shadowDir, `${PAIR.toLowerCase()}_registry.md`),
-`# WP-8 Registry — ${pairLabel} — ${DATE}
-
-The registry is now the DECISION path (flipped, plan D2). Legacy ranked scoring
-runs read-only as the disagreement shadow.
-
-| Model | Eligible | Verdict | Sequence gates |
-|-------|----------|---------|----------------|
-${gateTable}
-
-## Verdict: ${registryDecision.verdict}
-- **Complete setups**: ${registryDecision.count}
-- **Registry primary**: ${registryDecision.primary ? registryDecision.primary.name : 'NONE'}
-- **Legacy shadow primary**: ${legacyPrimaryName}
-- **Agreement**: ${agree ? '✅ AGREE' : '⚠️ DISAGREE (legacy is read-only)'}
-
-> Decision path = eligibility + sequence only. A model is COMPLETE or it is
-> nothing. No numeric rank survives.
-`, "utf8");
-  console.log(`  ✓ WP-8 registry report → stages/04_model_selection/shadow/${PAIR.toLowerCase()}_registry.md`);
 } catch(e) {
   console.log(`  ⚠️  WP-8 registry decision unavailable: ${e.message.slice(0, 80)}`);
   primary = null; // fail-closed: registry is the gate, so no registry → no trade

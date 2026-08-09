@@ -50,7 +50,7 @@ After it completes (~3-4 min), run: `node tools/run_pair.cjs <PAIR>` for each pa
 - **Chronos-2** (`python tools/chronos_forecast.py`): Time-series forecast
 - **Forecast** (`python tools/forecast.py`): Statistical log-linear + Monte Carlo
 - **Broker**: TV Paper Trading via CDP (see `tools/tv-mcp/market_order.cjs`)
-- **Stage runners**: `run_pair.cjs`, `run_all_stages.cjs`, `run_topdown.cjs`, `run_confluence.cjs`
+- **Stage runners**: `run_pair.cjs` (v2 registry decision path — the primary runner), `run_topdown.cjs`, `run_confluence.cjs`
 - **Analysis tools**: `macro_context.cjs`, `council.cjs`, `narrative.cjs`, `coherence_audit.cjs`, `fractal_mmxm.cjs`, `ipda.cjs`, `invalidation.cjs`, `tier1.cjs`, `tier2.cjs`, `po3_state_machine.cjs`, `micro_context.cjs`, `cross_system_guard.cjs`, `gap_closer.cjs`, `intraday_profile.cjs`, `po3_fractal.cjs`, `priority2.cjs`, `priority34.cjs`, `market_state.cjs`, `ny_time.cjs`, `archetype_engine.cjs`
 - **ICT Knowledge Tools**: `ict_rag.cjs` (semantic search), `ict_curriculum.cjs` (learning), `ict_decision_validator.cjs` (rule compliance), `ict_continuous_learn.cjs` (lessons → playbook), `ict_knowledge_ingest.cjs` (index builder), `trade_graph.cjs` (unified memory graph), `graph_rag.cjs` (concept + experience retrieval)
 - **Memory**: `memory_injector.cjs` (graph-powered trade context), `performance_ledger.cjs` (model/session stats)
