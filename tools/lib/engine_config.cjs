@@ -14,7 +14,9 @@ const CONFIG = {
     // The 1m "sentence" (inversion) detector fires at score >= minScore.
     // Both the detector (fractal_mmxm.cjs) and the gate (cross_system_guard.cjs)
     // MUST read this value, so they can never disagree (Remediation WP-13).
-    minScore: 5,
+    // Score components (max 8): CHoCH(2) + Sweep(2) + HTF-aligned(2) + FVG(1) + Displacement(1)
+    // 4 = minimum viable: 2 of 4 major criteria met — 1m is building structure.
+    minScore: 4,
     maxScore: 8,
   },
   killzones: {

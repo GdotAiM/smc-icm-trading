@@ -1,4 +1,4 @@
-# Inducement Check — GBPUSD — 2026-08-09 (15m confirm)
+# Inducement Check — GBPUSD — 2026-08-10 (15m confirm)
 
 ## Sweep Status
 No sweep analysis — insufficient data

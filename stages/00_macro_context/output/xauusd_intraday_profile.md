@@ -1,4 +1,4 @@
-# ICT Intraday Profile — XAUUSD — 2026-08-09
+# ICT Intraday Profile — XAUUSD — 2026-08-10
 
 ## Profile: **DEGRADED** (INVALID)
 

@@ -1,7 +1,7 @@
-# Po3 State Machine — EURUSD — 2026-08-07
+# Po3 State Machine — EURUSD — 2026-08-10
 
-## Current State: **DISTRIBUTION** (0.60 confidence)
-**BOS bullish — distribution beginning**
+## Current State: **DISTRIBUTION** (0.60 confidence, from 4H)
+BOS bullish — distribution beginning
 
 ## State Timeline
 
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for London PM (07:00 NY): DISTRIBUTION**
+**Expected phase for NY PM (14:00 NY): DISTRIBUTION**
 **Detected phase: DISTRIBUTION**
 ✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
 
@@ -27,7 +27,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 | TF | State | Confidence | Reason |
 |----|-------|------------|--------|
-| 1D | MANIPULATION | 0.85 | 4 sweep(s) + CHoCH — manipulation active |
+| 1D | DISTRIBUTION | 0.60 | BOS bearish — distribution beginning |
 | 4H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
 | 1H | MANIPULATION | 0.85 | 4 sweep(s) + CHoCH — manipulation active |
 
@@ -36,14 +36,14 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 **Distribution is the TREND phase. Enter on retracements to OBs/FVGs. Full size.**
 
 ## Daily Open Anchor
-Daily Open (Midnight NY): 1.14420
+Daily Open (Midnight NY): 1.13825
 
 ## Accumulation Range
-✅ Accumulation Range: 1.15177–1.15312 (0.12% — TIGHT). Institutions building positions.
+✅ Accumulation Range: 1.15410–1.15580 (0.15% — TIGHT). Institutions building positions.
 
 ## Manipulation Direction Check
-⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bullish bias — this is the trap. Do NOT enter with the sweep direction.
-- Daily Bias: BULLISH
+⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.
+- Daily Bias: BEARISH
 - Swept Above (BSL): 1 | Swept Below (SSL): 3
 - Is Manipulation: ⚠️ YES — do not trade with the sweep
 - With Bias: ✅ Yes — likely distribution

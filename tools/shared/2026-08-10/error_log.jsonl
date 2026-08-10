@@ -1,0 +1,20 @@
+{"source": "mt5_bridge", "ts": "2026-08-10T20:28:00.630940", "cmd": "market_order", "error": "'set' object has no attribute 'index'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:28:00.670464", "cmd": "modify_sl_tp", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:28:00.690256", "cmd": "partial_close", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:28:00.728221", "cmd": "market_order", "error": "'set' object has no attribute 'index'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:28:00.744983", "cmd": "close_position", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:28:31.763308", "cmd": "market_order", "error": "order rejected retcode=10027 (AutoTrading disabled by client) TradeRequest(action=1, magic=51231001, order=0, symbol='GBPUSD', volume=0.01, price=1.35081, stoplimit=0.0, sl=0.0, tp=0.0, deviation=20, type=0, type_filling=1, type_time=0, expiration=0, comment='SMC.GBPUSD.smoke-001', position=0, position_by=0)"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:28:31.794416", "cmd": "modify_sl_tp", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:28:31.809141", "cmd": "partial_close", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:28:31.841291", "cmd": "market_order", "error": "order rejected retcode=10027 (AutoTrading disabled by client) TradeRequest(action=1, magic=51231001, order=0, symbol='GBPUSD', volume=0.01, price=1.35081, stoplimit=0.0, sl=0.0, tp=0.0, deviation=20, type=0, type_filling=1, type_time=0, expiration=0, comment='SMC.GBPUSD.smoke-001', position=0, position_by=0)"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:28:31.856842", "cmd": "close_position", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:33:18.470097", "cmd": "market_order", "error": "order rejected retcode=10027 (AutoTrading disabled by client) TradeRequest(action=1, magic=51231001, order=0, symbol='GBPUSD', volume=0.01, price=1.35096, stoplimit=0.0, sl=0.0, tp=0.0, deviation=20, type=0, type_filling=1, type_time=0, expiration=0, comment='SMC.GBPUSD.smoke-001', position=0, position_by=0)"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:33:18.502492", "cmd": "modify_sl_tp", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:33:18.519807", "cmd": "partial_close", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:33:18.552289", "cmd": "market_order", "error": "order rejected retcode=10027 (AutoTrading disabled by client) TradeRequest(action=1, magic=51231001, order=0, symbol='GBPUSD', volume=0.01, price=1.35096, stoplimit=0.0, sl=0.0, tp=0.0, deviation=20, type=0, type_filling=1, type_time=0, expiration=0, comment='SMC.GBPUSD.smoke-001', position=0, position_by=0)"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:33:18.568530", "cmd": "close_position", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:38:12.119610", "cmd": "market_order", "error": "order rejected retcode=10027 (AutoTrading disabled by client) TradeRequest(action=1, magic=51231001, order=0, symbol='GBPUSD', volume=0.01, price=1.35084, stoplimit=0.0, sl=0.0, tp=0.0, deviation=20, type=0, type_filling=1, type_time=0, expiration=0, comment='SMC.GBPUSD.smoke-001', position=0, position_by=0)"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:38:12.154065", "cmd": "modify_sl_tp", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:38:12.171547", "cmd": "partial_close", "error": "'position'"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:38:12.204549", "cmd": "market_order", "error": "order rejected retcode=10027 (AutoTrading disabled by client) TradeRequest(action=1, magic=51231001, order=0, symbol='GBPUSD', volume=0.01, price=1.35084, stoplimit=0.0, sl=0.0, tp=0.0, deviation=20, type=0, type_filling=1, type_time=0, expiration=0, comment='SMC.GBPUSD.smoke-001', position=0, position_by=0)"}
+{"source": "mt5_bridge", "ts": "2026-08-10T20:38:12.221120", "cmd": "close_position", "error": "'position'"}

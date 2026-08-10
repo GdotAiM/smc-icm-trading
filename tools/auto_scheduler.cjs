@@ -15,6 +15,8 @@ const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
 const DATE = new Date().toISOString().split("T")[0];
 const EXECUTE = process.argv.includes("--execute");
 const ONCE = process.argv.includes("--once");
+const autoDecision = require("./auto_decision.cjs");
+const guard = require("./scheduler_guard.cjs");
 const PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100"];
 // Broker-prefixed TV symbols — plain names resolve to wrong instruments on TradingView
 const TV_SYMBOLS = {
@@ -113,22 +115,37 @@ function scanAll() {
     const output = run(`node "${path.join(ROOT, "tools", "run_pair.cjs")}" ${p}`, 90000);
     if (!output) continue;
 
-    const tradeable = !output.includes("Entry: NO TRADE") && output.includes("INDUCEMENT GATE: ✅");
-    const entry = (output.match(/Entry: (\w+) @ ([\d.]+)/) || [])[0] || "NO TRADE";
-    const model = (output.match(/Model: (.+?) \(([\d.]+)\//) || [])[1] || "?";
-    const rr = parseFloat((output.match(/R:R: ([\d.]+):1/) || [])[1] || "0");
-    const coh = parseInt((output.match(/Unified Coherence: (\d+)/) || [])[1] || "0");
-    const sl = (output.match(/\| SL \| ([\d.]+)/) || [])[1];
-    const tp = (output.match(/\| TP1 \| ([\d.]+)/) || [])[1];
-    const lectures = [];
-    if (output.includes("LECTURE 2 SETUP READY")) lectures.push("L2");
-    if (output.includes("LECTURE 1 SETUP READY")) lectures.push("L1");
-    if (output.includes("LECTURE 4 SETUP READY")) lectures.push("L4");
-
-    if (tradeable) {
-      setups.push({ pair, entry, model, rr, coh, sl, tp, lectures, output });
-      log("SETUP", `${pair}: ${entry} | ${model}${lectures.length ? ' ['+lectures.join(',')+']' : ''} | R:R ${rr}:1`);
+    // ═══ GATED DECISION — single choke point (same as the auto-traders) ═══
+    // The gate reads decision.json, enforces freshness/registry/entry/R:R/
+    // coherence/invalidation/guard/risk, and returns the OPERATIVE plan
+    // (primary or second-chance tightened levels). No regex parsing.
+    const gate = autoDecision.gate(p);
+    if (!gate.allowed) {
+      log("GATED_OUT", `${p}: ${gate.reasons.join("; ") || "gate rejected"}`);
+      continue;
     }
+
+    const op = gate.operative || {};
+    const d = gate.decision;
+    const side = op.side; // LONG / SHORT
+    const sl = op.sl;
+    const tp = op.tp1;
+    const entry = op.entry;
+    if (side !== "LONG" && side !== "SHORT") {
+      log("GATED_OUT", `${p}: no trade direction in operative plan`);
+      continue;
+    }
+
+    const qty = Math.round((d?.sizing?.qty || 0) * (op.sizeMultiplier || 1));
+    setups.push({
+      pair: p, side, entry, sl, tp, qty,
+      model: d?.registry?.primary || "?",
+      rr: gate.operativeRR || d?.rr?.rr1 || 0,
+      coh: d?.coherence?.unified || 0,
+      secondChance: !!gate.secondChance,
+      output,
+    });
+    log("SETUP", `${p}: ${side} @ ${entry} | ${setups[setups.length - 1].model}${setups[setups.length - 1].secondChance ? ' [SECOND CHANCE]' : ''} | R:R ${setups[setups.length - 1].rr.toFixed(1)}:1 | Qty:${qty}`);
   }
 
   // ═══ WATCHDOG: If scan took > 10 min, log warning ═══
@@ -146,7 +163,7 @@ function scanAll() {
   }
 
   const best = setups[0];
-  log("BEST", `${best.pair}: ${best.entry} | ${best.model} | R:R ${best.rr}:1 | Coh: ${best.coh}`);
+  log("BEST", `${best.pair}: ${best.side} @ ${best.entry} | ${best.model} | R:R ${best.rr}:1 | Coh: ${best.coh}`);
   lastScanResults = best;
   return best;
 }
@@ -154,59 +171,60 @@ function scanAll() {
 // ═══ EXECUTE TRADE ═══
 function executeTrade(setup) {
   if (!EXECUTE) {
-    log("EXEC_SKIP", `${setup.pair} ${setup.entry} — --execute not set (monitor mode)`);
+    log("EXEC_SKIP", `${setup.pair} ${setup.side} @ ${setup.entry} — --execute not set (monitor mode)`);
     return;
   }
 
-  // ═══ SAFETY: Validate SL/TP are in reasonable range for this pair ═══
-  const guard = PRICE_GUARDS[setup.pair];
   const slNum = parseFloat(setup.sl);
   const tpNum = parseFloat(setup.tp);
-  if (guard) {
-    if (slNum < guard.min || slNum > guard.max) {
-      log("SAFETY_BLOCK", `${setup.pair} SL=${slNum} outside ${guard.label} range [${guard.min}-${guard.max}] — REJECTED (probable data contamination)`);
+  const entryNum = parseFloat(setup.entry);
+
+  // ═══ SAFETY: Validate SL/TP are in reasonable range for this pair ═══
+  const guardRange = PRICE_GUARDS[setup.pair];
+  if (guardRange) {
+    if (slNum < guardRange.min || slNum > guardRange.max) {
+      log("SAFETY_BLOCK", `${setup.pair} SL=${slNum} outside ${guardRange.label} range [${guardRange.min}-${guardRange.max}] — REJECTED (probable data contamination)`);
       return;
     }
-    if (tpNum < guard.min || tpNum > guard.max) {
-      log("SAFETY_BLOCK", `${setup.pair} TP=${tpNum} outside ${guard.label} range [${guard.min}-${guard.max}] — REJECTED (probable data contamination)`);
+    if (tpNum < guardRange.min || tpNum > guardRange.max) {
+      log("SAFETY_BLOCK", `${setup.pair} TP=${tpNum} outside ${guardRange.label} range [${guardRange.min}-${guardRange.max}] — REJECTED (probable data contamination)`);
       return;
     }
     // SL and TP must be on opposite sides of entry
-    const entryNum = parseFloat(setup.entry.split('@')[1] || '0');
-    if (setup.entry.startsWith("BUY")) {
-      if (slNum >= entryNum) { log("SAFETY_BLOCK", `${setup.pair} BUY but SL ${slNum} >= entry ${entryNum} — REJECTED`); return; }
-      if (tpNum <= entryNum) { log("SAFETY_BLOCK", `${setup.pair} BUY but TP ${tpNum} <= entry ${entryNum} — REJECTED`); return; }
-    } else if (setup.entry.startsWith("SELL")) {
-      if (slNum <= entryNum) { log("SAFETY_BLOCK", `${setup.pair} SELL but SL ${slNum} <= entry ${entryNum} — REJECTED`); return; }
-      if (tpNum >= entryNum) { log("SAFETY_BLOCK", `${setup.pair} SELL but TP ${tpNum} >= entry ${entryNum} — REJECTED`); return; }
+    if (setup.side === "LONG") {
+      if (slNum >= entryNum) { log("SAFETY_BLOCK", `${setup.pair} LONG but SL ${slNum} >= entry ${entryNum} — REJECTED`); return; }
+      if (tpNum <= entryNum) { log("SAFETY_BLOCK", `${setup.pair} LONG but TP ${tpNum} <= entry ${entryNum} — REJECTED`); return; }
+    } else if (setup.side === "SHORT") {
+      if (slNum <= entryNum) { log("SAFETY_BLOCK", `${setup.pair} SHORT but SL ${slNum} <= entry ${entryNum} — REJECTED`); return; }
+      if (tpNum >= entryNum) { log("SAFETY_BLOCK", `${setup.pair} SHORT but TP ${tpNum} >= entry ${entryNum} — REJECTED`); return; }
     }
   }
 
   // ═══ SAFETY: Don't execute if SL or TP is zero ═══
-  if (slNum === 0 || tpNum === 0 || isNaN(slNum) || isNaN(tpNum)) {
-    log("SAFETY_BLOCK", `${setup.pair} Invalid SL/TP — SL:${setup.sl} TP:${setup.tp} — REJECTED`);
+  if (slNum === 0 || tpNum === 0 || isNaN(slNum) || isNaN(tpNum) || entryNum === 0 || isNaN(entryNum)) {
+    log("SAFETY_BLOCK", `${setup.pair} Invalid levels — entry:${setup.entry} SL:${setup.sl} TP:${setup.tp} — REJECTED`);
     return;
   }
 
   // Use broker-prefixed symbol for TV
   const tvSymbol = TV_SYMBOLS[setup.pair] || setup.pair;
-  const direction = setup.entry.split(" @ ")[0];
-  const qty = setup.pair === "NAS100" || setup.pair === "XAUUSD" ? 1 : 5000;
+  const direction = setup.side === "LONG" ? "BUY" : "SELL";
+  const qty = setup.qty || (setup.pair === "NAS100" || setup.pair === "XAUUSD" ? 1 : 5000);
   const cmd = `node "${path.join(ROOT, "tools", "tv-mcp", "market_order.cjs")}" ${tvSymbol} ${direction} ${setup.sl} ${setup.tp} ${qty}`;
-  log("EXECUTING", `${setup.pair} (TV:${tvSymbol}) ${direction} Qty:${qty} SL:${setup.sl} TP:${setup.tp}`);
+  log("EXECUTING", `${setup.pair} (TV:${tvSymbol}) ${direction} Qty:${qty} SL:${setup.sl} TP:${setup.tp}${setup.secondChance ? ' [SECOND CHANCE 0.5x]' : ''}`);
 
   const result = run(cmd, 30000);
   if (result && (result.includes("Verified") || result.includes("filled"))) {
     log("TRADE_EXECUTED", `${setup.pair} ${direction} ${qty} — VERIFIED ✅`);
     // Track this position for pyramid monitoring
-    activePositions.push({ pair: setup.pair, direction, entry: parseFloat(setup.entry.split('@')[1] || '0'), sl: parseFloat(setup.sl), tp: parseFloat(setup.tp), qty, pyramidAdded: [] });
+    activePositions.push({ pair: setup.pair, direction, entry: entryNum, sl: slNum, tp: tpNum, qty, pyramidAdded: [] });
     saveState();
 
     // ═══ AUTO-JOURNAL ═══
     const journalFile = path.join(ROOT, "shared", DATE, "decision_journal.md");
     const ts = nyTime();
     const reason = `${setup.model} | R:R ${setup.rr}:1 | Coh: ${setup.coh}/100`;
-    const entry = `| ${ts} NY | TRADE_EXECUTED | ${setup.pair} ${direction} ${qty} @ ${setup.entry} | ${reason} |`;
+    const entry = `| ${ts} NY | TRADE_EXECUTED | ${setup.pair} ${direction} ${qty} @ ${entryNum} | ${reason} |`;
     try {
       if (!fs.existsSync(journalFile)) {
         fs.writeFileSync(journalFile, `# Decision Journal — ${DATE}\n\n| Time (NY) | Event | Detail | Reasoning |\n|-----------|-------|--------|----------|\n`);
@@ -287,6 +305,9 @@ async function runCycle() {
   const now = nyMins();
   const nyH = nyHour();
   const dayOfWeek = new Date().getDay();
+
+  // Heartbeat — tells phase-based drivers (and humans) the scheduler owns execution.
+  guard.markActive(EXECUTE ? "EXECUTE" : "MONITOR", { pairs: PAIRS.length });
 
   if (dayOfWeek === 0 || dayOfWeek === 6) {
     if (!ONCE) setTimeout(runCycle, 1800000); // Weekend: check every 30 min

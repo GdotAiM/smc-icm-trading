@@ -1,7 +1,7 @@
-# Po3 State Machine — XAUUSD — 2026-08-07
+# Po3 State Machine — XAUUSD — 2026-08-10
 
-## Current State: **DISTRIBUTION** (0.60 confidence)
-**BOS bullish — distribution beginning**
+## Current State: **DISTRIBUTION** (0.60 confidence, from 4H)
+BOS bullish — distribution beginning
 
 ## State Timeline
 
@@ -19,7 +19,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for London PM (03:00 NY): DISTRIBUTION**
+**Expected phase for NY PM (14:00 NY): DISTRIBUTION**
 **Detected phase: DISTRIBUTION**
 ✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
 
@@ -27,9 +27,9 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 | TF | State | Confidence | Reason |
 |----|-------|------------|--------|
-| 1D | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
+| 1D | MANIPULATION | 0.85 | 2 sweep(s) + CHoCH — manipulation active |
 | 4H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
-| 1H | MANIPULATION | 0.85 | 1 sweep(s) + CHoCH — manipulation active |
+| 1H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
 
 ## Entry Rules for DISTRIBUTION
 
@@ -39,7 +39,7 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 Daily Open (Midnight NY): 3991.41500
 
 ## Accumulation Range
-Range: 4229.87500–4291.52000 (1.45% — WIDE). Not tight accumulation.
+Range: 4316.67500–4364.80000 (1.11% — WIDE). Not tight accumulation.
 
 ## Manipulation Direction Check
 ✅ Sweep WITH daily bullish bias — likely distribution, not manipulation.

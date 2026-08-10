@@ -1,6 +1,6 @@
-# Coherence Audit — DXY — 2026-08-07
+# Coherence Audit — DXY — 2026-08-10
 
-## Overall Coherence: 50/100 — D — POOR coherence
+## Overall Coherence: 40/100 — D — POOR coherence
 
 ---
 
@@ -11,25 +11,25 @@
 | STRUCTURE | BEARISH (CHoCH) | BEARISH | — |
 | IPDA RANGE | DISCOUNT → BULLISH bias | BULLISH | — |
 | CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
-| LIQUIDITY | UP (BSL magnet) | 4 swept | BULLISH | — |
+| LIQUIDITY | UP (BSL magnet) | 3 swept | BULLISH | — |
 
 **⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bearish). The IPDA says bullish while structure says bearish. This is a concern — lenses should align in UNKNOWN phase.**
 
 ---
 
-## 2. Temporal Coherence (⚠️ 2/4 LTFs aligned)
+## 2. Temporal Coherence (✅ 3/4 LTFs aligned)
 
 | TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
-| 1W | **BEARISH** | CHoCH | ✅ aligned |
+| 1W | **BULLISH** | CHoCH | ⚠️ opposing |
 | 1D | **BEARISH** | CHoCH | ✅ aligned |
 | 4H | **BEARISH** | CHoCH | ✅ aligned |
-| 1H | **BULLISH** | CHoCH | ⚠️ opposing |
-| 15m | **BULLISH** | BOS | ⚠️ opposing |
+| 1H | **BEARISH** | CHoCH | ✅ aligned |
+| 15m | **BEARISH** | CHoCH | ✅ aligned |
 | 5m | **BEARISH** | BOS | ✅ aligned |
-| 1m | **BEARISH** | CHoCH | ✅ aligned |
+| 1m | **BULLISH** | CHoCH | ⚠️ opposing |
 
-**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
+**✅ TEMPORAL COHERENCE — 3/4 LTFs aligned with HTF BEARISH. 1 opposing (micro pullback — normal).**
 
 ---
 
@@ -42,8 +42,10 @@
 ## 4. Self-Contradiction Check
 
 - **[WARNING]** STRUCTURE vs PD ARRAY: Structure is BEARISH but price is in DISCOUNT (buy zone). This is a counter-trend sell within the buy zone. The move may exhaust soon.
+- **[CRITICAL]** HTF-LTF DIVERGENCE: 3 consecutive timeframes oppose HTF (bullish). Possible macro reversal.
+- **[INFO]** WEEKLY vs DAILY: 1W is BULLISH but 1D is BEARISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
 
-**⚠️ 1 contradiction(s) — mostly expected in current cycle phase.**
+**❌ 3 contradiction(s) including CRITICAL issues. The system is fighting itself.**
 
 ---
 
@@ -52,10 +54,10 @@
 | Dimension | Score | Status |
 |-----------|-------|--------|
 | Lens Coherence | 15/25 | ⚠️ |
-| Temporal Coherence | 15/25 | ⚠️ |
+| Temporal Coherence | 25/25 | ✅ |
 | Archetype Coherence | 5/25 | ⚠️ |
-| No Contradictions | 25/25 | ✅ |
-| **TOTAL** | **50/100** | **D — POOR coherence** |
+| No Contradictions | 5/25 | ❌ |
+| **TOTAL** | **40/100** | **D — POOR coherence** |
 
 ---
 

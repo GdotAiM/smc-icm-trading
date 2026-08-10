@@ -87,16 +87,36 @@ function markPWH_PWL(weeklyCandles) {
 // ═══ STEP 4: Relative Equal Highs & Lows ═══
 // (Imported concept — delegated to lecture2 module for actual detection)
 // Here we categorize them as internal liquidity within the daily range
-function classifyRelativeEquals(relHighs, relLows, pdhPdl, currentPrice) {
+function classifyRelativeEquals(relHighs, relLows, pdhPdl, currentPrice, opts = {}) {
+  const { candles, atr } = opts;
+  const { gradeEqualLevelSmoothness } = require("./lib/liquidity.cjs");
+
   const insideRangeHighs = (relHighs || []).filter(h => pdhPdl ? h.price <= pdhPdl.pdh : true);
   const insideRangeLows = (relLows || []).filter(l => pdhPdl ? l.price >= pdhPdl.pdl : true);
 
+  // Smoothness grading: when candle + ATR context is available, each level is
+  // graded for energy / bump-without-acceptance (ICT "left smooth = magnet").
+  const enrich = levels => levels.map(l => {
+    if (!candles || !atr) return l;
+    const g = gradeEqualLevelSmoothness(l, candles, atr);
+    return g ? { ...l, smoothness: g } : l;
+  });
+  const highs = enrich(insideRangeHighs);
+  const lows = enrich(insideRangeLows);
+
+  const magnets = highs.filter(h => h.smoothness?.magnet).concat(lows.filter(l => l.smoothness?.magnet));
+  const smoothCount = highs.filter(h => h.smoothness?.magnet || h.smoothness?.smooth).length
+    + lows.filter(l => l.smoothness?.magnet || l.smoothness?.smooth).length;
+
   return {
-    highs: insideRangeHighs,
-    lows: insideRangeLows,
-    highCount: insideRangeHighs.length,
-    lowCount: insideRangeLows.length,
-    detail: `${insideRangeHighs.length} equal highs, ${insideRangeLows.length} equal lows inside daily range`,
+    highs,
+    lows,
+    highCount: highs.length,
+    lowCount: lows.length,
+    magnets,
+    magnetCount: magnets.length,
+    smoothCount,
+    detail: `${highs.length} equal highs, ${lows.length} equal lows inside daily range${magnets.length ? ` — ${magnets.length} SMOOTH MAGNET${magnets.length > 1 ? 'S' : ''} (bumped w/o acceptance = unfinished business)` : ''}`,
   };
 }
 
@@ -347,10 +367,10 @@ function analyzeLiquidity(pair) {
   if (relSource) {
     const atr = calcATR(relSource, 14) || 1;
     const rel = findRelativeEqualLevels(relSource, atr);
-    relHighs = (rel.highs || []).filter(h => !h.swept).map(h => ({ price: h.price, detail: h.detail }));
-    relLows = (rel.lows || []).filter(l => !l.swept).map(l => ({ price: l.price, detail: l.detail }));
+    relHighs = (rel.highs || []).filter(h => !h.swept);
+    relLows = (rel.lows || []).filter(l => !l.swept);
   }
-  const relEquals = classifyRelativeEquals(relHighs, relLows, pdhPdl, currentPrice);
+  const relEquals = classifyRelativeEquals(relHighs, relLows, pdhPdl, currentPrice, { candles: relSource, atr: calcATR(relSource, 14) || 1 });
 
   // Step 5: Next draw-on-liquidity
   const drawTargets = identifyDrawTargets(htfBias, pdhPdl, pwhPwl, relEquals, currentPrice);
@@ -427,6 +447,14 @@ if (result.pwhPwl) {
 
 md += `## Step 4: Relative Equal Levels\n`;
 md += `- ${result.relEquals.detail}\n\n`;
+
+if (result.relEquals.magnetCount > 0) {
+  md += `### Smooth Magnets (left smooth = unfinished business)\n`;
+  for (const m of result.relEquals.magnets) {
+    md += `- ${m.smoothness.detail}\n`;
+  }
+  md += `\n`;
+}
 
 md += `## Step 5: Next Draw-on-Liquidity\n`;
 md += `| Priority | Level | Price | Type | Label |\n`;

@@ -1,4 +1,4 @@
-# PD Array Matrix — NAS100 — 2026-08-07
+# PD Array Matrix — NAS100 — 2026-08-10
 
 ## 20-Day Look-Back Range
 20-Day Range: 26980.60000–29951.20000 (2970.60000) | EQ 28465.90000 | Q25 27723.25000 | Q75 29208.55000
@@ -9,8 +9,8 @@
 | Quadrant | Arrays | Stacks | Confluence |
 |----------|--------|--------|------------|
 | LOWER (Discount) | 0 | 0 | **LOW** |
-| MID-LOW | 0 | 0 | **LOW** |
-| MID-HIGH | 5 | 1 | **HIGH** |
-| UPPER (Premium) | 5 | 1 | **HIGH** |
+| MID-LOW | 1 | 0 | **MODERATE** |
+| MID-HIGH | 4 | 1 | **HIGH** |
+| UPPER (Premium) | 7 | 2 | **HIGH** |
 
 **Target**: UPPER (Premium) — HIGH confluence

@@ -1,29 +1,33 @@
-# IRL / ERL Analysis — XAUUSD — 2026-08-07
+# IRL / ERL Analysis — XAUUSD — 2026-08-10
 
-## Current Price: 4337.53000
+## Current Price: 4360.14000
 
 ## Dealing Range (1D)
-- **Range**: 3996.05500 — 4120.49500 (124.44000)
-- **Midpoint (Equilibrium)**: 4058.27500
-- **Validation**: ⚠️ PARTIAL — high swept, low NOT swept
-- **Premium Zone**: 4120.49500 — 4058.27500
-- **Discount Zone**: 4058.27500 — 3996.05500
+- **Range**: 3959.80000 — 4371.84000 (412.04000)
+- **Midpoint (Equilibrium)**: 4165.82000
+- **Validation**: Sweep-to-sweep — high swept @ 4371.84000, low swept @ 3959.80000
+- **Premium Zone**: 4371.84000 — 4165.82000
+- **Discount Zone**: 4165.82000 — 3959.80000
 
-## IRL — Internal Range Liquidity (1 FVGs)
+## IRL — Internal Range Liquidity (5 objects: FVGs + equal highs/lows)
 | Status | Count |
 |--------|-------|
-| Unfilled (<30%) | 1 |
-| Partial (30-70%) | 0 |
+| Unfilled (<30%) | 4 |
+| Partial (30-70%) | 1 |
 | Filled (>70%) | 0 |
 
 | TF | Type | Price (CE) | Fill % | Distance |
 |-----|------|------------|--------|----------|
-| 15m | bullish | 4116.65500 | 0.00% | 5.09% |
+| 15m | bullish | 4337.92750 | 15.23% | 0.51% |
+| 5m | bullish | 4298.48500 | 2.44% | 1.41% |
+| 15m | bullish | 4238.65250 | 28.57% | 2.79% |
+| 15m | bullish | 4216.76250 | 16.01% | 3.29% |
+| 15m | bullish | 4149.61750 | 45.53% | 4.83% |
 
 ## ERL — External Range Liquidity
-- **Dominant**: BUY-SIDE (above)
+- **Dominant**: BALANCED
 - **Larger Pool**: ABOVE
-- **Buy-Side (above range)**: 1 pools | 0 equal-high clusters
+- **Buy-Side (above range)**: 0 pools | 0 equal-high clusters
 - **Sell-Side (below range)**: 0 pools | 0 equal-low clusters
 
 ## Delivery Cycle
@@ -33,8 +37,8 @@
 - **ERL Sweeps**: 0 above, 0 below
 
 ## IRL/ERL Bias
-- **Bias**: **BEARISH** (confidence: 0.50)
-- **Reasoning**: Price outside above dealing range. Expected to re-enter range toward IRL.
+- **Bias**: **NEUTRAL** (confidence: 0.00)
+- **Reasoning**: 
 
 ## Entry Guidance
 - **WAIT** (neutral) — Unclear cycle position — wait for ERL raid or IRL fill to establish direction.

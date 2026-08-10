@@ -1,4 +1,4 @@
-# Fractal MMXM Coherence — GBPUSD — 2026-08-07
+# Fractal MMXM Coherence — GBPUSD — 2026-08-10
 
 ## HTF Direction: **BULLISH**
 
@@ -6,38 +6,38 @@
 
 | TF | Step | Label | Confidence | Narrative |
 |----|------|-------|------------|-----------|
-| 1W | **3** | DISTRIBUTION | 0.80 | BOS bullish confirmed. 1 FVG(s). Displacement: weak (0.08x). Trend is distributing. |
-| 1D | **3** | DISTRIBUTION | 0.60 | BOS bearish detected. Distribution beginning. Waiting for displacement confirmation. |
-| 4H | **3** | DISTRIBUTION | 0.80 | BOS bullish confirmed. 2 FVG(s). Displacement: weak (0.10x). Trend is distributing. |
-| 1H | **3** | DISTRIBUTION | 0.80 | BOS bullish confirmed. 2 FVG(s). Displacement: weak (0.41x). Trend is distributing. |
-| 15m | **4** | RE-ACCUMULATION | 0.55 | Price near PD Array — potential re-accumulation. Watch for base to form. |
-| 5m | **2** | MANIPULATION | 0.85 | Sweep (SSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
-| 1m | **3** | DISTRIBUTION | 0.80 | BOS bullish confirmed. 1 FVG(s). Displacement: weak (0.41x). Trend is distributing. |
+| 1W | **4** | RE-ACCUMULATION | 0.55 | Price near PD Array — potential re-accumulation. Watch for base to form. |
+| 1D | **2** | MANIPULATION | 0.85 | Sweep (SSL,BSL,SSL,SSL,BSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
+| 4H | **3** | DISTRIBUTION | 0.80 | BOS bullish confirmed. 2 FVG(s). Displacement: weak (0.19x). Trend is distributing. |
+| 1H | **2** | MANIPULATION | 0.85 | Sweep (SSL,SSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
+| 15m | **3** | DISTRIBUTION | 0.80 | BOS bullish confirmed. 1 FVG(s). Displacement: weak (0.18x). Trend is distributing. |
+| 5m | **2** | MANIPULATION | 0.85 | Sweep (BSL) + CHoCH reversal. Classic manipulation. The trap is set — wait for reversal to confirm. |
+| 1m | **4** | RE-ACCUMULATION | 0.55 | Price near PD Array — potential re-accumulation. Watch for base to form. |
 
 ## Fractal Nesting Check (6 pairs)
 
-- ✅ 1W Step 3 → 1D Step 3 — 1W Step 3 → 1D Step 3 — correctly nested
-- ✅ 1D Step 3 → 4H Step 3 — 1D Step 3 → 4H Step 3 — correctly nested
-- ✅ 4H Step 3 → 1H Step 3 — 4H Step 3 → 1H Step 3 — correctly nested
-- ✅ 1H Step 3 → 15m Step 4 — 1H Step 3 → 15m Step 4 — correctly nested
-- ❌ 15m Step 4 → 5m Step 2 — 15m Step 4 → 5m Step 2 — LTF behind HTF. Nesting broken.
-- ✅ 5m Step 2 → 1m Step 3 — 5m Step 2 → 1m Step 3 — correctly nested
+- ❌ 1W Step 4 → 1D Step 2 — 1W Step 4 → 1D Step 2 — LTF behind HTF. Nesting broken.
+- ✅ 1D Step 2 → 4H Step 3 — 1D Step 2 → 4H Step 3 — correctly nested
+- ❌ 4H Step 3 → 1H Step 2 — 4H Step 3 → 1H Step 2 — LTF behind HTF. Nesting broken.
+- ✅ 1H Step 2 → 15m Step 3 — 1H Step 2 → 15m Step 3 — correctly nested
+- ❌ 15m Step 3 → 5m Step 2 — 15m Step 3 → 5m Step 2 — LTF behind HTF. Nesting broken.
+- ✅ 5m Step 2 → 1m Step 4 — 5m Step 2 → 1m Step 4 — correctly nested
 
-**Nesting Score**: 5/6 — ⚠️ 1 nesting break(s). Minor misalignment — the fractal is mostly intact.
+**Nesting Score**: 3/6 — ❌ 3 nesting breaks. The MMXM is NOT nesting correctly across timeframes. Wait for alignment.
 
 ## 1m Inversion Detection
 
-**Score**: 3/8
+**Score**: 0/8
 
 | Signal | Status |
 |--------|--------|
 | CHoCH on 1m | ✗ |
 | Recent sweep on 1m | ✗ |
-| 1m bias aligned with HTF (bullish) | ✅ |
-| Entry FVG on 1m | ✅ |
+| 1m bias aligned with HTF (bullish) | ✗ |
+| Entry FVG on 1m | ✗ |
 | Strong displacement | ✗ |
 
-**⏳ 1m Inversion NOT YET — 3/8 signals. Wait for CHoCH + sweep on 1m.**
+**⏳ 1m Inversion NOT YET — 0/8 signals. Wait for CHoCH + sweep on 1m.**
 
 ## 5m CISD (Change in State of Delivery)
 
@@ -55,14 +55,14 @@
 | 2 | Liquidity Sweep | ✅ | Sweep detected on 1H |
 | 3 | MSS / CHoCH | ✅ | 5m event: CHoCH |
 | 4 | CISD (Engulfing) | ✗ | Insufficient candle data |
-| 5 | FVG Creation | ✅ | 5m: 0 FVGs, 1m: 1 FVGs |
+| 5 | FVG Creation | ✗ | 5m: 0 FVGs, 1m: 0 FVGs |
 | 6 | HTF PD Array | ✅ | HTF at Step 3 — PD Array context active |
 
-**Passed**: 4/6
+**Passed**: 3/6
 
-## Fractal Coherence Score: **11/20**
+## Fractal Coherence Score: **6/20**
 
-**⏳ MODERATE fractal coherence — some nesting gaps. Wait for tighter alignment.**
+**⏳ LOW fractal coherence — nesting is loose. Let the cycles develop further.**
 
 ---
 

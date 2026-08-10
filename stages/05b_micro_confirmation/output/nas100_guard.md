@@ -1,24 +1,22 @@
-# Cross-System Guard Report — NAS100 — 2026-08-07
-## NY Time: 02:00 | Session: London Killzone | Judas: ✅ London Open Judas Swing | SB: Inactive
+# Cross-System Guard Report — NAS100 — 2026-08-10
+## NY Time: 14:00 | Session: NY PM Session | Judas: Inactive | SB: ✅ NY PM Silver Bullet
 
-## Verdict: **❌ DO NOT ENTER**
+## Verdict: **⚠️ ENTER WITH CAUTION**
 
-### ❌ BLOCKED (1)
-- **JUDAS_SWING**: ⚠️ JUDAS SWING ACTIVE (London Open Judas Swing). The first move of this session is OFTEN FAKE. The current 1m signal may be the trap. Wait for: (1) reversal confirmation, or (2) Silver Bullet window at next SB window. → WAIT — Do not enter during Judas Swing unless a clear reversal has already occurred.
 
 ### ⚠️ WARNINGS (2)
 - **IPDA_ZONE**: ⚠️ IPDA ZONE CONFLICT: PREMIUM across all TFs. You are BUYING into the SELL ZONE. This is a counter-trend trade within the IPDA context. → TRADE WITH CAUTION — Buying into premium zone.
-- **FRIDAY**: 📅 FRIDAY — No swing trades. Scalps only (Silver Bullet, lecture setups). Close all by NY close. Size ×0.5. → SCALPS ONLY — Silver Bullet + time-based lecture setups allowed at 50% size. Close all by 16:00 NY.
+- **INVERSION_MARGINAL**: ⚠️ 1m Inversion BORDERLINE (score 4/8). Minimum criteria met but not strong. Reduce size, require tighter confirmation on entry. → REDUCE SIZE 30% — Borderline inversion. Wait for candle close confirmation.
 
 ## All Guards
 | Guard | Severity | Blocked | Narrative |
 |-------|----------|---------|-----------|
-| JUDAS_SWING | HIGH | ❌ | ⚠️ JUDAS SWING ACTIVE (London Open Judas Swing). The first move of this session ... |
-| SILVER_BULLET | INFO | ✅ | Killzone active but Silver Bullet window not yet. SB window at 03:00 London SB.... |
+| SILVER_BULLET | INFO | ✅ | ✅ SILVER BULLET ACTIVE (NY PM Silver Bullet). This is the highest-probability 1-... |
 | IPDA_ZONE | WARNING | ✅ | ⚠️ IPDA ZONE CONFLICT: PREMIUM across all TFs. You are BUYING into the SELL ZONE... |
-| FRIDAY | HIGH | ✅ | 📅 FRIDAY — No swing trades. Scalps only (Silver Bullet, lecture setups). Close ... |
+| INVERSION_MARGINAL | WARNING | ✅ | ⚠️ 1m Inversion BORDERLINE (score 4/8). Minimum criteria met but not strong. Red... |
+| MONDAY | INFO | ✅ | 📅 MONDAY — Weekly range not yet established. Reduce size, avoid early London en... |
 
 ## Adjustments
-- Size Multiplier: ×0.38
-- Confidence Adjustment: -11
-- Entry Allowed: ❌
+- Size Multiplier: ×0.39
+- Confidence Adjustment: -1
+- Entry Allowed: ✅

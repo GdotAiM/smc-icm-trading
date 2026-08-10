@@ -1,35 +1,35 @@
-# Coherence Audit — EURUSD — 2026-08-07
+# Coherence Audit — EURUSD — 2026-08-10
 
-## Overall Coherence: 60/100 — C — ADEQUATE coherence
+## Overall Coherence: 70/100 — C — ADEQUATE coherence
 
 ---
 
-## 1. Lens Coherence (⚠️ 1/4 agree)
+## 1. Lens Coherence (⚠️ 2/4 agree)
 
 | Lens | Reading | Direction | vs Structure |
 |------|---------|-----------|-------------|
 | STRUCTURE | BULLISH (BOS) | BULLISH | — |
-| IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
+| IPDA RANGE | DISCOUNT → BULLISH bias | BULLISH | — |
 | CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
 | LIQUIDITY | DOWN (SSL magnet) | 3 swept | BEARISH | — |
 
-**⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in UNKNOWN phase.**
+**⚠️ LENS DIVERGENCE — 1 lens(es) disagree with structure (bullish). The IPDA says bullish while structure says bullish. This is a concern — lenses should align in UNKNOWN phase.**
 
 ---
 
 ## 2. Temporal Coherence (✅ 4/4 LTFs aligned)
 
-| TF | Bias | Event | vs HTF (BULLISH) |
+| TF | Bias | Event | vs HTF (BEARISH) |
 |----|------|-------|------------------|
-| 1W | **BULLISH** | BOS | ✅ aligned |
-| 1D | **BULLISH** | CHoCH | ✅ aligned |
-| 4H | **BULLISH** | BOS | ✅ aligned |
-| 1H | **BULLISH** | CHoCH | ✅ aligned |
-| 15m | **BULLISH** | BOS | ✅ aligned |
-| 5m | **BULLISH** | CHoCH | ✅ aligned |
-| 1m | **BULLISH** | BOS | ✅ aligned |
+| 1W | **BEARISH** | CHoCH | ✅ aligned |
+| 1D | **BEARISH** | BOS | ✅ aligned |
+| 4H | **BULLISH** | BOS | ⚠️ opposing |
+| 1H | **BEARISH** | CHoCH | ✅ aligned |
+| 15m | **BEARISH** | BOS | ✅ aligned |
+| 5m | **BEARISH** | CHoCH | ✅ aligned |
+| 1m | **BEARISH** | BOS | ✅ aligned |
 
-**✅ TEMPORAL COHERENCE — 4/4 LTFs aligned with HTF BULLISH. Perfect alignment.**
+**✅ TEMPORAL COHERENCE — 4/4 LTFs aligned with HTF BEARISH. Perfect alignment.**
 
 ---
 
@@ -55,7 +55,7 @@
 | Temporal Coherence | 25/25 | ✅ |
 | Archetype Coherence | 5/25 | ⚠️ |
 | No Contradictions | 25/25 | ✅ |
-| **TOTAL** | **60/100** | **C — ADEQUATE coherence** |
+| **TOTAL** | **70/100** | **C — ADEQUATE coherence** |
 
 ---
 

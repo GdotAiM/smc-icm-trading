@@ -18,6 +18,14 @@ const RISK_PER_TRADE = 0.5;   // Friday — half risk
 const MIN_COHERENCE = 7;
 const MIN_RR = 1.0;
 
+// Single-driver lock — if auto_scheduler.cjs is running (heartbeat fresh),
+// it owns execution; this phase driver steps aside to avoid double-trading.
+const guard = require("../scheduler_guard.cjs");
+if (guard.activeMode(10) === "EXECUTE") {
+  console.log("AUTO_SCHEDULER active — ny_am_autonomous standing aside (single-driver lock).");
+  process.exit(0);
+}
+
 function log(entry) {
   const line = { time: new Date().toISOString(), nyTime: getNYTime(), ...entry };
   fs.appendFileSync(LOG_FILE, JSON.stringify(line) + "\n");
@@ -70,72 +78,55 @@ decisionLog({ event: "DATA_REFRESH", detail: `Fresh candles + engines + forecast
 // ═══ PHASE 2: Run Pipeline — All Pairs ═══
 log({ event: "PHASE_2", detail: "Running pipeline on all pairs" });
 
-const results = {};
 for (const pair of PAIRS) {
   log({ event: "PIPELINE", detail: pair });
   const output = run(`node "${path.join(ROOT, "tools", "run_pair.cjs")}" ${pair}`, 120000);
   if (output) console.log(output.split("\n").filter(l => l.includes("Model:") || l.includes("Entry:") || l.includes("R:R") || l.includes("Coherence") || l.includes("READY") || l.includes("BLOCKED")).join("\n"));
-  results[pair] = output;
 }
 
 // ═══ PHASE 3: Evaluate Setups ═══
 log({ event: "PHASE_3", detail: "Evaluating setups" });
 
+const autoDecision = require("../auto_decision.cjs");
 const setups = [];
 for (const pair of PAIRS) {
   try {
-    // Read the model selection output
-    const modelsFile = path.join(ROOT, "stages", "04_model_selection", "output", `${pair.toLowerCase()}_active_models.md`);
-    const entryFile = path.join(ROOT, "stages", "05_entry_refinement", "output", `${pair.toLowerCase()}_entry_plan.md`);
-    const coherenceFile = path.join(ROOT, "stages", "05b_micro_confirmation", "output", `${pair.toLowerCase()}_coherence.md`);
+    // Read the gated decision emitted by run_pair.cjs — the single choke point
+    const gate = autoDecision.gate(pair);
+    const d = gate.decision;
+    if (!d) {
+      log({ event: "SETUP", detail: `${pair}: no decision.json — pipeline not run` });
+      continue;
+    }
 
-    if (!fs.existsSync(modelsFile)) continue;
-
-    const modelsMd = fs.readFileSync(modelsFile, "utf8");
-    const entryMd = fs.existsSync(entryFile) ? fs.readFileSync(entryFile, "utf8") : "";
-    const cohMd = fs.existsSync(coherenceFile) ? fs.readFileSync(coherenceFile, "utf8") : "";
-
-    // Extract primary model
-    const primaryMatch = modelsMd.match(/\| \*\*(.+?)\*\* \| (.+?) \| ★ PRIMARY/);
-    const primaryModel = primaryMatch ? primaryMatch[1].trim() : "Unknown";
-    const primaryScore = primaryMatch ? primaryMatch[2].trim() : "?";
-
-    // Extract direction
-    const dirMatch = entryMd.match(/\*\*Direction\*\*: \*\*(.+?)\*\*/);
-    const direction = dirMatch ? dirMatch[1] : "NEUTRAL";
-
-    // Extract entry/SL/TP
-    const entryMatch = entryMd.match(/\| Entry \| (.+?) \|/);
-    const slMatch = entryMd.match(/\| SL \| (.+?) \|/);
-    const tp1Match = entryMd.match(/\| TP1 \| (.+?) \|/);
-    const rrMatch = entryMd.match(/R:R TP1\*\*: (.+?):1/);
-
-    // Extract coherence
-    const cohMatch = cohMd.match(/\*\*(\d+)\/10\*\*/);
-    const coherence = cohMatch ? parseInt(cohMatch[1]) : 0;
-
-    // Check for guard blocks
-    const blocked = (results[pair] || "").includes("BLOCKED by");
-    const blockedBy = blocked ? ((results[pair] || "").match(/BLOCKED by: (.+)/) || [])[1] : "";
-
-    // Check for lecture overrides
-    const l2Override = entryMd.includes("Lecture 2 Override ACTIVE");
-    const l1Override = entryMd.includes("Lecture 1 Override ACTIVE");
-    const l4Override = entryMd.includes("Lecture 4 Override ACTIVE");
+    // Blocked reasons = everything that failed the gate (minus staleness noise)
+    const blocked = !gate.allowed;
+    const blockedBy = gate.reasons.join("; ");
 
     const setup = {
-      pair, primaryModel, primaryScore, direction, coherence, blocked, blockedBy,
-      l2Override, l1Override, l4Override,
-      entry: entryMatch ? parseFloat(entryMatch[1]) : null,
-      sl: slMatch ? parseFloat(slMatch[1]) : null,
-      tp1: tp1Match ? parseFloat(tp1Match[1]) : null,
-      rr: rrMatch ? parseFloat(rrMatch[1]) : 0,
+      pair,
+      primaryModel: d.registry?.primary || "Unknown",
+      primaryScore: "",
+      direction: d.entry?.type === "LONG" || d.entry?.type === "SHORT" ? d.entry.type : "NEUTRAL",
+      coherence: d.coherence ? Math.round(d.coherence.unified / 10) : 0, // /100 → /10 scale
+      blocked,
+      blockedBy,
+      l2Override: d.registry?.primary === "London Hunt + IFVG",
+      l1Override: d.registry?.primary === "08:30 Liquidity Raid Model",
+      l4Override: d.registry?.primary === "NDOG/NWOG News Model",
+      entry: d.entry?.price ?? null,
+      sl: d.entry?.sl ?? null,
+      tp1: d.entry?.tp1 ?? null,
+      rr: d.rr?.rr1 ?? 0,
+      qty: d.sizing?.qty ?? null,
+      secondChance: !!gate.secondChance,
+      operative: gate.operative || null,
     };
 
     setups.push(setup);
     log({
       event: "SETUP",
-      detail: `${pair}: ${direction} | ${primaryModel} (${primaryScore}) | R:R ${setup.rr.toFixed(1)}:1 | Coh: ${coherence}/10 | ${blocked ? '🛑 ' + blockedBy : '✅'} | ${l2Override ? 'L2 ' : ''}${l1Override ? 'L1 ' : ''}${l4Override ? 'L4 ' : ''}`
+      detail: `${pair}: ${setup.direction} | ${setup.primaryModel} | R:R ${setup.rr.toFixed(1)}:1 | Coh: ${setup.coherence}/10 | ${blocked ? '🛑 ' + blockedBy : '✅'} | ${setup.l2Override ? 'L2 ' : ''}${setup.l1Override ? 'L1 ' : ''}${setup.l4Override ? 'L4 ' : ''}`
     });
   } catch (e) {
     log({ event: "SETUP_ERROR", detail: pair + ": " + e.message.slice(0, 80) });
@@ -167,28 +158,38 @@ if (candidates.length === 0) {
   decisionLog({ event: "NO_TRADE", detail: "No setups meet criteria", reasoning: `Filter: coherence≥${MIN_COHERENCE}, R:R≥${MIN_RR}, direction≠NEUTRAL, not blocked` });
 } else {
   const pick = candidates[0];
-  decisionLog({ event: "TRADE_SELECTED", detail: `${pick.pair} ${pick.direction} | Model: ${pick.primaryModel} (${pick.primaryScore}) | Entry: ${pick.entry} SL: ${pick.sl} TP1: ${pick.tp1} | R:R ${pick.rr.toFixed(1)}:1 | Coh: ${pick.coherence}/10`, reasoning: `Highest coherence×RR score. ${pick.l2Override ? 'Lecture 2 override active. ' : ''}${pick.l1Override ? 'Lecture 1 override active. ' : ''}${pick.l4Override ? 'Lecture 4 override active. ' : ''}Friday ×${RISK_PER_TRADE} risk.` });
+  decisionLog({ event: "TRADE_SELECTED", detail: `${pick.pair} ${pick.direction} | Model: ${pick.primaryModel} (${pick.primaryScore}) | Entry: ${pick.entry} SL: ${pick.sl} TP1: ${pick.tp1} | R:R ${pick.rr.toFixed(1)}:1 | Coh: ${pick.coherence}/10`, reasoning: `Highest coherence×RR score. ${pick.l2Override ? 'Lecture 2 override active. ' : ''}${pick.l1Override ? 'Lecture 1 override active. ' : ''}${pick.l4Override ? 'Lecture 4 override active. ' : ''}${pick.secondChance ? 'MISSED-ENTRY SECOND CHANCE — tightened SL + 0.5x size. ' : ''}Friday ×${RISK_PER_TRADE} risk.` });
 
-  // Calculate position size based on risk
-  const riskPips = Math.abs(pick.entry - pick.sl);
-  const accountBalance = 10000;
-  const riskAmount = accountBalance * (RISK_PER_TRADE / 100);
-  const riskPerPip = 10; // $10/pip for standard lot on GBPUSD
-  const posSizeLots = riskPips > 0 ? riskAmount / (riskPips * riskPerPip) : 0;
+  // Second-chance operative levels (tightened SL/TP from the fresh tethered array)
+  const op = pick.operative;
+  const entry = op?.entry ?? pick.entry;
+  const sl = op?.sl ?? pick.sl;
+  const tp1 = op?.tp1 ?? pick.tp1;
 
-  // Scale to appropriate lot type
-  let qty;
-  if (posSizeLots >= 0.1) {
-    qty = Math.round(posSizeLots * 100); // Convert to units (100 = 0.1 std lot)
-  } else {
-    qty = Math.round(posSizeLots * 1000); // Micro lots
+  // Per-instrument position size from pipeline decision.json (market_order units)
+  // Second chance → 0.5x size. Fallback: price-distance risk sizing if no qty.
+  let qty = pick.qty;
+  if (op?.sizeMultiplier && op.sizeMultiplier !== 1 && qty) {
+    qty = Math.max(100, Math.round(qty * op.sizeMultiplier));
   }
-  if (qty < 100) qty = 100; // Minimum
+  if (!qty) {
+    const riskPips = Math.abs(entry - sl);
+    const accountBalance = 10000;
+    const riskAmount = accountBalance * (RISK_PER_TRADE / 100);
+    const riskPerPip = 10; // $10/pip for standard lot on GBPUSD
+    const posSizeLots = riskPips > 0 ? riskAmount / (riskPips * riskPerPip) : 0;
+    if (posSizeLots >= 0.1) {
+      qty = Math.round(posSizeLots * 100); // Convert to units (100 = 0.1 std lot)
+    } else {
+      qty = Math.round(posSizeLots * 1000); // Micro lots
+    }
+    if (qty < 100) qty = 100; // Minimum
+  }
 
-  log({ event: "EXECUTING", detail: `${pick.pair} ${pick.direction} Qty: ${qty} Entry: ${pick.entry} SL: ${pick.sl} TP: ${pick.tp1}` });
+  log({ event: "EXECUTING", detail: `${pick.pair} ${pick.direction} Qty: ${qty} Entry: ${entry} SL: ${sl} TP: ${tp1}${pick.secondChance ? ' [SECOND CHANCE]' : ''}` });
 
   // Execute via CDP
-  const tradeCmd = `node "${path.join(ROOT, "tools", "tv-mcp", "market_order.cjs")}" ${pick.pair} ${pick.direction} ${pick.sl.toFixed(5)} ${pick.tp1.toFixed(5)} ${qty}`;
+  const tradeCmd = `node "${path.join(ROOT, "tools", "tv-mcp", "market_order.cjs")}" ${pick.pair} ${pick.direction} ${sl.toFixed(5)} ${tp1.toFixed(5)} ${qty}`;
   decisionLog({ event: "EXECUTE_CMD", detail: tradeCmd, reasoning: "Placing market order via TV CDP" });
 
   const tradeResult = run(tradeCmd, 30000);

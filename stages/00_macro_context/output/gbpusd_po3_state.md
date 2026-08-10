@@ -1,7 +1,7 @@
-# Po3 State Machine — GBPUSD — 2026-08-07
+# Po3 State Machine — GBPUSD — 2026-08-10
 
-## Current State: **DISTRIBUTION** (0.60 confidence)
-**BOS bullish — distribution beginning**
+## Current State: **DISTRIBUTION** (0.60 confidence, from 4H)
+BOS bullish — distribution beginning
 
 ## State Timeline
 
@@ -19,34 +19,34 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for London Open (02:00 NY): MANIPULATION**
+**Expected phase for NY PM (14:00 NY): DISTRIBUTION**
 **Detected phase: DISTRIBUTION**
-⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.
+✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
 
 ## Per-TF States
 
 | TF | State | Confidence | Reason |
 |----|-------|------------|--------|
-| 1D | DISTRIBUTION | 0.60 | BOS bearish — distribution beginning |
+| 1D | MANIPULATION | 0.85 | 5 sweep(s) + CHoCH — manipulation active |
 | 4H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
-| 1H | DISTRIBUTION | 0.60 | BOS bullish — distribution beginning |
+| 1H | MANIPULATION | 0.85 | 2 sweep(s) + CHoCH — manipulation active |
 
 ## Entry Rules for DISTRIBUTION
 
 **Distribution is the TREND phase. Enter on retracements to OBs/FVGs. Full size.**
 
 ## Daily Open Anchor
-Daily Open (Midnight NY): 1.34606
+Daily Open (Midnight NY): 1.33144
 
 ## Accumulation Range
-✅ Accumulation Range: 1.34475–1.34582 (0.08% — TIGHT). Institutions building positions. Near daily open.
+✅ Accumulation Range: 1.34904–1.35308 (0.30% — TIGHT). Institutions building positions.
 
 ## Manipulation Direction Check
-⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.
-- Daily Bias: BEARISH
-- Swept Above (BSL): 1 | Swept Below (SSL): 1
+⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bullish bias — this is the trap. Do NOT enter with the sweep direction.
+- Daily Bias: BULLISH
+- Swept Above (BSL): 0 | Swept Below (SSL): 2
 - Is Manipulation: ⚠️ YES — do not trade with the sweep
-- With Bias: ✅ Yes — likely distribution
+- With Bias: No
 - Entries: ON retracement to PD Array
 - Models: MMXM Sell Model, MMXM Buy Model, OTE + Institutional OB, Unicorn (OTE+FVG), SCOB
 - Size: ×1

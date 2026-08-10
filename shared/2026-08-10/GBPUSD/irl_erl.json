@@ -1,0 +1,107 @@
+{
+  "pair": "GBPUSD",
+  "time": "14:51:25 NY",
+  "currentPrice": 1.35099,
+  "dealingRange": {
+    "high": 1.35308,
+    "low": 1.32735,
+    "range": 0.02573000000000003,
+    "midpoint": 1.3402150000000002,
+    "equilibrium": 1.3402150000000002,
+    "positionPct": 91.88,
+    "zone": "PREMIUM",
+    "source": "1D",
+    "valid": true,
+    "validation": {
+      "highSwept": true,
+      "lowSwept": true,
+      "detail": "Sweep-to-sweep — high swept @ 1.35308, low swept @ 1.32735"
+    },
+    "premium": {
+      "high": 1.35308,
+      "low": 1.3402150000000002
+    },
+    "discount": {
+      "high": 1.3402150000000002,
+      "low": 1.32735
+    },
+    "detail": "Sweep-to-sweep dealing range: 1.32735 — 1.35308 (equilibrium 1.3402150000000002, PREMIUM)"
+  },
+  "irl": {
+    "count": 2,
+    "fvgs": [
+      {
+        "kind": "equalLows",
+        "type": "equalLows",
+        "price": 1.34832,
+        "top": 1.34836,
+        "bottom": 1.34832,
+        "tf": "5m",
+        "midpoint": 1.34832,
+        "isIRL": true,
+        "fillFraction": 0,
+        "fillPct": "0.00",
+        "distance": 0.00266999999999995,
+        "detail": "Relative equal lows 1.34832 — 1.34836 (11.9% ATR apart)"
+      },
+      {
+        "top": 1.34956,
+        "bottom": 1.34504,
+        "type": "bullish",
+        "index": 184,
+        "time": 1786105800000,
+        "gapAtr": 5.103225806451625,
+        "displacementAtr": 5.712903225806186,
+        "fillFraction": 0.2831858407079972,
+        "distance": 0.003689999999999749,
+        "tf": "15m",
+        "kind": "FVG",
+        "midpoint": 1.3473000000000002,
+        "isIRL": true,
+        "fillPct": "28.32"
+      }
+    ],
+    "unfilled": 2,
+    "partial": 0,
+    "filled": 0,
+    "fvgCount": 1,
+    "equalHighCount": 0,
+    "equalLowCount": 1
+  },
+  "erl": {
+    "buySide": [],
+    "sellSide": [],
+    "buySideClusters": 0,
+    "sellSideClusters": 0,
+    "dominant": "BALANCED",
+    "largerPool": "ABOVE",
+    "detail": "ERL: 0 buy-side pools above, 0 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: BALANCED"
+  },
+  "cycle": {
+    "position": "OUTSIDE RANGE",
+    "phase": "BELOW range — ERL raid possible",
+    "nextTarget": "Opposite ERL or re-enter range toward IRL",
+    "erlAboveSwept": 0,
+    "erlBelowSwept": 0,
+    "unfilledIRL": 2,
+    "partiallyFilledIRL": 0,
+    "recentlyFilled": 0,
+    "priceInRange": false,
+    "currentPrice": 0,
+    "detail": "OUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 2 unfilled, 0 filled | ERL sweeps: 0 above, 0 below"
+  },
+  "bias": {
+    "bias": "neutral",
+    "confidence": 0,
+    "reasoning": "",
+    "detail": "NEUTRAL bias (0.00): "
+  },
+  "entryGuidance": [
+    {
+      "action": "WAIT",
+      "direction": "neutral",
+      "detail": "Unclear cycle position — wait for ERL raid or IRL fill to establish direction."
+    }
+  ],
+  "detail": "Sweep-to-sweep dealing range: 1.32735 — 1.35308 (equilibrium 1.3402150000000002, PREMIUM)\nIRL: 2 objects (1 FVGs, 0 EQ-H, 1 EQ-L) — 2 unfilled\nERL: 0 buy-side pools above, 0 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: BALANCED\nOUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 2 unfilled, 0 filled | ERL sweeps: 0 above, 0 below\nNEUTRAL bias (0.00): "
+}

@@ -431,9 +431,12 @@ function analyzeIRLERL(pair) {
     irl: {
       count: irlFvgs.length,
       fvgs: irlFvgs.slice(0, 10), // Top 10 most potent
-      unfilled: irlFvgs.filter(f => (f.fillFraction || 0) < 0.3).length,
+      unfilled: irlFvgs.filter(f => f.kind === "equalHighs" || f.kind === "equalLows" ? !f.swept : (f.fillFraction || 0) < 0.3).length,
       partial: irlFvgs.filter(f => (f.fillFraction || 0) >= 0.3 && (f.fillFraction || 0) < 0.7).length,
-      filled: irlFvgs.filter(f => (f.fillFraction || 0) >= 0.7).length,
+      filled: irlFvgs.filter(f => f.kind !== "equalHighs" && f.kind !== "equalLows" && (f.fillFraction || 0) >= 0.7).length,
+      fvgCount: irlFvgs.filter(f => f.kind === "FVG").length,
+      equalHighCount: irlFvgs.filter(f => f.kind === "equalHighs").length,
+      equalLowCount: irlFvgs.filter(f => f.kind === "equalLows").length,
     },
     erl,
     cycle,
@@ -441,7 +444,7 @@ function analyzeIRLERL(pair) {
     entryGuidance,
     detail: [
       dealingRange?.detail || "No valid dealing range",
-      `IRL: ${irlFvgs.length} liquidity objects inside range (${irlFvgs.filter(f => (f.fillFraction||0) < 0.3).length} unfilled)`,
+      `IRL: ${irlFvgs.length} objects (${irlFvgs.filter(f => f.kind === "FVG").length} FVGs, ${irlFvgs.filter(f => f.kind === "equalHighs").length} EQ-H, ${irlFvgs.filter(f => f.kind === "equalLows").length} EQ-L) — ${irlFvgs.filter(f => f.kind === "equalHighs" || f.kind === "equalLows" ? !f.swept : (f.fillFraction||0) < 0.3).length} unfilled`,
       erl.detail,
       cycle.detail,
       bias.detail,
@@ -520,7 +523,7 @@ console.log(`  ✓ IRL/ERL JSON → ${jsonOut}`);
 // Console summary
 console.log(`\n═══ IRL/ERL — ${PAIR} ═══`);
 console.log(`  Dealing Range: ${result.dealingRange?.detail || 'None'}`);
-console.log(`  IRL: ${result.irl.count} FVGs (${result.irl.unfilled} unfilled)`);
+console.log(`  IRL: ${result.irl.count} objects (${result.irl.fvgCount} FVGs, ${result.irl.equalHighCount} EQ-H, ${result.irl.equalLowCount} EQ-L) — ${result.irl.unfilled} unfilled`);
 console.log(`  ERL: ${result.erl.detail}`);
 console.log(`  Cycle: ${result.cycle.position} | ${result.cycle.phase}`);
 console.log(`  Bias: ${result.bias.bias.toUpperCase()} (${r2(result.bias.confidence)})`);

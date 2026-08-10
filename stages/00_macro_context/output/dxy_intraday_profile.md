@@ -1,4 +1,4 @@
-# ICT Intraday Profile — DXY — 2026-08-07
+# ICT Intraday Profile — DXY — 2026-08-10
 
 ## Profile: **DEGRADED** (INVALID)
 
@@ -20,7 +20,7 @@
 
 **undefined**
 
-Currently IN Judas Swing window (00:00-02:00 NY). Watch for the protraction move.
+Judas Swing window has passed. Classify as Delayed — London open has occurred.
 
 ## 10-Step ICT Checklist
 
@@ -30,7 +30,7 @@ Currently IN Judas Swing window (00:00-02:00 NY). Watch for the protraction move
 | 2 | Mark CBDR < 40 pips | ✗ | 290000 pips |
 | 3 | Mark Asian range 20-30 pips | ✗ | 260000 pips |
 | 4 | Plot 1σ/2σ/3σ projections | ✅ | 2σ: 12796.00000/12767.00000 |
-| 5 | Watch 00:00-02:00 NY Judas Swing | ✅ | ACTIVE NOW |
+| 5 | Watch 00:00-02:00 NY Judas Swing | ✅ | Window passed |
 | 6 | Classify Normal vs Delayed | ✗ | undefined |
 | 7 | Wait for 5m MSS | ⏳ | Monitor 5m for CHoCH in profile direction |
 | 8 | Enter on retest at premium/discount | ⏳ | Entry at undefined |

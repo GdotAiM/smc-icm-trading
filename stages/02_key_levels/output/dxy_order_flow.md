@@ -1,22 +1,20 @@
-# Order Flow Zones — DXY — 2026-08-07
+# Order Flow Zones — DXY — 2026-08-10
 
 ## BOS Leg
-BOS bullish @ 12678.00000 (15m) | Leg: 13 candles from high @ 12690.00000
+CHoCH bearish @ 12684.00000 (1H) | Leg: 13 candles from low @ 12663.00000
 
 ## OF Zones (5 marked)
 | Zone | Type | Price (Mid) | High | Low | Candles |
 |------|------|-------------|------|-----|--------|
-| 1st OF | BULLISH OF (Support) | 12685.50000 | 12687.00000 | 12684.00000 | 2 |
-| 2nd OF | BULLISH OF (Support) | 12687.00000 | 12688.00000 | 12686.00000 | 1 |
-| 3rd OF | BULLISH OF (Support) | 12687.00000 | 12688.00000 | 12686.00000 | 1 |
-| 4th OF | BULLISH OF (Support) | 12687.00000 | 12688.00000 | 12686.00000 | 1 |
-| 5th OF | BULLISH OF (Support) | 12688.50000 | 12689.00000 | 12688.00000 | 1 |
+| 1st OF | BEARISH OF (Resistance) | 12664.00000 | 12665.00000 | 12663.00000 | 1 |
+| 2nd OF | BEARISH OF (Resistance) | 12662.50000 | 12665.00000 | 12660.00000 | 3 |
+| 3rd OF | BEARISH OF (Resistance) | 12663.00000 | 12665.00000 | 12661.00000 | 1 |
+| 4th OF | BEARISH OF (Resistance) | 12666.00000 | 12667.00000 | 12665.00000 | 1 |
+| 5th OF | BEARISH OF (Resistance) | 12665.00000 | 12666.00000 | 12664.00000 | 1 |
 
 ## Retracement
-✅ Price INSIDE 1st OF (BULLISH OF (Support)) — look for LTF confirmation
+✅ Price INSIDE 1st OF (BEARISH OF (Resistance)) — look for LTF confirmation
 - Tested Zone: 1st OF
 
 ## Entry Confirmation
-✅ OF CONFIRMED: 1st OF — MSS bullish + 1 FVG(s) + 3 OB(s)
-- MSS: ✅ bullish
-- FVGs in zone: 1 | OBs in zone: 3
+MSS confirmed but no PD array in zone — waiting for FVG/OB formation

@@ -1,24 +1,24 @@
-# Macro-Micro Coherence — GBPUSD — 2026-08-07
+# Macro-Micro Coherence — GBPUSD — 2026-08-10
 
-## Coherence Score: **12/10** (raw) → **10/10** (session-adjusted)
+## Coherence Score: **6/10** (raw) → **6/10** (session-adjusted)
 
-> Session: **London Killzone** (×1.3) | Killzone: ✅ London Killzone Killzone | Silver Bullet: Inactive
-> Standard session — Institutional flow, manipulation
-> Best entry TF for London Killzone: **5m**
+> Session: **NY PM Session** (×1) | Killzone: ✅ NY PM Session Killzone | Silver Bullet: ✅ NY PM Silver Bullet
+> Standard session — Afternoon continuation / reversal
+> Best entry TF for NY PM Session: **5m**
 
 | Component | Score | Detail |
 |-----------|-------|--------|
-| Bias alignment | 2/3 | 2/3 (✗ ✓ ✓) |
-| Structure | 1/2 | 1/2 (15m:CHoCH bearish, 5m:CHoCH bullish) |
-| Displacement | 2/2 | 2/2 (5m:moderate 0.888217522658755x, 1m:weak 0.41176470588326725x) |
-| Manipulation | 2/2 | 2/2 (15m sweep:false none, 5m:true SSL) |
+| Bias alignment | 1/3 | 1/3 (✓ ✗ ✗) |
+| Structure | 2/2 | 2/2 (15m:BOS bullish, 5m:CHoCH bearish) |
+| Displacement | 0/2 | 0/2 (5m:weak 0.12903225806391538x, 1m:weak 0x) |
+| Manipulation | 2/2 | 2/2 (15m sweep:true SSL,SSL, 5m:true BSL) |
 | Trigger readiness | 0/1 | 0/1 (5m FVG:false, 1m CHoCH:false) |
-| Liquidity | 5/3 | 5/3 — 5m draw aligns with HTF bias; Recent sweep detected — manipulation active (0 on 15m, 1 on 5m); Engineered liquidity (EQH/EQL) — higher probability draw |
-| **Session Adj** | ×1.3 | London Killzone reliability multiplier |
+| Liquidity | 1/3 | 1/3 — 5m draw is DOWN — not aligned with HTF bullish; Engineered liquidity (EQH/EQL) — higher probability draw |
+| **Session Adj** | ×1 | NY PM Session reliability multiplier |
 
 ## Go/No-Go Decision
 
-**✅ GO — All conditions met for entry**
+**⏳ NEARLY — Wait 1-3 candles for trigger**
 
 | Score Range | Action |
 |-------------|--------|
@@ -31,5 +31,5 @@
 ## Macro-Micro Relationship
 
 - **Macro says**: UNKNOWN phase, HTF BULLISH, MMXM Step 0
-- **Micro says**: 15m bearish, 5m bullish, 1m bullish
-- **Interpretation**: LTF confirms HTF — bullish trend is intact on lower timeframes. Entry signal is valid.
+- **Micro says**: 15m bullish, 5m bearish, 1m bearish
+- **Interpretation**: LTF partially confirms HTF — some alignment but not full. Wait for clearer LTF structure.

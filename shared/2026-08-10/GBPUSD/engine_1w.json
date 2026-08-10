@@ -1,0 +1,124 @@
+{
+  "price": 1.35101,
+  "structure": {
+    "bias": "bearish",
+    "lastEvent": "BOS",
+    "lastEventPrice": 1.35098,
+    "lastEventTime": 1786382220000,
+    "confidence": 1,
+    "lastSwingHigh": 1.35122,
+    "lastSwingLow": 1.35098
+  },
+  "liquidity": [
+    {
+      "price": 1.349821818181818,
+      "type": "SSL",
+      "strength": 11,
+      "score": 13.296210679368212,
+      "distance": 0.08794767012694446,
+      "session": "NY PM",
+      "ageBars": 21,
+      "swept": false
+    },
+    {
+      "price": 1.3523133333333333,
+      "type": "BSL",
+      "strength": 12,
+      "score": 8.233515350633997,
+      "distance": 0.09647103525016187,
+      "session": "Off",
+      "ageBars": 37,
+      "swept": false
+    }
+  ],
+  "orderBlocks": [
+    {
+      "top": 1.35258,
+      "bottom": 1.35242,
+      "proximal": 1.35242,
+      "distal": 1.35258,
+      "type": "bearish",
+      "kind": "Breaker",
+      "index": 135,
+      "time": 1786373040000,
+      "impulseAtr": 2.2222222222231425,
+      "hasFvg": true,
+      "distance": 0.1102878587131103
+    }
+  ],
+  "fvgs": [],
+  "draw": {
+    "price": 1.349821818181818,
+    "side": "down",
+    "distance": 0.08794767012694446,
+    "reason": "SSL pool Â· 11 touches",
+    "score": 0.9929641863898444
+  },
+  "alt": {
+    "price": 1.3523133333333333,
+    "side": "up",
+    "distance": 0.09647103525016187,
+    "reason": "BSL pool Â· 12 touches",
+    "score": 0.7522823171799871
+  },
+  "volumeDisplacement": {
+    "atrRatio": 0.17610062893199804,
+    "label": "weak",
+    "volumeConfirmed": false,
+    "volumeRatio": 0.16379310344827586
+  },
+  "pdArray": {
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
+    "currentZone": "discount",
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
+  },
+  "inversionFvgs": [
+    {
+      "top": 1.35117,
+      "bottom": 1.35112,
+      "type": "inversion",
+      "index": 281,
+      "time": 1786381800000,
+      "gapAtr": 0.5223880597001421,
+      "reversalAtr": 0.8235294117651093,
+      "confirmationLag": 4,
+      "distance": -0.009992524111590309
+    },
+    {
+      "top": 1.35088,
+      "bottom": 1.35082,
+      "type": "inversion",
+      "index": 292,
+      "time": 1786382460000,
+      "gapAtr": 0.595744680852518,
+      "reversalAtr": 0.5454545454539688,
+      "confirmationLag": 1,
+      "distance": -0.011842991539674762
+    },
+    {
+      "top": 1.35056,
+      "bottom": 1.3505,
+      "type": "inversion",
+      "index": 65,
+      "time": 1786368840000,
+      "gapAtr": 0.3605150214589984,
+      "reversalAtr": 2.102766798419482,
+      "confirmationLag": 1,
+      "distance": 0.03552897461899142
+    },
+    {
+      "top": 1.35046,
+      "bottom": 1.35039,
+      "type": "inversion",
+      "index": 46,
+      "time": 1786367700000,
+      "gapAtr": 0.41880341880350397,
+      "reversalAtr": 0.8086642599275021,
+      "confirmationLag": 5,
+      "distance": 0.04330093781689682
+    }
+  ]
+}

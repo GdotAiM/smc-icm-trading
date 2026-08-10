@@ -225,13 +225,14 @@ function checkFirstOpportunity(sessions, dailyBias) {
         ? sessions.prevAM?.high
         : sessions.prevAM?.low;
 
+      const targetLabel = dailyBias.bias === "bullish" ? "Prev Day AM HIGH" : "Prev Day AM LOW";
       return {
         locked: true,
         lockedBy: key,
         lockedDirection,
         lockedAt: new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York", hour12: false }) + " NY",
         targetPrice,
-        targetLabel: dailyBias.bias === "bullish" ? "Prev Day AM HIGH" : "Prev Day AM LOW",
+        targetLabel,
         // Direction boost for agreeing models, not suppression
         directionBoost: 1.3,   // ×1.3 for models agreeing with locked direction
         counterDirectionWeight: 0.7, // ×0.7 for models disagreeing (still run, reduced weight)

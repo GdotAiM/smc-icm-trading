@@ -1,4 +1,4 @@
-# Coherence Audit — GBPUSD — 2026-08-07
+# Coherence Audit — GBPUSD — 2026-08-10
 
 ## Overall Coherence: 30/100 — F — BROKEN coherence
 
@@ -11,7 +11,7 @@
 | STRUCTURE | BULLISH (BOS) | BULLISH | — |
 | IPDA RANGE | PREMIUM → BEARISH bias | BEARISH | — |
 | CYCLE PHASE | UNKNOWN → expects NEUTRAL | NEUTRAL | — |
-| LIQUIDITY | DOWN (SSL magnet) | 4 swept | BEARISH | — |
+| LIQUIDITY | DOWN (SSL magnet) | 3 swept | BEARISH | — |
 
 **⚠️ LENS DIVERGENCE — 2 lens(es) disagree with structure (bullish). The IPDA says bearish while structure says bullish. This is a concern — lenses should align in UNKNOWN phase.**
 
@@ -19,17 +19,17 @@
 
 ## 2. Temporal Coherence (⚠️ 2/4 LTFs aligned)
 
-| TF | Bias | Event | vs HTF (BEARISH) |
+| TF | Bias | Event | vs HTF (BULLISH) |
 |----|------|-------|------------------|
-| 1W | **BEARISH** | CHoCH | ✅ aligned |
-| 1D | **BEARISH** | BOS | ✅ aligned |
-| 4H | **BULLISH** | BOS | ⚠️ opposing |
-| 1H | **BULLISH** | CHoCH | ⚠️ opposing |
-| 15m | **BULLISH** | CHoCH | ⚠️ opposing |
-| 5m | **BEARISH** | CHoCH | ✅ aligned |
-| 1m | **BEARISH** | CHoCH | ✅ aligned |
+| 1W | **BEARISH** | BOS | ⚠️ opposing |
+| 1D | **BULLISH** | CHoCH | ✅ aligned |
+| 4H | **BULLISH** | BOS | ✅ aligned |
+| 1H | **BULLISH** | CHoCH | ✅ aligned |
+| 15m | **BULLISH** | BOS | ✅ aligned |
+| 5m | **BEARISH** | CHoCH | ⚠️ opposing |
+| 1m | **BEARISH** | BOS | ⚠️ opposing |
 
-**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BEARISH. Possible reversal or deep pullback.**
+**⚠️ TEMPORAL DIVERGENCE — 2 LTFs oppose HTF BULLISH. Possible reversal or deep pullback.**
 
 ---
 
@@ -41,9 +41,11 @@
 
 ## 4. Self-Contradiction Check
 
+- **[WARNING]** STRUCTURE vs PD ARRAY: Structure is BULLISH but price is in PREMIUM (sell zone). This is a counter-trend buy within the sell zone.
 - **[CRITICAL]** HTF-LTF DIVERGENCE: 3 consecutive timeframes oppose HTF (bearish). Possible macro reversal.
+- **[INFO]** WEEKLY vs DAILY: 1W is BEARISH but 1D is BULLISH. This is MANIPULATION — daily is counter-trend within weekly. Trade with weekly direction or wait.
 
-**❌ 1 contradiction(s) including CRITICAL issues. The system is fighting itself.**
+**❌ 3 contradiction(s) including CRITICAL issues. The system is fighting itself.**
 
 ---
 

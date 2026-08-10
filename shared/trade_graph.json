@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "built": "2026-08-09T08:03:37.514Z",
+  "built": "2026-08-10T18:51:42.398Z",
   "nodes": {
     "concept:blog---ict": {
       "id": "concept:blog---ict",
@@ -96,8 +96,7 @@
       "name": "complete-ict-trading-strategy-2022",
       "tier": 3,
       "tierName": "Advanced Concepts",
-      "category": "01 - ICT Trading Tutorials",
-      "usageCount": 4
+      "category": "01 - ICT Trading Tutorials"
     },
     "concept:dragonfly-doji-candlestick": {
       "id": "concept:dragonfly-doji-candlestick",
@@ -121,7 +120,8 @@
       "name": "fair-value-gap-trading-strategy",
       "tier": 1,
       "tierName": "Core Mechanics",
-      "category": "01 - ICT Trading Tutorials"
+      "category": "01 - ICT Trading Tutorials",
+      "usageCount": 1
     },
     "concept:forex": {
       "id": "concept:forex",
@@ -1107,14 +1107,14 @@
       "tierName": "Advanced Concepts",
       "category": "09 - Site Pages"
     },
-    "trade:eurusd:2026-08-07": {
-      "id": "trade:eurusd:2026-08-07",
+    "trade:eurusd:2026-08-10": {
+      "id": "trade:eurusd:2026-08-10",
       "type": "trade",
-      "date": "2026-08-07",
+      "date": "2026-08-10",
       "pair": "EURUSD",
-      "direction": "NO",
-      "model": "MMXM Sell Model",
-      "session": "London PM",
+      "direction": "SHORT",
+      "model": "2FVG Entry (sequence complete)",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1122,37 +1122,37 @@
       "id": "pair:eurusd",
       "type": "pair",
       "name": "Eurusd",
-      "totalTrades": 9,
+      "totalTrades": 10,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "model:mmxm-sell-model": {
-      "id": "model:mmxm-sell-model",
+    "model:2fvg-entry-sequence-complete": {
+      "id": "model:2fvg-entry-sequence-complete",
       "type": "model",
-      "name": "MMXM Sell Model",
-      "totalTrades": 3,
-      "winRate": 0,
-      "totalPnl": 0,
-      "avgPnl": 0
-    },
-    "session:london-pm": {
-      "id": "session:london-pm",
-      "type": "session",
-      "name": "London PM",
+      "name": "2FVG Entry (sequence complete)",
       "totalTrades": 1,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "trade:gbpusd:2026-08-07": {
-      "id": "trade:gbpusd:2026-08-07",
+    "session:ny-pm": {
+      "id": "session:ny-pm",
+      "type": "session",
+      "name": "NY PM",
+      "totalTrades": 4,
+      "winRate": 0,
+      "totalPnl": 0,
+      "avgPnl": 0
+    },
+    "trade:gbpusd:2026-08-10": {
+      "id": "trade:gbpusd:2026-08-10",
       "type": "trade",
-      "date": "2026-08-07",
+      "date": "2026-08-10",
       "pair": "GBPUSD",
       "direction": "NO",
-      "model": "MMXM Sell Model",
-      "session": "London",
+      "model": "NO TRADE — no single complete model",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1160,28 +1160,28 @@
       "id": "pair:gbpusd",
       "type": "pair",
       "name": "Gbpusd",
-      "totalTrades": 11,
+      "totalTrades": 12,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "session:london": {
-      "id": "session:london",
-      "type": "session",
-      "name": "London",
+    "model:no-trade-no-single-complete-model": {
+      "id": "model:no-trade-no-single-complete-model",
+      "type": "model",
+      "name": "NO TRADE — no single complete model",
       "totalTrades": 3,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "trade:nas100:2026-08-07": {
-      "id": "trade:nas100:2026-08-07",
+    "trade:nas100:2026-08-10": {
+      "id": "trade:nas100:2026-08-10",
       "type": "trade",
-      "date": "2026-08-07",
+      "date": "2026-08-10",
       "pair": "NAS100",
       "direction": "NO",
-      "model": "MMXM Sell Model",
-      "session": "London",
+      "model": "NO TRADE — no single complete model",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1189,19 +1189,19 @@
       "id": "pair:nas100",
       "type": "pair",
       "name": "Nas100",
-      "totalTrades": 8,
+      "totalTrades": 9,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
     },
-    "trade:xauusd:2026-08-09": {
-      "id": "trade:xauusd:2026-08-09",
+    "trade:xauusd:2026-08-10": {
+      "id": "trade:xauusd:2026-08-10",
       "type": "trade",
-      "date": "2026-08-09",
+      "date": "2026-08-10",
       "pair": "XAUUSD",
-      "direction": "SHORT",
-      "model": "MMXM Buy Model",
-      "session": "London",
+      "direction": "NO",
+      "model": "NO TRADE — no single complete model",
+      "session": "NY PM",
       "coherence": 0,
       "source": "review_md_fallback"
     },
@@ -1209,16 +1209,7 @@
       "id": "pair:xauusd",
       "type": "pair",
       "name": "Xauusd",
-      "totalTrades": 11,
-      "winRate": 0,
-      "totalPnl": 0,
-      "avgPnl": 0
-    },
-    "model:mmxm-buy-model": {
-      "id": "model:mmxm-buy-model",
-      "type": "model",
-      "name": "MMXM Buy Model",
-      "totalTrades": 1,
+      "totalTrades": 12,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1239,7 +1230,7 @@
       "id": "pair:dxy",
       "type": "pair",
       "name": "Dxy",
-      "totalTrades": 2,
+      "totalTrades": 3,
       "winRate": 0,
       "totalPnl": 0,
       "avgPnl": 0
@@ -1252,6 +1243,18 @@
       "pnl": 0,
       "outcome": "no_trade",
       "decisionQuality": 3.75,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
+    "trade:dxy:2026-08-10": {
+      "id": "trade:dxy:2026-08-10",
+      "type": "trade",
+      "date": "2026-08-10",
+      "pair": "DXY",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.25,
       "entries": 0,
       "blocked": 0,
       "source": "performance"
@@ -1348,6 +1351,18 @@
       "pnl": 0,
       "outcome": "no_trade",
       "decisionQuality": 3.5,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
+    "trade:eurusd:2026-08-07": {
+      "id": "trade:eurusd:2026-08-07",
+      "type": "trade",
+      "date": "2026-08-07",
+      "pair": "EURUSD",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.75,
       "entries": 0,
       "blocked": 0,
       "source": "performance"
@@ -1967,6 +1982,18 @@
       "blocked": 0,
       "source": "performance"
     },
+    "trade:gbpusd:2026-08-07": {
+      "id": "trade:gbpusd:2026-08-07",
+      "type": "trade",
+      "date": "2026-08-07",
+      "pair": "GBPUSD",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.5,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
     "trade:gold:2026-07-28": {
       "id": "trade:gold:2026-07-28",
       "type": "trade",
@@ -2075,6 +2102,18 @@
       "id": "trade:nas100:2026-08-06",
       "type": "trade",
       "date": "2026-08-06",
+      "pair": "NAS100",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.5,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
+    "trade:nas100:2026-08-07": {
+      "id": "trade:nas100:2026-08-07",
+      "type": "trade",
+      "date": "2026-08-07",
       "pair": "NAS100",
       "pnl": 0,
       "outcome": "no_trade",
@@ -2214,6 +2253,18 @@
       "blocked": 0,
       "source": "performance"
     },
+    "trade:xauusd:2026-08-09": {
+      "id": "trade:xauusd:2026-08-09",
+      "type": "trade",
+      "date": "2026-08-09",
+      "pair": "XAUUSD",
+      "pnl": 0,
+      "outcome": "no_trade",
+      "decisionQuality": 3.75,
+      "entries": 0,
+      "blocked": 0,
+      "source": "performance"
+    },
     "playbook_rule:judas-swing-guard-works": {
       "id": "playbook_rule:judas-swing-guard-works",
       "type": "playbook_rule",
@@ -2262,85 +2313,85 @@
   },
   "edges": [
     {
-      "source": "trade:eurusd:2026-08-07",
+      "source": "trade:eurusd:2026-08-10",
       "target": "pair:eurusd",
       "type": "ON_PAIR",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-08-07",
-      "target": "model:mmxm-sell-model",
+      "source": "trade:eurusd:2026-08-10",
+      "target": "model:2fvg-entry-sequence-complete",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-08-07",
-      "target": "session:london-pm",
+      "source": "trade:eurusd:2026-08-10",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-08-07",
+      "source": "trade:gbpusd:2026-08-10",
       "target": "pair:gbpusd",
       "type": "ON_PAIR",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-08-07",
-      "target": "model:mmxm-sell-model",
+      "source": "trade:gbpusd:2026-08-10",
+      "target": "model:no-trade-no-single-complete-model",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-08-07",
-      "target": "session:london",
+      "source": "trade:gbpusd:2026-08-10",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:nas100:2026-08-07",
+      "source": "trade:nas100:2026-08-10",
       "target": "pair:nas100",
       "type": "ON_PAIR",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:nas100:2026-08-07",
-      "target": "model:mmxm-sell-model",
+      "source": "trade:nas100:2026-08-10",
+      "target": "model:no-trade-no-single-complete-model",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:nas100:2026-08-07",
-      "target": "session:london",
+      "source": "trade:nas100:2026-08-10",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:xauusd:2026-08-09",
+      "source": "trade:xauusd:2026-08-10",
       "target": "pair:xauusd",
       "type": "ON_PAIR",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:xauusd:2026-08-09",
-      "target": "model:mmxm-buy-model",
+      "source": "trade:xauusd:2026-08-10",
+      "target": "model:no-trade-no-single-complete-model",
       "type": "USED_MODEL",
       "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:xauusd:2026-08-09",
-      "target": "session:london",
+      "source": "trade:xauusd:2026-08-10",
+      "target": "session:ny-pm",
       "type": "IN_SESSION",
       "weight": 1,
       "metadata": {}
@@ -2354,6 +2405,13 @@
     },
     {
       "source": "trade:dxy:2026-08-07",
+      "target": "pair:dxy",
+      "type": "ON_PAIR",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
       "target": "pair:dxy",
       "type": "ON_PAIR",
       "weight": 1,
@@ -2417,7 +2475,14 @@
     },
     {
       "source": "trade:eurusd:2026-08-07",
-      "target": "concept:ict-trading-strategy-2022",
+      "target": "pair:eurusd",
+      "type": "ON_PAIR",
+      "weight": 1,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-10",
+      "target": "concept:fair-value-gap",
       "type": "USED_CONCEPT",
       "weight": 0.9,
       "metadata": {}
@@ -3628,9 +3693,9 @@
     },
     {
       "source": "trade:gbpusd:2026-08-07",
-      "target": "concept:ict-trading-strategy-2022",
-      "type": "USED_CONCEPT",
-      "weight": 0.9,
+      "target": "pair:gbpusd",
+      "type": "ON_PAIR",
+      "weight": 1,
       "metadata": {}
     },
     {
@@ -3698,9 +3763,9 @@
     },
     {
       "source": "trade:nas100:2026-08-07",
-      "target": "concept:ict-trading-strategy-2022",
-      "type": "USED_CONCEPT",
-      "weight": 0.9,
+      "target": "pair:nas100",
+      "type": "ON_PAIR",
+      "weight": 1,
       "metadata": {}
     },
     {
@@ -3782,28 +3847,28 @@
     },
     {
       "source": "trade:xauusd:2026-08-09",
-      "target": "concept:ict-trading-strategy-2022",
-      "type": "USED_CONCEPT",
-      "weight": 0.9,
+      "target": "pair:xauusd",
+      "type": "ON_PAIR",
+      "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-08-07",
-      "target": "trade:gbpusd:2026-08-07",
+      "source": "trade:gbpusd:2026-08-10",
+      "target": "trade:nas100:2026-08-10",
       "type": "SIMILAR_TO",
-      "weight": 0.7,
+      "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:eurusd:2026-08-07",
-      "target": "trade:nas100:2026-08-07",
+      "source": "trade:gbpusd:2026-08-10",
+      "target": "trade:xauusd:2026-08-10",
       "type": "SIMILAR_TO",
-      "weight": 0.7,
+      "weight": 1,
       "metadata": {}
     },
     {
-      "source": "trade:gbpusd:2026-08-07",
-      "target": "trade:nas100:2026-08-07",
+      "source": "trade:nas100:2026-08-10",
+      "target": "trade:xauusd:2026-08-10",
       "type": "SIMILAR_TO",
       "weight": 1,
       "metadata": {}
@@ -3817,6 +3882,13 @@
     },
     {
       "source": "trade:dxy:2026-07-29",
+      "target": "trade:dxy:2026-08-10",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
       "target": "trade:eurusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3873,6 +3945,13 @@
     },
     {
       "source": "trade:dxy:2026-07-29",
+      "target": "trade:eurusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
       "target": "trade:gbpusd:2026-07-27",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3943,6 +4022,13 @@
     },
     {
       "source": "trade:dxy:2026-07-29",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -3993,6 +4079,13 @@
     {
       "source": "trade:dxy:2026-07-29",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4063,6 +4156,20 @@
     {
       "source": "trade:dxy:2026-07-29",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-07-29",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-07",
+      "target": "trade:dxy:2026-08-10",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4125,6 +4232,13 @@
     },
     {
       "source": "trade:dxy:2026-08-07",
+      "target": "trade:eurusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-07",
       "target": "trade:gbpusd:2026-07-27",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4195,6 +4309,13 @@
     },
     {
       "source": "trade:dxy:2026-08-07",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-07",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4245,6 +4366,13 @@
     {
       "source": "trade:dxy:2026-08-07",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-07",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4315,6 +4443,293 @@
     {
       "source": "trade:dxy:2026-08-07",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-07",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:eurusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:eurusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:eurusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:eurusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:eurusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:eurusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:eurusd:2026-08-05",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:eurusd:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:eurusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-07-27",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-08-05",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:gold:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:nas100:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:nas100:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:nas100:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:nas100:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:nas100:2026-08-05",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-08-05",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:dxy:2026-08-10",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4370,6 +4785,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-28",
+      "target": "trade:eurusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-28",
       "target": "trade:gbpusd:2026-07-27",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4440,6 +4862,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-28",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-28",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4490,6 +4919,13 @@
     {
       "source": "trade:eurusd:2026-07-28",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-28",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4560,6 +4996,13 @@
     {
       "source": "trade:eurusd:2026-07-28",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-28",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4608,6 +5051,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-29",
+      "target": "trade:eurusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-29",
       "target": "trade:gbpusd:2026-07-27",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4678,6 +5128,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-29",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-29",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4728,6 +5185,13 @@
     {
       "source": "trade:eurusd:2026-07-29",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-29",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4798,6 +5262,13 @@
     {
       "source": "trade:eurusd:2026-07-29",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-29",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -4839,6 +5310,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-31",
+      "target": "trade:eurusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
       "target": "trade:gbpusd:2026-07-27",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4909,6 +5387,13 @@
     },
     {
       "source": "trade:eurusd:2026-07-31",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -4959,6 +5444,13 @@
     {
       "source": "trade:eurusd:2026-07-31",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5029,6 +5521,13 @@
     {
       "source": "trade:eurusd:2026-07-31",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-07-31",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5063,6 +5562,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-02",
+      "target": "trade:eurusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-02",
       "target": "trade:gbpusd:2026-07-27",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -5133,6 +5639,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-02",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-02",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -5183,6 +5696,13 @@
     {
       "source": "trade:eurusd:2026-08-02",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-02",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5253,6 +5773,13 @@
     {
       "source": "trade:eurusd:2026-08-02",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-02",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5280,6 +5807,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-03",
+      "target": "trade:eurusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-03",
       "target": "trade:gbpusd:2026-07-27",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -5350,6 +5884,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-03",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-03",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -5400,6 +5941,13 @@
     {
       "source": "trade:eurusd:2026-08-03",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-03",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5470,6 +6018,13 @@
     {
       "source": "trade:eurusd:2026-08-03",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-03",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5490,6 +6045,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-04",
+      "target": "trade:eurusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
       "target": "trade:gbpusd:2026-07-27",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -5560,6 +6122,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-04",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -5610,6 +6179,13 @@
     {
       "source": "trade:eurusd:2026-08-04",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5680,6 +6256,13 @@
     {
       "source": "trade:eurusd:2026-08-04",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-04",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5693,6 +6276,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-05",
+      "target": "trade:eurusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-05",
       "target": "trade:gbpusd:2026-07-27",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -5763,6 +6353,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-05",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-05",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -5813,6 +6410,13 @@
     {
       "source": "trade:eurusd:2026-08-05",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-05",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5883,6 +6487,20 @@
     {
       "source": "trade:eurusd:2026-08-05",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-05",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-06",
+      "target": "trade:eurusd:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -5959,6 +6577,13 @@
     },
     {
       "source": "trade:eurusd:2026-08-06",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-06",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -6009,6 +6634,13 @@
     {
       "source": "trade:eurusd:2026-08-06",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-06",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6079,6 +6711,230 @@
     {
       "source": "trade:eurusd:2026-08-06",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-06",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-07-27",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-08-05",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:gold:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:nas100:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:nas100:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:nas100:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:nas100:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:nas100:2026-08-05",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-05",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:eurusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6148,6 +7004,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-27",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-27",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -6198,6 +7061,13 @@
     {
       "source": "trade:gbpusd:2026-07-27",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-27",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6268,6 +7138,13 @@
     {
       "source": "trade:gbpusd:2026-07-27",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-27",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6330,6 +7207,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-28",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-28",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -6380,6 +7264,13 @@
     {
       "source": "trade:gbpusd:2026-07-28",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-28",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6450,6 +7341,13 @@
     {
       "source": "trade:gbpusd:2026-07-28",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-28",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6505,6 +7403,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-29",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-29",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -6555,6 +7460,13 @@
     {
       "source": "trade:gbpusd:2026-07-29",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-29",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6625,6 +7537,13 @@
     {
       "source": "trade:gbpusd:2026-07-29",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-29",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6673,6 +7592,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-30",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-30",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -6723,6 +7649,13 @@
     {
       "source": "trade:gbpusd:2026-07-30",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-30",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6793,6 +7726,13 @@
     {
       "source": "trade:gbpusd:2026-07-30",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-30",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6834,6 +7774,13 @@
     },
     {
       "source": "trade:gbpusd:2026-07-31",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -6884,6 +7831,13 @@
     {
       "source": "trade:gbpusd:2026-07-31",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6954,6 +7908,13 @@
     {
       "source": "trade:gbpusd:2026-07-31",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-07-31",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -6988,6 +7949,13 @@
     },
     {
       "source": "trade:gbpusd:2026-08-02",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-02",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -7038,6 +8006,13 @@
     {
       "source": "trade:gbpusd:2026-08-02",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-02",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -7108,6 +8083,13 @@
     {
       "source": "trade:gbpusd:2026-08-02",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-02",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -7135,6 +8117,13 @@
     },
     {
       "source": "trade:gbpusd:2026-08-03",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-03",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -7185,6 +8174,13 @@
     {
       "source": "trade:gbpusd:2026-08-03",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-03",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -7255,6 +8251,13 @@
     {
       "source": "trade:gbpusd:2026-08-03",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-03",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -7275,6 +8278,13 @@
     },
     {
       "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -7325,6 +8335,13 @@
     {
       "source": "trade:gbpusd:2026-08-04",
       "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:nas100:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -7395,6 +8412,13 @@
     {
       "source": "trade:gbpusd:2026-08-04",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-04",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -7408,6 +8432,13 @@
     },
     {
       "source": "trade:gbpusd:2026-08-05",
+      "target": "trade:gbpusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-05",
       "target": "trade:gold:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -7464,6 +8495,13 @@
     },
     {
       "source": "trade:gbpusd:2026-08-05",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-05",
       "target": "trade:xauusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -7528,6 +8566,20 @@
     {
       "source": "trade:gbpusd:2026-08-05",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-05",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-06",
+      "target": "trade:gbpusd:2026-08-07",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -7590,6 +8642,13 @@
     },
     {
       "source": "trade:gbpusd:2026-08-06",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-06",
       "target": "trade:xauusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -7654,6 +8713,153 @@
     {
       "source": "trade:gbpusd:2026-08-06",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-06",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:gold:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:nas100:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:nas100:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:nas100:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:nas100:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:nas100:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:nas100:2026-08-05",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:nas100:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-05",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gbpusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -7709,6 +8915,13 @@
     },
     {
       "source": "trade:gold:2026-07-28",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gold:2026-07-28",
       "target": "trade:xauusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -7773,6 +8986,13 @@
     {
       "source": "trade:gold:2026-07-28",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:gold:2026-07-28",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -7821,6 +9041,13 @@
     },
     {
       "source": "trade:nas100:2026-07-29",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-07-29",
       "target": "trade:xauusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -7885,6 +9112,13 @@
     {
       "source": "trade:nas100:2026-07-29",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-07-29",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -7926,6 +9160,13 @@
     },
     {
       "source": "trade:nas100:2026-07-31",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-07-31",
       "target": "trade:xauusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -7990,6 +9231,13 @@
     {
       "source": "trade:nas100:2026-07-31",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-07-31",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -8024,6 +9272,13 @@
     },
     {
       "source": "trade:nas100:2026-08-02",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-02",
       "target": "trade:xauusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -8088,6 +9343,13 @@
     {
       "source": "trade:nas100:2026-08-02",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-02",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -8115,6 +9377,13 @@
     },
     {
       "source": "trade:nas100:2026-08-03",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-03",
       "target": "trade:xauusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -8179,6 +9448,13 @@
     {
       "source": "trade:nas100:2026-08-03",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-03",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -8199,6 +9475,13 @@
     },
     {
       "source": "trade:nas100:2026-08-04",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-04",
       "target": "trade:xauusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -8263,6 +9546,13 @@
     {
       "source": "trade:nas100:2026-08-04",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-04",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -8276,6 +9566,13 @@
     },
     {
       "source": "trade:nas100:2026-08-05",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-05",
       "target": "trade:xauusd:2026-07-28",
       "type": "SIMILAR_TO",
       "weight": 0.5,
@@ -8345,6 +9642,20 @@
       "metadata": {}
     },
     {
+      "source": "trade:nas100:2026-08-05",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-06",
+      "target": "trade:nas100:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:nas100:2026-08-06",
       "target": "trade:xauusd:2026-07-28",
       "type": "SIMILAR_TO",
@@ -8415,6 +9726,90 @@
       "metadata": {}
     },
     {
+      "source": "trade:nas100:2026-08-06",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-07-28",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-07-29",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-07-30",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-07-31",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-08-02",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-08-03",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-08-04",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-08-05",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-08-06",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:nas100:2026-08-07",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-07-28",
       "target": "trade:xauusd:2026-07-29",
       "type": "SIMILAR_TO",
@@ -8478,6 +9873,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:xauusd:2026-07-28",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-07-29",
       "target": "trade:xauusd:2026-07-30",
       "type": "SIMILAR_TO",
@@ -8534,6 +9936,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:xauusd:2026-07-29",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-07-30",
       "target": "trade:xauusd:2026-07-31",
       "type": "SIMILAR_TO",
@@ -8583,6 +9992,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:xauusd:2026-07-30",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-07-31",
       "target": "trade:xauusd:2026-08-02",
       "type": "SIMILAR_TO",
@@ -8625,6 +10041,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:xauusd:2026-07-31",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-08-02",
       "target": "trade:xauusd:2026-08-03",
       "type": "SIMILAR_TO",
@@ -8660,6 +10083,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:xauusd:2026-08-02",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-08-03",
       "target": "trade:xauusd:2026-08-04",
       "type": "SIMILAR_TO",
@@ -8688,6 +10118,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:xauusd:2026-08-03",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-08-04",
       "target": "trade:xauusd:2026-08-05",
       "type": "SIMILAR_TO",
@@ -8709,6 +10146,13 @@
       "metadata": {}
     },
     {
+      "source": "trade:xauusd:2026-08-04",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
       "source": "trade:xauusd:2026-08-05",
       "target": "trade:xauusd:2026-08-06",
       "type": "SIMILAR_TO",
@@ -8718,6 +10162,13 @@
     {
       "source": "trade:xauusd:2026-08-05",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:xauusd:2026-08-05",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}
@@ -8725,6 +10176,20 @@
     {
       "source": "trade:xauusd:2026-08-06",
       "target": "trade:xauusd:2026-08-07",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:xauusd:2026-08-06",
+      "target": "trade:xauusd:2026-08-09",
+      "type": "SIMILAR_TO",
+      "weight": 0.5,
+      "metadata": {}
+    },
+    {
+      "source": "trade:xauusd:2026-08-07",
+      "target": "trade:xauusd:2026-08-09",
       "type": "SIMILAR_TO",
       "weight": 0.5,
       "metadata": {}

@@ -105,9 +105,70 @@ function findRelativeEqualLevels(candles, atr, { lookback = 2 } = {}) {
   return { highs: eqHighs, lows: eqLows };
 }
 
+// Smoothness / energy grading — ICT "left smooth = unfinished business".
+// A relative-equal level is only a high-probability magnet when it was created
+// WITH ENERGY (displacing bodies into it), is still UNSWEPT, and price has
+// bumped it without acceptance (probed the cluster zone but closed back outside
+// the extreme). "Smooth" = the level was left clean; a bump w/o acceptance is
+// the tell that the algorithmic delivery is unfinished.
+function gradeEqualLevelSmoothness(level, candles, atr, opts = {}) {
+  const bars = Array.isArray(candles) ? candles : [];
+  if (!level || !atr || atr <= 0 || bars.length < 5) return null;
+
+  const spreadAtr = (level.top - level.bottom) / atr;
+  const isHigh = level.type === "equalHighs";
+
+  // Energy = average body (in ATR units) of candles leading INTO the second touch.
+  const second = Number.isInteger(level.secondIndex) ? level.secondIndex : bars.length - 1;
+  const from = Math.max(0, second - 10);
+  let bodySum = 0, count = 0;
+  for (let i = from; i < second; i++) {
+    const c = bars[i];
+    if (!c || !Number.isFinite(c.open) || !Number.isFinite(c.close)) continue;
+    bodySum += Math.abs(c.close - c.open);
+    count++;
+  }
+  const energy = count > 0 ? bodySum / count / atr : 0;
+  const energyOk = energy >= 0.4;
+
+  // Bump without acceptance: price poked INTO the cluster zone but closed back
+  // outside the level's extreme. Because an unswept cluster has never exceeded
+  // its extreme, any such probe is "bumped, not accepted" = unfinished business.
+  let bump = false, bumpTime = null;
+  for (let i = Math.max(0, second); i < bars.length; i++) {
+    const c = bars[i];
+    if (!c) continue;
+    const probed = isHigh
+      ? (c.high > level.bottom && c.close < level.top)
+      : (c.low < level.top && c.close > level.bottom);
+    if (probed) { bump = true; bumpTime = c.time; break; }
+  }
+
+  const tight = spreadAtr <= RELATIVE_EQ_TOLERANCE * 0.8; // 0.12 ATR or tighter
+  const resting = !level.swept;
+  const magnet = resting && energyOk && bump;
+  const smooth = resting && energyOk && tight && !bump;
+  const grade = magnet ? "MAGNET" : smooth ? "SMOOTH" : resting && energyOk ? "NEUTRAL" : "CHOPPY";
+
+  return {
+    smooth,
+    energy: Number(energy.toFixed(2)),
+    energyOk,
+    bump,
+    bumpTime,
+    magnet,
+    resting,
+    tight,
+    spreadAtr: Number(spreadAtr.toFixed(2)),
+    grade,
+    detail: `[${grade}] equal ${isHigh ? "highs" : "lows"} ${Number(level.bottom).toFixed(5)}–${Number(level.top).toFixed(5)} | energy ${energy.toFixed(1)}×ATR | spread ${spreadAtr.toFixed(2)} ATR${bump ? " | bumped w/o acceptance = unfinished business" : resting ? " | resting clean" : " | swept"}`,
+  };
+}
+
 module.exports = {
   findSwings,
   findRelativeEqualLevels,
+  gradeEqualLevelSmoothness,
   calcATR,
   RELATIVE_EQ_TOLERANCE,
 };

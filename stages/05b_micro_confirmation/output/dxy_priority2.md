@@ -1,4 +1,4 @@
-# Priority 2 Report — DXY — 2026-08-07
+# Priority 2 Report — DXY — 2026-08-10
 
 ## CISD (Engine-Quality)
 **No CISD detected.**
@@ -11,11 +11,11 @@
 
 
 ## Per-Session Po3
-**Current session: London AM — MANIPULATION phase. Judas Swing window — false breakout likely.**
-- London AM: MANIPULATION — Judas Swing window — false breakout likely
+**Current session: London PM — DISTRIBUTION phase. European distribution begins.**
+- London PM: DISTRIBUTION — European distribution begins
 
 ## ISD Sequence
 **⏳ ISD 2/3 — Near complete. One more confirmation needed.**
 - ✅ Inducement: 4 pool(s) swept across 4H/15m
-- ✗ Structural Sweep: No CHoCH or sweep-confirmed BOS on entry TF
-- ✅ Displacement: moderate on 5m (0.93x), weak on 15m
+- ✅ Structural Sweep: CHoCH confirms on 15m/5m
+- ✗ Displacement: weak on 5m (0.00x) — below threshold

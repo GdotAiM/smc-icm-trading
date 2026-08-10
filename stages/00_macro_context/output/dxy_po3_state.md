@@ -1,7 +1,7 @@
-# Po3 State Machine — DXY — 2026-08-07
+# Po3 State Machine — DXY — 2026-08-10
 
-## Current State: **MANIPULATION** (0.85 confidence)
-**4 sweep(s) + CHoCH — manipulation active**
+## Current State: **MANIPULATION** (0.85 confidence, from 4H)
+3 sweep(s) + CHoCH — manipulation active
 
 ## State Timeline
 
@@ -19,32 +19,32 @@ ACCUMULATION → MANIPULATION → DISTRIBUTION → EXPANSION → (cycle repeats)
 
 ## Timing Gate Check
 
-**Expected phase for London Open (02:00 NY): MANIPULATION**
+**Expected phase for London PM (06:00 NY): DISTRIBUTION**
 **Detected phase: MANIPULATION**
-✅ TIMING ALIGNED — Detected phase matches expected phase for this time window.
+⚠️ TIMING DIVERGENCE — Detected phase differs from expected. Market may be ahead of or behind the typical Po3 schedule.
 
 ## Per-TF States
 
 | TF | State | Confidence | Reason |
 |----|-------|------------|--------|
-| 1D | MANIPULATION | 0.85 | 4 sweep(s) + CHoCH — manipulation active |
-| 4H | MANIPULATION | 0.85 | 4 sweep(s) + CHoCH — manipulation active |
-| 1H | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
+| 1D | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
+| 4H | MANIPULATION | 0.85 | 3 sweep(s) + CHoCH — manipulation active |
+| 1H | MANIPULATION | 0.85 | 1 sweep(s) + CHoCH — manipulation active |
 
 ## Entry Rules for MANIPULATION
 
 **Manipulation is the TRAP phase. Enter on the reversal after the sweep. Turtle Soup and Breaker Block are primary.**
 
 ## Daily Open Anchor
-Daily Open (Midnight NY): 12741.00000
+Daily Open (Midnight NY): 12754.00000
 
 ## Accumulation Range
-✅ Accumulation Range: 12684.00000–12691.00000 (0.06% — TIGHT). Institutions building positions.
+✅ Accumulation Range: 12660.00000–12670.00000 (0.08% — TIGHT). Institutions building positions.
 
 ## Manipulation Direction Check
 ⚠️ MANIPULATION CONFIRMED: Sweep OPPOSITE to daily bearish bias — this is the trap. Do NOT enter with the sweep direction.
 - Daily Bias: BEARISH
-- Swept Above (BSL): 3 | Swept Below (SSL): 0
+- Swept Above (BSL): 1 | Swept Below (SSL): 0
 - Is Manipulation: ⚠️ YES — do not trade with the sweep
 - With Bias: No
 - Entries: AFTER sweep reversal confirmed

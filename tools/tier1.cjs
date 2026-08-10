@@ -196,7 +196,7 @@ function atrDynamicSL(report, entryPrice, htfBias) {
   // candle data is unavailable — never the preferred path.
   const c4h = loadCandles(sharedDir, "4h") || loadCandles(sharedDir, "1h");
   const realATR = calcATR(c4h, 14);
-  const atrValue = realATR != null && realATR > 0 ? realATR : Math.abs(swHi - swLo) * 0.15;
+  const atrValue = realATR != null && realATR > 0 ? realATR : null; // WP-1: No fake ATR
 
   // ICT: SL = swing point + (ATR × multiplier)
   // Multiplier varies by pair volatility

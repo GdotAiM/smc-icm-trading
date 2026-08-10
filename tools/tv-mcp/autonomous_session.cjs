@@ -2,8 +2,11 @@
 // Run this ONCE at session start. It handles everything.
 // Usage: node tools/tv-mcp/autonomous_session.cjs
 //
+// Entry path: runs run_pair.cjs per pair, then gates each via auto_decision.cjs
+// (shared with ny_am_autonomous.cjs). Only gated setups are placed.
+// market_order.cjs itself stays raw — the gate is the single choke point.
+//
 // Discord alerts: Set DISCORD_WEBHOOK in .env for trade notifications
-// The webhook sends trade entries, exits, P&L updates, and session summary
 
 const { execSync } = require("child_process");
 const fs = require("fs");
@@ -31,12 +34,17 @@ const CONFIG = {
   sessionEnd: "05:00",    // NY time
   maxPositions: 2,
   riskPerTrade: 1,        // percent ($100)
-  minCoherenceScore: 7,   // out of 10 for entry
-  slMultiplier: 1.5,      // ATR multiplier for SL
-  tpMultiplier: 2.5,      // ATR multiplier for TP
-  recheckIntervalMin: 10, // rescan every 10 minutes
+  recheckIntervalMin: 10, // refresh data every 10 minutes
   journalOnClose: true,
 };
+
+// Single-driver lock — if auto_scheduler.cjs is running (heartbeat fresh),
+// it owns execution; this phase driver steps aside to avoid double-trading.
+const guard = require("../scheduler_guard.cjs");
+if (guard.activeMode(10) === "EXECUTE") {
+  console.log("AUTO_SCHEDULER active — autonomous_session standing aside (single-driver lock).");
+  process.exit(0);
+}
 
 function log(entry) {
   const line = { time: new Date().toISOString(), ...entry };
@@ -64,17 +72,9 @@ async function discordAlert(emoji, title, detail, color) {
   } catch {}
 }
 
-function run(cmd) {
+function run(cmd, timeoutMs) {
   try {
-    return execSync(cmd, { encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "ignore"] });
-  } catch (e) {
-    return null;
-  }
-}
-
-function run(cmd) {
-  try {
-    return execSync(cmd, { encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "ignore"] });
+    return execSync(cmd, { encoding: "utf8", timeout: timeoutMs || 120000, stdio: ["ignore", "pipe", "ignore"] });
   } catch (e) {
     return null;
   }
@@ -128,51 +128,73 @@ async function phase1Startup() {
   // Run session startup (fetches data, runs engines, forecasts)
   log({ event: "STARTUP", detail: "Running session_start.cjs..." });
   await discordAlert("📡", "Fetching Data", "Running session_start.cjs — candles, engines, forecasts for all pairs", 0x9B59B6);
-  const startup = run(`node "${path.join(ROOT, "tools", "session_start.cjs")}"`);
+  const startup = run(`node "${path.join(ROOT, "tools", "session_start.cjs")}"`, 300000);
   log({ event: "STARTUP_COMPLETE", detail: startup ? "OK" : "FAILED" });
   await discordAlert("✅", "Data Ready", "All pairs fetched, engines run, forecasts generated", 0x2ECC71);
 }
 
 // ═══════════════════════════════════════════════════════════
-// PHASE 2: Initial Scan & Trade (02:05-02:15)
+// PHASE 2: Pipeline + Gated Entry (02:05-02:30)
+// Runs the full registry pipeline per pair, gates each decision,
+// and places only setups that pass. No legacy live_levels trend path.
 // ═══════════════════════════════════════════════════════════
-async function phase2InitialScan() {
-  log({ event: "PHASE_2", detail: "Initial pair scan" });
+async function phase2PipelineScan() {
+  log({ event: "PHASE_2", detail: "Running pipeline on " + CONFIG.pairs.length + " pairs" });
 
-  // Get live levels
-  const levels = run(`node "${path.join(ROOT, "tools", "tv-mcp", "live_levels.cjs")}"`);
-  if (!levels) {
-    log({ event: "SCAN_FAILED", detail: "live_levels.cjs failed" });
-    return [];
-  }
-
-  let setups;
-  try { setups = JSON.parse(levels); } catch { return []; }
-
-  log({ event: "SCAN_RESULTS", detail: setups.length + " pairs scanned" });
-
+  const autoDecision = require("../auto_decision.cjs");
   const trades = [];
-  for (const s of setups) {
-    if (s.error) continue;
 
-    // Score: trend alignment (3 = all aligned, 1 = partial, 0 = mixed)
-    const alignment = (s.trend15m === s.trend5m && s.trend5m === s.trend1m) ? 3 :
-                      (s.trend15m === s.trend5m || s.trend5m === s.trend1m) ? 1 : 0;
+  for (const pair of CONFIG.pairs) {
+    if (trades.length >= CONFIG.maxPositions) {
+      log({ event: "MAX_POSITIONS", detail: "Reached " + CONFIG.maxPositions + " — skipping " + pair });
+      continue;
+    }
 
-    // Only trade if there's clear alignment
-    if (alignment >= 1 && CONFIG.pairs.includes(s.pair)) {
-      // Use the SL/TP from live_levels
-      const tradeCmd = `node "${path.join(ROOT, "tools", "tv-mcp", "market_order.cjs")}" ${s.pair} ${s.side} ${s.sl} ${s.tp} ${s.qty}`;
-      log({ event: "PLACING", detail: s.pair + " " + s.side + " SL:" + s.sl + " TP:" + s.tp });
-      const result = run(tradeCmd);
-      trades.push({ pair: s.pair, side: s.side, sl: s.sl, tp: s.tp, qty: s.qty, alignment });
-      log({ event: "PLACED", detail: s.pair + " " + s.side });
+    // Run the full pipeline — emits decision.json + all stage outputs
+    log({ event: "PIPELINE", detail: pair });
+    const output = run(`node "${path.join(ROOT, "tools", "run_pair.cjs")}" ${pair}`, 120000);
+    if (!output) {
+      log({ event: "PIPELINE_FAILED", detail: pair });
+      continue;
+    }
 
-      // Discord alert for each trade
-      const dirEmoji = s.side === "SELL" ? "🔴" : "🟢";
-      await discordAlert(dirEmoji, s.side + " " + s.pair.toUpperCase(),
-        "Entry: Market | SL: " + s.sl + " | TP: " + s.tp + " | Qty: " + s.qty + " | Alignment: " + alignment + "/3",
-        s.side === "SELL" ? 0xFF1744 : 0x00E676);
+    // Gate the decision — same choke point ny_am_autonomous uses
+    const gate = autoDecision.gate(pair);
+    const verdict = gate.allowed ? "✅ ALLOWED" : "🛑 BLOCKED — " + gate.reasons.join("; ");
+    log({ event: "GATE", detail: pair + " | " + verdict });
+
+    if (!gate.allowed) {
+      await discordAlert("🛑", pair + " Gated Out",
+        "Pipeline decision rejected: " + gate.reasons.join("; "), 0xF1C40F);
+      continue;
+    }
+
+    const d = gate.decision;
+    const op = gate.operative; // second-chance tightened plan when applicable
+    const side = op.side;
+    let qty = d.sizing.qty;
+    if (op.sizeMultiplier && op.sizeMultiplier !== 1) {
+      qty = Math.max(100, Math.round(qty * op.sizeMultiplier)); // 0.5x for second chance
+    }
+    const sl = op.sl;
+    const tp1 = op.tp1;
+    const model = d.registry.primary;
+    const chanceTag = gate.secondChance ? " [SECOND CHANCE]" : "";
+
+    const tradeCmd = `node "${path.join(ROOT, "tools", "tv-mcp", "market_order.cjs")}" ${pair} ${side} ${sl} ${tp1} ${qty}`;
+    log({ event: "PLACING", detail: pair + " " + side + " SL:" + sl + " TP:" + tp1 + " Qty:" + qty + " Model:" + model + chanceTag });
+    const result = run(tradeCmd, 45000);
+    if (result) {
+      trades.push({ pair, side, sl, tp: tp1, qty, model });
+      log({ event: "PLACED", detail: pair + " " + side });
+
+      const dirEmoji = side === "SELL" ? "🔴" : "🟢";
+      await discordAlert(dirEmoji, side + " " + pair.toUpperCase() + chanceTag,
+        "Entry: Market | SL: " + sl + " | TP: " + tp1 + " | Qty: " + qty + " | Model: " + model + " | R:R " + (gate.operativeRR || d.rr?.rr1 || 0).toFixed(1) + ":1",
+        side === "SELL" ? 0xFF1744 : 0x00E676);
+    } else {
+      log({ event: "PLACE_FAILED", detail: pair + " — market_order returned null" });
+      await discordAlert("⚠️", "Order Failed", pair + " " + side + " — TV CDP may be busy", 0xE67E22);
     }
   }
 
@@ -180,7 +202,9 @@ async function phase2InitialScan() {
 }
 
 // ═══════════════════════════════════════════════════════════
-// PHASE 3: Monitor Loop (02:15-04:55)
+// PHASE 3: Monitor Loop (02:30-04:55)
+// Refreshes data + checks positions. No new entries — the legacy
+// live_levels trend re-scan stacking loop has been removed.
 // ═══════════════════════════════════════════════════════════
 async function phase3Monitor(trades) {
   log({ event: "PHASE_3", detail: "Monitoring " + trades.length + " positions — refreshing data each cycle" });
@@ -198,18 +222,17 @@ async function phase3Monitor(trades) {
     // ═══ DATA REFRESH — keeps candles, engines, and forecasts fresh ═══
     // Run session_start every cycle. It fetches live candles from TV CDP,
     // re-runs the SMC engine, and regenerates forecasts.
-    // Without this, data goes stale within 5 minutes and analysis becomes unreliable.
     const doFullRefresh = (checkCount % FULL_REFRESH_EVERY === 0);
     if (doFullRefresh) {
       log({ event: "FULL_REFRESH", detail: "Running full session_start.cjs (all pairs, all TFs)" });
       const refreshStart = Date.now();
-      const startupResult = run(`node "${path.join(ROOT, "tools", "session_start.cjs")}"`);
+      const startupResult = run(`node "${path.join(ROOT, "tools", "session_start.cjs")}"`, 300000);
       const refreshSec = ((Date.now() - refreshStart) / 1000).toFixed(0);
       log({ event: "FULL_REFRESH_DONE", detail: "Completed in " + refreshSec + "s — " + (startupResult ? "OK" : "FAILED") });
     }
 
     // ═══ CHECK POSITIONS ═══
-    const positions = run(`node "${path.join(ROOT, "tools", "tv-mcp", "check_orders.cjs")}"`);
+    const positions = run(`node "${path.join(ROOT, "tools", "tv-mcp", "check_orders.cjs")}"`, 30000);
     if (positions) {
       try {
         const posData = JSON.parse(positions);
@@ -224,16 +247,6 @@ async function phase3Monitor(trades) {
         log({ event: "POSITIONS", detail: positions.substring(0, 200) });
       }
     }
-
-    // ═══ RE-SCAN for new setups on full refresh cycles ═══
-    if (doFullRefresh && trades.length < CONFIG.maxPositions) {
-      log({ event: "RESCAN", detail: "Scanning for new setups..." });
-      const newTrades = await phase2InitialScan();
-      if (newTrades.length > 0) {
-        trades.push(...newTrades);
-        log({ event: "NEW_TRADES", detail: newTrades.length + " new trades placed" });
-      }
-    }
   }
 }
 
@@ -244,7 +257,7 @@ async function phase4Close() {
   log({ event: "PHASE_4", detail: "Closing session" });
 
   // Check final positions
-  const finalCheck = run(`node "${path.join(ROOT, "tools", "tv-mcp", "check_orders.cjs")}"`);
+  const finalCheck = run(`node "${path.join(ROOT, "tools", "tv-mcp", "check_orders.cjs")}"`, 30000);
   log({ event: "FINAL_POSITIONS", detail: finalCheck?.substring(0, 300) || "none" });
 
   // Extract lessons
@@ -283,7 +296,7 @@ async function phase4Close() {
   fs.mkdirSync(SESSION_DIR, { recursive: true });
 
   await phase1Startup();
-  const trades = await phase2InitialScan();
+  const trades = await phase2PipelineScan();
   await phase3Monitor(trades);
   await phase4Close();
 })().catch(e => {

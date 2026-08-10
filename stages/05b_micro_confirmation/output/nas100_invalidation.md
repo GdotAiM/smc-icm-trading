@@ -1,23 +1,26 @@
-# Invalidation Awareness — NAS100 — 2026-08-07
+# Invalidation Awareness — NAS100 — 2026-08-10
 
 ## Overall Status: ❌ TRADE INVALID — At least one dimension has failed. Exit or do not enter.
 
 | Dimension | Status | Detail |
 |-----------|--------|--------|
 | PRICE | ⏳ undefined |  |
-| STRUCTURE | ⏳ MONITOR | 4H structure: bullish with CHoCH |
+| STRUCTURE | ✅ VALID | 4H BOS bullish — structure confirms direction |
 | STRUCTURE | ⚠️ WARNING | 1D bias is bearish — HTF may be opposing the trade |
-| TIME | ✅ ACTIVE | Killzone active — 9h 0m remaining |
-| TIME | ⏳ INACTIVE | SB window not active — next: London SB at 03:00 |
-| MODEL | ❌ INVALIDATED | Not in Silver Bullet window — model requires active SB killzone |
+| STRUCTURE | ⚠️ WARNING | 1W bias is bearish — MACRO trend opposes trade direction. This may be a pullback, not a reversal. |
+| TIME | ✅ ACTIVE | Killzone active — 2h 0m remaining |
+| TIME | ✅ ACTIVE | Silver Bullet window ACTIVE — time-gated models eligible |
+| MODEL | ✅ VALID | SB window active — model conditions met |
 | MODEL | ❌ INVALIDATED | No unmitigated OB — MMXM requires HTF POI |
-| MICRO | ✅ VALID | 15m bias bullish — aligned with HTF |
+| CYCLE | ✅ VALID | DISTRIBUTION phase — trend is active. Let winners run. |
+| MICRO | ⚠️ WARNING | 15m bias bearish — OPPOSING HTF. This is a pullback. Hold if SL not threatened. |
+| MICRO | ⚠️ WARNING | 5m CHoCH flipped to bearish — micro reversal. Check if SL threatened. |
 | CORRELATION | ✅ VALID | DXY is bearish — confirms USD direction for bullish NAS100 |
 
 ## Invalidation Summary
-- **Invalidated**: 2 dimension(s) — EXIT OR DO NOT ENTER
-- **Warnings**: 1 — Trade with reduced size and awareness
-- **Confirmed**: 3 checks passed
+- **Invalidated**: 1 dimension(s) — EXIT OR DO NOT ENTER
+- **Warnings**: 4 — Trade with reduced size and awareness
+- **Confirmed**: 6 checks passed
 
 ## If Trade Is Active
 - **EXIT NOW** — the trade thesis is no longer valid.

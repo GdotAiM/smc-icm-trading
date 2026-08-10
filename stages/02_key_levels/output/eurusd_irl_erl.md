@@ -1,15 +1,15 @@
-# IRL / ERL Analysis — EURUSD — 2026-08-07
+# IRL / ERL Analysis — EURUSD — 2026-08-10
 
-## Current Price: 1.15287
+## Current Price: 1.15438
 
 ## Dealing Range (1D)
-- **Range**: 1.13532 — 1.14824 (0.01292)
-- **Midpoint (Equilibrium)**: 1.14178
-- **Validation**: ⚠️ PARTIAL — high swept, low NOT swept
-- **Premium Zone**: 1.14824 — 1.14178
-- **Discount Zone**: 1.14178 — 1.13532
+- **Range**: 1.13532 — 1.15808 (0.02276)
+- **Midpoint (Equilibrium)**: 1.14670
+- **Validation**: Sweep-to-sweep — high swept @ 1.15808, low swept @ 1.13532
+- **Premium Zone**: 1.15808 — 1.14670
+- **Discount Zone**: 1.14670 — 1.13532
 
-## IRL — Internal Range Liquidity (0 FVGs)
+## IRL — Internal Range Liquidity (0 objects: FVGs + equal highs/lows)
 | Status | Count |
 |--------|-------|
 | Unfilled (<30%) | 0 |
@@ -17,9 +17,9 @@
 | Filled (>70%) | 0 |
 
 ## ERL — External Range Liquidity
-- **Dominant**: BUY-SIDE (above)
+- **Dominant**: BALANCED
 - **Larger Pool**: ABOVE
-- **Buy-Side (above range)**: 2 pools | 0 equal-high clusters
+- **Buy-Side (above range)**: 0 pools | 0 equal-high clusters
 - **Sell-Side (below range)**: 0 pools | 0 equal-low clusters
 
 ## Delivery Cycle
@@ -29,8 +29,8 @@
 - **ERL Sweeps**: 0 above, 0 below
 
 ## IRL/ERL Bias
-- **Bias**: **BEARISH** (confidence: 0.50)
-- **Reasoning**: Price outside above dealing range. Expected to re-enter range toward IRL.
+- **Bias**: **NEUTRAL** (confidence: 0.00)
+- **Reasoning**: 
 
 ## Entry Guidance
 - **WAIT** (neutral) — Unclear cycle position — wait for ERL raid or IRL fill to establish direction.

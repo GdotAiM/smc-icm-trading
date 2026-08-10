@@ -1,26 +1,26 @@
-# The Market's Story — DXY — 2026-08-07
+# The Market's Story — DXY — 2026-08-10
 
 ## The Narrative
 
 
 ### I. MACRO FOUNDATION — 1W
-The weekly chart shows a BEARISH structure with potential change. This is the macro foundation — all lower timeframe analysis must be read through this lens. The trade direction ALIGNS with the weekly trend — the macro wind is at our back.
+The weekly chart shows a BULLISH structure with potential change. This is the macro foundation — all lower timeframe analysis must be read through this lens. The trade direction OPPOSES the weekly trend — this is a counter-trend move within a larger structure, not a standalone trend.
 
 
 ### II. THE TRANSITION — 1D
-The daily CONTINUES the weekly. The daily bearish bias confirms the larger picture — both timeframes agree, increasing conviction.
+The daily DIVERGES from the weekly. This divergence is the KEY to understanding today's market: the daily move against the weekly trend is MANIPULATION, not a genuine reversal. Institutions are engineering a bearish move to sweep liquidity before the real bullish move resumes.
 
 
 ### III. THE TRADE CONTEXT — 4H
-The 4H is our trade timeframe. CHoCH at 12756.10000 confirms the bearish structure. Liquidity sweep detected: SSL @ 12666.30000, BSL @ 12802.77500, BSL @ 12781.50000, BSL @ 12757.43333. This is the INDUCEMENT — the manipulation that traps traders before the real move. No clear OBs — entry will use measured moves. Displacement is weak.
+The 4H is our trade timeframe. CHoCH at 12756.10000 confirms the bearish structure. Liquidity sweep detected: BSL @ 12802.77500, BSL @ 12781.50000, BSL @ 12757.43333. This is the INDUCEMENT — the manipulation that traps traders before the real move. No clear OBs — entry will use measured moves. Displacement is weak.
 
 
 ### IV. MICRO CONFIRMATION — 15m/5m
-The 15m is bullish while HTF is bearish. This is a PULLBACK within the larger trend, not a reversal. The bullish move on 15m is counter-trend and likely to exhaust. Wait for LTF to realign with HTF before entering.
+The 15m and 5m both show bearish structure — LTF CONFIRMS HTF. This is the ideal entry environment: the lower timeframes agree with the higher timeframe direction.
 
 
 ### V. THE TRIGGER — 1m
-The 1m shows bearish bias with 0 FVGs. The 1m bearish aligns with HTF — trigger may be imminent.  No 1m FVG — wait for displacement to create entry inefficiency.
+The 1m shows bullish bias with 0 FVGs. The 1m bullish is a micro-bounce WITHIN the bearish trend — Scalpers can trade it but should NOT hold against the HTF. Recent 1m sweep detected — micro-manipulation may have just occurred. No 1m FVG — wait for displacement to create entry inefficiency.
 
 
 ---
@@ -42,7 +42,7 @@ Model selection is narrative-driven, not pattern-matched. Each model tells a dif
 
 ### Turtle Soup
 **Fit**: SWEEP-DRIVEN — sweep detected, reversal expected
-**Why**: Turtle Soup is the pure manipulation entry — enter ON the sweep reversal. A sweep just occurred (SSL, BSL, BSL, BSL), making Turtle Soup eligible. This model fades the sweep: it assumes the breakout is FALSE and price will reverse. The cycle phase may not be optimal for Turtle Soup — it works best in manipulation.
+**Why**: Turtle Soup is the pure manipulation entry — enter ON the sweep reversal. A sweep just occurred (BSL, BSL, BSL), making Turtle Soup eligible. This model fades the sweep: it assumes the breakout is FALSE and price will reverse. The cycle phase may not be optimal for Turtle Soup — it works best in manipulation.
 
 
 ---
@@ -56,7 +56,7 @@ The BEARISH bias is built on 4 pieces of structural evidence, not a single indic
 **Evidence chain**:
 - 4H CHoCH (Change of Character) — potential reversal
 - Liquidity sweep — institutional manipulation detected
-- 3 FVG(s) — price inefficiencies to fill
+- 4 FVG(s) — price inefficiencies to fill
 - 1D and 4H aligned — no timeframe conflict
 
 **Cycle context**: No cycle context available — bias is based on structure alone.
@@ -90,9 +90,9 @@ Council data unavailable — run tools/council.cjs first.
 
 The market is telling us a coherent story:
 
-**DXY is in a UNKNOWN phase within a larger BEARISH weekly structure.**
+**DXY is in a UNKNOWN phase within a larger BULLISH weekly structure.**
 
-The weekly chart shows a BEARISH structure with potential change. The daily CONTINUES the weekly. The 4H is our trade timeframe.
+The weekly chart shows a BULLISH structure with potential change. The daily DIVERGES from the weekly. The 4H is our trade timeframe.
 
 The cycle phase is unclear — trade with caution and reduced size.
 
@@ -105,5 +105,5 @@ The cycle phase is unclear — trade with caution and reduced size.
 
 ---
 
-*Generated: 2026-08-07T06:34:32.193Z | Narrative Engine v1.0*
+*Generated: 2026-08-10T10:49:57.577Z | Narrative Engine v1.0*
 *"The market is a storyteller. Our job is to listen, not to guess."*

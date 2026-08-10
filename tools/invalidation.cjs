@@ -37,7 +37,7 @@ const swingLow = r4h.structure.lastSwingLow || r1d.structure.lastSwingLow || ent
 // Real ATR-14 (WP-1 / audit Gap 4.1). Fallback only when candles unavailable.
 const c4h = loadCandles(sharedDir, "4h");
 const realATR = calcATR(c4h, 14);
-const atrBuffer = realATR != null && realATR > 0 ? realATR * 0.5 : Math.abs(swingHigh - swingLow) * 0.1;
+const atrBuffer = realATR != null && realATR > 0 ? realATR * 0.5 : null; // WP-1: No fake ATR
 const slPrice = htfBias === "bearish" ? swingHigh + atrBuffer : swingLow - atrBuffer;
 const slDistance = Math.abs(entryPrice - slPrice);
 const slPips = Math.round(slDistance * (pairLabel === "XAUUSD" ? 10 : 10000));
@@ -123,22 +123,30 @@ if (hasOB && hasSweep) {
 }
 
 // 5. CYCLE INVALIDATION — Phase change
+// WP-3: Cycle phase from structure-based JSON, not markdown regex.
+// The per-pair JSON (e.g. eurusd_cycle_phase.json) is the machine-readable
+// output of po3_state_machine.cjs — the sole cycle authority.
 const cycleChecks = [];
+let currentPhase = "UNKNOWN";
 try {
-  const cycleMd = fs.readFileSync(path.join(ROOT, "stages", "00_macro_context", "output", "cycle_phase.md"), "utf8");
-  const phaseMatch = cycleMd.match(/\*\*([A-Z]+)\*\*/);
-  const currentPhase = phaseMatch ? phaseMatch[1] : "UNKNOWN";
-
-  if (currentPhase === "ACCUMULATION") {
-    cycleChecks.push({ status: "WARNING", detail: "Market in ACCUMULATION — breakouts may be false. Tighten stops, take profits early." });
-  } else if (currentPhase === "MANIPULATION") {
-    cycleChecks.push({ status: "ACTIVE", detail: "MANIPULATION phase — sweeps are likely. Hold through the noise if structure intact." });
-  } else if (currentPhase === "DISTRIBUTION") {
-    cycleChecks.push({ status: "VALID", detail: "DISTRIBUTION phase — trend is active. Let winners run." });
-  } else if (currentPhase === "EXPANSION") {
-    cycleChecks.push({ status: "WARNING", detail: "EXPANSION phase — blow-off risk. Trail stops tightly. Do not add." });
+  const cycleJsonPath = path.join(ROOT, "stages", "00_macro_context", "output", `${pairLabel.toLowerCase()}_cycle_phase.json`);
+  if (fs.existsSync(cycleJsonPath)) {
+    const cycleData = JSON.parse(fs.readFileSync(cycleJsonPath, "utf8"));
+    currentPhase = cycleData.phase || "UNKNOWN";
   }
-} catch(e) { cycleChecks.push({ status: "UNKNOWN", detail: "Cycle data unavailable" }); }
+} catch(e) { /* currentPhase stays UNKNOWN */ }
+
+if (currentPhase === "ACCUMULATION") {
+  cycleChecks.push({ status: "WARNING", detail: "Market in ACCUMULATION — breakouts may be false. Tighten stops, take profits early." });
+} else if (currentPhase === "MANIPULATION") {
+  cycleChecks.push({ status: "ACTIVE", detail: "MANIPULATION phase — sweeps are likely. Hold through the noise if structure intact." });
+} else if (currentPhase === "DISTRIBUTION") {
+  cycleChecks.push({ status: "VALID", detail: "DISTRIBUTION phase — trend is active. Let winners run." });
+} else if (currentPhase === "EXPANSION") {
+  cycleChecks.push({ status: "WARNING", detail: "EXPANSION phase — blow-off risk. Trail stops tightly. Do not add." });
+} else {
+  cycleChecks.push({ status: "UNKNOWN", detail: currentPhase === "UNKNOWN" ? "Cycle data unavailable — no structure-based phase" : `Unknown phase: ${currentPhase}` });
+}
 
 // 6. MICRO INVALIDATION — LTF structure contradicts
 const microChecks = [];

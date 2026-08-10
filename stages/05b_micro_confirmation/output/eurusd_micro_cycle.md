@@ -1,4 +1,4 @@
-# LTF Cycle Analysis — EURUSD — 2026-08-07
+# LTF Cycle Analysis — EURUSD — 2026-08-10
 
 ## Macro Context (from Stage 00)
 - **HTF Bias**: BULLISH
@@ -9,11 +9,11 @@
 
 | Timeframe | Bias | Event | Direction | Displacement | Sweeps | FVGs | OBs |
 |-----------|------|-------|-----------|-------------|--------|------|-----|
-| 15m | **BULLISH** | BOS | bullish | weak (0.51x) | SSL | 0 | 3 |
-| 5m | **BULLISH** | CHoCH | bullish | moderate (0.83x) | none | 0 | 0 |
-| 1m | **BULLISH** | BOS | bullish | weak (0.12x) | none | 1 | 2 |
+| 15m | **BEARISH** | BOS | bearish | weak (0.21x) | none | 0 | 0 |
+| 5m | **BEARISH** | CHoCH | bearish | weak (0.22x) | BSL | 0 | 0 |
+| 1m | **BEARISH** | BOS | bearish | weak (0.10x) | BSL | 1 | 1 |
 
 ## LTF Alignment
-- **15m vs HTF**: ✅ ALIGNED
-- **5m vs HTF**: ✅ ALIGNED
-- **1m vs HTF**: ✅ ALIGNED
+- **15m vs HTF**: ⚠️ OPPOSING
+- **5m vs HTF**: ⚠️ OPPOSING
+- **1m vs HTF**: ⚠️ OPPOSING

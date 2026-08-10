@@ -35,6 +35,9 @@ function makeContext(overrides = {}) {
     htfRanging: overrides.htfRanging ?? true,
     displacement: overrides.displacement ?? true,
     hasDraw: overrides.hasDraw ?? true,
+    // High Precision Secrets — 7-9AM tethering gate context. Default: framework
+    // ACTIVE with ≥1 tethered array so the NY-AM models pass in the full-pass case.
+    precision: overrides.precision ?? { active: true, tetheredCount: 1 },
     lecture2: {
       hunt: { swept: true, sweepPrice: 1.1 },
       mss: { confirmed: true, direction: "SELL" },
@@ -84,6 +87,7 @@ const STEP_FAIL = {
   lecture4_gap_draw: { lecture4: { gapClusters: { hasGaps: false }, substituteGap: false, gapDraw: { drawing: false } } },
   lecture4_mss: { lecture4: { mss: { confirmed: false } } },
   lecture4_ready: { lecture4: { setupReady: false } },
+  tethered_array: { precision: { active: true, tetheredCount: 0 } },
 };
 
 // Default in-window hour per model for the pass/fail tests.

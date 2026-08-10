@@ -1,21 +1,21 @@
-# Session Review — EURUSD — 2026-08-07
+# Session Review — EURUSD — 2026-08-10
 
 ## Setup Summary
 | | |
 |---|---|
-| **Direction** | NO TRADE |
-| **Model** | MMXM Sell Model (0/9) |
-| **Bias** | 1W bullish → 1D bullish → 4H bullish |
-| **Session** | London PM (Killzone ✅) |
-| **Entry** | 1.15287 | SL: 0.00000 | TP1: 0.00000 |
-| **R:R** | 1.00:1 | Meets 1:1 ✓ |
+| **Direction** | SHORT |
+| **Model** | 2FVG Entry (sequence complete) |
+| **Bias** | 1W bearish → 1D bearish → 4H bullish |
+| **Session** | NY PM (Killzone ✅) |
+| **Entry** | 1.15438 | SL: 1.15709 | TP1: 1.15177 |
+| **R:R** | 0.96:1 | Below minimum ✗ |
 
 ## Multi-TF Alignment
 ```
-1W  ✅ BULLISH
-1D  ✅ BULLISH ← TRADE BIAS
-4H  ✅ BULLISH
-1H  ✅ BULLISH
+1W  ✅ BEARISH
+1D  ✅ BEARISH ← TRADE BIAS
+4H  ⚠️ BULLISH
+1H  ✅ BEARISH
 ```
 
 ## Decision Quality
@@ -23,10 +23,10 @@
 |----------|-------------|
 | HTF Bias | 4 |
 | Levels | 4 |
-| Model | 3 |
-| R:R | 4 |
-| **Overall** | **3.75/5** |
+| Model | 4 |
+| R:R | 2 |
+| **Overall** | **3.50/5** |
 
 ## Confluence Check
-- DXY correlation: EURUSD + GBPUSD both bullish → DXY should be bearish
+- DXY correlation: EURUSD + GBPUSD both bearish → DXY should be bullish
 - FVGs present for entry refinement ✅

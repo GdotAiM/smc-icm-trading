@@ -1,4 +1,4 @@
-# Risk Plan — NAS100 — 2026-08-07
+# Risk Plan — NAS100 — 2026-08-10
 
 
 ## Account
@@ -11,9 +11,9 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 29467.2 |
+| Entry | 29673.8 |
 | SL | 0.0 (structural invalidation) |
-| Stop Distance | 29467 points |
+| Stop Distance | 29674 points |
 | **Position** | **0 micro lots** |
 | Risk | $100.00 |
 | Max Gain (TP1) | $100.00 |
@@ -22,11 +22,11 @@
 ```
 PAIR:       NAS100
 DIRECTION:  NO TRADE
-ENTRY:      29467.2
+ENTRY:      29673.8
 SL:         0.0
 TP1:        0.0 (close 50%)
 TP2:        0.0 (close 50%)
-R:R:        1.00:1 / 1.00:1
+R:R:        1.00:1 / 0.00:1
 ```
 
 ## Execution: **PAPER**

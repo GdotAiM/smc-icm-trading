@@ -1,4 +1,4 @@
-# Risk Plan — EURUSD — 2026-08-07
+# Risk Plan — EURUSD — 2026-08-10
 
 
 ## Account
@@ -11,27 +11,27 @@
 ## Position Size
 | Parameter | Value |
 |-----------|-------|
-| Entry | 1.15287 |
-| SL | 0.00000 (structural invalidation) |
-| Stop Distance | 11529 pips |
-| **Position** | **0 micro lots** |
+| Entry | 1.15438 |
+| SL | 1.15709 (structural invalidation) |
+| Stop Distance | 27 pips |
+| **Position** | **0.37 std lots** |
 | Risk | $100.00 |
-| Max Gain (TP1) | $100.00 |
+| Max Gain (TP1) | $96.30 |
 
 ## Trade Ticket
 ```
 PAIR:       EURUSD
-DIRECTION:  NO TRADE
-ENTRY:      1.15287
-SL:         0.00000
-TP1:        0.00000 (close 50%)
-TP2:        0.00000 (close 50%)
-R:R:        1.00:1 / 1.00:1
+DIRECTION:  SHORT
+ENTRY:      1.15438
+SL:         1.15709
+TP1:        1.15177 (close 50%)
+TP2:        1.15044 (close 50%)
+R:R:        0.96:1 / 1.45:1
 ```
 
 ## Execution: **PAPER**
 
 ## Checklist
-- [ ] R:R ≥ 1:1: ✓
+- [ ] R:R ≥ 1:1: ✗
 - [ ] Risk ≤ 1%: ✓
 - [ ] SL at structural invalidation: ✓

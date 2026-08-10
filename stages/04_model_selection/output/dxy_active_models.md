@@ -1,72 +1,77 @@
-# Model Selection — DXY — 2026-08-07
+# Model Selection — DXY — 2026-08-10
 
 ## Market Context
 - Bias: **BEARISH** (1D/4H)
-- Session: London (ACTIVE)
-- **Cycle Phase**: EXPANSION | **MMXM Step**: undefined/4
-- Levels: 4 OBs | 7 FVGs | 6 pools
+- Session: London PM (NO TRADE)
+- **Cycle Phase**: MANIPULATION | **MMXM Step**: undefined/4
+- Levels: 1 OBs | 9 FVGs | 6 pools
 - Sweeps: Yes — liquidity sweep detected
 
-## Model Scores (Cycle-Weighted)
+## WP-8 Decision — Model Registry (eligibility + sequence, no rank)
 
-| Model | Structural | Cycle × | Perf × | Po3 | Final | Status |
-|-------|-----------|---------|-----|-------|--------|
-| MMXM Sell Model | 8/9 | ×1.00 | ×1.00 | ⚠️ BLOCKED | **0.00** | ★ PRIMARY |
-| MMXM Buy Model | 5/9 | ×1.00 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| Silver Bullet | 5/11 | ×1.20 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| OTE + Institutional OB | 6/8 | ×1.00 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| Turtle Soup | 7/9 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| Unicorn (OTE+FVG) | 6/8 | ×1.00 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| Breaker Block | 8/7 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| SCOB | 5/7 | ×0.50 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| 2FVG Entry | 6/7 | ×1.20 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| Judas Swing | 8/8 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| Asian Range Breakout | 3/6 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| NWOG/NDOG | 4/4 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| Mitigation Block | 1/4 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| Rejection Block | 3/4 | ×0.50 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| London Hunt + IFVG | 1/10 | ×0.30 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| NDOG/NWOG News Model | 0/10 | ×0.50 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
-| 08:30 Liquidity Raid Model | 0/10 | ×0.50 | ×1.00 | ⚠️ BLOCKED | **0.00** | Rejected |
 
-⚠️ **MMXM Sell Model**: MMXM Sell Model requires DISTRIBUTION/EXPANSION/MANIPULATION phase, but we are in UNKNOWN
+### Verdict: **NO TRADE** — 4 complete setup(s)
+- **Primary model**: NONE — NO TRADE
+- **Rules**: exactly one complete sequence → SETUP COMPLETE; zero or several → NO TRADE (ties by tier, never multiplication).
 
-⚠️ **MMXM Buy Model**: MMXM Buy Model requires DISTRIBUTION/EXPANSION/MANIPULATION phase, but we are in UNKNOWN
+| Model | Window | Direction | Purge | Sequence gates | Verdict |
+|-------|--------|-----------|-------|----------------|---------|
+| MMXM Sell Model | ✅ | ❌ | ✅ | sweep:✓, ob:✓, mss:✗, smt:✓ | — |
+| MMXM Buy Model | ✅ | ✅ | ✅ | sweep:✓, ob:✓, mss:✗, smt:✓ | — |
+| Silver Bullet | ❌ | ✅ | ✅ | sweep:✓, reversal:✓, mss:✗, fvg:✓, tethered_array:✓ | — |
+| OTE + Institutional OB | ✅ | ✅ | ✅ | ob:✓, ote:✗, array_mitigated:✓ | — |
+| Turtle Soup | ✅ | ❌ | ✅ | htf_ranging:✓, sweep:✓, reversal:✓, mss:✗, displacement:✓ | — |
+| Unicorn (OTE+FVG) | ✅ | ✅ | ✅ | ob:✓, fvg:✓, ote:✗ | — |
+| Breaker Block | ✅ | ✅ | ✅ | ob:✓, reversal:✓, mss:✗ | — |
+| SCOB | ✅ | ✅ | ✅ | ob:✓, fvg:✓, displacement:✓ | ✅ COMPLETE |
+| 2FVG Entry | ✅ | ✅ | ✅ | fvg:✓, sweep:✓ | ✅ COMPLETE |
+| Judas Swing | ❌ | ❌ | ✅ | sweep:✓, mss:✗ | — |
+| Asian Range Breakout | ❌ | ✅ | ✅ | sweep:✓, ob:✓ | — |
+| NWOG/NDOG | ✅ | ✅ | ✅ | ob:✓ | ✅ COMPLETE |
+| Mitigation Block | ✅ | ✅ | ✅ | ob:✓, array_mitigated:✓ | ✅ COMPLETE |
+| Rejection Block | ✅ | ❌ | ✅ | ob:✓, reversal:✓ | — |
+| London Hunt + IFVG | ❌ | ✅ | ✅ | lecture2_hunt_swept:✗, lecture2_mss:✗, lecture2_ready:✗ | — |
+| NDOG/NWOG News Model | ❌ | ✅ | ✅ | lecture4_gap_draw:✗, sweep:✓, lecture4_mss:✗, lecture4_ready:✗, tethered_array:✓ | — |
+| 08:30 Liquidity Raid Model | ❌ | ✅ | ✅ | lecture1_formation:✗, lecture1_raid:✗, lecture1_mss:✗, lecture1_ready:✗, tethered_array:✓ | — |
 
-⚠️ **Silver Bullet**: Silver Bullet requires MANIPULATION/DISTRIBUTION/EXPANSION phase, but we are in UNKNOWN
 
-⚠️ **OTE + Institutional OB**: OTE + Institutional OB requires DISTRIBUTION/EXPANSION phase, but we are in UNKNOWN
+## Legacy Shadow Scores (read-only — NOT the decision)
+| Breaker Block | 8/9 | ×1.30 | ✅ | **2.20** | ★ legacy primary |
+| Turtle Soup | 7/12 | ×1.30 | ✅ | **1.90** | Rejected |
+| MMXM Sell Model | 8/9 | ×1.00 | ✅ | **1.70** | Rejected |
+| Judas Swing | 5/10 | ×1.30 | ✅ | **1.40** | Rejected |
+| MMXM Buy Model | 5/9 | ×1.00 | ✅ | **1.00** | Rejected |
+| Silver Bullet | 3/12 | ×1.30 | ✅ | **0.80** | Rejected |
+| Mitigation Block | 4/4 | ×1.00 | ✅ | **0.80** | Rejected |
+| Rejection Block | 3/4 | ×1.00 | ✅ | **0.60** | Rejected |
+| OTE + Institutional OB | 6/8 | ×1.00 | ⚠️ BLOCKED | **0.40** | Rejected |
+| Asian Range Breakout | 3/6 | ×0.50 | ✅ | **0.40** | Rejected |
+| London Hunt + IFVG | 1/15 | ×1.50 | ✅ | **0.40** | Rejected |
+| Unicorn (OTE+FVG) | 6/8 | ×0.30 | ⚠️ BLOCKED | **0.10** | Rejected |
+| SCOB | 5/7 | ×0.50 | ⚠️ BLOCKED | **0.10** | Rejected |
+| 2FVG Entry | 6/6 | ×0.30 | ⚠️ BLOCKED | **0.10** | Rejected |
+| NWOG/NDOG | 4/4 | ×0.30 | ⚠️ BLOCKED | **0.10** | Rejected |
+| NDOG/NWOG News Model | 0/13 | ×1.30 | ✅ | **0.00** | Rejected |
+| 08:30 Liquidity Raid Model | 0/15 | ×1.50 | ✅ | **0.00** | Rejected |
 
-⚠️ **Turtle Soup**: Turtle Soup requires MANIPULATION phase, but we are in UNKNOWN
+⚠️ **OTE + Institutional OB**: OTE + Institutional OB requires DISTRIBUTION/EXPANSION phase, but we are in MANIPULATION
 
-⚠️ **Unicorn (OTE+FVG)**: Unicorn (OTE+FVG) requires DISTRIBUTION/EXPANSION phase, but we are in UNKNOWN
+⚠️ **Unicorn (OTE+FVG)**: Unicorn (OTE+FVG) requires DISTRIBUTION/EXPANSION phase, but we are in MANIPULATION
 
-⚠️ **Breaker Block**: Breaker Block requires MANIPULATION/DISTRIBUTION phase, but we are in UNKNOWN
+⚠️ **SCOB**: SCOB requires DISTRIBUTION/EXPANSION phase, but we are in MANIPULATION
 
-⚠️ **SCOB**: SCOB requires DISTRIBUTION/EXPANSION phase, but we are in UNKNOWN
+⚠️ **2FVG Entry**: 2FVG Entry requires EXPANSION/DISTRIBUTION phase, but we are in MANIPULATION
 
-⚠️ **2FVG Entry**: 2FVG Entry requires EXPANSION/DISTRIBUTION phase, but we are in UNKNOWN
+⚠️ **NWOG/NDOG**: NWOG/NDOG requires ACCUMULATION phase, but we are in MANIPULATION
 
-⚠️ **Judas Swing**: Judas Swing requires MANIPULATION phase, but we are in UNKNOWN
+## High Precision Secrets — 7-9AM Tethering
+Framework **inactive** (pre-9:01 or no 7-9AM range) — tethering not applied.
 
-⚠️ **Asian Range Breakout**: Asian Range Breakout requires ACCUMULATION/MANIPULATION phase, but we are in UNKNOWN
 
-⚠️ **NWOG/NDOG**: NWOG/NDOG requires ACCUMULATION phase, but we are in UNKNOWN
+## Primary: NO TRADE — no single complete model
+**SMT**: ✅ Indirect SMT: 4 sweeps across 1H/4H suggest manipulation
 
-⚠️ **Mitigation Block**: Mitigation Block requires ACCUMULATION/MANIPULATION phase, but we are in UNKNOWN
-
-⚠️ **Rejection Block**: Rejection Block requires MANIPULATION/DISTRIBUTION phase, but we are in UNKNOWN
-
-⚠️ **London Hunt + IFVG**: London Hunt + IFVG requires MANIPULATION/DISTRIBUTION phase, but we are in UNKNOWN
-
-⚠️ **NDOG/NWOG News Model**: NDOG/NWOG News Model requires MANIPULATION/DISTRIBUTION phase, but we are in UNKNOWN
-
-⚠️ **08:30 Liquidity Raid Model**: 08:30 Liquidity Raid Model requires MANIPULATION/DISTRIBUTION phase, but we are in UNKNOWN
-
-## Primary: MMXM Sell Model (0.00 — structural 8 × cycle 1.00 × perf 1.00)
-**SMT**: ✅ Indirect SMT: 7 sweeps across 1H/4H suggest manipulation
-
-## Conflict Check
+## Conflict Check (legacy shadow, read-only)
 ✅ **NO CONFLICTS** — All top models are compatible.
 
 
@@ -76,6 +81,6 @@
 |--------|--------|--------|
 | HTF Bias | ✓ | 3 |
 | Key Levels | ✓ | 2 |
-| Session | ✓ | 1 |
+| Session | ✗ | 1 |
 | Sweep | ✓ | 2 |
-| **Total** | **0/9** | |
+| **Registry verdict** | **NO TRADE** | |

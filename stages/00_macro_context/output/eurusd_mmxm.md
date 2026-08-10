@@ -1,15 +1,15 @@
-# MMXM Analysis — EURUSD — 2026-08-07
+# MMXM Analysis — EURUSD — 2026-08-10
 
 ## Smart Money Reversal
 **⏳ Not detected**
 Liquidity purged but no displacement yet — SMR forming.
 
-## Side of Curve: **BUY** (MEDIUM (bias, no SMR))
-No SMR — using 1D+4H bullish alignment.
+## Side of Curve: **NEUTRAL** (LOW)
+No SMR and no bias alignment — flat.
 
 ## Symmetry
-Symmetry target: 1.15288 + 0.00450 = 1.15738 (mirror of preceding 0.00450 range)
-Target: 1.15738
+Symmetry target: 1.15438 - 0.00661 = 1.14777
+Target: N/A
 
 ## Entry Phase: **PRE-SMR**
 No SMR yet — wait for liquidity purge + displacement + break.

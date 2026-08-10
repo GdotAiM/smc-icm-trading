@@ -1,15 +1,15 @@
-# Entry Trigger Checklist — NAS100 — 2026-08-07
+# Entry Trigger Checklist — NAS100 — 2026-08-10
 
 ## Direction: **LONG** (HTF: BULLISH)
 
 | # | Trigger Condition | Status | Detail |
 |---|------------------|--------|--------|
-| 1 | 15m bias = BULLISH (not opposing) | ✅ | 15m bias is bullish |
-| 2 | 5m bullish CHoCH or BOS in recent bars | ✅ | 5m event: BOS bullish |
-| 3 | 5m bullish FVG present and unfilled | ✗ | 0 FVGs on 5m, bias=bullish |
-| 4 | 1m displacement bullish (body > 0.7× ATR) | ✅ | 1m disp: strong (1.80x), bias=bullish |
-| 5 | SSL sweep on 5m or 15m (manipulation) | ✅ | 15m: SSL,BSL,BSL, 5m: SSL,SSL |
+| 1 | 15m bias = BULLISH (not opposing) | ✗ | 15m bias is bearish |
+| 2 | 5m bullish CHoCH or BOS in recent bars | ✗ | 5m event: CHoCH bearish |
+| 3 | 5m bullish FVG present and unfilled | ✗ | 0 FVGs on 5m, bias=bearish |
+| 4 | 1m displacement bullish (body > 0.7× ATR) | ✗ | 1m disp: weak (0.29x), bias=bearish |
+| 5 | SSL sweep on 5m or 15m (manipulation) | ✅ | 15m: BSL,SSL, 5m: BSL,SSL |
 
-## Result: 4/5 triggers met
+## Result: 1/5 triggers met
 
-⏳ PARTIAL — 1 triggers missing. Wait for confirmation.
+❌ INSUFFICIENT — Entry conditions not met. Do not enter.
