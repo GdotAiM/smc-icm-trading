@@ -1,0 +1,112 @@
+{
+  "videoId": "O217xQsEUgI",
+  "info": {
+    "title": "Navigating High Resistance Liquidity Run Conditions",
+    "duration": 1610,
+    "uploadDate": "20260810",
+    "description": "Government Required Risk Disclaimer and Disclosure Statement\n\nCFTC RULE 4.41 – HYPOTHETICAL OR SIMULATED PERFORMANCE RESULTS HAVE CERTAIN LIMITATIONS. UNLIKE AN ACTUAL PERFORMANCE RECORD, SIMULATED RESULTS DO NOT REPRESENT ACTUAL TRADING. ALSO, SINCE THE TRADES HAVE NOT BEEN EXECUTED, THE RESULTS MAY HAVE UNDER-OR-OVER COMPENSATED FOR THE IMPACT, IF ANY, OF CERTAIN MARKET FACTORS, SUCH AS LACK OF LIQUIDITY. SIMULATED TRADING PROGRAMS IN GENERAL ARE ALSO SUBJECT TO THE FACT THAT THEY ARE DESIGNED WITH THE BENEFIT OF HINDSIGHT. NO REPRESENTATION IS BEING MADE THAT ANY ACCOUNT WILL OR IS LIKELY TO ACHIEVE PROFIT OR LOSSES SIMILAR TO THOSE SHOWN\n\nTrading performance displayed herein is hypothetical. Hypothetical performance results have many inherent limitations, some of which are described below. No representation is being made that any account will or is likely to achieve profits or losses similar to those shown. In fact, there are frequently sharp differences between hypothetical performance results and the actual results subsequently achieved by any particular trading program. One of the limitations of hypothetical performance trading results is that they are generally prepared with the benefit of hindsight. In addition, hypothetical trading does not involve financial risk, and no hypothetical trading record can completely account for the impact of financial risk in actual trading. For example, the ability to withstand losses or to adhere to a particular trading program in spite of trading losses are material points which can also adversely affect actual trading results. There are numerous other factors related to the markets in general or to the implementation of any specific trading program which cannot be fully accounted for in the preparation of hypothetical performance results and all of which can adversely affect actual trading results.\n\nU.S. Government Required Disclaimer – Commodity Futures Trading Commission Futures and Options trading has large potential rewards, but also large potential risk. You must be aware of the risks and be willing to accept them in order to invest in the futures and options markets. Don’t trade with money you can’t afford to lose. This is neither a solicitation nor an offer to Buy/Sell futures or options. No representation is being made that any account will or is likely to achieve profits or losses similar to those discussed on this web site. The past performance of any trading system or methodology is not necessarily indicative of future results.\n\nTrade at your own risk. The information provided here is of the nature of a general comment only and neither purports nor intends to be, specific trading advice. It has been prepared without regard to any particular person’s investment objectives, financial situation and particular needs. Information should not be considered as an offer or enticement to buy, sell or trade.\n\nYou should seek appropriate advice from your broker, or licensed investment advisor, before taking any action. Past performance does not guarantee future results. Simulated performance results contain inherent limitations. Unlike actual performance records the results may under or over compensate for such factors such as lack of liquidity. No representation is being made that any account will or is likely to achieve profits or losses to those shown.\n\nThe risk of loss in trading can be substantial. You should therefore carefully consider whether such trading is suitable for you in light of your financial condition.\n\nIf you purchase or sell Equities, Futures, Currencies or Options you may sustain a total loss of the initial margin funds and any additional funds that you deposit with your broker to establish or maintain your position. If the market moves against your position, you may be called upon by your broker to deposit a substantial amount of additional margin funds, on short notice in order to maintain your position. If you do not provide the required funds within the prescribed time, your position may be liquidated at a loss, and you may be liable for any resulting deficit in your account.\n\nUnder certain market conditions, you may find it difficult or impossible to liquidate a position. This can occur, for example, when the market makes a “limit move.” The placement of contingent orders by you, such as a “stop-loss” or “stop-limit” order, will not necessarily limit your losses to the intended amounts, since market conditions may make it impossible to execute such orders."
+  },
+  "summary": {
+    "concepts": [
+      {
+        "name": "Inversion Fair Value Gap Entry and Scale-In",
+        "category": "Entry Model",
+        "rules": [
+          "Identify an Inversion Fair Value Gap (IFVG) acting as support in an anticipated bullish run.",
+          "Enter initial position inside or at the low/high threshold of the IFVG.",
+          "Add additional contracts (scale-in) when price retests the top or deep end of the IFVG and respects it.",
+          "Trail stop loss to the low of the IFVG minus 1-2 ticks once the retest is qualified."
+        ],
+        "timeframes": [
+          "1m",
+          "5m"
+        ],
+        "keyLevels": [
+          "Inversion Fair Value Gap High/Low",
+          "NY Midnight Opening Price"
+        ],
+        "entryCriteria": [
+          "Price enters or retests an Inversion Fair Value Gap",
+          "Candle bodies respect the IFVG level and fail to close below key low threshold",
+          "Anticipation of target draw on liquidity toward midnight open price"
+        ],
+        "invalidation": "Candle bodies close below the lower boundary of the Inversion Fair Value Gap or breach the defined key defensive low.",
+        "confidence": "HIGH",
+        "timestamp": "0:00 - 3:15",
+        "quotes": [
+          "I'm inside this here. I'm trying to view this as an inversion fair value gap.",
+          "My average across all those orders is essentially the high of the inversion fair value gap there."
+        ]
+      },
+      {
+        "name": "Wick Consequent Encroachment & Candle Body Defense",
+        "category": "Market Structure",
+        "rules": [
+          "Mark the 50% midpoint (Consequent Encroachment / CE) of prominent wicks in the direction of the trade.",
+          "Candle wicks are allowed to pierce below/above CE, but candle bodies must NOT close past the CE level.",
+          "A close above the candle open price or above the CE of a key wick confirms immediate willingness to continue higher.",
+          "If a candle closes below CE of a key defensive wick, expect deeper retracements or high-resistance conditions."
+        ],
+        "timeframes": [
+          "1m",
+          "5m"
+        ],
+        "keyLevels": [
+          "Consequent Encroachment (50% midpoint of wicks)",
+          "Candle Opening Price"
+        ],
+        "entryCriteria": [
+          "Use as structural confirmation during order management and position maintenance"
+        ],
+        "invalidation": "Candle bodies bury/close beyond the Consequent Encroachment of the defensive wick.",
+        "confidence": "HIGH",
+        "timestamp": "1:00 - 5:30",
+        "quotes": [
+          "I don't want to see any bodies buried south of its consequent encroachment level.",
+          "If you understand the language, you'll be able to sit in front of the candlesticks like this and watch them live."
+        ]
+      },
+      {
+        "name": "Defensive Retracement Partialing & Stop-Loss Scaling",
+        "category": "Risk Management",
+        "rules": [
+          "In high-resistance or disorganized market run conditions, take initial partial profits at immediate targets like NY Midnight Open.",
+          "If price hesitates and threatens to retrace below a minor short-term low, place a defensive stop order for a partial position above full stop loss.",
+          "Executing a partial stop-out on a pullback reduces net position exposure, locks in gains, and removes psychological strain.",
+          "Allow the remaining partial contracts to ride with stop anchored under validated structural lows."
+        ],
+        "timeframes": [
+          "1m",
+          "5m"
+        ],
+        "keyLevels": [
+          "NY Midnight Opening Price",
+          "Minor Short-Term Swing Lows"
+        ],
+        "entryCriteria": [
+          "Price reaches first key draw (e.g., Midnight Open) and faces heavy resistance",
+          "Candle momentum slows near major structural resistance"
+        ],
+        "invalidation": "Position stopped out fully at the anchored low.",
+        "confidence": "HIGH",
+        "timestamp": "6:00 - 9:00",
+        "quotes": [
+          "I put two contracts on a stop right here... if it goes below there, it's going to sell two of the seven I had as a partial.",
+          "It completely subdues the aching of 'please go to my target'... You're managing the position."
+        ]
+      }
+    ],
+    "summary": "This video demonstrates live intraday trade execution and management using Inversion Fair Value Gaps and candle body behavior relative to wick Consequent Encroachment (CE). ICT emphasizes anticipating price behavior on the hard right edge, targeting the NY Midnight Opening Price, and applying defensive partial stops during high-resistance conditions to manage risk and psychology.",
+    "modelName": "Inversion FVG High-Resistance Navigation Model",
+    "isNewPDA": false,
+    "relatedConcepts": [
+      "Inversion Fair Value Gap",
+      "Consequent Encroachment",
+      "Midnight Opening Price",
+      "Partial Profit Taking",
+      "Order Management"
+    ],
+    "difficulty": "ADVANCED"
+  },
+  "processedAt": "2026-08-10T18:15:46.115Z"
+}

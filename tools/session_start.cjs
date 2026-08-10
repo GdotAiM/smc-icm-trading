@@ -231,6 +231,25 @@ function runEngines() {
 }
 
 // ═══════════════════════════════════════════════════
+// STEP 3b: Carry forward prior day NY lunch inefficiencies
+// ═══════════════════════════════════════════════════
+log("═══ STEP 3b: NY Lunch Reversal Carry-Forward ═══");
+
+function runLunchCarry() {
+  try {
+    const result = execSync(
+      `node "${ROOT}/tools/prev_day_lunch_carry.cjs" --all`,
+      { stdio: ["ignore", "pipe", "pipe"], timeout: 30000, encoding: "utf8" }
+    );
+    const found = (result.match(/✅ SETUP FOUND/g) || []).length;
+    const notFound = (result.match(/❌ No NY lunch/g) || []).length;
+    log(`  Lunch carry: ${found} setup(s) found, ${notFound} none — saved to shared/${DATE}/PAIR/prev_lunch_inefficiency.json`);
+  } catch (e) {
+    log(`  ⚠️  Lunch carry failed: ${e.message?.slice(0, 120) || e}`);
+  }
+}
+
+// ═══════════════════════════════════════════════════
 // STEP 4: Generate forecasts
 // ═══════════════════════════════════════════════════
 log("═══ STEP 4: Generate Forecasts ═══");
@@ -323,6 +342,7 @@ function printSummary(engineResult, forecastResult) {
   await ensureTV();
   await fetchFromTV();
   const engineResult = runEngines();
+  runLunchCarry();
   const forecastResult = runForecasts();
   syncGoldDir();
   printSummary(engineResult, forecastResult);

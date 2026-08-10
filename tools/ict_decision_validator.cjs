@@ -60,8 +60,8 @@ const ICT_RULES = {
   // Session / Time
   "session": {
     rules: [
-      { id: "SS-01", rule: "No new entries during NY Lunch (11:00-13:00 NY) — reliability x0.4", severity: "warning",
-        check: (trade) => trade.lunchEntry !== true },
+      { id: "SS-01", rule: "No new entries during NY Lunch (11:00-13:00 NY) unless Lunch Reversal carry-forward model is active", severity: "warning",
+        check: (trade) => trade.lunchEntry !== true || trade.model === "ny_lunch_reversal_short" || trade.model === "ny_lunch_reversal_long" },
       { id: "SS-02", rule: "Killzone must be active for trade entry (Asia, London, NY AM, NY PM)", severity: "warning",
         check: (trade) => trade.killzoneActive === true },
       { id: "SS-03", rule: "Monday — weekly range not established; reduce size", severity: "info",

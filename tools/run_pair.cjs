@@ -173,16 +173,46 @@ try {
 
 // ═══ HIGH PRECISION SECRETS — Parts 1 & 2 ═══
 console.log("\n═══ HIGH PRECISION — 7-9AM Range + ORG ═══");
+// Hoisted so Stage 04 (tethering multiplier) and Stage 05 (-0.5 TP) can consume it.
+let hpPrecision = null;
+let precisionFacts = { active: false, tetheredCount: 0, tetherBoost: 1, range: null, bodyWickAdj: 0 };
 try {
   const { analyzeHighPrecision } = require("./high_precision_secrets.cjs");
-  const hp = analyzeHighPrecision(PAIR);
-  if (hp.preSession) console.log(`  Pre-Session: ${hp.preSession.detail}`);
-  console.log(`  Tethering: ${hp.tethering.detail}`);
-  console.log(`  Body/Wick: ${hp.bodyWick.detail}`);
-  if (hp.org) console.log(`  ORG: ${hp.org.detail}`);
-  for (const g of hp.gapTypes) console.log(`  Gap: ${g.detail}`);
-  console.log(`  Confidence: ${hp.confidenceAdjustment >= 0 ? '+' : ''}${hp.confidenceAdjustment} pts`);
+  hpPrecision = analyzeHighPrecision(PAIR);
+  if (hpPrecision.preSession) console.log(`  Pre-Session: ${hpPrecision.preSession.detail}`);
+  console.log(`  Tethering: ${hpPrecision.tethering.detail}`);
+  console.log(`  Body/Wick: ${hpPrecision.bodyWick.detail}`);
+  if (hpPrecision.org) console.log(`  ORG: ${hpPrecision.org.detail}`);
+  for (const g of hpPrecision.gapTypes) console.log(`  Gap: ${g.detail}`);
+  console.log(`  Confidence: ${hpPrecision.confidenceAdjustment >= 0 ? '+' : ''}${hpPrecision.confidenceAdjustment} pts`);
+
+  // The 7-9AM range locks at ~9:01 NY and becomes the "algorithm's" reference
+  // canvas for the rest of the session (High Precision Secrets / ICT Gems 9:30AM).
+  if (hpPrecision.preSession) {
+    const nyMin = ny.getNYMin();
+    const postLock = NY_HOUR > 9 || (NY_HOUR === 9 && nyMin >= 1);
+    precisionFacts = {
+      active: postLock,
+      tetheredCount: hpPrecision.tethering?.tetheredCount || 0,
+      tetheredDailyCount: hpPrecision.tethering?.tetheredDailyCount || 0,
+      tetherBoost: parseFloat(hpPrecision.tethering?.boost || 1),
+      range: hpPrecision.preSession,
+      bodyWickAdj: hpPrecision.bodyWick?.adjustment || 0,
+      confidenceAdjustment: hpPrecision.confidenceAdjustment || 0,
+    };
+    console.log(`  🔒 7-9AM framework: ${precisionFacts.active ? 'ACTIVE (post-9:01)' : 'locked, awaiting 9:01'} | ${precisionFacts.tetheredCount} tethered array(s)${precisionFacts.tetheredDailyCount ? ` (${precisionFacts.tetheredDailyCount} to daily/weekly levels)` : ''} | tether ×${r2(precisionFacts.tetherBoost)}`);
+  }
 } catch(e) { console.log(`  High Precision unavailable: ${e.message.slice(0, 80)}`); }
+
+// ═══ SOFT-OPEN BIAS GUARD — one-day soft open ≠ daily reversal ═══
+// After a multi-day rally, a single soft/inside day is normal digestion, not a
+// reversal. The fact is consumed by registryCtx and checked against 1D bias.
+let softOpenFact = null;
+try {
+  const { analyzeSoftOpen } = require("./soft_open.cjs");
+  softOpenFact = analyzeSoftOpen(PAIR);
+  if (softOpenFact?.available) console.log(`  Soft-Open: ${softOpenFact.detail}`);
+} catch(e) { console.log(`  Soft-open guard unavailable: ${e.message.slice(0, 60)}`); }
 
 // ═══ PD ARRAY MATRIX — 20-Day Quadrant Grading ═══
 console.log("\n═══ PD ARRAY MATRIX — 20-Day + Quadrants ═══");
@@ -397,6 +427,13 @@ try {
   }
 } catch(e) { console.log(`  Guard unavailable: ${e.message.slice(0,80)}`); }
 
+// ── WP-4 Dominance-chain bias (declared BEFORE IPDA cascade block) ──
+// Previously bias1d was declared after the IPDA block but used inside it,
+// causing "Cannot access 'bias1d' before initialization" (TDZ ReferenceError).
+const bias1w = r1w ? r1w.structure.bias : null;
+const bias1d = r1d.structure.bias;
+const bias4h = r4h.structure.bias;
+
 // ── Run IPDA Lens (NEW) ──────────────────────────────────────
 let ipdaContext = null;
 try {
@@ -438,14 +475,19 @@ try {
 
 const { resolveBias, confidenceFromConfluence, nearUnmitigatedPdArray, describeBias } = require("./lib/narrative.cjs");
 const { nextDraw, drawTargets, drawReason } = require("./lib/draw.cjs");
-
-const bias1w = r1w ? r1w.structure.bias : null;
-const bias1d = r1d.structure.bias;
-const bias4h = r4h.structure.bias;
 const bias1h = r1h.structure.bias;
 
 const narrative = resolveBias({ bias1W: bias1w, bias1D: bias1d, bias4H: bias4h, bias1H: bias1h });
 const governingBias = narrative.direction;
+
+// Soft-open guard vs 1D bias: if today is a soft open after a multi-day rally
+// and the 1D bias has already flipped against the rally, that flip is suspect.
+if (softOpenFact?.softOpen) {
+  const rallyDir = softOpenFact.direction === "up" ? "bullish" : softOpenFact.direction === "down" ? "bearish" : null;
+  if (rallyDir && bias1d && bias1d !== "neutral" && rallyDir !== bias1d) {
+    console.log(`  ⚠️  Soft-open guard: ${softOpenFact.biasGuard} | 1D bias is ${bias1d.toUpperCase()} (flipped vs the ${softOpenFact.direction === "up" ? "rally" : "decline"}) — treat the flip with suspicion`);
+  }
+}
 const inKillzone = ny.isInKillzoneNY();
 const nearPdArray = nearUnmitigatedPdArray(r1d.price, {
   orderBlocks: [...(r1d.orderBlocks || []), ...(r4h.orderBlocks || []), ...(r1h.orderBlocks || [])],
@@ -507,6 +549,17 @@ ${TFS.map(tf => {
 console.log("═══ STAGE 02 — Key Levels ═══");
 const pools = r4h.liquidity.sort((a, b) => b.score - a.score);
 const fvgs = [...(r1d.fvgs || []), ...(r4h.fvgs || []), ...(r1h.fvgs || [])];
+// ── IFVG extraction (WP-14): engine detects inversion FVGs but pipeline
+// never consumed them. Bias-aligned: bullish → IFVGs below price (pullback
+// support), bearish → IFVGs above price (rally resistance).
+const inversionFvgs = [...(r1d.inversionFvgs || []), ...(r4h.inversionFvgs || []), ...(r1h.inversionFvgs || [])];
+const biasAlignedIFVGs = inversionFvgs.filter(iv => {
+  if (governingBias === "bullish") return iv.top < r1d.price; // support below
+  if (governingBias === "bearish") return iv.bottom > r1d.price; // resistance above
+  return false;
+}).map(iv => ({...iv, ce: (iv.top + iv.bottom) / 2})); // add CE midpoint
+const ifvgInPlay = biasAlignedIFVGs.some(iv => r1d.price >= iv.bottom && r1d.price <= iv.top);
+// ── end IFVG extraction ──────────────────────────────────────────────
 // WP-11 (audit Gap 4.3): every OB gets an explicit grade — fresh (unmitigated),
 // used (mitigated), or broken (consumed). Only displacement-backed fresh blocks
 // count as tradeable arrays. Computed once, in the fact layer (lib/ob_grading.cjs).
@@ -560,7 +613,7 @@ try {
     console.log(`  Dealing Range (${dr.source}): ${validIcon} ${r5(dr.low)} — ${r5(dr.high)} | ${dr.validation.detail}`);
     console.log(`  Premium: ${r5(dr.premium.high)} — ${r5(dr.premium.low)} | Discount: ${r5(dr.discount.high)} — ${r5(dr.discount.low)}`);
   }
-  console.log(`  IRL: ${irlErlResult.irl.count} FVGs inside range (${irlErlResult.irl.unfilled} unfilled, ${irlErlResult.irl.filled} filled)`);
+  console.log(`  IRL: ${irlErlResult.irl.count} objects (${irlErlResult.irl.fvgCount} FVGs, ${irlErlResult.irl.equalHighCount} EQ-H, ${irlErlResult.irl.equalLowCount} EQ-L) — ${irlErlResult.irl.unfilled} unfilled, ${irlErlResult.irl.filled} filled`);
   console.log(`  ERL: ${irlErlResult.erl.detail}`);
   console.log(`  Cycle: ${irlErlResult.cycle.position} | ${irlErlResult.cycle.phase}`);
   console.log(`  IRL/ERL Bias: ${irlErlResult.bias.bias.toUpperCase()} (confidence: ${r2(irlErlResult.bias.confidence)})`);
@@ -601,6 +654,9 @@ try {
     console.log(`  Sweep/Run: ${svIcon} ${liquidityMarker.sweepVsRun.classification} — ${liquidityMarker.sweepVsRun.action}`);
   }
   console.log(`  Entry: ${liquidityMarker.entryGuidance.detail}`);
+  if (liquidityMarker.relEquals?.magnetCount > 0) {
+    console.log(`  Smooth Magnets: ${liquidityMarker.relEquals.magnetCount} (${liquidityMarker.relEquals.magnets.map(m => `${m.type === 'equalHighs' ? 'EQH' : 'EQL'} ${r5(m.price)}`).join(', ')}) — bumped w/o acceptance = unfinished business`);
+  }
 } catch(e) {
   console.log(`  Liquidity marker unavailable: ${e.message.slice(0, 80)}`);
 }
@@ -1059,15 +1115,10 @@ models.forEach(m => {
   const cycleWeight = cycleWeights[m.name] || 1.0;
   m.structuralScore = m.score; // preserve original
   m.cycleMultiplier = cycleWeight;
-  // Killzone session multiplier (NY-local): London/NY AM = 1.0, NY PM = 0.8, Asia = 0.5, NY Lunch/Close = 0.4, Off = 0.3
-  const sessionMultiplier = (NY_SESSION.name === "london" || NY_SESSION.name === "londonPM" || NY_SESSION.name === "nyAM") ? 1.0 :
-                            NY_SESSION.name === "nyPM" ? 0.8 :
-                            NY_SESSION.name === "asia" || NY_SESSION.name === "asiaLate" ? 0.5 :
-                            NY_SESSION.name === "nyLunch" ? 0.4 :
-                            NY_SESSION.name === "nyClose" ? 0.4 :
-                            NY_SESSION.name === "offHours" ? 0.3 : 0.7;
-  m.sessionMultiplier = sessionMultiplier;
-  m.score = Math.round(m.score * cycleWeight * sessionMultiplier * 10) / 10;
+  // WP-2: Session windows are GATES (pass/fail), never multipliers.
+  // Time eligibility is enforced by the registry — no numeric weight.
+  m.sessionMultiplier = 1.0;
+  m.score = Math.round(m.score * cycleWeight * 10) / 10;
   m.max = Math.round(m.max * Math.max(cycleWeight, 1.0) * 10) / 10;
 
   // PRIORITY 1: Po3 Phase Filter — zero out models outside their phase
@@ -1111,6 +1162,29 @@ models.forEach(m => {
       m.score = Math.round(m.score * oneTradeSetup.firstOpp.counterDirectionWeight * 10) / 10;
       m.oneTradeReduced = true;
     }
+  }
+
+  // PRIORITY 4: High Precision Secrets — 7-9AM tethering + time authority
+  // ICT Gems 9:30AM Liquidity Target / High Precision Secrets scoring:
+  //   tethered to a 7-9 range level → strong boost (×1.3 for 3+, ×1.1 for 1+)
+  //   forms at/after 9:01 → time-authority boost (framework is only active post-lock)
+  //   untethered arrays → heavy penalty (×0.9)
+  if (precisionFacts.active) {
+    const tetherCount = precisionFacts.tetheredCount;
+    const tetherMult = tetherCount >= 3 ? 1.3 : tetherCount >= 1 ? 1.1 : 0.9;
+    m.hpTetherMultiplier = tetherMult;
+    m.hpTetherDetail = `${tetherCount} tethered array(s) → ×${r2(tetherMult)}${tetherCount === 0 ? ' (untethered penalty)' : ' (7-9AM tether)'}`;
+    m.score = Math.round(m.score * tetherMult * 10) / 10;
+  }
+
+  // PRIORITY 4b: Body Defense — global confidence penalty when wick CE violated
+  // ICT: "I don't want to see any bodies buried south of its consequent
+  // encroachment level." Violated body defense → deeper retracement expected.
+  if (defensiveWickCE?.bodyViolated) {
+    const penalty = Math.round(m.score * 0.15); // 15% confidence reduction
+    m.score -= penalty;
+    m.bodyDefensePenalty = penalty;
+    m.bodyDefenseDetail = defensiveWickCE.violationDetail || "bodies past CE";
   }
 });
 
@@ -1257,8 +1331,65 @@ try {
   // cluster is a stop cluster whether the right shoulder is higher or lower.
   const eqCandles = loadCandles(sharedDir, "1h") || [];
   const eqFact = findRelativeEqualLevels(eqCandles, calcATR(eqCandles, 14));
+  // ── Wick CE / Body Defense (WP-14): defensive wicks from 1m ──────
+  let defensiveWickCE = null;
+  try {
+    const { findDefensiveWicks, checkBodyDefense } = require("./lib/wick_ce.cjs");
+    const wickCandles = candles1m || [];
+    const defWicks = findDefensiveWicks(wickCandles, governingBias, 20);
+    if (defWicks.length > 0) {
+      const dw = defWicks[0];
+      const bodyCheck = checkBodyDefense(wickCandles, dw.wickCE, dw.direction, dw.originalIndex);
+      defensiveWickCE = {
+        ce: dw.wickCE,
+        direction: dw.direction,
+        bodyViolated: !bodyCheck.defended,
+        violationDetail: bodyCheck.violationCandle?.detail || null,
+        violationCount: bodyCheck.violationCount,
+        detail: dw.detail,
+      };
+    }
+  } catch (e) { /* wick CE unavailable */ }
+  // ── end wick CE ──────────────────────────────────────────────────
+  // ── NY Lunch Reversal: load prior day's carried inefficiency ──────
+  let prevLunchFact = null;
+  try {
+    const prevTradingDay = (() => {
+      const d = new Date(DATE + "T12:00:00-04:00");
+      d.setDate(d.getDate() - 1);
+      while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() - 1);
+      return d.toISOString().split("T")[0];
+    })();
+    const lunchPath = path.join(ROOT, "shared", prevTradingDay, pairDir, "prev_lunch_inefficiency.json");
+    if (!fs.existsSync(lunchPath)) {
+      const todayLunchPath = path.join(ROOT, "shared", DATE, pairDir, "prev_lunch_inefficiency.json");
+      if (fs.existsSync(todayLunchPath)) {
+        prevLunchFact = JSON.parse(fs.readFileSync(todayLunchPath, "utf8"));
+      }
+    } else {
+      prevLunchFact = JSON.parse(fs.readFileSync(lunchPath, "utf8"));
+    }
+  } catch (e) { /* lunch carry data unavailable — model won't fire */ }
+  const prevLunchCtx = prevLunchFact?.found ? {
+    sweepType: prevLunchFact.sweep?.type || null,
+    sweepPrice: parseFloat(prevLunchFact.sweep?.price) || null,
+    inefficiencyKind: prevLunchFact.inefficiency?.kind || null,
+    top: parseFloat(prevLunchFact.inefficiency?.top) || 0,
+    bottom: parseFloat(prevLunchFact.inefficiency?.bottom) || 0,
+    midpoint: parseFloat(prevLunchFact.inefficiency?.midpoint) || 0,
+    anchor: parseFloat(prevLunchFact.inefficiency?.anchor) || 0,
+    hasVIB: prevLunchFact.inefficiency?.hasVolumeImbalance || false,
+    expectedReaction: prevLunchFact.inefficiency?.expectedReaction || null,
+    sourceDate: prevLunchFact.prevDate || prevLunchFact.prevSessionDate || null,
+    eventHorizons: (prevLunchFact.eventHorizons || []).map(eh => ({
+      horizon: parseFloat(eh.horizon),
+      distancePct: parseFloat(eh.distancePct),
+    })),
+  } : null;
+  // ── end lunch reversal context ────────────────────────────────────
   const registryCtx = {
     hour: NY_HOUR,
+    price: r1d.price,   // WP-13: current price for zone check (lunch inefficiency entry)
     bias: governingBias,
     lastSweepType: sweptPools.length ? sweptPools[sweptPools.length - 1].type : null,
     hasSweep: inducementSwept || hasSweep,
@@ -1305,9 +1436,32 @@ try {
     htfRanging: !!turtleSoupCheck?.htfRanging,
     displacement: !!(turtleSoupCheck?.hasDisplacementFVG || turtleSoupCheck?.hasDisplacementOB),
     hasDraw,
+    // High Precision Secrets — 7-9AM tethering gate (post-9:01 framework).
+    // The registry consumes this as a boolean FACT: models in the NY-AM window
+    // that carry the `tethered_array` step are gated by it (not by a rank).
+    precision: {
+      active: precisionFacts.active,
+      tetheredCount: precisionFacts.tetheredCount,
+      tetheredDailyCount: precisionFacts.tetheredDailyCount || 0,
+    },
+    // Soft-open bias guard — a one-day soft open after a multi-day move is
+    // digestion, not a reversal. Available to gate premature daily-bias flips.
+    softOpen: softOpenFact || { available: false, softOpen: false },
+    // Smoothness grading — equal highs/lows left smooth with energy and bumped
+    // without acceptance are unfinished-business magnets (ICT Gems).
+    smoothMagnetCount: liquidityMarker?.relEquals?.magnetCount || 0,
+    magnetLevels: (liquidityMarker?.relEquals?.magnets || []).map(m => ({
+      price: m.price,
+      type: m.type === "equalHighs" ? "equalHighs" : "equalLows",
+      grade: m.smoothness?.grade || null,
+    })),
     lecture2,
     lecture1,
     lecture4,
+    prevLunch: prevLunchCtx,        // WP-13: prior day lunch inefficiency carry-forward
+    inversionFvgs: biasAlignedIFVGs,   // WP-14: bias-aligned inversion FVGs
+    ifvgInPlay,                        // WP-14: price inside an IFVG zone
+    defensiveWickCE,                   // WP-14: body defense against wick CE
   };
   registryDecision = runRegistry(registryCtx);
   // WP-8 FLIP: the registry verdict is the decision. A single complete setup
@@ -1358,9 +1512,27 @@ ${registryDecision.results.map(r => {
 ` : `⚠️ Registry decision unavailable — ${'NO TRADE'} (fail-closed).`}
 
 ## Legacy Shadow Scores (read-only — NOT the decision)
-${models.map(m => `| ${m.name} | ${m.structuralScore}/${m.max.toFixed(0)} | ×${r2(m.cycleMultiplier)} | ×${r2(m.sessionMultiplier)} | ${m.po3Blocked ? '⚠️ BLOCKED' : '✅'} | **${r2(m.score)}** | ${m === legacyPrimary ? '★ legacy primary' : m.score >= 3 ? 'Alternative' : 'Rejected'} |`).join("\n")}
+${models.map(m => `| ${m.name} | ${m.structuralScore}/${m.max.toFixed(0)} | ×${r2(m.cycleMultiplier)} | ${m.po3Blocked ? '⚠️ BLOCKED' : '✅'} | **${r2(m.score)}** | ${m === legacyPrimary ? '★ legacy primary' : m.score >= 3 ? 'Alternative' : 'Rejected'} |`).join("\n")}
 
 ${models.filter(m => m.po3Blocked).map(m => `⚠️ **${m.name}**: ${m.po3BlockReason}`).join('\n\n')}
+
+## High Precision Secrets — 7-9AM Tethering
+${precisionFacts.active
+  ? `**Framework ACTIVE** (post-9:01 lock) — ${precisionFacts.tetheredCount} tethered PD array(s)${precisionFacts.tetheredDailyCount ? ` (${precisionFacts.tetheredDailyCount} to daily/weekly levels)` : ''}, tether boost ×${r2(precisionFacts.tetherBoost)} applied to legacy shadow scores. Registry gate: NY-AM models require a tethered array.`
+  : 'Framework **inactive** (pre-9:01 or no 7-9AM range) — tethering not applied.'}
+${models.filter(m => m.hpTetherMultiplier).map(m => `- **${m.name}**: ${m.hpTetherDetail}`).join('\n')}
+
+## Soft-Open Bias Guard
+${softOpenFact?.available
+  ? (softOpenFact.softOpen
+      ? `⚠️ **Soft open day** — ${softOpenFact.biasGuard}. 1D bias flips are suspect.`
+      : `No soft open — ${softOpenFact.detail}`)
+  : 'Insufficient daily data to evaluate.'}
+
+## Smooth Magnets (unfinished business)
+${liquidityMarker?.relEquals?.magnetCount > 0
+  ? (liquidityMarker.relEquals.magnets.map(m => `- **${m.type === 'equalHighs' ? 'EQH' : 'EQL'} @ ${r5(m.price)}** — ${m.smoothness?.detail}`).join('\n'))
+  : 'No smooth-magnet levels (bumped equal highs/lows left unfinished).'}
 
 ## Primary: ${primary ? primary.name : 'NO TRADE — no single complete model'}
 ${smtDetected ? `**SMT**: ✅ ${smtDetails}` : '**SMT**: ⚠️ Not detected — check correlated pairs manually'}
@@ -1594,7 +1766,12 @@ const _c4hCandles = loadCandles(sharedDir, "4h");
 const _realATR = calcATR(_c4hCandles, 14);
 const atrValue = (_realATR != null && _realATR > 0)
   ? _realATR
-  : Math.abs((r4h.structure.lastSwingHigh || entryPrice + 0.003) - (r4h.structure.lastSwingLow || entryPrice - 0.003)) * 0.15;
+  : null; // WP-1: No fake ATR fallback. No valid candles → no valid SL → block.
+// WP-1 guard: null ATR means we cannot compute a valid structural SL.
+// Fail-closed — do not fabricate a stop from swing-range arithmetic.
+if (atrValue == null) {
+  console.log('  ⛔ WP-1 ATR unavailable — cannot compute valid SL. Real candles required.');
+}
 
 // ── PRIORITY 0: 3rd Daily Candle OTE (Simple ICT Scalping Strategy) ──
 // "Once a new swing low (bullish) or swing high (bearish) forms on the daily,
@@ -1656,43 +1833,88 @@ const drawExtremes = {
 };
 let noDrawDir = null; // set when a required external draw is absent → NO TRADE
 
-if (governingBias === 'bearish') {
-  entryType = 'SHORT';
-  const swingHigh = r4h.structure.lastSwingHigh || r1d.structure.lastSwingHigh || (entryPrice + 0.003);
-  slPrice = swingHigh + atrValue;
-  slReason = `4H Swing High @ ${r5(swingHigh)} + ATR buffer`;
-  const slDist = Math.abs(entryPrice - slPrice);
-  const draw = drawTargets({ direction: 'bearish', price: entryPrice, liquidityMap: drawRefs, extremes: drawExtremes.below, minDistance: slDist });
-  if (draw) {
-    tp1Price = draw.tp1.price;
-    tp1Reason = drawReason(draw.tp1, 'TP1');
-    tp2Price = draw.tp2 ? draw.tp2.price : 0;
-    tp2Reason = draw.tp2 ? drawReason(draw.tp2, 'TP2') : '';
-  } else {
-    entryType = 'NO TRADE'; tp1Price = 0; tp2Price = 0;
-    tp1Reason = 'No SSL draw ≥ SL distance — no external liquidity target (no 1:1 fallback)';
-    tp2Reason = '';
-    noDrawDir = 'sell-side (SSL) below';
-    console.log('  ⛔ NO TRADE — no draw on liquidity (sell-side SSL below) in range');
+// ═══ Cascading SL — tightest structural level that still has a draw ═══
+// Defaulting to 4H swing for every trade produces wide stops that can't find
+// valid R:R draws (especially on wide-range pairs like XAUUSD). ICT allows
+// tighter SLs for intraday setups: the structural invalidation on the ENTRY
+// timeframe, not always the highest TF.
+// Cascade: 4H → 1H → 15m swing + ATR buffer. Use the first level that finds
+// a draw at ≥ 1:1 R:R. If none work, NO TRADE.
+function cascadingEntry(bias, entryPrice, atrVal, drawRefs, drawExtremes, reports) {
+  const isShort = bias === 'bearish';
+  const dir = isShort ? 'bearish' : 'bullish';
+  const extremes = isShort ? drawExtremes.below : drawExtremes.above;
+
+  // Structural swing candidates: [tf, label, minRR]
+  // Intraday setups (15m/1H) allow 0.75:1 minimum — tighter stops on volatile
+  // pairs like XAUUSD may not clear 1:1 against the nearest BSL, but the trade
+  // is still directional with a defined draw. Swing setups (4H/1D) keep 1:1.
+  const swingCandidates = [
+    { tf: '15m', label: '15m Swing', minRR: 0.75 },
+    { tf: '1h',  label: '1H Swing',  minRR: 0.75 },
+    { tf: '4h',  label: '4H Swing',  minRR: 1.0 },
+    { tf: '1d',  label: '1D Swing',  minRR: 1.0 },
+  ];
+
+  for (const cand of swingCandidates) {
+    const r = reports[cand.tf];
+    if (!r?.structure) continue;
+    const swHi = r.structure.lastSwingHigh;
+    const swLo = r.structure.lastSwingLow;
+    if (swHi == null || swLo == null || swHi <= swLo) continue;
+
+    const swingPrice = isShort ? swHi : swLo;
+    const slPrice = atrVal != null
+      ? (isShort ? swingPrice + atrVal : swingPrice - atrVal)
+      : 0;
+    if (slPrice <= 0) continue;
+
+    const slDist = Math.abs(entryPrice - slPrice);
+    if (slDist <= 0) continue;
+
+    const minDistance = slDist * cand.minRR;
+    const draw = drawTargets({ direction: dir, price: entryPrice, liquidityMap: drawRefs, extremes, minDistance });
+    if (draw) {
+      const slReason = `${cand.label} ${isShort ? 'High' : 'Low'} @ ${r5(swingPrice)} ${isShort ? '+' : '-'} ATR buffer`;
+      const rr1 = Math.abs(draw.tp1.price - entryPrice) / slDist;
+      if (rr1 < 1.0) {
+        console.log(`  ⚠️ Tight R:R ${r2(rr1)}:1 using ${cand.label} (intraday) — draw ${r5(draw.tp1.price)} is ${Math.round(Math.abs(draw.tp1.price - entryPrice))} pts away, SL is ${Math.round(slDist)} pts`);
+      }
+      return {
+        entryType: isShort ? 'SHORT' : 'LONG',
+        slPrice, slReason, slDist,
+        tp1Price: draw.tp1.price,
+        tp1Reason: drawReason(draw.tp1, 'TP1'),
+        tp2Price: draw.tp2 ? draw.tp2.price : 0,
+        tp2Reason: draw.tp2 ? drawReason(draw.tp2, 'TP2') : '',
+        noDrawDir: null,
+        found: true,
+      };
+    }
   }
-} else if (governingBias === 'bullish') {
-  entryType = 'LONG';
-  const swingLow = r4h.structure.lastSwingLow || r1d.structure.lastSwingLow || (entryPrice - 0.003);
-  slPrice = swingLow - atrValue;
-  slReason = `4H Swing Low @ ${r5(swingLow)} - ATR buffer`;
-  const slDist = Math.abs(entryPrice - slPrice);
-  const draw = drawTargets({ direction: 'bullish', price: entryPrice, liquidityMap: drawRefs, extremes: drawExtremes.above, minDistance: slDist });
-  if (draw) {
-    tp1Price = draw.tp1.price;
-    tp1Reason = drawReason(draw.tp1, 'TP1');
-    tp2Price = draw.tp2 ? draw.tp2.price : 0;
-    tp2Reason = draw.tp2 ? drawReason(draw.tp2, 'TP2') : '';
-  } else {
-    entryType = 'NO TRADE'; tp1Price = 0; tp2Price = 0;
-    tp1Reason = 'No BSL draw ≥ SL distance — no external liquidity target (no 1:1 fallback)';
-    tp2Reason = '';
-    noDrawDir = 'buy-side (BSL) above';
-    console.log('  ⛔ NO TRADE — no draw on liquidity (buy-side BSL above) in range');
+
+  // No swing level found a valid draw — report why
+  const noDrawDir = isShort ? 'sell-side (SSL) below' : 'buy-side (BSL) above';
+  return {
+    entryType: 'NO TRADE', slPrice: 0, tp1Price: 0, tp2Price: 0,
+    slReason: '', tp1Reason: `No ${isShort ? 'SSL' : 'BSL'} draw ≥ SL distance — no external liquidity target`, tp2Reason: '',
+    noDrawDir, found: false,
+  };
+}
+
+const reportsForSL = { '15m': r15m, '1h': r1h, '4h': r4h, '1d': r1d };
+if (governingBias === 'bearish' || governingBias === 'bullish') {
+  const cas = cascadingEntry(governingBias, entryPrice, atrValue, drawRefs, drawExtremes, reportsForSL);
+  entryType = cas.entryType;
+  slPrice = cas.slPrice;
+  slReason = cas.slReason;
+  tp1Price = cas.tp1Price;
+  tp1Reason = cas.tp1Reason;
+  tp2Price = cas.tp2Price;
+  tp2Reason = cas.tp2Reason;
+  noDrawDir = cas.noDrawDir;
+  if (!cas.found) {
+    console.log(`  ⛔ NO TRADE — no draw on liquidity (${noDrawDir}) in range at any swing level`);
   }
 } else {
   entryType = 'NO TRADE'; slPrice = 0; tp1Price = 0; tp2Price = 0;
@@ -1718,7 +1940,7 @@ if (primary?.name === "Silver Bullet" && inSBWindow && entryType !== 'NO TRADE')
   const _sbAtrReal = calcATR(loadCandles(sharedDir, "15m") || loadCandles(sharedDir, "1h"), 14);
   const sbAtr = (_sbAtrReal != null && _sbAtrReal > 0)
     ? _sbAtrReal * 0.25
-    : Math.abs((r15mSwing || entryPrice) - (r15mSwingLow || entryPrice)) * 0.1;
+    : null; // WP-1: No fake ATR fallback
 
   if (entryType === 'SHORT') {
     const sbSL = (r15mSwing || (entryPrice + sbAtr * 2)) + sbAtr;
@@ -1884,6 +2106,41 @@ if (!lecture2Override && !lecture1Override && lecture4?.setupReady && primary?.n
   }
 }
 
+// ═══ HIGH PRECISION TP EXTENSION — 7-9AM projected level as destination ═══
+// ICT Gems 9:30AM Liquidity Target: "Target the projected level — the -0.5 or
+// the opposite side of the 7-9 range." This only EXTENDS the destination (TP2)
+// to the bias-aligned 7-9AM projection — it never tightens TP1 — and only when
+// the framework is active (range locked post-9:01).
+let hpTpOverride = null;
+if (precisionFacts.active && entryType !== 'NO TRADE' && tp1Price > 0 && precisionFacts.range) {
+  const rng = precisionFacts.range;
+  if (entryType === 'LONG') {
+    const candidates = [rng.high, rng.projNeg05].filter(v => Number.isFinite(v) && v > tp1Price);
+    if (candidates.length > 0) {
+      const dest = Math.max(...candidates);
+      const isProj = dest >= rng.projNeg05;
+      if (tp2Price === 0 || dest > tp2Price) {
+        tp2Price = dest;
+        tp2Reason = isProj ? `7-9AM -0.5 projection @ ${r5(dest)} (daily high objective)` : `7-9AM range high @ ${r5(dest)}`;
+        hpTpOverride = { level: dest, label: isProj ? '-0.5 projection' : 'range high' };
+        console.log(`  🎯 High Precision TP2 → ${hpTpOverride.label} @ ${r5(dest)} (bias-aligned 7-9AM target)`);
+      }
+    }
+  } else if (entryType === 'SHORT') {
+    const candidates = [rng.low, rng.projNeg05Low].filter(v => Number.isFinite(v) && v < tp1Price);
+    if (candidates.length > 0) {
+      const dest = Math.min(...candidates);
+      const isProj = dest <= rng.projNeg05Low;
+      if (tp2Price === 0 || dest < tp2Price) {
+        tp2Price = dest;
+        tp2Reason = isProj ? `7-9AM -0.5 projection @ ${r5(dest)} (daily low objective)` : `7-9AM range low @ ${r5(dest)}`;
+        hpTpOverride = { level: dest, label: isProj ? '-0.5 projection' : 'range low' };
+        console.log(`  🎯 High Precision TP2 → ${hpTpOverride.label} @ ${r5(dest)} (bias-aligned 7-9AM target)`);
+      }
+    }
+  }
+}
+
 // ═══ IOFED PYRAMID — 3-Level FVG Entry Drill ═══
 // ICT: Enter at FVG edge (starter) → CE 50% (add) → Far edge (add)
 // "Many setups reverse from the very edge without retracing to the 50% level."
@@ -1920,6 +2177,32 @@ if (iofedDirection !== 'NO TRADE' && fvgs.length > 0) {
     iofedPyramid.tpPrice = tp1Price;
     console.log(`  📐 IOFED Pyramid: Starter @ ${r5(iofedPyramid.starter.price)} | CE @ ${r5(iofedPyramid.add1.price)} | Far @ ${r5(iofedPyramid.add2.price)}`);
   }
+}
+// ── IFVG Scale-In Pyramid (WP-14): uses inversion FVGs instead of regular FVGs ──
+let ifvgPyramid = null;
+if (iofedDirection !== 'NO TRADE' && biasAlignedIFVGs.length > 0 && primary?.name === "IFVG Scale-In") {
+  const bestIFVG = biasAlignedIFVGs[0]; // nearest bias-aligned IFVG
+  const gap = Math.abs(bestIFVG.top - bestIFVG.bottom);
+
+  if (iofedDirection === 'SHORT') {
+    ifvgPyramid = {
+      starter: { price: bestIFVG.top - gap * 0.1, label: 'IFVG Top (resistance edge)', size: '40%' },
+      add1: { price: bestIFVG.ce, label: 'IFVG CE 50%', size: '35%' },
+      add2: { price: bestIFVG.bottom, label: 'IFVG Bottom (deep fill)', size: '25%' },
+    };
+  } else {
+    ifvgPyramid = {
+      starter: { price: bestIFVG.bottom + gap * 0.1, label: 'IFVG Bottom (support edge)', size: '40%' },
+      add1: { price: bestIFVG.ce, label: 'IFVG CE 50%', size: '35%' },
+      add2: { price: bestIFVG.top, label: 'IFVG Top (full mitigation)', size: '25%' },
+    };
+  }
+  ifvgPyramid.ifvgType = 'inversion';
+  ifvgPyramid.ifvgTop = bestIFVG.top;
+  ifvgPyramid.ifvgBottom = bestIFVG.bottom;
+  ifvgPyramid.slPrice = slPrice;
+  ifvgPyramid.tpPrice = tp1Price;
+  console.log(`  📐 IFVG Scale-In Pyramid: Starter @ ${r5(ifvgPyramid.starter.price)} | CE @ ${r5(ifvgPyramid.add1.price)} | Far @ ${r5(ifvgPyramid.add2.price)}`);
 }
 
 const risk = Math.abs(entryPrice - slPrice);
@@ -2029,6 +2312,18 @@ ${iofedPyramid ? `
 | 🥇 Starter | ${r5(iofedPyramid.starter.price)} | ${iofedPyramid.starter.size} | ${toPips(Math.abs(iofedPyramid.starter.price - iofedPyramid.slPrice))} ${pipLabelStr} | ${r2(Math.abs(iofedPyramid.tpPrice - iofedPyramid.starter.price) / Math.abs(iofedPyramid.starter.price - iofedPyramid.slPrice))}:1 | ${iofedPyramid.starter.label} |
 | 🥈 Add #1 | ${r5(iofedPyramid.add1.price)} | ${iofedPyramid.add1.size} | ${toPips(Math.abs(iofedPyramid.add1.price - iofedPyramid.slPrice))} ${pipLabelStr} | ${r2(Math.abs(iofedPyramid.tpPrice - iofedPyramid.add1.price) / Math.abs(iofedPyramid.add1.price - iofedPyramid.slPrice))}:1 | ${iofedPyramid.add1.label} |
 | 🥉 Add #2 | ${r5(iofedPyramid.add2.price)} | ${iofedPyramid.add2.size} | ${toPips(Math.abs(iofedPyramid.add2.price - iofedPyramid.slPrice))} ${pipLabelStr} | ${r2(Math.abs(iofedPyramid.tpPrice - iofedPyramid.add2.price) / Math.abs(iofedPyramid.add2.price - iofedPyramid.slPrice))}:1 | ${iofedPyramid.add2.label} |
+` : ''}${ifvgPyramid ? `
+## IFVG Scale-In Pyramid (inversion FVG — ${r5(ifvgPyramid.ifvgBottom)}–${r5(ifvgPyramid.ifvgTop)})
+| Level | Price | Size | Risk | R:R | Notes |
+|-------|-------|------|------|-----|-------|
+| 🥇 Starter | ${r5(ifvgPyramid.starter.price)} | ${ifvgPyramid.starter.size} | ${toPips(Math.abs(ifvgPyramid.starter.price - ifvgPyramid.slPrice))} ${pipLabelStr} | ${r2(Math.abs(ifvgPyramid.tpPrice - ifvgPyramid.starter.price) / Math.abs(ifvgPyramid.starter.price - ifvgPyramid.slPrice))}:1 | ${ifvgPyramid.starter.label} |
+| 🥈 Add #1 | ${r5(ifvgPyramid.add1.price)} | ${ifvgPyramid.add1.size} | ${toPips(Math.abs(ifvgPyramid.add1.price - ifvgPyramid.slPrice))} ${pipLabelStr} | ${r2(Math.abs(ifvgPyramid.tpPrice - ifvgPyramid.add1.price) / Math.abs(ifvgPyramid.add1.price - ifvgPyramid.slPrice))}:1 | ${ifvgPyramid.add1.label} |
+| 🥉 Add #2 | ${r5(ifvgPyramid.add2.price)} | ${ifvgPyramid.add2.size} | ${toPips(Math.abs(ifvgPyramid.add2.price - ifvgPyramid.slPrice))} ${pipLabelStr} | ${r2(Math.abs(ifvgPyramid.tpPrice - ifvgPyramid.add2.price) / Math.abs(ifvgPyramid.add2.price - ifvgPyramid.slPrice))}:1 | ${ifvgPyramid.add2.label} |
+` : ''}${defensiveWickCE ? `
+## Body Defense (Wick CE)
+- **Defensive Wick CE**: ${r5(defensiveWickCE.ce)} (${defensiveWickCE.direction})
+- **Status**: ${defensiveWickCE.bodyViolated ? '❌ VIOLATED — ' + defensiveWickCE.violationDetail : '✅ Holding — bodies respecting CE'}
+- **Action**: ${defensiveWickCE.bodyViolated ? 'Consider partial close. Bodies closing past CE → deeper retracement expected.' : 'Hold position. Bodies defending CE — reversal structure intact.'}
 ` : ''}
 - **R:R TP2**: ${r2(rr2)}:1
 - **Risk**: ${riskPips} ${pipLabelStr}
@@ -2073,6 +2368,11 @@ const lots = posSizeLots >= 0.1
   : posSizeLots >= 0.01
     ? (posSizeLots * 10).toFixed(2) + " mini"
     : (posSizeLots * 100).toFixed(0) + " micro";
+
+// market_order.cjs QTY: forex→units (100k=1 lot), gold→units (100=1 lot), index→contracts
+const qtyUnits = IC.type === "index"
+  ? Math.max(1, Math.round(posSizeLots))
+  : Math.max(1, Math.round(posSizeLots * (IC.type === "gold" ? 100 : 100000)));
 
 const maxLoss = posSizeLots * riskInPips * IC.pointValuePerLot;
 const maxGain = posSizeLots * toPips(reward1) * IC.pointValuePerLot;
@@ -2212,6 +2512,9 @@ try {
 }
 
 // ═══════════════ EVALUATION — Quality Gates ═══════════════
+let evaluationVerdict = null;
+let evaluationScore = null;
+let evaluationBlocked = false;
 console.log("\n═══ EVALUATION — Quality Gates ═══");
 try {
   const evalResult = execSync(
@@ -2221,12 +2524,90 @@ try {
   const lines = evalResult.split("\n");
   const verdictLine = lines.find(l => l.includes("VERDICT:"));
   const scoreLine = lines.find(l => l.includes("Score:"));
-  if (verdictLine) console.log(`  ${verdictLine.trim()}`);
-  if (scoreLine) console.log(`  ${scoreLine.trim()}`);
+  if (verdictLine) { evaluationVerdict = verdictLine.split("VERDICT:")[1]?.trim() || null; console.log(`  ${verdictLine.trim()}`); }
+  if (scoreLine) { evaluationScore = scoreLine.split("Score:")[1]?.trim() || null; console.log(`  ${scoreLine.trim()}`); }
   if (evalResult.includes("BLOCKED")) {
+    evaluationBlocked = true;
     console.log("  ⚠️ EVALUATION BLOCKED — review before trading");
   }
 } catch (e) {
   const stderr = e.stderr ? String(e.stderr).slice(0, 300) : "";
   console.log(`  ⚠️  Evaluation skipped: ${e.message} ${stderr}`);
+}
+
+// ═══════════════ DECISION EMIT — structured artifact for auto-traders ═══════════════
+try {
+  const decision = {
+    pair: PAIR,
+    symbol: pairLabel,
+    date: DATE,
+    emittedAt: new Date().toISOString(),
+    registry: {
+      verdict: registryDecision ? registryDecision.verdict : null,
+      primary: primary ? primary.name : null,
+      completeCount: registryDecision ? registryDecision.count : 0,
+    },
+    entry: {
+      type: entryType,
+      price: entryPrice,
+      sl: slPrice,
+      tp1: tp1Price,
+      tp2: tp2Price,
+      noDrawDir: noDrawDir || null,
+      slReason: slReason || null,   // for auto_decision R:R gating (intraday vs swing)
+    },
+    rr: { rr1, rr2 },
+    coherence: { unified: unifiedCoh, phase: effectivePhase, base: coherenceScore ?? null },
+    invalidation: invalidationResult ? {
+      status: invalidationResult.overallStatus,
+      totalInvalidated: invalidationResult.totalInvalidated || 0,
+      totalWarnings: invalidationResult.totalWarnings || 0,
+    } : null,
+    guard: guardContext ? {
+      verdict: guardContext.verdict,
+      blocked: guardContext.blocked,
+      warnings: guardContext.warnings,
+      sizeMultiplier: guardContext.sizeMultiplier,
+      blockedIds: guardContext.guards ? guardContext.guards.filter(g => g.blocked).map(g => g.id) : [],
+    } : null,
+    freshness: { score: freshnessScore, label: freshnessLabel, source: priceSource, ageMin: dataAgeMin ?? null },
+    risk: { allowed: riskAllowed, reason: riskBlockReason || null, accountBalance, riskAmount, sizeMultiplier },
+    evaluation: { verdict: evaluationVerdict, score: evaluationScore, blocked: evaluationBlocked },
+    conflicts: { legacy: conflicts.length, phase: phaseConflicts.length },
+    sizing: {
+      posSizeLots,
+      lots,
+      maxLoss: Math.abs(maxLoss),
+      maxGain,
+      riskPips,
+      qty: qtyUnits, // units/contracts for market_order.cjs
+    },
+    gates: {
+      hasSetup: entryType !== 'NO TRADE' && !!primary,
+      rrOk: rr1 >= 1.0,
+      notInvalidated: !invalidationResult || invalidationResult.overallStatus !== "INVALIDATED",
+      notGuardBlocked: !guardContext || guardContext.blocked === 0,
+      freshEnough: freshnessScore >= 5,
+      riskAllowed: riskAllowed !== false,
+    },
+  };
+  // Missed-Entry handler — does a still-valid idea warrant a disciplined
+  // second-chance entry? (ICT lecture 19:12). Runs every pipeline cycle and
+  // persists per-pair state so a missed setup is recognized across re-runs.
+  try {
+    const { assessMissedEntry } = require("./missed_entry.cjs");
+    decision.missedEntry = assessMissedEntry(PAIR, decision);
+    if (decision.missedEntry.allowSecondaryEntry) {
+      const se = decision.missedEntry.secondaryEntry;
+      console.log(`  🎯 SECOND CHANCE: ${se.entry} SL ${se.sl} ×${se.sizeMultiplier} (${se.array.kind} ${se.array.tf} tethered to original)`);
+    }
+  } catch (e) {
+    console.log(`  ⚠️  Missed-entry check skipped: ${e.message}`);
+  }
+  const decisionPath = path.join(sharedDir, "decision.json");
+  const atomicWrite = require(path.join(ROOT, "tools", "tv-mcp", "atomic_write.cjs")).atomicWrite;
+  atomicWrite(decisionPath, decision);
+  console.log(`  📄 Decision written: ${decisionPath}`);
+} catch (e) {
+  console.log(`  ⚠️  Decision emit skipped: ${e.message}`);
 }

@@ -70,15 +70,22 @@ if (inSB) {
   });
 }
 
-// ── GAP 3: NY Lunch — BLOCK all entries ────────────────────────────
+// ── GAP 3: NY Lunch — CAUTION, not a hard block ───────────────────
+// WP-13: NY Lunch is no longer a hard block. ICT's 2026 Lunch Reversal PDA
+// uses the prior day's lunch inefficiency as a carry-forward level. Entries
+// during lunch itself are still low-probability and discouraged, but the
+// lunch window data feeds the next day's highest-probability setups.
+// Reduced size and tighter confirmation required if entering during lunch.
 if (nySession.name === "nyLunch") {
   guards.push({
     id: "NY_LUNCH",
-    severity: "CRITICAL",
-    blocked: true,
-    entryAllowed: false,
-    narrative: "❌ NY LUNCH (11:00-13:00 NY). ICT explicitly teaches: NO entries during lunch. Low liquidity. Wait for NY PM at 13:00.",
-    action: "BLOCK ALL ENTRIES — Resume at 13:00 NY.",
+    severity: "WARNING",
+    blocked: false,
+    entryAllowed: true,
+    narrative: "⚠️ NY LUNCH (11:00-13:00 NY). Low liquidity window — entries discouraged unless part of a Lunch Reversal carry-forward setup. Reduced size, tighter confirmation required.",
+    action: "CAUTION — Lunch entries at 50% size. Prior-day lunch inefficiencies feeding next-day setups.",
+    sizeMultiplier: 0.5,
+    confidenceAdjustment: -1,
   });
 }
 
@@ -177,18 +184,36 @@ try {
   }
 } catch(e) {}
 
-// ── GAP 8: 1m Inversion not detected → no entry ────────────────────
+// ── GAP 8: 1m Inversion not detected → block/warn by severity ────
+// Per WP-9: this is a per-model gate in the registry. The universal guard
+// here is a safety net — it hard-blocks only when the 1m has NO meaningful
+// structure (score < minScore). At exactly minScore (borderline), it warns
+// and reduces size but does NOT block — other confirmations may compensate.
 try {
   const fractalOutput2 = execSync(`node "${ROOT}/tools/fractal_mmxm.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
   const fractal2 = JSON.parse(fractalOutput2);
-  if (fractal2.inversionScore < CONFIG.inversion.minScore) {
+  const invScore = fractal2.inversionScore;
+  const invBelow = invScore < CONFIG.inversion.minScore;
+  const invBorderline = invScore === CONFIG.inversion.minScore;
+  if (invBelow) {
     guards.push({
       id: "INVERSION_MISSING",
       severity: "HIGH",
       blocked: true,
       entryAllowed: false,
-      narrative: `❌ 1m Inversion NOT DETECTED (score ${fractal2.inversionScore}/${CONFIG.inversion.maxScore}). ICT requires the entry sentence to be written on the 1m before entering. Wait for CHoCH + sweep + FVG on 1m.`,
+      narrative: `❌ 1m Inversion NOT DETECTED (score ${invScore}/${CONFIG.inversion.maxScore}). The 1m has no meaningful structure — CHoCH, sweep, or HTF alignment missing. Wait for the entry sentence to form.`,
       action: "WAIT — No entry without 1m Inversion.",
+    });
+  } else if (invBorderline) {
+    guards.push({
+      id: "INVERSION_MARGINAL",
+      severity: "WARNING",
+      blocked: false,
+      entryAllowed: true,
+      narrative: `⚠️ 1m Inversion BORDERLINE (score ${invScore}/${CONFIG.inversion.maxScore}). Minimum criteria met but not strong. Reduce size, require tighter confirmation on entry.`,
+      action: "REDUCE SIZE 30% — Borderline inversion. Wait for candle close confirmation.",
+      sizeMultiplier: 0.7,
+      confidenceAdjustment: -1,
     });
   }
 } catch(e) {}

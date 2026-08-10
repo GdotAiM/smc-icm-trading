@@ -227,11 +227,14 @@ function checkSessionGate() {
     const hour = nyTime.getNYHour();
     const day = nyTime.getNYDay();
 
-    // NY Lunch gate
+    // NY Lunch gate — WARNING only (WP-13: lunch is no longer a hard block).
+    // The Lunch Reversal PDA uses prior-day lunch inefficiencies as carry-forward
+    // levels for next-day entries. Entries during lunch are low-probability but
+    // NOT corrupt — warning instead of critical.
     if (hour >= 11 && hour < 13) {
       checks.push(fail("NY_LUNCH_GATE",
-        `NY Lunch (${hour}:00) — ×0.4 multiplier. NO NEW ENTRIES. ` +
-        `Autonomous system placed trades during lunch today.`, "critical"));
+        `NY Lunch (${hour}:00) — ×0.5 size. Prior-day lunch data feeds next-day carry-forward levels. ` +
+        `Check prev_lunch_inefficiency.json for valid lunch reversal setups.`, "warning"));
     }
 
     // Friday close gate

@@ -90,6 +90,69 @@ function detectSuspensionBlocks(dailyCandles) {
   return blocks;
 }
 
+// ═══ 1b. DETECT BISI / SIBI IMBALANCES (Daily & Weekly) ═══
+// Lecture (Chain of Custody): detect buy-side imbalance / sell-side efficiency
+// (BISI) and sell-side imbalance / buy-side efficiency (SIBI) on the Daily and
+// Weekly. Grade each zone into quadrant/octant/gradient levels that become the
+// permanent horizontal reference points for the chain of custody.
+function detectBISI_SIBI(candles, tfLabel) {
+  if (!candles || candles.length < 3) return [];
+
+  const zones = [];
+  for (let i = 1; i < candles.length; i++) {
+    const prev = candles[i - 1];
+    const curr = candles[i];
+    const body = Math.abs(curr.close - curr.open);
+    const range = curr.high - curr.low;
+    if (range === 0) continue;
+    const bodyRatio = body / range;
+    const isBullish = curr.close > curr.open;
+    const isBearish = curr.close < curr.open;
+
+    // BISI: strong bullish displacement — the zone between the prior candle's
+    // high and today's open is the buy-side imbalance that sell-side fills.
+    if (isBullish && bodyRatio > 0.5) {
+      const imbalanceLow = Math.max(prev.close, prev.high);
+      const imbalanceHigh = curr.open;
+      if (imbalanceHigh > imbalanceLow) {
+        zones.push({
+          type: "BISI",
+          tf: tfLabel,
+          high: imbalanceHigh, low: imbalanceLow,
+          mid: (imbalanceHigh + imbalanceLow) / 2,
+          bodyRatio: r2(bodyRatio),
+          date: new Date(curr.time).toISOString().split("T")[0],
+          detail: `BISI ${tfLabel}: ${r5(imbalanceLow)}–${r5(imbalanceHigh)} (buy-side imbalance, body ${r2(bodyRatio * 100)}%)`,
+        });
+      }
+    }
+
+    // SIBI: strong bearish displacement — the zone between today's open and the
+    // prior candle's low is the sell-side imbalance that buy-side fills.
+    if (isBearish && bodyRatio > 0.5) {
+      const imbalanceHigh = Math.min(prev.close, prev.low);
+      const imbalanceLow = curr.open;
+      if (imbalanceHigh > imbalanceLow) {
+        zones.push({
+          type: "SIBI",
+          tf: tfLabel,
+          high: imbalanceHigh, low: imbalanceLow,
+          mid: (imbalanceHigh + imbalanceLow) / 2,
+          bodyRatio: r2(bodyRatio),
+          date: new Date(curr.time).toISOString().split("T")[0],
+          detail: `SIBI ${tfLabel}: ${r5(imbalanceLow)}–${r5(imbalanceHigh)} (sell-side imbalance, body ${r2(bodyRatio * 100)}%)`,
+        });
+      }
+    }
+  }
+
+  // Grade the most recent zones into quadrant/octant levels
+  return zones.slice(-5).map(z => ({
+    ...z,
+    graded: computeOctantsQuadrants({ high: z.high, low: z.low }, null),
+  }));
+}
+
 // ═══ 2. SPACE BETWEEN TWO SUSPENSION BLOCKS ═══
 // ICT: The white space between the low of the upper block and the high of the
 // lower block is the controlled zone. Price inside this zone moves from one
@@ -238,29 +301,25 @@ function analyzeWickBody(candles1m, currentPrice, bias) {
   const recent = candles1m.slice(-20);
   let bestWick = null, bestWickRatio = 0;
 
+  const { computeWickCE } = require("./lib/wick_ce.cjs");
+
   for (const c of recent) {
-    const body = Math.abs(c.close - c.open);
-    const totalRange = c.high - c.low;
-    if (totalRange === 0) continue;
+    const wick = computeWickCE(c);
+    if (wick.wickRatio === 0) continue;
 
-    const upperWick = c.high - Math.max(c.open, c.close);
-    const lowerWick = Math.min(c.open, c.close) - c.low;
-    const maxWick = Math.max(upperWick, lowerWick);
-    const wickRatio = maxWick / totalRange;
-
-    if (wickRatio > 0.6 && wickRatio > bestWickRatio) {
-      bestWickRatio = wickRatio;
-      const isUpperWick = upperWick > lowerWick;
+    if (wick.wickRatio > 0.6 && wick.wickRatio > bestWickRatio) {
+      bestWickRatio = wick.wickRatio;
+      const isUpperWick = wick.dominantWick === "upper";
       const wickExtreme = isUpperWick ? c.high : c.low;
       const bodyClose = c.close;
-      const wickRange = Math.abs(wickExtreme - bodyClose);
-      const wickCE = isUpperWick ? wickExtreme - wickRange / 2 : wickExtreme + wickRange / 2;
+      const wickCE = isUpperWick ? wick.upperCE : wick.lowerCE;
+      const wickRange = isUpperWick ? wick.upperWick : wick.lowerWick;
 
       bestWick = {
         candle: c,
         isUpperWick,
         wickExtreme, bodyClose, wickRange, wickCE,
-        wickRatio: r2(wickRatio),
+        wickRatio: r2(wick.wickRatio),
         ceReached: isUpperWick ? currentPrice <= wickCE : currentPrice >= wickCE,
         detail: `${isUpperWick ? 'Upper' : 'Lower'} wick: extreme ${r5(wickExtreme)}, CE ${r5(wickCE)}. ${isUpperWick ? (currentPrice <= wickCE ? 'CE reached (bearish pressure)' : 'CE NOT reached (bullish)') : (currentPrice >= wickCE ? 'CE reached (bullish pressure)' : 'CE NOT reached (bearish)')}`,
       };
@@ -380,6 +439,13 @@ function analyzeTimePriceGrid(pair) {
   // Step 1: Suspension blocks
   const blocks = detectSuspensionBlocks(dailyCandles);
 
+  // Step 1b: BISI / SIBI imbalances on Daily AND Weekly (Chain of Custody)
+  const weeklyCandles = loadCandles("1w");
+  const bisiSibi = [
+    ...detectBISI_SIBI(dailyCandles, "D"),
+    ...detectBISI_SIBI(weeklyCandles, "W"),
+  ];
+
   // Step 2: Space between
   const spaceBetween = computeSpaceBetween(blocks, currentPrice);
 
@@ -408,16 +474,19 @@ function analyzeTimePriceGrid(pair) {
   const tethered = tetherPDArrays(fvgs, obs, octants);
 
   // Step 7: Chain of Custody
-  // ORG: 9:30 open vs prior settlement (from daily candles)
+  // ORG: true 9:30 ET 1m print (higher of open/close) vs prior settlement
   let org = null;
   if (dailyCandles && dailyCandles.length >= 2) {
     const today = dailyCandles[dailyCandles.length - 1];
     const yesterday = dailyCandles[dailyCandles.length - 2];
-    const orgHigh = Math.max(today.open, yesterday.close);
-    const orgLow = Math.min(today.open, yesterday.close);
-    org = { ce: (orgHigh + orgLow) / 2, filled: currentPrice <= orgLow || currentPrice >= orgHigh };
+    const { findRTHOpenCandle } = require("./high_precision_secrets.cjs");
+    const nine30 = findRTHOpenCandle(candles1m);
+    const refOpen = nine30 ? Math.max(nine30.open, nine30.close) : today.open;
+    const orgHigh = Math.max(refOpen, yesterday.close);
+    const orgLow = Math.min(refOpen, yesterday.close);
+    org = { ce: (orgHigh + orgLow) / 2, filled: currentPrice <= orgLow || currentPrice >= orgHigh, high: orgHigh, low: orgLow };
   }
-  const chain = buildCustodyChain(blocks, wickBody, org, dailyBias, currentPrice);
+  const chain = buildCustodyChain(blocks, bisiSibi, wickBody, org, dailyBias, currentPrice);
 
   // Narrative
   const inSpace = spaceBetween?.priceInside;
@@ -443,6 +512,8 @@ function analyzeTimePriceGrid(pair) {
     currentPrice, dailyBias,
     blocks: blocks.slice(-5),
     blockCount: blocks.length,
+    bisiSibi: bisiSibi.slice(-5),
+    bisiSibiCount: bisiSibi.length,
     spaceBetween,
     octants,
     dailyWicks,
@@ -454,6 +525,7 @@ function analyzeTimePriceGrid(pair) {
     narrative,
     detail: [
       `${blocks.length} suspension blocks on daily`,
+      `${bisiSibi.length} BISI/SIBI imbalances (${bisiSibi.filter(z => z.type === "BISI").length} BISI, ${bisiSibi.filter(z => z.type === "SIBI").length} SIBI) on D+W`,
       spaceBetween?.detail || "No space between blocks",
       wickBody?.detail || "No wick/body signal",
       delivery?.detail || "No delivery data",
@@ -477,6 +549,12 @@ for (const b of result.blocks) {
   md += `- ${b.detail} (${b.date})\n`;
 }
 
+if (result.bisiSibi.length > 0) {
+  md += `\n## BISI / SIBI Imbalances (${result.bisiSibiCount} on D+W)\n`;
+  for (const z of result.bisiSibi) {
+    md += `- ${z.detail} | Graded mid ${r5(z.graded?.mid ?? z.mid)} | Q1 ${z.graded ? r5(z.graded.quadrants.q1) : 'n/a'} | Q3 ${z.graded ? r5(z.graded.quadrants.q3) : 'n/a'}\n`;
+  }
+}
 if (result.spaceBetween) {
   md += `\n## Space Between\n${result.spaceBetween.detail}\n`;
   md += `- Delivery Zone: ${result.spaceBetween.deliveryZone}\n`;
@@ -523,6 +601,7 @@ fs.writeFileSync(outFile, md, "utf8");
 
 console.log(`\n═══ TIME & PRICE GRID — ${PAIR} ═══`);
 console.log(`  Suspension Blocks: ${result.blockCount} on daily`);
+console.log(`  BISI/SIBI: ${result.bisiSibiCount} imbalances (${result.bisiSibi.filter(z => z.type === 'BISI').length} BISI, ${result.bisiSibi.filter(z => z.type === 'SIBI').length} SIBI) on D+W`);
 console.log(`  Daily Wicks Graded: ${result.dailyWicks?.length || 0} (${result.dailyWicks?.filter(w => w.type.includes('PREMIUM')).length || 0} premium, ${result.dailyWicks?.filter(w => w.type.includes('DISCOUNT')).length || 0} discount)`);
 console.log(`  Space Between: ${result.spaceBetween?.detail || 'None'}`);
 console.log(`  Wick/Body: ${result.wickBody?.detail || 'No signal'}`);
@@ -539,10 +618,25 @@ console.log(`  ✓ Output → ${outFile}`);
 //
 // Bodies define the real range; wicks only probe. Upper half = premium,
 // lower half = discount. Bodies in lower half = bearish; upper = bullish.
-function buildCustodyChain(suspensionBlocks, wickBody, org, dailyBias, currentPrice) {
+function buildCustodyChain(suspensionBlocks, bisiSibi, wickBody, org, dailyBias, currentPrice) {
   const chain = [];
 
-  // Link 1: Daily suspension blocks / SIBIs
+  // Link 1: BISI / SIBI imbalances on Daily & Weekly (the lecture's first link)
+  // Daily SIBI / BISI zones are the graded inefficiencies price is drawn to.
+  if (bisiSibi && bisiSibi.length > 0) {
+    const z = bisiSibi[bisiSibi.length - 1]; // most recent zone
+    const level = z.graded?.mid ?? z.mid;
+    const bodyHalf = currentPrice > level ? "UPPER (premium)" : "LOWER (discount)";
+    chain.push({
+      id: z.type, // "BISI" or "SIBI"
+      level,
+      type: `${z.type} (${z.tf}) Imbalance`,
+      bodyHalf,
+      detail: `${z.type} ${z.tf} @ ${r5(level)} (${r5(z.low)}–${r5(z.high)}) | ${z.date}`,
+    });
+  }
+
+  // Link 2: Daily suspension blocks / SIBIs
   const recentBlock = suspensionBlocks?.[suspensionBlocks.length - 1];
   if (recentBlock) {
     const bodiesInLower = currentPrice < recentBlock.mid;
@@ -556,10 +650,10 @@ function buildCustodyChain(suspensionBlocks, wickBody, org, dailyBias, currentPr
     });
   }
 
-  // Link 2: Volume imbalances (from engine FVGs with displacement)
+  // Link 3: Volume imbalances (from engine FVGs with displacement)
   // Note: true volume imbalance detection requires order-flow data; we approximate with high-displacement FVGs
 
-  // Link 3: Discount/Premium wick CE (from wick/body analysis)
+  // Link 4: Discount/Premium wick CE (from wick/body analysis)
   if (wickBody?.wick) {
     const w = wickBody.wick;
     const halfLabel = w.isUpperWick ? "UPPER (premium)" : "LOWER (discount)";
@@ -573,7 +667,7 @@ function buildCustodyChain(suspensionBlocks, wickBody, org, dailyBias, currentPr
     });
   }
 
-  // Link 4: ORG midpoint (carried forward day after day)
+  // Link 5: ORG midpoint (carried forward day after day)
   if (org?.ce) {
     const orgHalf = currentPrice > org.ce ? "UPPER (premium)" : "LOWER (discount)";
     chain.push({
@@ -585,7 +679,7 @@ function buildCustodyChain(suspensionBlocks, wickBody, org, dailyBias, currentPr
     });
   }
 
-  // Link 5: 1st-Presented FVG of the week (or nearest unfilled)
+  // Link 6: 1st-Presented FVG of the week (or nearest unfilled)
   // Approximated from the tethering check — first tethered FVG
 
   // Determine narrative from chain
@@ -616,4 +710,4 @@ function buildCustodyChain(suspensionBlocks, wickBody, org, dailyBias, currentPr
   };
 }
 
-module.exports = { analyzeTimePriceGrid, detectSuspensionBlocks, computeSpaceBetween, computeOctantsQuadrants, analyzeWickBody, detectDeliveryMode, tetherPDArrays, buildCustodyChain, gradeDailyWicks };
+module.exports = { analyzeTimePriceGrid, detectSuspensionBlocks, detectBISI_SIBI, computeSpaceBetween, computeOctantsQuadrants, analyzeWickBody, detectDeliveryMode, tetherPDArrays, buildCustodyChain, gradeDailyWicks };

@@ -69,6 +69,18 @@ const steps = {
     return fail("no liquidity purge (BOS without collected fuel)");
   },
 
+  // ── High Precision Secrets — 7-9AM tethering gate (post-9:01) ────────
+  // ICT Gems 9:30AM Liquidity Target / High Precision Secrets: after the 7-9AM
+  // range locks at ~9:01, a PD array is only high-probability when tethered to
+  // a projected level (high, low, CE, quadrant, octant, -0.5). The gate is
+  // NOT applicable before the lock — the framework only governs post-9:01.
+  tethered_array(ctx) {
+    const p = ctx.precision;
+    if (!p?.active) return pass("7-9AM precision framework inactive — tethering not applicable");
+    if ((p.tetheredCount || 0) > 0) return pass(`${p.tetheredCount} PD array(s) tethered to 7-9AM levels`);
+    return fail("no PD array tethered to a 7-9AM level — untethered arrays are low quality (High Precision Secrets)");
+  },
+
   // ── Lecture 2 — London Hunt + IFVG (07:00-07:40 NY) ────────────────
   lecture2_hunt_swept(ctx) {
     const h = ctx.lecture2?.hunt;
@@ -100,6 +112,73 @@ const steps = {
   lecture1_ready(ctx) {
     if (ctx.lecture1?.setupReady) return pass("Lecture 1 setup READY");
     return fail("Lecture 1 setup not ready");
+  },
+
+  // ── IFVG Scale-In ───────────────────────────────────────────────────
+  // ICT "Navigating High Resistance Liquidity Run Conditions" (2026):
+  // Inversion FVG acting as dynamic support/resistance after a sweep+reversal.
+  // Price must be inside a bias-aligned IFVG for the step to pass.
+  ifvg_present(ctx) {
+    const ivs = ctx.inversionFvgs;
+    if (!ivs || ivs.length === 0) return fail("no bias-aligned inversion FVGs detected");
+    if (ctx.ifvgInPlay) {
+      const iv = ivs.find(i => ctx.price >= i.bottom && ctx.price <= i.top) || ivs[0];
+      return pass(`price ${p5(ctx.price)} inside IFVG ${p5(iv.bottom)}–${p5(iv.top)} (CE ${p5((iv.top + iv.bottom) / 2)})`);
+    }
+    const nearest = ivs[0];
+    const mid = (nearest.top + nearest.bottom) / 2;
+    const dist = ctx.price > nearest.top
+      ? `${p5(ctx.price - nearest.top)} above nearest IFVG (${p5(nearest.bottom)}–${p5(nearest.top)})`
+      : `${p5(nearest.bottom - ctx.price)} below nearest IFVG (${p5(nearest.bottom)}–${p5(nearest.top)})`;
+    return fail(`${ivs.length} IFVG(s) detected but price not inside — ${dist}`);
+  },
+
+  // ── Body Defense (Wick CE) ──────────────────────────────────────────
+  // ICT: "I don't want to see any bodies buried south of its consequent
+  // encroachment level." Candle bodies (open-to-close range) must not
+  // close past the defensive wick's CE in the direction of the original
+  // body. Violation → deeper retracement expected.
+  body_defense(ctx) {
+    const dw = ctx.defensiveWickCE;
+    if (!dw) return pass("no defensive wick CE to check — step not applicable (no qualifying wick found)");
+    if (dw.bodyViolated) {
+      const v = dw.violationDetail || "candle body closed past defensive CE";
+      return fail(`body defense VIOLATED — ${v}`);
+    }
+    return pass(`defensive wick CE @ ${p5(dw.ce)} holding — bodies respecting the level`);
+  },
+
+  // ── NY Lunch Reversal (Prev-Day Carry-Forward) ──────────────────────
+  // ICT CPI Day Video (2026): "You take that inefficiency right before it
+  // takes the liquidity, carry that forward into the next day. If it trades
+  // up into it, it can set the tone for a shorting opportunity."
+  prev_day_lunch_sweep(ctx) {
+    if (ctx.prevLunch?.sweepType) return pass(`prior day NY lunch ${ctx.prevLunch.sweepType} sweep @ ${p5(ctx.prevLunch.sweepPrice)} — carry-forward active`);
+    return fail("no liquidity sweep during prior day NY lunch (10:00-13:30 ET) — carry-forward not available");
+  },
+  prev_day_bisi(ctx) {
+    if (ctx.prevLunch?.inefficiencyKind === "BISI") {
+      const z = ctx.prevLunch;
+      return pass(`BISI zone ${p5(z.bottom)}–${p5(z.top)} (mid ${p5(z.midpoint)}) carried from ${z.sourceDate} lunch → expect bearish reversal`);
+    }
+    return fail("no BISI inefficiency before prior day lunch sweep");
+  },
+  prev_day_sibi(ctx) {
+    if (ctx.prevLunch?.inefficiencyKind === "SIBI") {
+      const z = ctx.prevLunch;
+      return pass(`SIBI zone ${p5(z.bottom)}–${p5(z.top)} (mid ${p5(z.midpoint)}) carried from ${z.sourceDate} lunch → expect bullish reversal`);
+    }
+    return fail("no SIBI inefficiency before prior day lunch sweep");
+  },
+  price_enters_lunch_inefficiency(ctx) {
+    if (!ctx.prevLunch?.inefficiencyKind) return fail("no carried lunch inefficiency to check");
+    const z = ctx.prevLunch;
+    const inside = ctx.price >= z.bottom && ctx.price <= z.top;
+    if (inside) return pass(`price ${p5(ctx.price)} is inside carried ${z.inefficiencyKind} zone ${p5(z.bottom)}–${p5(z.top)}`);
+    const dist = ctx.price > z.top
+      ? `${p5(ctx.price - z.top)} above zone`
+      : `${p5(z.bottom - ctx.price)} below zone`;
+    return fail(`price ${p5(ctx.price)} has not entered the carried lunch inefficiency (${dist})`);
   },
 
   // ── Lecture 4 — NDOG/NWOG News Model (08:30-10:00 NY) ──────────────

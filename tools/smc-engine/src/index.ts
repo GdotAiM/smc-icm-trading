@@ -32,4 +32,7 @@ export { volumeSma, isVolumeSpike } from "./volume";
 export { SMC_CONFIG, sessionForTime } from "./config";
 export type { SessionName } from "./config";
 
+export { detectLunchInefficiency, eventHorizon, nearestEventHorizon, toCarryForwardLevel } from "./prev-day-inefficiency";
+export type { LunchInefficiency, LunchSweep, PrevDayLunchResult, CarryForwardLevel, EventHorizonResult, ImbalanceKind } from "./prev-day-inefficiency";
+
 export type { Candle } from "./types";

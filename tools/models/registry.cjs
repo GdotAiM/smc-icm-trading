@@ -28,8 +28,8 @@ const MODELS = [
   { id: "silver_bullet", name: "Silver Bullet", tier: 1,
     timeWindows: [{ label: "London SB", start: 3, end: 4 }, { label: "NY AM SB", start: 10, end: 11 }, { label: "NY PM SB", start: 14, end: 15 }],
     intrinsicDirection: "narrative", purgeRequired: true,
-    sequence: ["sweep", "reversal", "mss", "fvg"],
-    description: "One candle, one displacement, one window — the scalp in the SB window." },
+    sequence: ["sweep", "reversal", "mss", "fvg", "tethered_array"],
+    description: "One candle, one displacement, one window — the scalp in the SB window. NY-AM/PM deliveries must tether to the 7-9AM canvas." },
   { id: "ote_institutional_ob", name: "OTE + Institutional OB", tier: 1, timeWindows: null,
     intrinsicDirection: "narrative", purgeRequired: false,
     sequence: ["ob", "ote", "array_mitigated"],
@@ -48,6 +48,10 @@ const MODELS = [
     description: "The OB that broke and flipped — trade the flip after the reversal holds." },
 
   // ── Tier 2 ────────────────────────────────────────────────────────────
+  { id: "ifvg_scale_in", name: "IFVG Scale-In", tier: 2, timeWindows: null,
+    intrinsicDirection: "narrative", purgeRequired: true,
+    sequence: ["sweep", "reversal", "mss", "ifvg_present"],
+    description: "Inversion FVG as dynamic support/resistance after sweep+reversal. Initial entry inside bias-aligned IFVG; scale in at deep/CE levels on retest. ICT: High-Resistance Liquidity Run Conditions." },
   { id: "scob", name: "SCOB", tier: 2, timeWindows: null,
     intrinsicDirection: "narrative", purgeRequired: false,
     sequence: ["ob", "fvg", "displacement"],
@@ -88,13 +92,29 @@ const MODELS = [
   { id: "ndog_nwog_news", name: "NDOG/NWOG News Model", tier: 3,
     timeWindows: [{ label: "News", start: 8, end: 10 }],
     intrinsicDirection: "narrative", purgeRequired: true,
-    sequence: ["lecture4_gap_draw", "sweep", "lecture4_mss", "lecture4_ready"],
-    description: "News gap draw — MSS at the gap cluster, entry at the breaker/CE. Purge gate: the gap must be swept before it is a draw (WP-12 5.3)." },
+    sequence: ["lecture4_gap_draw", "sweep", "lecture4_mss", "lecture4_ready", "tethered_array"],
+    description: "News gap draw — MSS at the gap cluster, entry at the breaker/CE. Purge gate: the gap must be swept before it is a draw (WP-12 5.3). Post-9:01 entries tether to the 7-9AM canvas." },
   { id: "raid_0830", name: "08:30 Liquidity Raid Model", tier: 3,
     timeWindows: [{ label: "Raid", start: 8, end: 10 }],
     intrinsicDirection: "narrative", purgeRequired: true,
-    sequence: ["lecture1_formation", "lecture1_raid", "lecture1_mss", "lecture1_ready"],
-    description: "Post-08:30 raid of the pre-open equal levels → PD array entry." },
+    sequence: ["lecture1_formation", "lecture1_raid", "lecture1_mss", "lecture1_ready", "tethered_array"],
+    description: "Post-08:30 raid of the pre-open equal levels → PD array entry. Post-9:01 entries tether to the 7-9AM canvas." },
+
+  // ── Tier 3 — NY Lunch Reversal (Prev-Day Carry-Forward) ──────────────
+  // ICT CPI Day Video (2026): New PDA — prior-day lunch inefficiency before
+  // the liquidity sweep carried forward. BISI → bearish reversal (short),
+  // SIBI → bullish reversal (long). Valid all NY sessions — the entry
+  // happens NEXT day when price returns to the carried level.
+  { id: "ny_lunch_reversal_short", name: "NY Lunch Reversal (Short)", tier: 3,
+    timeWindows: [{ label: "NY AM", start: 8, end: 11 }, { label: "NY PM", start: 13, end: 16 }],
+    intrinsicDirection: "SELL", purgeRequired: false,
+    sequence: ["prev_day_lunch_sweep", "prev_day_bisi", "price_enters_lunch_inefficiency", "mss"],
+    description: "Prior day NY lunch BISI carried forward → price enters zone → complex reversal SHORT. ICT: 'If it trades up into it, it can set the tone for a shorting opportunity.'" },
+  { id: "ny_lunch_reversal_long", name: "NY Lunch Reversal (Long)", tier: 3,
+    timeWindows: [{ label: "NY AM", start: 8, end: 11 }, { label: "NY PM", start: 13, end: 16 }],
+    intrinsicDirection: "BUY", purgeRequired: false,
+    sequence: ["prev_day_lunch_sweep", "prev_day_sibi", "price_enters_lunch_inefficiency", "mss"],
+    description: "Prior day NY lunch SIBI carried forward → price enters zone → complex reversal LONG. ICT: 'Reverse it for going long.'" },
 ];
 
 const ALL_STEP_NAMES = new Set(Object.keys(steps));
