@@ -1109,6 +1109,29 @@ const models = [
   { name: "NDOG/NWOG News Model", score: (lecture4?.setupReady ? 4 : 0) + (lecture4?.gapClusters?.hasGaps || lecture4?.substituteGap ? 2 : 0) + (lecture4?.gapDraw?.drawing ? 2 : 0) + (lecture4?.mss?.confirmed ? 1 : 0) + (lecture4?.inNewsWindow ? 1 : 0), max: 10 },
   { name: "08:30 Liquidity Raid Model", score: (lecture1?.setupReady ? 4 : 0) + (lecture1?.formation?.formed ? 2 : 0) + (lecture1?.raid?.active ? 2 : 0) + (lecture1?.mss?.confirmed ? 1 : 0) + (lecture1?.pdArrays?.length >= 2 ? 1 : 0), max: 10 },
 ];
+// ── Wick CE / Body Defense (WP-14): defensive wicks from 1m ──────
+// Must be defined BEFORE the models.forEach loop and the risk plan
+// template — both consume this object. Populated from lib/wick_ce.cjs.
+let defensiveWickCE = null;
+try {
+  const { findDefensiveWicks, checkBodyDefense } = require("./lib/wick_ce.cjs");
+  const wickCandles = candles1m || [];
+  const defWicks = findDefensiveWicks(wickCandles, governingBias, 20);
+  if (defWicks.length > 0) {
+    const dw = defWicks[0];
+    const bodyCheck = checkBodyDefense(wickCandles, dw.wickCE, dw.direction, dw.originalIndex);
+    defensiveWickCE = {
+      ce: dw.wickCE,
+      direction: dw.direction,
+      bodyViolated: !bodyCheck.defended,
+      violationDetail: bodyCheck.violationCandle?.detail || null,
+      violationCount: bodyCheck.violationCount,
+      detail: dw.detail,
+    };
+  }
+} catch (e) { /* wick CE unavailable */ }
+// ── end wick CE ──────────────────────────────────────────────────
+
 // Apply cycle-aware weighting from Stage 00. Performance is audit-only (WP-10):
 // the ledger's historical model weights are never fed into today's score.
 models.forEach(m => {
@@ -1180,7 +1203,9 @@ models.forEach(m => {
   // PRIORITY 4b: Body Defense — global confidence penalty when wick CE violated
   // ICT: "I don't want to see any bodies buried south of its consequent
   // encroachment level." Violated body defense → deeper retracement expected.
-  if (defensiveWickCE?.bodyViolated) {
+  // NOTE: defensiveWickCE is populated by high_precision_secrets.cjs body/wick
+  // grading. When unavailable (module not run or no graded levels), skip.
+  if (typeof defensiveWickCE !== "undefined" && defensiveWickCE?.bodyViolated) {
     const penalty = Math.round(m.score * 0.15); // 15% confidence reduction
     m.score -= penalty;
     m.bodyDefensePenalty = penalty;
@@ -1331,26 +1356,6 @@ try {
   // cluster is a stop cluster whether the right shoulder is higher or lower.
   const eqCandles = loadCandles(sharedDir, "1h") || [];
   const eqFact = findRelativeEqualLevels(eqCandles, calcATR(eqCandles, 14));
-  // ── Wick CE / Body Defense (WP-14): defensive wicks from 1m ──────
-  let defensiveWickCE = null;
-  try {
-    const { findDefensiveWicks, checkBodyDefense } = require("./lib/wick_ce.cjs");
-    const wickCandles = candles1m || [];
-    const defWicks = findDefensiveWicks(wickCandles, governingBias, 20);
-    if (defWicks.length > 0) {
-      const dw = defWicks[0];
-      const bodyCheck = checkBodyDefense(wickCandles, dw.wickCE, dw.direction, dw.originalIndex);
-      defensiveWickCE = {
-        ce: dw.wickCE,
-        direction: dw.direction,
-        bodyViolated: !bodyCheck.defended,
-        violationDetail: bodyCheck.violationCandle?.detail || null,
-        violationCount: bodyCheck.violationCount,
-        detail: dw.detail,
-      };
-    }
-  } catch (e) { /* wick CE unavailable */ }
-  // ── end wick CE ──────────────────────────────────────────────────
   // ── NY Lunch Reversal: load prior day's carried inefficiency ──────
   let prevLunchFact = null;
   try {
@@ -2608,6 +2613,25 @@ try {
   const atomicWrite = require(path.join(ROOT, "tools", "tv-mcp", "atomic_write.cjs")).atomicWrite;
   atomicWrite(decisionPath, decision);
   console.log(`  📄 Decision written: ${decisionPath}`);
+
+  // LLM Setup Auditor — audit-only reasoning layer, launched DETACHED after the
+  // decision is emitted. It NEVER gates: it only reads the decision + stage
+  // outputs + trade-graph memory and writes an advisory second opinion to
+  // shared/<date>/<PAIR>/setup_audit.{json,md}. A missing LLM key or a crashed
+  // child leaves the deterministic outcome byte-for-byte unchanged.
+  try {
+    const { spawn } = require("child_process");
+    const auditor = path.join(ROOT, "tools", "llm", "setup_auditor.cjs");
+    const child = spawn(process.execPath, [auditor, PAIR, "--date", DATE], {
+      detached: true,
+      stdio: "ignore",
+      windowsHide: true,
+    });
+    child.unref();
+    console.log(`  🧠 Setup auditor launched (audit-only, non-blocking)`);
+  } catch (e) {
+    console.log(`  ⚠️  Setup auditor launch skipped: ${e.message}`);
+  }
 } catch (e) {
   console.log(`  ⚠️  Decision emit skipped: ${e.message}`);
 }

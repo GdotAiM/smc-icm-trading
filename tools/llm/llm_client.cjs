@@ -117,7 +117,8 @@ function resolveConfig(overrides) {
  * @param {number}  opts.maxTokens  - max output tokens (default 1024)
  * @param {number}  opts.temperature - sampling temperature (default 0.3)
  * @param {number}  opts.timeout    - request timeout ms (default 30000)
- * @returns {Promise<{text: string, provider: string, model: string, usage?: object}>}
+ * @param {Array}   opts.tools      - tool definitions to advertise (OpenAI function format)
+ * @returns {Promise<{text: string, toolCalls: ?Array<{id,name,arguments}>, provider: string, model: string, usage?: object}>}
  */
 async function chatCompletion(messages, opts = {}) {
   const config = resolveConfig(opts);
@@ -140,6 +141,7 @@ async function chatCompletion(messages, opts = {}) {
     max_tokens: opts.maxTokens ?? 1024,
     temperature: opts.temperature ?? 0.3,
     stream: false,
+    ...(opts.tools && opts.tools.length ? { tools: opts.tools, tool_choice: opts.toolChoice ?? "auto" } : {}),
   });
 
   const url = new URL(config.baseUrl + "/chat/completions");
@@ -182,9 +184,12 @@ async function chatCompletion(messages, opts = {}) {
           }
           try {
             const json = JSON.parse(data);
-            const text = json.choices?.[0]?.message?.content || "";
+            const message = json.choices?.[0]?.message || {};
+            const text = message.content || "";
             resolve({
               text,
+              toolCalls: parseToolCalls(message),
+              rawMessage: message,
               provider: config.provider,
               model: config.model,
               usage: json.usage || undefined,
@@ -222,8 +227,204 @@ async function chatCompletion(messages, opts = {}) {
   });
 }
 
-// ── Provider info ──────────────────────────────────────────────────────────────
+// ── Tool-calling helpers ───────────────────────────────────────────────────────
 
+/**
+ * Extract tool calls from a chat message object (OpenAI-compatible shape).
+ * Gemini thinking models attach a `thoughtSignature`/`thought_signature` to
+ * each functionCall part; it must be echoed back in the matching tool response,
+ * so it is captured here as `signature`.
+ * @param {Object} message - e.g. json.choices[0].message
+ * @returns {?Array<{id: string, name: string, arguments: object, signature?: string}>} parsed calls or null
+ */
+function parseToolCalls(message) {
+  const calls = message?.tool_calls;
+  if (!Array.isArray(calls) || calls.length === 0) return null;
+  return calls.map((c) => {
+    let args = null;
+    try {
+      args = c.function?.arguments ? JSON.parse(c.function.arguments) : {};
+    } catch (_) {
+      args = { _raw: c.function?.arguments || "" };
+    }
+    return {
+      id: c.id,
+      name: c.function?.name,
+      arguments: args,
+      signature: c.thoughtSignature || c.thought_signature || null,
+    };
+  });
+}
+
+/**
+ * Best-effort JSON extraction: tries a full parse, then falls back to the first
+ * balanced {...} / [...] block found in the text.
+ */
+function safeJsonParse(text, fallback = null) {
+  if (text == null) return fallback;
+  const trimmed = String(text).trim();
+  if (!trimmed) return fallback;
+  try {
+    return JSON.parse(trimmed);
+  } catch (_) {
+    /* fall through */
+  }
+  const fence = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if (fence) {
+    try {
+      return JSON.parse(fence[1].trim());
+    } catch (_) {
+      /* fall through */
+    }
+  }
+  const start = trimmed.indexOf("{");
+  const end = trimmed.lastIndexOf("}");
+  if (start !== -1 && end > start) {
+    try {
+      return JSON.parse(trimmed.slice(start, end + 1));
+    } catch (_) {
+      /* fall through */
+    }
+  }
+  const aStart = trimmed.indexOf("[");
+  const aEnd = trimmed.lastIndexOf("]");
+  if (aStart !== -1 && aEnd > aStart) {
+    try {
+      return JSON.parse(trimmed.slice(aStart, aEnd + 1));
+    } catch (_) {
+      /* fall through */
+    }
+  }
+  return fallback;
+}
+
+/**
+ * Tally votes/candidates by a key function (defaults to stringified JSON).
+ * @returns {Array<{value: *, count: number}>} sorted descending by count
+ */
+function tallyVotes(items, keyFn) {
+  const key = keyFn || ((x) => (typeof x === "object" && x !== null ? JSON.stringify(x) : String(x)));
+  const counts = new Map();
+  for (const item of items) {
+    const k = key(item);
+    counts.set(k, (counts.get(k) || 0) + 1);
+  }
+  return [...counts.entries()]
+    .map(([value, count]) => ({ value, count }))
+    .sort((a, b) => b.count - a.count);
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * ReAct-style agent loop: repeatedly call the LLM with tool definitions,
+ * dispatch any tool calls to `toolDispatch[name]`, append results, and loop
+ * until the model answers without tool calls (or maxIterations is reached).
+ *
+ * The loop is audit-only by design: a `[LLM...` error string from chatCompletion
+ * short-circuits the loop and returns `status: "llm_unavailable"` so callers
+ * never block on a missing LLM.
+ *
+ * @param {Object}   opts
+ * @param {Array}    opts.messages       - initial messages
+ * @param {Array}    opts.tools          - OpenAI function tool definitions
+ * @param {Object}   opts.toolDispatch   - map of tool name -> async fn(args, ctx)
+ * @param {Object}   opts.llmOpts        - opts forwarded to client (provider, maxTokens...)
+ * @param {number}   opts.maxIterations  - default 5
+ * @param {Function} opts.client         - injectable client (default chatCompletion)
+ * @param {Function} opts.log            - optional logger fn (msg)
+ * @returns {Promise<{text: string, toolCalls: Array, trace: Array, status: string}>}
+ */
+async function agentLoop({ messages, tools = [], toolDispatch = {}, llmOpts = {}, maxIterations = 5, client = chatCompletion, log = null }) {
+  const history = [...messages];
+  const trace = [];
+  const ctx = { pair: llmOpts.pair || "" };
+
+  for (let i = 0; i < maxIterations; i++) {
+    const resp = await client(history, { ...llmOpts, tools });
+    trace.push({ iteration: i, response: resp });
+    const text = resp.text || "";
+
+    if (text.startsWith("[LLM")) {
+      if (log) log(`agentLoop: LLM unavailable (${text.slice(0, 60)})`);
+      return { text, toolCalls: [], trace, status: "llm_unavailable" };
+    }
+
+    const toolCalls = resp.toolCalls || [];
+    if (toolCalls.length === 0) {
+      return { text, toolCalls: [], trace, status: "complete" };
+    }
+
+    // Preserve the assistant's tool_calls verbatim (Gemini thinking models need
+    // the thought_signature echoed back in the next turn).
+    history.push({
+      role: "assistant",
+      content: text,
+      tool_calls:
+        resp.rawMessage?.tool_calls ||
+        toolCalls.map((tc) => ({
+          id: tc.id,
+          type: "function",
+          function: {
+            name: tc.name,
+            arguments: typeof tc.arguments === "string" ? tc.arguments : JSON.stringify(tc.arguments),
+          },
+        })),
+    });
+
+    for (const tc of toolCalls) {
+      const fn = toolDispatch[tc.name];
+      let result;
+      if (typeof fn !== "function") {
+        result = `[tool not found: ${tc.name}]`;
+      } else {
+        try {
+          result = await fn(tc.arguments || {}, ctx);
+        } catch (e) {
+          result = `[tool error: ${e.message}]`;
+        }
+      }
+      history.push({
+        role: "tool",
+        tool_call_id: tc.id,
+        content: typeof result === "string" ? result : JSON.stringify(result),
+        ...(tc.signature ? { thought_signature: tc.signature } : {}),
+      });
+      if (log) log(`agentLoop[${i}] ${tc.name} -> ${typeof result === "string" ? result.slice(0, 80) : "ok"}`);
+      trace.push({ iteration: i, tool: tc.name, args: tc.arguments, result: typeof result === "string" ? result.slice(0, 1000) : result });
+    }
+  }
+
+  return { text: "[agent loop: max iterations reached]", toolCalls: [], trace, status: "max_iterations" };
+}
+
+/**
+ * Self-consistency: run the same prompt `runs` times at higher temperature,
+ * extract a verdict per run, and tally the majority.
+ *
+ * @param {Object}   opts
+ * @param {Array}    opts.messages      - messages to run multiple times
+ * @param {Object}   opts.llmOpts       - base opts (temperature overridden per run)
+ * @param {number}   opts.runs          - default 3
+ * @param {number}   opts.temperature   - default 0.7
+ * @param {Function} opts.extract       - text -> verdict value (default raw text)
+ * @param {Function} opts.client        - injectable client
+ * @returns {Promise<{responses: Array, tally: Array, majority: ?*}>}
+ */
+async function selfConsistent({ messages, llmOpts = {}, runs = 3, temperature = 0.7, extract = null, client = chatCompletion }) {
+  const responses = [];
+  for (let i = 0; i < runs; i++) {
+    const r = await client(messages, { ...llmOpts, temperature });
+    responses.push(r);
+  }
+  const parsed = responses.map((r) => (extract ? extract(r.text) : r.text));
+  const tally = tallyVotes(parsed);
+  return { responses, tally, majority: tally.length ? tally[0] : null };
+}
+
+// ── Provider info ──────────────────────────────────────────────────────────────
 function listProviders() {
   console.log("\nLLM Providers (from free-llm-api-resources)\n");
   console.log("═".repeat(70));
@@ -298,7 +499,18 @@ Examples:
 
 // ── Exports ────────────────────────────────────────────────────────────────────
 
-module.exports = { chatCompletion, resolveConfig, listProviders, PROVIDERS };
+module.exports = {
+  chatCompletion,
+  resolveConfig,
+  listProviders,
+  PROVIDERS,
+  parseToolCalls,
+  safeJsonParse,
+  tallyVotes,
+  sleep,
+  agentLoop,
+  selfConsistent,
+};
 
 // Run CLI if called directly
 if (require.main === module) {

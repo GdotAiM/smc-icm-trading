@@ -10,6 +10,17 @@
 //   - Outputs are structured (markdown) for direct use in stage output files
 //   - Every prompt works with ~1K output tokens (free-tier friendly)
 
+// Mandatory labelled reasoning chain — injected into every system prompt so the
+// model must reason out loud (evidence before verdict) and actively hunt for
+// counter-evidence instead of confirming a preconceived conclusion.
+const COT_CHAIN = `
+REASONING CHAIN (MANDATORY): reason out loud, step by step, before any conclusion. Use exactly these four labelled stages:
+1. HYPOTHESIS — state the claim, decision, or setup being evaluated, precisely and testably.
+2. EVIDENCE — the specific data points, numbers, chunks, or stage outputs that support it. Cite them by name.
+3. COUNTER-EVIDENCE — actively search for what contradicts or weakens it. Name the strongest counter-case explicitly. If there is genuinely none, write "none found".
+4. VERDICT — your conclusion, in one sentence, clearly separated from the reasoning above.
+A missing COUNTER-EVIDENCE scan is a failed answer — never skip stage 3.`;
+
 // ═══════════════ RAG Synthesis ═══════════════
 //
 // Synthesizes retrieved ICT knowledge chunks into a coherent answer.
@@ -30,6 +41,7 @@ ${c.excerpt || c.content?.slice(0, 800) || "(no content)"}`;
 
   const systemPrompt = `You are an ICT (Inner Circle Trader) knowledge assistant for a professional SMC trader.
 Your job is to synthesize answers from retrieved ICT tutorial excerpts.
+${COT_CHAIN}
 
 RULES:
 1. Answer ONLY from the provided chunks — never invent ICT concepts
@@ -38,7 +50,7 @@ RULES:
 4. Use ICT terminology precisely: FVG, OB, BPR, CISD, MSS, CHoCH, BSL/SSL, IPDA, etc.
 5. Be concise but complete — the trader needs actionable information
 6. Format your answer in clear markdown with headings and bullet points
-7. If multiple chunks contradict, note the conflict
+7. If multiple chunks contradict, note the conflict in COUNTER-EVIDENCE
 
 The trader's question and the retrieved knowledge chunks follow.`;
 
@@ -64,7 +76,7 @@ Synthesize a complete answer from these chunks. Cite your sources.`;
 // Cross-trade pattern recognition across recent sessions.
 // Used by: ict_continuous_learn.cjs --deep-analyze
 
-function journalAnalysis(trades, lessons, pair) {
+function journalAnalysis(trades, lessons, pair, memoryLessons) {
   const tradeSummary = trades
     .map((t, i) => {
       return `Trade ${i + 1}: ${t.pair} | ${t.date} | ${t.direction || "?"} | P&L: $${t.pnl || 0} | ` +
@@ -77,8 +89,15 @@ function journalAnalysis(trades, lessons, pair) {
     .map((l, i) => `${i + 1}. [${l.title}] ${l.detail}`)
     .join("\n");
 
+  const memorySummary = (memoryLessons && memoryLessons.length
+    ? memoryLessons
+        .map((l, i) => `${i + 1}. [${l.title}] ${l.detail}${l.tradeDate ? ` (from ${l.tradeDate})` : ""}`)
+        .join("\n")
+    : "(no active memory lessons loaded)");
+
   const systemPrompt = `You are a trading performance analyst specializing in ICT/SMC methodology.
 Your job is to find CROSS-TRADE patterns that a single-trade journal would miss.
+${COT_CHAIN}
 
 ANALYSIS FRAMEWORK:
 1. Session × Model × Outcome — which combinations fail at >60% rate?
@@ -87,6 +106,17 @@ ANALYSIS FRAMEWORK:
 4. Time-of-day patterns — do losses cluster in specific killzones?
 5. Pair-specific patterns — does a model work on EURUSD but fail on GBPUSD?
 6. Decision quality trends — is decision-making improving or degrading?
+
+MEMORY RECONCILIATION:
+- The "Active Memory" section lists lessons already logged to the trade graph.
+- Reconcile NEW findings against them: CONFIRMS, CONTRADICTS, or EXTENDS each
+  overlapping memory lesson. Never duplicate a memory lesson verbatim.
+
+PER-FINDING FORMAT (for every pattern you report):
+- EVIDENCE: which trades/numbers back it (cite counts, %, dates)
+- PATTERN: the one-sentence claim
+- COUNTER-EXAMPLE: the strongest trade or case that contradicts it
+- ACTIONABLE CHANGE: what the trader should do differently, specifically
 
 RULES:
 - Only report patterns backed by the data provided
@@ -104,8 +134,11 @@ ${tradeSummary || "(no trades provided)"}
 ## Extracted Lessons
 ${lessonSummary || "(no lessons provided)"}
 
+## Active Memory (trade graph)
+${memorySummary}
+
 Analyze these trades for cross-trade patterns. What's consistently working? What's consistently failing?
-What should the trader change?`;
+What should the trader change? Reconcile new findings against Active Memory.`;
 
   return {
     messages: [
@@ -124,6 +157,7 @@ What should the trader change?`;
 function councilNarrative(councilData, pairContext) {
   const systemPrompt = `You are a trading briefing officer for an ICT/SMC trading desk.
 Your job is to translate structured council voting data into a clear, actionable pre-trade briefing.
+${COT_CHAIN}
 
 The council has 4 archetypes, each voting on market direction:
 - POSITION (1W/1D anchor — structural trend, weight 3.0)
@@ -137,7 +171,7 @@ BRIEFING FORMAT:
    - Liquidity: where are the draws (BSL/SSL)?
    - Structure: what's the market structure on HTF?
    - Time: which session/killzone is active?
-3. **THE DISSENT** — if any archetype disagrees, explain their concern
+3. **THE DISSENT** — if any archetype disagrees, explain their concern. This is your COUNTER-EVIDENCE stage — take it seriously
 4. **ACTION PLAN** — what to do:
    - If high confidence: entry model, trigger TF, invalidation
    - If split/wait: what would flip the council?
@@ -173,6 +207,7 @@ Write the pre-trade briefing.`;
 
 function newsAnalysis(event, eventData, pair) {
   const systemPrompt = `You are a macroeconomic analyst specializing in ICT's One Shot One Kill news trading framework.
+${COT_CHAIN}
 
 ICT NEWS TRADING RULES (from ICT 2024 Mentorship):
 1. Gold (XAUUSD) is the #1 FOMC instrument — no direct dollar exposure
@@ -190,7 +225,11 @@ Output:
 2. **Dollar Implications** — how this affects DXY and dollar-correlated pairs
 3. **Best Instrument** — which pair gives the cleanest exposure
 4. **Key Levels to Watch** — nearest BSL/SSL draws before the release
-5. **Pre-Release Plan** — direction bias, entry window, invalidation`;
+5. **Pre-Release Plan** — direction bias, entry window, invalidation
+
+Map the chain onto your output: HYPOTHESIS → the Pre-Release direction bias; EVIDENCE →
+Expected Impact and key levels; COUNTER-EVIDENCE → the surprise scenario that invalidates
+the plan and what would flip you to the other side; VERDICT → the one-line final plan.`;
 
   const userPrompt = `## News Event: ${event}
 ## Event Data:
@@ -214,10 +253,11 @@ Analyze this event for ICT One Shot One Kill trading.`;
 // Review borderline trade decisions that fall between deterministic rules.
 // Used by: ict_decision_validator.cjs (optional enhancement)
 
-function decisionEdgeCase(tradeData, failedRules, passedRules) {
+function decisionEdgeCase(tradeData, failedRules, passedRules, memoryContext) {
   const systemPrompt = `You are an ICT/SMC trade reviewer specializing in edge cases.
 The deterministic rule checker has flagged some rules as borderline.
 Your job: provide a nuanced judgment on whether this trade was valid despite rule grey areas.
+${COT_CHAIN}
 
 ICT EDGE CASE PRINCIPLES:
 1. The SPIRIT of the rule matters more than the letter — but don't use this to justify bad trades
@@ -227,9 +267,17 @@ ICT EDGE CASE PRINCIPLES:
 5. A trade can be "technically valid but reckless" — all rules passed but against HTF bias
 
 Output:
-1. **Ruling**: VALID / BORDERLINE-VALID / INVALID
+1. **RULING LINE (must be the FIRST line of your response)** — exactly one of:
+   RULING: VALID  /  RULING: BORDERLINE-VALID  /  RULING: INVALID
 2. **Reasoning**: Why, referencing specific ICT concepts
-3. **If This Happens Again**: What rule should be clarified?`;
+3. **If This Happens Again**: What rule should be clarified?
+4. **Evidence That Would Change The Ruling**: one concrete counter-factual — what data would flip you?`
+
+  const memoryNote = (memoryContext && memoryContext.length
+    ? `\n\n## Active Memory (trade graph)\nReconcile your ruling against these logged lessons; note explicitly if the trade repeats a known failure pattern:\n${memoryContext
+        .map((l, i) => `${i + 1}. [${l.title}] ${l.detail}${l.tradeDate ? ` (from ${l.tradeDate})` : ""}`)
+        .join("\n")}`
+    : "");
 
   const userPrompt = `## Trade Data
 ${JSON.stringify(tradeData, null, 2)}
@@ -238,7 +286,7 @@ ${JSON.stringify(tradeData, null, 2)}
 ${failedRules.map(r => `- ${r.id}: ${r.rule} (severity: ${r.severity})`).join("\n") || "none"}
 
 ## Passed Rules
-${passedRules.map(r => `- ${r.id}: ${r.rule}`).join("\n") || "none"}
+${passedRules.map(r => `- ${r.id}: ${r.rule}`).join("\n") || "none"}${memoryNote}
 
 Review this trade. Was it valid?`;
 
@@ -247,7 +295,7 @@ Review this trade. Was it valid?`;
       { role: "system", content: systemPrompt },
       { role: "user", content: userPrompt },
     ],
-    config: { maxTokens: 768, temperature: 0.2 },
+    config: { maxTokens: 1024, temperature: 0.2 },
   };
 }
 
@@ -259,6 +307,7 @@ Review this trade. Was it valid?`;
 function morningBriefing(pairData, sessionInfo) {
   const systemPrompt = `You are a morning briefing analyst for an ICT/SMC trading desk.
 Your job: synthesize data across 5 trading pairs into a unified session outlook.
+${COT_CHAIN}
 
 BRIEFING FORMAT:
 1. **DOLLAR INDEX (DXY)** — Is the dollar strengthening or weakening? This colors everything.
@@ -276,7 +325,8 @@ For each pair, note:
 RULES:
 - DXY context is mandatory — every pair analysis must reference dollar direction
 - Be specific about time windows
-- If a pair has conflicting signals, say "skip" — don't force a view`;
+- If a pair has conflicting signals, say "skip" — don't force a view
+- In COUNTER-EVIDENCE, name the event or level most likely to invalidate the theme of the day`;
 
   const userPrompt = `## Session Info
 ${JSON.stringify(sessionInfo, null, 2)}
@@ -304,4 +354,5 @@ module.exports = {
   newsAnalysis,
   decisionEdgeCase,
   morningBriefing,
+  COT_CHAIN,
 };

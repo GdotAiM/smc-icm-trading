@@ -158,6 +158,7 @@ function validateTrade(trade, activeModels) {
     violations,
     warnings,
     info,
+    findings,
     totalRules: findings.length,
     passedRules: findings.filter(f => f.passed === true).length,
     failedRules: findings.filter(f => f.passed === false).length,
@@ -365,7 +366,117 @@ const STAGE_HOOKS = {
 };
 
 // ═══════════════ MAIN ═══════════════
-function main() {
+
+// Extract a ruling label from edge-case LLM output for self-consistency vote.
+function extractRuling(text) {
+  if (!text) return null;
+  const t = String(text);
+  const labels = ["BORDERLINE-VALID", "VALID", "INVALID"];
+  for (const label of labels) {
+    const re = new RegExp("RULING\\s*[:：]?\\s*\\*{0,2}\\s*" + label, "i");
+    if (re.test(t)) return label;
+  }
+  let best = null;
+  let bestCount = 0;
+  for (const label of labels) {
+    const m = t.match(new RegExp("\\b" + label + "\\b", "gi")) || [];
+    if (m.length > bestCount) {
+      bestCount = m.length;
+      best = label;
+    }
+  }
+  return best;
+}
+
+/**
+ * LLM edge-case review with self-consistency voting (a.k.a. --edge mode).
+ * Runs the decisionEdgeCase prompt N times at higher temperature, extracts the
+ * ruling per run, and tallies the majority. Audit-only: the deterministic
+ * validator verdict is unchanged; this is a second opinion for grey areas.
+ *
+ * @param {string}   pair
+ * @param {Object}   [opts]
+ * @param {number}   [opts.runs]        - default 3
+ * @param {number}   [opts.temperature] - default 0.7
+ * @param {Function} [opts.client]      - injectable LLM client for tests
+ * @returns {Promise<{pair, ruling, votes: Array<{value,count}>, runs, detail: Array}>}
+ */
+async function runEdgeCase(pair, opts = {}) {
+  const pairLabel = (pair || "GBPUSD").toUpperCase();
+  const trade = extractTradeFromStages(pairLabel);
+
+  const activeModels = trade.model?.toLowerCase().includes("silver")
+    ? ["silver-bullet", "market-structure", "liquidity", "session", "risk", "power-of-3"]
+    : ["market-structure", "liquidity", "session", "risk"];
+  const result = validateTrade(trade, activeModels);
+
+  // Only grey-area cases worth an LLM second opinion.
+  const failedRules = [...result.violations, ...result.warnings, ...result.info];
+  const passedRules = result.findings.filter((f) => f.passed !== false);
+  if (!failedRules.length) {
+    return {
+      pair: pairLabel,
+      ruling: "VALID (deterministic)",
+      votes: [{ value: "VALID", count: opts.runs || 3 }],
+      runs: 0,
+      detail: [],
+      note: "No failed/borderline rules — edge review unnecessary.",
+    };
+  }
+
+  const llm = require("./llm/llm_client.cjs");
+  const { decisionEdgeCase } = require("./llm/llm_prompts.cjs");
+  const { loadActiveLessons } = require("./llm/memory_lessons.cjs");
+  require("./llm/load_env.cjs").loadProjectEnv();
+
+  const mem = loadActiveLessons({ pair: pairLabel, limit: 8 });
+  const tradeData = {
+    pair: pairLabel,
+    model: trade.model,
+    session: trade.session,
+    htfBias: trade.htfBias,
+    bias1d: trade.bias1d,
+    bias4h: trade.bias4h,
+    killzoneActive: trade.killzoneActive,
+    sbWindowActive: trade.sbWindowActive,
+    mssConfirmed: trade.mssConfirmed,
+    fvgEntry: trade.fvgEntry,
+    slStructural: trade.slStructural,
+    rr: trade.rr,
+    riskPct: trade.riskPct,
+    entryPrice: trade.entryPrice,
+    slPrice: trade.slPrice,
+    tp1Price: trade.tp1Price,
+  };
+
+  const prompt = decisionEdgeCase(tradeData, failedRules, passedRules, mem.lessons);
+  const { majority, responses, tally } = await llm.selfConsistent({
+    messages: prompt.messages,
+    llmOpts: { ...prompt.config, pair: pairLabel },
+    runs: opts.runs ?? 3,
+    temperature: opts.temperature ?? 0.7,
+    extract: extractRuling,
+    client: opts.client,
+  });
+
+  const detail = responses.map((r, i) => ({
+    run: i + 1,
+    ruling: extractRuling(r.text) || "UNPARSED",
+    summary: r.text.replace(/\s+/g, " ").slice(0, 500),
+  }));
+
+  const ruling = majority && majority.value ? majority.value : "UNPARSED";
+
+  return {
+    pair: pairLabel,
+    ruling,
+    votes: tally,
+    runs: responses.length,
+    detail,
+  };
+}
+
+async function main() {
   const args = process.argv.slice(2);
   const mode = args[0];
 
@@ -374,12 +485,14 @@ function main() {
 ICT Decision Validator — Phase 4: Pipeline Integration
 Usage:
   node tools/ict_decision_validator.cjs --validate [pair]   Validate trade against ICT rules
+  node tools/ict_decision_validator.cjs --edge [pair]       LLM edge-case review with self-consistency voting
   node tools/ict_decision_validator.cjs --hook [stage]       Generate RAG query hooks for a stage
   node tools/ict_decision_validator.cjs --wire                Wire ICT hooks into all stage CONTEXT.md files
   node tools/ict_decision_validator.cjs --check [pair]        Quick pre-trade ICT compliance check
 
 Examples:
   node tools/ict_decision_validator.cjs --validate GBPUSD
+  node tools/ict_decision_validator.cjs --edge EURUSD
   node tools/ict_decision_validator.cjs --hook 04_model_selection
   node tools/ict_decision_validator.cjs --wire
 `);
@@ -428,6 +541,34 @@ Examples:
     console.log(result.blocked ? "🛑 DO NOT ENTER — Fix critical violations first" :
                 result.caution ? "⚠️  ENTER WITH CAUTION — Address warnings" :
                 "✅ CLEARED — All ICT rules satisfied");
+    return;
+  }
+
+  // ── LLM Edge-Case Self-Consistency Review ────────────
+  if (mode === "--edge") {
+    const pair = args[1] || "GBPUSD";
+    console.log(`\n🧠 ICT Edge-Case LLM Review (self-consistency) — ${pair.toUpperCase()}\n`);
+    try {
+      const r = await runEdgeCase(pair, {
+        runs: Number(process.env.ICT_EDGE_RUNS) || 3,
+        temperature: Number(process.env.ICT_EDGE_TEMP) || 0.7,
+      });
+      console.log("═".repeat(60));
+      console.log(`  CONSOLIDATED RULING: ${r.ruling}`);
+      if (r.votes.length) {
+        console.log(`  Votes: ${r.votes.map((v) => `${v.value}×${v.count}`).join(", ")}`);
+      }
+      if (r.note) console.log(`  Note: ${r.note}`);
+      if (r.detail.length) {
+        console.log("\n  Per-run detail:");
+        for (const d of r.detail) {
+          console.log(`    Run ${d.run}: ${d.ruling} — ${d.summary}`);
+        }
+      }
+    } catch (e) {
+      console.log(`  ⚠️  Edge review skipped: ${e.message}`);
+    }
+    console.log("═".repeat(60));
     return;
   }
 
@@ -508,4 +649,11 @@ Examples:
   console.log(`Unknown mode: ${mode}. Use --help.`);
 }
 
-main();
+module.exports = { ICT_RULES, validateTrade, extractTradeFromStages, runEdgeCase, extractRuling };
+
+if (require.main === module) {
+  main().catch((e) => {
+    console.error("validator error:", e.message);
+    process.exit(1);
+  });
+}

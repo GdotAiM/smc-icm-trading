@@ -38,6 +38,25 @@ node tools/tv-mcp/market_order.cjs EURUSD SELL 1.13950 1.13750 10000
 node tools/tv-mcp/check_orders.cjs
 ```
 
+## LLM Audit & Reasoning Layer (Aug 11)
+
+An **audit-only** LLM second-opinion layer — it never gates or blocks the
+deterministic pipeline. After every decision, `run_pair.cjs` spawns a detached
+setup auditor that reads the decision + stage outputs + trade-graph memory and
+writes `shared/<date>/<PAIR>/setup_audit.{json,md}` (verdict `ALIGNED |
+CHALLENGED | UNABLE` + evidence + recommendations). All prompts now enforce a
+HYPOTHESIS → EVIDENCE → COUNTER-EVIDENCE → VERDICT reasoning chain and receive
+live trade-graph lessons.
+
+```bash
+node tools/llm/setup_auditor.cjs EURUSD                # audit a decision
+node tools/llm/setup_auditor.cjs EURUSD --dry-run      # context + tools only
+node tools/ict_decision_validator.cjs --edge EURUSD    # self-consistency edge review
+node --test tests/llm_layer.test.cjs                   # 22 LLM-layer tests
+```
+
+Full spec: `md/LLM_AUDIT_LAYER.md`
+
 ## Architecture
 
 ```
