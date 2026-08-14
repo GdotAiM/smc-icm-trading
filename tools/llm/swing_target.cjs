@@ -117,7 +117,7 @@ function countModelPasses(pair, model, date, root = ROOT) {
 
 function computeSwingTarget(pair, date, root = ROOT) {
   const P = String(pair || "").toUpperCase();
-  const dir = path.join(root, "shared", date, P);
+  const dir = path.join(root, "shared", date, P === "XAUUSD" ? "GOLD" : P === "USDOLLAR" ? "DXY" : P);
   const d1 = readJson(path.join(dir, "engine_1d.json"));
   const m15 = readJson(path.join(dir, "engine_15m.json"));
   const m1 = readJson(path.join(dir, "engine_1m.json"));

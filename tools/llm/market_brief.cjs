@@ -170,6 +170,12 @@ function loadStageOutputs(pair, root = ROOT) {
 
 // ── Graded levels & tethering (ICT High Precision Secrets) ────────────────────
 
+// Map canonical pair name → data dir name. XAUUSD lives in GOLD/, USDOLLAR in DXY/.
+function pairToDir(P) {
+  const u = String(P || "").toUpperCase();
+  return u === "XAUUSD" ? "GOLD" : u === "USDOLLAR" ? "DXY" : u;
+}
+
 // The LLM sees a chart through graded levels: the 7-9AM pre-session range, its
 // CE/quadrants/octants, the -0.5 projections, daily/weekly anchors (PDH/PDL/CE,
 // PWH/PWL), the tethering weight boost, body-vs-wick confidence, and the ORG.
@@ -177,7 +183,7 @@ function loadStageOutputs(pair, root = ROOT) {
 // reads — so it respects the --date override instead of always using today.
 function gradedLevelsSection(pair, date, root = ROOT) {
   const P = pair.toUpperCase();
-  const dir = P === "XAUUSD" ? "GOLD" : P;
+  const dir = pairToDir(P);
   const d = path.join(root, "shared", date, dir);
   const read = (f) => {
     const p = path.join(d, f);
@@ -390,7 +396,7 @@ function openBookSection(root = ROOT) {
 function hourlyScalpSection(pair, date, root = ROOT, nowHour) {
   try {
     const P = String(pair || "").toUpperCase();
-    const pairDir = path.join(root, "shared", date, P);
+const pairDir = path.join(root, "shared", date, pairToDir(P));
     const tc = nowHour === undefined ? timeContext(root) : { nyTime: { hour: nowHour } };
     const nowH = Number.isInteger(nowHour) ? nowHour : tc.nyTime?.hour;
     if (!Number.isInteger(nowH) || nowH < 7) return null;
@@ -510,7 +516,7 @@ function buildBrief(pair, opts = {}) {
 
   const date = opts.date || getNYDate();
   const root = opts.root || ROOT;
-  const pairDir = path.join(root, "shared", date, P);
+  const pairDir = path.join(root, "shared", date, pairToDir(P));
   const briefPath = path.join(pairDir, "market_brief.md");
 
   const lines = [];
