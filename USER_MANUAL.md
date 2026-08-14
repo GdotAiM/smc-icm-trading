@@ -89,7 +89,7 @@ The system controls TradingView Desktop via Chrome DevTools Protocol on port 922
 |--------|---------|
 | `market_order.cjs` | Place market order with SL/TP (one command) |
 | `news_trade.cjs` | ICT news event trading system |
-| `execute.cjs` | Full e2e execution with keyboard switch |
+
 | `check_orders.cjs` | Verify open positions and orders |
 | `live_levels.cjs` | Scan all pairs for live prices + SL/TP |
 | `scan_all_pairs.cjs` | Deep scan all pairs for trade setups |

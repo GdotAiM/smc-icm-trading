@@ -479,7 +479,7 @@ node tools/tv-mcp/check_orders.cjs
 
 | Script | Purpose |
 |--------|---------|
-| `execute.cjs` | Full e2e: keyboard switch + label-based field mapping |
+
 | `market_order.cjs` | `setSymbol` switch + place (args: PAIR SIDE SL TP QTY) |
 | `quick_trade.cjs` | Fast one-shot without keyboard switch |
 | `check_orders.cjs` | Verify positions + orders table |

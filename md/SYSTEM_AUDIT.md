@@ -97,7 +97,7 @@ smc-icm-trading/
 │   │   ├── modify_sl.cjs, live_levels.cjs, check_sl.cjs, order_history.cjs
 │   │   ├── intel_monitor.cjs    # Live structure/setup monitor (Tier 1+2)
 │   │   ├── session_monitor.cjs  # Position/SL/TP state monitor
-│   │   ├── session_prep.cjs, news_trade.cjs, clean_slate.cjs, quick_trade.cjs, execute.cjs
+│   │   ├── session_prep.cjs, news_trade.cjs, clean_slate.cjs, quick_trade.cjs
 │   │   ├── ny_am_autonomous.cjs # NY AM SB phase driver
 │   │   ├── autonomous_session.cjs # London KZ phase driver
 │   │   ├── lecture1_setup.cjs / lecture2_setup.cjs / lecture4_setup.cjs
