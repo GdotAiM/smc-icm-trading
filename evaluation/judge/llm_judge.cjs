@@ -199,6 +199,7 @@ function findLLMKey() {
 const llmProvider = findLLMKey();
 let llmResult = null;
 
+(async () => {
 if (llmProvider) {
   try {
     // Re-read env to get the actual key value
@@ -300,3 +301,4 @@ fs.appendFileSync(JUDGE_LEDGER, JSON.stringify(result) + "\n");
 
 console.log(JSON.stringify(result, null, 2));
 process.exit(result.grade === "F" ? 1 : 0);
+})();
