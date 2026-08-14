@@ -24,7 +24,7 @@ const TV_SYMBOLS = {
   GBPUSD: "OANDA:GBPUSD",
   XAUUSD: "OANDA:XAUUSD",
   NAS100: "CAPITALCOM:NAS100",
-  DXY: "FX:USDOLLAR"
+  DXY: "TVC:DXY"
 };
 // Price range guards — reject trades with SL/TP outside these bounds
 // Prevents cross-pair contamination (e.g., EURUSD getting NAS100 prices)
@@ -33,7 +33,7 @@ const PRICE_GUARDS = {
   GBPUSD: { min: 1.20, max: 1.45, label: "forex" },
   XAUUSD: { min: 3500, max: 5000, label: "gold" },
   NAS100: { min: 20000, max: 35000, label: "index" },
-  DXY: { min: 12000, max: 13500, label: "dxy" },
+  DXY: { min: 50, max: 200, label: "dxy" },
 };
 
 // ═══ CONFIG ═══

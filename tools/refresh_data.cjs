@@ -18,7 +18,7 @@ const TV_SYMBOLS = {
   GBPUSD: "OANDA:GBPUSD",
   XAUUSD: "OANDA:XAUUSD",
   NAS100: "CAPITALCOM:NAS100",
-  DXY: "FX:USDOLLAR"
+  DXY: "TVC:DXY"
 };
 
 const targetPairs = process.argv[2] ? [process.argv[2].toUpperCase()] : ALL_PAIRS;
@@ -84,9 +84,9 @@ async function refresh() {
             var start = Math.max(0, i - ${tf === "1m" ? 500 : tf === "5m" ? 300 : 200});
             for (var j = start; j <= i; j++) {
               var v = b.valueAt(j);
-              if (v && v.length >= 6) candles.push({
+              if (v && v.length >= 5) candles.push({
                 time: v[0] * 1000,
-                open: v[1], high: v[2], low: v[3], close: v[4], volume: v[5]
+                open: v[1], high: v[2], low: v[3], close: v[4], volume: v[5] || 0
               });
             }
             return JSON.stringify({ count: candles.length });
@@ -107,9 +107,9 @@ async function refresh() {
               var start = Math.max(0, i - ${tf === "1m" ? 500 : tf === "5m" ? 300 : 200});
               for (var j = start; j <= i; j++) {
                 var v = b.valueAt(j);
-                if (v && v.length >= 6) candles.push({
+                if (v && v.length >= 5) candles.push({
                   time: v[0] * 1000,
-                  open: v[1], high: v[2], low: v[3], close: v[4], volume: v[5]
+                  open: v[1], high: v[2], low: v[3], close: v[4], volume: v[5] || 0
                 });
               }
               return JSON.stringify({ candles: candles });

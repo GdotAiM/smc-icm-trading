@@ -26,7 +26,7 @@ const TV_SYMBOLS = {
   GBPUSD: "OANDA:GBPUSD",
   XAUUSD: "OANDA:XAUUSD",
   NAS100: "CAPITALCOM:NAS100",
-  DXY: "FX:USDOLLAR"
+  DXY: "TVC:DXY"
 };
 const TFS = ["1w", "1d", "4h", "1h", "15m", "5m", "1m"];
 const TV_TF_MAP = { "1d": "1D", "4h": "240", "1h": "60", "15m": "15", "5m": "5", "1m": "1" };
@@ -189,7 +189,7 @@ async function fetchFromTV() {
           var candles = [];
           for (var i = start; i <= end; i++) {
             var v = bars.valueAt(i);
-            if (v && v.length >= 6) candles.push({
+            if (v && v.length >= 5) candles.push({
               time: v[0]*1000, open: v[1], high: v[2], low: v[3], close: v[4], volume: v[5]||0
             });
           }
