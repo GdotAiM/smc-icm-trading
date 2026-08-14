@@ -63,11 +63,12 @@ const DECISION_CAP = 4000;
 function decisionDate(pair, date, root = ROOT) {
   if (date) return date;
   const P = String(pair || "").toUpperCase();
+  const ny = require("../ny_time.cjs");
   for (let i = 0; i < 7; i++) {
-    const d = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
+    const d = ny.getNYDateFor(Date.now() - i * 86400000);
     if (fs.existsSync(path.join(root, "shared", d, P, "decision.json"))) return d;
   }
-  return new Date().toISOString().slice(0, 10);
+  return ny.getNYDate();
 }
 
 // Compact a decision object: strip bulky fields, keep the reasoning-relevant ones.
@@ -318,7 +319,7 @@ async function runAudit({ pair, date, maxIterations = 6, provider, model, client
   const clientFn = client || require("./llm_client.cjs").chatCompletion;
   const dispatch = buildDispatch({ root: ROOT });
 
-  const llmOpts = { provider, model, maxTokens: 1536, temperature: 0.2 };
+  const llmOpts = { provider, model, maxTokens: 4000, temperature: 0.2, timeout: 240000 };
   if (provider) llmOpts.provider = provider;
   if (model) llmOpts.model = model;
 
@@ -372,6 +373,12 @@ async function runAudit({ pair, date, maxIterations = 6, provider, model, client
   if (result.status === "complete" || result.status === "max_iterations") {
     parsed = safeJsonParse(result.text, null);
   }
+  // A parsed block without a verdict field is NOT a valid audit (the model often
+  // embeds an unrelated {...} brace block from prose examples) — treat it as a
+  // parse failure so the strict re-ask fires.
+  if (parsed && typeof parsed.verdict !== "string") {
+    parsed = null;
+  }
 
   // Strict JSON recovery: if the model produced prose instead of the schema,
   // re-ask for ONLY the JSON at temperature 0 (bounded to one extra call).
@@ -387,7 +394,7 @@ async function runAudit({ pair, date, maxIterations = 6, provider, model, client
             'Return ONLY a single JSON object — no markdown fences, no prose, nothing else: {"verdict":"ALIGNED"|"CHALLENGED"|"UNABLE","confidence":0,"evidence":[""],"counterEvidence":[""],"recommendations":[""],"reasoning":""}',
         },
       ],
-      { ...llmOpts, maxTokens: 1024, temperature: 0 },
+      { ...llmOpts, maxTokens: 4000, temperature: 0 },
     );
     parsed = safeJsonParse(retryResp.text, null);
     if (parsed) result.text = retryResp.text;

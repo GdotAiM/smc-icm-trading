@@ -1,13 +1,13 @@
 {
-  "generated": "2026-07-27T16:18:56.172Z",
+  "generated": "2026-08-13T12:44:21.305Z",
   "source": "C:\\Users\\cash\\Desktop\\ICT Knowledge Centre",
-  "totalFiles": 138,
-  "totalConcepts": 138,
-  "totalWords": 257485,
+  "totalFiles": 141,
+  "totalConcepts": 141,
+  "totalWords": 269941,
   "tiers": {
     "0": {
       "name": "Foundations",
-      "count": 45,
+      "count": 48,
       "concepts": [
         "Homepage",
         "ICT-Foundations-and-FAQ",
@@ -28,6 +28,7 @@
         "market-maker-sell-model",
         "market-structure-shift",
         "pd-array-key-to-trade-execution",
+        "pd-array-matrix-revealed",
         "premium-and-discount-zone-identification",
         "redelivered-rebalanced-price-range",
         "stl-itl-ltl",
@@ -42,9 +43,11 @@
         "market-structure-in",
         "ict-kill-zones",
         "mss-vs-choch",
+        "multiple-setups-one-session",
         "powerful-ict-reversal-patterns",
         "proven-ict-20-pips-a-day",
         "qml-chart-pattern",
+        "scalp-every-hour-candle",
         "simple-ict-scalping",
         "supply-and-demand-in-forex",
         "what-is-ict-hidden-order-block",

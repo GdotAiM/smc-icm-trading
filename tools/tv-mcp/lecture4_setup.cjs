@@ -20,7 +20,7 @@ const ny = require("../ny_time.cjs");
 const L2 = require("./lecture2_setup.cjs");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("../ny_time.cjs").getNYDate();
 const PAIR = process.argv[2] || "XAUUSD";
 
 function getCandles(tf, dateOverride, rootOverride, pairOverride) {

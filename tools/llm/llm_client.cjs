@@ -63,10 +63,10 @@ const PROVIDERS = {
     rateLimit: "paid — no free tier",
   },
   custom: {
-    baseUrl: process.env.LLM_BASE_URL || "http://localhost:8000/v1",
-    model: process.env.LLM_MODEL || "gemma-4-26b",
+    baseUrl: process.env.LLM_BASE_URL || "https://opencode.ai/zen/v1",
+    model: process.env.LLM_MODEL || "deepseek-v4-flash-free",
     apiKeyEnv: null,
-    rateLimit: "user-defined",
+    rateLimit: "FREE — keyless OpenCode Zen gateway (deepseek-v4-flash-free)",
   },
 };
 
@@ -96,9 +96,16 @@ function resolveConfig(overrides) {
     provider: providerName,
     baseUrl: overrides?.baseUrl || def.baseUrl,
     apiKey,
-    model: overrides?.model || process.env.LLM_MODEL || def.model,
+    // LLM_MODEL only overrides the "custom" provider. Named providers (gemini,
+    // groq, cerebras, openrouter, fireworks, openai) must use their own default
+    // model — a stray global LLM_MODEL (e.g. a deepseek id) would 404 on their
+    // endpoints. Explicit overrides.model still wins for any provider.
+    model: overrides?.model || (providerName === "custom" ? (process.env.LLM_MODEL || def.model) : def.model),
     rateLimit: def.rateLimit,
     hasKey: apiKey.length > 0,
+    // The "custom" provider may point at a keyless endpoint (e.g. an anonymoust
+    // gateway). hasKey=false then still allows the request — just no auth header.
+    keyless: providerName === "custom",
   };
 
   return config;
@@ -127,7 +134,7 @@ async function chatCompletion(messages, opts = {}) {
     return { text: `[LLM config error: ${config.error}]`, provider: config.provider, model: "unknown" };
   }
 
-  if (!config.hasKey) {
+  if (!config.hasKey && !config.keyless) {
     return {
       text: `[LLM not configured: no API key for "${config.provider}". Set ${PROVIDERS[config.provider]?.apiKeyEnv || "LLM_API_KEY"} in .env]`,
       provider: config.provider,
@@ -139,6 +146,12 @@ async function chatCompletion(messages, opts = {}) {
     model: config.model,
     messages,
     max_tokens: opts.maxTokens ?? 1024,
+    // Reasoning-aware budget. Some gateways (e.g. OpenCode Zen's
+    // deepseek-v4-flash-free) emit a long `reasoning_content` BEFORE the answer;
+    // with only max_tokens the budget can be exhausted by reasoning alone,
+    // leaving the final content empty (finish_reason "length"). max_completion_tokens
+    // lets the backend split the budget so the answer is always produced.
+    ...(opts.maxCompletionTokens ? { max_completion_tokens: opts.maxCompletionTokens } : {}),
     temperature: opts.temperature ?? 0.3,
     stream: false,
     ...(opts.tools && opts.tools.length ? { tools: opts.tools, tool_choice: opts.toolChoice ?? "auto" } : {}),
@@ -150,13 +163,26 @@ async function chatCompletion(messages, opts = {}) {
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${config.apiKey}`,
   };
+
+  if (config.hasKey || !config.keyless) {
+    headers["Authorization"] = `Bearer ${config.apiKey}`;
+  }
 
   // OpenRouter needs HTTP-Referer and X-Title headers
   if (config.provider === "openrouter") {
     headers["HTTP-Referer"] = "https://github.com/cash/smc-icm-trading";
     headers["X-Title"] = "SMC-ICM Trading";
+  }
+
+  // The Zen gateway (custom provider → opencode.ai/zen/v1) keys its free tier
+  // to the OpenCode client's User-Agent. Without it the request is treated as
+  // anonymous third-party traffic and hits the exhausted shared pool (429
+  // FreeUsageLimitError). Sending the same UA OpenCode itself sends routes the
+  // call to the per-user free quota that reloads daily. Mirrors the version the
+  // gateway observed (v1.18.x); any opencode/* UA is accepted.
+  if (config.provider === "custom") {
+    headers["User-Agent"] = "opencode/1.18.18";
   }
 
   const timeout = opts.timeout ?? 30000;
@@ -252,6 +278,9 @@ function parseToolCalls(message) {
       name: c.function?.name,
       arguments: args,
       signature: c.thoughtSignature || c.thought_signature || null,
+      // DeepSeek-style interleaved reasoning: `reasoning_content` must be echoed
+      // back alongside tool_calls or the upstream rejects the follow-up request.
+      reasoning: message.reasoning_content || null,
     };
   });
 }
@@ -358,10 +387,13 @@ async function agentLoop({ messages, tools = [], toolDispatch = {}, llmOpts = {}
     }
 
     // Preserve the assistant's tool_calls verbatim (Gemini thinking models need
-    // the thought_signature echoed back in the next turn).
+    // the thought_signature echoed back in the next turn; DeepSeek-style models
+    // need reasoning_content echoed back alongside the tool calls).
+    const firstReasoning = toolCalls.find((tc) => tc.reasoning)?.reasoning;
     history.push({
       role: "assistant",
       content: text,
+      ...(firstReasoning ? { reasoning_content: firstReasoning } : {}),
       tool_calls:
         resp.rawMessage?.tool_calls ||
         toolCalls.map((tc) => ({

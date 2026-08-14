@@ -6524,6 +6524,39 @@
       "pd-array-key-to-trade-execution"
     ]
   },
+  "pd-array-matrix-revealed": {
+    "id": "pd-array-matrix-revealed",
+    "title": "ict-pd-array-matrix-revealed",
+    "source": "",
+    "type": "tutorial",
+    "category": "01 - ICT Trading Tutorials",
+    "file": "01 - ICT Trading Tutorials\\ict-pd-array-matrix-revealed.md",
+    "tier": 0,
+    "tierName": "Foundations",
+    "date": "",
+    "modified": "",
+    "tags": [],
+    "excerpt": "---\r title: \"ICT PD Array Matrix Revealed — 20-Day IPDA Data Range & Quadrant Grading\"\r source: \"https://youtu.be/GiIQ3jZ9VAg\"\r type: \"tutorial\"\r date: \"2026-08-02\"\r modified: \"2026-08-02\"\r categories",
+    "wordCount": 2717,
+    "bodyPreview": "---\r\ntitle: \"ICT PD Array Matrix Revealed — 20-Day IPDA Data Range & Quadrant Grading\"\r\nsource: \"https://youtu.be/GiIQ3jZ9VAg\"\r\ntype: \"tutorial\"\r\ndate: \"2026-08-02\"\r\nmodified: \"2026-08-02\"\r\ncategories:\r\n  - \"ICT Trading Tutorials\"\r\ntags:\r\n  - \"ICT PD array matrix\"\r\n  - \"IPDA data range\"\r\n  - \"20-day look-back\"\r\n  - \"quadrant grading\"\r\n  - \"premium and discount\"\r\n  - \"wick grading\"\r\nexcerpt: \"The PD Array Matrix Revealed session (Oct 18, 2025): frame the 20-day look-back range on the daily chart,",
+    "keySections": [],
+    "crossRefs": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "liquidity",
+      "market-structure-shift",
+      "ipda",
+      "new-day-opening-gap",
+      "new-week-opening-gap",
+      "optimal-trade-entry"
+    ],
+    "prerequisites": [],
+    "extendsConcepts": [
+      "market-structure",
+      "market-structure-shift"
+    ]
+  },
   "pdf": {
     "id": "pdf",
     "title": "ict-pdf",
@@ -9915,6 +9948,32 @@
       "break-of-structure-bos"
     ]
   },
+  "multiple-setups-one-session": {
+    "id": "multiple-setups-one-session",
+    "title": "multiple-setups-one-session",
+    "source": "",
+    "type": "tutorial",
+    "category": "01 - ICT Trading Tutorials",
+    "file": "01 - ICT Trading Tutorials\\multiple-setups-one-session.md",
+    "tier": 0,
+    "tierName": "Foundations",
+    "date": "",
+    "modified": "",
+    "tags": [],
+    "excerpt": "---\r title: \"ICT Gems - How to Find Multiple Setups in one Trading Session\"\r source: \"https://youtu.be/RkIfbhTamrQ\"\r type: \"tutorial\"\r date: \"2026-08-13\"\r categories:\r   - \"ICT Trading Tutorials\"\r tag",
+    "wordCount": 3275,
+    "bodyPreview": "---\r\ntitle: \"ICT Gems - How to Find Multiple Setups in one Trading Session\"\r\nsource: \"https://youtu.be/RkIfbhTamrQ\"\r\ntype: \"tutorial\"\r\ndate: \"2026-08-13\"\r\ncategories:\r\n  - \"ICT Trading Tutorials\"\r\ntags:\r\n  - \"multiple setups\"\r\n  - \"one session\"\r\n  - \"session roadmap\"\r\n  - \"kill zone\"\r\n  - \"liquidity\"\r\n  - \"setup hunting\"\r\n  - \"time and price\"\r\nexcerpt: \"How to find multiple ICT setups in a single trading session by reading time and price, mapping killzones and liquidity, and letting each setup f",
+    "keySections": [],
+    "crossRefs": [
+      "order-block",
+      "fair-value-gap",
+      "liquidity",
+      "optimal-trade-entry",
+      "kill-zones"
+    ],
+    "prerequisites": [],
+    "extendsConcepts": []
+  },
   "pin-bar": {
     "id": "pin-bar",
     "title": "pin-bar-trading-strategy",
@@ -10407,6 +10466,41 @@
       "rally-base-rally",
       "break-of-structure-bos",
       "what-is-inducement-in-forex"
+    ]
+  },
+  "scalp-every-hour-candle": {
+    "id": "scalp-every-hour-candle",
+    "title": "scalp-every-hour-candle",
+    "source": "",
+    "type": "tutorial",
+    "category": "01 - ICT Trading Tutorials",
+    "file": "01 - ICT Trading Tutorials\\scalp-every-hour-candle.md",
+    "tier": 0,
+    "tierName": "Foundations",
+    "date": "",
+    "modified": "",
+    "tags": [],
+    "excerpt": "---\r title: \"ICT Gems - ICT Teaches How to Scalp Every Hour Candle\"\r source: \"https://youtu.be/uw1bqt8-9nA\"\r type: \"tutorial\"\r date: \"2026-08-13\"\r categories:\r   - \"ICT Trading Tutorials\"\r tags:\r   - ",
+    "wordCount": 6464,
+    "bodyPreview": "---\r\ntitle: \"ICT Gems - ICT Teaches How to Scalp Every Hour Candle\"\r\nsource: \"https://youtu.be/uw1bqt8-9nA\"\r\ntype: \"tutorial\"\r\ndate: \"2026-08-13\"\r\ncategories:\r\n  - \"ICT Trading Tutorials\"\r\ntags:\r\n  - \"scalp\"\r\n  - \"hourly candle\"\r\n  - \"order block\"\r\n  - \"kill zone\"\r\n  - \"liquidity sweep\"\r\n  - \"high probability reversal\"\r\n  - \"time and price\"\r\nexcerpt: \"ICT teaches how to scalp the hourly candle: trust only time+price (kill zones, order blocks, liquidity sweeps) instead of any single indicator, an",
+    "keySections": [
+      {
+        "type": "heading",
+        "text": "What This Teaches"
+      }
+    ],
+    "crossRefs": [
+      "market-structure",
+      "order-block",
+      "fair-value-gap",
+      "liquidity",
+      "judas-swing",
+      "optimal-trade-entry",
+      "kill-zones"
+    ],
+    "prerequisites": [],
+    "extendsConcepts": [
+      "market-structure"
     ]
   },
   "shooting-star-candlestick": {

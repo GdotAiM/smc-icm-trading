@@ -1086,6 +1086,14 @@
       "pd-array-key-to-trade-execution"
     ]
   },
+  "pd-array-matrix-revealed": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure",
+      "market-structure-shift"
+    ]
+  },
   "pdf": {
     "dependsOn": [
       "silver-bullet",
@@ -1553,6 +1561,11 @@
       "break-of-structure-bos"
     ]
   },
+  "multiple-setups-one-session": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": []
+  },
   "pin-bar": {
     "dependsOn": [
       "liquidity-sweep-vs-liquidity-run"
@@ -1606,6 +1619,13 @@
     "sameTierRefs": [
       "rally-base-rally",
       "what-is-inducement-in-forex"
+    ]
+  },
+  "scalp-every-hour-candle": {
+    "dependsOn": [],
+    "dependedOnBy": [],
+    "sameTierRefs": [
+      "market-structure"
     ]
   },
   "shooting-star-candlestick": {

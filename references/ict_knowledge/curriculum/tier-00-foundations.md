@@ -1,6 +1,6 @@
 # ICT Curriculum — Tier 0: Foundations
 
-**Concepts**: 45 | **Est. Study Time**: ~398 minutes
+**Concepts**: 48 | **Est. Study Time**: ~460 minutes
 
 ## Concept List
 
@@ -273,7 +273,16 @@
 - Wait for price to enter the correct zone
 
 
-### 23. ICT-PDF-and-Glossary
+### 23. ict-pd-array-matrix-revealed
+- **ID**: `pd-array-matrix-revealed`
+- **File**: `01 - ICT Trading Tutorials\ict-pd-array-matrix-revealed.md`
+- **Prerequisites**: None — start here
+- **Words**: 2717
+
+
+
+
+### 24. ICT-PDF-and-Glossary
 - **ID**: `ICT-PDF-and-Glossary`
 - **File**: `07 - eBook\ICT-PDF-and-Glossary.md`
 - **Prerequisites**: None — start here
@@ -282,7 +291,7 @@
 
 
 
-### 24. ict-premium-and-discount-zone-identification
+### 25. ict-premium-and-discount-zone-identification
 - **ID**: `premium-and-discount-zone-identification`
 - **File**: `01 - ICT Trading Tutorials\ict-premium-and-discount-zone-identification.md`
 - **Prerequisites**: None — start here
@@ -296,7 +305,7 @@
 - Wait for price to retrace into the relevant zone
 
 
-### 25. ict-redelivered-rebalanced-price-range
+### 26. ict-redelivered-rebalanced-price-range
 - **ID**: `redelivered-rebalanced-price-range`
 - **File**: `01 - ICT Trading Tutorials\ict-redelivered-rebalanced-price-range.md`
 - **Prerequisites**: None — start here
@@ -311,7 +320,7 @@
 - Drop to the lower timeframe.
 
 
-### 26. ict-stl-itl-ltl
+### 27. ict-stl-itl-ltl
 - **ID**: `stl-itl-ltl`
 - **File**: `01 - ICT Trading Tutorials\ict-stl-itl-ltl.md`
 - **Prerequisites**: None — start here
@@ -323,7 +332,7 @@
 - Mark the STLs.
 
 
-### 27. ict-suspension-block
+### 28. ict-suspension-block
 - **ID**: `suspension-block`
 - **File**: `01 - ICT Trading Tutorials\ict-suspension-block.md`
 - **Prerequisites**: None — start here
@@ -337,7 +346,7 @@
 - Wait for the MSS.
 
 
-### 28. ict-swing-high-explained
+### 29. ict-swing-high-explained
 - **ID**: `swing-high`
 - **File**: `01 - ICT Trading Tutorials\ict-swing-high-explained.md`
 - **Prerequisites**: None — start here
@@ -349,7 +358,7 @@
 - Check the high of the candlestick on the right
 
 
-### 29. ict-swing-low-formation
+### 30. ict-swing-low-formation
 - **ID**: `swing-low-formation`
 - **File**: `01 - ICT Trading Tutorials\ict-swing-low-formation.md`
 - **Prerequisites**: None — start here
@@ -361,7 +370,7 @@
 - Check the low of the candlestick on the right
 
 
-### 30. ict-venom-trading-model-2025
+### 31. ict-venom-trading-model-2025
 - **ID**: `venom-trading-model-2025`
 - **File**: `01 - ICT Trading Tutorials\ict-venom-trading-model-2025.md`
 - **Prerequisites**: None — start here
@@ -370,7 +379,7 @@
 
 
 
-### 31. ict-weekly-range-expansion
+### 32. ict-weekly-range-expansion
 - **ID**: `weekly-range-expansion`
 - **File**: `01 - ICT Trading Tutorials\ict-weekly-range-expansion.md`
 - **Prerequisites**: None — start here
@@ -384,7 +393,7 @@
 - Wait for the Tuesday 04:00 AM NY open.
 
 
-### 32. inducement-after-break-of-structure
+### 33. inducement-after-break-of-structure
 - **ID**: `inducement-after-break-of-structure`
 - **File**: `01 - ICT Trading Tutorials\inducement-after-break-of-structure.md`
 - **Prerequisites**: None — start here
@@ -398,7 +407,7 @@
 - Mark the new bullish or bearish leg.
 
 
-### 33. killzone-silver-bullet-overlap
+### 34. killzone-silver-bullet-overlap
 - **ID**: `killzone-silver-bullet-overlap`
 - **File**: `01 - ICT Trading Tutorials\killzone-silver-bullet-overlap.md`
 - **Prerequisites**: None — start here
@@ -409,7 +418,7 @@
 - Wait for a liquidity sweep.
 
 
-### 34. lower-high-and-lower-low
+### 35. lower-high-and-lower-low
 - **ID**: `lower-high-and-lower-low`
 - **File**: `01 - ICT Trading Tutorials\lower-high-and-lower-low.md`
 - **Prerequisites**: None — start here
@@ -423,7 +432,7 @@
 - Wait for the inducement sweep.
 
 
-### 35. market-structure
+### 36. market-structure
 - **ID**: `market-structure`
 - **File**: `09 - Site Pages\market-structure.md`
 - **Prerequisites**: None — start here
@@ -432,7 +441,7 @@
 
 
 
-### 36. market-structure-in-trading
+### 37. market-structure-in-trading
 - **ID**: `market-structure-in`
 - **File**: `01 - ICT Trading Tutorials\market-structure-in-trading.md`
 - **Prerequisites**: None — start here
@@ -448,7 +457,7 @@
 - Wait for the lower-timeframe MSS.
 
 
-### 37. market-structure-playlist---ict-trading
+### 38. market-structure-playlist---ict-trading
 - **ID**: `market-structure-playlist---ict`
 - **File**: `08 - Market Structure\market-structure-playlist---ict-trading.md`
 - **Prerequisites**: None — start here
@@ -457,7 +466,7 @@
 
 
 
-### 38. master-ict-kill-zones
+### 39. master-ict-kill-zones
 - **ID**: `ict-kill-zones`
 - **File**: `01 - ICT Trading Tutorials\master-ict-kill-zones.md`
 - **Prerequisites**: None — start here
@@ -471,7 +480,7 @@
 - Wait for an MSS.
 
 
-### 39. mss-vs-choch
+### 40. mss-vs-choch
 - **ID**: `mss-vs-choch`
 - **File**: `01 - ICT Trading Tutorials\mss-vs-choch.md`
 - **Prerequisites**: None — start here
@@ -480,7 +489,16 @@
 
 
 
-### 40. powerful-ict-reversal-patterns
+### 41. multiple-setups-one-session
+- **ID**: `multiple-setups-one-session`
+- **File**: `01 - ICT Trading Tutorials\multiple-setups-one-session.md`
+- **Prerequisites**: None — start here
+- **Words**: 3275
+
+
+
+
+### 42. powerful-ict-reversal-patterns
 - **ID**: `powerful-ict-reversal-patterns`
 - **File**: `01 - ICT Trading Tutorials\powerful-ict-reversal-patterns.md`
 - **Prerequisites**: None — start here
@@ -495,7 +513,7 @@
 - Wait for the retest.
 
 
-### 41. proven-ict-20-pips-a-day
+### 43. proven-ict-20-pips-a-day
 - **ID**: `proven-ict-20-pips-a-day`
 - **File**: `01 - ICT Trading Tutorials\proven-ict-20-pips-a-day.md`
 - **Prerequisites**: None — start here
@@ -511,7 +529,7 @@
 - Enter the trade.
 
 
-### 42. qml-chart-pattern
+### 44. qml-chart-pattern
 - **ID**: `qml-chart-pattern`
 - **File**: `01 - ICT Trading Tutorials\qml-chart-pattern.md`
 - **Prerequisites**: None — start here
@@ -525,7 +543,16 @@
 - Refine inside the QML zone.
 
 
-### 43. simple-ict-scalping-strategy
+### 45. scalp-every-hour-candle
+- **ID**: `scalp-every-hour-candle`
+- **File**: `01 - ICT Trading Tutorials\scalp-every-hour-candle.md`
+- **Prerequisites**: None — start here
+- **Words**: 6464
+
+
+
+
+### 46. simple-ict-scalping-strategy
 - **ID**: `simple-ict-scalping`
 - **File**: `01 - ICT Trading Tutorials\simple-ict-scalping-strategy.md`
 - **Prerequisites**: None — start here
@@ -539,7 +566,7 @@
 - Wait for the killzone.
 
 
-### 44. supply-and-demand-in-forex-trading
+### 47. supply-and-demand-in-forex-trading
 - **ID**: `supply-and-demand-in-forex`
 - **File**: `01 - ICT Trading Tutorials\supply-and-demand-in-forex-trading.md`
 - **Prerequisites**: None — start here
@@ -554,7 +581,7 @@
 - Drop to the lower timeframe (5-minute or 15-minute).
 
 
-### 45. what-is-ict-hidden-order-block
+### 48. what-is-ict-hidden-order-block
 - **ID**: `what-is-ict-hidden-order-block`
 - **File**: `01 - ICT Trading Tutorials\what-is-ict-hidden-order-block.md`
 - **Prerequisites**: None — start here
@@ -567,4 +594,4 @@
 
 
 ---
-*Generated: 2026-07-27T16:18:56.183Z*
+*Generated: 2026-08-13T12:44:21.320Z*

@@ -2,7 +2,7 @@
   {
     "tier": 0,
     "name": "Foundations",
-    "conceptCount": 45,
+    "conceptCount": 48,
     "concepts": [
       {
         "id": "break-of-structure-bos",
@@ -267,6 +267,14 @@
         ]
       },
       {
+        "id": "pd-array-matrix-revealed",
+        "title": "ict-pd-array-matrix-revealed",
+        "file": "01 - ICT Trading Tutorials\\ict-pd-array-matrix-revealed.md",
+        "wordCount": 2717,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
         "id": "ICT-PDF-and-Glossary",
         "title": "ICT-PDF-and-Glossary",
         "file": "07 - eBook\\ICT-PDF-and-Glossary.md",
@@ -469,6 +477,14 @@
         "keyRules": []
       },
       {
+        "id": "multiple-setups-one-session",
+        "title": "multiple-setups-one-session",
+        "file": "01 - ICT Trading Tutorials\\multiple-setups-one-session.md",
+        "wordCount": 3275,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
         "id": "powerful-ict-reversal-patterns",
         "title": "powerful-ict-reversal-patterns",
         "file": "01 - ICT Trading Tutorials\\powerful-ict-reversal-patterns.md",
@@ -514,6 +530,14 @@
         ]
       },
       {
+        "id": "scalp-every-hour-candle",
+        "title": "scalp-every-hour-candle",
+        "file": "01 - ICT Trading Tutorials\\scalp-every-hour-candle.md",
+        "wordCount": 6464,
+        "prerequisites": [],
+        "keyRules": []
+      },
+      {
         "id": "simple-ict-scalping",
         "title": "simple-ict-scalping-strategy",
         "file": "01 - ICT Trading Tutorials\\simple-ict-scalping-strategy.md",
@@ -555,7 +579,7 @@
         ]
       }
     ],
-    "estimatedStudyTime": 398
+    "estimatedStudyTime": 460
   },
   {
     "tier": 1,
