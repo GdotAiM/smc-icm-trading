@@ -228,40 +228,46 @@ ${allText.slice(0, 8000)}
 
 Respond with ONLY valid JSON: {"scores":{"directional":N,"ict":N,"reasoning":N,"actionable":N,"completeness":N},"totalScore":N,"grade":"A/B/C/D/F","criticalIssues":["..."],"warnings":["..."],"verdict":"PASSED/CAUTION/BLOCKED","narrative":"one sentence summary"}`;
     if (apiKey) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 15000);
       let response;
-      if (llmProvider.name === "gemini") {
-        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-        response = await fetch(geminiUrl, {
-          method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.3, maxOutputTokens: 1024 } }),
-          signal: AbortSignal.timeout(15000),
-        });
-      } else if (llmProvider.name === "groq") {
-        response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-          method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
-          body: JSON.stringify({ model: "llama-3.3-70b-versatile", messages: [{ role: "user", content: prompt }], temperature: 0.3, max_tokens: 1024 }),
-          signal: AbortSignal.timeout(15000),
-        });
-      } else {
-        // Generic OpenAI-compatible
-        const baseUrl = llmProvider.name === "openai" ? "https://api.openai.com/v1" : "https://api.anthropic.com/v1";
-        response = await fetch(`${baseUrl}/chat/completions`, {
-          method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
-          body: JSON.stringify({ model: llmProvider.name === "openai" ? "gpt-4o-mini" : "claude-haiku-4-5-20251001", messages: [{ role: "user", content: prompt }], temperature: 0.3, max_tokens: 1024 }),
-          signal: AbortSignal.timeout(15000),
-        });
-      }
-      if (response?.ok) {
-        const data = await response.json();
-        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text
-          || data?.choices?.[0]?.message?.content
-          || data?.content?.[0]?.text
-          || "";
-        const jsonMatch = text.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-          llmResult = JSON.parse(jsonMatch[0]);
-          llmResult.mode = `llm-${llmProvider.name}`;
+      try {
+        if (llmProvider.name === "gemini") {
+          const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+          response = await fetch(geminiUrl, {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.3, maxOutputTokens: 1024 } }),
+            signal: controller.signal,
+          });
+        } else if (llmProvider.name === "groq") {
+          response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+            method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
+            body: JSON.stringify({ model: "llama-3.3-70b-versatile", messages: [{ role: "user", content: prompt }], temperature: 0.3, max_tokens: 1024 }),
+            signal: controller.signal,
+          });
+        } else {
+          // Generic OpenAI-compatible
+          const baseUrl = llmProvider.name === "openai" ? "https://api.openai.com/v1" : "https://api.anthropic.com/v1";
+          response = await fetch(`${baseUrl}/chat/completions`, {
+            method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
+            body: JSON.stringify({ model: llmProvider.name === "openai" ? "gpt-4o-mini" : "claude-haiku-4-5-20251001", messages: [{ role: "user", content: prompt }], temperature: 0.3, max_tokens: 1024 }),
+            signal: controller.signal,
+          });
         }
+        if (response?.ok) {
+          const data = await response.json();
+          const text = data?.candidates?.[0]?.content?.parts?.[0]?.text
+            || data?.choices?.[0]?.message?.content
+            || data?.content?.[0]?.text
+            || "";
+          const jsonMatch = text.match(/\{[\s\S]*\}/);
+          if (jsonMatch) {
+            llmResult = JSON.parse(jsonMatch[0]);
+            llmResult.mode = `llm-${llmProvider.name}`;
+          }
+        }
+      } finally {
+        clearTimeout(timer);
       }
     }
   } catch (e) {
@@ -300,5 +306,5 @@ const JUDGE_LEDGER = path.join(ROOT, "evaluation", "judge", "judge_ledger.jsonl"
 fs.appendFileSync(JUDGE_LEDGER, JSON.stringify(result) + "\n");
 
 console.log(JSON.stringify(result, null, 2));
-process.exit(result.grade === "F" ? 1 : 0);
+process.exitCode = result.grade === "F" ? 1 : 0;
 })();
