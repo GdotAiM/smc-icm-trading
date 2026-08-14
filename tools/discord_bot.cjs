@@ -191,7 +191,7 @@ async function getLivePrices(pairs) {
 
 function loadEnginePrices() {
   const prices = {};
-  const DATE = new Date().toISOString().split("T")[0];
+  const DATE = require("./ny_time.cjs").getNYDate();
   for (const p of PAIRS) {
     try {
       const r = JSON.parse(fs.readFileSync(path.join(ROOT, "shared", DATE, p.name, "engine_1d.json"), "utf8"));
@@ -595,7 +595,7 @@ client.on("interactionCreate", async (interaction) => {
 
         // 2. Get closed trades from journal
         const perfDir = path.join(ROOT, "shared", "performance");
-        const todayFiles = fs.existsSync(perfDir) ? fs.readdirSync(perfDir).filter(f => f.startsWith("trades_") && f.includes(new Date().toISOString().split("T")[0])) : [];
+        const todayFiles = fs.existsSync(perfDir) ? fs.readdirSync(perfDir).filter(f => f.startsWith("trades_") && f.includes(require("./ny_time.cjs").getNYDate())) : [];
         if (todayFiles.length > 0) {
           description += "\n**📁 CLOSED TRADES**\n";
           for (const f of todayFiles) {
@@ -613,7 +613,7 @@ client.on("interactionCreate", async (interaction) => {
         if (!description) description = "No trades today. Use /analyze to find setups.";
 
         const embed = new EmbedBuilder()
-          .setTitle("📊 Trade Status — " + new Date().toISOString().split("T")[0])
+          .setTitle("📊 Trade Status — " + require("./ny_time.cjs").getNYDate())
           .setColor(0xFFD740)
           .setDescription(description.substring(0, 4000))
           .setFooter({ text: "Live from TV paper trading + performance journal" });
@@ -812,7 +812,7 @@ function startAlerts() {
 
     // Daily Briefing (08:30 NY) — static content, no execSync spam
     if (nyHour === 8 && nyMinute >= 28 && nyMinute <= 32) {
-      alertOnce("daily_briefing", "📊 **Daily Briefing — " + new Date().toISOString().split("T")[0] + "**\n\n" +
+      alertOnce("daily_briefing", "📊 **Daily Briefing — " + require("./ny_time.cjs").getNYDate() + "**\n\n" +
         "Use these commands to start your day:\n" +
         "• `/status` — Macro context, cycle, session\n" +
         "• `/council` — Archetype votes across all 5 pairs\n" +
@@ -851,7 +851,7 @@ function startAlerts() {
     } catch(e) { console.error("[SETUPS] Error:", e.message); }
 
     // Reset dedup keys daily
-    const todayKey = now.toISOString().split("T")[0];
+    const todayKey = require("./ny_time.cjs").getNYDate();
     for (const key of firedWindows) {
       if (!key.endsWith(todayKey)) firedWindows.delete(key);
     }

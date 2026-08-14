@@ -98,12 +98,39 @@ daily budget) → `volume = risk$ / (stopDistancePips × pipValuePerLot)`.
 | Phase | Deliverable | Acceptance |
 |---|---|---|
 | **P0** | MT5 terminal + demo account installed; `pip install MetaTrader5`; `initialize()` + `account_info()` verified | ✅ **DONE** — terminal up, pkg 5.0.6090, MetaQuotes-Demo connected, symbols mapped (`USTEC` = NAS100) |
-| **P1** | Python bridge service with all commands, auto-restart, atomic state, error logging | CLI smoke tests pass (place a manual 0.01 demo order, modify, close) |
-| **P2** | Node client + adapter + symbol map + lot-size calc | `mt5_executor.cjs` REVIEW mode produces correct intent payloads |
-| **P3** | Wire behind `auto_decision.gate()`; `positions_json` fed from MT5; REVIEW mode logs would-be orders | A gated decision is "executed" in logs only, end-to-end |
-| **P4** | Enable LIVE on MT5 **demo** for ≥1 trading week; verify BE/partial/close-by-time/daily-cap against TV paper shadow | Demo results ≈ TV paper; no double orders, no missed closes |
+| **P1** | Python bridge service with all commands, auto-restart, atomic state, error logging | ✅ **DONE** — `mt5_bridge.py` (495 lines, 12 commands), `bridge_smoke_test.cjs` (122 lines, 8 categories), `run_bridge.cjs` (supervisor + HTTP proxy on :5111, auto-restart, health checks). **Smoke test passed Aug 10** — 26/26 ALL PASS. Fixed: AutoTrading enabled in terminal config, volume_step-compatible partial close, request_id dedup proven, server-time-aware date ranges. |
+| **P2** | Node client + adapter + symbol map + lot-size calc | ✅ **DONE (re-verified Aug 11)** — `run_bridge.cjs` rewritten: **HTTP proxy restored** (stdio-only version was a regression; all Node consumers require `:5111`). Verified end-to-end over the live proxy: `mt5_executor.cjs --account/--positions/--gate/--ping` (LIVE mode reads real demo $99,999.71), `lot_size.cjs`, `mt5_positions.cjs --json` ([]), `mt5_monitor.cjs --once` (REVIEW NO_POSITIONS), `mt5_auto_trade.cjs GBPUSD` (REVIEW mode gate-blocks correctly — no valid setup). Graceful `/shutdown` verified. **XAUUSD pip-value flag RESOLVED**: added bridge `order_calc_profit` command (authoritative MT5 profit calc); `lot_size.cjs` now derives pip value from it (`specSource: bridge_calc`) — XAUUSD true pip = $1.00/lot (broker `trade_tick_value` of 0.1 was wrong), USTEC $0.01/lot, GBPUSD $10/lot. Defaults corrected to match. |
+| **P3** | Wire behind `auto_decision.gate()`; `positions_json` fed from MT5; REVIEW mode logs would-be orders | ✅ **DONE** — `mt5_auto_trade.cjs` (gate→sizing→execution pipeline, --all mode for all pairs, REVIEW/LIVE switch), `mt5_positions.cjs` (TV-compatible array format + --json/--summary/--watch modes, enriched with live ticks). Full end-to-end tested: all 4 pairs gated correctly, execution logs written to `mt5_execution.json` per pair + unified `mt5_execution_log.jsonl`. |
+| **P4** | Enable LIVE on MT5 **demo** for ≥1 trading week; verify BE/partial/close-by-time/daily-cap against TV paper shadow | ✅ **INFRA READY (Aug 11)** — `mt5_monitor.cjs` (BE/partial/close-by-time/daily-cap management, 60s loop, REVIEW/LIVE modes), **`mt5_entry_loop.cjs` (NEW — scheduled gate-driven entry driver, 300s default, kill-switch + daily-cap + max-2-positions preflight, verified REVIEW sweep: 4 pairs gated, 0 executed)**, `p4_startup.cjs` (one-command launcher now starts bridge + entry loop (LIVE) + monitor; status dashboard). Smoke test 28/28 all pass. **Trading week begins when user starts `node tools/mt5/p4_startup.cjs --live`.** |
 | **P5** | Go-live on small **live** account + Discord notifications + kill-switch + daily reconciliation | 1-week live parity + monitoring |
 | **P6** (optional) | MT5 as candle data fallback; retire CDP dependency | `run_pair.cjs` can run without TV |
+
+## 5b. MT5 Backtest Runner (`tools/mt5/backtest_mt5.cjs`) — Aug 11
+
+Tests the system's SMC/ICT strategies against MT5 historical data. MT5 is the
+**data source** (bridge `copy_rates` command); the real SMC engine + decision
+modules do the analysis. Three user-selectable modes:
+
+| Mode | What it tests | Output |
+|---|---|---|
+| `signal` | Engine scan: bias / sweeps / PD arrays per day | Signal dates only, no P&L |
+| `core` | + core decision logic: bias alignment, R:R≥1 draw (real `drawTargets`), SL at swing+ATR | Simulated trades with P&L |
+| `pipeline` | + killzone gate on the **signal event time** (real `lib/killzone.cjs` + `ny_time.cjs`) | Strictest subset of trades |
+
+```
+node tools/mt5/backtest_mt5.cjs --pair GBPUSD --start 2026-05-01 --end 2026-06-30 --mode core [--risk 100]
+```
+
+- Writes `shared/backtest/batch/<start>_to_<end>/<PAIR>/` in the **same format
+  `backtest_runner.cjs` uses** (journals/, daily_summaries/, engine_reports/,
+  trades/, performance_summary.md) so `backtest_distill.cjs` and
+  `trade_graph.cjs` consume it unchanged.
+- Symbol map: `_config/mt5_symbols.json` (pipeline name → MT5 symbol).
+- Correctness notes: no lookahead (SL/ATR/swing computed on the sliced array
+  ending at the day boundary); weekend/holiday days skipped (no bar within 48h);
+  invalid SL side rejected; `copy_rates` returns engine-compatible `Candle[]`.
+- Verified (GBPUSD 2026-05-01→06-30): signal 40 signals; core 9 trades / 44.4%
+  win / +0.47R; pipeline 5 trades / 40% win (killzone-gated, as intended).
 
 ## 6. Risks & mitigations
 - **Terminal must stay logged in** → health-check loop + restart + alert
@@ -118,7 +145,80 @@ daily budget) → `volume = risk$ / (stopDistancePips × pipValuePerLot)`.
 2. MT5 **alongside** TV paper as shadow — TV stays running, MT5 is the executor.
 3. Pairs: GBPUSD / EURUSD / XAUUSD / NAS100 (DXY context-only, never traded).
 4. Bridge protocol: **stdio** (zero-port, simplest) unless HTTP is needed for debugging.
+   → **Implemented as HTTP proxy** — `run_bridge.cjs` spawns the stdio bridge and exposes `localhost:5111` for interop with Node tools.
 
 ## 8. Open questions (need answers before P1/P4)
 - Which broker/account for MT5 (fixes symbol names + pip values)?
 - MT5 demo or broker demo (e.g., IC Markets / FXCM / OANDA MT5)?
+
+## 9. P1-P2 File Manifest
+
+| File | Phase | Purpose | Status |
+|------|-------|---------|--------|
+| `tools/mt5/mt5_bridge.py` | P1 | Python stdio JSON-RPC service (13 commands + safety layer; `order_calc_profit` added Aug 11) | ✅ Done |
+| `tools/mt5/bridge_smoke_test.cjs` | P1 | Node driver + assertions (ping/account/symbols/market/modify/partial/close/positions/history) | ✅ Done |
+| `tools/mt5/run_bridge.cjs` | P1 | Auto-restart supervisor + HTTP proxy on `:5111` | ✅ Done — proxy rewritten Aug 11, all Node consumers verified |
+| `tools/mt5/mt5_executor.cjs` | P2 | Node executor with BrokerAdapter surface, REVIEW/LIVE modes, gate-driven execution | ✅ Done |
+| `tools/mt5/lot_size.cjs` | P2 | Risk$ → volume calculator (bridge + hardcoded defaults dual-source) | ✅ Done |
+| `_config/mt5_symbols.json` | P2 | Symbol mapping (pipeline → MT5), specs, correlation groups | ✅ Done |
+| `_config/mt5.kill` | Safety | Hard kill switch — bridge refuses ALL orders when present | Manual (touch to create) |
+| `tools/mt5/mt5_auto_trade.cjs` | P3 | Gate→sizing→execution pipeline (--pair/--all, REVIEW/LIVE) | ✅ Done |
+| `tools/mt5/mt5_positions.cjs` | P3 | MT5 position feed (TV-compatible array + --json/--summary/--watch) | ✅ Done |
+| `tools/mt5/mt5_monitor.cjs` | P4 | Position management monitor — BE/partial/close-by-time/daily-cap, 60s loop | ✅ Done |
+| `tools/mt5/mt5_entry_loop.cjs` | P4 | Gate-driven entry loop — polls pipeline gate, opens orders when allowed (kill-switch + daily-cap + max-2-positions preflight) | ✅ Done (Aug 11) |
+| `tools/mt5/p4_startup.cjs` | P4 | One-command P4 stack launcher (bridge + entry loop + monitor) + status dashboard | ✅ Done |
+
+### P4 Quick Start
+
+```bash
+# One command to start everything:
+node tools/mt5/p4_startup.cjs --live
+
+# Or check status first:
+node tools/mt5/p4_startup.cjs --status
+
+# Start in REVIEW mode (log only, no real management):
+node tools/mt5/p4_startup.cjs
+```
+
+### P4 Management Rules (enforced by monitor)
+
+| Rule | Trigger | Action |
+|------|---------|--------|
+| SL → BE | Price passes TP1 midpoint | Move SL to entry price |
+| Partial close | TP1 hit | Close 50% of position |
+| NY close | 17:00 NY | Close all positions |
+| Friday close | 16:00 NY Friday | Close all positions |
+| Daily loss cap | -3% of balance | Close all, refuse new orders |
+| Lunch multiplier | 11:00-13:00 NY | ×0.4 session weight (informational) |
+
+### Startup sequence
+
+```bash
+# 1. Start MT5 terminal (login to MetaQuotes-Demo)
+# 2. Start the bridge supervisor:
+node tools/mt5/run_bridge.cjs
+# 3. Verify:
+node tools/mt5/mt5_executor.cjs --ping
+node tools/mt5/mt5_executor.cjs --account
+# 4. REVIEW mode test:
+set MT5_MODE=REVIEW
+node tools/mt5/mt5_executor.cjs --gate GBPUSD
+# 5. LIVE mode (after verification):
+set MT5_MODE=LIVE
+node tools/mt5/mt5_executor.cjs --pair GBPUSD --side BUY --sl 1.2650 --tp 1.2720 --qty 0.01
+```
+
+### Commands quick reference
+
+| Tool | Command |
+|------|---------|
+| Run bridge | `node tools/mt5/run_bridge.cjs` |
+| Account snapshot | `node tools/mt5/mt5_executor.cjs --account` |
+| Open positions | `node tools/mt5/mt5_executor.cjs --positions` |
+| Today P&L | `node tools/mt5/mt5_executor.cjs --history` |
+| Bridge health | `node tools/mt5/mt5_executor.cjs --ping` |
+| Gate-driven trade | `node tools/mt5/mt5_executor.cjs --gate XAUUSD` |
+| Direct trade | `node tools/mt5/mt5_executor.cjs --pair GBPUSD --side BUY --sl 1.2650 --tp 1.2720 --qty 0.01` |
+| Lot calc | `node tools/mt5/lot_size.cjs GBPUSD 0.0030` |
+| Smoke test | `node tools/mt5/bridge_smoke_test.cjs` |

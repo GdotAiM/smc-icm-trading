@@ -5,7 +5,7 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const PAIR = process.argv[2] || "GBPUSD";
 const pairLabel = PAIR === "GOLD" ? "XAUUSD" : PAIR;
 

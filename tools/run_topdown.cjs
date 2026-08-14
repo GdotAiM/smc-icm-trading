@@ -8,7 +8,7 @@ const ENGINE = path.join(ROOT, "tools", "smc-engine");
 const TMP = process.env.TEMP || "/tmp";
 const PAIR = "EURUSD";
 const now = new Date();
-const DATE = now.toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }

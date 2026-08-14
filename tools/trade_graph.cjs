@@ -887,7 +887,7 @@ function addTrade(graph, jsonStr) {
   try { data = JSON.parse(jsonStr); } catch (e) { return { error: "Invalid JSON: " + e.message }; }
 
   const pair = (data.pair || "GBPUSD").toUpperCase();
-  const date = data.date || new Date().toISOString().split("T")[0];
+  const date = data.date || require("./ny_time.cjs").getNYDate();
   const tradeId = `trade:${slugify(pair)}:${date}`;
 
   const node = ensureNode(graph, tradeId, "trade", {

@@ -4,7 +4,7 @@ const path = require("path");
 const ny = require("./ny_time.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const UTC_HOUR = ny.getNYHour();
 
 function r2(v) { return Number(v).toFixed(2); }

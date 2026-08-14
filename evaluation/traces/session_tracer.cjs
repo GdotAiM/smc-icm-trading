@@ -8,7 +8,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "../..");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("../../tools/ny_time.cjs").getNYDate();
 const TRACE_DIR = path.join(ROOT, "shared", DATE, "traces");
 
 if (!fs.existsSync(TRACE_DIR)) fs.mkdirSync(TRACE_DIR, { recursive: true });

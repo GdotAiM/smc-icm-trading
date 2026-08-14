@@ -103,7 +103,7 @@ const outDir = path.join(ROOT, "shared", "performance");
 fs.mkdirSync(outDir, { recursive: true });
 
 // Model stats
-let md = `# Model Performance Ledger — ${new Date().toISOString().split("T")[0]}\n\n`;
+let md = `# Model Performance Ledger — ${require("./ny_time.cjs").getNYDate()}\n\n`;
 md += `| Model | Trades | Win Rate | Avg R:R | Expectancy | Weight | Last 10 WR |\n`;
 md += `|-------|--------|----------|---------|------------|--------|------------|\n`;
 for (const s of modelStats) {

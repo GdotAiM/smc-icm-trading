@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import StageTimeline from "./components/StageTimeline";
 import MarkdownViewer from "./components/MarkdownViewer";
 import BiasGauge from "./components/BiasGauge";
+import OperatorView from "./components/OperatorView";
 import type { SessionData } from "./lib/fileReader";
+
+const OPERATOR_PAIRS = ["XAUUSD", "GBPUSD", "EURUSD", "NAS100", "USDOLLAR"];
 
 const STAGES = [
   "01_htf_bias",
@@ -16,6 +19,7 @@ const STAGES = [
 
 export default function App() {
   const [activeStage, setActiveStage] = useState(0);
+  const [view, setView] = useState<"pipeline" | "operator">("pipeline");
   const [data, setData] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
 
@@ -55,6 +59,36 @@ export default function App() {
     );
   }
 
+  if (view === "operator") {
+    return (
+      <div className="flex h-screen flex-col bg-gray-950">
+        <div className="flex items-center justify-between border-b border-gray-800 px-6 py-3">
+          <div className="flex items-center gap-4">
+            <h1 className="text-lg font-bold text-gray-100">SMC-ICM</h1>
+            <nav className="flex gap-1">
+              <button
+                onClick={() => setView("pipeline")}
+                className="px-3 py-1.5 rounded text-sm text-gray-400 hover:text-gray-200"
+              >
+                Pipeline
+              </button>
+              <button
+                onClick={() => setView("operator")}
+                className="px-3 py-1.5 rounded text-sm bg-gray-800 text-gray-100"
+              >
+                Operator
+              </button>
+            </nav>
+          </div>
+          <span className="text-xs text-gray-500">Agent ledger + market brief</span>
+        </div>
+        <div className="flex-1 overflow-hidden">
+          <OperatorView date={new Date().toISOString().split("T")[0]} pairs={OPERATOR_PAIRS} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-screen bg-gray-950">
       {/* Left sidebar — stage timeline */}
@@ -68,8 +102,14 @@ export default function App() {
       {/* Center — stage output */}
       <main className="flex-1 overflow-y-auto p-6">
         <div className="max-w-3xl mx-auto">
-          <div className="mb-6">
+          <div className="mb-6 flex items-center justify-between">
             <BiasGauge />
+            <button
+              onClick={() => setView("operator")}
+              className="text-xs px-2.5 py-1.5 rounded border border-gray-700 text-gray-400 hover:text-gray-200 hover:border-gray-500"
+            >
+              View Operator →
+            </button>
           </div>
           {currentContent ? (
             <MarkdownViewer content={currentContent} />

@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "../..");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("../ny_time.cjs").getNYDate();
 const PAIR = process.argv[2] || "XAUUSD";
 const DIRECTION = (process.argv[3] || "BUY").toUpperCase();
 

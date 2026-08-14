@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("../ny_time.cjs").getNYDate();
 const PAIR = process.argv[2] || "XAUUSD";
 
 function getCandles(tf) {

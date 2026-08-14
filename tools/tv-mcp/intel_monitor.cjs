@@ -8,7 +8,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const { getNYDate } = require("../ny_time.cjs");
 // Broker-prefixed TV symbols — plain names resolve to wrong instruments
 const TV_SYMBOLS = {
   EURUSD: "OANDA:EURUSD",
@@ -45,6 +45,7 @@ const MODEL_TRIGGERS = {
 
 function loadEngineData(pairs) {
   const data = {};
+  const DATE = getNYDate();
   for (const pair of pairs) {
     try {
       const r1d = JSON.parse(fs.readFileSync(path.join(ROOT, "shared", DATE, pair, "engine_1d.json"), "utf8"));
@@ -71,6 +72,7 @@ function loadEngineData(pairs) {
 
 function loadForecasts(pairs) {
   const data = {};
+  const DATE = getNYDate();
   for (const pair of pairs) {
     try {
       const f5m = JSON.parse(fs.readFileSync(path.join(ROOT, "shared", DATE, pair, "forecast_5m.json"), "utf8"));
@@ -356,8 +358,46 @@ function analyzeRegime(pairStates, recentMs = 60000) {
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.error("No chart"); process.exit(1); }
 
-  const client = await CDP({ host: "127.0.0.1", port: 9222, target: chart.id });
+  // WP-15: mutable client + reconnect logic for CDP resilience
+  let client = await CDP({ host: "127.0.0.1", port: 9222, target: chart.id });
   await client.Runtime.enable();
+
+  async function reconnectCDP() {
+    try {
+      if (client) { try { await client.close(); } catch {} }
+      const resp = await fetch("http://127.0.0.1:9222/json/list");
+      const targets = await resp.json();
+      const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
+      if (!chart) { console.error("[INTEL] CDP reconnect failed — no chart tab"); return false; }
+      client = await CDP({ host: "127.0.0.1", port: 9222, target: chart.id });
+      await client.Runtime.enable();
+      console.error("[INTEL] ✅ CDP reconnected");
+      return true;
+    } catch(e) {
+      console.error(`[INTEL] CDP reconnect failed: ${e.message}`);
+      return false;
+    }
+  }
+
+  // WP-15: periodic data refresh — engine data and forecasts reloaded every 5 min
+  let dataRefreshCounter = 0;
+  const DATA_REFRESH_INTERVAL = 150; // ~5 min at 2s/cycle
+  function refreshEngineData() {
+    try {
+      console.error("[INTEL] Refreshing engine data...");
+      const fresh = loadEngineData(PAIRS);
+      for (const [p, d] of Object.entries(fresh)) {
+        if (d) engineData[p] = d;
+      }
+      const freshForecasts = loadForecasts(PAIRS);
+      for (const [p, f] of Object.entries(freshForecasts)) {
+        if (f) forecasts[p] = f;
+      }
+      console.error("[INTEL] Engine data refreshed");
+    } catch(e) {
+      console.error(`[INTEL] Data refresh failed: ${e.message}`);
+    }
+  }
 
   const pairState = {};
   for (const p of PAIRS) {
@@ -568,11 +608,26 @@ function analyzeRegime(pairStates, recentMs = 60000) {
   });
 
   let idx = 0;
+  let consecutiveErrors = 0;
   const cycle = async () => {
     try {
       await checkPair(PAIRS[idx % PAIRS.length]);
+      consecutiveErrors = 0; // reset on success
     } catch(e) {
       console.error("[INTEL:CYCLE_ERR]", e.message);
+      consecutiveErrors++;
+      // WP-15: CDP reconnect after 3 consecutive failures
+      if (consecutiveErrors >= 3) {
+        console.error("[INTEL] 3 consecutive errors — attempting CDP reconnect...");
+        const reconnected = await reconnectCDP();
+        consecutiveErrors = reconnected ? 0 : consecutiveErrors;
+      }
+    }
+    // WP-15: periodic data refresh
+    dataRefreshCounter++;
+    if (dataRefreshCounter >= DATA_REFRESH_INTERVAL) {
+      await refreshEngineData();
+      dataRefreshCounter = 0;
     }
     idx++;
     setTimeout(cycle, 2000);

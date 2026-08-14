@@ -9,7 +9,7 @@ const path = require("path");
 const ny = require("./ny_time.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }
@@ -575,7 +575,7 @@ function getWeeklyReferenceLevels(nested) {
     twentyDay: { high: parseFloat(ipda20.high), low: parseFloat(ipda20.low), eq: parseFloat(ipda20.equilibrium) },
     fortyDay: ipda40 ? { high: parseFloat(ipda40.high), low: parseFloat(ipda40.low), eq: parseFloat(ipda40.equilibrium) } : null,
     sixtyDay: ipda60 ? { high: parseFloat(ipda60.high), low: parseFloat(ipda60.low), eq: parseFloat(ipda60.equilibrium) } : null,
-    marked: new Date().toISOString().split("T")[0],
+    marked: require("./ny_time.cjs").getNYDate(),
     detail: [
       `20-Day: H ${ipda20.high} L ${ipda20.low} EQ ${ipda20.equilibrium}`,
       ipda40 ? `40-Day: H ${ipda40.high} L ${ipda40.low} EQ ${ipda40.equilibrium}` : '',

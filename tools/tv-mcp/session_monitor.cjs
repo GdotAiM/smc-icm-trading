@@ -20,9 +20,17 @@ const path = require("path");
 const { atomicWrite, atomicAppend } = require("./atomic_write.cjs");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
-const STATE_FILE = path.join(ROOT, "shared", DATE, "session_state.json");
-const LOG_FILE = path.join(ROOT, "shared", DATE, "monitor_log.jsonl");
+let DATE = require("../ny_time.cjs").getNYDate();
+function stateFile() { return path.join(ROOT, "shared", DATE, "session_state.json"); }
+function logFile() { return path.join(ROOT, "shared", DATE, "monitor_log.jsonl"); }
+
+function refreshDate() {
+  const d = require("../ny_time.cjs").getNYDate();
+  if (d !== DATE) {
+    DATE = d;
+    console.log(`[MONITOR] NY date now ${DATE} — rotating session state/log`);
+  }
+}
 const NODE_PATH = path.join(ROOT, "tools", "tv-mcp", "node_modules");
 
 const ONCE = process.argv.includes("--once");
@@ -30,7 +38,7 @@ const INTERVAL_SEC = ONCE ? 0 : 60; // 60 seconds for continuous, instant for --
 
 function log(entry) {
   const line = { time: new Date().toISOString(), ...entry };
-  atomicAppend(LOG_FILE, JSON.stringify(line));
+  atomicAppend(logFile(), JSON.stringify(line));
   const emoji = entry.alert ? "🚨" : "📡";
   console.log("[" + new Date().toLocaleTimeString() + "]", emoji, entry.event || "", entry.detail || "");
 }
@@ -105,7 +113,7 @@ function writeState(positions, alerts, lastScan) {
     positionCount: positions.length,
     maxPositions: 2
   };
-  try { atomicWrite(STATE_FILE, state); } catch(e) { log({ event: "STATE_WRITE_FAIL", detail: e.message, alert: true }); }
+  try { atomicWrite(stateFile(), state); } catch(e) { log({ event: "STATE_WRITE_FAIL", detail: e.message, alert: true }); }
   return state;
 }
 
@@ -133,9 +141,12 @@ async function tick() {
   const now = new Date();
   const nyHour = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" })).getHours();
 
-  // Only run during trading hours (02:00-05:00 NY)
-  if (nyHour < 2 || nyHour >= 5) {
-    if (!ONCE) return; // Silent skip outside hours
+  // WP-15: Monitor ALL trading hours, session-aware. Was London-KZ-only (02-05).
+  // NY Lunch (11-13) is monitor-only — no new entries per ICT rules, but existing
+  // positions must still be watched. Off-hours (17-20) get light monitoring.
+  // Only skip during true dead zone: 20:00-01:00 NY (late Asia/early Sydney).
+  if (nyHour >= 20 || nyHour < 1) {
+    if (!ONCE) return; // Silent skip — dead zone (late Asia/Sydney overlap)
   }
 
   const positions = checkPositions();
@@ -163,7 +174,7 @@ async function tick() {
 }
 
 (async () => {
-  fs.mkdirSync(path.dirname(STATE_FILE), { recursive: true });
+  fs.mkdirSync(path.dirname(stateFile()), { recursive: true });
 
   if (ONCE) {
     const state = await tick();
@@ -175,10 +186,11 @@ async function tick() {
   console.log("=== DUAL-LAYER MONITOR STARTED ===");
   console.log("Layer 1 (background): 60s tight monitoring + alerts");
   console.log("Layer 2 (cron): 10min deep scans + journaling (when idle)");
-  console.log("State file: " + STATE_FILE);
+  console.log("State file: " + stateFile());
   console.log("");
 
   while (true) {
+    refreshDate(); // Rotate to current NY date before each tick
     await tick();
     await new Promise(r => setTimeout(r, INTERVAL_SEC * 1000));
   }

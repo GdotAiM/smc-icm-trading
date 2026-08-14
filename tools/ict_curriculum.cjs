@@ -152,7 +152,7 @@ function extractLearningSummary(body, concept) {
 function generateSessionMarkdown(tier, concepts) {
   let md = `# ICT Learning Session — Tier ${tier.tier}: ${tier.name}
 
-**Date**: ${new Date().toISOString().split("T")[0]}
+**Date**: ${require("./ny_time.cjs").getNYDate()}
 **Concepts Learned**: ${concepts.length}
 **Est. Study Time**: ~${tier.estimatedStudyTime} minutes
 

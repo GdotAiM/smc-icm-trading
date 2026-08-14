@@ -36,7 +36,7 @@ const path = require("path");
 const { atomicWrite } = require("./tv-mcp/atomic_write.cjs");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 
 function r5(v) { return Number(v).toFixed(5); }
 function r2(v) { return Number(v).toFixed(2); }

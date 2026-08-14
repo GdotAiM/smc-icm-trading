@@ -20,7 +20,7 @@ const path = require("path");
 const ny = require("./ny_time.cjs");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const PAIR = process.argv[2] || "GBPUSD";
 
 function r5(v) { return Number(v).toFixed(5); }
@@ -93,8 +93,8 @@ function markPreviousAMSession(dailyCandles) {
     // The AM session is typically captured within the daily range
     // For bullish bias: target is the high of the previous day
     // For bearish bias: target is the low
-    date: new Date(yesterday.time).toISOString().split("T")[0],
-    detail: `Prev Day AM Session (${new Date(yesterday.time).toISOString().split("T")[0]}): H ${r5(yesterday.high)} | L ${r5(yesterday.low)}`,
+    date: require("./ny_time.cjs").getNYDateFor(yesterday.time),
+    detail: `Prev Day AM Session (${require("./ny_time.cjs").getNYDateFor(yesterday.time)}): H ${r5(yesterday.high)} | L ${r5(yesterday.low)}`,
   };
 }
 

@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("../ny_time.cjs").getNYDate();
 const PAIR = process.argv[2] || "XAUUSD";
 
 // ═══ HELPERS ═══
@@ -126,23 +126,22 @@ function getAMDPhase() {
 
   if (!ny || !engine4h) return { phase: "UNKNOWN", detail: "Engine data missing — run session_start.cjs" };
 
-  const day = ny.dayProfile?.name || "?";
-  const hour = ny.nyTime?.hour || 0;
   const cycleEst = ny.cycleEstimate || "UNKNOWN";
   const bias4h = engine4h?.structure?.bias || "?";
   const event4h = engine4h?.structure?.lastEvent || "?";
   const bias1d = engine1d?.structure?.bias || "?";
 
-  // AMD cycle mapping by day
-  const amdMap = {
-    Monday:    { phase: "ACCUMULATION", detail: "Weekly range being set. Institutions accumulating positions. Low conviction — wait for range to establish." },
-    Tuesday:   { phase: "ACCUMULATION → MANIPULATION", detail: "Range extends or reverses. 'Turnaround Tuesday.' Watch for Monday high/low sweep." },
-    Wednesday: { phase: "MANIPULATION → DISTRIBUTION", detail: "Classic reversal day. Mon-Tue accumulation sweeps, then reversal. Highest probability reversal of the week." },
-    Thursday:  { phase: "DISTRIBUTION → EXPANSION", detail: "Strongest trending day. The big move of the week. Expand what was accumulated Mon-Wed. ★ MMXM prime time." },
-    Friday:    { phase: "CLOSE-OUT / SQUARING", detail: "Profit-taking dominates. Weekly move likely already delivered. Trade small or pass. TGIF rules apply." },
+  // AMD cycle phase from STRUCTURE ONLY — never a day-of-week table.
+  // PO3 is a price-and-time delivery cycle; the day of the week tells you
+  // nothing about accumulation/manipulation/distribution/expansion.
+  const { resolveCyclePhase } = require("../lib/cycle_phase.cjs");
+  const resolvedCycle = resolveCyclePhase({ "4H": engine4h, "1D": engine1d });
+  const amd = {
+    phase: resolvedCycle.phase,
+    detail: resolvedCycle.phase === "UNKNOWN"
+      ? "Structure ambiguous — no fabricated phase. PO3 phase is derived from sweeps/BOS/CHoCH/displacement, never the calendar."
+      : `${resolvedCycle.reason} (from ${resolvedCycle.source || "structure"})`,
   };
-
-  const amd = amdMap[day] || { phase: "UNKNOWN", detail: "Unknown day" };
 
   // Structural confirmation
   let structuralNote = "";

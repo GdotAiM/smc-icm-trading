@@ -7,7 +7,7 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "../..");
 const PAIR = process.argv[2] || "XAUUSD";
-const DATE = process.argv[3] || new Date().toISOString().split("T")[0];
+const DATE = process.argv[3] || require("../../tools/ny_time.cjs").getNYDate();
 const pairDir = PAIR === "XAUUSD" ? "GOLD" : PAIR;
 
 const RANGES = {

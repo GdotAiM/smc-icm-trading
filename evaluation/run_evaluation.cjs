@@ -8,7 +8,7 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const PAIR = process.argv[2] || "XAUUSD";
 const CI = process.argv.includes("--ci");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("../tools/ny_time.cjs").getNYDate();
 
 const PASS = "✅";
 const FAIL = "❌";

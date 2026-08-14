@@ -9,7 +9,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100"];
 const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const dayOfWeek = new Date().getDay();

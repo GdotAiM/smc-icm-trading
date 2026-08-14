@@ -5,9 +5,9 @@ const path = require("path");
 const { execSync } = require("child_process");
 const { CONFIG } = require("./lib/engine_config.cjs");
 
-const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const { getNYHour, getNYSession, isInKillzoneNY, isInSilverBulletNY, isInJudasSwingNY } = require(path.join(ROOT, "tools", "ny_time.cjs"));
-const DATE = new Date().toISOString().split("T")[0];
+const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
+const { getNYHour, getNYSession, isInKillzoneNY, isInSilverBulletNY, isInJudasSwingNY } = require("./ny_time.cjs");
+const DATE = require("./ny_time.cjs").getNYDate();
 const NY_HOUR = getNYHour();
 const nySession = getNYSession();
 const inKillzone = isInKillzoneNY();
@@ -185,36 +185,75 @@ try {
 } catch(e) {}
 
 // ── GAP 8: 1m Inversion not detected → block/warn by severity ────
-// Per WP-9: this is a per-model gate in the registry. The universal guard
-// here is a safety net — it hard-blocks only when the 1m has NO meaningful
-// structure (score < minScore). At exactly minScore (borderline), it warns
-// and reduces size but does NOT block — other confirmations may compensate.
+// WP-15: Inversion is a SEQUENCE gate — SWEEP + CHoCH + FVG must all pass.
+// This is the 1m "sentence" ICT teaches: subject (sweep), verb (CHoCH), object (FVG).
+// Alignment with HTF and displacement strength are quality modifiers, not blockers.
+// A partial sequence blocks; a complete sequence with low quality warns + reduces size.
 try {
   const fractalOutput2 = execSync(`node "${ROOT}/tools/fractal_mmxm.cjs" ${PAIR}`, { stdio: ["ignore","pipe","ignore"], encoding: "utf8", timeout: 10000 });
   const fractal2 = JSON.parse(fractalOutput2);
+  const invDetected = fractal2.inversionDetected;
   const invScore = fractal2.inversionScore;
-  const invBelow = invScore < CONFIG.inversion.minScore;
-  const invBorderline = invScore === CONFIG.inversion.minScore;
-  if (invBelow) {
-    guards.push({
-      id: "INVERSION_MISSING",
-      severity: "HIGH",
-      blocked: true,
-      entryAllowed: false,
-      narrative: `❌ 1m Inversion NOT DETECTED (score ${invScore}/${CONFIG.inversion.maxScore}). The 1m has no meaningful structure — CHoCH, sweep, or HTF alignment missing. Wait for the entry sentence to form.`,
-      action: "WAIT — No entry without 1m Inversion.",
-    });
-  } else if (invBorderline) {
-    guards.push({
-      id: "INVERSION_MARGINAL",
-      severity: "WARNING",
-      blocked: false,
-      entryAllowed: true,
-      narrative: `⚠️ 1m Inversion BORDERLINE (score ${invScore}/${CONFIG.inversion.maxScore}). Minimum criteria met but not strong. Reduce size, require tighter confirmation on entry.`,
-      action: "REDUCE SIZE 30% — Borderline inversion. Wait for candle close confirmation.",
-      sizeMultiplier: 0.7,
-      confidenceAdjustment: -1,
-    });
+  const hasCHoCH = fractal2.hasCHoCH || (invScore >= 6); // score 6+ implies CHoCH passed (2pts + sweep 2pts + fvg 2pts)
+
+  if (!invDetected) {
+    // Sequence incomplete — block with specific reason
+    const swept1m = fractal2.hasRecentSweep;
+    if (!swept1m && !hasCHoCH) {
+      guards.push({
+        id: "INVERSION_MISSING",
+        severity: "HIGH",
+        blocked: true,
+        entryAllowed: false,
+        narrative: `❌ 1m Inversion NOT READY — no sweep AND no CHoCH on 1m. The reversal sentence hasn't started. Wait for liquidity sweep + structure reversal on the 1m.`,
+        action: "WAIT — No entry without 1m sweep + CHoCH.",
+      });
+    } else if (!swept1m) {
+      guards.push({
+        id: "INVERSION_MISSING",
+        severity: "HIGH",
+        blocked: true,
+        entryAllowed: false,
+        narrative: `❌ 1m Inversion MISSING SWEEP — structure change detected but no liquidity swept on 1m. The reversal has no fuel. Wait for a sweep.`,
+        action: "WAIT — Sweep required before entry.",
+      });
+    } else {
+      guards.push({
+        id: "INVERSION_MISSING",
+        severity: "HIGH",
+        blocked: true,
+        entryAllowed: false,
+        narrative: `❌ 1m Inversion MISSING CHoCH/FVG — sweep present (fuel collected) but no structure reversal or FVG on 1m. The sentence is incomplete.`,
+        action: "WAIT — CHoCH + displacement FVG required.",
+      });
+    }
+  } else {
+    // Sequence complete — quality determines warning level
+    const quality = fractal2.quality || (fractal2.alignedWithHTF && fractal2.strongDisp ? "PREMIUM" : fractal2.alignedWithHTF || fractal2.strongDisp ? "ADEQUATE" : "WEAK");
+    if (quality === "WEAK") {
+      guards.push({
+        id: "INVERSION_MARGINAL",
+        severity: "WARNING",
+        blocked: false,
+        entryAllowed: true,
+        narrative: `⚠️ 1m Inversion DETECTED but WEAK — sweep+CHoCH+FVG complete but HTF alignment missing and displacement weak. Reduce size, require candle close confirmation.`,
+        action: "REDUCE SIZE 40% — Weak inversion. Wait for candle close on entry signal.",
+        sizeMultiplier: 0.6,
+        confidenceAdjustment: -2,
+      });
+    } else if (quality === "ADEQUATE") {
+      guards.push({
+        id: "INVERSION_MARGINAL",
+        severity: "INFO",
+        blocked: false,
+        entryAllowed: true,
+        narrative: `⚠️ 1m Inversion DETECTED (ADEQUATE quality) — sweep+CHoCH+FVG complete. ${fractal2.alignedWithHTF ? 'HTF aligned ✓' : 'HTF alignment ✗'}. ${fractal2.strongDisp ? 'Strong displacement ✓' : 'Displacement weak ✗'}.`,
+        action: "REDUCE SIZE 20% — Adequate inversion. One quality signal missing.",
+        sizeMultiplier: 0.8,
+        confidenceAdjustment: -1,
+      });
+    }
+    // PREMIUM quality → no guard added (clean pass)
   }
 } catch(e) {}
 
@@ -242,6 +281,50 @@ if (dayNum === 5) {
     sizeMultiplier: 0.5,      // Half size for all Friday trades
     confidenceAdjustment: -10, // Higher bar for entry
   });
+}
+
+// ── GAP 10: DXY Intermarket Divergence — WP-15 ────────────────────
+// ICT Day 1: the dollar is the denominator of every forex pair.
+// EURUSD bullish + DXY bullish = contradiction (dollar can't be strong AND euro strong).
+// This gate hard-blocks when DXY and the pair bias point the same way.
+const FOREX_PAIRS = ["EURUSD", "GBPUSD"];
+if (FOREX_PAIRS.includes(PAIR)) {
+  try {
+    const dxyPath = path.join(ROOT, "shared", DATE, "DXY", "engine_1h.json");
+    if (fs.existsSync(dxyPath)) {
+      const dxy = JSON.parse(fs.readFileSync(dxyPath, "utf8"));
+      const dxyBias = (dxy?.structure?.bias || "neutral").toLowerCase();
+      if (dxyBias !== "neutral") {
+        // Determine this pair's bias from the decision or engine
+        const pairBias = bias || "neutral";
+        // Conflict: forex pair and DXY pointing the same direction
+        // (bullish EURUSD means dollar weakness → DXY should be bearish)
+        const conflict = (pairBias === "bullish" && dxyBias === "bullish") ||
+                         (pairBias === "bearish" && dxyBias === "bearish");
+        if (conflict) {
+          guards.push({
+            id: "DXY_DIVERGENCE",
+            severity: "HIGH",
+            blocked: true,
+            entryAllowed: false,
+            narrative: `❌ DXY DIVERGENCE — ${PAIR} bias is ${pairBias.toUpperCase()} but DXY is ${dxyBias.toUpperCase()}. These cannot be simultaneously true for a dollar pair. DXY ${dxyBias} → dollar ${dxyBias === 'bullish' ? 'strength' : 'weakness'} → ${PAIR} should be ${dxyBias === 'bullish' ? 'bearish' : 'bullish'}, not ${pairBias}.`,
+            action: "BLOCK — DXY intermarket divergence. Wait for DXY and pair bias to agree.",
+          });
+        } else if (pairBias === "neutral") {
+          guards.push({
+            id: "DXY_NEUTRAL_BIAS",
+            severity: "WARNING",
+            blocked: false,
+            entryAllowed: true,
+            narrative: `⚠️ DXY context: ${dxyBias.toUpperCase()} but ${PAIR} bias is NEUTRAL. Direction unclear — reduce size, wait for pair bias to establish.`,
+            action: "REDUCE SIZE 30% — Pair bias neutral despite DXY direction.",
+            sizeMultiplier: 0.7,
+          });
+        }
+        // Pair bias opposes DXY → aligned (bullish pair vs bearish DXY = dollar weak, pair strong) ✅
+      }
+    }
+  } catch(e) { /* DXY data unavailable — skip intermarket check */ }
 }
 
 // ═══════════════════════════════════════════════════════════════════

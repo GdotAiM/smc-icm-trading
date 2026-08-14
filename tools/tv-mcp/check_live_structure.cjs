@@ -31,7 +31,7 @@ function parseArgs() {
 const a = parseArgs();
 const PAIR = (a.pair || "GBPUSD").toUpperCase();
 const TF = a.tf || "4h";
-const DATE = a.date || new Date().toISOString().split("T")[0];
+const DATE = a.date || require("../ny_time.cjs").getNYDate();
 
 async function evalExpr(client, expr) {
   const r = await client.Runtime.evaluate({ expression: expr, returnByValue: true });

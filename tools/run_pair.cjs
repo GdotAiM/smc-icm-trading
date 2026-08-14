@@ -5,7 +5,7 @@ const { execSync } = require("child_process");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
 const now = new Date();
-const DATE = now.toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const ny = require("./ny_time.cjs");
 const { calcATR, loadCandles } = require("./lib/metrics.cjs");
 const { resolveCyclePhase } = require("./lib/cycle_phase.cjs");
@@ -158,6 +158,16 @@ try {
   console.log(`  Bread and Butter unavailable: ${e.message.slice(0, 80)}`);
 }
 
+// ═══ STRUCTURAL ADVISORY (surface, never gate) ═══
+// Chain of Custody (time_price_grid.cjs) + fractal coherence (fractal_mmxm.cjs)
+// + 1m/5m entry MSS are captured here so they can be surfaced on console and in
+// decision.json — and so the LLM features step can weigh them. They NEVER block
+// the registry verdict; they are inputs the AI considers alongside the gates.
+// Declared BEFORE the TIME & PRICE GRID block below assigns chainOfCustody.
+let chainOfCustody = null;     // set inside TIME & PRICE GRID block
+let fractalAdvisory = null;    // set inside fractal_mmxm block
+let entryMssFact = { present: false, detail: null, mss: false };
+
 // ═══ TIME & PRICE GRID — Pre-Session Narrative ═══
 console.log("\n═══ TIME & PRICE GRID — Daily Narrative ═══");
 try {
@@ -169,6 +179,15 @@ try {
   if (tpg.delivery) console.log(`  Delivery: ${tpg.delivery.detail}`);
   if (tpg.tetheredCount > 0) console.log(`  Tethered PD Arrays: ${tpg.tetheredCount} anchored to graded levels`);
   console.log(`  Narrative: ${tpg.narrative}`);
+  if (tpg.chain) {
+    chainOfCustody = {
+      linkCount: tpg.chain.linkCount,
+      dominantHalf: tpg.chain.dominantHalf,
+      handoffSequence: tpg.chain.handoffSequence,
+      narrative: tpg.chain.narrative,
+    };
+    console.log(`  Chain of Custody: ${tpg.chain.handoffSequence || 'none'} | ${tpg.chain.linkCount} links | Dominant: ${tpg.chain.dominantHalf}`);
+  }
 } catch(e) { console.log(`  Time & Price Grid unavailable: ${e.message.slice(0, 80)}`); }
 
 // ═══ HIGH PRECISION SECRETS — Parts 1 & 2 ═══
@@ -225,15 +244,71 @@ try {
 } catch(e) { console.log(`  PDA Matrix unavailable: ${e.message.slice(0,80)}`); }
 
 // ═══ MMXM — Smart Money Reversal + Side of Curve ═══
+// mmxm is hoisted OUT of the try so the WP-15 SMR fallback below (a SEPARATE
+// try block at :254) can actually read it. Previously `const mmxm` was block-
+// scoped to this try, so `typeof mmxm !== 'undefined'` was ALWAYS false and
+// the SMR fallback branches (DISTRIBUTION / RE-ACCUMULATION) never executed.
+let mmxm = null;
 console.log("\n═══ MMXM — Market Maker Model ═══");
 try {
   const { analyzeMMXM } = require("./mmxm_engine.cjs");
-  const mmxm = analyzeMMXM(PAIR);
+  mmxm = analyzeMMXM(PAIR);
   console.log(`  SMR: ${mmxm.smr.detected ? '✅ ' + mmxm.smr.type : '⏳ ' + mmxm.smr.detail}`);
   console.log(`  Side of Curve: ${mmxm.side.side} (${mmxm.side.confidence})`);
   if (mmxm.symmetry?.target) console.log(`  Symmetry Target: ${r5(mmxm.symmetry.target)}`);
   console.log(`  Entry Phase: ${mmxm.entry.phase} — ${mmxm.entry.action}`);
 } catch(e) { console.log(`  MMXM unavailable: ${e.message.slice(0,80)}`); }
+
+// ═══ WP-15: MMXM STEP GATE — pre-registry cycle-position check ═══
+let mmxmStepGate = { step: 0, label: "UNRESOLVED", tradeable: false, detail: "" };
+try {
+  // Run fractal_mmxm as subprocess to get the classified MMXM step + SMR state
+  const mmxmOutput = execSync(`node "${ROOT}/tools/fractal_mmxm.cjs" ${PAIR}`, {
+    stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000,
+  });
+  // The JSON object is the last complete JSON block in the output
+  const jsonMatch = mmxmOutput.match(/\{[\s\S]*\}/);
+  const fractalPre = jsonMatch ? JSON.parse(jsonMatch[0]) : {};
+  const mmxmSteps = fractalPre.mmxmSteps || {};
+  const step4h = parseInt(mmxmSteps["4H"]) || 0;
+  const step1h = parseInt(mmxmSteps["1H"]) || 0;
+  const mmxmStep = step4h > 0 ? { step: step4h, source: "4H" } : { step: step1h, source: "1H" };
+
+  // Also check SMR from mmxm_engine for the entry phase
+  // mmxm is hoisted above (null when the MMXM engine failed) — the optional
+  // chaining is safe and these branches are now actually reachable.
+  const smrDetected = !!mmxm?.smr?.detected;
+  const entryPhase = mmxm?.entry?.phase || 'UNKNOWN';
+
+  if (mmxmStep.step > 0) {
+    const stepLabel = { 1: "CONSOLIDATION", 2: "MANIPULATION", 3: "DISTRIBUTION", 4: "RE-ACCUMULATION", 5: "COMPLETION" }[mmxmStep.step] || "UNKNOWN";
+    const tradeable = mmxmStep.step === 3 || mmxmStep.step === 4;
+    const scalpOnly = mmxmStep.step === 4;
+    mmxmStepGate = {
+      step: mmxmStep.step,
+      label: stepLabel,
+      tradeable,
+      scalpOnly,
+      detail: `MMXM Step ${mmxmStep.step}/5: ${stepLabel} (from ${mmxmStep.source})`,
+    };
+    console.log(`  MMXM Step: ${mmxmStepGate.step}/5 — ${mmxmStepGate.label} | Tradeable: ${tradeable ? '✅' : '❌'}${scalpOnly ? ' (scalp only)' : ''}`);
+  } else if (!smrDetected && entryPhase === 'PRE-SMR') {
+    mmxmStepGate = { step: 2, label: "SMR FORMING", tradeable: false, scalpOnly: false, detail: "Liquidity purged but no displacement — SMR forming. WAIT." };
+    console.log(`  MMXM Step (SMR fallback): 2/5 — SMR FORMING | Tradeable: ❌`);
+  } else if (smrDetected && entryPhase === 'RETRACEMENT') {
+    mmxmStepGate = { step: 3, label: "DISTRIBUTION (SMR confirmed)", tradeable: true, scalpOnly: false, detail: "SMR confirmed + retracing to array." };
+    console.log(`  MMXM Step (SMR fallback): 3/5 — DISTRIBUTION | Tradeable: ✅`);
+  } else if (smrDetected && entryPhase === 'EXPANSION') {
+    mmxmStepGate = { step: 4, label: "RE-ACCUMULATION (SMR confirmed)", tradeable: true, scalpOnly: true, detail: "SMR confirmed + expanding — scalp only." };
+    console.log(`  MMXM Step (SMR fallback): 4/5 — RE-ACCUMULATION | Tradeable: ✅ (scalp only)`);
+  } else {
+    mmxmStepGate = { step: 0, label: "UNRESOLVED", tradeable: false, scalpOnly: false, detail: "Cannot resolve MMXM step — fail-closed." };
+    console.log(`  MMXM Step: UNRESOLVED — fail-closed (NO TRADE)`);
+  }
+} catch(e) {
+  console.log(`  MMXM Step gate unavailable: ${e.message.slice(0,80)} — fail-closed (NO TRADE)`);
+  mmxmStepGate = { step: 0, label: "ERROR", tradeable: false, scalpOnly: false, detail: `Gate error: ${e.message.slice(0,60)}` };
+}
 
 // ═══════════════ STAGE 00 — Macro Context ═══════════════
 console.log("\n═══ STAGE 00 — Macro Context ═══");
@@ -477,8 +552,18 @@ const { resolveBias, confidenceFromConfluence, nearUnmitigatedPdArray, describeB
 const { nextDraw, drawTargets, drawReason } = require("./lib/draw.cjs");
 const bias1h = r1h.structure.bias;
 
-const narrative = resolveBias({ bias1W: bias1w, bias1D: bias1d, bias4H: bias4h, bias1H: bias1h });
-const governingBias = narrative.direction;
+// Use 1D bias as the single source of truth for directional bias (ICT audit Gap 1)
+let governingBias = bias1d;
+// If 1D is neutral, fallback to hierarchy: 1W -> 4H -> 1H? But ICT says we need clear bias.
+// We'll allow 4H to confirm/refine but not overrule.
+if (governingBias === "neutral") {
+  // Fallback to hierarchy if daily is neutral
+  const narrative = resolveBias({ bias1W: bias1w, bias1D: bias1d, bias4H: bias4h, bias1H: bias1h });
+  governingBias = narrative.direction;
+}
+// 4H confirmation/refinement: if 4H opposes 1D, reduce confidence but keep direction
+const htfConfirmation = bias4h !== "neutral" && bias4h === governingBias ? "confirmed" : 
+                      bias4h !== "neutral" && bias4h !== governingBias ? "opposed" : "neutral";
 
 // Soft-open guard vs 1D bias: if today is a soft open after a multi-day rally
 // and the 1D bias has already flipped against the rally, that flip is suspect.
@@ -504,10 +589,17 @@ const hasDraw = !!nextDraw({
   ],
 }); // WP-7 draw-on-liquidity engine — an external draw in bias direction boosts confidence
 const conf = confidenceFromConfluence({ inKillzone, nearPdArray, hasDraw });
-const biasConfidence = conf.confidence;
-const biasAgreement = conf.agreement;
+   let biasConfidence = conf.confidence;
+   const biasAgreement = conf.agreement;
 
-console.log(`  🎯 Dominance Bias: ${governingBias.toUpperCase()} (${biasConfidence}% — ${biasAgreement}) | ${describeBias(narrative)}`);
+   // Adjust bias confidence based on 4H confirmation/refinement
+   if (htfConfirmation === "confirmed") {
+     biasConfidence = Math.min(biasConfidence + 10, 95); // boost confidence
+   } else if (htfConfirmation === "opposed") {
+     biasConfidence = Math.max(biasConfidence - 10, 0); // reduce confidence
+   }
+
+console.log(`  🎯 Dominance Bias: ${governingBias.toUpperCase()} (${biasConfidence}% — ${biasAgreement})`);
 console.log(`  📍 Current Price: ${r5(r1d.price)} | 1D Range: ${r5(r1d.structure.lastSwingLow || 0)}–${r5(r1d.structure.lastSwingHigh || 0)}`);
 const aligned = bias1d === bias4h;
 
@@ -1144,11 +1236,14 @@ models.forEach(m => {
   m.score = Math.round(m.score * cycleWeight * 10) / 10;
   m.max = Math.round(m.max * Math.max(cycleWeight, 1.0) * 10) / 10;
 
-  // PRIORITY 1: Po3 Phase Filter — zero out models outside their phase
+  // PRIORITY 1: Po3 Phase Filter — hard gate, not a soft discount.
+  // The phase is structure-based (lib/cycle_phase.cjs — never the calendar).
+  // A model outside its valid phases is BLOCKED outright (×0): ICT has no
+  // "exceptions with strong confluence" that override the delivery cycle.
   if (!isPhaseValid(m.name)) {
     m.po3Blocked = true;
     m.po3BlockReason = `${m.name} requires ${(PO3_MODEL_PHASE_MAP[m.name]||[]).join('/')} phase, but we are in ${currentPhase}`;
-    m.score = Math.round(m.score * 0.3 * 10) / 10; // Reduce score by 70% instead of zeroing (ICT allows exceptions with strong confluence)
+    m.score = 0; // Hard gate — phase-invalid models are blocked, not discounted
   } else {
     m.po3Blocked = false;
   }
@@ -1327,6 +1422,17 @@ const phaseConflicts = detectPhaseConflicts(models, effectivePhase);
 const legacyPrimary = models[0];   // legacy ranked pick (read-only shadow reporter)
 let primary = null;                 // registry decision primary (null = NO TRADE)
 
+// ═══ WP-15: MMXM STEP GATE — check BEFORE running the registry ═══
+// Steps 1-2 (Consolidation, Manipulation/SMR forming) → NO TRADE regardless of registry
+// Step 3 (Distribution) → RUN REGISTRY normally
+// Step 4 (Re-accumulation) → RUN REGISTRY but gate to scalp models only (tier 2+)
+// Step 5 (Completion) → NO TRADE, cycle ending
+if (!mmxmStepGate.tradeable) {
+  console.log(`  ⛔ MMXM STEP GATE CLOSED — Step ${mmxmStepGate.step}/5: ${mmxmStepGate.label}`);
+  console.log(`     ${mmxmStepGate.detail}`);
+  console.log(`     Skipping registry — NO TRADE (fail-closed by cycle position).`);
+}
+
 // ═══ WP-8 — Model registry evaluator (THE DECISION PATH) ═══
 // Eligibility + sequence booleans, no rank. A model is either COMPLETE or it
 // is nothing. Exactly one complete model → SETUP COMPLETE (primary = its
@@ -1334,6 +1440,10 @@ let primary = null;                 // registry decision primary (null = NO TRAD
 // now runs as a READ-ONLY shadow reporter — disagreements are logged, never
 // consumed (plan D2, flipped).
 let registryDecision = null;
+let liquidityCascade = null;
+// Sentence-gate facts, captured from registryCtx (try-scoped) into module scope
+// so the advisory sentence report can be built later at decision-emit time.
+let sentenceFacts = null;
 try {
   const { runRegistry } = require("./models/registry.cjs");
   const sweptPools = (pools || []).filter(p => p.swept);
@@ -1467,8 +1577,118 @@ try {
     inversionFvgs: biasAlignedIFVGs,   // WP-14: bias-aligned inversion FVGs
     ifvgInPlay,                        // WP-14: price inside an IFVG zone
     defensiveWickCE,                   // WP-14: body defense against wick CE
+
+    // ═══ WP-17: Fractal Liquidity Cascade — organize all pools hierarchically ═══
+    liquidityCascade: (() => {
+      try {
+        const { buildCascade, cascadeDrawTargets } = require("./lib/liquidity_cascade.cjs");
+        liquidityCascade = buildCascade({
+          engineReports: { "1D": r1d, "4H": r4h, "1H": r1h },
+          oneTradeSetup,
+          liquidityMarker,
+          currentPrice: r1d?.price || 0,
+          dailyBias: oneTradeSetup?.dailyBias?.bias || governingBias,
+        });
+        return {
+          ...cascade,
+          drawTargets: cascadeDrawTargets(cascade, governingBias === "bullish" ? "LONG" : "SHORT"),
+        };
+      } catch(e) { return null; }
+    })(),
+
+    // ═══ WP-17: Pool-First Architecture — One Trade Setup drives the registry ═══
+    // ICT teaches: the liquidity pool IS the trade idea. The model is just HOW you
+    // enter at that pool. This context tells the registry which pool to prioritize,
+    // so models complete AGAINST the pool rather than against the whole chart.
+    poolContext: oneTradeSetup ? {
+      locked: oneTradeSetup.firstOpp?.locked || false,
+      lockedDirection: oneTradeSetup.firstOpp?.lockedDirection || null,
+      directionBoost: oneTradeSetup.firstOpp?.directionBoost || 1.0,
+      // Session priorities with raid status and pool prices
+      sessions: {
+        pm: oneTradeSetup.sessions?.pm ? {
+          priority: 1, label: "PM Session (prev day)",
+          high: oneTradeSetup.sessions.pm.range?.high,
+          low: oneTradeSetup.sessions.pm.range?.low,
+          raided: oneTradeSetup.sessions.pm.raidStatus?.raided || false,
+          mssConfirmed: oneTradeSetup.sessions.pm.raidStatus?.mssConfirmed || false,
+        } : null,
+        london: oneTradeSetup.sessions?.london ? {
+          priority: 2, label: "London Session (today)",
+          high: oneTradeSetup.sessions.london.range?.high,
+          low: oneTradeSetup.sessions.london.range?.low,
+          raided: oneTradeSetup.sessions.london.raidStatus?.raided || false,
+          mssConfirmed: oneTradeSetup.sessions.london.raidStatus?.mssConfirmed || false,
+        } : null,
+        openingGap: oneTradeSetup.sessions?.openingGap ? {
+          priority: 3, label: "Opening Range Gap",
+          raided: oneTradeSetup.sessions.openingGap.raidStatus?.raided || false,
+        } : null,
+        lunch: oneTradeSetup.sessions?.lunch ? {
+          priority: 4, label: "NY Lunch Raid",
+          raided: oneTradeSetup.sessions.lunch.raidStatus?.raided || false,
+        } : null,
+      },
+      // Previous day AM session = the ultimate TP target
+      targetPool: oneTradeSetup.prevAM ? {
+        high: oneTradeSetup.prevAM.high,
+        low: oneTradeSetup.prevAM.low,
+        date: oneTradeSetup.prevAM.date,
+        detail: oneTradeSetup.prevAM.detail,
+      } : null,
+      // Current daily bias
+      dailyBias: oneTradeSetup.dailyBias?.bias || "neutral",
+      summary: oneTradeSetup.firstOpp?.detail || "No pool analysis available",
+    } : null,
   };
-  registryDecision = runRegistry(registryCtx);
+  // ═══ One-Trade-Sentence facts (advisory) — captured for decision-emit ═══
+  // entryMss is a 1m/5m-specific MSS/CHoCH (the intraday scalper's entry TF
+  // shift), built only from genuine low-TF sources — NOT the registry's mss
+  // union, which also admits the 15m inducement check.
+  const entryMssDetail = (() => {
+    if (turtleSoupCheck?.mssConfirmed) return "1m MSS (turtle-soup confirmMSS on 1m candles)";
+    if (lecture1?.mss?.confirmed) return "1m MSS (Lecture 1 — post-08:30 raid)";
+    if (lecture2?.mss?.confirmed) return "1m/5m MSS (Lecture 2 — London hunt)";
+    if (lecture4?.mss?.confirmed) return "1m MSS (Lecture 4 — news gap)";
+    if (r1m?.structure?.lastEvent === "CHoCH") return "1m CHoCH (engine structure event)";
+    if (r5m?.structure?.lastEvent === "CHoCH") return "5m CHoCH (engine structure event)";
+    return null;
+  })();
+  entryMssFact = { present: !!entryMssDetail, detail: entryMssDetail, mss: !!entryMssDetail };
+  sentenceFacts = {
+    bias: registryCtx.bias,
+    hasDraw: registryCtx.hasDraw,
+    poolTarget: registryCtx.poolTarget,
+    arrayInPlay: registryCtx.arrayInPlay,
+    mss: registryCtx.mss,
+    entryMss: !!entryMssDetail,
+    entryMssDetail,
+    killzone: registryCtx.killzone,
+    killzoneName: registryCtx.killzoneName,
+  };
+  // ═══ WP-15: MMXM Step Gate — block or filter registry ═══
+  if (!mmxmStepGate.tradeable) {
+    // Gate closed: cycle position says NO TRADE — skip registry entirely
+    registryDecision = {
+      verdict: "NO TRADE",
+      primary: null,
+      complete: [],
+      count: 0,
+      results: [],
+      resolved: { tie: false, rule: `MMXM step gate closed — ${mmxmStepGate.label} (step ${mmxmStepGate.step}/5): ${mmxmStepGate.detail}` },
+    };
+    console.log(`\n═══ WP-8 — Registry Evaluator (MMXM GATE CLOSED) ═══`);
+    console.log(`  Verdict: NO TRADE — MMXM Step ${mmxmStepGate.step}/5: ${mmxmStepGate.label}`);
+    console.log(`  ${mmxmStepGate.detail}`);
+  } else {
+    // Gate open — run the registry normally
+    if (mmxmStepGate.scalpOnly) {
+      // Step 4 (Re-accumulation): gate to scalp models only — filter registryCtx
+      registryCtx.scalpOnly = true;
+      console.log(`  MMXM Step 4 — SCALP ONLY mode: tier 1 models suppressed`);
+    }
+    registryDecision = runRegistry(registryCtx);
+  }
   // WP-8 FLIP: the registry verdict is the decision. A single complete setup
   // → its entry is primary. Zero or several complete → NO TRADE (ties are
   // never multiplied; a model is COMPLETE or it is nothing).
@@ -1496,7 +1716,7 @@ writeMd("04_model_selection", "active_models.md", `# Model Selection — ${pairL
 ## Market Context
 - Bias: **${bias1d.toUpperCase()}** (1D/4H)
 - Session: ${session} (${gate})
-- **Cycle Phase**: ${effectivePhase} | **MMXM Step**: ${macroContext ? macroContext.mxmStep + '/4' : 'N/A'}
+- **Cycle Phase**: ${effectivePhase} | **MMXM Step**: ${mmxmStepGate.step}/5 — ${mmxmStepGate.label}${mmxmStepGate.tradeable ? ' ✅' : ' ❌ GATE CLOSED'}${mmxmStepGate.scalpOnly ? ' (scalp only)' : ''}
 - Levels: ${uniqueOBs.length} OBs | ${fvgs.length} FVGs | ${pools.length} pools
 - Sweeps: ${hasSweep ? 'Yes — liquidity sweep detected' : 'None'}
 
@@ -1585,6 +1805,20 @@ try {
       stdio: ["ignore", "pipe", "ignore"], encoding: "utf8", timeout: 15000
     });
     const fractalData = JSON.parse(fractalOutput);
+    fractalAdvisory = {
+      score: fractalData.fractalScore,
+      max: fractalData.fractalMax,
+      label: fractalData.fractalLabel,
+      nestingScore: fractalData.nestingScore,
+      nestingMax: fractalData.nestingMax,
+      inversionDetected: fractalData.inversionDetected,
+      inversionScore: fractalData.inversionScore,
+      inversionMax: fractalData.inversionMax,
+      confirmationsPassed: fractalData.confirmationsPassed,
+      cisdDetected: fractalData.cisdDetected,
+      smtDetected: fractalData.smtDetected,
+      mmxmSteps: fractalData.mmxmSteps,
+    };
     console.log(`  Fractal MMXM: ${fractalData.fractalScore}/${fractalData.fractalMax} — ${fractalData.fractalLabel}`);
     console.log(`  1m Inversion: ${fractalData.inversionDetected ? '✅ DETECTED' : '⏳ NOT YET'} (${fractalData.inversionScore}/${fractalData.inversionMax})`);
     console.log(`  6 Confirmations: ${fractalData.confirmationsPassed}/6 | CISD: ${fractalData.cisdDetected ? '✅' : '✗'} | SMT: ${fractalData.smtDetected ? '✅' : '✗'}`);
@@ -2478,8 +2712,16 @@ const microCoh = microContext?.score || 0;
 const auditCoh = coherenceScore || 0;
 const isInvalid = invalidationResult?.overallStatus === "INVALIDATED";
 const unifiedCoh = isInvalid ? 0 : Math.min(microCoh * 10, auditCoh); // Normalize micro to 0-100, take minimum
-const unifiedLabel = isInvalid ? "🛑 INVALIDATED" : unifiedCoh >= 70 ? "✅ STRONG" : unifiedCoh >= 50 ? "⚠️ ADEQUATE" : unifiedCoh >= 30 ? "⏳ WEAK" : "❌ POOR";
-console.log(`Unified Coherence: ${unifiedCoh}/100 — ${unifiedLabel}${isInvalid ? ' (invalidation overrides all)' : ''}`);
+// Confluence boost (grading only, never authorization): same-direction complete
+// + partial models stack. Confidence from the registry (0-1) lifts the coherence
+// grade when the direction is well-supported — capped so it can only help a
+// coherent setup reach the next grade, never repair a broken one.
+const confluenceBoost = (registryDecision?.verdict === "SETUP COMPLETE" && !isInvalid && Number.isFinite(registryDecision.confidence))
+  ? Math.round(registryDecision.confidence * 10)
+  : 0;
+const unifiedCohFinal = confluenceBoost ? Math.min(100, unifiedCoh + confluenceBoost) : unifiedCoh;
+const unifiedLabel = isInvalid ? "🛑 INVALIDATED" : unifiedCohFinal >= 70 ? "✅ STRONG" : unifiedCohFinal >= 50 ? "⚠️ ADEQUATE" : unifiedCohFinal >= 30 ? "⏳ WEAK" : "❌ POOR";
+console.log(`Unified Coherence: ${unifiedCohFinal}/100 — ${unifiedLabel}${isInvalid ? ' (invalidation overrides all)' : ''}${confluenceBoost ? ` (+${confluenceBoost} confluence)` : ''}`);
 console.log(`Cycle: ${effectivePhase} | Coherence: ${coherenceScore || '?'}/100 | Invalidation: ${invalidationResult ? invalidationResult.overallStatus : '?'}`);
 console.log(`Bias: ${bias1d.toUpperCase()} | 1W→${bias1w} 1D→${bias1d} 4H→${bias4h}`);
 console.log(`Model: ${primary ? primary.name : 'NO TRADE'} (${registryDecision ? registryDecision.verdict : 'registry unavailable'}) — ${registryDecision ? registryDecision.count : 0} complete of ${models.length} registry models`);
@@ -2542,6 +2784,104 @@ try {
 
 // ═══════════════ DECISION EMIT — structured artifact for auto-traders ═══════════════
 try {
+  // ── Mechanical self-validation (pre-LLM, deterministic) ──
+  // Verifies every stage claim (direction, guard, sweep, FVG, trigger, SL/TP
+  // geometry) against raw engine/candle data. Advisory grade — it never gates,
+  // but it flags contradictions mechanically BEFORE the LLM auditor runs.
+  let selfValidation = null;
+  try {
+    const { runSelfValidation } = require("./self_validate.cjs");
+    selfValidation = runSelfValidation(PAIR, DATE);
+    console.log(`  🧪 Self-validation: ${selfValidation.verdict} (${selfValidation.counts.fail} FAIL / ${selfValidation.counts.warn} WARN)`);
+    for (const c of selfValidation.checks.filter(c => c.level === "FAIL")) {
+      console.log(`    ✗ ${c.id}: ${c.detail}`);
+    }
+  } catch (e) {
+    console.log(`  ⚠️  Self-validation skipped: ${e.message}`);
+  }
+
+  // ── Regime/anomaly state (statistical, advisory) ──
+  // Identifies the CURRENT state of price (trend/ranging/compressed + volatility
+  // + anomalies) from raw candles — state, not path. Feeds the coherence grade;
+  // never gates. Flags counter-trend trades against a clear directional regime.
+  let regime = null;
+  try {
+    const { detectRegime } = require("./regime_detector.cjs");
+    const regCandles = (() => {
+      try {
+        return require("fs").readFileSync(path.join(sharedDir, "candles_5m.json"), "utf8");
+      } catch {
+        return null;
+      }
+    })();
+    if (regCandles) {
+      const r = detectRegime(JSON.parse(regCandles));
+      if (!r.error) {
+        regime = { tf: "5m", regime: r.regime, volatility: r.volatility, anomalies: r.anomalies.map(a => a.kind) };
+        console.log(`  📊 Regime (5m): ${r.regime} | volatility ${r.volatility}${r.anomalies.length ? ` | ⚠️ ${r.anomalies.map(a => a.kind).join(", ")}` : ""}`);
+      }
+    }
+  } catch (e) {
+    console.log(`  ⚠️  Regime detection skipped: ${e.message}`);
+  }
+
+  // ═══ ONE TRADE IS ONE SENTENCE — advisory report ═══
+  // "daily bias → single liquidity draw → one PD array in premium/discount →
+  // MSS on entry TF inside killzone → SL beyond structural swing → TP at the
+  // draw." Built from registry facts + the final entry plan. MADE KNOWN, never
+  // enforced: the registry verdict and entry plan are untouched even when the
+  // sentence is broken (build-time policy — the invariant is visible before it
+  // becomes a gate).
+  let sentenceReport = null;
+  try {
+    const { evaluateSentence } = require("./models/sentence_gate.cjs");
+    sentenceReport = sentenceFacts ? evaluateSentence({
+      ...sentenceFacts,
+      entryType,
+      slReason: slReason || "",
+      tp1Reason: tp1Reason || "",
+    }) : null;
+    if (sentenceReport) {
+      if (sentenceReport.open) {
+        console.log(`  📖 ONE TRADE IS ONE SENTENCE: ✅ ${sentenceReport.passed}/${sentenceReport.total} — sentence complete`);
+      } else {
+        console.log(`  📖 ONE TRADE IS ONE SENTENCE: ⚠️ BROKEN (${sentenceReport.passed}/${sentenceReport.total}) — missing: ${sentenceReport.missing.join(' → ')}`);
+      }
+    }
+    // Forecast is a REQUIRED signal per CLAUDE.md, but warn-and-continue: it is
+    // surfaced on console + decision.json and never blocks the decision.
+    const _regDir = registryDecision?.direction;
+    if (_regDir && (forecastContext.f5m || forecastContext.f1m)) {
+      const _opp = fc => fc && ((_regDir === "BUY" && fc.direction === "bearish") || (_regDir === "SELL" && fc.direction === "bullish"));
+      const _o5 = _opp(forecastContext.f5m), _o1 = _opp(forecastContext.f1m);
+      if (_o5 || _o1) {
+        console.log(`  ⚠️ FORECAST OPPOSES ${_regDir} direction (5m=${forecastContext.f5m ? forecastContext.f5m.direction : 'n/a'}, 1m=${forecastContext.f1m ? forecastContext.f1m.direction : 'n/a'}) — warn-and-continue (advisory)`);
+      }
+    }
+    // ═══ STRUCTURAL ADVISORY — surfaced for the AI to weigh, never a gate ═══
+    // Chain of Custody (fractal delivery handoff), fractal coherence (MMXM
+    // nesting), and 1m/5m entry MSS. All three are read-only inputs here: the
+    // registry verdict already ran. The AI (decision consumers + extract_features)
+    // considers them as confluence — a bearish chain, weak fractal, or absent
+    // 1m/5m MSS degrades conviction without ever flipping the verdict.
+    if (_regDir) {
+      const _chainOpp = chainOfCustody && (
+        (chainOfCustody.dominantHalf === "BEARISH" && _regDir === "BUY") ||
+        (chainOfCustody.dominantHalf === "BULLISH" && _regDir === "SELL"));
+      if (chainOfCustody) {
+        console.log(`  🔗 CUSTODY CHAIN: ${chainOfCustody.linkCount} links | Dominant ${chainOfCustody.dominantHalf}${_chainOpp ? ' ⚠️ OPPOSES ' + _regDir : ' — aligns'}`);
+      }
+      if (fractalAdvisory) {
+        console.log(`  🧬 FRACTAL COHERENCE: ${fractalAdvisory.score}/${fractalAdvisory.max}${fractalAdvisory.weak ? ' ⚠️ WEAK — nesting loose' : ''} | Inversion ${fractalAdvisory.inversionDetected ? '✅' : '⏳'} | ${fractalAdvisory.confirmationsPassed}/6 confirmations`);
+      }
+      if (!entryMssFact.present) {
+        console.log(`  🎯 ENTRY MSS (1m/5m): ⏳ ABSENT — no low-TF MSS/CHoCH (advisory, does not block)`);
+      }
+    }
+  } catch (e) {
+    console.log(`  ⚠️  Sentence gate skipped: ${e.message}`);
+  }
+
   const decision = {
     pair: PAIR,
     symbol: pairLabel,
@@ -2551,6 +2891,36 @@ try {
       verdict: registryDecision ? registryDecision.verdict : null,
       primary: primary ? primary.name : null,
       completeCount: registryDecision ? registryDecision.count : 0,
+      confidence: registryDecision && registryDecision.confidence != null ? registryDecision.confidence : null,
+      direction: registryDecision ? registryDecision.direction : null,
+      confluence: registryDecision && registryDecision.confluence ? {
+        BUY: registryDecision.confluence.BUY,
+        SELL: registryDecision.confluence.SELL,
+      } : null,
+      resolved: registryDecision ? registryDecision.resolved : null,
+      mlProbability: registryDecision ? registryDecision.mlProbability : null,
+      mlConfidence: registryDecision ? registryDecision.mlConfidence : null,
+      expectedValue: registryDecision ? registryDecision.expectedValue : null,
+      poolContext: oneTradeSetup ? {
+        locked: oneTradeSetup.firstOpp?.locked || false,
+        lockedDirection: oneTradeSetup.firstOpp?.lockedDirection || null,
+        poolSummary: oneTradeSetup.firstOpp?.detail || "No pool analysis",
+        sessions: oneTradeSetup.raidSummary || [],
+        targetPool: oneTradeSetup.prevAM ? { high: oneTradeSetup.prevAM.high, low: oneTradeSetup.prevAM.low, date: oneTradeSetup.prevAM.date } : null,
+      } : null,
+      liquidityCascade: liquidityCascade ? {
+        session: liquidityCascade.session,
+        daily: liquidityCascade.daily,
+        weekly: liquidityCascade.weekly,
+        drawTargets: liquidityCascade.drawTargets,
+      } : null,
+    },
+    mmxmStep: {
+      step: mmxmStepGate.step,
+      label: mmxmStepGate.label,
+      tradeable: mmxmStepGate.tradeable,
+      scalpOnly: mmxmStepGate.scalpOnly || false,
+      detail: mmxmStepGate.detail,
     },
     entry: {
       type: entryType,
@@ -2562,7 +2932,7 @@ try {
       slReason: slReason || null,   // for auto_decision R:R gating (intraday vs swing)
     },
     rr: { rr1, rr2 },
-    coherence: { unified: unifiedCoh, phase: effectivePhase, base: coherenceScore ?? null },
+    coherence: { unified: unifiedCohFinal, phase: effectivePhase, base: coherenceScore ?? null, confluenceBoost },
     invalidation: invalidationResult ? {
       status: invalidationResult.overallStatus,
       totalInvalidated: invalidationResult.totalInvalidated || 0,
@@ -2595,6 +2965,71 @@ try {
       freshEnough: freshnessScore >= 5,
       riskAllowed: riskAllowed !== false,
     },
+    selfValidation: selfValidation ? {
+      verdict: selfValidation.verdict,
+      fails: selfValidation.checks.filter(c => c.level === "FAIL").map(c => ({ id: c.id, source: c.source, detail: c.detail })),
+      warns: selfValidation.checks.filter(c => c.level === "WARN").map(c => ({ id: c.id, source: c.source, detail: c.detail })),
+    } : null,
+    sentence: sentenceReport ? {
+      open: sentenceReport.open,
+      passed: sentenceReport.passed,
+      total: sentenceReport.total,
+      missing: sentenceReport.missing,
+      elements: sentenceReport.elements.map(e => ({ key: e.key, label: e.label, pass: e.pass, detail: e.detail })),
+      policy: "advisory — made known, never enforced (build-time)",
+    } : null,
+    forecast: {
+      f5m: forecastContext.f5m ? { available: true, direction: forecastContext.f5m.direction } : { available: false },
+      f1m: forecastContext.f1m ? { available: true, direction: forecastContext.f1m.direction } : { available: false },
+      aligned: (forecastContext.f5m && forecastContext.f1m)
+        ? forecastContext.f5m.direction === forecastContext.f1m.direction
+        : null,
+      opposesDecision: (() => {
+        const dir = registryDecision?.direction;
+        if (!dir || !forecastContext.f5m && !forecastContext.f1m) return null;
+        const opp = fc => fc && ((dir === "BUY" && fc.direction === "bearish") || (dir === "SELL" && fc.direction === "bullish"));
+        const o5 = opp(forecastContext.f5m), o1 = opp(forecastContext.f1m);
+        if (o5 || o1) return { opposing: true, both: !!o5 && !!o1, detail: `forecast opposes ${dir} — warn-and-continue (advisory)` };
+        return { opposing: false };
+      })(),
+      policy: "warn-and-continue — surfaced, never blocks (build-time)",
+    },
+    // ═══ STRUCTURAL ADVISORY — the fractal/time-price story, surfaced for the
+    // AI to weigh. Never a gate: the registry verdict is untouched even when the
+    // chain opposes the direction or the fractal is weak. The LLM features step
+    // (extract_features.cjs) reads this block to inform its confidence scores.
+    structural: {
+      chain: chainOfCustody ? {
+        linkCount: chainOfCustody.linkCount,
+        dominantHalf: chainOfCustody.dominantHalf,
+        handoffSequence: chainOfCustody.handoffSequence,
+        narrative: chainOfCustody.narrative,
+        opposesDirection: chainOfCustody.dominantHalf === "BEARISH"
+          ? (registryDecision?.direction === "BUY")
+          : chainOfCustody.dominantHalf === "BULLISH"
+            ? (registryDecision?.direction === "SELL")
+            : null,
+      } : null,
+      fractal: fractalAdvisory ? {
+        score: fractalAdvisory.score,
+        max: fractalAdvisory.max,
+        label: fractalAdvisory.label,
+        nestingScore: fractalAdvisory.nestingScore,
+        nestingMax: fractalAdvisory.nestingMax,
+        inversionDetected: fractalAdvisory.inversionDetected,
+        inversionScore: fractalAdvisory.inversionScore,
+        inversionMax: fractalAdvisory.inversionMax,
+        confirmationsPassed: fractalAdvisory.confirmationsPassed,
+        cisdDetected: fractalAdvisory.cisdDetected,
+        smtDetected: fractalAdvisory.smtDetected,
+        weak: fractalAdvisory.score < 8,
+      } : null,
+      entryMss: entryMssFact.present
+        ? { present: true, detail: entryMssFact.detail }
+        : { present: false, detail: "no 1m/5m MSS/CHoCH — 15m-only structure does not satisfy the entry-TF shift" },
+      policy: "advisory — surfaced for AI consideration, never blocks the verdict (build-time)",
+    },
+    regime,
   };
   // Missed-Entry handler — does a still-valid idea warrant a disciplined
   // second-chance entry? (ICT lecture 19:12). Runs every pipeline cycle and
@@ -2631,6 +3066,25 @@ try {
     console.log(`  🧠 Setup auditor launched (audit-only, non-blocking)`);
   } catch (e) {
     console.log(`  ⚠️  Setup auditor launch skipped: ${e.message}`);
+  }
+
+  // LLM Feature Extraction — advisory, launched DETACHED after the decision is
+  // emitted. Reads decision.json (incl. the structural advisory block) + stage
+  // outputs, then writes shared/<date>/<PAIR>/llm_features.json for the ML
+  // feature matrix. Rule-based fallback applies when the LLM is unavailable or
+  // rate-limited — never blocks, never alters the deterministic verdict.
+  try {
+    const { spawn } = require("child_process");
+    const featExt = path.join(ROOT, "tools", "llm", "extract_features.cjs");
+    const child2 = spawn(process.execPath, [featExt, PAIR], {
+      detached: true,
+      stdio: "ignore",
+      windowsHide: true,
+    });
+    child2.unref();
+    console.log(`  🧠 LLM feature extraction launched (advisory, non-blocking)`);
+  } catch (e) {
+    console.log(`  ⚠️  LLM feature extraction launch skipped: ${e.message}`);
   }
 } catch (e) {
   console.log(`  ⚠️  Decision emit skipped: ${e.message}`);

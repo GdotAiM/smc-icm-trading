@@ -50,7 +50,7 @@ const TV_SYM = TV_SYMBOLS[PAIR] || PAIR;
   console.log("Price:", t.px);
 
   // Load engine data for structure levels
-  const DATE = new Date().toISOString().split("T")[0];
+  const DATE = require("../ny_time.cjs").getNYDate();
   let r1d = null, r4h = null, r1h = null;
   try { r1d = JSON.parse(fs.readFileSync(path.join(ROOT, "shared", DATE, PAIR, "engine_1d.json"), "utf8")); } catch(e) {}
   try { r4h = JSON.parse(fs.readFileSync(path.join(ROOT, "shared", DATE, PAIR, "engine_4h.json"), "utf8")); } catch(e) {}

@@ -17,7 +17,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const PAIR = process.argv[2] || "GBPUSD";
 
 function r5(v) { return Number(v).toFixed(5); }
@@ -64,7 +64,7 @@ function markPDH_PDL(dailyCandles) {
     pdh: yesterday.high,
     pdl: yesterday.low,
     range: yesterday.high - yesterday.low,
-    date: new Date(yesterday.time).toISOString().split("T")[0],
+    date: require("./ny_time.cjs").getNYDateFor(yesterday.time),
     detail: `PDH: ${r5(yesterday.high)} | PDL: ${r5(yesterday.low)} | Range: ${r5(yesterday.high - yesterday.low)}`,
   };
 }

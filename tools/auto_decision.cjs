@@ -17,7 +17,7 @@ const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
 
 function loadDecision(pair) {
   const dir = pair === "XAUUSD" ? "GOLD" : pair; // XAUUSD data lives in GOLD/
-  const date = new Date().toISOString().split("T")[0];
+  const date = require("./ny_time.cjs").getNYDate();
   const candidates = [
     path.join(ROOT, "shared", date, dir, "decision.json"),
     path.join(ROOT, "shared", date, pair, "decision.json"),
@@ -136,6 +136,58 @@ function gate(pair, opts = {}) {
     reasons.push(`risk: ${d.risk.reason || "blocked"}`);
   }
 
+  // WP-15: Position limit enforcement — max 2 open positions (risk_parameters.md).
+  // The risk tracker reports open count but didn't block. This gate does.
+  try {
+    const tradeLogPath = path.join(ROOT, "shared", "trade_log.json");
+    if (fs.existsSync(tradeLogPath)) {
+      const trades = JSON.parse(fs.readFileSync(tradeLogPath, "utf8"));
+      const openPositions = (Array.isArray(trades) ? trades : []).filter(t => t.status === "OPEN");
+      if (openPositions.length >= 2) {
+        reasons.push(`position limit: ${openPositions.length} already open (max 2)`);
+      }
+    }
+  } catch { /* trade log unavailable — skip position check */ }
+
+  // WP-15: News calendar gate — block trades within 30 min of high-impact events.
+  // ICT One Shot One Kill: no entries near red-folder news unless it's a deliberate
+  // news trade (which uses a separate path via tv-mcp/news_trade.cjs).
+  try {
+    const todayEventsPath = path.join(ROOT, "shared", date, "today_events.json");
+    let events = null;
+    if (fs.existsSync(todayEventsPath)) {
+      events = JSON.parse(fs.readFileSync(todayEventsPath, "utf8"));
+    } else {
+      // Try to fetch events on-demand (cached for the day)
+      try {
+        const pyOut = execSync(`python "${path.join(ROOT, "tools", "economic_calendar.py")}" --today-only --output "${todayEventsPath}"`, {
+          timeout: 15000, stdio: ["ignore", "pipe", "ignore"], encoding: "utf8",
+        });
+        if (fs.existsSync(todayEventsPath)) {
+          events = JSON.parse(fs.readFileSync(todayEventsPath, "utf8"));
+        }
+      } catch { /* calendar fetch failed — skip news gate */ }
+    }
+    if (events && Array.isArray(events)) {
+      const now = new Date();
+      const nowNY = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+      const nowMin = nowNY.getHours() * 60 + nowNY.getMinutes();
+      for (const ev of events) {
+        const impact = (ev.impact || "").toLowerCase();
+        if (impact !== "high" && impact !== "red" && impact !== "3") continue;
+        // Parse event time (HH:MM format expected)
+        const timeMatch = (ev.time || "").match(/(\d{1,2}):(\d{2})/);
+        if (!timeMatch) continue;
+        const evMin = parseInt(timeMatch[1]) * 60 + parseInt(timeMatch[2]);
+        const diffMin = Math.abs(nowMin - evMin);
+        if (diffMin <= 30) {
+          reasons.push(`news: ${ev.title || ev.event || 'High-impact event'} at ${ev.time} (${diffMin}min ${nowMin > evMin ? 'ago' : 'away'})`);
+          break; // one is enough
+        }
+      }
+    }
+  } catch { /* news gate unavailable — skip */ }
+
   // Evaluation
   if (d.evaluation?.blocked) {
     reasons.push("evaluation: BLOCKED");
@@ -149,6 +201,41 @@ function gate(pair, opts = {}) {
     reasons.push(`${d.conflicts.phase} phase conflict(s)`);
   }
 
+  // ═══ WP-16: Kelly-Optimal Position Sizing ═══
+  // f = (bp - q) / b   where b = R:R, p = P(win), q = 1-p
+  // When ML probability is available, risk scales with edge.
+  // Without ML data, falls back to fixed 1% risk.
+  let kellyFraction = null;
+  let kellyDetail = null;
+  const mlProb = d.registry?.mlProbability;
+  if (mlProb && mlProb.samples >= 3 && operativeRR > 0) {
+    const b = operativeRR;                    // net odds (R:R)
+    const p = mlProb.win_rate_pct / 100;      // P(win) from ML
+    const q = 1 - p;                          // P(loss)
+    const kelly = (b * p - q) / b;            // Kelly fraction
+
+    // Clamp: never exceed 1% max risk, never go negative
+    const maxRisk = 0.01;                     // 1% max per trade
+    const clampedKelly = Math.max(0, Math.min(kelly, maxRisk));
+
+    kellyFraction = clampedKelly;
+    kellyDetail = {
+      formula: "f = (bp - q) / b",
+      b: Math.round(b * 100) / 100,
+      p: Math.round(p * 100) / 100,
+      q: Math.round(q * 100) / 100,
+      raw_kelly: Math.round(kelly * 10000) / 100 + "%",
+      clamped: Math.round(clampedKelly * 10000) / 100 + "%",
+      interpretation: kelly <= 0 ? "NO_BET — negative expected value" :
+                      clampedKelly < maxRisk ? "KELLY_SCALED — edge-based sizing" :
+                      "MAX_RISK — edge exceeds 1% cap",
+    };
+
+    if (kelly <= 0) {
+      reasons.push(`Kelly: EV is negative (f=${kellyDetail.raw_kelly}) — no bet`);
+    }
+  }
+
   return {
     allowed: reasons.length === 0,
     reasons,
@@ -158,6 +245,8 @@ function gate(pair, opts = {}) {
     secondChance,
     operative,
     operativeRR,
+    kellyFraction,
+    kellyDetail,
   };
 }
 

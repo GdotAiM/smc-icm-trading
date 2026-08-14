@@ -1,6 +1,6 @@
 // tests/models_registry.test.cjs
 // WP-8: model registry + per-model confirmation matrices.
-// DoD: 17 registry entries; every sequence has a known pass AND known fail
+// DoD: 20 registry entries; every sequence has a known pass AND known fail
 // case; time-exclusive models are never both eligible; no "score" word in the
 // decision modules; verdict is "single complete setup or nothing."
 const test = require("node:test");
@@ -35,6 +35,22 @@ function makeContext(overrides = {}) {
     htfRanging: overrides.htfRanging ?? true,
     displacement: overrides.displacement ?? true,
     hasDraw: overrides.hasDraw ?? true,
+    // IFVG Scale-In — bias-aligned inversion FVG with price inside (WP-13/14).
+    inversionFvgs: overrides.inversionFvgs ?? [{ bottom: 1.0, top: 1.1 }],
+    ifvgInPlay: overrides.ifvgInPlay ?? true,
+    price: overrides.price ?? 1.05,
+    // NY Lunch Reversal carry-forward (WP-13/14) — prior-day lunch sweep +
+    // BISI/SIBI inefficiency carried into today. Default satisfies the SHORT
+    // model; the LONG model overrides via PASS_CTX below.
+    prevLunch: overrides.prevLunch ?? {
+      sweepType: "SSL",
+      sweepPrice: 1.05,
+      inefficiencyKind: "BISI",
+      bottom: 1.0,
+      top: 1.1,
+      midpoint: 1.05,
+      sourceDate: "2026-08-10",
+    },
     // High Precision Secrets — 7-9AM tethering gate context. Default: framework
     // ACTIVE with ≥1 tethered array so the NY-AM models pass in the full-pass case.
     precision: overrides.precision ?? { active: true, tetheredCount: 1 },
@@ -88,6 +104,11 @@ const STEP_FAIL = {
   lecture4_mss: { lecture4: { mss: { confirmed: false } } },
   lecture4_ready: { lecture4: { setupReady: false } },
   tethered_array: { precision: { active: true, tetheredCount: 0 } },
+  ifvg_present: { inversionFvgs: [], price: 1.2 },
+  prev_day_lunch_sweep: { prevLunch: {} },
+  prev_day_bisi: { prevLunch: { sweepType: "SSL" } },
+  prev_day_sibi: { prevLunch: { sweepType: "BSL" } },
+  price_enters_lunch_inefficiency: { prevLunch: { sweepType: "SSL", inefficiencyKind: "BISI", bottom: 1.0, top: 1.2 }, price: 1.5 },
 };
 
 // Default in-window hour per model for the pass/fail tests.
@@ -102,10 +123,26 @@ const HOUR = {
 
 // Default bias per model (MMXM Buy is intrinsically BUY; everyone else accepts
 // the bearish narrative context — counter-sweep fades BSL → SELL, aligned).
-const BIAS = { mmxm_buy: "bullish" };
+const BIAS = { mmxm_buy: "bullish", ny_lunch_reversal_long: "bullish" };
 
-test("registry contains exactly 17 models with all required fields", () => {
-  assert.strictEqual(MODELS.length, 17);
+// Per-model context overrides for the full-PASS case (beyond the shared
+// defaults): the LONG lunch-reversal model needs a SIBI (not BISI) inefficiency.
+const PASS_CTX = {
+  ny_lunch_reversal_long: {
+    prevLunch: {
+      sweepType: "BSL",
+      sweepPrice: 1.05,
+      inefficiencyKind: "SIBI",
+      bottom: 1.0,
+      top: 1.1,
+      midpoint: 1.05,
+      sourceDate: "2026-08-10",
+    },
+  },
+};
+
+test("registry contains exactly 20 models with all required fields", () => {
+  assert.strictEqual(MODELS.length, 20);
   const ids = new Set();
   for (const m of MODELS) {
     assert.ok(m.id && m.name, `${m.name} missing id/name`);
@@ -128,7 +165,7 @@ test("every sequence step is in the step vocabulary", () => {
 
 test("DoD: every model has a known PASS case", () => {
   for (const m of MODELS) {
-    const ctx = makeContext({ hour: HOUR[m.id] ?? 10, bias: BIAS[m.id] ?? "bearish" });
+    const ctx = makeContext({ hour: HOUR[m.id] ?? 10, bias: BIAS[m.id] ?? "bearish", ...(PASS_CTX[m.id] || {}) });
     const res = evaluateModel(m, ctx);
     assert.ok(res.complete, `${m.name} should be COMPLETE in the full-pass context: ${JSON.stringify(res.gateTrace)}`);
   }

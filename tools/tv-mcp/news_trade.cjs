@@ -242,7 +242,7 @@ function minutesUntil(targetTime) {
   }
 
   // ═══ SAVE PLAN ═══
-  const DATE = new Date().toISOString().split("T")[0];
+  const DATE = require("../ny_time.cjs").getNYDate();
   const plan = {
     event: nextEvent.title || nextEvent.name,
     time: nextEvent.time || eventTime,

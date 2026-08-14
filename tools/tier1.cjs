@@ -6,7 +6,7 @@ const { execSync } = require("child_process");
 const { calcATR, loadCandles } = require("./lib/metrics.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }

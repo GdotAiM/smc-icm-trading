@@ -7,7 +7,7 @@ const path = require("path");
 // Narrative engine — reads pre-generated outputs, no exec needed
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const ny = require("./ny_time.cjs");
 const NY_HOUR = ny.getNYHour();
 const DAY_NUM = ny.getNYDay();

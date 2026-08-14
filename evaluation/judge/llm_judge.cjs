@@ -7,7 +7,7 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "../..");
 const PAIR = process.argv[2] || "XAUUSD";
-const DATE = process.argv[3] || new Date().toISOString().split("T")[0];
+const DATE = process.argv[3] || require("../../tools/ny_time.cjs").getNYDate();
 
 // ═══ LOAD RUBRIC ═══
 const RUBRIC_PATH = path.join(__dirname, "rubric.md");
@@ -173,16 +173,126 @@ if (analysis.length === 0) {
   process.exit(1);
 }
 
-// Use rule-based scoring (always available, no API cost)
-// LLM-based scoring can be added by checking for ANTHROPIC_API_KEY
-const result = ruleBasedScore(analysis);
+// ═══ WP-15: Attempt LLM-based scoring, fall back to rule-based ═══
+let result = null;
 
-// Add metadata
-result.pair = PAIR;
-result.date = DATE;
-result.stagesPresent = analysis.map(a => a.stage).filter((v, i, s) => s.indexOf(v) === i);
-result.totalStages = result.stagesPresent.length;
-result.mode = "rule-based";
+// Check for available LLM keys
+function findLLMKey() {
+  try {
+    const envPath = path.join(ROOT, ".env");
+    if (!fs.existsSync(envPath)) return null;
+    const env = fs.readFileSync(envPath, "utf8");
+    const providers = [
+      { key: "ANTHROPIC_API_KEY", name: "claude" },
+      { key: "GEMINI_API_KEY", name: "gemini" },
+      { key: "OPENAI_API_KEY", name: "openai" },
+      { key: "GROQ_API_KEY", name: "groq" },
+    ];
+    for (const p of providers) {
+      const match = env.match(new RegExp(`${p.key}=(.+?)($|\\s|\\n)`));
+      if (match && match[1].trim().length > 10) return p;
+    }
+  } catch { return null; }
+  return null;
+}
+
+const llmProvider = findLLMKey();
+let llmResult = null;
+
+if (llmProvider) {
+  try {
+    // Re-read env to get the actual key value
+    let apiKey = process.env[llmProvider.key];
+    if (!apiKey) {
+      try {
+        const envContent = fs.readFileSync(path.join(ROOT, ".env"), "utf8");
+        const keyMatch = envContent.match(new RegExp(`${llmProvider.key}=(.+?)(\\s|\\n|$)`));
+        if (keyMatch) apiKey = keyMatch[1].trim();
+      } catch {}
+    }
+    if (!apiKey) throw new Error("No API key found");
+
+    // Build a compact prompt for the LLM
+    const allText = analysis.map(a => `[${a.stage}/${a.file}]\n${a.content}`).join("\n\n---\n\n");
+    const prompt = `You are an ICT trading quality auditor. Score this SMC analysis on 5 dimensions (each 0-25, total 100):
+
+1. DIRECTIONAL CORRECTNESS (0-25): Is the bias clearly stated with multi-TF cascade? Is it consistent throughout?
+2. ICT RULE ADHERENCE (0-22): Are ICT concepts (IPDA, MMXM, MSS, FVG, OB, SMT, CISD, PO3, Silver Bullet) correctly applied? Any rule violations (NY Lunch entry, Asian entry, correlated pairs)?
+3. REASONING QUALITY (0-18): Is there a logical chain from HTF context → LTF entry? Counter-evidence considered? Narrative consistency?
+4. ACTIONABILITY (0-15): Is there a specific entry, SL, TP? Is the plan executable? Or is NO TRADE correctly justified?
+5. COMPLETENESS (0-10): Are all stages present? Any placeholder or empty sections?
+
+Analysis to score:
+${allText.slice(0, 8000)}
+
+Respond with ONLY valid JSON: {"scores":{"directional":N,"ict":N,"reasoning":N,"actionable":N,"completeness":N},"totalScore":N,"grade":"A/B/C/D/F","criticalIssues":["..."],"warnings":["..."],"verdict":"PASSED/CAUTION/BLOCKED","narrative":"one sentence summary"}`;
+    if (apiKey) {
+      let response;
+      if (llmProvider.name === "gemini") {
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        response = await fetch(geminiUrl, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.3, maxOutputTokens: 1024 } }),
+          signal: AbortSignal.timeout(15000),
+        });
+      } else if (llmProvider.name === "groq") {
+        response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ model: "llama-3.3-70b-versatile", messages: [{ role: "user", content: prompt }], temperature: 0.3, max_tokens: 1024 }),
+          signal: AbortSignal.timeout(15000),
+        });
+      } else {
+        // Generic OpenAI-compatible
+        const baseUrl = llmProvider.name === "openai" ? "https://api.openai.com/v1" : "https://api.anthropic.com/v1";
+        response = await fetch(`${baseUrl}/chat/completions`, {
+          method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ model: llmProvider.name === "openai" ? "gpt-4o-mini" : "claude-haiku-4-5-20251001", messages: [{ role: "user", content: prompt }], temperature: 0.3, max_tokens: 1024 }),
+          signal: AbortSignal.timeout(15000),
+        });
+      }
+      if (response?.ok) {
+        const data = await response.json();
+        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text
+          || data?.choices?.[0]?.message?.content
+          || data?.content?.[0]?.text
+          || "";
+        const jsonMatch = text.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          llmResult = JSON.parse(jsonMatch[0]);
+          llmResult.mode = `llm-${llmProvider.name}`;
+        }
+      }
+    }
+  } catch (e) {
+    // LLM call failed — fall through to rule-based
+    llmResult = null;
+  }
+}
+
+// Use LLM result if available, otherwise fall back to rule-based
+if (llmResult?.totalScore != null) {
+  result = {
+    pair: PAIR, date: DATE,
+    ...llmResult.scores,
+    totalScore: llmResult.totalScore,
+    grade: llmResult.grade || "B",
+    criticalIssues: llmResult.criticalIssues || [],
+    warnings: llmResult.warnings || [],
+    verdict: llmResult.verdict || "CAUTION",
+    narrative: llmResult.narrative || "",
+    mode: llmResult.mode || "llm",
+    stagesPresent: analysis.map(a => a.stage).filter((v, i, s) => s.indexOf(v) === i),
+    totalStages: analysis.map(a => a.stage).filter((v, i, s) => s.indexOf(v) === i).length,
+  };
+} else {
+  // Rule-based fallback — honestly labeled
+  result = ruleBasedScore(analysis);
+  result.pair = PAIR;
+  result.date = DATE;
+  result.stagesPresent = analysis.map(a => a.stage).filter((v, i, s) => s.indexOf(v) === i);
+  result.totalStages = result.stagesPresent.length;
+  result.mode = llmProvider ? `rule-based-fallback(${llmProvider.name}-failed)` : "rule-based(no-llm-key)";
+}
 
 // Save score to judge ledger
 const JUDGE_LEDGER = path.join(ROOT, "evaluation", "judge", "judge_ledger.jsonl");

@@ -10,7 +10,7 @@ const path = require("path");
 const { determineState, resolveCyclePhase, TRANSITIONS, detectNextTransition } = require("./lib/cycle_phase.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const ny = require("./ny_time.cjs");
 const NY_HOUR = ny.getNYHour();
 

@@ -69,7 +69,7 @@ for (const tool of CRITICAL_TOOLS) {
 // ═══════════════════════════════════════════════════
 console.log("\n═══ DATA INTEGRITY ═══");
 
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("../../tools/ny_time.cjs").getNYDate();
 const PAIRS = [
   { name: "XAUUSD", dir: "GOLD" },
   { name: "EURUSD", dir: "EURUSD" },

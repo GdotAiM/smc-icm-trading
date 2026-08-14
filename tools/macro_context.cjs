@@ -5,7 +5,7 @@ const path = require("path");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const now = new Date();
-const DATE = now.toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const { getNYHour, getNYDay, getNYSession, isInKillzoneNY, isInSilverBulletNY, NY_DAYS } = require("./ny_time.cjs");
 const NY_HOUR = getNYHour();
 const DAY_NUM = getNYDay();
@@ -207,7 +207,7 @@ const dayMd = `# Macro Context — ${DATE} — ${DAY}
 ## Weekly Position
 - **Week Phase**: ${weekPhase}
 - **Week of Month**: ${WEEK_OF_MONTH}
-- **Expected Pattern**: ${DAY_NUM === 3 ? 'Classic ICT Wednesday reversal — watch for manipulation then expansion' : DAY_NUM === 4 ? 'Strong trending day — MMXM and trend-following models favored' : DAY_NUM === 5 ? 'Position squaring — take profits, no new swing risk' : 'Standard session flow'}
+- **Expected Pattern**: ${cycle.phase === 'MANIPULATION' ? 'Manipulation phase — watch for sweep then reversal' : cycle.phase === 'DISTRIBUTION' ? 'Distribution phase — MMXM and trend-following models favored' : cycle.phase === 'EXPANSION' ? 'Expansion phase — take profits, no new swing risk' : 'Structure-based (not calendar-based)'}
 - **Caution**: ${profile.note}
 
 ## Monthly Events
@@ -260,10 +260,10 @@ ${cycle.narrative}
 - **Inducement Occurred**: ${r1d && r1d.liquidity.some(p => p.swept) ? '✅ Yes — liquidity sweep detected' : '⏳ Not yet — waiting for manipulation'}
 - **Action**: **${mmxmStep.action}**
 
-## Day-Phase Interaction
-- **Today's typical phase**: ${DAY_NUM === 1 ? 'Accumulation → late Manipulation' : DAY_NUM === 2 ? 'Manipulation → early Distribution' : DAY_NUM === 3 ? 'Manipulation (reversal) → Distribution' : DAY_NUM === 4 ? 'Distribution → Expansion' : DAY_NUM === 5 ? 'Expansion AM → Accumulation PM' : 'Weekend'}
-- **Actual phase**: ${cycle.phase}
-- **Alignment**: ${(DAY_NUM === 3 && cycle.phase === 'MANIPULATION') ? '✅ TEXTBOOK — Wednesday reversal in manipulation phase' : (DAY_NUM === 4 && (cycle.phase === 'DISTRIBUTION' || cycle.phase === 'EXPANSION')) ? '✅ TEXTBOOK — Thursday expansion/distribution' : (DAY_NUM === 1 && cycle.phase === 'ACCUMULATION') ? '✅ TEXTBOOK — Monday accumulation' : '⚠️ Day and phase not in textbook alignment'}
+## Cycle Phase (structure-based — never the calendar)
+- **Actual phase**: ${cycle.phase}${cycle.source ? ` (from ${cycle.source} structure)` : ''} — ${cycle.narrative}
+- **Policy**: PO3/AMD is a price-and-time delivery cycle, never a day-of-week table. Phase comes from sweeps/BOS/CHoCH/displacement (lib/cycle_phase.cjs), or UNKNOWN when structure cannot decide.
+- **Context**: ${cycle.phase === 'ACCUMULATION' ? 'Building — wait for the manipulation sweep before entries.' : cycle.phase === 'MANIPULATION' ? 'Sweep active — enter on the reversal AFTER the sweep confirms.' : cycle.phase === 'DISTRIBUTION' ? 'Trend established — enter on retracements to PD arrays.' : cycle.phase === 'EXPANSION' ? 'Blow-off — trail stops, no new entries.' : 'Structure ambiguous — no fabricated phase.'}
 `;
 fs.writeFileSync(path.join(outDir, "cycle_phase.md"), cycleMd, "utf8");
 

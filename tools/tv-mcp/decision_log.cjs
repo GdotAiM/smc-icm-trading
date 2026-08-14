@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("../ny_time.cjs").getNYDate();
 const LOG_PATH = path.join(ROOT, "shared", DATE, "decision_journal.md");
 
 const event = process.argv[2] || "LOG";

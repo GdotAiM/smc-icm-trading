@@ -43,8 +43,11 @@ const SILENT = args.silent === "true";
 const DEBUG = args.debug === "true";
 
 // TF-aware bar counts — higher TFs get fewer bars to keep structure analysis focused on recent price action
+// 1m needs enough history to cover BOTH the prior day's NY lunch window (10:00-13:30 ET, for the
+// Lunch Reversal carry-forward) AND today's 7-9AM pre-session range (for High Precision grading).
+// 3000 bars ≈ 50 hours — spans both windows no matter when during the NY day the fetch runs.
 const TF_DEFAULT_BARS = {
-  "1m": 400,   // ~6.5 hours of 1m data
+  "1m": 3000,  // ~50 hours of 1m data — prior-day lunch + today's 7-9AM range
   "5m": 400,   // ~33 hours of 5m data
   "15m": 200,  // ~50 hours of 15m data (~2 days)
   "1h": 120,   // ~5 days of 1h data
@@ -130,7 +133,8 @@ async function fetchCandles(client, symbol, resolution, barCount) {
 
   for (const tf of TFS) {
     const res = TV_RESOLUTIONS[tf] || "5";
-    const tfBars = TF_DEFAULT_BARS[tf] || 400;
+    // --bars overrides ALL timeframes (deep refresh); otherwise the TF default
+    const tfBars = (args.bars ? parseInt(args.bars, 10) : null) || TF_DEFAULT_BARS[tf] || 400;
     try {
       const candles = await fetchCandles(client, TV_SYMBOL, res, tfBars);
       results.timeframes[tf] = { count: candles.length, last: candles[candles.length - 1] };

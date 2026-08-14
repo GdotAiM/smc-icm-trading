@@ -19,7 +19,7 @@ const TRADES = [
   const ev = async (e) => { const res = await client.Runtime.evaluate({ expression: e, returnByValue: true }); return res.result.value; };
   const sleep = (ms) => new Promise(r => setTimeout(r, ms));
   const ROOT = "C:/Users/cash/smc-icm-trading";
-  const DATE = new Date().toISOString().split("T")[0];
+  const DATE = require("../ny_time.cjs").getNYDate();
 
   const results = [];
 

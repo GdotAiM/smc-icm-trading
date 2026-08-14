@@ -18,7 +18,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100", "DXY"];
 // Use full broker prefixes for reliable TV symbol resolution
 const TV_SYMBOLS = {
@@ -112,6 +112,7 @@ async function ensureChartTab() {
 log("═══ STEP 2: Fetch candles from TradingView ═══");
 
 async function fetchFromTV() {
+  const failures = [];
   const CDP = require("./tv-mcp/cdp_client.cjs");
   const targetId = await ensureChartTab();
   const client = await CDP({ host: "127.0.0.1", port: 9222, target: targetId });
@@ -151,11 +152,23 @@ async function fetchFromTV() {
         catch(e) { return "ERROR"; }
       })()`);
       if (retrySymbol !== tvSymbol) {
-        log(`  ❌ Retry failed: still showing ${retrySymbol} instead of ${tvSymbol}`);
+        log(`  ❌ Retry failed: still showing ${retrySymbol} instead of ${tvSymbol} — SKIPPING pair (wrong-symbol data corruption prevention)`);
+        failures.push(`${pair}/${tf}: wrong symbol ${retrySymbol}`);
+        return; // WP-15: skip this pair entirely — don't write wrong-instrument data
       } else {
         log(`  ✅ Retry OK: ${retrySymbol}`);
       }
     }
+
+    // WP-15: price-range sanity map — reject candles outside valid bounds (corrupt price guard)
+    const PRICE_GUARDS = {
+      EURUSD: { min: 0.50, max: 2.00, label: "EURUSD" },
+      GBPUSD: { min: 0.80, max: 2.50, label: "GBPUSD" },
+      XAUUSD: { min: 500, max: 10000, label: "XAUUSD" },
+      NAS100: { min: 5000, max: 50000, label: "NAS100" },
+      DXY: { min: 50, max: 200, label: "DXY/USDOLLAR" },
+    };
+    const guard = PRICE_GUARDS[pair] || PRICE_GUARDS[pairLabel] || { min: -Infinity, max: Infinity, label: pair };
 
     for (const tf of TFS) {
       const resolution = TV_TF_MAP[tf];
@@ -170,7 +183,9 @@ async function fetchFromTV() {
           var api = window.TradingViewApi._activeChartWidgetWV.value();
           var bars = api._chartWidget.model().mainSeries().bars();
           var end = bars.lastIndex();
-          var start = Math.max(bars.firstIndex(), end - 400 + 1);
+          // 1m needs deep history for the 7-9AM pre-session range and the prior
+          // day's lunch carry-forward; higher TFs stay focused on recent action.
+          var start = Math.max(bars.firstIndex(), end - ${tf === "1m" ? 3000 : 400} + 1);
           var candles = [];
           for (var i = start; i <= end; i++) {
             var v = bars.valueAt(i);
@@ -183,8 +198,19 @@ async function fetchFromTV() {
       })()`);
 
       const outPath = path.join(ROOT, "shared", DATE, pair, `candles_${tf}.json`);
-      fs.writeFileSync(outPath, JSON.stringify(data.candles || [], null, 2));
-      process.stderr.write(`    ${tf}: ${data.count || 0}c `);
+      // WP-15: price-range sanity check — reject corrupt candles before writing
+      const candles = data.candles || [];
+      const badCandles = candles.filter(c => {
+        const prices = [c.open, c.high, c.low, c.close].filter(p => typeof p === 'number' && isFinite(p));
+        return prices.length > 0 && prices.some(p => p < guard.min || p > guard.max);
+      });
+      if (badCandles.length > candles.length * 0.1) {
+        log(`    ❌ ${tf}: ${badCandles.length}/${candles.length} candles outside ${guard.label} range — CORRUPT, skipped`);
+        failures.push(`${pair}/${tf}: corrupt candles (${badCandles.length} outside range)`);
+      } else {
+        fs.writeFileSync(outPath, JSON.stringify(candles, null, 2));
+        process.stderr.write(`    ${tf}: ${data.count || 0}c `);
+      }
     }
     process.stderr.write("\n");
   }

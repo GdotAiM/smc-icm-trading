@@ -5,7 +5,7 @@ const path = require("path");
 
 const TMP = process.env.TEMP || "/tmp";
 const ENGINE = "C:\\Users\\cash\\smc-icm-trading\\tools\\smc-engine";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("../ny_time.cjs").getNYDate();
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const SHARED = path.join(ROOT, "shared", DATE);
 

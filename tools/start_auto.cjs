@@ -22,7 +22,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const LOG_FILE = path.join(ROOT, "shared", DATE, "start_auto.log");
 
 const REFRESH = process.argv.includes("--refresh");

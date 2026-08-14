@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const SHARED = path.join(ROOT, "shared", DATE);
 const TFS = ["1W", "1D", "4H", "1H", "15m", "5m", "1m"];
 

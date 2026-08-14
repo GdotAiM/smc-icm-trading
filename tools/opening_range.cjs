@@ -19,7 +19,7 @@ const path = require("path");
 const ny = require("./ny_time.cjs");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const PAIR = process.argv[2] || "GBPUSD";
 
 function r5(v) { return Number(v).toFixed(5); }

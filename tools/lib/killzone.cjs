@@ -13,10 +13,13 @@ const path = require("path");
 
 const CONFIG_PATH = path.resolve(__dirname, "../../_config/constants.json");
 
+// WP-15: aligned with ny_time.cjs NY_KILLZONES (end-exclusive).
+// Prior defaults were shifted 1h early vs the canonical NY time engine.
+// londonPM (05-08) is NOT a killzone per ICT — dead overlap, monitor only.
 const DEFAULT_KILLZONES = [
   { name: "London", start: 2, end: 5 },
-  { name: "NY AM", start: 7, end: 10 },
-  { name: "NY PM", start: 12, end: 15 },
+  { name: "NY AM", start: 8, end: 11 },
+  { name: "NY PM", start: 13, end: 16 },
 ];
 
 function loadKillzones() {

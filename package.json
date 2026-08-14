@@ -14,6 +14,10 @@
     "journal": "node tools/ict_continuous_learn.cjs --run",
     "graph": "node tools/trade_graph.cjs --rebuild",
     "calendar": "python tools/economic_calendar.py --today-only --output shared/today_events.json",
+    "operator": "node tools/llm/operator_loop.cjs",
+    "op-brief": "node tools/llm/market_brief.cjs",
+    "op-ledger": "node tools/llm/ledger.cjs",
+    "op-report": "node tools/llm/operator_report.cjs",
     "test": "node --test tests/*.test.cjs"
   },
   "dependencies": {

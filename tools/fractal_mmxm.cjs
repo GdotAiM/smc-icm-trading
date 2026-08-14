@@ -7,8 +7,8 @@ const fs = require("fs");
 const path = require("path");
 const { CONFIG } = require("./lib/engine_config.cjs");
 
-const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
+const DATE = require("./ny_time.cjs").getNYDate();
 
 function r2(v) { return Number(v).toFixed(2); }
 function r5(v) { return Number(v).toFixed(5); }
@@ -119,34 +119,46 @@ function detectInversion(report1m, report5m, htfBias) {
   const swept1m = (r1m.liquidity || []).filter(p => p.swept);
   const fvgs1m = r1m.fvgs || [];
   const disp1m = r1m.volumeDisplacement?.label || "weak";
+  const dispRatio = r1m.volumeDisplacement?.atrRatio || 0;
 
-  // Inversion criteria:
-  // 1. CHoCH on 1m (structure break)
-  // 2. Recent sweep on 1m (liquidity taken)
-  // 3. 1m bias aligned with HTF direction (the reversal is in the HTF direction)
-  // 4. FVG present from the displacement
-
+  // WP-15: Inversion is a SEQUENCE, not a score — ICT teaches the 1m "sentence":
+  //   SWEEP (subject) → CHoCH (verb) → FVG (object)
+  // You either have a complete sentence or you don't. Alignment and displacement
+  // are quality modifiers — they affect confidence and sizing, not detection.
   const hasCHoCH = event1m === "CHoCH";
   const hasRecentSweep = swept1m.length > 0;
   const alignedWithHTF = bias1m === htfBias;
   const hasEntryFVG = fvgs1m.some(f => f.type === htfBias);
   const strongDisp = disp1m === "strong" || disp1m === "moderate";
 
-  const score = (hasCHoCH ? 2 : 0) + (hasRecentSweep ? 2 : 0) + (alignedWithHTF ? 2 : 0) + (hasEntryFVG ? 1 : 0) + (strongDisp ? 1 : 0);
-  // Threshold sourced from engine_config so the gate and the detector can
-  // never disagree (Remediation WP-13 / audit Bug 6.5).
-  const detected = score >= CONFIG.inversion.minScore;
+  // Core sequence: all three must pass for inversion to be detected
+  const coreSequence = hasCHoCH && hasRecentSweep && hasEntryFVG;
+  // Quality grade (informational — affects narrative, not detection)
+  const qualityScore = (alignedWithHTF ? 1 : 0) + (strongDisp ? 1 : 0);
+  const quality = qualityScore === 2 ? "PREMIUM" : qualityScore === 1 ? "ADEQUATE" : "WEAK";
+
+  // Legacy numeric score (kept for CONFIG compatibility, but detection is sequence-based)
+  const score = (hasCHoCH ? 2 : 0) + (hasRecentSweep ? 2 : 0) + (hasEntryFVG ? 2 : 0) + (alignedWithHTF ? 1 : 0) + (strongDisp ? 1 : 0);
+
+  const detected = coreSequence;
 
   return {
     detected,
     score,
     maxScore: 8,
+    coreSequence,          // NEW: the boolean sequence gate
+    quality,               // NEW: PREMIUM / ADEQUATE / WEAK
+    qualityScore,
     hasCHoCH, hasRecentSweep, alignedWithHTF, hasEntryFVG, strongDisp,
     narrative: detected ?
-      `✅ 1m INVERSION DETECTED — CHoCH + sweep + FVG aligned with HTF ${htfBias}. This is the entry sentence within the larger MMXM story.` :
-      score >= CONFIG.inversion.minScore - 1 ?
-      `⏳ 1m Inversion BUILDING — ${score}/8 signals. ${hasCHoCH ? 'CHoCH ✓' : 'Waiting for CHoCH'}. ${hasRecentSweep ? 'Sweep ✓' : 'Waiting for sweep'}.` :
-      `⏳ 1m Inversion NOT YET — ${score}/8 signals. Wait for CHoCH + sweep on 1m.`,
+      `✅ 1m INVERSION DETECTED — SWEEP + CHoCH + FVG complete. Quality: ${quality}. The entry sentence is written.` :
+      !hasRecentSweep && !hasCHoCH ?
+      `⏳ 1m Inversion NOT READY — no sweep AND no CHoCH on 1m. Price hasn't begun the reversal sentence.` :
+      !hasRecentSweep ?
+      `⏳ 1m Inversion MISSING SWEEP — CHoCH detected but no liquidity swept. Wait for sweep before the reversal.` :
+      !hasCHoCH ?
+      `⏳ 1m Inversion MISSING CHoCH — sweep present but no structure reversal (event=${event1m}). Need CHoCH, not just BOS.` :
+      `⏳ 1m Inversion MISSING FVG — sweep + CHoCH present but no displacement FVG in ${htfBias} direction. Wait for the object of the sentence.`,
   };
 }
 
@@ -333,20 +345,32 @@ ${sixConfirmations.map((c, i) => `| ${i + 1} | ${c.name} | ${c.passed ? '✅' : 
 
 fs.writeFileSync(path.join(outDir, `${PAIR.toLowerCase()}_fractal_mmxm.md`), out, "utf8");
 
-console.log(JSON.stringify({
-  pair: pairLabel,
-  htfBias,
-  mmxmSteps: Object.fromEntries(TFS.map(tf => [tf, mmxm[tf].step])),
-  nestingScore: nesting.score,
-  nestingMax: nesting.maxScore,
-  inversionScore: inversion.score,
-  inversionMax: inversion.maxScore,
-  inversionDetected: inversion.detected,
-  cisdDetected: cisd.detected,
-  smtDetected: smt.detected,
-  confirmationsPassed,
-  fractalScore,
-  fractalMax,
-  fractalLabel: fractalLabel(fractalScore),
-  output: `stages/05b_micro_confirmation/output/${PAIR.toLowerCase()}_fractal_mmxm.md`,
-}, null, 2));
+// Only run CLI output when executed directly (not required as a module)
+if (require.main === module) {
+  console.log(JSON.stringify({
+    pair: pairLabel,
+    htfBias,
+    mmxmSteps: Object.fromEntries(TFS.map(tf => [tf, mmxm[tf].step])),
+    nestingScore: nesting.score,
+    nestingMax: nesting.maxScore,
+    inversionScore: inversion.score,
+    inversionMax: inversion.maxScore,
+    inversionDetected: inversion.detected,
+    cisdDetected: cisd.detected,
+    smtDetected: smt.detected,
+    confirmationsPassed,
+    fractalScore,
+    fractalMax,
+    fractalLabel: fractalLabel(fractalScore),
+    output: `stages/05b_micro_confirmation/output/${PAIR.toLowerCase()}_fractal_mmxm.md`,
+  }, null, 2));
+}
+
+module.exports = {
+  classifyMmxmStep,
+  detectInversion,
+  checkFractalNesting,
+  detectCISD,
+  detectSMT,
+  fractalLabel,
+};

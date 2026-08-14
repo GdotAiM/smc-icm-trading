@@ -25,7 +25,7 @@ function record() {
     pair: PAIR,
     stage: STAGE,
     durationMs: DURATION_MS,
-    date: new Date().toISOString().split("T")[0],
+    date: require("../../tools/ny_time.cjs").getNYDate(),
     nyHour: getNYHour(),
   };
 
@@ -123,7 +123,7 @@ function benchmark() {
         pair,
         stage,
         durationMs: perStage,
-        date: new Date().toISOString().split("T")[0],
+        date: require("../../tools/ny_time.cjs").getNYDate(),
         nyHour: getNYHour(),
       };
       fs.appendFileSync(LEDGER, JSON.stringify(entry) + "\n");

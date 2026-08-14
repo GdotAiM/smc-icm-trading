@@ -11,6 +11,7 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 const LOG_PATH = path.join(ROOT, "shared", "trade_log.json");
 const STATE_PATH = path.join(ROOT, "shared", "risk_state.json");
+const { getNYDate } = require("./ny_time.cjs");
 
 // ═══════════════ CONFIG ═══════════════
 const CONFIG = {
@@ -60,7 +61,7 @@ function getWeekKey(dateStr) {
 }
 
 function computeRisk(trades, state) {
-  const today = new Date().toISOString().split("T")[0];
+  const today = getNYDate();
   const thisWeek = getWeekKey(today);
 
   const todaysTrades = trades.filter(t => t.date === today);
@@ -133,8 +134,8 @@ if (mode === "--check") {
   console.log(JSON.stringify({
     ...result,
     totalTrades: trades.length,
-    todayCount: trades.filter(t => t.date === new Date().toISOString().split("T")[0]).length,
-    weekCount: trades.filter(t => getWeekKey(t.date) === getWeekKey(new Date().toISOString().split("T")[0])).length,
+    todayCount: trades.filter(t => t.date === getNYDate()).length,
+    weekCount: trades.filter(t => getWeekKey(t.date) === getWeekKey(getNYDate())).length,
     lastTrade: trades[trades.length - 1] || null,
   }, null, 2));
 
@@ -145,7 +146,7 @@ if (mode === "--check") {
     process.exit(1);
   }
   const trades = loadTradeLog();
-  tradeData.date = tradeData.date || new Date().toISOString().split("T")[0];
+  tradeData.date = tradeData.date || getNYDate();
   tradeData.status = tradeData.status || "CLOSED";
   tradeData.pnl = tradeData.pnl || 0;
   trades.push(tradeData);
@@ -153,8 +154,10 @@ if (mode === "--check") {
 
   // Update risk state
   const state = loadRiskState();
-  state.balance = r2(state.balance + (tradeData.pnl || 0));
-  if (state.balance > state.peakBalance) state.peakBalance = state.balance;
+  // WP-15: Number() coercion — r2() returns a string via .toFixed(2).
+  // Without coercion, the next log concatentates instead of adds, corrupting to NaN.
+  state.balance = r2(Number(state.balance) + Number(tradeData.pnl || 0));
+  if (Number(state.balance) > Number(state.peakBalance || 0)) state.peakBalance = Number(state.balance);
 
   if ((tradeData.pnl || 0) > 0) {
     state.consecutiveWins++;

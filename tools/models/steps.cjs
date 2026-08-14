@@ -10,7 +10,7 @@
 //   hour (NY hour int), bias, hasSweep, lastSweepType, hasReversal, mss,
 //   hasOB, uniqueOBs (unmitigated only), mitigatedOBs, consumedOBs,
 //   consumedAtPrice, hasFVG, fvgs, arrayInPlay, oteZone, cisd, smt,
-//   htfRanging, displacement, lecture1/2/4 subsets.
+//   htfRanging, displacement, lecture1/2/4 subsets, killzone, killzoneName.
 
 const pass = detail => ({ pass: true, detail });
 const fail = detail => ({ pass: false, detail });
@@ -18,6 +18,17 @@ const fail = detail => ({ pass: false, detail });
 const p5 = n => (Number.isFinite(n) ? Number(n).toFixed(5) : "n/a");
 
 const steps = {
+  // ── Time gate — killzone (no new entries outside London/NY windows) ──
+  // ICT: liquidity is delivered inside the killzones. A model whose window is
+  // null (always-on) must still be inside an active killzone to complete —
+  // otherwise it fires during the Asian session. Models that carry explicit
+  // timeWindows (Silver Bullet, Judas, ARB, lectures, lunch reversals) gate
+  // via inModelWindow; this step is the enforcement for the always-on set.
+  killzone(ctx) {
+    if (ctx.killzone) return pass(`${ctx.killzoneName || "a killzone"} active (NY ${ctx.hour}:00)`);
+    return fail(`outside a trading killzone at NY ${ctx.hour}:00 (${ctx.killzoneName || "off-hours"}) — no new entries`);
+  },
+
   // ── Core sequence (structure-timeframe facts) ──────────────────────
   sweep(ctx) {
     if (!ctx.hasSweep) return fail("no external liquidity sweep detected");

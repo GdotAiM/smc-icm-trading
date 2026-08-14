@@ -12,7 +12,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
-const DATE = new Date().toISOString().split("T")[0];
+let DATE = require("./ny_time.cjs").getNYDate();
 const EXECUTE = process.argv.includes("--execute");
 const ONCE = process.argv.includes("--once");
 const autoDecision = require("./auto_decision.cjs");
@@ -54,7 +54,16 @@ const SCHEDULE = [
   { time: "15:50", event: "PRE_CLOSE", action: "scan", desc: "Pre-close — close positions if Friday" },
 ];
 
-const LOG_FILE = path.join(ROOT, "shared", DATE, "auto_scheduler_log.jsonl");
+let LOG_FILE = path.join(ROOT, "shared", DATE, "auto_scheduler_log.jsonl");
+
+function refreshDate() {
+  const d = require("./ny_time.cjs").getNYDate();
+  if (d !== DATE) {
+    DATE = d;
+    LOG_FILE = path.join(ROOT, "shared", DATE, "auto_scheduler_log.jsonl");
+    console.log(`[DATE_ROLLOVER] NY date now ${DATE} — rotating scheduler log`);
+  }
+}
 
 function nyTime() { return new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York", hour12: false }); }
 function nyHour() { return parseInt(nyTime().split(":")[0]); }
@@ -237,21 +246,21 @@ function executeTrade(setup) {
 }
 
 // ═══ PYRAMID MONITOR — Auto-add at IOFED levels ═══
-const STATE_FILE = path.join(ROOT, "shared", DATE, "pyramid_state.json");
+function stateFile() { return path.join(ROOT, "shared", DATE, "pyramid_state.json"); }
 let activePositions = [];
 let pyramidFilled = {}; // Track which levels were already added
 
 // Load previous state (survives scheduler restarts)
 try {
-  if (fs.existsSync(STATE_FILE)) {
-    const state = JSON.parse(fs.readFileSync(STATE_FILE, "utf8"));
+  if (fs.existsSync(stateFile())) {
+    const state = JSON.parse(fs.readFileSync(stateFile(), "utf8"));
     activePositions = state.positions || [];
     pyramidFilled = state.filled || {};
     if (activePositions.length > 0) log("STATE_LOADED", `${activePositions.length} positions restored, ${Object.keys(pyramidFilled).length} pyramid levels filled`);
   }
 } catch {}
 function saveState() {
-  try { fs.writeFileSync(STATE_FILE, JSON.stringify({ positions: activePositions, filled: pyramidFilled })); } catch {}
+  try { fs.writeFileSync(stateFile(), JSON.stringify({ positions: activePositions, filled: pyramidFilled })); } catch {}
 }
 
 function checkPyramidLevels() {
@@ -302,6 +311,7 @@ function checkPyramidLevels() {
 
 // ═══ MAIN CYCLE ═══
 async function runCycle() {
+  refreshDate(); // Rotate to current NY date before each cycle
   const now = nyMins();
   const nyH = nyHour();
   const dayOfWeek = new Date().getDay();

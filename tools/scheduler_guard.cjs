@@ -10,10 +10,10 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
-const DATE = new Date().toISOString().split("T")[0];
+const { getNYDate } = require("./ny_time.cjs");
 
 function stateFile() {
-  return path.join(ROOT, "shared", DATE, "scheduler_state.json");
+  return path.join(ROOT, "shared", getNYDate(), "scheduler_state.json");
 }
 
 // Writes a heartbeat so other drivers know a scheduler is alive.

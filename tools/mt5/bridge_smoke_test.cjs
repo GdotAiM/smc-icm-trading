@@ -13,6 +13,7 @@ const BRIDGE = path.join(ROOT, "tools", "mt5", "mt5_bridge.py");
 
 const PY = process.env.PYTHON || "python";
 const DEV = 30;
+const REQUEST_ID = `s${Date.now() % 100000}`;  // compact for MT5 27-char comment limit
 let reqId = 0;
 let failed = 0;
 
@@ -71,8 +72,14 @@ async function main() {
   r = await req(bridge, "tick", { symbol: "GBPUSD" });
   check("tick GBPUSD -> bid>0", r.ok && r.result.bid > 0, JSON.stringify(r.result));
 
-  // 5. market_order BUY 0.01 GBPUSD with SL/TP
-  r = await req(bridge, "market_order", { symbol: "GBPUSD", side: "BUY", volume: 0.01, request_id: "smoke-001" });
+  // 4b. order_calc_profit — authoritative pip-value check
+  r = await req(bridge, "order_calc_profit", { symbol: "XAUUSD", side: "buy", volume: 1, price_open: 4380, price_close: 4381 });
+  check("order_calc_profit XAUUSD -> $100/1$ move/lot", r.ok && Math.abs(r.result.profit - 100) < 0.01, JSON.stringify(r.result));
+  r = await req(bridge, "order_calc_profit", { symbol: "GBPUSD", side: "buy", volume: 1, price_open: 1.2650, price_close: 1.2660 });
+  check("order_calc_profit GBPUSD -> $100/10pip/lot", r.ok && Math.abs(r.result.profit - 100) < 0.01, JSON.stringify(r.result));
+
+  // 5. market_order BUY 0.02 GBPUSD with SL/TP (0.02 so partial close of 0.01 is valid)
+  r = await req(bridge, "market_order", { symbol: "GBPUSD", side: "BUY", volume: 0.02, request_id: REQUEST_ID });
   check("market_order BUY -> ticket", r.ok && r.result.ticket > 0, JSON.stringify(r));
   const ticket = r.result?.ticket;
   const entry = r.result?.price;
@@ -87,21 +94,21 @@ async function main() {
   r = await req(bridge, "modify_sl_tp", { position: ticket, sl, tp });
   check("modify_sl_tp -> ok", r.ok && Math.abs(r.result.sl - sl) < 1e-6, JSON.stringify(r));
 
-  // 8. partial_close 50%
-  r = await req(bridge, "partial_close", { position: ticket, volume: 0.005, deviation: DEV });
+  // 8. partial_close 50% (0.01 from 0.02 — matches GBPUSD volume_step)
+  r = await req(bridge, "partial_close", { position: ticket, volume: 0.01, deviation: DEV });
   check("partial_close -> ok", r.ok, JSON.stringify(r));
   r = await req(bridge, "positions");
-  check("positions -> volume reduced", r.ok && Math.abs(r.result.positions[0]?.volume - 0.005) < 1e-6, JSON.stringify(r.result));
+  check("positions -> volume reduced", r.ok && Math.abs(r.result.positions[0]?.volume - 0.01) < 1e-6, JSON.stringify(r.result));
 
-  // 9. idempotency: same request_id must NOT double-place
-  r = await req(bridge, "market_order", { symbol: "GBPUSD", side: "BUY", volume: 0.01, request_id: "smoke-001" });
-  check("idempotent duplicate -> duplicate=true", r.ok && r.result.duplicate === true, JSON.stringify(r));
-
-  // 10. close_position
+  // 9. close_position (close remaining 0.01 before idempotency test)
   r = await req(bridge, "close_position", { position: ticket, deviation: DEV });
   check("close_position -> ok", r.ok, JSON.stringify(r));
   r = await req(bridge, "positions");
   check("positions -> 0 open", r.ok && r.result.count === 0, JSON.stringify(r.result));
+
+  // 10. idempotency: same request_id must NOT double-place (comment dedup catches it in history)
+  r = await req(bridge, "market_order", { symbol: "GBPUSD", side: "BUY", volume: 0.02, request_id: REQUEST_ID });
+  check("idempotent duplicate -> duplicate=true", r.ok && r.result.duplicate === true, JSON.stringify(r));
 
   // 11. history
   r = await req(bridge, "history");

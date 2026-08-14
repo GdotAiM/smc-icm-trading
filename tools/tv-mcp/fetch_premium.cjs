@@ -6,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 
 const ROOT = path.join(__dirname, "..", "..");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("../ny_time.cjs").getNYDate();
 const PAIRS = process.argv.slice(2).length > 0 ? process.argv.slice(2) : ["GBPUSD", "GOLD", "EURUSD", "DXY"];
 const FETCH_SCRIPT = path.join(__dirname, "fetch_candles.cjs");
 

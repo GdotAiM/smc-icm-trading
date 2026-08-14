@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 
 const POSITIONS = [
   { pair: "NAS100", tv: "CAPITALCOM:NAS100", entry: 28642.2, sl: 28168.7, tp: 28989.9, qty: 1, side: "BUY", time: "10:55 AM" },

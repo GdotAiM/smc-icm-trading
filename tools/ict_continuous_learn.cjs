@@ -358,7 +358,7 @@ Examples:
   }
 
   const pair = args[1] || "GBPUSD";
-  const date = args[2] || new Date().toISOString().split("T")[0];
+  const date = args[2] || require("./ny_time.cjs").getNYDate();
 
   // ── Extract Lessons ──────────────────────────────────
   if (mode === "--extract" || mode === "--run") {

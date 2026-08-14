@@ -10,7 +10,7 @@ const ROOT = "C:\\Users\\cash\\smc-icm-trading";
 const { getNYHour, getNYDate, getNYSession, isInKillzoneNY, isInSilverBulletNY, isInJudasSwingNY } = require(path.join(ROOT, "tools", "ny_time.cjs"));
 
 const NY_HOUR = getNYHour();
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 
 // NY-midnight-anchored windows: NY offsets are always whole hours and DST never
 // changes at midnight, so anchoring to today's NY date (00:00 UTC of that date)

@@ -9,8 +9,8 @@ const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
 
-const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..");
+const DATE = require("./ny_time.cjs").getNYDate();
 const TFS = ["1m", "5m", "15m", "1h", "4h", "1d", "1w"];
 const ALL_PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100"];
 const TV_SYMBOLS = {

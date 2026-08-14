@@ -39,7 +39,7 @@ import os
 import sys
 import time
 import zlib
-from datetime import datetime, time as dtime
+from datetime import datetime, timedelta, time as dtime
 from typing import Any, Optional
 
 # Make stdout line-buffered and UTF-8 safe regardless of console codepage
@@ -67,8 +67,26 @@ DEFAULT_DEVIATION = 20
 ERROR_LOG_PATH = os.path.join(WORKSPACE_ROOT, "shared")
 
 
-def _now_day_start() -> datetime:
-    return datetime.combine(datetime.now().date(), dtime.min)
+def _server_now() -> datetime:
+    """Return current server time as datetime, falling back to local time."""
+    tick = mt5.symbol_info_tick("GBPUSD")
+    if tick and tick.time:
+        return datetime.fromtimestamp(tick.time)
+    return datetime.now()
+
+
+def _day_start() -> datetime:
+    """Start of today in SERVER time (MT5 history_deals_get uses server time)."""
+    return _server_now().replace(hour=0, minute=0, second=0, microsecond=0)
+
+
+def _day_range_days(n_days: int = 3):
+    """Return (from_date, to_date) spanning n_days ago through tomorrow server time."""
+    now = _server_now()
+    return (
+        now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=n_days - 1),
+        now + timedelta(days=1),
+    )
 
 
 def _magic_for(symbol: str) -> int:
@@ -127,7 +145,8 @@ class Bridge:
     def _daily_cap(self) -> Optional[str]:
         balance = float(mt5.account_info().balance)
         realized = 0.0
-        deals = mt5.history_deals_get(_now_day_start(), datetime.now()) or []
+        from_dt, to_dt = _day_range_days(1)
+        deals = mt5.history_deals_get(from_dt, to_dt) or []
         for d in deals:
             if d.comment and d.comment.startswith("SMC."):
                 realized += float(d.profit)
@@ -244,6 +263,137 @@ class Bridge:
         step = float(s.volume_step) if s and s.volume_step else 0.01
         return round(round(volume / step) * step, 6)
 
+    def order_calc_profit(self, args: dict) -> dict:
+        """Ask MT5 for the exact profit of a hypothetical order. This is the
+        authoritative pip-value check — resolves broker tick_value quirks
+        (e.g. XAUUSD on MetaQuotes-Demo)."""
+        symbol = str(args["symbol"]).upper()
+        side = str(args.get("side", "buy")).lower()
+        volume = float(args.get("volume", 1.0))
+        price_open = float(args["price_open"])
+        price_close = float(args["price_close"])
+        err = self.ensure_ready()
+        if err:
+            raise RuntimeError(err)
+        if not mt5.symbol_select(symbol, True):
+            raise RuntimeError(f"symbol_select({symbol}) failed: {mt5.last_error()}")
+        order_type = mt5.ORDER_TYPE_BUY if side == "buy" else mt5.ORDER_TYPE_SELL
+        profit = mt5.order_calc_profit(order_type, symbol, volume, price_open, price_close)
+        margin = mt5.order_calc_margin(order_type, symbol, volume, price_open)
+        if profit is None:
+            raise RuntimeError(f"order_calc_profit failed: {mt5.last_error()}")
+        return {
+            "symbol": symbol,
+            "side": side,
+            "volume": volume,
+            "price_open": price_open,
+            "price_close": price_close,
+            "profit": round(float(profit), 6),
+            "profit_per_lot": round(float(profit) / volume, 6) if volume else None,
+            "margin": round(float(margin), 2) if margin else None,
+        }
+
+    # -- historical data ---------------------------------------------------
+    TIMEFRAMES = {
+        "M1": mt5.TIMEFRAME_M1, "M5": mt5.TIMEFRAME_M5, "M15": mt5.TIMEFRAME_M15,
+        "M30": mt5.TIMEFRAME_M30, "H1": mt5.TIMEFRAME_H1, "H2": mt5.TIMEFRAME_H2,
+        "H4": mt5.TIMEFRAME_H4, "H6": mt5.TIMEFRAME_H6, "H12": mt5.TIMEFRAME_H12,
+        "D1": mt5.TIMEFRAME_D1, "W1": mt5.TIMEFRAME_W1, "MN1": mt5.TIMEFRAME_MN1,
+    }
+
+    def copy_rates(self, args: dict) -> dict:
+        """Fetch historical candles. Returns engine-compatible Candle[]:
+        {time: ms, open, high, low, close, volume}."""
+        symbol = str(args["symbol"]).upper()
+        tf = str(args.get("tf") or "H1").upper()
+        if tf not in self.TIMEFRAMES:
+            raise RuntimeError(f"bad timeframe: {tf}")
+        err = self.ensure_ready()
+        if err:
+            raise RuntimeError(err)
+        if not mt5.symbol_select(symbol, True):
+            raise RuntimeError(f"symbol_select({symbol}) failed: {mt5.last_error()}")
+
+        tf_const = self.TIMEFRAMES[tf]
+        if args.get("from") or args.get("to"):
+            def _dt(v):
+                d = datetime.fromisoformat(str(v))
+                return d if d.tzinfo else d.replace(tzinfo=datetime.now().astimezone().tzinfo)
+            frm = _dt(args["from"]) if args.get("from") else datetime(1970, 1, 1)
+            to = _dt(args["to"]) if args.get("to") else datetime.now()
+            rates = mt5.copy_rates_range(symbol, tf_const, frm, to)
+        else:
+            count = int(args.get("count") or 500)
+            rates = mt5.copy_rates_from_pos(symbol, tf_const, 0, count)
+
+        if rates is None:
+            raise RuntimeError(f"copy_rates({symbol},{tf}) failed: {mt5.last_error()}")
+
+        candles = [{
+            "time": int(r["time"]) * 1000,
+            "open": float(r["open"]),
+            "high": float(r["high"]),
+            "low": float(r["low"]),
+            "close": float(r["close"]),
+            "volume": float(r["tick_volume"]),
+        } for r in rates]
+        return {"symbol": symbol, "tf": tf, "count": len(candles), "candles": candles}
+
+    def copy_ticks(self, args: dict) -> dict:
+        """Fetch historical ticks for replay-style simulation. Returns Tick[]:
+        {time: ms, bid, ask, last, volume}."""
+        symbol = str(args["symbol"]).upper()
+        err = self.ensure_ready()
+        if err:
+            raise RuntimeError(err)
+        if not mt5.symbol_select(symbol, True):
+            raise RuntimeError(f"symbol_select({symbol}) failed: {mt5.last_error()}")
+
+        flag = mt5.COPY_TICKS_ALL
+        if str(args.get("flags") or "all").lower() == "real":
+            flag = mt5.COPY_TICKS_TRADE
+        elif str(args.get("flags") or "all").lower() == "info":
+            flag = mt5.COPY_TICKS_INFO
+
+        if args.get("from") or args.get("to"):
+            def _dt(v):
+                d = datetime.fromisoformat(str(v))
+                return d if d.tzinfo else d.replace(tzinfo=datetime.now().astimezone().tzinfo)
+            frm = _dt(args["from"]) if args.get("from") else datetime(1970, 1, 1)
+            to = _dt(args["to"]) if args.get("to") else datetime.now()
+            ticks = mt5.copy_ticks_range(symbol, frm, to, flag)
+        else:
+            count = int(args.get("count") or 5000)
+            ticks = mt5.copy_ticks_from(symbol, datetime(1970, 1, 1), count, flag)
+
+        # Demo terminals often have no "real volume" (COPY_TICKS_TRADE) history —
+        # the call returns 0 ticks with last_error "Success". Fall back to ALL.
+        if ticks is None or len(ticks) == 0:
+            if flag != mt5.COPY_TICKS_ALL:
+                if args.get("from") or args.get("to"):
+                    ticks = mt5.copy_ticks_range(symbol, _dt(args["from"]) if args.get("from") else datetime(1970, 1, 1), _dt(args["to"]) if args.get("to") else datetime.now(), mt5.COPY_TICKS_ALL)
+                else:
+                    ticks = mt5.copy_ticks_from(symbol, datetime(1970, 1, 1), int(args.get("count") or 5000), mt5.COPY_TICKS_ALL)
+                if ticks is None or len(ticks) == 0:
+                    # Genuinely no ticks (weekend/holiday with ALL flag) — valid empty.
+                    if flag == mt5.COPY_TICKS_ALL:
+                        return {"symbol": symbol, "count": 0, "ticks": []}
+                    raise RuntimeError(f"copy_ticks({symbol}) failed: {mt5.last_error()}")
+            else:
+                # Weekend/holiday: no ticks at all is a valid empty result.
+                return {"symbol": symbol, "count": 0, "ticks": []}
+
+        out = []
+        for t in ticks:
+            out.append({
+                "time": int(t["time_msc"]) if t["time_msc"] else int(t["time"]) * 1000,
+                "bid": float(t["bid"]),
+                "ask": float(t["ask"]),
+                "last": float(t["last"]),
+                "volume": float(t.get("volume") or 0.0) if hasattr(t, "get") else float(t["volume"] or 0.0),
+            })
+        return {"symbol": symbol, "count": len(out), "ticks": out}
+
     def _filling(self, symbol: str, request: dict) -> dict:
         """Try order_send with a sensible filling mode, retrying on filling errors."""
         for filling in (mt5.ORDER_FILLING_IOC, mt5.ORDER_FILLING_FOK, mt5.ORDER_FILLING_RETURN):
@@ -314,7 +464,8 @@ class Bridge:
         }
 
     def _find_deal_by_comment(self, comment: str) -> Optional[dict]:
-        deals = mt5.history_deals_get(_now_day_start(), datetime.now()) or []
+        from_dt, to_dt = _day_range_days(3)
+        deals = mt5.history_deals_get(from_dt, to_dt) or []
         for d in deals:
             if d.comment == comment:
                 return {"ticket": d.position_id, "deal": d.ticket, "symbol": d.symbol, "price": d.price}
@@ -417,7 +568,8 @@ class Bridge:
         err = self.ensure_ready()
         if err:
             raise RuntimeError(err)
-        deals = mt5.history_deals_get(_now_day_start(), datetime.now()) or []
+        from_dt, to_dt = _day_range_days(1)
+        deals = mt5.history_deals_get(from_dt, to_dt) or []
         mine = [d for d in deals if d.comment and d.comment.startswith("SMC.")]
         realized = sum(float(d.profit) for d in mine)
         open_pnl = sum(float(p.profit) for p in (mt5.positions_get() or []))
@@ -440,6 +592,12 @@ class Bridge:
             return self.symbol_info(str(args["symbol"]).upper())
         if cmd == "tick":
             return self.tick(str(args["symbol"]).upper())
+        if cmd == "copy_rates":
+            return self.copy_rates(args)
+        if cmd == "copy_ticks":
+            return self.copy_ticks(args)
+        if cmd == "order_calc_profit":
+            return self.order_calc_profit(args)
         if cmd == "market_order":
             return self.market_order(args)
         if cmd == "modify_sl_tp":

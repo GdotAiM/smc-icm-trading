@@ -23,6 +23,46 @@ const TV_SYM = TV_SYMBOLS[PAIR] || PAIR;
 const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "../..");
 
+// ═══ WP-15: Idempotency guard — prevent duplicate orders ═══
+const IDEMPOTENCY_WINDOW_MS = 60_000; // 60 seconds
+const IDEMPOTENCY_LOG = path.join(__dirname, "..", "..", "shared", "order_placement_log.jsonl");
+const PRICE_TOLERANCE = 0.001; // 0.1% price tolerance for duplicate detection
+
+function isDuplicate() {
+  try {
+    if (!fs.existsSync(IDEMPOTENCY_LOG)) return false;
+    const lines = fs.readFileSync(IDEMPOTENCY_LOG, "utf8").trim().split("\n").filter(Boolean);
+    const now = Date.now();
+    const entryPrice = parseFloat(STOP); // rough: use SL as unique key for the setup
+    for (const line of lines) {
+      try {
+        const prev = JSON.parse(line);
+        const age = now - prev.timestamp;
+        if (age > IDEMPOTENCY_WINDOW_MS) continue;
+        if (prev.pair !== PAIR || prev.side !== SIDE) continue;
+        const priceDiff = Math.abs((prev.sl || 0) - entryPrice) / Math.max(entryPrice, 0.00001);
+        if (priceDiff < PRICE_TOLERANCE) {
+          console.error(`DUPLICATE: ${PAIR} ${SIDE} SL=${STOP} — identical order placed ${Math.round(age/1000)}s ago (${prev.timestamp})`);
+          return true;
+        }
+      } catch { continue; }
+    }
+  } catch { return false; }
+  return false;
+}
+
+if (isDuplicate()) {
+  console.log(JSON.stringify({ placed: false, reason: "DUPLICATE — identical order within 60 seconds" }));
+  process.exit(2);
+}
+
+// Log placement intent BEFORE execution
+try {
+  const intent = { timestamp: Date.now(), pair: PAIR, side: SIDE, sl: parseFloat(STOP), tp: parseFloat(TARGET), qty: parseInt(QTY) };
+  fs.mkdirSync(path.dirname(IDEMPOTENCY_LOG), { recursive: true });
+  fs.appendFileSync(IDEMPOTENCY_LOG, JSON.stringify(intent) + "\n", "utf8");
+} catch { /* non-critical */ }
+
 (async () => {
   const r = await fetch("http://127.0.0.1:9222/json/list");
   const targets = await r.json();

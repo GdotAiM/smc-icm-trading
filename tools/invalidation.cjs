@@ -5,7 +5,7 @@ const path = require("path");
 const { calcATR, loadCandles } = require("./lib/metrics.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const ny = require("./ny_time.cjs");
 const time = require("./lib/time.cjs");
 const NY_HOUR = ny.getNYHour();

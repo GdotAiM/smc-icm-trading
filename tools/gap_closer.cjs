@@ -5,7 +5,7 @@ const path = require("path");
 const ny = require("./ny_time.cjs");
 
 const ROOT = "C:\\Users\\cash\\smc-icm-trading";
-const DATE = new Date().toISOString().split("T")[0];
+const DATE = require("./ny_time.cjs").getNYDate();
 const DAY_NUM = ny.getNYDay();
 const EFFECTIVE_DAY = DAY_NUM === 0 ? 1 : DAY_NUM;
 
