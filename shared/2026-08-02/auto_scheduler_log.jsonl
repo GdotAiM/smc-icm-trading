@@ -1,8 +1,0 @@
-{"time":"2026-08-02T17:47:31.590Z","nyTime":"13:47:31","event":"SCHEDULER_START","detail":"Mode: MONITOR | Day: Sun"}
-{"time":"2026-08-02T17:47:31.595Z","nyTime":"13:47:31","event":"WEEKEND","detail":"Markets closed — scheduler paused"}
-{"time":"2026-08-02T17:51:40.773Z","nyTime":"13:51:40","event":"SCHEDULER_START","detail":"Mode: MONITOR | Day: Sun"}
-{"time":"2026-08-02T17:51:40.776Z","nyTime":"13:51:40","event":"WEEKEND","detail":"Markets closed — scheduler paused"}
-{"time":"2026-08-02T17:57:46.670Z","nyTime":"13:57:46","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Sun"}
-{"time":"2026-08-02T17:57:46.680Z","nyTime":"13:57:46","event":"WEEKEND","detail":"Markets closed — scheduler paused"}
-{"time":"2026-08-02T18:34:33.102Z","nyTime":"14:34:33","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Sun"}
-{"time":"2026-08-02T18:34:33.104Z","nyTime":"14:34:33","event":"WEEKEND","detail":"Markets closed — scheduler paused"}

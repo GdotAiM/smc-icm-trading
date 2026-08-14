@@ -22,6 +22,24 @@ data/mock_broker/
 shared/*/trade_execution.json
 shared/*/*/trade_execution.json
 
+# Runtime daily data (regenerated every run)
+shared/*/
+shared/trade_graph.json
+shared/trade_log.json
+shared/mt5_bridge.pid
+shared/mt5_bridge_state.json
+shared/operator_planner_state.json
+shared/order_placement_log.jsonl
+
+# Stage outputs (regenerated each run)
+stages/*/output/
+
+# Tools shared runtime data
+tools/shared/
+
+# Evaluation run ledgers
+evaluation/**/*.jsonl
+
 # Editor
 .vscode/
 .idea/

@@ -1,4 +1,0 @@
-{"timestamp":"2026-08-10T09:31:57.484Z","pair":"DXY","event":"SESSION_START","date":"2026-08-10","nyTime":{"hour":5,"day":1,"dayName":"Monday"},"nodeVersion":"v24.15.0"}
-{"timestamp":"2026-08-10T09:32:11.772Z","pair":"DXY","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":14,"status":"PARTIAL","stageList":[]}
-{"timestamp":"2026-08-10T10:49:44.939Z","pair":"DXY","event":"SESSION_START","date":"2026-08-10","nyTime":{"hour":6,"day":1,"dayName":"Monday"},"nodeVersion":"v24.15.0"}
-{"timestamp":"2026-08-10T10:50:00.320Z","pair":"DXY","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":4683,"status":"PARTIAL","stageList":[]}
