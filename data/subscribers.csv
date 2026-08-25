@@ -1,0 +1,6 @@
+# ICT Alert Service Subscribers
+# Columns: name,email,stripe_payment_id,joined_date,symbols,status
+# status: active | churned
+#
+# Example:
+# John Doe,john@example.com,pi_xxx,2026-08-25,EURUSD,GBPUSD,XAUUSD,active
