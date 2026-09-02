@@ -1,0 +1,36 @@
+{
+  "pair": "XAUUSD",
+  "today": "2026-08-13",
+  "prevDate": "2026-08-12",
+  "found": false,
+  "summary": "Insufficient NY lunch candles in prior day",
+  "candlesAnalyzed": 400,
+  "lunchCandleCount": 0,
+  "sweep": null,
+  "inefficiency": null,
+  "eventHorizons": [
+    {
+      "horizon": "4388.53250",
+      "upperPool": "4395.77500",
+      "lowerPool": "4381.29000",
+      "distancePct": "0.05",
+      "label": "Event Horizon: BSL 4395.77500 ↔ SSL 4381.29000"
+    },
+    {
+      "horizon": "4389.67917",
+      "upperPool": "4419.47500",
+      "lowerPool": "4359.88333",
+      "distancePct": "0.08",
+      "label": "Event Horizon: BSL 4419.47500 ↔ SSL 4359.88333"
+    },
+    {
+      "horizon": "4377.82917",
+      "upperPool": "4395.77500",
+      "lowerPool": "4359.88333",
+      "distancePct": "-0.19",
+      "label": "Event Horizon: BSL 4395.77500 ↔ SSL 4359.88333"
+    }
+  ],
+  "action": null,
+  "prevSessionDate": "2026-08-12"
+}

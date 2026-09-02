@@ -1,0 +1,23 @@
+{
+  "bars": 120,
+  "regime": "TRENDING_DOWN",
+  "volatility": "NORMAL",
+  "atr": 0.00011399999999996968,
+  "slopePerBar": -0.000008369539551358113,
+  "normSlope": -0.07341701360842402,
+  "rangeVsAtr": 10126.842105265852,
+  "lastBar": {
+    "time": 1786515000000,
+    "open": 1.15339,
+    "high": 1.15346,
+    "low": 1.15339,
+    "close": 1.15342,
+    "volume": 56
+  },
+  "anomalies": [],
+  "summary": [
+    "Price declining — trade WITH the direction; counter-trend models are suspect.",
+    "Normal volatility regime.",
+    "No anomalies in the trailing window."
+  ]
+}

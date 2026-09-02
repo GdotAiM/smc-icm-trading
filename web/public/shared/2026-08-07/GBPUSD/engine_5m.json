@@ -1,0 +1,132 @@
+{
+  "price": 1.34886,
+  "structure": {
+    "bias": "bearish",
+    "lastEvent": "CHoCH",
+    "lastEventPrice": 1.34935,
+    "lastEventTime": 1786110900000,
+    "confidence": 1,
+    "lastSwingHigh": 1.3509,
+    "lastSwingLow": 1.34935
+  },
+  "liquidity": [
+    {
+      "price": 1.3448180769230769,
+      "type": "SSL",
+      "strength": 26,
+      "score": 41.13980255227158,
+      "distance": 0.2996547511916049,
+      "session": "NY AM",
+      "ageBars": 19,
+      "swept": true
+    },
+    {
+      "price": 1.3462028571428573,
+      "type": "SSL",
+      "strength": 7,
+      "score": 4.42101665283783,
+      "distance": 0.19699174541039777,
+      "session": "NY AM",
+      "ageBars": 284,
+      "swept": true
+    },
+    {
+      "price": 1.3509,
+      "type": "BSL",
+      "strength": 1,
+      "score": 1.3824853348943436,
+      "distance": 0.15123882389573726,
+      "session": "NY AM",
+      "ageBars": 7,
+      "swept": false
+    }
+  ],
+  "orderBlocks": [],
+  "fvgs": [
+    {
+      "top": 1.34868,
+      "bottom": 1.34501,
+      "type": "bullish",
+      "index": 337,
+      "time": 1786105800000,
+      "gapAtr": 5.253578732106602,
+      "displacementAtr": 6.971370143149414,
+      "fillFraction": 0,
+      "distance": 0.1493854069362186
+    }
+  ],
+  "draw": {
+    "price": 1.3462028571428573,
+    "side": "down",
+    "distance": 0.19699174541039777,
+    "reason": "SSL pool Â· 7 touches",
+    "score": 1.1318767594222434
+  },
+  "alt": {
+    "price": 1.3509,
+    "side": "up",
+    "distance": 0.15123882389573726,
+    "reason": "BSL pool Â· 1 touch",
+    "score": 0.5229008940883411
+  },
+  "volumeDisplacement": {
+    "atrRatio": 0.11965811965811285,
+    "label": "weak",
+    "volumeConfirmed": false,
+    "volumeRatio": 0.5176470588235295
+  },
+  "pdArray": {
+    "rangeHigh": 1.34657,
+    "rangeLow": 1.34521,
+    "midpoint": 1.34589,
+    "currentZone": "premium",
+    "zoneDistance": 4.3676470588233185,
+    "description": "Price in premium (268% of range). 218.4% above midpoint"
+  },
+  "inversionFvgs": [
+    {
+      "top": 1.34756,
+      "bottom": 1.34745,
+      "type": "inversion",
+      "index": 66,
+      "time": 1786024200000,
+      "gapAtr": 0.27450980392168817,
+      "reversalAtr": 1.7918088737202116,
+      "confirmationLag": 1,
+      "distance": 0.10045519920525445
+    },
+    {
+      "top": 1.34692,
+      "bottom": 1.34681,
+      "type": "inversion",
+      "index": 57,
+      "time": 1786021500000,
+      "gapAtr": 0.3201663201658338,
+      "reversalAtr": 1.1188524590167173,
+      "confirmationLag": 3,
+      "distance": -0.1479026733686201
+    },
+    {
+      "top": 1.3464,
+      "bottom": 1.34632,
+      "type": "inversion",
+      "index": 38,
+      "time": 1786015800000,
+      "gapAtr": 0.30939226519372126,
+      "reversalAtr": 1.3879310344832148,
+      "confirmationLag": 3,
+      "distance": -0.1853416959506507
+    },
+    {
+      "top": 1.34622,
+      "bottom": 1.34606,
+      "type": "inversion",
+      "index": 39,
+      "time": 1786016100000,
+      "gapAtr": 0.5989304812832846,
+      "reversalAtr": 0.8272727272732925,
+      "confirmationLag": 1,
+      "distance": -0.2016517651942999
+    }
+  ]
+}

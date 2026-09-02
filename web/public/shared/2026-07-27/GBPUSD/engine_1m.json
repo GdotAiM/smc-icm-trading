@@ -1,0 +1,69 @@
+{
+  "price": 1.3304418325424194,
+  "structure": {
+    "bias": "bearish",
+    "lastEvent": "CHoCH",
+    "lastEventPrice": 1.3309376239776611,
+    "lastEventTime": 1785170400000,
+    "confidence": 1,
+    "lastSwingHigh": 1.331079363822937,
+    "lastSwingLow": 1.3309376239776611
+  },
+  "liquidity": [
+    {
+      "price": 1.331323681339141,
+      "type": "BSL",
+      "strength": 31,
+      "score": 18.159090529235048,
+      "distance": 0.066282401466309,
+      "session": "NY PM",
+      "ageBars": 21,
+      "swept": false
+    },
+    {
+      "price": 1.333804420062474,
+      "type": "BSL",
+      "strength": 21,
+      "score": 4.408377509299304,
+      "distance": 0.2527421671362141,
+      "session": "London",
+      "ageBars": 375,
+      "swept": false
+    },
+    {
+      "price": 1.3356985661291307,
+      "type": "BSL",
+      "strength": 31,
+      "score": 3.014934503454882,
+      "distance": 0.3951118687140123,
+      "session": "London",
+      "ageBars": 597,
+      "swept": false
+    }
+  ],
+  "orderBlocks": [],
+  "fvgs": [],
+  "draw": {
+    "price": 1.331323681339141,
+    "side": "up",
+    "distance": 0.066282401466309,
+    "reason": "BSL pool Â· 31 touches",
+    "score": 0.7546974078826953
+  },
+  "alt": null,
+  "volumeDisplacement": {
+    "atrRatio": 0,
+    "label": "weak",
+    "volumeConfirmed": true,
+    "volumeRatio": 0
+  },
+  "pdArray": {
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
+    "currentZone": "discount",
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
+  },
+  "inversionFvgs": []
+}

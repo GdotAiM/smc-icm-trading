@@ -1,0 +1,11 @@
+{
+  "pair": "DXY",
+  "today": "2026-08-14",
+  "prevDate": "2026-08-13",
+  "found": false,
+  "error": "No usable candle data for DXY on 2026-08-13",
+  "candlesAvailable": 0,
+  "sweep": null,
+  "inefficiency": null,
+  "eventHorizons": []
+}

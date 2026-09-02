@@ -1,0 +1,6 @@
+{"event":"GATE_BLOCKED","pair":"GBPUSD","detail":"registry: NO TRADE (need SETUP COMPLETE) | registry: no primary model | entry: NO TRADE | entry: missing/invalid price/SL/TP1 | entry: no draw on liquidity (buy-side (BSL) above) | invalidation: INVAL","time":"2026-08-11T10:47:10.592Z"}
+{"event":"GATE_BLOCKED","pair":"EURUSD","detail":"decision stale (15m > 15m) | invalidation: INVALIDATED + guard blocked | guard BLOCKED: INVERSION_MISSING","time":"2026-08-11T10:47:10.643Z"}
+{"event":"GATE_BLOCKED","pair":"XAUUSD","detail":"registry: NO TRADE (need SETUP COMPLETE) | registry: no primary model | entry: NO TRADE | entry: missing/invalid price/SL/TP1","time":"2026-08-11T10:47:10.692Z"}
+{"event":"GATE_BLOCKED","pair":"USTEC","detail":"No decision.json — run run_pair.cjs first","time":"2026-08-11T10:47:10.744Z"}
+{"event":"SWEEP_DONE","detail":"4 pairs evaluated, 0 executed","time":"2026-08-11T10:47:10.745Z"}
+{"event":"EXIT","detail":"--once complete","time":"2026-08-11T10:47:10.746Z"}

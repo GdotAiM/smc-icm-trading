@@ -1,0 +1,386 @@
+{
+  "pair": "XAUUSD",
+  "symbol": "XAUUSD",
+  "date": "2026-08-31",
+  "emittedAt": "2026-08-31T18:46:47.498Z",
+  "registry": {
+    "verdict": "NO TRADE",
+    "primary": null,
+    "completeCount": 0,
+    "confidence": null,
+    "confluence": null,
+    "resolved": {
+      "tie": false,
+      "rule": "MMXM step gate closed — MANIPULATION (step 2/5): MMXM Step 2/5: MANIPULATION (from 4H)"
+    },
+    "poolContext": {
+      "locked": false,
+      "lockedDirection": null,
+      "poolSummary": "No session raid + MSS confirmed yet. Monitoring all sessions in priority order.",
+      "sessions": [
+        "P1 PM Session (prev day 1:30-4:00 PM): ⚡ RAIDED — ⚡ RAIDED — awaiting MSS: Low swept",
+        "P2 London Session (today 2:00-5:00 AM): ⏳ — ⏳ Not yet raided",
+        "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
+        "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
+      ],
+      "targetPool": {
+        "high": 4631.98,
+        "low": 4445.455,
+        "date": "2026-08-27"
+      }
+    },
+    "liquidityCascade": {
+      "session": {
+        "triggers": [
+          {
+            "source": "pm",
+            "label": "PM Session (prev day 1:30-4:00 PM)",
+            "priority": 1,
+            "high": 4618.02,
+            "low": 4445.455,
+            "raided": true,
+            "mssConfirmed": false,
+            "validRaid": false,
+            "sweepPrice": 4374.18,
+            "mssDirection": null,
+            "sweptSide": "SSL",
+            "expectedDirection": "BUY"
+          },
+          {
+            "source": "london",
+            "label": "London Session (today 2:00-5:00 AM)",
+            "priority": 2,
+            "high": 4660.125,
+            "low": 4328.05,
+            "raided": false,
+            "mssConfirmed": false,
+            "validRaid": false,
+            "sweepPrice": null,
+            "mssDirection": null,
+            "sweptSide": null,
+            "expectedDirection": null
+          }
+        ],
+        "swept": [
+          {
+            "source": "pm",
+            "label": "PM Session (prev day 1:30-4:00 PM)",
+            "priority": 1,
+            "high": 4618.02,
+            "low": 4445.455,
+            "raided": true,
+            "mssConfirmed": false,
+            "validRaid": false,
+            "sweepPrice": 4374.18,
+            "mssDirection": null,
+            "sweptSide": "SSL",
+            "expectedDirection": "BUY"
+          }
+        ],
+        "direction": null,
+        "detail": "AWAITING MSS: 1 pool(s) raided, none confirmed. Next to lock: PM Session (prev day 1:30-4:00 PM)"
+      },
+      "daily": {
+        "targets": [
+          {
+            "type": "BSL",
+            "price": 4631.98,
+            "source": "prev_am_high",
+            "label": "Prev AM High (2026-08-27)",
+            "tier": "daily"
+          },
+          {
+            "type": "SSL",
+            "price": 4445.455,
+            "source": "prev_am_low",
+            "label": "Prev AM Low (2026-08-27)",
+            "tier": "daily"
+          },
+          {
+            "type": "BSL",
+            "price": 4631.98,
+            "source": "pdh",
+            "label": "Previous Day High",
+            "tier": "daily"
+          },
+          {
+            "type": "SSL",
+            "price": 4445.455,
+            "source": "pdl",
+            "label": "Previous Day Low",
+            "tier": "daily"
+          },
+          {
+            "type": "BSL",
+            "price": 4442.61,
+            "source": "pwh",
+            "label": "Previous Week High",
+            "tier": "weekly"
+          },
+          {
+            "type": "SSL",
+            "price": 4441.29,
+            "source": "pwl",
+            "label": "Previous Week Low",
+            "tier": "weekly"
+          }
+        ],
+        "primary": {
+          "type": "BSL",
+          "price": 4442.61,
+          "source": "pwh",
+          "label": "Previous Week High",
+          "tier": "weekly"
+        },
+        "secondary": {
+          "type": "BSL",
+          "price": 4631.98,
+          "source": "prev_am_high",
+          "label": "Prev AM High (2026-08-27)",
+          "tier": "daily"
+        },
+        "detail": "BUY: nearest BSL above = Previous Week High @ 4442.61"
+      },
+      "weekly": {
+        "targets": [
+          {
+            "type": "BSL",
+            "price": 4697.105,
+            "source": "engine_1d",
+            "label": "1D BSL pool",
+            "tier": "weekly",
+            "strength": 1
+          },
+          {
+            "type": "BSL",
+            "price": 4631.98,
+            "source": "engine_4h",
+            "label": "4H BSL pool",
+            "tier": "weekly",
+            "strength": 1
+          }
+        ],
+        "primary": {
+          "type": "BSL",
+          "price": 4631.98,
+          "source": "engine_4h",
+          "label": "4H BSL pool",
+          "tier": "weekly",
+          "strength": 1
+        },
+        "detail": "Next HTF draw: 4H BSL pool @ 4631.98"
+      }
+    }
+  },
+  "mmxmStep": {
+    "step": 2,
+    "label": "MANIPULATION",
+    "tradeable": false,
+    "scalpOnly": false,
+    "detail": "MMXM Step 2/5: MANIPULATION (from 4H)"
+  },
+  "entry": {
+    "type": "NO TRADE",
+    "price": 4440.88,
+    "sl": 0,
+    "tp1": 0,
+    "tp2": 0,
+    "noDrawDir": null,
+    "slReason": null
+  },
+  "rr": {
+    "rr1": 1,
+    "rr2": 0
+  },
+  "coherence": {
+    "unified": 0,
+    "phase": "MANIPULATION",
+    "base": 80,
+    "confluenceBoost": 0
+  },
+  "invalidation": {
+    "status": "INVALIDATED",
+    "totalInvalidated": 1,
+    "totalWarnings": 5
+  },
+  "guard": {
+    "verdict": "❌ DO NOT ENTER",
+    "blocked": 1,
+    "warnings": 1,
+    "sizeMultiplier": "0.38",
+    "blockedIds": [
+      "INVERSION_MISSING"
+    ]
+  },
+  "freshness": {
+    "score": 5,
+    "label": "ACCEPTABLE",
+    "source": "1H",
+    "ageMin": 718.5810666666666
+  },
+  "risk": {
+    "allowed": true,
+    "reason": null,
+    "accountBalance": 10000,
+    "riskAmount": 100,
+    "sizeMultiplier": 1
+  },
+  "evaluation": {
+    "verdict": null,
+    "score": null,
+    "blocked": false
+  },
+  "conflicts": {
+    "legacy": 1,
+    "phase": 0
+  },
+  "sizing": {
+    "posSizeLots": 0.0002251795807156207,
+    "lots": "0 micro",
+    "maxLoss": 100,
+    "maxGain": 100,
+    "riskPips": 44409,
+    "qty": 1
+  },
+  "gates": {
+    "hasSetup": false,
+    "rrOk": true,
+    "notInvalidated": false,
+    "notGuardBlocked": false,
+    "freshEnough": true,
+    "riskAllowed": true
+  },
+  "selfValidation": {
+    "verdict": "CAUTION",
+    "fails": [],
+    "warns": [
+      {
+        "id": "direction_vs_bias",
+        "source": "decision.json",
+        "detail": "No decision direction found."
+      },
+      {
+        "id": "trigger_text_direction",
+        "source": "05_entry_refinement/output/entry_plan.md",
+        "detail": "No decision direction (NO TRADE) — trigger not checked."
+      },
+      {
+        "id": "micro_trigger_direction",
+        "source": "05b_micro_confirmation/output/trigger_check.md",
+        "detail": "NO TRADE decision — direction not applicable."
+      },
+      {
+        "id": "sl_tp_geometry",
+        "source": "decision.json",
+        "detail": "No entry/SL/TP (NO TRADE or incomplete) — geometry not checked."
+      }
+    ]
+  },
+  "sentence": {
+    "open": false,
+    "passed": 4,
+    "total": 6,
+    "missing": [
+      "SL beyond structural swing",
+      "TP at the draw"
+    ],
+    "elements": [
+      {
+        "key": "bias",
+        "label": "Daily bias",
+        "pass": true,
+        "detail": "bias bullish"
+      },
+      {
+        "key": "draw",
+        "label": "Single liquidity draw on bias side",
+        "pass": true,
+        "detail": "nearest BSL @ 4631.98000"
+      },
+      {
+        "key": "pd_array",
+        "label": "One PD array in premium/discount",
+        "pass": true,
+        "detail": "price at a fresh unmitigated PD array"
+      },
+      {
+        "key": "mss_killzone",
+        "label": "MSS on entry TF (1m/5m) inside killzone",
+        "pass": true,
+        "detail": "1m/5m MSS in NY PM — 1m MSS (turtle-soup confirmMSS on 1m candles)"
+      },
+      {
+        "key": "sl",
+        "label": "SL beyond structural swing",
+        "pass": false,
+        "detail": "no entry plan (NO TRADE)"
+      },
+      {
+        "key": "tp",
+        "label": "TP at the draw",
+        "pass": false,
+        "detail": "no entry plan (NO TRADE)"
+      }
+    ],
+    "policy": "advisory — made known, never enforced (build-time)"
+  },
+  "forecast": {
+    "f5m": {
+      "available": true,
+      "direction": "bearish"
+    },
+    "f1m": {
+      "available": true,
+      "direction": "bullish"
+    },
+    "aligned": false,
+    "opposesDecision": null,
+    "policy": "warn-and-continue — surfaced, never blocks (build-time)"
+  },
+  "structural": {
+    "chain": {
+      "linkCount": 4,
+      "dominantHalf": "BULLISH",
+      "handoffSequence": "BISI → SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT",
+      "narrative": "Chain: BISI → SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT | 4 links active. Dominant half: MIXED. BISI W @ 4421.69750 (4421.69000–4421.70500) | 2026-08-31 → ORG CE @ 4450.35500 | Price in LOWER (discount) | FILLED",
+      "opposesDirection": false
+    },
+    "fractal": {
+      "score": 7,
+      "max": 20,
+      "label": "⏳ LOW fractal coherence — nesting is loose. Let the cycles develop further.",
+      "nestingScore": 3,
+      "nestingMax": 6,
+      "inversionDetected": false,
+      "inversionScore": 1,
+      "inversionMax": 8,
+      "confirmationsPassed": 4,
+      "cisdDetected": false,
+      "weak": true
+    },
+    "entryMss": {
+      "present": true,
+      "detail": "1m MSS (turtle-soup confirmMSS on 1m candles)"
+    },
+    "policy": "advisory — surfaced for AI consideration, never blocks the verdict (build-time)"
+  },
+  "regime": {
+    "tf": "5m",
+    "regime": "TRENDING_DOWN",
+    "volatility": "NORMAL",
+    "anomalies": [
+      "TAIL_EXTREME"
+    ]
+  },
+  "missedEntry": {
+    "pair": "XAUUSD",
+    "assessedAt": "2026-08-31T18:46:47.505Z",
+    "originalSetup": null,
+    "status": "stand_aside",
+    "allowSecondaryEntry": false,
+    "reasons": [
+      "no current valid setup (registry not SETUP COMPLETE)"
+    ],
+    "secondaryEntry": null
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "pair": "NAS100",
+  "today": "2026-08-11",
+  "prevDate": "2026-08-10",
+  "found": false,
+  "summary": "Lunch SSL sweep found but no qualifying inefficiency before it",
+  "candlesAnalyzed": 400,
+  "lunchCandleCount": 0,
+  "sweep": {
+    "price": "29692.50000",
+    "type": "SSL",
+    "time": 1786382100000
+  },
+  "inefficiency": null,
+  "eventHorizons": [
+    {
+      "horizon": "29672.80833",
+      "upperPool": "29780.55000",
+      "lowerPool": "29565.06667",
+      "distancePct": "-0.01",
+      "label": "Event Horizon: BSL 29780.55000 ↔ SSL 29565.06667"
+    },
+    {
+      "horizon": "29681.06429",
+      "upperPool": "29738.82857",
+      "lowerPool": "29623.30000",
+      "distancePct": "0.02",
+      "label": "Event Horizon: BSL 29738.82857 ↔ SSL 29623.30000"
+    },
+    {
+      "horizon": "29651.94762",
+      "upperPool": "29738.82857",
+      "lowerPool": "29565.06667",
+      "distancePct": "-0.08",
+      "label": "Event Horizon: BSL 29738.82857 ↔ SSL 29565.06667"
+    }
+  ],
+  "action": null,
+  "prevSessionDate": "2026-08-10"
+}

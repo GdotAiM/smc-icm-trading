@@ -1,0 +1,59 @@
+{
+  "pair": "XAUUSD",
+  "time": "05:22:45 NY",
+  "currentPrice": 4334.475,
+  "htfBias": {
+    "daily": "bullish",
+    "h4": "bullish",
+    "aligned": true,
+    "direction": "bullish",
+    "detail": "✅ ALIGNED — 1D BULLISH + 4H BULLISH"
+  },
+  "pdhPdl": {
+    "pdh": 4449.83,
+    "pdl": 4343.65,
+    "range": 106.18000000000029,
+    "date": "2026-08-12",
+    "detail": "PDH: 4449.83000 | PDL: 4343.65000 | Range: 106.18000"
+  },
+  "pwhPwl": {
+    "pwh": 4335.95,
+    "pwl": 4335.04,
+    "range": 0.9099999999998545,
+    "detail": "PWH: 4335.95000 | PWL: 4335.04000 | Range: 0.91000"
+  },
+  "relEquals": {
+    "highs": [],
+    "lows": [],
+    "highCount": 0,
+    "lowCount": 0,
+    "magnets": [],
+    "magnetCount": 0,
+    "smoothCount": 0,
+    "detail": "0 equal highs, 0 equal lows inside daily range"
+  },
+  "drawTargets": {
+    "primary": null,
+    "oppositePool": null,
+    "allTargets": [],
+    "detail": "No clear draw target — bias neutral or no levels identified"
+  },
+  "sweepStatus": {
+    "swept": false,
+    "mss": false,
+    "detail": "No primary draw target"
+  },
+  "entryGuidance": {
+    "ready": false,
+    "detail": "No draw target identified"
+  },
+  "hrlrLrlr": {
+    "targets": [],
+    "lrlrCount": 0,
+    "hrlrCount": 0,
+    "primaryLRLR": null,
+    "stretchHRLR": null,
+    "detail": "0 LRLR (easy, with-trend) | 0 HRLR (hard, needs catalyst) | Primary TP: N/A | Stretch: N/A"
+  },
+  "sweepVsRun": null
+}

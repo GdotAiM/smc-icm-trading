@@ -1,0 +1,10 @@
+{"timestamp":"2026-08-14T08:10:27.379Z","pair":"GBPUSD","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":4,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T08:11:04.329Z","pair":"GBPUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":37,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T08:24:08.104Z","pair":"GBPUSD","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":4,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T08:24:29.205Z","pair":"GBPUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":842,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T08:35:45.476Z","pair":"GBPUSD","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":4,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T08:36:12.782Z","pair":"GBPUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":1545,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T09:04:46.554Z","pair":"GBPUSD","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":5,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T09:05:54.256Z","pair":"GBPUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":3327,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T09:22:15.725Z","pair":"GBPUSD","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":5,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T09:22:31.640Z","pair":"GBPUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":4324,"status":"PARTIAL","stageList":[]}

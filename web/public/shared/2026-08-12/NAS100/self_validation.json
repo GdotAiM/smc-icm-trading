@@ -1,0 +1,67 @@
+{
+  "pair": "NAS100",
+  "date": "2026-08-12",
+  "validatedAt": "2026-08-12T16:24:53.682Z",
+  "verdict": "CONFLICT",
+  "counts": {
+    "pass": 7,
+    "warn": 1,
+    "fail": 1
+  },
+  "checks": [
+    {
+      "id": "direction_vs_bias",
+      "level": "PASS",
+      "source": "01_htf_bias/output/bias.md",
+      "detail": "Decision SHORT aligns with HTF bias BEARISH."
+    },
+    {
+      "id": "trigger_text_direction",
+      "level": "PASS",
+      "source": "05_entry_refinement/output/entry_plan.md",
+      "detail": "Trigger text is direction-consistent (- **Trigger**: MSS downside + bearish FVG fill on 5m)."
+    },
+    {
+      "id": "micro_trigger_direction",
+      "level": "FAIL",
+      "source": "05b_micro_confirmation/output/trigger_check.md",
+      "detail": "Decision SHORT but the trigger checklist runs a LONG setup (Direction: LONG)."
+    },
+    {
+      "id": "guard_vs_gates",
+      "level": "PASS",
+      "source": "05b_micro_confirmation/output/guard.md",
+      "detail": "Guard blocks entry and decision gates reflect it (fail-closed working as intended)."
+    },
+    {
+      "id": "sl_tp_geometry",
+      "level": "PASS",
+      "source": "decision.json",
+      "detail": "SHORT: SL 29755.10846 > entry 29601.60000; TP1 29433.25000 < entry."
+    },
+    {
+      "id": "sweep_claim",
+      "level": "PASS",
+      "source": "engine_5m.json",
+      "detail": "6 pool(s), 3 swept."
+    },
+    {
+      "id": "sweep_claim",
+      "level": "PASS",
+      "source": "engine_15m.json",
+      "detail": "6 pool(s), 2 swept."
+    },
+    {
+      "id": "fvg_claim",
+      "level": "WARN",
+      "source": "engine_5m.json",
+      "detail": "Decision trades on 2FVG Entry but engine 5m reports 0 FVGs — an FVG-dependent setup with no unmitigated FVG on the entry TF."
+    },
+    {
+      "id": "fvg_claim",
+      "level": "PASS",
+      "source": "engine_15m.json",
+      "detail": "1 unmitigated FVG(s) on 15m."
+    }
+  ]
+}

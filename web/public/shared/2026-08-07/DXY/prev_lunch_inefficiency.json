@@ -1,0 +1,26 @@
+{
+  "pair": "DXY",
+  "today": "2026-08-07",
+  "prevDate": "2026-08-06",
+  "found": false,
+  "summary": "Lunch SSL sweep found but no qualifying inefficiency before it",
+  "candlesAnalyzed": 353,
+  "lunchCandleCount": 0,
+  "sweep": {
+    "price": "12686.00000",
+    "type": "SSL",
+    "time": 1786038900000
+  },
+  "inefficiency": null,
+  "eventHorizons": [
+    {
+      "horizon": "12681.69444",
+      "upperPool": "12694.16667",
+      "lowerPool": "12669.22222",
+      "distancePct": "-0.03",
+      "label": "Event Horizon: BSL 12694.16667 ↔ SSL 12669.22222"
+    }
+  ],
+  "action": null,
+  "prevSessionDate": "2026-08-06"
+}

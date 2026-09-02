@@ -1,0 +1,14 @@
+{
+  "pair": "GBPUSD",
+  "date": "2026-08-14",
+  "extracted": "2026-08-14T09:22:29.809Z",
+  "trade": null,
+  "conceptsUsed": [],
+  "ruleViolations": [],
+  "rulesFollowed": [],
+  "forecastAccuracy": null,
+  "decisionQuality": 3.5,
+  "lessons": [],
+  "gaps": [],
+  "playbookCandidates": []
+}

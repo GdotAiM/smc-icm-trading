@@ -1,0 +1,11 @@
+# MMXM Analysis — NAS100 — 2026-09-02
+
+## Smart Money Reversal
+**⏳ Not detected**
+Insufficient data
+
+## Side of Curve: **NEUTRAL** (LOW)
+No SMR and no bias alignment — flat.
+
+## Entry Phase: **PRE-SMR**
+No SMR yet — wait for liquidity purge + displacement + break.

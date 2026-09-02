@@ -1,0 +1,11 @@
+{
+  "narrative_coherence": 0.94,
+  "dxy_alignment_confidence": 0.8,
+  "pattern_similarity_score": 1,
+  "macro_context_strength": 0.7,
+  "decision_confidence": 0.2,
+  "structural_applied": false,
+  "mode": "rule-based-fallback",
+  "generated": "2026-08-14T09:23:08.857Z",
+  "pair": "NAS100"
+}

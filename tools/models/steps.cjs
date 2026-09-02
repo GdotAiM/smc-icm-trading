@@ -51,6 +51,7 @@ const steps = {
     return fail("no unmitigated order block present — consumed/mitigated blocks don't count (WP-11)");
   },
   array_mitigated(ctx) {
+    if (!ctx.arrayInPlay) return fail("no array in play");
     if (ctx.consumedAtPrice) return fail("the only array at price is CONSUMED — a broken block can't be re-entered (WP-11)");
     if (ctx.arrayInPlay) return pass("price re-entered an unmitigated PD array (fresh array, not consumed)");
     return fail("no fresh-array mitigation — price has not returned to an unmitigated displacement origin");

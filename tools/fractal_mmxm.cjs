@@ -280,7 +280,7 @@ function fractalLabel(s) {
   if (s >= 16) return "✅ FRACTAL CONFIRMED — MMXM nesting perfectly. The 1m Inversion is the sentence within the 5m chapter within the 4H story. ENTER.";
   if (s >= 12) return "✅ HIGH fractal coherence — nesting mostly intact. 1m Inversion building. Near entry.";
   if (s >= 8) return "⏳ MODERATE fractal coherence — some nesting gaps. Wait for tighter alignment.";
-  if (s >= 4) return "⏳ LOW fractal coherence — nesting is loose. Let the cycles develop further.";
+  if (s >= CONFIG.inversion.minScore - 1) return "⏳ LOW fractal coherence — nesting is loose. Let the cycles develop further.";
   return "❌ NO fractal coherence — MMXM cycles are not aligned. Do not enter.";
 }
 

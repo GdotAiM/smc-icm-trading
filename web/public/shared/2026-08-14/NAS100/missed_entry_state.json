@@ -1,0 +1,11 @@
+{
+  "pair": "NAS100",
+  "assessedAt": "2026-08-14T09:23:07.142Z",
+  "originalSetup": null,
+  "status": "stand_aside",
+  "allowSecondaryEntry": false,
+  "reasons": [
+    "no current valid setup (registry not SETUP COMPLETE)"
+  ],
+  "secondaryEntry": null
+}

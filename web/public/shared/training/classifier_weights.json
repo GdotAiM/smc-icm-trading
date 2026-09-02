@@ -1,0 +1,180 @@
+{
+  "generated": "2026-08-12T13:45:54.224598",
+  "target": "winEOD",
+  "samples": 140,
+  "features": 181,
+  "cv_roc_auc": 0.9625,
+  "baseline_win_rate": 35.0,
+  "top_features": [
+    {
+      "name": "15m_ob_total",
+      "importance": 0.4067
+    },
+    {
+      "name": "1h_swept_ssl",
+      "importance": 0.1754
+    },
+    {
+      "name": "1d_unswept_bsl",
+      "importance": 0.0437
+    },
+    {
+      "name": "15m_ob_bullish",
+      "importance": 0.0312
+    },
+    {
+      "name": "5m_unswept_bsl",
+      "importance": 0.0304
+    },
+    {
+      "name": "5m_disp_atr_ratio",
+      "importance": 0.0215
+    },
+    {
+      "name": "15m_swept_ssl",
+      "importance": 0.0173
+    },
+    {
+      "name": "1w_ob_bullish",
+      "importance": 0.0165
+    },
+    {
+      "name": "4h_swing_low",
+      "importance": 0.0147
+    },
+    {
+      "name": "4h_disp_atr_ratio",
+      "importance": 0.0104
+    },
+    {
+      "name": "in_london_kz",
+      "importance": 0.0102
+    },
+    {
+      "name": "1m_event_bos",
+      "importance": 0.0098
+    },
+    {
+      "name": "ny_hour",
+      "importance": 0.0089
+    },
+    {
+      "name": "1h_swing_high",
+      "importance": 0.0082
+    },
+    {
+      "name": "entry_type_short",
+      "importance": 0.008
+    },
+    {
+      "name": "15m_swing_low",
+      "importance": 0.0076
+    },
+    {
+      "name": "1m_fvg_total",
+      "importance": 0.0075
+    },
+    {
+      "name": "1d_swing_low",
+      "importance": 0.0074
+    },
+    {
+      "name": "5m_swing_low",
+      "importance": 0.0073
+    },
+    {
+      "name": "registry_verdict_setup",
+      "importance": 0.0072
+    },
+    {
+      "name": "5m_swing_high",
+      "importance": 0.0069
+    },
+    {
+      "name": "1h_ob_bearish",
+      "importance": 0.0062
+    },
+    {
+      "name": "1h_price",
+      "importance": 0.0055
+    },
+    {
+      "name": "1h_fvg_bearish",
+      "importance": 0.0055
+    },
+    {
+      "name": "1w_swing_low",
+      "importance": 0.0052
+    },
+    {
+      "name": "4h_unswept_bsl",
+      "importance": 0.0049
+    },
+    {
+      "name": "1w_swept_ssl",
+      "importance": 0.0048
+    },
+    {
+      "name": "1w_disp_atr_ratio",
+      "importance": 0.0047
+    },
+    {
+      "name": "5m_swept_bsl",
+      "importance": 0.0043
+    },
+    {
+      "name": "1h_unswept_bsl",
+      "importance": 0.0043
+    }
+  ],
+  "models": {
+    "2FVG Entry": {
+      "samples": 42,
+      "wins": 14,
+      "win_rate_pct": 33.3,
+      "avg_predicted_prob": 0.3297,
+      "calibration": "CALIBRATED",
+      "recommendation": "AVOID"
+    },
+    "Mitigation Block": {
+      "samples": 28,
+      "wins": 10,
+      "win_rate_pct": 35.7,
+      "avg_predicted_prob": 0.3578,
+      "calibration": "CALIBRATED",
+      "recommendation": "NEUTRAL"
+    },
+    "NWOG/NDOG": {
+      "samples": 28,
+      "wins": 10,
+      "win_rate_pct": 35.7,
+      "avg_predicted_prob": 0.3578,
+      "calibration": "CALIBRATED",
+      "recommendation": "NEUTRAL"
+    },
+    "OTE + Institutional OB": {
+      "samples": 14,
+      "wins": 5,
+      "win_rate_pct": 35.7,
+      "avg_predicted_prob": 0.3577,
+      "calibration": "CALIBRATED",
+      "recommendation": "NEUTRAL"
+    },
+    "SCOB": {
+      "samples": 14,
+      "wins": 5,
+      "win_rate_pct": 35.7,
+      "avg_predicted_prob": 0.3577,
+      "calibration": "CALIBRATED",
+      "recommendation": "NEUTRAL"
+    },
+    "Unicorn (OTE+FVG)": {
+      "samples": 14,
+      "wins": 5,
+      "win_rate_pct": 35.7,
+      "avg_predicted_prob": 0.3577,
+      "calibration": "CALIBRATED",
+      "recommendation": "NEUTRAL"
+    }
+  }
+}

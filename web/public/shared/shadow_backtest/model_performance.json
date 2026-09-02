@@ -1,0 +1,84 @@
+{
+  "totalEntries": 11,
+  "models": {
+    "2FVG Entry": {
+      "total": 4,
+      "wins1h": 0,
+      "wins4h": 2,
+      "winsEOD": 3,
+      "totalPnL": 1.70008,
+      "appearances": 4,
+      "tieResolutions": 1,
+      "winRate1h": "0.00%",
+      "winRate4h": "50.00%",
+      "winRateEOD": "75.00%",
+      "avgPnL": "0.43"
+    },
+    "OTE + Institutional OB": {
+      "total": 1,
+      "wins1h": 1,
+      "wins4h": 0,
+      "winsEOD": 0,
+      "totalPnL": -0.00002,
+      "appearances": 1,
+      "tieResolutions": 1,
+      "winRate1h": "100.00%",
+      "winRate4h": "0.00%",
+      "winRateEOD": "0.00%",
+      "avgPnL": "-0.00"
+    },
+    "Unicorn (OTE+FVG)": {
+      "total": 1,
+      "wins1h": 0,
+      "wins4h": 0,
+      "winsEOD": 0,
+      "totalPnL": 0,
+      "appearances": 1,
+      "tieResolutions": 1,
+      "winRate1h": "0.00%",
+      "winRate4h": "0.00%",
+      "winRateEOD": "0.00%",
+      "avgPnL": "0.00"
+    },
+    "SCOB": {
+      "total": 1,
+      "wins1h": 0,
+      "wins4h": 0,
+      "winsEOD": 0,
+      "totalPnL": 0,
+      "appearances": 1,
+      "tieResolutions": 1,
+      "winRate1h": "0.00%",
+      "winRate4h": "0.00%",
+      "winRateEOD": "0.00%",
+      "avgPnL": "0.00"
+    },
+    "NWOG/NDOG": {
+      "total": 2,
+      "wins1h": 1,
+      "wins4h": 1,
+      "winsEOD": 0,
+      "totalPnL": -0.135,
+      "appearances": 2,
+      "tieResolutions": 2,
+      "winRate1h": "50.00%",
+      "winRate4h": "50.00%",
+      "winRateEOD": "0.00%",
+      "avgPnL": "-0.07"
+    },
+    "Mitigation Block": {
+      "total": 2,
+      "wins1h": 0,
+      "wins4h": 0,
+      "winsEOD": 0,
+      "totalPnL": 0,
+      "appearances": 2,
+      "tieResolutions": 2,
+      "winRate1h": "0.00%",
+      "winRate4h": "0.00%",
+      "winRateEOD": "0.00%",
+      "avgPnL": "0.00"
+    }
+  },
+  "lastUpdated": "2026-08-12T11:28:27.615Z"
+}

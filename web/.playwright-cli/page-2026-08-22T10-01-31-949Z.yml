@@ -1,0 +1,106 @@
+- generic [ref=e3]:
+  - banner [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]: SMC-ICM
+      - generic [ref=e13]:
+        - button "XAUUSD" [ref=e14] [cursor=pointer]
+        - button "GBPUSD" [ref=e15] [cursor=pointer]
+        - button "EURUSD" [ref=e16] [cursor=pointer]
+        - button "NAS100" [ref=e17] [cursor=pointer]
+        - button "USDOLLAR" [ref=e18] [cursor=pointer]
+      - combobox [ref=e19] [cursor=pointer]:
+        - option "2026-08-22" [selected]
+        - option "2026-08-21"
+        - option "2026-08-20"
+        - option "2026-08-19"
+        - option "2026-08-18"
+        - option "Today"
+      - generic [ref=e20]:
+        - button "Pipeline" [ref=e21] [cursor=pointer]
+        - button "Operator" [ref=e22] [cursor=pointer]
+    - generic [ref=e23]:
+      - generic [ref=e24]: TV CDP LIVE
+      - generic [ref=e26]: EURUSD · 2026-08-22
+      - generic [ref=e27]: 10/10 stages
+      - generic [ref=e28]: Sat, Aug 22
+  - generic [ref=e42]:
+    - navigation [ref=e43]:
+      - generic [ref=e44]: Pipeline
+      - generic [ref=e46]:
+        - generic [ref=e47] [cursor=pointer]:
+          - generic [ref=e48]: "00"
+          - generic [ref=e49]:
+            - generic [ref=e50]: Macro Context
+            - generic [ref=e51]: loaded
+          - generic [ref=e52]: ✓
+        - generic [ref=e53] [cursor=pointer]:
+          - generic [ref=e54]: "00"
+          - generic [ref=e55]:
+            - generic [ref=e56]: Council Vote
+            - generic [ref=e57]: loaded
+          - generic [ref=e58]: ✓
+        - generic [ref=e59] [cursor=pointer]:
+          - generic [ref=e60]: "01"
+          - generic [ref=e61]:
+            - generic [ref=e62]: HTF Bias
+            - generic [ref=e63]: loaded
+          - generic [ref=e64]: ✓
+        - generic [ref=e65] [cursor=pointer]:
+          - generic [ref=e66]: "02"
+          - generic [ref=e67]:
+            - generic [ref=e68]: Key Levels
+            - generic [ref=e69]: loaded
+          - generic [ref=e70]: ✓
+        - generic [ref=e71] [cursor=pointer]:
+          - generic [ref=e72]: "03"
+          - generic [ref=e73]:
+            - generic [ref=e74]: Session & Time
+            - generic [ref=e75]: loaded
+          - generic [ref=e76]: ✓
+        - generic [ref=e77] [cursor=pointer]:
+          - generic [ref=e78]: "04"
+          - generic [ref=e79]:
+            - generic [ref=e80]: Model Selection
+            - generic [ref=e81]: loaded
+          - generic [ref=e82]: ✓
+        - generic [ref=e83] [cursor=pointer]:
+          - generic [ref=e84]: "05"
+          - generic [ref=e85]:
+            - generic [ref=e86]: Entry Plan
+            - generic [ref=e87]: loaded
+          - generic [ref=e88]: ✓
+        - generic [ref=e89] [cursor=pointer]:
+          - generic [ref=e90]: 05b
+          - generic [ref=e91]:
+            - generic [ref=e92]: Micro Confirm
+            - generic [ref=e93]: loaded
+          - generic [ref=e94]: ✓
+        - generic [ref=e95] [cursor=pointer]:
+          - generic [ref=e96]: "06"
+          - generic [ref=e97]:
+            - generic [ref=e98]: Risk Mgmt
+            - generic [ref=e99]: loaded
+          - generic [ref=e100]: ✓
+        - generic [ref=e101] [cursor=pointer]:
+          - generic [ref=e102]: "07"
+          - generic [ref=e103]:
+            - generic [ref=e104]: Journal
+            - generic [ref=e105]: loaded
+          - generic [ref=e106]: ✓
+      - generic [ref=e108]:
+        - generic [ref=e109]: TV CDP CONNECTED
+        - generic [ref=e112]: "Run: node tools/run_pair.cjs"
+    - main [ref=e113]:
+      - generic [ref=e114]:
+        - generic [ref=e115]:
+          - generic [ref=e116]: ○
+          - generic [ref=e117]: Awaiting Data
+          - generic [ref=e118]: EURUSD · 2026-08-22
+        - generic [ref=e119]:
+          - generic [ref=e120]:
+            - generic [ref=e121]: HTF Bias
+            - generic [ref=e122]: stages/01_htf_bias/output/eurusd_*.md
+          - generic [ref=e123]:
+            - text: "<!doctype html> <html lang=\"en\" class=\"dark\"> <head> <script type=\"module\">import { injectIntoGlobalHook } from \"/@react-refresh\"; injectIntoGlobalHook(window); window.$RefreshReg$ = () => {}; window.$RefreshSig$ = () => (type) => type;</script>"
+            - code [ref=e125]: <script type="module" src="/@vite/client"></script> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>SMC-ICM · Instrument Panel</title> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+            - text: </head> <body> <div id="root"></div> <script type="module" src="/src/main.tsx?t=1787392710468"></script> </body> </html>

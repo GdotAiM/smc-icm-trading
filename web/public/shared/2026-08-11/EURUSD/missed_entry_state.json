@@ -1,0 +1,41 @@
+{
+  "pair": "EURUSD",
+  "assessedAt": "2026-08-11T17:28:49.798Z",
+  "originalSetup": {
+    "registry": {
+      "verdict": "SETUP COMPLETE",
+      "primary": "2FVG Entry",
+      "completeCount": 1
+    },
+    "entry": {
+      "type": "SHORT",
+      "price": 1.1536,
+      "sl": 1.1558027488210485,
+      "tp1": 1.150445,
+      "tp2": 1.136095,
+      "noDrawDir": null,
+      "slReason": "15m Swing High @ 1.15438 + ATR buffer"
+    },
+    "rr": {
+      "rr1": 1.4323013000175822,
+      "rr2": 7.946888829415992
+    },
+    "coherence": {
+      "unified": 0,
+      "phase": "DISTRIBUTION",
+      "base": 70
+    },
+    "invalidation": {
+      "status": "INVALIDATED",
+      "totalInvalidated": 1,
+      "totalWarnings": 2
+    },
+    "emittedAt": "2026-08-11T17:28:49.792Z"
+  },
+  "status": "watching",
+  "allowSecondaryEntry": false,
+  "reasons": [
+    "original setup still within entry tolerance — monitoring"
+  ],
+  "secondaryEntry": null
+}

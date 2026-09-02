@@ -1,0 +1,90 @@
+{
+  "pair": "XAUUSD",
+  "symbol": "XAUUSD",
+  "date": "2026-08-11",
+  "emittedAt": "2026-08-11T17:29:21.791Z",
+  "registry": {
+    "verdict": "NO TRADE",
+    "primary": null,
+    "completeCount": 4
+  },
+  "entry": {
+    "type": "NO TRADE",
+    "price": 4380.505,
+    "sl": 0,
+    "tp1": 0,
+    "tp2": 0,
+    "noDrawDir": null,
+    "slReason": null
+  },
+  "rr": {
+    "rr1": 1,
+    "rr2": 0
+  },
+  "coherence": {
+    "unified": 0,
+    "phase": "DISTRIBUTION",
+    "base": 30
+  },
+  "invalidation": {
+    "status": "INVALIDATED",
+    "totalInvalidated": 2,
+    "totalWarnings": 1
+  },
+  "guard": {
+    "verdict": "⚠️ ENTER WITH CAUTION",
+    "blocked": 0,
+    "warnings": 2,
+    "sizeMultiplier": "0.52",
+    "blockedIds": []
+  },
+  "freshness": {
+    "score": 9,
+    "label": "FRESH",
+    "source": "1H",
+    "ageMin": 3.33245
+  },
+  "risk": {
+    "allowed": true,
+    "reason": null,
+    "accountBalance": 10000,
+    "riskAmount": 100,
+    "sizeMultiplier": 1
+  },
+  "evaluation": {
+    "verdict": "PASSED — all checks passed",
+    "score": "85/100 | 4/4 modules passed",
+    "blocked": false
+  },
+  "conflicts": {
+    "legacy": 0,
+    "phase": 0
+  },
+  "sizing": {
+    "posSizeLots": 0.0002282844424152494,
+    "lots": "0 micro",
+    "maxLoss": 100,
+    "maxGain": 100,
+    "riskPips": 43805,
+    "qty": 1
+  },
+  "gates": {
+    "hasSetup": false,
+    "rrOk": true,
+    "notInvalidated": false,
+    "notGuardBlocked": true,
+    "freshEnough": true,
+    "riskAllowed": true
+  },
+  "missedEntry": {
+    "pair": "XAUUSD",
+    "assessedAt": "2026-08-11T17:29:21.795Z",
+    "originalSetup": null,
+    "status": "stand_aside",
+    "allowSecondaryEntry": false,
+    "reasons": [
+      "no current valid setup (registry not SETUP COMPLETE)"
+    ],
+    "secondaryEntry": null
+  }
+}

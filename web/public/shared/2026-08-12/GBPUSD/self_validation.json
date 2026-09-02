@@ -1,0 +1,67 @@
+{
+  "pair": "GBPUSD",
+  "date": "2026-08-12",
+  "validatedAt": "2026-08-12T16:24:17.651Z",
+  "verdict": "CAUTION",
+  "counts": {
+    "pass": 6,
+    "warn": 3,
+    "fail": 0
+  },
+  "checks": [
+    {
+      "id": "direction_vs_bias",
+      "level": "PASS",
+      "source": "01_htf_bias/output/bias.md",
+      "detail": "Decision LONG aligns with HTF bias BULLISH."
+    },
+    {
+      "id": "trigger_text_direction",
+      "level": "PASS",
+      "source": "05_entry_refinement/output/entry_plan.md",
+      "detail": "Trigger text is direction-consistent (- **Trigger**: MSS upside + bullish FVG fill on 5m)."
+    },
+    {
+      "id": "micro_trigger_direction",
+      "level": "PASS",
+      "source": "05b_micro_confirmation/output/trigger_check.md",
+      "detail": "Trigger checklist direction (LONG) matches decision LONG."
+    },
+    {
+      "id": "guard_vs_gates",
+      "level": "WARN",
+      "source": "05b_micro_confirmation/output/guard.md",
+      "detail": "Guard clear; decision gates consistent."
+    },
+    {
+      "id": "sl_tp_geometry",
+      "level": "PASS",
+      "source": "decision.json",
+      "detail": "LONG: SL 1.34859 < entry 1.35062; TP1 1.35319 > entry."
+    },
+    {
+      "id": "sweep_claim",
+      "level": "WARN",
+      "source": "engine_5m.json",
+      "detail": "Decision trades but engine 5m reports 2 pool(s) (e.g. SSL) — none marked swept. Sweep-dependent models (purge-gated) would be contradicting the trade."
+    },
+    {
+      "id": "sweep_claim",
+      "level": "PASS",
+      "source": "engine_15m.json",
+      "detail": "5 pool(s), 3 swept."
+    },
+    {
+      "id": "fvg_claim",
+      "level": "WARN",
+      "source": "engine_5m.json",
+      "detail": "Decision trades on OTE + Institutional OB but engine 5m reports 0 FVGs — an FVG-dependent setup with no unmitigated FVG on the entry TF."
+    },
+    {
+      "id": "fvg_claim",
+      "level": "PASS",
+      "source": "engine_15m.json",
+      "detail": "1 unmitigated FVG(s) on 15m."
+    }
+  ]
+}

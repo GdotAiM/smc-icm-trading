@@ -1,0 +1,339 @@
+{
+  "pair": "EURUSD",
+  "assessedAt": "2026-08-12T16:23:59.746Z",
+  "originalSetup": {
+    "registry": {
+      "verdict": "SETUP COMPLETE",
+      "primary": "2FVG Entry",
+      "completeCount": 1,
+      "confidence": 0.89,
+      "direction": "BUY",
+      "confluence": {
+        "BUY": {
+          "complete": 1,
+          "partial": 10,
+          "weight": 12.171457827260458,
+          "models": [
+            {
+              "id": "mmxm_buy",
+              "complete": false,
+              "seq": 0.5
+            },
+            {
+              "id": "ote_institutional_ob",
+              "complete": false,
+              "seq": 0.3333333333333333
+            },
+            {
+              "id": "turtle_soup",
+              "complete": false,
+              "seq": 0.8
+            },
+            {
+              "id": "unicorn_ote_fvg",
+              "complete": false,
+              "seq": 0.3333333333333333
+            },
+            {
+              "id": "breaker_block",
+              "complete": false,
+              "seq": 0.3333333333333333
+            },
+            {
+              "id": "ifvg_scale_in",
+              "complete": false,
+              "seq": 0.5
+            },
+            {
+              "id": "scob",
+              "complete": false,
+              "seq": 0.6666666666666666
+            },
+            {
+              "id": "two_fvg",
+              "complete": true,
+              "seq": 1
+            },
+            {
+              "id": "nwog_ndog",
+              "complete": false,
+              "seq": 0
+            },
+            {
+              "id": "mitigation_block",
+              "complete": false,
+              "seq": 0.5
+            },
+            {
+              "id": "rejection_block",
+              "complete": false,
+              "seq": 0.5
+            }
+          ]
+        },
+        "SELL": {
+          "complete": 0,
+          "partial": 1,
+          "weight": 1.5,
+          "models": [
+            {
+              "id": "mmxm_sell",
+              "complete": false,
+              "seq": 0.5
+            }
+          ]
+        }
+      },
+      "resolved": {
+        "tie": false,
+        "conflict": false,
+        "poolFiltered": false,
+        "poolLocked": false,
+        "lockedDirection": null,
+        "rule": "WP-17 Pool-First: locked pool (raided+MSS) sets direction priority. Models targeting the locked pool win ties. Models opposing the locked pool are excluded. One Trade Setup drives the registry."
+      },
+      "mlProbability": {
+        "model": "2FVG Entry",
+        "win_rate_pct": 36.5,
+        "raw_win_rate_pct": 33.3,
+        "ci90_low": 25.7,
+        "ci90_high": 47.4,
+        "samples": 42,
+        "precision": 0.57,
+        "calibration": "CALIBRATED",
+        "recommendation": "AVOID",
+        "prior": "Beta(5,5) — weak prior centered at 50%"
+      },
+      "mlConfidence": 0.59,
+      "expectedValue": {
+        "p_win": 0.37,
+        "p_loss": 0.63,
+        "ev_r": -0.09,
+        "interpretation": "NEGATIVE_EDGE",
+        "bayesian": true,
+        "prior": "Beta(5,5)",
+        "posterior_samples": 52,
+        "note": "EV uses Bayesian posterior mean. Prior: Beta(5,5) centered at 50% WR. The prior shrinks the estimate toward 50% when samples are small — protecting against overfitting on thin data."
+      },
+      "poolContext": {
+        "locked": false,
+        "lockedDirection": null,
+        "poolSummary": "No session raid + MSS confirmed yet. Monitoring all sessions in priority order.",
+        "sessions": [
+          "P1 PM Session (prev day 1:30-4:00 PM): ⚡ RAIDED — ⚡ RAIDED — awaiting MSS: Low swept",
+          "P2 London Session (today 2:00-5:00 AM): ⚡ RAIDED — ⚡ RAIDED — awaiting MSS: Low swept",
+          "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
+          "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
+        ],
+        "targetPool": {
+          "high": 1.15498,
+          "low": 1.15314,
+          "date": "2026-08-10"
+        }
+      },
+      "liquidityCascade": {
+        "session": {
+          "triggers": [
+            {
+              "source": "pm",
+              "label": "PM Session (prev day 1:30-4:00 PM)",
+              "priority": 1,
+              "high": 1.15702,
+              "low": 1.15172,
+              "raided": true,
+              "mssConfirmed": false,
+              "validRaid": false,
+              "sweepPrice": 1.136357142857143,
+              "mssDirection": null,
+              "sweptSide": "SSL",
+              "expectedDirection": "BUY"
+            },
+            {
+              "source": "london",
+              "label": "London Session (today 2:00-5:00 AM)",
+              "priority": 2,
+              "high": 1.15658,
+              "low": 1.13559,
+              "raided": true,
+              "mssConfirmed": false,
+              "validRaid": false,
+              "sweepPrice": 1.136357142857143,
+              "mssDirection": null,
+              "sweptSide": null,
+              "expectedDirection": null
+            }
+          ],
+          "swept": [
+            {
+              "source": "pm",
+              "label": "PM Session (prev day 1:30-4:00 PM)",
+              "priority": 1,
+              "high": 1.15702,
+              "low": 1.15172,
+              "raided": true,
+              "mssConfirmed": false,
+              "validRaid": false,
+              "sweepPrice": 1.136357142857143,
+              "mssDirection": null,
+              "sweptSide": "SSL",
+              "expectedDirection": "BUY"
+            },
+            {
+              "source": "london",
+              "label": "London Session (today 2:00-5:00 AM)",
+              "priority": 2,
+              "high": 1.15658,
+              "low": 1.13559,
+              "raided": true,
+              "mssConfirmed": false,
+              "validRaid": false,
+              "sweepPrice": 1.136357142857143,
+              "mssDirection": null,
+              "sweptSide": null,
+              "expectedDirection": null
+            }
+          ],
+          "direction": null,
+          "detail": "AWAITING MSS: 2 pool(s) raided, none confirmed. Next to lock: PM Session (prev day 1:30-4:00 PM)"
+        },
+        "daily": {
+          "targets": [
+            {
+              "type": "BSL",
+              "price": 1.15498,
+              "source": "prev_am_high",
+              "label": "Prev AM High (2026-08-10)",
+              "tier": "daily"
+            },
+            {
+              "type": "SSL",
+              "price": 1.15314,
+              "source": "prev_am_low",
+              "label": "Prev AM Low (2026-08-10)",
+              "tier": "daily"
+            },
+            {
+              "type": "BSL",
+              "price": 1.15498,
+              "source": "pdh",
+              "label": "Previous Day High",
+              "tier": "daily"
+            },
+            {
+              "type": "SSL",
+              "price": 1.15314,
+              "source": "pdl",
+              "label": "Previous Day Low",
+              "tier": "daily"
+            },
+            {
+              "type": "BSL",
+              "price": 1.1536,
+              "source": "pwh",
+              "label": "Previous Week High",
+              "tier": "weekly"
+            },
+            {
+              "type": "SSL",
+              "price": 1.15322,
+              "source": "pwl",
+              "label": "Previous Week Low",
+              "tier": "weekly"
+            }
+          ],
+          "primary": {
+            "type": "BSL",
+            "price": 1.1536,
+            "source": "pwh",
+            "label": "Previous Week High",
+            "tier": "weekly"
+          },
+          "secondary": {
+            "type": "BSL",
+            "price": 1.15498,
+            "source": "prev_am_high",
+            "label": "Prev AM High (2026-08-10)",
+            "tier": "daily"
+          },
+          "detail": "BUY: nearest BSL above = Previous Week High @ 1.1536"
+        },
+        "weekly": {
+          "targets": [
+            {
+              "type": "BSL",
+              "price": 1.1627066666666668,
+              "source": "engine_1d",
+              "label": "1D BSL pool",
+              "tier": "weekly",
+              "strength": 3
+            },
+            {
+              "type": "BSL",
+              "price": 1.15771,
+              "source": "engine_1d",
+              "label": "1D BSL pool",
+              "tier": "weekly",
+              "strength": 2
+            },
+            {
+              "type": "BSL",
+              "price": 1.1580475000000001,
+              "source": "engine_4h",
+              "label": "4H BSL pool",
+              "tier": "weekly",
+              "strength": 4
+            },
+            {
+              "type": "BSL",
+              "price": 1.1652633333333333,
+              "source": "engine_4h",
+              "label": "4H BSL pool",
+              "tier": "weekly",
+              "strength": 9
+            }
+          ],
+          "primary": {
+            "type": "BSL",
+            "price": 1.15771,
+            "source": "engine_1d",
+            "label": "1D BSL pool",
+            "tier": "weekly",
+            "strength": 2
+          },
+          "detail": "Next HTF draw: 1D BSL pool @ 1.15771"
+        }
+      }
+    },
+    "entry": {
+      "type": "LONG",
+      "price": 1.15346,
+      "sl": 1.1519453722865496,
+      "tp1": 1.15498,
+      "tp2": 1.1580475000000001,
+      "noDrawDir": null,
+      "slReason": "15m Swing Low @ 1.15322 - ATR buffer"
+    },
+    "rr": {
+      "rr1": 1.0035469353306514,
+      "rr2": 3.0287970827826687
+    },
+    "coherence": {
+      "unified": 0,
+      "phase": "DISTRIBUTION",
+      "base": 60,
+      "confluenceBoost": 0
+    },
+    "invalidation": {
+      "status": "INVALIDATED",
+      "totalInvalidated": 1,
+      "totalWarnings": 2
+    },
+    "emittedAt": "2026-08-12T16:23:59.731Z"
+  },
+  "status": "watching",
+  "allowSecondaryEntry": false,
+  "reasons": [
+    "original setup still within entry tolerance — monitoring"
+  ],
+  "secondaryEntry": null
+}

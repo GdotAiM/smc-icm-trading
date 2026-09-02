@@ -1,0 +1,29 @@
+{
+  "pair": "DXY",
+  "today": "2026-08-10",
+  "prevDate": "2026-08-07",
+  "found": false,
+  "summary": "No liquidity sweep during NY lunch",
+  "candlesAnalyzed": 353,
+  "lunchCandleCount": 0,
+  "sweep": null,
+  "inefficiency": null,
+  "eventHorizons": [
+    {
+      "horizon": "12667.14286",
+      "upperPool": "12675.28571",
+      "lowerPool": "12659.00000",
+      "distancePct": "0.03",
+      "label": "Event Horizon: BSL 12675.28571 ↔ SSL 12659.00000"
+    },
+    {
+      "horizon": "12675.75000",
+      "upperPool": "12692.50000",
+      "lowerPool": "12659.00000",
+      "distancePct": "0.10",
+      "label": "Event Horizon: BSL 12692.50000 ↔ SSL 12659.00000"
+    }
+  ],
+  "action": null,
+  "prevSessionDate": "2026-08-07"
+}

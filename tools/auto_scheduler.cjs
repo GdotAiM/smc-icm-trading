@@ -17,6 +17,8 @@ const EXECUTE = process.argv.includes("--execute");
 const ONCE = process.argv.includes("--once");
 const autoDecision = require("./auto_decision.cjs");
 const guard = require("./scheduler_guard.cjs");
+const healthcheck = require("./healthcheck.cjs");
+const sentry = require("./sentry.cjs");
 const PAIRS = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100"];
 // Broker-prefixed TV symbols — plain names resolve to wrong instruments on TradingView
 const TV_SYMBOLS = {
@@ -184,6 +186,15 @@ function executeTrade(setup) {
     return;
   }
 
+  // ═══ POSITION GUARD: skip if we already have an open position on this pair ═══
+  const alreadyLong = activePositions.some(p => p.pair === setup.pair && p.direction === "BUY");
+  const alreadyShort = activePositions.some(p => p.pair === setup.pair && p.direction === "SELL");
+  if (alreadyLong || alreadyShort) {
+    const existingSide = alreadyLong ? "LONG" : "SHORT";
+    log("POS_GUARD_SKIP", `${setup.pair} already has ${existingSide} position — skipping duplicate entry`);
+    return;
+  }
+
   const slNum = parseFloat(setup.sl);
   const tpNum = parseFloat(setup.tp);
   const entryNum = parseFloat(setup.entry);
@@ -213,6 +224,21 @@ function executeTrade(setup) {
   if (slNum === 0 || tpNum === 0 || isNaN(slNum) || isNaN(tpNum) || entryNum === 0 || isNaN(entryNum)) {
     log("SAFETY_BLOCK", `${setup.pair} Invalid levels — entry:${setup.entry} SL:${setup.sl} TP:${setup.tp} — REJECTED`);
     return;
+  }
+
+  // ═══ SWITCH CHART TO TARGET SYMBOL BEFORE ORDER ═══
+  // run_pair switches the chart panel per pair; after scanning all pairs the
+  // chart sits on the last-processed one. Switch it explicitly so the order
+  // goes to the right instrument — prevents CLAUDE.md bug #3.
+  const cdpExpr = `window.TradingViewApi._activeChartWidgetWV.value().setSymbol("${tvSymbol}", {})`;
+  try {
+    execSync(
+      `node -e "const CDP=require('${ROOT.replace(/\\/g,'/')}/tools/tv-mcp/node_modules/chrome-remote-interface');(async()=>{const r=await fetch('http://127.0.0.1:9222/json/list');const t=await r.json();const c=t.find(x=>x.type==='page'&&/tradingview/.test(x.url||''));if(c){const cl=await CDP({host:'127.0.0.1',port:9222,target:c.id});await cl.Runtime.evaluate({expression:${JSON.stringify(cdpExpr)},returnByValue:true});await cl.close();}})().catch(e=>{});"`,
+      { stdio: ["ignore", "pipe", "ignore"], timeout: 8000 }
+    );
+  } catch {}
+  try { execSync("node -e \"require('child_process').execSync('timeout', ['/t','2'])\"", { stdio: "ignore" }); } catch {
+    try { require('child_process').execSync("ping -n 3 127.0.0.1 >nul", { stdio: "ignore" }); } catch {}
   }
 
   // Use broker-prefixed symbol for TV
@@ -250,13 +276,19 @@ function stateFile() { return path.join(ROOT, "shared", DATE, "pyramid_state.jso
 let activePositions = [];
 let pyramidFilled = {}; // Track which levels were already added
 
-// Load previous state (survives scheduler restarts)
+// Load previous state (survives scheduler restarts) — only trust today's date
 try {
   if (fs.existsSync(stateFile())) {
     const state = JSON.parse(fs.readFileSync(stateFile(), "utf8"));
-    activePositions = state.positions || [];
-    pyramidFilled = state.filled || {};
-    if (activePositions.length > 0) log("STATE_LOADED", `${activePositions.length} positions restored, ${Object.keys(pyramidFilled).length} pyramid levels filled`);
+    const today = require("./ny_time.cjs").getNYDate();
+    const dateInFile = path.basename(path.dirname(stateFile()));
+    if (dateInFile === today && Array.isArray(state.positions)) {
+      activePositions = state.positions;
+      pyramidFilled = state.filled || {};
+      if (activePositions.length > 0) log("STATE_LOADED", `${activePositions.length} positions restored for ${today}`);
+    } else {
+      log("STATE_SKIP", `stale state file (${dateInFile} ≠ ${today}) — starting fresh`);
+    }
   }
 } catch {}
 function saveState() {
@@ -309,6 +341,60 @@ function checkPyramidLevels() {
   }
 }
 
+// ═══ POSITION EXIT DETECTION — sync activePositions with TV positions ═══
+async function detectPositionExits() {
+  const cdpExpr = `(function(){
+    var tables = document.querySelectorAll("table");
+    var pairs = [];
+    for (var i = 0; i < tables.length; i++) {
+      var tbl = tables[i];
+      var rect = tbl.getBoundingClientRect();
+      if (rect.height < 30 || !tbl.querySelector("tr")) continue;
+      var rows = tbl.querySelectorAll("tr");
+      if (rows.length < 2) continue;
+      var hRow = rows[0].querySelectorAll("td,th");
+      var dataRow = rows[1] ? rows[1].querySelectorAll("td") : [];
+      if (!hRow.length || !dataRow.length) continue;
+      for (var k = 0; k < Math.min(hRow.length, dataRow.length); k++) {
+        var t = (hRow[k].textContent || "").trim().toUpperCase();
+        if (t === "EURUSD" || t === "GBPUSD" || t === "XAUUSD" || t === "NAS100" || t === "USDOLLAR") {
+          var side = "";
+          for (var j = k + 1; j < dataRow.length; j++) { side = dataRow[j].textContent.trim(); break; }
+          pairs.push({ pair: t, side: side.indexOf("Long") >= 0 ? "BUY" : side.indexOf("Short") >= 0 ? "SELL" : "?" });
+          break;
+        }
+      }
+    }
+    var seen = {};
+    var result = [];
+    for (var i = 0; i < pairs.length; i++) {
+      if (!seen[pairs[i].pair]) { seen[pairs[i].pair] = true; result.push(pairs[i]); }
+    }
+    return result;
+  })()`;
+  try {
+    const CDP = require(path.join(ROOT, "tools", "tv-mcp", "cdp_client.cjs"));
+    const r = await fetch("http://127.0.0.1:9222/json/list");
+    const targets = await r.json();
+    const chart = targets.find(t => t.type === "page" && /tradingview/.test(t.url || ""));
+    if (!chart) return;
+    const client = await CDP({ host: "127.0.0.1", port: 9222, target: chart.id });
+    await client.Runtime.enable();
+    const res = await client.Runtime.evaluate({ expression: cdpExpr, returnByValue: true });
+    await client.close();
+    const tvPairs = (res.result.value || []).filter(p => p.pair && p.side);
+    const tvSet = new Set(tvPairs.map(p => p.pair));
+    const removed = activePositions.filter(p => !tvSet.has(p.pair));
+    if (removed.length > 0) {
+      log("POSITION_EXIT", `${removed.length} position(s) closed in TV: ${removed.map(p => `${p.pair} ${p.direction}`).join(", ")}`);
+      activePositions = activePositions.filter(p => tvSet.has(p.pair));
+      saveState();
+    }
+  } catch(e) {
+    // CDP unavailable — keep existing state, will sync next cycle
+  }
+}
+
 // ═══ MAIN CYCLE ═══
 async function runCycle() {
   refreshDate(); // Rotate to current NY date before each cycle
@@ -318,6 +404,9 @@ async function runCycle() {
 
   // Heartbeat — tells phase-based drivers (and humans) the scheduler owns execution.
   guard.markActive(EXECUTE ? "EXECUTE" : "MONITOR", { pairs: PAIRS.length });
+
+  // Remote heartbeat — healthchecks.io will alert if this stops firing.
+  healthcheck.ping("scheduler");
 
   if (dayOfWeek === 0 || dayOfWeek === 6) {
     if (!ONCE) setTimeout(runCycle, 1800000); // Weekend: check every 30 min
@@ -376,11 +465,23 @@ async function runCycle() {
     }
   }
 
+  // ═══ POSITION EXIT DETECTION — sync with TV before scanning ═══
+  await detectPositionExits();
+
   // ═══ EVERY CYCLE: Scan for setups + check pyramid levels ═══
   if (inActiveSession || inPreMarket) {
     const best = scanAll();
     if (best) executeTrade(best);
     checkPyramidLevels(); // Auto-add at crossed IOFED levels
+  }
+
+  // ═══ TAPE PRACTICE CHECKPOINT — predict/observe/learn on every cycle ═══
+  try {
+    const ckpt = require("./checkpoint.cjs");
+    if (typeof ckpt.run === "function") ckpt.run();
+    else log("TAPE_CKPT", "checkpoint module loaded but no run() exported");
+  } catch(e) {
+    // checkpoint tool missing or failed — non-critical, don't block trading
   }
 
   // Friday close
@@ -409,6 +510,17 @@ function checkVersion() {
 }
 
 // ═══ START ═══
+sentry.initSentry();
+process.on("uncaughtException", (err) => {
+  sentry.captureError("auto_scheduler", "uncaughtException", err);
+  console.error("[FATAL] uncaughtException:", err);
+  sentry.flush(2000).finally(() => process.exit(1));
+});
+process.on("unhandledRejection", (reason) => {
+  sentry.captureError("auto_scheduler", "unhandledRejection", reason);
+  console.error("[FATAL] unhandledRejection:", reason);
+});
+
 console.log("═══════════════════════════════════════════════════════════");
 console.log(`  AUTO SCHEDULER — ${DATE} — ${nyTime()} NY`);
 console.log(`  Mode: ${EXECUTE ? '🤖 AUTONOMOUS (will execute trades)' : '👁️ MONITOR (reports only)'}`);

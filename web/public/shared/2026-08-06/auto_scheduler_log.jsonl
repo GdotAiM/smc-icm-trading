@@ -1,0 +1,210 @@
+{"time":"2026-08-06T05:39:37.608Z","nyTime":"01:39:37","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Thu | Version: 6b7f8c2"}
+{"time":"2026-08-06T06:36:09.360Z","nyTime":"02:36:09","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Thu | Version: unknown"}
+{"time":"2026-08-06T06:36:09.364Z","nyTime":"02:36:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T06:36:53.915Z","nyTime":"02:36:53","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-06T06:46:53.970Z","nyTime":"02:46:53","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T06:47:32.830Z","nyTime":"02:47:32","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-06T06:57:32.849Z","nyTime":"02:57:32","event":"EVENT","detail":"03:00 — LONDON_SB: London Silver Bullet window"}
+{"time":"2026-08-06T06:57:32.856Z","nyTime":"02:57:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T06:58:11.653Z","nyTime":"02:58:11","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-06T07:08:11.674Z","nyTime":"03:08:11","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T07:09:00.077Z","nyTime":"03:09:00","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-06T07:20:06.760Z","nyTime":"03:20:06","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Thu | Version: unknown"}
+{"time":"2026-08-06T07:20:06.763Z","nyTime":"03:20:06","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T07:31:00.163Z","nyTime":"03:31:00","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T07:41:52.806Z","nyTime":"03:41:52","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T07:48:07.115Z","nyTime":"03:48:07","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Thu | Version: bf00ef0"}
+{"time":"2026-08-06T07:48:07.117Z","nyTime":"03:48:07","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T07:59:02.875Z","nyTime":"03:59:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:09:53.625Z","nyTime":"04:09:53","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:20:44.337Z","nyTime":"04:20:44","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:31:35.100Z","nyTime":"04:31:35","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:42:46.390Z","nyTime":"04:42:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T08:53:39.794Z","nyTime":"04:53:39","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T09:04:52.775Z","nyTime":"05:04:52","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T09:20:46.760Z","nyTime":"05:20:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T09:36:39.582Z","nyTime":"05:36:39","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T09:52:38.059Z","nyTime":"05:52:38","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T10:08:32.827Z","nyTime":"06:08:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T10:24:30.041Z","nyTime":"06:24:30","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T10:40:29.322Z","nyTime":"06:40:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T10:56:22.987Z","nyTime":"06:56:22","event":"EVENT","detail":"06:55 — PRE_LECTURE2: Pre-07:00 data refresh"}
+{"time":"2026-08-06T10:56:23.002Z","nyTime":"06:56:23","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-06T10:59:32.436Z","nyTime":"06:59:32","event":"DATA_REFRESH","detail":"Complete in 189s — OK"}
+{"time":"2026-08-06T10:59:32.439Z","nyTime":"06:59:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T11:15:26.685Z","nyTime":"07:15:26","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T11:31:21.631Z","nyTime":"07:31:21","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T11:47:16.566Z","nyTime":"07:47:16","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:03:32.249Z","nyTime":"08:03:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:14:37.179Z","nyTime":"08:14:37","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:25:35.061Z","nyTime":"08:25:35","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:36:32.216Z","nyTime":"08:36:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:47:40.808Z","nyTime":"08:47:40","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T12:59:17.799Z","nyTime":"08:59:17","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:11:18.724Z","nyTime":"09:11:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:11:20.051Z","nyTime":"09:11:20","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-06T13:11:21.200Z","nyTime":"09:11:21","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-06T13:11:22.053Z","nyTime":"09:11:22","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-06T13:11:22.965Z","nyTime":"09:11:22","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-06T13:16:25.418Z","nyTime":"09:16:25","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Thu | Version: bf00ef0"}
+{"time":"2026-08-06T13:16:25.421Z","nyTime":"09:16:25","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:21:23.119Z","nyTime":"09:21:23","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:27:36.958Z","nyTime":"09:27:36","event":"EVENT","detail":"09:30 — AMOR: AM Session Opening Range"}
+{"time":"2026-08-06T13:27:36.967Z","nyTime":"09:27:36","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:32:20.090Z","nyTime":"09:32:20","event":"EVENT","detail":"09:30 — AMOR: AM Session Opening Range"}
+{"time":"2026-08-06T13:32:20.091Z","nyTime":"09:32:20","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:38:34.004Z","nyTime":"09:38:34","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:43:12.090Z","nyTime":"09:43:12","event":"EVENT","detail":"09:45 — PRE_MACRO: Pre-09:50 macro data refresh"}
+{"time":"2026-08-06T13:43:12.092Z","nyTime":"09:43:12","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-06T13:46:43.928Z","nyTime":"09:46:43","event":"DATA_REFRESH","detail":"Complete in 212s — OK"}
+{"time":"2026-08-06T13:46:43.930Z","nyTime":"09:46:43","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:49:46.443Z","nyTime":"09:49:46","event":"EVENT","detail":"09:50 — NY_MACRO: ⭐⭐ NY-AM Macro — highest conviction"}
+{"time":"2026-08-06T13:49:46.445Z","nyTime":"09:49:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T13:57:39.213Z","nyTime":"09:57:39","event":"EVENT","detail":"10:00 — SILVER_BULLET: Silver Bullet scalp window"}
+{"time":"2026-08-06T13:57:39.226Z","nyTime":"09:57:39","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:00:39.741Z","nyTime":"10:00:39","event":"EVENT","detail":"10:00 — SILVER_BULLET: Silver Bullet scalp window"}
+{"time":"2026-08-06T14:00:39.746Z","nyTime":"10:00:39","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:08:37.202Z","nyTime":"10:08:37","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:11:35.990Z","nyTime":"10:11:35","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:19:30.433Z","nyTime":"10:19:30","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:22:28.527Z","nyTime":"10:22:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:30:24.868Z","nyTime":"10:30:24","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:33:29.640Z","nyTime":"10:33:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:33:30.457Z","nyTime":"10:33:30","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-06T14:33:31.092Z","nyTime":"10:33:31","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-06T14:33:31.761Z","nyTime":"10:33:31","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-06T14:33:32.190Z","nyTime":"10:33:32","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-06T14:41:18.020Z","nyTime":"10:41:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:43:32.216Z","nyTime":"10:43:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:52:12.569Z","nyTime":"10:52:12","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T14:54:25.189Z","nyTime":"10:54:25","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T15:03:05.467Z","nyTime":"11:03:05","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T15:05:19.239Z","nyTime":"11:05:19","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T15:19:06.132Z","nyTime":"11:19:06","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T15:21:29.229Z","nyTime":"11:21:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T15:34:59.813Z","nyTime":"11:34:59","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T15:37:24.905Z","nyTime":"11:37:24","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T15:50:54.451Z","nyTime":"11:50:54","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T15:53:23.725Z","nyTime":"11:53:23","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T16:06:50.351Z","nyTime":"12:06:50","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T16:09:16.045Z","nyTime":"12:09:16","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T16:22:50.802Z","nyTime":"12:22:50","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T16:25:14.947Z","nyTime":"12:25:14","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T16:38:49.350Z","nyTime":"12:38:49","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T16:41:09.094Z","nyTime":"12:41:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T16:54:43.373Z","nyTime":"12:54:43","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T16:57:02.188Z","nyTime":"12:57:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T17:10:38.403Z","nyTime":"13:10:38","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T17:13:01.679Z","nyTime":"13:13:01","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T17:21:33.938Z","nyTime":"13:21:33","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T17:23:55.297Z","nyTime":"13:23:55","event":"EVENT","detail":"13:25 — PRE_PM: Pre-PM session refresh"}
+{"time":"2026-08-06T17:23:55.308Z","nyTime":"13:23:55","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-06T17:27:21.121Z","nyTime":"13:27:21","event":"DATA_REFRESH","detail":"Complete in 206s — OK"}
+{"time":"2026-08-06T17:27:21.123Z","nyTime":"13:27:21","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T17:32:28.791Z","nyTime":"13:32:28","event":"EVENT","detail":"13:30 — PMOR: PM Session Opening Range"}
+{"time":"2026-08-06T17:32:28.800Z","nyTime":"13:32:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T17:38:13.834Z","nyTime":"13:38:13","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T17:43:28.963Z","nyTime":"13:43:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T17:49:14.383Z","nyTime":"13:49:14","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T17:54:27.004Z","nyTime":"13:54:27","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:00:29.620Z","nyTime":"14:00:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:05:29.498Z","nyTime":"14:05:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:11:22.380Z","nyTime":"14:11:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:16:40.130Z","nyTime":"14:16:40","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:23:25.749Z","nyTime":"14:23:25","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:28:45.327Z","nyTime":"14:28:45","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:33:41.765Z","nyTime":"14:33:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:39:01.673Z","nyTime":"14:39:01","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:43:58.891Z","nyTime":"14:43:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:49:18.203Z","nyTime":"14:49:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:54:21.678Z","nyTime":"14:54:21","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T18:59:35.293Z","nyTime":"14:59:35","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:04:38.762Z","nyTime":"15:04:38","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:09:53.903Z","nyTime":"15:09:53","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:14:58.546Z","nyTime":"15:14:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:20:12.110Z","nyTime":"15:20:12","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:25:19.703Z","nyTime":"15:25:19","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:25:27.725Z","nyTime":"15:25:27","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Thu | Version: bf00ef0"}
+{"time":"2026-08-06T19:25:27.728Z","nyTime":"15:25:27","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:30:29.432Z","nyTime":"15:30:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:35:42.002Z","nyTime":"15:35:42","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:35:47.884Z","nyTime":"15:35:47","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:40:44.615Z","nyTime":"15:40:44","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:46:13.337Z","nyTime":"15:46:13","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:46:18.485Z","nyTime":"15:46:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:51:05.140Z","nyTime":"15:51:05","event":"EVENT","detail":"15:50 — PRE_CLOSE: Pre-close — close positions if Friday"}
+{"time":"2026-08-06T19:51:05.144Z","nyTime":"15:51:05","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:56:33.027Z","nyTime":"15:56:33","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T19:56:36.930Z","nyTime":"15:56:36","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-06T22:01:20.376Z","nyTime":"18:01:20","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T22:01:21.155Z","nyTime":"18:01:21","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T22:06:50.879Z","nyTime":"18:06:50","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T22:06:51.228Z","nyTime":"18:06:51","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T22:06:55.197Z","nyTime":"18:06:55","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T22:06:55.527Z","nyTime":"18:06:55","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T22:31:21.178Z","nyTime":"18:31:21","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T22:31:21.837Z","nyTime":"18:31:21","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T22:36:51.248Z","nyTime":"18:36:51","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T22:36:51.894Z","nyTime":"18:36:51","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T22:36:55.574Z","nyTime":"18:36:55","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T22:36:55.832Z","nyTime":"18:36:55","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T23:01:21.855Z","nyTime":"19:01:21","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T23:01:22.652Z","nyTime":"19:01:22","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T23:06:51.916Z","nyTime":"19:06:51","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T23:06:52.178Z","nyTime":"19:06:52","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T23:06:55.862Z","nyTime":"19:06:55","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T23:06:56.121Z","nyTime":"19:06:56","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T23:31:22.661Z","nyTime":"19:31:22","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T23:31:23.158Z","nyTime":"19:31:23","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T23:36:52.202Z","nyTime":"19:36:52","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T23:36:52.695Z","nyTime":"19:36:52","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-06T23:36:56.301Z","nyTime":"19:36:56","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-06T23:36:56.797Z","nyTime":"19:36:56","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T00:01:23.164Z","nyTime":"20:01:23","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T00:01:23.677Z","nyTime":"20:01:23","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T00:06:52.769Z","nyTime":"20:06:52","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T00:06:53.013Z","nyTime":"20:06:53","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T00:06:56.876Z","nyTime":"20:06:56","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T00:06:57.113Z","nyTime":"20:06:57","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T00:31:23.974Z","nyTime":"20:31:23","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T00:31:24.494Z","nyTime":"20:31:24","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T00:36:53.318Z","nyTime":"20:36:53","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T00:36:53.760Z","nyTime":"20:36:53","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T00:36:57.448Z","nyTime":"20:36:57","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T00:36:57.705Z","nyTime":"20:36:57","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T01:01:24.680Z","nyTime":"21:01:24","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T01:01:25.182Z","nyTime":"21:01:25","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T01:06:53.925Z","nyTime":"21:06:53","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T01:06:54.174Z","nyTime":"21:06:54","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T01:06:57.927Z","nyTime":"21:06:57","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T01:06:58.194Z","nyTime":"21:06:58","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T01:31:25.319Z","nyTime":"21:31:25","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T01:31:25.586Z","nyTime":"21:31:25","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T01:36:54.283Z","nyTime":"21:36:54","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T01:36:54.790Z","nyTime":"21:36:54","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T01:36:58.304Z","nyTime":"21:36:58","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T01:36:58.557Z","nyTime":"21:36:58","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T02:01:25.660Z","nyTime":"22:01:25","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T02:01:26.090Z","nyTime":"22:01:26","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T02:06:54.863Z","nyTime":"22:06:54","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T02:06:55.112Z","nyTime":"22:06:55","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T02:06:58.628Z","nyTime":"22:06:58","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T02:06:58.885Z","nyTime":"22:06:58","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T02:31:26.168Z","nyTime":"22:31:26","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T02:31:26.489Z","nyTime":"22:31:26","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T02:36:55.163Z","nyTime":"22:36:55","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T02:36:55.613Z","nyTime":"22:36:55","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T02:36:58.920Z","nyTime":"22:36:58","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T02:36:59.218Z","nyTime":"22:36:59","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T03:01:26.513Z","nyTime":"23:01:26","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T03:01:26.987Z","nyTime":"23:01:26","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T03:06:55.645Z","nyTime":"23:06:55","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T03:06:55.903Z","nyTime":"23:06:55","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T03:06:59.241Z","nyTime":"23:06:59","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T03:06:59.476Z","nyTime":"23:06:59","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T03:31:27.011Z","nyTime":"23:31:27","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T03:31:27.504Z","nyTime":"23:31:27","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T03:36:55.931Z","nyTime":"23:36:55","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T03:36:56.373Z","nyTime":"23:36:56","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}
+{"time":"2026-08-07T03:36:59.525Z","nyTime":"23:36:59","event":"FRIDAY_CLOSE","detail":"Closing all positions — Friday 4:00 PM rule"}
+{"time":"2026-08-07T03:36:59.767Z","nyTime":"23:36:59","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\check_orders.cj"}

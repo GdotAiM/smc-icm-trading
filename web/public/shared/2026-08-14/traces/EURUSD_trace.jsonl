@@ -1,0 +1,10 @@
+{"timestamp":"2026-08-14T08:09:44.232Z","pair":"EURUSD","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":4,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T08:10:23.740Z","pair":"EURUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":40,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T08:23:44.454Z","pair":"EURUSD","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":4,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T08:24:05.915Z","pair":"EURUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":862,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T08:35:16.626Z","pair":"EURUSD","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":4,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T08:35:40.337Z","pair":"EURUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":1556,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T09:03:41.846Z","pair":"EURUSD","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":5,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T09:05:12.221Z","pair":"EURUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":3328,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T09:21:56.597Z","pair":"EURUSD","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":5,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T09:22:13.766Z","pair":"EURUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":4350,"status":"PARTIAL","stageList":[]}

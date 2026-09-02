@@ -1,0 +1,92 @@
+{
+  "pair": "GBPUSD",
+  "symbol": "GBPUSD",
+  "date": "2026-08-11",
+  "emittedAt": "2026-08-11T17:29:05.462Z",
+  "registry": {
+    "verdict": "NO TRADE",
+    "primary": null,
+    "completeCount": 5
+  },
+  "entry": {
+    "type": "NO TRADE",
+    "price": 1.3499,
+    "sl": 0,
+    "tp1": 0,
+    "tp2": 0,
+    "noDrawDir": null,
+    "slReason": null
+  },
+  "rr": {
+    "rr1": 1,
+    "rr2": 0
+  },
+  "coherence": {
+    "unified": 0,
+    "phase": "DISTRIBUTION",
+    "base": 40
+  },
+  "invalidation": {
+    "status": "INVALIDATED",
+    "totalInvalidated": 1,
+    "totalWarnings": 3
+  },
+  "guard": {
+    "verdict": "❌ DO NOT ENTER",
+    "blocked": 1,
+    "warnings": 0,
+    "sizeMultiplier": "1.00",
+    "blockedIds": [
+      "INVERSION_MISSING"
+    ]
+  },
+  "freshness": {
+    "score": 9,
+    "label": "FRESH",
+    "source": "1H",
+    "ageMin": 4.06345
+  },
+  "risk": {
+    "allowed": true,
+    "reason": null,
+    "accountBalance": 10000,
+    "riskAmount": 100,
+    "sizeMultiplier": 1
+  },
+  "evaluation": {
+    "verdict": "PASSED — all checks passed",
+    "score": "85/100 | 4/4 modules passed",
+    "blocked": false
+  },
+  "conflicts": {
+    "legacy": 0,
+    "phase": 0
+  },
+  "sizing": {
+    "posSizeLots": 0.0007407956144899622,
+    "lots": "0 micro",
+    "maxLoss": 100,
+    "maxGain": 100,
+    "riskPips": 13499,
+    "qty": 74
+  },
+  "gates": {
+    "hasSetup": false,
+    "rrOk": true,
+    "notInvalidated": false,
+    "notGuardBlocked": false,
+    "freshEnough": true,
+    "riskAllowed": true
+  },
+  "missedEntry": {
+    "pair": "GBPUSD",
+    "assessedAt": "2026-08-11T17:29:05.490Z",
+    "originalSetup": null,
+    "status": "stand_aside",
+    "allowSecondaryEntry": false,
+    "reasons": [
+      "no current valid setup (registry not SETUP COMPLETE)"
+    ],
+    "secondaryEntry": null
+  }
+}

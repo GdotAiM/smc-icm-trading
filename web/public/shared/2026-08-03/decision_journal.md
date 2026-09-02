@@ -1,0 +1,2 @@
+| 02:06:54 NY | PYRAMID_ADD | NAS100 BUY +1 @ Far Edge (28374.0) | Price: 28707.8 |
+| 02:07:06 NY | PYRAMID_ADD | NAS100 BUY +1 @ CE 50% (28579.3) | Price: 28707.8 |

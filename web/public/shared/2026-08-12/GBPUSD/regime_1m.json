@@ -1,0 +1,29 @@
+{
+  "bars": 120,
+  "regime": "TRENDING_DOWN",
+  "volatility": "NORMAL",
+  "atr": 0.0000760000000000094,
+  "slopePerBar": -7.019584693386876e-7,
+  "normSlope": -0.009236295649192117,
+  "rangeVsAtr": 17772.89473683991,
+  "lastBar": {
+    "time": 1786515120000,
+    "open": 1.35059,
+    "high": 1.35063,
+    "low": 1.35058,
+    "close": 1.3506,
+    "volume": 14
+  },
+  "anomalies": [
+    {
+      "kind": "TAIL_EXTREME",
+      "bar": 119,
+      "tailRatio": 3.9999999999777955
+    }
+  ],
+  "summary": [
+    "Price declining — trade WITH the direction; counter-trend models are suspect.",
+    "Normal volatility regime.",
+    "Anomalies: TAIL_EXTREME"
+  ]
+}

@@ -1,0 +1,10 @@
+{"timestamp":"2026-08-14T08:12:35.604Z","pair":"NAS100","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":4,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T08:13:41.446Z","pair":"NAS100","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":66,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T08:24:51.302Z","pair":"NAS100","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":4,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T08:25:14.518Z","pair":"NAS100","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":759,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T08:36:46.737Z","pair":"NAS100","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":4,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T08:37:12.820Z","pair":"NAS100","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":1477,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T09:06:30.106Z","pair":"NAS100","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":5,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T09:06:55.078Z","pair":"NAS100","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":3259,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-14T09:22:51.153Z","pair":"NAS100","event":"SESSION_START","date":"2026-08-14","nyTime":{"hour":5,"day":5,"dayName":"Friday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-14T09:23:07.074Z","pair":"NAS100","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":4231,"status":"PARTIAL","stageList":[]}

@@ -1,0 +1,14 @@
+{
+  "pair": "EURUSD",
+  "date": "2026-07-28",
+  "extracted": "2026-07-28T07:34:24.575Z",
+  "trade": null,
+  "conceptsUsed": [],
+  "ruleViolations": [],
+  "rulesFollowed": [],
+  "forecastAccuracy": null,
+  "decisionQuality": 3.75,
+  "lessons": [],
+  "gaps": [],
+  "playbookCandidates": []
+}

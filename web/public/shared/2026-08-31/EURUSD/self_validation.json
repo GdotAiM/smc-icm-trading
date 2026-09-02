@@ -1,0 +1,67 @@
+{
+  "pair": "EURUSD",
+  "date": "2026-08-31",
+  "validatedAt": "2026-08-31T18:45:50.176Z",
+  "verdict": "CONFLICT",
+  "counts": {
+    "pass": 7,
+    "warn": 1,
+    "fail": 1
+  },
+  "checks": [
+    {
+      "id": "direction_vs_bias",
+      "level": "PASS",
+      "source": "01_htf_bias/output/bias.md",
+      "detail": "Decision LONG aligns with HTF bias BULLISH."
+    },
+    {
+      "id": "trigger_text_direction",
+      "level": "PASS",
+      "source": "05_entry_refinement/output/entry_plan.md",
+      "detail": "Trigger text is direction-consistent (- **Trigger**: MSS upside + bullish FVG fill on 5m)."
+    },
+    {
+      "id": "micro_trigger_direction",
+      "level": "FAIL",
+      "source": "05b_micro_confirmation/output/trigger_check.md",
+      "detail": "Decision LONG but the trigger checklist runs a SHORT setup (Direction: SHORT)."
+    },
+    {
+      "id": "guard_vs_gates",
+      "level": "WARN",
+      "source": "05b_micro_confirmation/output/guard.md",
+      "detail": "Guard clear; decision gates consistent."
+    },
+    {
+      "id": "sl_tp_geometry",
+      "level": "PASS",
+      "source": "decision.json",
+      "detail": "LONG: SL 1.15734 < entry 1.15890; TP1 1.16596 > entry."
+    },
+    {
+      "id": "sweep_claim",
+      "level": "PASS",
+      "source": "engine_5m.json",
+      "detail": "4 pool(s), 1 swept."
+    },
+    {
+      "id": "sweep_claim",
+      "level": "PASS",
+      "source": "engine_15m.json",
+      "detail": "4 pool(s), 1 swept."
+    },
+    {
+      "id": "fvg_claim",
+      "level": "PASS",
+      "source": "engine_5m.json",
+      "detail": "3 unmitigated FVG(s) on 5m."
+    },
+    {
+      "id": "fvg_claim",
+      "level": "PASS",
+      "source": "engine_15m.json",
+      "detail": "3 unmitigated FVG(s) on 15m."
+    }
+  ]
+}

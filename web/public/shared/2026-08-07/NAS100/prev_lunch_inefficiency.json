@@ -1,0 +1,58 @@
+{
+  "pair": "NAS100",
+  "today": "2026-08-07",
+  "prevDate": "2026-08-06",
+  "found": true,
+  "summary": "SIBI before NY lunch SSL sweep → carry 29390.20000–29378.70000 (bullish reversal)",
+  "candlesAnalyzed": 353,
+  "lunchCandleCount": 211,
+  "sweep": {
+    "price": "29402.50000",
+    "type": "SSL",
+    "time": 1786038720000
+  },
+  "inefficiency": {
+    "top": "29390.20000",
+    "bottom": "29378.70000",
+    "midpoint": "29384.45000",
+    "anchor": "29378.70000",
+    "kind": "SIBI",
+    "expectedReaction": "bullish_reversal",
+    "hasVolumeImbalance": true,
+    "vibGap": "0.40000",
+    "vibDirection": "up"
+  },
+  "eventHorizons": [
+    {
+      "horizon": "29391.82500",
+      "upperPool": "29401.65000",
+      "lowerPool": "29382.00000",
+      "distancePct": "-0.01",
+      "label": "Event Horizon: BSL 29401.65000 ↔ SSL 29382.00000"
+    },
+    {
+      "horizon": "29391.43333",
+      "upperPool": "29458.36667",
+      "lowerPool": "29324.50000",
+      "distancePct": "-0.01",
+      "label": "Event Horizon: BSL 29458.36667 ↔ SSL 29324.50000"
+    },
+    {
+      "horizon": "29420.18333",
+      "upperPool": "29458.36667",
+      "lowerPool": "29382.00000",
+      "distancePct": "0.08",
+      "label": "Event Horizon: BSL 29458.36667 ↔ SSL 29382.00000"
+    }
+  ],
+  "action": {
+    "direction": "LONG",
+    "entryZone": "29378.7 – 29390.2",
+    "trigger": "Price trades DOWN into the SIBI zone → expect bullish reversal",
+    "stopLoss": "Below inefficiency low: 29378.7 - buffer",
+    "takeProfit1": "Consequent encroachment (midpoint) of the inefficiency",
+    "takeProfit2": "Previous day RTH opening range gap, or Event Horizon level",
+    "note": "SIBI from SSL sweep during NY lunch → complex reversal setup"
+  },
+  "prevSessionDate": "2026-08-06"
+}

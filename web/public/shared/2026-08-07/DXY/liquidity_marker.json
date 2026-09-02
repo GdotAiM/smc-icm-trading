@@ -1,0 +1,154 @@
+{
+  "pair": "DXY",
+  "time": "02:34:30 NY",
+  "currentPrice": 12685,
+  "htfBias": {
+    "daily": "bearish",
+    "h4": "bearish",
+    "aligned": true,
+    "direction": "bearish",
+    "detail": "✅ ALIGNED — 1D BEARISH + 4H BEARISH"
+  },
+  "pdhPdl": {
+    "pdh": 12691.6,
+    "pdl": 12661.6,
+    "range": 30,
+    "date": "2026-08-05",
+    "detail": "PDH: 12691.60000 | PDL: 12661.60000 | Range: 30.00000"
+  },
+  "pwhPwl": {
+    "pwh": 12686,
+    "pwl": 12685,
+    "range": 1,
+    "detail": "PWH: 12686.00000 | PWL: 12685.00000 | Range: 1.00000"
+  },
+  "relEquals": {
+    "highs": [],
+    "lows": [
+      {
+        "price": 12678.857142857143,
+        "detail": "SSL @ 12678.85714"
+      }
+    ],
+    "highCount": 0,
+    "lowCount": 1,
+    "detail": "0 equal highs, 1 equal lows inside daily range"
+  },
+  "drawTargets": {
+    "primary": {
+      "level": "PDH",
+      "price": 12691.6,
+      "type": "BSL",
+      "priority": 1,
+      "label": "Previous Day High"
+    },
+    "oppositePool": null,
+    "allTargets": [
+      {
+        "level": "PDH",
+        "price": 12691.6,
+        "type": "BSL",
+        "priority": 1,
+        "label": "Previous Day High"
+      },
+      {
+        "level": "PWH",
+        "price": 12686,
+        "type": "BSL",
+        "priority": 2,
+        "label": "Previous Week High"
+      }
+    ],
+    "detail": "Primary draw: Previous Day High (BSL) @ 12691.60000 | Opposite (TP): N/A"
+  },
+  "sweepStatus": {
+    "swept": true,
+    "mss": true,
+    "sweptPool": {
+      "price": 12666.300000000001,
+      "type": "SSL",
+      "strength": 3,
+      "score": 3.8731028238858416,
+      "distance": 0.147418210484816,
+      "session": "NY AM",
+      "ageBars": 10,
+      "swept": true
+    },
+    "structureEvent": "CHoCH",
+    "detail": "✅ Previous Day High SWEPT at 12666.30000 | MSS: ✅ Confirmed"
+  },
+  "entryGuidance": {
+    "ready": true,
+    "direction": "SELL",
+    "entry": "On retest of PD array (FVG/OB/Breaker) after sweep + MSS",
+    "sl": {
+      "price": 12704.291599999999,
+      "label": "Beyond swept Previous Day High"
+    },
+    "tp": null,
+    "detail": "🎯 SETUP READY: SELL on PD array retest. SL beyond Previous Day High @ 12704.29160. TP: N/A @ N/A."
+  },
+  "hrlrLrlr": {
+    "targets": [
+      {
+        "level": "PDH",
+        "price": 12691.6,
+        "type": "BSL",
+        "priority": 1,
+        "label": "Previous Day High",
+        "classification": "HRLR",
+        "defenders": 1,
+        "hasNearbyFVG": true,
+        "isLongTerm": true,
+        "isWithTrend": true,
+        "isCounterTrend": false,
+        "distPct": "0.05"
+      },
+      {
+        "level": "PWH",
+        "price": 12686,
+        "type": "BSL",
+        "priority": 2,
+        "label": "Previous Week High",
+        "classification": "HRLR",
+        "defenders": 0,
+        "hasNearbyFVG": true,
+        "isLongTerm": true,
+        "isWithTrend": true,
+        "isCounterTrend": false,
+        "distPct": "0.01"
+      }
+    ],
+    "lrlrCount": 0,
+    "hrlrCount": 2,
+    "primaryLRLR": null,
+    "stretchHRLR": {
+      "level": "PDH",
+      "price": 12691.6,
+      "type": "BSL",
+      "priority": 1,
+      "label": "Previous Day High",
+      "classification": "HRLR",
+      "defenders": 1,
+      "hasNearbyFVG": true,
+      "isLongTerm": true,
+      "isWithTrend": true,
+      "isCounterTrend": false,
+      "distPct": "0.05"
+    },
+    "detail": "0 LRLR (easy, with-trend) | 2 HRLR (hard, needs catalyst) | Primary TP: N/A | Stretch: Previous Day High @ 12691.60000"
+  },
+  "sweepVsRun": {
+    "classification": "INDUCEMENT",
+    "action": "WAIT — possible trap",
+    "sweptSide": "BUY-SIDE (above)",
+    "htfAgreesWithSwept": true,
+    "priceClosedBackInside": true,
+    "displacedAway": false,
+    "mssFound": false,
+    "mssDirection": null,
+    "currentPrice": 12685,
+    "sweptLevel": 12691.6,
+    "detail": "⚠️ INDUCEMENT: BUY-SIDE (above) swept, price reversed back… but HTF agrees with swept side. First sweep of session may be a trap. Wait for second move to confirm real direction."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "pair": "GBPUSD",
+  "today": "2026-08-12",
+  "prevDate": "2026-08-11",
+  "found": true,
+  "summary": "SIBI before NY lunch SSL sweep → carry 1.34991–1.34980 (bullish reversal)",
+  "candlesAnalyzed": 300,
+  "lunchCandleCount": 206,
+  "sweep": {
+    "price": "1.34982",
+    "type": "SSL",
+    "time": 1786468560000
+  },
+  "inefficiency": {
+    "top": "1.34991",
+    "bottom": "1.34980",
+    "midpoint": "1.34986",
+    "anchor": "1.34981",
+    "kind": "SIBI",
+    "expectedReaction": "bullish_reversal",
+    "hasVolumeImbalance": true,
+    "vibGap": "0.00001",
+    "vibDirection": "down"
+  },
+  "eventHorizons": [
+    {
+      "horizon": "1.34975",
+      "upperPool": "1.35033",
+      "lowerPool": "1.34917",
+      "distancePct": "-0.01",
+      "label": "Event Horizon: BSL 1.35033 ↔ SSL 1.34917"
+    },
+    {
+      "horizon": "1.35047",
+      "upperPool": "1.35176",
+      "lowerPool": "1.34917",
+      "distancePct": "0.04",
+      "label": "Event Horizon: BSL 1.35176 ↔ SSL 1.34917"
+    },
+    {
+      "horizon": "1.34816",
+      "upperPool": "1.35176",
+      "lowerPool": "1.34456",
+      "distancePct": "-0.13",
+      "label": "Event Horizon: BSL 1.35176 ↔ SSL 1.34456"
+    }
+  ],
+  "action": {
+    "direction": "LONG",
+    "entryZone": "1.3498 – 1.34991",
+    "trigger": "Price trades DOWN into the SIBI zone → expect bullish reversal",
+    "stopLoss": "Below inefficiency low: 1.3498 - buffer",
+    "takeProfit1": "Consequent encroachment (midpoint) of the inefficiency",
+    "takeProfit2": "Previous day RTH opening range gap, or Event Horizon level",
+    "note": "SIBI from SSL sweep during NY lunch → complex reversal setup"
+  },
+  "prevSessionDate": "2026-08-11"
+}

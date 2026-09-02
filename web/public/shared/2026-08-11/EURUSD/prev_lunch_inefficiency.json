@@ -1,0 +1,51 @@
+{
+  "pair": "EURUSD",
+  "today": "2026-08-11",
+  "prevDate": "2026-08-10",
+  "found": true,
+  "summary": "SIBI before NY lunch SSL sweep → carry 1.15433–1.15418 (bullish reversal)",
+  "candlesAnalyzed": 300,
+  "lunchCandleCount": 209,
+  "sweep": {
+    "price": "1.15437",
+    "type": "SSL",
+    "time": 1786382820000
+  },
+  "inefficiency": {
+    "top": "1.15433",
+    "bottom": "1.15418",
+    "midpoint": "1.15426",
+    "anchor": "1.15420",
+    "kind": "SIBI",
+    "expectedReaction": "bullish_reversal",
+    "hasVolumeImbalance": false,
+    "vibGap": "0",
+    "vibDirection": null
+  },
+  "eventHorizons": [
+    {
+      "horizon": "1.15450",
+      "upperPool": "1.15701",
+      "lowerPool": "1.15198",
+      "distancePct": "0.01",
+      "label": "Event Horizon: BSL 1.15701 ↔ SSL 1.15198"
+    },
+    {
+      "horizon": "1.15373",
+      "upperPool": "1.15548",
+      "lowerPool": "1.15198",
+      "distancePct": "-0.06",
+      "label": "Event Horizon: BSL 1.15548 ↔ SSL 1.15198"
+    }
+  ],
+  "action": {
+    "direction": "LONG",
+    "entryZone": "1.15418 – 1.15433",
+    "trigger": "Price trades DOWN into the SIBI zone → expect bullish reversal",
+    "stopLoss": "Below inefficiency low: 1.15418 - buffer",
+    "takeProfit1": "Consequent encroachment (midpoint) of the inefficiency",
+    "takeProfit2": "Previous day RTH opening range gap, or Event Horizon level",
+    "note": "SIBI from SSL sweep during NY lunch → complex reversal setup"
+  },
+  "prevSessionDate": "2026-08-10"
+}

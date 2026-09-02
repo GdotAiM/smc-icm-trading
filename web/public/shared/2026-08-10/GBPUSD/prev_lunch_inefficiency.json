@@ -1,0 +1,36 @@
+{
+  "pair": "GBPUSD",
+  "today": "2026-08-10",
+  "prevDate": "2026-08-07",
+  "found": false,
+  "summary": "Insufficient NY lunch candles in prior day",
+  "candlesAnalyzed": 356,
+  "lunchCandleCount": 0,
+  "sweep": null,
+  "inefficiency": null,
+  "eventHorizons": [
+    {
+      "horizon": "1.34869",
+      "upperPool": "1.35090",
+      "lowerPool": "1.34648",
+      "distancePct": "-0.01",
+      "label": "Event Horizon: BSL 1.35090 ↔ SSL 1.34648"
+    },
+    {
+      "horizon": "1.34813",
+      "upperPool": "1.35090",
+      "lowerPool": "1.34536",
+      "distancePct": "-0.05",
+      "label": "Event Horizon: BSL 1.35090 ↔ SSL 1.34536"
+    },
+    {
+      "horizon": "1.34694",
+      "upperPool": "1.35090",
+      "lowerPool": "1.34297",
+      "distancePct": "-0.14",
+      "label": "Event Horizon: BSL 1.35090 ↔ SSL 1.34297"
+    }
+  ],
+  "action": null,
+  "prevSessionDate": "2026-08-07"
+}

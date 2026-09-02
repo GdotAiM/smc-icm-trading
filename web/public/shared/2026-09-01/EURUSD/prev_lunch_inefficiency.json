@@ -1,0 +1,36 @@
+{
+  "pair": "EURUSD",
+  "today": "2026-09-01",
+  "prevDate": "2026-08-31",
+  "found": false,
+  "summary": "Insufficient NY lunch candles in prior day",
+  "candlesAnalyzed": 300,
+  "lunchCandleCount": 0,
+  "sweep": null,
+  "inefficiency": null,
+  "eventHorizons": [
+    {
+      "horizon": "1.15877",
+      "upperPool": "1.15921",
+      "lowerPool": "1.15832",
+      "distancePct": "-0.01",
+      "label": "Event Horizon: BSL 1.15921 ↔ SSL 1.15832"
+    },
+    {
+      "horizon": "1.16185",
+      "upperPool": "1.16537",
+      "lowerPool": "1.15832",
+      "distancePct": "0.26",
+      "label": "Event Horizon: BSL 1.16537 ↔ SSL 1.15832"
+    },
+    {
+      "horizon": "1.16282",
+      "upperPool": "1.16731",
+      "lowerPool": "1.15832",
+      "distancePct": "0.34",
+      "label": "Event Horizon: BSL 1.16731 ↔ SSL 1.15832"
+    }
+  ],
+  "action": null,
+  "prevSessionDate": "2026-08-31"
+}

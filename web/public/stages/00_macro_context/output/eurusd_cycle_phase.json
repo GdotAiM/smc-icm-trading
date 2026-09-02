@@ -1,0 +1,9 @@
+{
+  "pair": "EURUSD",
+  "phase": "DISTRIBUTION",
+  "confidence": 0.6,
+  "reason": "BOS bearish — distribution beginning",
+  "source": "4H",
+  "timestamp": "2026-09-02T09:30:14.887Z",
+  "structureOnly": true
+}

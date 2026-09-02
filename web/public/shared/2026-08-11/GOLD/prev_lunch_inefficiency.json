@@ -1,0 +1,58 @@
+{
+  "pair": "XAUUSD",
+  "today": "2026-08-11",
+  "prevDate": "2026-08-10",
+  "found": true,
+  "summary": "BISI before NY lunch BSL sweep → carry 4360.30000–4358.93500 (bearish reversal)",
+  "candlesAnalyzed": 400,
+  "lunchCandleCount": 209,
+  "sweep": {
+    "price": "4360.41000",
+    "type": "BSL",
+    "time": 1786382880000
+  },
+  "inefficiency": {
+    "top": "4360.30000",
+    "bottom": "4358.93500",
+    "midpoint": "4359.61750",
+    "anchor": "4359.87500",
+    "kind": "BISI",
+    "expectedReaction": "bearish_reversal",
+    "hasVolumeImbalance": true,
+    "vibGap": "0.00500",
+    "vibDirection": "down"
+  },
+  "eventHorizons": [
+    {
+      "horizon": "4352.36417",
+      "upperPool": "4371.84000",
+      "lowerPool": "4332.88833",
+      "distancePct": "-0.17",
+      "label": "Event Horizon: BSL 4371.84000 ↔ SSL 4332.88833"
+    },
+    {
+      "horizon": "4349.48125",
+      "upperPool": "4371.84000",
+      "lowerPool": "4327.12250",
+      "distancePct": "-0.23",
+      "label": "Event Horizon: BSL 4371.84000 ↔ SSL 4327.12250"
+    },
+    {
+      "horizon": "4347.34500",
+      "upperPool": "4361.80167",
+      "lowerPool": "4332.88833",
+      "distancePct": "-0.28",
+      "label": "Event Horizon: BSL 4361.80167 ↔ SSL 4332.88833"
+    }
+  ],
+  "action": {
+    "direction": "SHORT",
+    "entryZone": "4358.935 – 4360.3",
+    "trigger": "Price trades UP into the BISI zone → expect bearish reversal",
+    "stopLoss": "Above inefficiency high: 4360.3 + buffer",
+    "takeProfit1": "Consequent encroachment (midpoint) of the inefficiency",
+    "takeProfit2": "Previous day RTH opening range gap, or Event Horizon level",
+    "note": "BISI from BSL sweep during NY lunch → complex reversal setup"
+  },
+  "prevSessionDate": "2026-08-10"
+}

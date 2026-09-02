@@ -1,0 +1,2 @@
+{"timestamp":"2026-08-13T12:22:34.243Z","pair":"EURUSD","event":"SESSION_START","date":"2026-08-13","nyTime":{"hour":8,"day":4,"dayName":"Thursday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-13T12:22:51.226Z","pair":"EURUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":17,"status":"PARTIAL","stageList":[]}

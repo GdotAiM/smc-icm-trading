@@ -1,0 +1,636 @@
+{"time":"2026-08-10T13:42:12.421Z","nyTime":"09:42:12","event":"SCHEDULER_START","detail":"Mode: MONITOR | Day: Mon | Version: c3cda0b"}
+{"time":"2026-08-10T13:42:12.424Z","nyTime":"09:42:12","event":"EVENT","detail":"09:45 — PRE_MACRO: Pre-09:50 macro data refresh"}
+{"time":"2026-08-10T13:42:12.426Z","nyTime":"09:42:12","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-10T13:45:40.600Z","nyTime":"09:45:40","event":"DATA_REFRESH","detail":"Complete in 208s — OK"}
+{"time":"2026-08-10T13:45:40.601Z","nyTime":"09:45:40","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T13:45:56.031Z","nyTime":"09:45:56","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T13:46:10.657Z","nyTime":"09:46:10","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T13:46:24.982Z","nyTime":"09:46:24","event":"GATED_OUT","detail":"XAUUSD: entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T13:46:40.101Z","nyTime":"09:46:40","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T13:46:40.102Z","nyTime":"09:46:40","event":"CYCLE_COMPLETE","detail":"Single cycle done"}
+{"time":"2026-08-10T14:19:14.524Z","nyTime":"10:19:14","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon | Version: c3cda0b"}
+{"time":"2026-08-10T14:19:14.533Z","nyTime":"10:19:14","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T14:19:30.608Z","nyTime":"10:19:30","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:19:45.809Z","nyTime":"10:19:45","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:20:01.326Z","nyTime":"10:20:01","event":"GATED_OUT","detail":"XAUUSD: entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:20:18.203Z","nyTime":"10:20:18","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:30:18.208Z","nyTime":"10:30:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T14:30:35.025Z","nyTime":"10:30:35","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:30:50.712Z","nyTime":"10:30:50","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:31:06.259Z","nyTime":"10:31:06","event":"GATED_OUT","detail":"XAUUSD: entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:31:23.581Z","nyTime":"10:31:23","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:41:23.585Z","nyTime":"10:41:23","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T14:41:30.985Z","nyTime":"10:41:30","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-10T14:41:33.307Z","nyTime":"10:41:33","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-10T14:41:35.599Z","nyTime":"10:41:35","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-10T14:41:37.489Z","nyTime":"10:41:37","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-10T14:51:37.532Z","nyTime":"10:51:37","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T14:51:52.002Z","nyTime":"10:51:52","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:52:06.768Z","nyTime":"10:52:06","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:52:21.540Z","nyTime":"10:52:21","event":"GATED_OUT","detail":"XAUUSD: entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T14:52:36.307Z","nyTime":"10:52:36","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T15:02:36.359Z","nyTime":"11:02:36","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T15:02:51.421Z","nyTime":"11:02:51","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T15:03:06.622Z","nyTime":"11:03:06","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T15:03:21.972Z","nyTime":"11:03:21","event":"GATED_OUT","detail":"XAUUSD: entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T15:03:37.164Z","nyTime":"11:03:37","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T15:18:37.216Z","nyTime":"11:18:37","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T15:18:54.619Z","nyTime":"11:18:54","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T15:19:10.909Z","nyTime":"11:19:10","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T15:19:27.119Z","nyTime":"11:19:27","event":"GATED_OUT","detail":"XAUUSD: R:R 0.79:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T15:19:44.071Z","nyTime":"11:19:44","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T15:34:44.104Z","nyTime":"11:34:44","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T15:35:00.518Z","nyTime":"11:35:00","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T15:35:16.025Z","nyTime":"11:35:16","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T15:35:30.837Z","nyTime":"11:35:30","event":"GATED_OUT","detail":"XAUUSD: R:R 0.79:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T15:35:46.146Z","nyTime":"11:35:46","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T15:50:46.190Z","nyTime":"11:50:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T15:51:00.806Z","nyTime":"11:51:00","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T15:51:15.399Z","nyTime":"11:51:15","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T15:51:29.650Z","nyTime":"11:51:29","event":"GATED_OUT","detail":"XAUUSD: R:R 0.79:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T15:51:44.185Z","nyTime":"11:51:44","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T16:09:36.228Z","nyTime":"12:09:36","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T16:10:17.193Z","nyTime":"12:10:17","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T16:10:53.317Z","nyTime":"12:10:53","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T16:11:09.085Z","nyTime":"12:11:09","event":"GATED_OUT","detail":"XAUUSD: R:R 0.79:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T16:11:23.234Z","nyTime":"12:11:23","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T16:26:23.634Z","nyTime":"12:26:23","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T16:26:40.940Z","nyTime":"12:26:40","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T16:26:55.499Z","nyTime":"12:26:55","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T16:27:09.790Z","nyTime":"12:27:09","event":"GATED_OUT","detail":"XAUUSD: R:R 0.79:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T16:27:25.867Z","nyTime":"12:27:25","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T16:42:25.914Z","nyTime":"12:42:25","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T16:42:41.957Z","nyTime":"12:42:41","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T16:42:57.262Z","nyTime":"12:42:57","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T16:43:13.590Z","nyTime":"12:43:13","event":"GATED_OUT","detail":"XAUUSD: R:R 0.79:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T16:43:29.767Z","nyTime":"12:43:29","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T16:58:29.822Z","nyTime":"12:58:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T16:58:49.066Z","nyTime":"12:58:49","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T16:59:07.826Z","nyTime":"12:59:07","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH, INVERSION_MISSING"}
+{"time":"2026-08-10T16:59:26.614Z","nyTime":"12:59:26","event":"GATED_OUT","detail":"XAUUSD: R:R 0.79:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T16:59:43.861Z","nyTime":"12:59:43","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: NY_LUNCH"}
+{"time":"2026-08-10T17:14:43.932Z","nyTime":"13:14:43","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T17:15:06.868Z","nyTime":"13:15:06","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T17:16:04.398Z","nyTime":"13:16:04","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T17:16:57.781Z","nyTime":"13:16:57","event":"GATED_OUT","detail":"XAUUSD: R:R 0.79:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-10T17:17:51.476Z","nyTime":"13:17:51","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED"}
+{"time":"2026-08-10T17:27:51.510Z","nyTime":"13:27:51","event":"EVENT","detail":"13:25 — PRE_PM: Pre-PM session refresh"}
+{"time":"2026-08-10T17:27:51.537Z","nyTime":"13:27:51","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-10T17:31:17.197Z","nyTime":"13:31:17","event":"DATA_REFRESH","detail":"Complete in 206s — OK"}
+{"time":"2026-08-10T17:31:17.204Z","nyTime":"13:31:17","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T17:31:32.666Z","nyTime":"13:31:32","event":"GATED_OUT","detail":"EURUSD: R:R 0.96:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T17:31:47.785Z","nyTime":"13:31:47","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T17:32:03.228Z","nyTime":"13:32:03","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED"}
+{"time":"2026-08-10T17:32:53.999Z","nyTime":"13:32:53","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-10T17:42:54.041Z","nyTime":"13:42:54","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T17:43:10.291Z","nyTime":"13:43:10","event":"GATED_OUT","detail":"EURUSD: R:R 0.96:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T17:43:25.731Z","nyTime":"13:43:25","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T17:43:41.293Z","nyTime":"13:43:41","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED"}
+{"time":"2026-08-10T17:43:56.624Z","nyTime":"13:43:56","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-10T17:53:56.641Z","nyTime":"13:53:56","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T17:54:12.924Z","nyTime":"13:54:12","event":"GATED_OUT","detail":"EURUSD: R:R 0.96:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T17:54:28.368Z","nyTime":"13:54:28","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T17:54:44.395Z","nyTime":"13:54:44","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED"}
+{"time":"2026-08-10T17:55:00.208Z","nyTime":"13:55:00","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-10T18:05:00.237Z","nyTime":"14:05:00","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T18:05:15.955Z","nyTime":"14:05:15","event":"GATED_OUT","detail":"EURUSD: R:R 0.96:1 < 1:1; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T18:05:31.427Z","nyTime":"14:05:31","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T18:05:46.905Z","nyTime":"14:05:46","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED"}
+{"time":"2026-08-10T18:06:02.053Z","nyTime":"14:06:02","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-10T18:16:02.140Z","nyTime":"14:16:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T18:16:22.619Z","nyTime":"14:16:22","event":"GATED_OUT","detail":"EURUSD: R:R 0.96:1 < 1:1; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T18:16:39.924Z","nyTime":"14:16:39","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T18:16:55.977Z","nyTime":"14:16:55","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED"}
+{"time":"2026-08-10T18:17:11.927Z","nyTime":"14:17:11","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-10T18:27:12.066Z","nyTime":"14:27:12","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T18:27:28.296Z","nyTime":"14:27:28","event":"GATED_OUT","detail":"EURUSD: R:R 0.96:1 < 1:1; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T18:27:45.222Z","nyTime":"14:27:45","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T18:28:02.497Z","nyTime":"14:28:02","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED"}
+{"time":"2026-08-10T18:28:18.925Z","nyTime":"14:28:18","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-10T18:38:19.009Z","nyTime":"14:38:19","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T18:38:48.191Z","nyTime":"14:38:48","event":"GATED_OUT","detail":"EURUSD: R:R 0.96:1 < 1:1; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-10T18:39:05.685Z","nyTime":"14:39:05","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-10T18:39:21.030Z","nyTime":"14:39:21","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-10T18:40:52.957Z","nyTime":"14:40:52","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-10T18:50:53.810Z","nyTime":"14:50:53","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T18:51:11.775Z","nyTime":"14:51:11","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-10T18:51:25.933Z","nyTime":"14:51:25","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-10T18:51:41.213Z","nyTime":"14:51:41","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-10T18:51:56.928Z","nyTime":"14:51:56","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-10T19:01:57.046Z","nyTime":"15:01:57","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T19:02:13.029Z","nyTime":"15:02:13","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-10T19:02:26.196Z","nyTime":"15:02:26","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-10T19:02:40.810Z","nyTime":"15:02:40","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-10T19:02:54.018Z","nyTime":"15:02:54","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-10T19:12:54.112Z","nyTime":"15:12:54","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T19:13:25.977Z","nyTime":"15:13:25","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-10T19:13:41.780Z","nyTime":"15:13:41","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-10T19:13:55.061Z","nyTime":"15:13:55","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-10T19:14:09.140Z","nyTime":"15:14:09","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-10T19:24:09.217Z","nyTime":"15:24:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T19:24:24.113Z","nyTime":"15:24:24","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-10T19:24:38.669Z","nyTime":"15:24:38","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-10T19:24:52.401Z","nyTime":"15:24:52","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-10T19:25:06.243Z","nyTime":"15:25:06","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-10T19:35:06.389Z","nyTime":"15:35:06","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T19:35:21.772Z","nyTime":"15:35:21","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-10T19:35:34.913Z","nyTime":"15:35:34","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-10T19:35:48.384Z","nyTime":"15:35:48","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-10T19:36:02.505Z","nyTime":"15:36:02","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-10T19:46:02.589Z","nyTime":"15:46:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-10T19:46:18.303Z","nyTime":"15:46:18","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-10T19:46:31.477Z","nyTime":"15:46:31","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-10T19:46:44.925Z","nyTime":"15:46:44","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-10T19:46:59.014Z","nyTime":"15:46:59","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-11T06:03:24.709Z","nyTime":"02:03:24","event":"EVENT","detail":"02:00 — LONDON_KZ: London Killzone — monitor for setups"}
+{"time":"2026-08-11T06:03:24.749Z","nyTime":"02:03:24","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T06:04:40.024Z","nyTime":"02:04:40","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-11T06:05:04.872Z","nyTime":"02:05:04","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-11T06:05:19.973Z","nyTime":"02:05:19","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-11T06:05:43.902Z","nyTime":"02:05:43","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-11T06:15:44.018Z","nyTime":"02:15:44","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T06:16:31.254Z","nyTime":"02:16:31","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-11T06:17:05.418Z","nyTime":"02:17:05","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-11T06:17:22.767Z","nyTime":"02:17:22","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-11T06:17:40.670Z","nyTime":"02:17:40","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-11T06:27:41.631Z","nyTime":"02:27:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T06:28:13.459Z","nyTime":"02:28:13","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-11T06:28:36.861Z","nyTime":"02:28:36","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-11T06:29:12.051Z","nyTime":"02:29:12","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-11T06:30:35.409Z","nyTime":"02:30:35","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-11T06:40:35.717Z","nyTime":"02:40:35","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T06:40:57.200Z","nyTime":"02:40:57","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-11T06:41:16.890Z","nyTime":"02:41:16","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-11T06:41:34.005Z","nyTime":"02:41:34","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-11T06:41:50.740Z","nyTime":"02:41:50","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-11T06:51:50.840Z","nyTime":"02:51:50","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T06:52:11.665Z","nyTime":"02:52:11","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-11T06:52:30.347Z","nyTime":"02:52:30","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-11T06:52:54.106Z","nyTime":"02:52:54","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-11T06:53:14.611Z","nyTime":"02:53:14","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-11T07:03:20.816Z","nyTime":"03:03:20","event":"EVENT","detail":"03:00 — LONDON_SB: London Silver Bullet window"}
+{"time":"2026-08-11T07:03:20.835Z","nyTime":"03:03:20","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T07:03:46.805Z","nyTime":"03:03:46","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T07:04:15.492Z","nyTime":"03:04:15","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T07:05:09.298Z","nyTime":"03:05:09","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T07:05:46.028Z","nyTime":"03:05:46","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T07:15:46.112Z","nyTime":"03:15:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T07:16:06.122Z","nyTime":"03:16:06","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T07:16:24.516Z","nyTime":"03:16:24","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T07:16:45.270Z","nyTime":"03:16:45","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T07:17:02.749Z","nyTime":"03:17:02","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T07:27:02.879Z","nyTime":"03:27:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T07:27:19.802Z","nyTime":"03:27:19","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T07:27:35.889Z","nyTime":"03:27:35","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T07:27:54.422Z","nyTime":"03:27:54","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T07:28:16.026Z","nyTime":"03:28:16","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T07:38:16.070Z","nyTime":"03:38:16","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T07:38:36.943Z","nyTime":"03:38:36","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T07:38:56.132Z","nyTime":"03:38:56","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T07:39:15.354Z","nyTime":"03:39:15","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T07:39:33.555Z","nyTime":"03:39:33","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T07:49:33.619Z","nyTime":"03:49:33","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T07:49:57.210Z","nyTime":"03:49:57","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T07:50:21.388Z","nyTime":"03:50:21","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T07:50:40.131Z","nyTime":"03:50:40","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T07:50:56.653Z","nyTime":"03:50:56","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:00:56.763Z","nyTime":"04:00:56","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T08:01:15.794Z","nyTime":"04:01:15","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:01:34.892Z","nyTime":"04:01:34","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:01:58.724Z","nyTime":"04:01:58","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:02:15.584Z","nyTime":"04:02:15","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:12:15.664Z","nyTime":"04:12:15","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T08:12:40.268Z","nyTime":"04:12:40","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:13:05.381Z","nyTime":"04:13:05","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:13:23.120Z","nyTime":"04:13:23","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:13:42.729Z","nyTime":"04:13:42","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:23:42.800Z","nyTime":"04:23:42","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T08:23:59.078Z","nyTime":"04:23:59","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:24:15.298Z","nyTime":"04:24:15","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:24:30.644Z","nyTime":"04:24:30","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:24:45.982Z","nyTime":"04:24:45","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:34:46.087Z","nyTime":"04:34:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T08:35:05.374Z","nyTime":"04:35:05","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:35:22.736Z","nyTime":"04:35:22","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:35:39.526Z","nyTime":"04:35:39","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:35:55.639Z","nyTime":"04:35:55","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:45:55.723Z","nyTime":"04:45:55","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T08:46:15.191Z","nyTime":"04:46:15","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:46:32.721Z","nyTime":"04:46:32","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:46:49.309Z","nyTime":"04:46:49","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:47:05.620Z","nyTime":"04:47:05","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:57:05.725Z","nyTime":"04:57:05","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T08:57:27.059Z","nyTime":"04:57:27","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:57:48.562Z","nyTime":"04:57:48","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T08:58:11.788Z","nyTime":"04:58:11","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T08:58:41.104Z","nyTime":"04:58:41","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T09:08:41.194Z","nyTime":"05:08:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T09:09:02.764Z","nyTime":"05:09:02","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T09:09:24.153Z","nyTime":"05:09:24","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T09:09:41.532Z","nyTime":"05:09:41","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T09:10:00.944Z","nyTime":"05:10:00","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T09:25:00.999Z","nyTime":"05:25:00","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T09:25:21.750Z","nyTime":"05:25:21","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T09:25:43.145Z","nyTime":"05:25:43","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T09:25:59.877Z","nyTime":"05:25:59","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T09:26:14.878Z","nyTime":"05:26:14","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T09:41:07.700Z","nyTime":"05:41:07","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T09:41:35.436Z","nyTime":"05:41:35","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T09:41:51.282Z","nyTime":"05:41:51","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T09:42:15.535Z","nyTime":"05:42:15","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T09:42:34.991Z","nyTime":"05:42:34","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T09:57:35.099Z","nyTime":"05:57:35","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T09:58:00.404Z","nyTime":"05:58:00","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T09:58:29.188Z","nyTime":"05:58:29","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T09:58:48.339Z","nyTime":"05:58:48","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T09:59:10.307Z","nyTime":"05:59:10","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T10:14:10.606Z","nyTime":"06:14:10","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T10:14:35.858Z","nyTime":"06:14:35","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T10:15:00.502Z","nyTime":"06:15:00","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T10:15:43.982Z","nyTime":"06:15:43","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T10:16:41.693Z","nyTime":"06:16:41","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T10:31:41.777Z","nyTime":"06:31:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T10:32:06.936Z","nyTime":"06:32:06","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T10:32:24.339Z","nyTime":"06:32:24","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T10:32:43.511Z","nyTime":"06:32:43","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T10:33:01.226Z","nyTime":"06:33:01","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T10:48:01.324Z","nyTime":"06:48:01","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T10:48:21.700Z","nyTime":"06:48:21","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T10:48:38.405Z","nyTime":"06:48:38","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T10:48:54.785Z","nyTime":"06:48:54","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T10:49:12.609Z","nyTime":"06:49:12","event":"GATED_OUT","detail":"NAS100: R:R 0.75:1 < 1:1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T11:04:12.678Z","nyTime":"07:04:12","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T11:04:34.488Z","nyTime":"07:04:34","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T11:04:52.095Z","nyTime":"07:04:52","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T11:05:20.419Z","nyTime":"07:05:20","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T11:05:41.134Z","nyTime":"07:05:41","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T11:20:41.237Z","nyTime":"07:20:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T11:21:00.124Z","nyTime":"07:21:00","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T11:21:18.452Z","nyTime":"07:21:18","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T11:21:37.395Z","nyTime":"07:21:37","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T11:21:53.875Z","nyTime":"07:21:53","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T11:36:54.463Z","nyTime":"07:36:54","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T11:37:53.609Z","nyTime":"07:37:53","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T11:38:24.462Z","nyTime":"07:38:24","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T11:38:45.991Z","nyTime":"07:38:45","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T11:39:06.502Z","nyTime":"07:39:06","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T13:45:12.759Z","nyTime":"09:45:12","event":"EVENT","detail":"09:45 — PRE_MACRO: Pre-09:50 macro data refresh"}
+{"time":"2026-08-11T13:45:12.807Z","nyTime":"09:45:12","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-11T13:50:15.270Z","nyTime":"09:50:15","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-11T13:50:17.877Z","nyTime":"09:50:17","event":"DATA_REFRESH","detail":"Complete in 305s — FAILED"}
+{"time":"2026-08-11T13:50:18.077Z","nyTime":"09:50:18","event":"SAFETY","detail":"Session startup FAILED — skipping scan to avoid contaminated data"}
+{"time":"2026-08-11T13:55:19.227Z","nyTime":"09:55:19","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T13:55:19.508Z","nyTime":"09:55:19","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe UNKNOWN"}
+{"time":"2026-08-11T13:55:19.757Z","nyTime":"09:55:19","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe UNKNOWN"}
+{"time":"2026-08-11T13:55:56.521Z","nyTime":"09:55:56","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-11T13:56:40.647Z","nyTime":"09:56:40","event":"GATED_OUT","detail":"NAS100: entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED"}
+{"time":"2026-08-11T14:06:40.809Z","nyTime":"10:06:40","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T14:06:51.051Z","nyTime":"10:06:51","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T14:06:58.137Z","nyTime":"10:06:58","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T14:07:05.974Z","nyTime":"10:07:05","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T14:07:12.681Z","nyTime":"10:07:12","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T14:17:12.723Z","nyTime":"10:17:12","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T14:17:30.200Z","nyTime":"10:17:30","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T14:17:46.399Z","nyTime":"10:17:46","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T14:18:02.441Z","nyTime":"10:18:02","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T14:18:18.559Z","nyTime":"10:18:18","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T14:28:22.460Z","nyTime":"10:28:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T14:29:53.538Z","nyTime":"10:29:53","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-11T14:31:24.870Z","nyTime":"10:31:24","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-11T14:31:59.023Z","nyTime":"10:31:59","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T14:32:20.399Z","nyTime":"10:32:20","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T14:42:20.461Z","nyTime":"10:42:20","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T14:42:37.019Z","nyTime":"10:42:37","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T14:42:52.259Z","nyTime":"10:42:52","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T14:43:07.507Z","nyTime":"10:43:07","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T14:43:23.278Z","nyTime":"10:43:23","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T14:53:23.388Z","nyTime":"10:53:23","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T14:53:45.775Z","nyTime":"10:53:45","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T14:54:03.330Z","nyTime":"10:54:03","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T14:54:20.663Z","nyTime":"10:54:20","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T14:54:37.818Z","nyTime":"10:54:37","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T15:04:37.881Z","nyTime":"11:04:37","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T15:04:54.653Z","nyTime":"11:04:54","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T15:05:10.204Z","nyTime":"11:05:10","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T15:05:26.416Z","nyTime":"11:05:26","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T15:05:42.088Z","nyTime":"11:05:42","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T15:20:42.201Z","nyTime":"11:20:42","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T15:20:59.271Z","nyTime":"11:20:59","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T15:21:15.838Z","nyTime":"11:21:15","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T15:21:31.472Z","nyTime":"11:21:31","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T15:21:47.085Z","nyTime":"11:21:47","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T15:36:47.203Z","nyTime":"11:36:47","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T15:37:05.620Z","nyTime":"11:37:05","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T15:37:22.170Z","nyTime":"11:37:22","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T15:37:38.531Z","nyTime":"11:37:38","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T15:37:54.105Z","nyTime":"11:37:54","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T15:52:54.291Z","nyTime":"11:52:54","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T15:53:23.169Z","nyTime":"11:53:23","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T15:53:44.596Z","nyTime":"11:53:44","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T15:54:03.654Z","nyTime":"11:54:03","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T15:54:22.121Z","nyTime":"11:54:22","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T16:09:22.288Z","nyTime":"12:09:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T16:09:44.488Z","nyTime":"12:09:44","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T16:10:00.500Z","nyTime":"12:10:00","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T16:10:16.389Z","nyTime":"12:10:16","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T16:10:31.967Z","nyTime":"12:10:31","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T16:25:32.079Z","nyTime":"12:25:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T16:25:51.532Z","nyTime":"12:25:51","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T16:26:07.304Z","nyTime":"12:26:07","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T16:26:23.230Z","nyTime":"12:26:23","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T16:26:40.035Z","nyTime":"12:26:40","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T16:41:40.204Z","nyTime":"12:41:40","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T16:41:58.904Z","nyTime":"12:41:58","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T16:42:14.865Z","nyTime":"12:42:14","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T16:42:30.963Z","nyTime":"12:42:30","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T16:42:47.215Z","nyTime":"12:42:47","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T16:57:47.349Z","nyTime":"12:57:47","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T16:58:06.523Z","nyTime":"12:58:06","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T16:58:21.827Z","nyTime":"12:58:21","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T16:58:37.443Z","nyTime":"12:58:37","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T16:58:53.159Z","nyTime":"12:58:53","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T17:13:53.205Z","nyTime":"13:13:53","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T17:14:12.490Z","nyTime":"13:14:12","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T17:14:29.304Z","nyTime":"13:14:29","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; entry: no draw on liquidity (buy-side (BSL) above); invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T17:14:46.680Z","nyTime":"13:14:46","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T17:15:02.801Z","nyTime":"13:15:02","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING; freshness 3/10 < 5"}
+{"time":"2026-08-11T17:25:02.861Z","nyTime":"13:25:02","event":"EVENT","detail":"13:25 — PRE_PM: Pre-PM session refresh"}
+{"time":"2026-08-11T17:25:02.872Z","nyTime":"13:25:02","event":"DATA_REFRESH","detail":"Fetching fresh candles + engines..."}
+{"time":"2026-08-11T17:28:33.085Z","nyTime":"13:28:33","event":"DATA_REFRESH","detail":"Complete in 210s — OK"}
+{"time":"2026-08-11T17:28:33.089Z","nyTime":"13:28:33","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-11T17:28:49.951Z","nyTime":"13:28:49","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T17:29:05.901Z","nyTime":"13:29:05","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-11T17:29:21.926Z","nyTime":"13:29:21","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-11T17:29:38.580Z","nyTime":"13:29:38","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; 1 phase conflict(s)"}
+{"time":"2026-08-12T06:01:29.972Z","nyTime":"02:01:29","event":"EVENT","detail":"02:00 — LONDON_KZ: London Killzone — monitor for setups"}
+{"time":"2026-08-12T06:01:29.982Z","nyTime":"02:01:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T06:02:26.781Z","nyTime":"02:02:26","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-12T06:02:49.527Z","nyTime":"02:02:49","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-12T06:03:33.111Z","nyTime":"02:03:33","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-12T06:04:00.052Z","nyTime":"02:04:00","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-12T06:14:00.156Z","nyTime":"02:14:00","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T06:14:23.409Z","nyTime":"02:14:23","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:14:44.579Z","nyTime":"02:14:44","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-12T06:14:47.078Z","nyTime":"02:14:47","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-12T06:14:49.734Z","nyTime":"02:14:49","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-12T06:24:49.796Z","nyTime":"02:24:49","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T06:25:05.800Z","nyTime":"02:25:05","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:25:22.145Z","nyTime":"02:25:22","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-12T06:25:38.477Z","nyTime":"02:25:38","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:25:56.178Z","nyTime":"02:25:56","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:35:56.328Z","nyTime":"02:35:56","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T06:36:22.942Z","nyTime":"02:36:22","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:36:40.417Z","nyTime":"02:36:40","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-12T06:37:04.108Z","nyTime":"02:37:04","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:37:26.849Z","nyTime":"02:37:26","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:47:26.980Z","nyTime":"02:47:26","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T06:47:45.773Z","nyTime":"02:47:45","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:48:02.282Z","nyTime":"02:48:02","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-12T06:48:20.059Z","nyTime":"02:48:20","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:48:36.544Z","nyTime":"02:48:36","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:58:36.642Z","nyTime":"02:58:36","event":"EVENT","detail":"03:00 — LONDON_SB: London Silver Bullet window"}
+{"time":"2026-08-12T06:58:36.657Z","nyTime":"02:58:36","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T06:59:05.275Z","nyTime":"02:59:05","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T06:59:42.367Z","nyTime":"02:59:42","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-12T07:00:29.764Z","nyTime":"03:00:29","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:00:56.733Z","nyTime":"03:00:56","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:10:56.848Z","nyTime":"03:10:56","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T07:11:16.725Z","nyTime":"03:11:16","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:11:38.509Z","nyTime":"03:11:38","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-12T07:11:55.919Z","nyTime":"03:11:55","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:12:12.765Z","nyTime":"03:12:12","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:22:12.977Z","nyTime":"03:22:12","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T07:22:32.357Z","nyTime":"03:22:32","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:22:54.594Z","nyTime":"03:22:54","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-12T07:23:15.731Z","nyTime":"03:23:15","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:23:32.295Z","nyTime":"03:23:32","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:33:32.492Z","nyTime":"03:33:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T07:33:50.725Z","nyTime":"03:33:50","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:34:06.605Z","nyTime":"03:34:06","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-12T07:34:22.665Z","nyTime":"03:34:22","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:34:39.349Z","nyTime":"03:34:39","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:44:39.428Z","nyTime":"03:44:39","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T07:44:58.245Z","nyTime":"03:44:58","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:45:18.957Z","nyTime":"03:45:18","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-12T07:45:38.377Z","nyTime":"03:45:38","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:45:57.572Z","nyTime":"03:45:57","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:55:57.678Z","nyTime":"03:55:57","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T07:56:15.068Z","nyTime":"03:56:15","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:56:33.602Z","nyTime":"03:56:33","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-12T07:56:49.797Z","nyTime":"03:56:49","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T07:57:05.372Z","nyTime":"03:57:05","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:07:05.509Z","nyTime":"04:07:05","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T08:07:26.992Z","nyTime":"04:07:26","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:07:44.831Z","nyTime":"04:07:44","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-12T08:08:00.715Z","nyTime":"04:08:00","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:08:21.639Z","nyTime":"04:08:21","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:18:21.755Z","nyTime":"04:18:21","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T08:18:39.433Z","nyTime":"04:18:39","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:19:00.808Z","nyTime":"04:19:00","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-12T08:19:16.396Z","nyTime":"04:19:16","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:19:32.920Z","nyTime":"04:19:32","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:29:33.215Z","nyTime":"04:29:33","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T08:29:53.408Z","nyTime":"04:29:53","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:30:14.028Z","nyTime":"04:30:14","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-12T08:30:36.333Z","nyTime":"04:30:36","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:30:58.209Z","nyTime":"04:30:58","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:40:58.291Z","nyTime":"04:40:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T08:41:16.004Z","nyTime":"04:41:16","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:41:33.355Z","nyTime":"04:41:33","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T08:41:51.770Z","nyTime":"04:41:51","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:42:08.431Z","nyTime":"04:42:08","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:52:08.502Z","nyTime":"04:52:08","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T08:52:26.642Z","nyTime":"04:52:26","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:52:44.145Z","nyTime":"04:52:44","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T08:53:00.776Z","nyTime":"04:53:00","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T08:53:16.627Z","nyTime":"04:53:16","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:03:18.594Z","nyTime":"05:03:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T09:04:02.201Z","nyTime":"05:04:02","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:04:24.891Z","nyTime":"05:04:24","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T09:04:49.809Z","nyTime":"05:04:49","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:05:24.970Z","nyTime":"05:05:24","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:20:25.081Z","nyTime":"05:20:25","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T09:20:43.044Z","nyTime":"05:20:43","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:21:06.075Z","nyTime":"05:21:06","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T09:21:21.600Z","nyTime":"05:21:21","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:21:37.481Z","nyTime":"05:21:37","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:36:37.588Z","nyTime":"05:36:37","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T09:37:01.460Z","nyTime":"05:37:01","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:37:29.692Z","nyTime":"05:37:29","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T09:37:48.150Z","nyTime":"05:37:48","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:38:11.430Z","nyTime":"05:38:11","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:53:11.520Z","nyTime":"05:53:11","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T09:53:44.266Z","nyTime":"05:53:44","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:54:00.671Z","nyTime":"05:54:00","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T09:54:16.512Z","nyTime":"05:54:16","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T09:54:31.816Z","nyTime":"05:54:31","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T10:09:31.948Z","nyTime":"06:09:31","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T10:09:51.225Z","nyTime":"06:09:51","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T10:10:22.962Z","nyTime":"06:10:22","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T10:10:39.821Z","nyTime":"06:10:39","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T10:10:55.816Z","nyTime":"06:10:55","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T10:25:55.941Z","nyTime":"06:25:55","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T10:26:27.060Z","nyTime":"06:26:27","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T10:26:44.293Z","nyTime":"06:26:44","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T10:27:05.541Z","nyTime":"06:27:05","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T10:27:29.744Z","nyTime":"06:27:29","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T10:42:29.836Z","nyTime":"06:42:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T10:42:56.492Z","nyTime":"06:42:56","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T10:43:21.767Z","nyTime":"06:43:21","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-12T10:43:44.589Z","nyTime":"06:43:44","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-12T10:44:09.482Z","nyTime":"06:44:09","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED"}
+{"time":"2026-08-12T10:59:09.570Z","nyTime":"06:59:09","event":"EVENT","detail":"07:00 — LECTURE2: Lecture 2 — London Hunt + IFVG"}
+{"time":"2026-08-12T10:59:09.579Z","nyTime":"06:59:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T10:59:31.762Z","nyTime":"06:59:31","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T10:59:48.194Z","nyTime":"06:59:48","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T11:00:05.035Z","nyTime":"07:00:05","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T11:00:22.543Z","nyTime":"07:00:22","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T11:15:22.803Z","nyTime":"07:15:22","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T11:15:42.146Z","nyTime":"07:15:42","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T11:15:59.625Z","nyTime":"07:15:59","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T11:16:16.263Z","nyTime":"07:16:16","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T11:16:32.660Z","nyTime":"07:16:32","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T11:31:32.714Z","nyTime":"07:31:32","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T11:31:50.862Z","nyTime":"07:31:50","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T11:32:07.533Z","nyTime":"07:32:07","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T11:32:25.407Z","nyTime":"07:32:25","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T11:32:47.923Z","nyTime":"07:32:47","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T11:47:48.014Z","nyTime":"07:47:48","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T11:48:08.252Z","nyTime":"07:48:08","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T11:48:25.398Z","nyTime":"07:48:25","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T11:48:43.483Z","nyTime":"07:48:43","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T11:48:58.695Z","nyTime":"07:48:58","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T12:03:58.776Z","nyTime":"08:03:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T12:04:19.020Z","nyTime":"08:04:19","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:04:41.480Z","nyTime":"08:04:41","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-12T12:04:57.867Z","nyTime":"08:04:57","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:05:14.582Z","nyTime":"08:05:14","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:15:14.666Z","nyTime":"08:15:14","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T12:15:35.885Z","nyTime":"08:15:35","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:15:54.047Z","nyTime":"08:15:54","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-12T12:16:16.571Z","nyTime":"08:16:16","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:16:36.965Z","nyTime":"08:16:36","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:26:37.077Z","nyTime":"08:26:37","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T12:27:21.818Z","nyTime":"08:27:21","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:27:57.108Z","nyTime":"08:27:57","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-12T12:28:26.631Z","nyTime":"08:28:26","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:28:49.929Z","nyTime":"08:28:49","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:38:50.016Z","nyTime":"08:38:50","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T12:39:18.342Z","nyTime":"08:39:18","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:39:37.894Z","nyTime":"08:39:37","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-12T12:39:59.505Z","nyTime":"08:39:59","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:40:18.759Z","nyTime":"08:40:18","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:50:18.817Z","nyTime":"08:50:18","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T12:50:42.736Z","nyTime":"08:50:42","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:51:16.538Z","nyTime":"08:51:16","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING"}
+{"time":"2026-08-12T12:51:49.329Z","nyTime":"08:51:49","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T12:52:51.035Z","nyTime":"08:52:51","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: JUDAS_SWING, INVERSION_MISSING"}
+{"time":"2026-08-12T13:02:51.164Z","nyTime":"09:02:51","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T13:03:54.946Z","nyTime":"09:03:54","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T13:04:59.491Z","nyTime":"09:04:59","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T13:05:54.860Z","nyTime":"09:05:54","event":"GATED_OUT","detail":"XAUUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T13:06:28.520Z","nyTime":"09:06:28","event":"GATED_OUT","detail":"NAS100: R:R 0.87:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T13:16:28.644Z","nyTime":"09:16:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T13:16:50.531Z","nyTime":"09:16:50","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-12T13:17:13.161Z","nyTime":"09:17:13","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-12T13:17:30.339Z","nyTime":"09:17:30","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-12T13:17:45.831Z","nyTime":"09:17:45","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-12T13:27:45.977Z","nyTime":"09:27:45","event":"EVENT","detail":"09:30 — AMOR: AM Session Opening Range"}
+{"time":"2026-08-12T13:27:45.991Z","nyTime":"09:27:45","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T13:28:05.961Z","nyTime":"09:28:05","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-12T13:28:42.324Z","nyTime":"09:28:42","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-12T13:29:03.853Z","nyTime":"09:29:03","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-12T13:29:24.287Z","nyTime":"09:29:24","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-12T13:39:24.401Z","nyTime":"09:39:24","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T13:39:45.514Z","nyTime":"09:39:45","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" EURUSD"}
+{"time":"2026-08-12T13:40:00.096Z","nyTime":"09:40:00","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" GBPUSD"}
+{"time":"2026-08-12T13:40:14.900Z","nyTime":"09:40:14","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-12T13:40:32.958Z","nyTime":"09:40:32","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-12T13:50:33.032Z","nyTime":"09:50:33","event":"EVENT","detail":"09:50 — NY_MACRO: ⭐⭐ NY-AM Macro — highest conviction"}
+{"time":"2026-08-12T13:50:33.047Z","nyTime":"09:50:33","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T13:50:53.508Z","nyTime":"09:50:53","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T13:51:11.183Z","nyTime":"09:51:11","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T13:51:29.554Z","nyTime":"09:51:29","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T13:51:48.176Z","nyTime":"09:51:48","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:01:48.256Z","nyTime":"10:01:48","event":"EVENT","detail":"10:00 — SILVER_BULLET: Silver Bullet scalp window"}
+{"time":"2026-08-12T14:01:48.263Z","nyTime":"10:01:48","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T14:02:09.344Z","nyTime":"10:02:09","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:02:26.699Z","nyTime":"10:02:26","event":"SETUP","detail":"GBPUSD: LONG @ 1.35062 | OTE + Institutional OB | R:R 1.3:1 | Qty:50000"}
+{"time":"2026-08-12T14:02:44.441Z","nyTime":"10:02:44","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:03:03.361Z","nyTime":"10:03:03","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:03:03.365Z","nyTime":"10:03:03","event":"BEST","detail":"GBPUSD: LONG @ 1.35062 | OTE + Institutional OB | R:R 1.2639963378468035:1 | Coh: 68"}
+{"time":"2026-08-12T14:03:03.385Z","nyTime":"10:03:03","event":"EXECUTING","detail":"GBPUSD (TV:OANDA:GBPUSD) BUY Qty:50000 SL:1.348586766261065 TP:1.3531900000000001"}
+{"time":"2026-08-12T14:03:33.357Z","nyTime":"10:03:33","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-12T14:03:33.360Z","nyTime":"10:03:33","event":"TRADE_FAILED","detail":"GBPUSD BUY — order might not have filled"}
+{"time":"2026-08-12T14:13:33.544Z","nyTime":"10:13:33","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T14:13:56.402Z","nyTime":"10:13:56","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:14:14.465Z","nyTime":"10:14:14","event":"SETUP","detail":"GBPUSD: LONG @ 1.35062 | OTE + Institutional OB | R:R 1.3:1 | Qty:50000"}
+{"time":"2026-08-12T14:14:33.146Z","nyTime":"10:14:33","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:14:50.753Z","nyTime":"10:14:50","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:14:50.755Z","nyTime":"10:14:50","event":"BEST","detail":"GBPUSD: LONG @ 1.35062 | OTE + Institutional OB | R:R 1.2639963378468035:1 | Coh: 68"}
+{"time":"2026-08-12T14:14:50.758Z","nyTime":"10:14:50","event":"EXECUTING","detail":"GBPUSD (TV:OANDA:GBPUSD) BUY Qty:50000 SL:1.348586766261065 TP:1.3531900000000001"}
+{"time":"2026-08-12T14:15:20.857Z","nyTime":"10:15:20","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-12T14:15:20.864Z","nyTime":"10:15:20","event":"TRADE_FAILED","detail":"GBPUSD BUY — order might not have filled"}
+{"time":"2026-08-12T14:25:20.898Z","nyTime":"10:25:20","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T14:25:40.958Z","nyTime":"10:25:40","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:26:05.011Z","nyTime":"10:26:05","event":"SETUP","detail":"GBPUSD: LONG @ 1.35062 | OTE + Institutional OB | R:R 1.3:1 | Qty:50000"}
+{"time":"2026-08-12T14:26:26.205Z","nyTime":"10:26:26","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:26:49.895Z","nyTime":"10:26:49","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:26:49.897Z","nyTime":"10:26:49","event":"BEST","detail":"GBPUSD: LONG @ 1.35062 | OTE + Institutional OB | R:R 1.2639963378468035:1 | Coh: 68"}
+{"time":"2026-08-12T14:26:49.900Z","nyTime":"10:26:49","event":"EXECUTING","detail":"GBPUSD (TV:OANDA:GBPUSD) BUY Qty:50000 SL:1.348586766261065 TP:1.3531900000000001"}
+{"time":"2026-08-12T14:27:19.893Z","nyTime":"10:27:19","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-12T14:27:19.894Z","nyTime":"10:27:19","event":"TRADE_FAILED","detail":"GBPUSD BUY — order might not have filled"}
+{"time":"2026-08-12T14:37:20.158Z","nyTime":"10:37:20","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T14:37:43.094Z","nyTime":"10:37:43","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:38:04.870Z","nyTime":"10:38:04","event":"SETUP","detail":"GBPUSD: LONG @ 1.35062 | OTE + Institutional OB | R:R 1.3:1 | Qty:50000"}
+{"time":"2026-08-12T14:38:22.320Z","nyTime":"10:38:22","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:38:40.073Z","nyTime":"10:38:40","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:38:40.077Z","nyTime":"10:38:40","event":"BEST","detail":"GBPUSD: LONG @ 1.35062 | OTE + Institutional OB | R:R 1.2639963378468035:1 | Coh: 68"}
+{"time":"2026-08-12T14:38:40.081Z","nyTime":"10:38:40","event":"EXECUTING","detail":"GBPUSD (TV:OANDA:GBPUSD) BUY Qty:50000 SL:1.348586766261065 TP:1.3531900000000001"}
+{"time":"2026-08-12T14:39:09.601Z","nyTime":"10:39:09","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-12T14:39:09.603Z","nyTime":"10:39:09","event":"TRADE_FAILED","detail":"GBPUSD BUY — order might not have filled"}
+{"time":"2026-08-12T14:49:09.707Z","nyTime":"10:49:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T14:49:34.961Z","nyTime":"10:49:34","event":"GATED_OUT","detail":"EURUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:49:51.781Z","nyTime":"10:49:51","event":"SETUP","detail":"GBPUSD: LONG @ 1.35062 | OTE + Institutional OB | R:R 1.3:1 | Qty:50000"}
+{"time":"2026-08-12T14:50:08.915Z","nyTime":"10:50:08","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:50:25.655Z","nyTime":"10:50:25","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T14:50:25.667Z","nyTime":"10:50:25","event":"BEST","detail":"GBPUSD: LONG @ 1.35062 | OTE + Institutional OB | R:R 1.2639963378468035:1 | Coh: 68"}
+{"time":"2026-08-12T14:50:25.671Z","nyTime":"10:50:25","event":"EXECUTING","detail":"GBPUSD (TV:OANDA:GBPUSD) BUY Qty:50000 SL:1.348586766261065 TP:1.3531900000000001"}
+{"time":"2026-08-12T14:50:55.615Z","nyTime":"10:50:55","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-12T14:50:55.616Z","nyTime":"10:50:55","event":"TRADE_FAILED","detail":"GBPUSD BUY — order might not have filled"}
+{"time":"2026-08-12T15:00:55.717Z","nyTime":"11:00:55","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T15:01:17.983Z","nyTime":"11:01:17","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:01:38.157Z","nyTime":"11:01:38","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T15:01:54.960Z","nyTime":"11:01:54","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:02:12.358Z","nyTime":"11:02:12","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:17:12.538Z","nyTime":"11:17:12","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T15:17:34.163Z","nyTime":"11:17:34","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:17:55.976Z","nyTime":"11:17:55","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T15:18:16.971Z","nyTime":"11:18:16","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:18:35.902Z","nyTime":"11:18:35","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:33:36.298Z","nyTime":"11:33:36","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T15:34:22.147Z","nyTime":"11:34:22","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:34:52.657Z","nyTime":"11:34:52","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T15:35:25.852Z","nyTime":"11:35:25","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:35:46.006Z","nyTime":"11:35:46","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:50:46.113Z","nyTime":"11:50:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T15:51:12.335Z","nyTime":"11:51:12","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:51:30.700Z","nyTime":"11:51:30","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T15:51:49.671Z","nyTime":"11:51:49","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T15:52:08.625Z","nyTime":"11:52:08","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T16:07:08.782Z","nyTime":"12:07:08","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T16:07:40.764Z","nyTime":"12:07:40","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T16:08:00.597Z","nyTime":"12:08:00","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T16:08:18.737Z","nyTime":"12:08:18","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T16:08:41.260Z","nyTime":"12:08:41","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T16:23:41.310Z","nyTime":"12:23:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-12T16:24:00.038Z","nyTime":"12:24:00","event":"GATED_OUT","detail":"EURUSD: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T16:24:17.877Z","nyTime":"12:24:17","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED"}
+{"time":"2026-08-12T16:24:35.659Z","nyTime":"12:24:35","event":"GATED_OUT","detail":"XAUUSD: R:R 0.85:1 < 1:1; invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T16:24:54.007Z","nyTime":"12:24:54","event":"GATED_OUT","detail":"NAS100: invalidation: INVALIDATED; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-12T19:35:05.236Z","nyTime":"15:35:05","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-13T05:17:18.291Z","nyTime":"01:17:18","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-13T05:18:49.766Z","nyTime":"01:18:49","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-13T05:19:38.798Z","nyTime":"01:19:38","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" XAUUSD"}
+{"time":"2026-08-13T05:20:00.840Z","nyTime":"01:20:00","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\run_pair.cjs\" NAS100"}
+{"time":"2026-08-13T05:20:00.856Z","nyTime":"01:20:00","event":"WATCHDOG","detail":"Scan took 35096s — possible timeout or slow pair"}

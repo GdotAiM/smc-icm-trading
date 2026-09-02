@@ -1,0 +1,25 @@
+{
+  "generated": "2026-08-12T12:05:35.078Z",
+  "totalSamples": 150,
+  "datesScanned": 16,
+  "pairs": [
+    "EURUSD",
+    "GBPUSD",
+    "XAUUSD",
+    "NAS100"
+  ],
+  "models": [
+    "2FVG Entry",
+    "OTE + Institutional OB",
+    "Unicorn (OTE+FVG)",
+    "SCOB",
+    "NWOG/NDOG",
+    "Mitigation Block"
+  ],
+  "featureCount": 187,
+  "outcomeCoverage": {
+    "eod": 140,
+    "fourH": 140,
+    "oneH": 140
+  }
+}

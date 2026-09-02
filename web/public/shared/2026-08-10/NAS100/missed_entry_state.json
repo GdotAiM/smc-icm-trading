@@ -1,0 +1,40 @@
+{
+  "pair": "NAS100",
+  "assessedAt": "2026-08-10T18:28:18.884Z",
+  "originalSetup": {
+    "registry": {
+      "verdict": "SETUP COMPLETE",
+      "primary": "2FVG Entry",
+      "completeCount": 1
+    },
+    "entry": {
+      "type": "SHORT",
+      "price": 29865,
+      "sl": 29765.3,
+      "tp1": 29342.3,
+      "tp2": 29099.5,
+      "noDrawDir": null
+    },
+    "rr": {
+      "rr1": 5.24,
+      "rr2": 7.68
+    },
+    "coherence": {
+      "unified": 0,
+      "phase": "DISTRIBUTION",
+      "base": 30
+    },
+    "invalidation": {
+      "status": "INVALIDATED",
+      "totalInvalidated": 1,
+      "totalWarnings": 2
+    },
+    "emittedAt": "2026-08-10T11:24:00.000Z"
+  },
+  "status": "stand_aside",
+  "allowSecondaryEntry": false,
+  "reasons": [
+    "no current valid setup (registry not SETUP COMPLETE)"
+  ],
+  "secondaryEntry": null
+}

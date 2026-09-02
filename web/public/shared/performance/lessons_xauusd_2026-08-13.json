@@ -1,0 +1,14 @@
+{
+  "pair": "XAUUSD",
+  "date": "2026-08-13",
+  "extracted": "2026-08-13T12:20:58.269Z",
+  "trade": null,
+  "conceptsUsed": [],
+  "ruleViolations": [],
+  "rulesFollowed": [],
+  "forecastAccuracy": null,
+  "decisionQuality": 3.25,
+  "lessons": [],
+  "gaps": [],
+  "playbookCandidates": []
+}

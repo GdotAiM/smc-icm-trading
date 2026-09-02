@@ -1,0 +1,31 @@
+{
+  "pair": "GBPUSD",
+  "mode": "REVIEW",
+  "time": "2026-08-10T19:14:40.994Z",
+  "allowed": false,
+  "executed": false,
+  "ticket": null,
+  "error": "GATE_BLOCKED: decision stale (47m > 15m); registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; guard BLOCKED: INVERSION_MISSING",
+  "details": {},
+  "gate": {
+    "allowed": false,
+    "reasons": [
+      "decision stale (47m > 15m)",
+      "registry: NO TRADE (need SETUP COMPLETE)",
+      "registry: no primary model",
+      "entry: NO TRADE",
+      "entry: missing/invalid price/SL/TP1",
+      "guard BLOCKED: INVERSION_MISSING"
+    ],
+    "operative": {
+      "kind": "PRIMARY",
+      "side": "NO TRADE",
+      "entry": 1.35099,
+      "sl": 0,
+      "tp1": 0,
+      "sizeMultiplier": 1
+    },
+    "secondChance": false,
+    "coherence": 30
+  }
+}

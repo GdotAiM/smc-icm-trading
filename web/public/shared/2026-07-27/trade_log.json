@@ -1,0 +1,34 @@
+[
+    {
+        "model":  "Silver Bullet (London SB)",
+        "entry":  1.33552,
+        "rr":  0,
+        "result":  "guard_blocked",
+        "pair":  "GBPUSD",
+        "direction":  "SHORT",
+        "sl":  1.33599,
+        "guardCorrect":  true,
+        "notes":  "Guard prevented -1R loss. Price swept BSL to 1.3360 (SL hit), then reversed to 1.33422. Judas Swing trap confirmed.",
+        "tp1":  1.33505,
+        "date":  "2026-07-27",
+        "guardAction":  "BLOCKED â€” Judas Swing",
+        "tp2":  1.33459,
+        "session":  "London Killzone"
+    },
+    {
+        "model":  "Silver Bullet (London SB)",
+        "entry":  1.33422,
+        "rr":  -1,
+        "result":  "loss",
+        "pair":  "GBPUSD",
+        "direction":  "SHORT",
+        "sl":  1.33471,
+        "guardCorrect":  true,
+        "notes":  "SB entry at 03:00 stopped out. Price reversed bullish, pushed through SL at 1.33471 to 1.33490. 1m Inversion dropped from 7/8→2/8→0/8. Guard blocked but signal was given before Inversion check.",
+        "tp1":  1.33373,
+        "date":  "2026-07-27",
+        "guardAction":  "BLOCKED — Inversion Missing (0/8)",
+        "tp2":  1.33323,
+        "session":  "London Killzone (SB 03:00)"
+    }
+]

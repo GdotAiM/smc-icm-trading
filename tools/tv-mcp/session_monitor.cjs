@@ -18,6 +18,8 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const { atomicWrite, atomicAppend } = require("./atomic_write.cjs");
+const healthcheck = require("../healthcheck.cjs");
+const sentry = require("../sentry.cjs");
 
 const ROOT = "C:/Users/cash/smc-icm-trading";
 let DATE = require("../ny_time.cjs").getNYDate();
@@ -137,7 +139,25 @@ process.on("SIGTERM", () => {
 });
 
 // ═══ MAIN ═══
+// Circuit breaker + rate limiter to prevent infinite crash loops (fix for Aug 31 incident)
+// - Max 3 consecutive errors before alerting, then back off
+// - Rate-limit crash logging: max 10 crashes per minute window
+// - Graceful degradation: after 5 failures, switch to "dead" state instead of retrying
+const CIRCUIT_MAX_FAILURES = 3;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX_PER_WINDOW = 10;
+
+let consecutiveFailures = 0;
+let lastCrashTimestamps = [];
+let isDead = false;
+
 async function tick() {
+  // If circuit is open, stop trying and just log a single warning
+  if (isDead) {
+    log({ event: "MONITOR_DEAD", detail: "Circuit breaker open — monitor halted. Check logs for root cause.", alert: true });
+    return null;
+  }
+
   const now = new Date();
   const nyHour = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" })).getHours();
 
@@ -153,12 +173,30 @@ async function tick() {
 
   // If check failed (null), don't write state — keep previous state
   if (positions === null) {
-    log({ event: "MONITOR_ERROR", detail: "Position check failed — check_orders.cjs may have module errors. Keeping previous state.", alert: true });
+    recordFailure("Position check failed — check_orders.cjs may have module errors.");
     return null;
   }
 
   const alerts = checkAlerts(positions);
+
+  // Live market-state feedback (wick/volume/macro) — only during active hours
+  try {
+    const pairs = ["EURUSD", "GBPUSD", "XAUUSD", "NAS100"];
+    for (const pair of pairs) {
+      const feedOut = run(`node "${path.join(ROOT, "tools", "macro_feedback.cjs")}" ${pair} --now`);
+      if (feedOut && feedOut.includes("MACRO ACTIVE")) {
+        log({ event: "MACRO_FEEDBACK", pair, detail: feedOut.split("\n").find(l => l.includes("Verdict:") || l.includes("⚡")) || "in macro window" });
+      }
+      if (feedOut && feedOut.includes("MISALIGNMENT")) {
+        log({ event: "MACRO_MISALIGN", pair, detail: feedOut.split("\n").find(l => l.includes("⚠️") || l.includes("MISALIGNMENT")) || "misaligned", alert: true });
+      }
+    }
+  } catch(_) {}
+
   const state = writeState(positions, alerts, null);
+
+  // Reset failure counter on success
+  recordSuccess();
 
   if (alerts.length > 0) {
     for (const a of alerts) {
@@ -173,8 +211,50 @@ async function tick() {
   return state;
 }
 
+// ── Circuit Breaker Helpers ───────────────────────────────────────────────────
+function recordFailure(reason) {
+  consecutiveFailures++;
+  const now = Date.now();
+  lastCrashTimestamps.push(now);
+  // Prune timestamps outside the rate limit window
+  lastCrashTimestamps = lastCrashTimestamps.filter(t => now - t < RATE_LIMIT_WINDOW_MS);
+
+  if (consecutiveFailures >= CIRCUIT_MAX_FAILURES) {
+    isDead = true;
+    log({
+      event: "MONITOR_CIRCUIT_OPEN",
+      detail: `Circuit breaker tripped after ${consecutiveFailures} consecutive failures. Reason: ${reason}. Monitor halted.`,
+      alert: true,
+    });
+  } else {
+    log({
+      event: "MONITOR_ERROR",
+      detail: `[${consecutiveFailures}/${CIRCUIT_MAX_FAILURES}] ${reason}`,
+      alert: false,
+    });
+  }
+}
+
+function recordSuccess() {
+  consecutiveFailures = 0;
+  if (isDead) {
+    isDead = false;
+    log({ event: "MONITOR_RECOVERED", detail: "Circuit breaker reset — monitor resuming", alert: true });
+  }
+}
+
 (async () => {
   fs.mkdirSync(path.dirname(stateFile()), { recursive: true });
+  sentry.initSentry();
+  process.on("uncaughtException", (err) => {
+    sentry.captureError("session_monitor", "uncaughtException", err);
+    console.error("[MONITOR:FATAL]", err);
+    sentry.flush(2000).finally(() => process.exit(1));
+  });
+  process.on("unhandledRejection", (reason) => {
+    sentry.captureError("session_monitor", "unhandledRejection", reason);
+    console.error("[MONITOR:FATAL] unhandledRejection:", reason);
+  });
 
   if (ONCE) {
     const state = await tick();
@@ -192,6 +272,7 @@ async function tick() {
   while (true) {
     refreshDate(); // Rotate to current NY date before each tick
     await tick();
+    healthcheck.ping("monitor"); // Remote heartbeat — alerts if the monitor dies
     await new Promise(r => setTimeout(r, INTERVAL_SEC * 1000));
   }
 })();

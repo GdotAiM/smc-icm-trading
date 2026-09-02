@@ -1,0 +1,15 @@
+{"timestamp":"2026-08-13T05:19:31.748Z","pair":"XAUUSD","event":"SESSION_START","date":"2026-08-13","nyTime":{"hour":1,"day":4,"dayName":"Thursday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-13T08:02:12.264Z","pair":"XAUUSD","event":"SESSION_START","date":"2026-08-13","nyTime":{"hour":4,"day":4,"dayName":"Thursday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-13T08:02:27.641Z","pair":"XAUUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":9776,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-13T08:25:17.623Z","pair":"XAUUSD","event":"SESSION_START","date":"2026-08-13","nyTime":{"hour":4,"day":4,"dayName":"Thursday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-13T08:25:31.473Z","pair":"XAUUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":11160,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-13T08:25:51.319Z","pair":"XAUUSD","event":"SESSION_START","date":"2026-08-13","nyTime":{"hour":4,"day":4,"dayName":"Thursday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-13T08:26:05.230Z","pair":"XAUUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":11193,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-13T08:26:21.102Z","pair":"XAUUSD","event":"SESSION_START","date":"2026-08-13","nyTime":{"hour":4,"day":4,"dayName":"Thursday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-13T08:26:34.862Z","pair":"XAUUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":11223,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-13T08:42:46.542Z","pair":"XAUUSD","event":"SESSION_START","date":"2026-08-13","nyTime":{"hour":4,"day":4,"dayName":"Thursday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-13T08:43:00.107Z","pair":"XAUUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":12208,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-13T08:59:43.899Z","pair":"XAUUSD","event":"SESSION_START","date":"2026-08-13","nyTime":{"hour":4,"day":4,"dayName":"Thursday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-13T08:59:59.509Z","pair":"XAUUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":13228,"status":"PARTIAL","stageList":[]}
+{"timestamp":"2026-08-13T12:20:41.711Z","pair":"XAUUSD","event":"SESSION_START","date":"2026-08-13","nyTime":{"hour":8,"day":4,"dayName":"Thursday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-13T12:20:59.456Z","pair":"XAUUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":25288,"status":"PARTIAL","stageList":[]}

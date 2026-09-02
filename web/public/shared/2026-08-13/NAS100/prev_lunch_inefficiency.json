@@ -1,0 +1,36 @@
+{
+  "pair": "NAS100",
+  "today": "2026-08-13",
+  "prevDate": "2026-08-12",
+  "found": false,
+  "summary": "Insufficient NY lunch candles in prior day",
+  "candlesAnalyzed": 400,
+  "lunchCandleCount": 0,
+  "sweep": null,
+  "inefficiency": null,
+  "eventHorizons": [
+    {
+      "horizon": "29610.57500",
+      "upperPool": "29683.85000",
+      "lowerPool": "29537.30000",
+      "distancePct": "0.02",
+      "label": "Event Horizon: BSL 29683.85000 ↔ SSL 29537.30000"
+    },
+    {
+      "horizon": "29610.51905",
+      "upperPool": "29744.37143",
+      "lowerPool": "29476.66667",
+      "distancePct": "0.02",
+      "label": "Event Horizon: BSL 29744.37143 ↔ SSL 29476.66667"
+    },
+    {
+      "horizon": "29580.25833",
+      "upperPool": "29683.85000",
+      "lowerPool": "29476.66667",
+      "distancePct": "-0.08",
+      "label": "Event Horizon: BSL 29683.85000 ↔ SSL 29476.66667"
+    }
+  ],
+  "action": null,
+  "prevSessionDate": "2026-08-12"
+}

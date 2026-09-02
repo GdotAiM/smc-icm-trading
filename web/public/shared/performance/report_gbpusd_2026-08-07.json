@@ -1,0 +1,44 @@
+{
+  "generated": "2026-08-07T06:11:11.731Z",
+  "pair": "GBPUSD",
+  "date": "2026-08-07",
+  "summary": {
+    "tradePnl": 0,
+    "decisionQuality": 3.75,
+    "forecastAccuracy": null,
+    "lessonsExtracted": 0,
+    "gapsDetected": 1,
+    "playbookEntries": 0
+  },
+  "strengths": [],
+  "weaknesses": [
+    {
+      "type": "shallow_review",
+      "detail": "No structured lessons extracted from journal",
+      "severity": "low"
+    },
+    {
+      "type": "shallow_review",
+      "detail": "Fewer than 3 lessons extracted — deepen journal practice",
+      "severity": "low"
+    }
+  ],
+  "recommendations": [
+    {
+      "action": "Run a deeper journal review. Ask: what ICT rule was followed? What was missed? What would you do differently?",
+      "concepts": [],
+      "priority": 3
+    },
+    {
+      "action": "89 core ICT concepts never referenced — potential knowledge blind spots. Schedule a review session.",
+      "concepts": [
+        "Homepage",
+        "ICT-Foundations-and-FAQ",
+        "break-of-structure-bos",
+        "break-of-structure-vs-change-of-character",
+        "candle-range-theory-crt"
+      ],
+      "priority": 2
+    }
+  ]
+}

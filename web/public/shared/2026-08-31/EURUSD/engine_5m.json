@@ -1,0 +1,164 @@
+{
+  "price": 1.15888,
+  "structure": {
+    "bias": "bearish",
+    "lastEvent": "CHoCH",
+    "lastEventPrice": 1.15886,
+    "lastEventTime": 1788154500000,
+    "confidence": 1,
+    "lastSwingHigh": 1.15913,
+    "lastSwingLow": 1.15866
+  },
+  "liquidity": [
+    {
+      "price": 1.1589153846153848,
+      "type": "BSL",
+      "strength": 13,
+      "score": 19.93160173849769,
+      "distance": 0.0030533459361522645,
+      "session": "London",
+      "ageBars": 5,
+      "swept": true
+    },
+    {
+      "price": 1.1584307692307692,
+      "type": "SSL",
+      "strength": 13,
+      "score": 20.00079924712532,
+      "distance": 0.038764217971727646,
+      "session": "London",
+      "ageBars": 4,
+      "swept": false
+    },
+    {
+      "price": 1.164907,
+      "type": "BSL",
+      "strength": 10,
+      "score": 8.420765220895483,
+      "distance": 0.5200711031340609,
+      "session": "NY AM",
+      "ageBars": 201,
+      "swept": false
+    },
+    {
+      "price": 1.16226,
+      "type": "BSL",
+      "strength": 1,
+      "score": 0.6101851461120937,
+      "distance": 0.2916609139859313,
+      "session": "NY AM",
+      "ageBars": 190,
+      "swept": false
+    }
+  ],
+  "orderBlocks": [],
+  "fvgs": [
+    {
+      "top": 1.1583,
+      "bottom": 1.15822,
+      "type": "bullish",
+      "index": 200,
+      "time": 1788129000000,
+      "gapAtr": 0.6436781609202384,
+      "displacementAtr": 1.2873563218404769,
+      "fillFraction": 0,
+      "distance": 0.05349993096781746
+    },
+    {
+      "top": 1.15808,
+      "bottom": 1.15794,
+      "type": "bullish",
+      "index": 194,
+      "time": 1788127200000,
+      "gapAtr": 1.0828729281769665,
+      "displacementAtr": 1.005524861878121,
+      "fillFraction": 0.2857142857145123,
+      "distance": 0.07507248377743395
+    },
+    {
+      "top": 1.16372,
+      "bottom": 1.16224,
+      "type": "bearish",
+      "index": 98,
+      "time": 1787925600000,
+      "gapAtr": 2.4290738569755814,
+      "displacementAtr": 2.9871043376317252,
+      "fillFraction": 0.013513513513600693,
+      "distance": 0.3537898660776107
+    }
+  ],
+  "draw": {
+    "price": 1.1584307692307692,
+    "side": "down",
+    "distance": 0.038764217971727646,
+    "reason": "SSL pool Â· 13 touches",
+    "score": 0.9968988625622619
+  },
+  "alt": {
+    "price": 1.1589153846153848,
+    "side": "up",
+    "distance": 0.0030533459361522645,
+    "reason": "BSL pool Â· 13 touches",
+    "score": 0.7597557323251078
+  },
+  "volumeDisplacement": {
+    "atrRatio": 0.26332288401233145,
+    "label": "weak",
+    "volumeConfirmed": false,
+    "volumeRatio": 0.5044449038660327
+  },
+  "pdArray": {
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
+    "currentZone": "discount",
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
+  },
+  "inversionFvgs": [
+    {
+      "top": 1.15898,
+      "bottom": 1.15892,
+      "type": "inversion",
+      "index": 224,
+      "time": 1788136200000,
+      "gapAtr": 0.29473684210505646,
+      "reversalAtr": 1.3387978142070793,
+      "confirmationLag": 5,
+      "distance": -0.006040314786691849
+    },
+    {
+      "top": 1.15882,
+      "bottom": 1.15877,
+      "type": "inversion",
+      "index": 216,
+      "time": 1788133800000,
+      "gapAtr": 0.3414634146334436,
+      "reversalAtr": 1.3735849056602003,
+      "confirmationLag": 5,
+      "distance": 0.007334667955257725
+    },
+    {
+      "top": 1.15901,
+      "bottom": 1.15896,
+      "type": "inversion",
+      "index": 278,
+      "time": 1788152400000,
+      "gapAtr": 0.36458333333407544,
+      "reversalAtr": 1.3999999999986679,
+      "confirmationLag": 3,
+      "distance": 0.009060472180037773
+    },
+    {
+      "top": 1.15912,
+      "bottom": 1.15892,
+      "type": "inversion",
+      "index": 222,
+      "time": 1788135600000,
+      "gapAtr": 1.1522633744856072,
+      "reversalAtr": 0.8484848484851973,
+      "confirmationLag": 1,
+      "distance": 0.012080629573383697
+    }
+  ]
+}

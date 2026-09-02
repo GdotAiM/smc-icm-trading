@@ -1,143 +1,271 @@
 import React, { useEffect, useState } from "react";
-import StageTimeline from "./components/StageTimeline";
-import MarkdownViewer from "./components/MarkdownViewer";
-import BiasGauge from "./components/BiasGauge";
+import StageRail from "./components/StageRail";
+import ContentPanel from "./components/ContentPanel";
 import OperatorView from "./components/OperatorView";
-import type { SessionData } from "./lib/fileReader";
+import KPICards from "./components/KPICards";
+import { readStageFile, discoverSharedDates, type TradeEntry } from "./lib/data";
 
-const OPERATOR_PAIRS = ["XAUUSD", "GBPUSD", "EURUSD", "NAS100", "USDOLLAR"];
+const PAIRS = ["XAUUSD", "GBPUSD", "EURUSD", "NAS100", "USDOLLAR"];
+
+const PAIR_META: Record<string, { color: string; risk: string }> = {
+  XAUUSD:  { color: "#f0c040", risk: "Gold · High vol" },
+  GBPUSD:  { color: "#00d4ff", risk: "Cable · Medium" },
+  EURUSD:  { color: "#39ff14", risk: "Euro · Low spread" },
+  NAS100:  { color: "#a855f7", risk: "Tech index" },
+  USDOLLAR:{ color: "#6b7280", risk: "DXY inverse" },
+};
 
 const STAGES = [
-  "01_htf_bias",
-  "02_key_levels",
-  "03_session_time",
-  "04_model_selection",
-  "05_entry_refinement",
-  "06_risk_management",
-  "07_journal_review",
+  { id: "00_macro_context",   label: "Macro Context" },
+  { id: "00_council_vote",    label: "Council Vote" },
+  { id: "01_htf_bias",        label: "HTF Bias" },
+  { id: "02_key_levels",      label: "Key Levels" },
+  { id: "03_session_time",    label: "Session & Time" },
+  { id: "04_model_selection", label: "Model Selection" },
+  { id: "05_entry_refinement",label: "Entry Plan" },
+  { id: "05b_micro_confirmation", label: "Micro Confirm" },
+  { id: "06_risk_management", label: "Risk Mgmt" },
+  { id: "07_journal_review",  label: "Journal" },
 ];
 
 export default function App() {
-  const [activeStage, setActiveStage] = useState(0);
+  const [activePair, setActivePair] = useState("EURUSD");
+  const [activeStage, setActiveStage] = useState("01_htf_bias");
   const [view, setView] = useState<"pipeline" | "operator">("pipeline");
-  const [data, setData] = useState<Record<string, string>>({});
+  const [stagedData, setStagedData] = useState<Record<string, string>>({});
+  const [dates, setDates] = useState<string[]>([]);
+  const [selectedDate, setSelectedDate] = useState("");
   const [loading, setLoading] = useState(true);
+  const [trades, setTrades] = useState<TradeEntry[]>([]);
 
+  // Discover available dates
   useEffect(() => {
-    // In production, this would read from the filesystem via API.
-    // For the ICM architecture, the dashboard reads markdown files directly.
-    // The web server (Vite dev) serves files from the parent directory.
-    async function loadStage(stage: string) {
-      try {
-        const res = await fetch(`/stages/${stage}/output/bias.md`);
-        if (res.ok) return await res.text();
-      } catch {}
-      return null;
-    }
-
-    async function loadAll() {
-      const results: Record<string, string> = {};
-      for (const stage of STAGES) {
-        const content = await loadStage(stage);
-        if (content) results[stage] = content;
+    discoverSharedDates().then((found) => {
+      if (found.length > 0) {
+        setDates(found);
+        setSelectedDate(found[0]);
+      } else {
+        // Fallback to today
+        setSelectedDate(new Date().toISOString().split("T")[0]);
       }
-      setData(results);
-      setLoading(false);
-    }
-
-    loadAll();
+    });
   }, []);
 
-  const currentStage = STAGES[activeStage];
-  const currentContent = data[currentStage];
+  // Load trades
+  useEffect(() => {
+    import("./lib/data").then((m) => m.readTradeLog().then(setTrades));
+  }, []);
 
-  if (loading) {
+  // Load stage content when pair/date changes
+  useEffect(() => {
+    if (!selectedDate) return;
+    let cancelled = false;
+    setLoading(true);
+
+    async function load() {
+      const results: Record<string, string> = {};
+      for (const stage of STAGES) {
+        const content = await readStageFile(stage.id, activePair);
+        if (content && !cancelled) results[stage.id] = content;
+      }
+      if (!cancelled) {
+        setStagedData(results);
+        setLoading(false);
+      }
+    }
+
+    load();
+    return () => { cancelled = true; };
+  }, [activePair, selectedDate]);
+
+  const loadedCount = Object.keys(stagedData).length;
+
+  if (loading && Object.keys(stagedData).length === 0) {
     return (
-      <div className="flex h-screen items-center justify-center bg-gray-950">
-        <div className="text-gray-500">Loading session data...</div>
+      <div className="flex h-screen items-center justify-center" style={{ background: "var(--bg-primary)" }}>
+        <div className="text-center">
+          <div className="font-mono text-xs uppercase tracking-widest text-[var(--text-dim)] mb-2">
+            Loading workspace
+          </div>
+          <div className="flex gap-1 justify-center">
+            {[0,1,2].map(i => (
+              <div
+                key={i}
+                className="w-1 h-4 bg-cyan rounded-sm"
+                style={{ animation: `bar 1s ease-in-out ${i * 0.15}s infinite`, opacity: 0.6 }}
+              />
+            ))}
+          </div>
+          <style>{`
+            @keyframes bar {
+              0%, 100% { transform: scaleY(0.4); opacity: 0.3; }
+              50% { transform: scaleY(1); opacity: 1; }
+            }
+          `}</style>
+        </div>
       </div>
     );
   }
 
   if (view === "operator") {
     return (
-      <div className="flex h-screen flex-col bg-gray-950">
-        <div className="flex items-center justify-between border-b border-gray-800 px-6 py-3">
-          <div className="flex items-center gap-4">
-            <h1 className="text-lg font-bold text-gray-100">SMC-ICM</h1>
-            <nav className="flex gap-1">
-              <button
-                onClick={() => setView("pipeline")}
-                className="px-3 py-1.5 rounded text-sm text-gray-400 hover:text-gray-200"
-              >
-                Pipeline
-              </button>
-              <button
-                onClick={() => setView("operator")}
-                className="px-3 py-1.5 rounded text-sm bg-gray-800 text-gray-100"
-              >
-                Operator
-              </button>
-            </nav>
-          </div>
-          <span className="text-xs text-gray-500">Agent ledger + market brief</span>
-        </div>
+      <div className="flex flex-col h-screen" style={{ background: "var(--bg-primary)" }}>
+        <Header
+          activePair={activePair}
+          pairMeta={PAIR_META[activePair]}
+          onViewChange={setView}
+          onPairChange={setActivePair}
+          pairs={PAIRS}
+          loadedCount={loadedCount}
+          totalStages={STAGES.length}
+          selectedDate={selectedDate}
+          dates={dates}
+          onDateChange={setSelectedDate}
+          trades={trades}
+        />
         <div className="flex-1 overflow-hidden">
-          <OperatorView date={new Date().toISOString().split("T")[0]} pairs={OPERATOR_PAIRS} />
+          <OperatorView
+            date={selectedDate}
+            pairs={PAIRS}
+            activePair={activePair}
+            onBack={() => setView("pipeline")}
+          />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex h-screen bg-gray-950">
-      {/* Left sidebar — stage timeline */}
-      <StageTimeline
-        stages={STAGES}
-        activeStage={activeStage}
-        data={data}
-        onSelect={setActiveStage}
+    <div className="flex flex-col h-screen" style={{ background: "var(--bg-primary)" }}>
+      <Header
+        activePair={activePair}
+        pairMeta={PAIR_META[activePair]}
+        onViewChange={setView}
+        onPairChange={setActivePair}
+        pairs={PAIRS}
+        loadedCount={loadedCount}
+        totalStages={STAGES.length}
+        selectedDate={selectedDate}
+        dates={dates}
+        onDateChange={setSelectedDate}
+        trades={trades}
       />
-
-      {/* Center — stage output */}
-      <main className="flex-1 overflow-y-auto p-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-6 flex items-center justify-between">
-            <BiasGauge />
-            <button
-              onClick={() => setView("operator")}
-              className="text-xs px-2.5 py-1.5 rounded border border-gray-700 text-gray-400 hover:text-gray-200 hover:border-gray-500"
-            >
-              View Operator →
-            </button>
-          </div>
-          {currentContent ? (
-            <MarkdownViewer content={currentContent} />
-          ) : (
-            <div className="text-center py-20 text-gray-600">
-              <p className="text-lg">No data for {currentStage.replace(/_/g, " ")}</p>
-              <p className="text-sm mt-2">
-                Run the stage with Claude Code to generate output.
-              </p>
-            </div>
-          )}
-        </div>
-      </main>
-
-      {/* Right panel — quick info */}
-      <aside className="w-72 border-l border-gray-800 p-4 overflow-y-auto">
-        <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
-          Session Info
-        </h3>
-        <div className="text-sm text-gray-500 space-y-2">
-          <p>Date: {new Date().toISOString().split("T")[0]}</p>
-          <p>Stages complete: {Object.keys(data).length} / 7</p>
-          <p className="text-xs text-gray-600 mt-4">
-            Files are read from the stages/*/output/ folders.
-            Run Claude Code to populate.
-          </p>
-        </div>
-      </aside>
+      <KPICards pair={activePair} date={selectedDate} />
+      <div className="flex flex-1 overflow-hidden">
+        <StageRail
+          stages={STAGES}
+          activeId={activeStage}
+          data={stagedData}
+          onSelect={(id) => setActiveStage(id)}
+        />
+        <main className="flex-1 overflow-hidden p-3">
+          <ContentPanel
+            stageId={activeStage}
+            content={stagedData[activeStage] ?? null}
+            pair={activePair}
+            date={selectedDate}
+          />
+        </main>
+      </div>
     </div>
+  );
+}
+
+interface HeaderProps {
+  activePair: string;
+  pairMeta: { color: string; risk: string };
+  onViewChange: (v: "pipeline" | "operator") => void;
+  onPairChange: (p: string) => void;
+  pairs: string[];
+  loadedCount: number;
+  totalStages: number;
+  selectedDate: string;
+  dates: string[];
+  onDateChange: (d: string) => void;
+  trades: TradeEntry[];
+}
+
+function Header({ activePair, pairMeta, onViewChange, onPairChange, pairs, loadedCount, totalStages, selectedDate, dates, onDateChange, trades }: HeaderProps) {
+  const recentTrades = trades.filter((t) => t.date === selectedDate);
+
+  return (
+    <header className="header-bar">
+      <div className="flex items-center gap-4">
+        <div className="logo">
+          SMC<span>-</span>ICM
+        </div>
+
+        {/* Pair selector */}
+        <div className="flex items-center gap-1.5">
+          {pairs.map((p) => (
+            <button
+              key={p}
+              onClick={() => onPairChange(p)}
+              className="pair-chip"
+              style={{
+                borderColor: PAIR_META[p]?.color || "var(--border)",
+                color: activePair === p ? (PAIR_META[p]?.color || "var(--text-primary)") : (PAIR_META[p]?.color || "var(--text-muted)"),
+                background: activePair === p ? `${PAIR_META[p]?.color || "var(--border)"}15` : "transparent",
+              }}
+              title={PAIR_META[p]?.risk}
+            >
+              {p}
+            </button>
+          ))}
+        </div>
+
+        {/* Date selector */}
+        <select
+          value={selectedDate}
+          onChange={(e) => onDateChange(e.target.value)}
+          className="font-mono text-[10px] px-2 py-1 rounded border border-[var(--border)] bg-[var(--bg-elevated)] text-[var(--text-muted)] cursor-pointer"
+          style={{ colorScheme: "dark" }}
+        >
+          {dates.map((d) => (
+            <option key={d} value={d}>{d}</option>
+          ))}
+          <option value={new Date().toISOString().split("T")[0]}>Today</option>
+        </select>
+
+        {/* View switch */}
+        <div className="flex items-center gap-1 ml-2" style={{ borderLeft: "1px solid var(--border)", paddingLeft: "12px" }}>
+          <button
+            onClick={() => onViewChange("pipeline")}
+            className="font-mono text-[10px] px-2.5 py-1 rounded"
+            style={{
+              background: "var(--bg-elevated)",
+              color: "var(--text-primary)",
+              border: "1px solid var(--accent-cyan)",
+            }}
+          >
+            Pipeline
+          </button>
+          <button
+            onClick={() => onViewChange("operator")}
+            className="font-mono text-[10px] px-2.5 py-1 rounded"
+            style={{
+              background: "transparent",
+              color: "var(--text-muted)",
+              border: "1px solid var(--border)",
+            }}
+          >
+            Operator
+          </button>
+        </div>
+      </div>
+
+      <div className="header-meta">
+        <span className="flex items-center gap-1.5">
+          <span className="live-dot" />
+          TV CDP LIVE
+        </span>
+        <span>{activePair} · {selectedDate}</span>
+        <span>{loadedCount}/{totalStages} stages</span>
+        {recentTrades.length > 0 && (
+          <span className="text-bull">· {recentTrades.length} trade{recentTrades.length > 1 ? "s" : ""}</span>
+        )}
+        <span>{new Date().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}</span>
+      </div>
+    </header>
   );
 }

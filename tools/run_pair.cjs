@@ -465,6 +465,39 @@ try {
   }
 } catch(e) { console.log(`  1m forecast unavailable`); }
 
+// ═══════════════ LIVE MARKET STATE — Wick + Volume + Macro Feedback ═══════════
+// Post-lecture 2026-08-31 modules: wick acceleration, volume imbalance, macro timing
+let liveState = null;
+try {
+  const { execSync: liveExec } = require("child_process");
+  // wick_acceleration
+  let wickJSON = null, volJSON = null, macroActive = false;
+  try {
+    const wOut = liveExec(`node "${ROOT}/tools/wick_acceleration.cjs" ${PAIR}`, { encoding: "utf8", timeout: 10000 });
+    wickJSON = JSON.parse(wOut);
+  } catch(_) {}
+  try {
+    const vOut = liveExec(`node "${ROOT}/tools/volume_imbalance.cjs" ${PAIR}`, { encoding: "utf8", timeout: 10000 });
+    volJSON = JSON.parse(vOut);
+  } catch(_) {}
+  // macro_feedback — --now only (no watch loop here)
+  try {
+    const mOut = liveExec(`node "${ROOT}/tools/macro_feedback.cjs" ${PAIR} --now`, { encoding: "utf8", timeout: 10000 });
+    const reportLines = mOut.split("\n").filter(l => l.trim() && !l.startsWith("═") && !l.startsWith("─"));
+    const lastNonEmpty = reportLines[reportLines.length - 1];
+    macroActive = mOut.includes("MACRO ACTIVE");
+    if (wickJSON || volJSON) {
+      console.log(`\n  📡 LIVE MARKET STATE (${PAIR})`);
+      if (wickJSON?.verdict) console.log(`     Wick/Momentum: ${wickJSON.verdict}`);
+      if (wickJSON?.sweepAnalysis?.status) console.log(`     Sweep: ${wickJSON.sweepAnalysis.status} | ${wickJSON.sweepAnalysis.acceleration || 'pending'}`);
+      if (wickJSON?.wickDefense?.defense) console.log(`     Wick Defense: ${wickJSON.wickDefense.defense.verdict || wickJSON.wickDefense.defense.holding ? 'HOLDING' : 'BROKEN'}`);
+      if (volJSON?.signal) console.log(`     Volume Signal: ${volJSON.signal} | ${volJSON.combinedVerdict}`);
+      if (macroActive) console.log(`     ⚡ MACRO WINDOW ACTIVE — price should commit within 10 min`);
+    }
+  } catch(_) {}
+  liveState = { wick: wickJSON, volume: volJSON, macroActive };
+} catch(e) { console.log(`  Live state unavailable: ${e.message.slice(0, 60)}`); }
+
 // ═══════════════ STAGE 01 — HTF Bias ═══════════════
 console.log("\n═══ STAGE 01 — HTF Bias ═══");
 

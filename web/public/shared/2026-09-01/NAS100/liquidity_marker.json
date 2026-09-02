@@ -1,0 +1,187 @@
+{
+  "pair": "NAS100",
+  "time": "13:35:36 NY",
+  "currentPrice": 29088,
+  "htfBias": {
+    "daily": "bullish",
+    "h4": "bearish",
+    "aligned": false,
+    "direction": "neutral",
+    "detail": "⚠️ NOT ALIGNED — 1D BULLISH, 4H BEARISH"
+  },
+  "pdhPdl": {
+    "pdh": 29485.8,
+    "pdl": 29218.7,
+    "range": 267.09999999999854,
+    "date": "2026-08-30",
+    "detail": "PDH: 29485.80000 | PDL: 29218.70000 | Range: 267.10000"
+  },
+  "pwhPwl": {
+    "pwh": 29092.1,
+    "pwl": 29084.1,
+    "range": 8,
+    "detail": "PWH: 29092.10000 | PWL: 29084.10000 | Range: 8.00000"
+  },
+  "relEquals": {
+    "highs": [],
+    "lows": [],
+    "highCount": 0,
+    "lowCount": 0,
+    "magnets": [],
+    "magnetCount": 0,
+    "smoothCount": 0,
+    "detail": "0 equal highs, 0 equal lows inside daily range"
+  },
+  "drawTargets": {
+    "primary": {
+      "level": "PDL",
+      "price": 29218.7,
+      "type": "SSL",
+      "priority": 1,
+      "label": "Previous Day Low"
+    },
+    "oppositePool": null,
+    "allTargets": [
+      {
+        "level": "PDL",
+        "price": 29218.7,
+        "type": "SSL",
+        "priority": 1,
+        "label": "Previous Day Low"
+      },
+      {
+        "level": "PDH",
+        "price": 29485.8,
+        "type": "BSL",
+        "priority": 1,
+        "label": "Previous Day High"
+      },
+      {
+        "level": "PWL",
+        "price": 29084.1,
+        "type": "SSL",
+        "priority": 2,
+        "label": "Previous Week Low"
+      },
+      {
+        "level": "PWH",
+        "price": 29092.1,
+        "type": "BSL",
+        "priority": 2,
+        "label": "Previous Week High"
+      }
+    ],
+    "detail": "Primary draw: Previous Day Low (SSL) @ 29218.70000 | Opposite (TP): N/A"
+  },
+  "sweepStatus": {
+    "swept": true,
+    "mss": false,
+    "sweptPool": {
+      "price": 29219.2,
+      "type": "BSL",
+      "strength": 3,
+      "score": 1.3411532726862498,
+      "distance": 0.4510451045104535,
+      "session": "Asia",
+      "ageBars": 108,
+      "swept": true
+    },
+    "structureEvent": "BOS",
+    "detail": "✅ Previous Day Low SWEPT at 29219.20000 | MSS: ⏳ Pending"
+  },
+  "entryGuidance": {
+    "ready": false,
+    "detail": "⏳ NOT READY — ✅ Previous Day Low SWEPT at 29219.20000 | MSS: ⏳ Pending. Wait for Previous Day Low sweep + MSS."
+  },
+  "hrlrLrlr": {
+    "targets": [
+      {
+        "level": "PDL",
+        "price": 29218.7,
+        "type": "SSL",
+        "priority": 1,
+        "label": "Previous Day Low",
+        "classification": "HRLR",
+        "defenders": 0,
+        "hasNearbyFVG": false,
+        "isLongTerm": true,
+        "isWithTrend": false,
+        "isCounterTrend": false,
+        "distPct": "0.45"
+      },
+      {
+        "level": "PDH",
+        "price": 29485.8,
+        "type": "BSL",
+        "priority": 1,
+        "label": "Previous Day High",
+        "classification": "HRLR",
+        "defenders": 1,
+        "hasNearbyFVG": false,
+        "isLongTerm": true,
+        "isWithTrend": false,
+        "isCounterTrend": false,
+        "distPct": "1.37"
+      },
+      {
+        "level": "PWL",
+        "price": 29084.1,
+        "type": "SSL",
+        "priority": 2,
+        "label": "Previous Week Low",
+        "classification": "HRLR",
+        "defenders": 0,
+        "hasNearbyFVG": false,
+        "isLongTerm": true,
+        "isWithTrend": false,
+        "isCounterTrend": false,
+        "distPct": "0.01"
+      },
+      {
+        "level": "PWH",
+        "price": 29092.1,
+        "type": "BSL",
+        "priority": 2,
+        "label": "Previous Week High",
+        "classification": "HRLR",
+        "defenders": 0,
+        "hasNearbyFVG": false,
+        "isLongTerm": true,
+        "isWithTrend": false,
+        "isCounterTrend": false,
+        "distPct": "0.01"
+      }
+    ],
+    "lrlrCount": 0,
+    "hrlrCount": 4,
+    "primaryLRLR": null,
+    "stretchHRLR": {
+      "level": "PDL",
+      "price": 29218.7,
+      "type": "SSL",
+      "priority": 1,
+      "label": "Previous Day Low",
+      "classification": "HRLR",
+      "defenders": 0,
+      "hasNearbyFVG": false,
+      "isLongTerm": true,
+      "isWithTrend": false,
+      "isCounterTrend": false,
+      "distPct": "0.45"
+    },
+    "detail": "0 LRLR (easy, with-trend) | 4 HRLR (hard, needs catalyst) | Primary TP: N/A | Stretch: Previous Day Low @ 29218.70000"
+  },
+  "sweepVsRun": {
+    "classification": "UNCLEAR",
+    "action": "WAIT",
+    "sweptSide": "SELL-SIDE (below)",
+    "htfAgreesWithSwept": false,
+    "priceClosedBackInside": false,
+    "displacedAway": true,
+    "mssFound": false,
+    "mssDirection": null,
+    "currentPrice": 29091.3,
+    "sweptLevel": 29218.7,
+    "detail": "❓ UNCLEAR: SELL-SIDE (below) swept. Mixed signals — HTF neutral, no clear post-sweep structure. Wait for next candle."
+  }
+}

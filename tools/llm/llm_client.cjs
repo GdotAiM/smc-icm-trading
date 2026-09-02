@@ -22,6 +22,7 @@
 
 const https = require("https");
 const http = require("http");
+const langfuse = require("./langfuse.cjs");
 
 // ── Provider defaults ──────────────────────────────────────────────────────────
 
@@ -186,8 +187,9 @@ async function chatCompletion(messages, opts = {}) {
   }
 
   const timeout = opts.timeout ?? 30000;
+  const gen = langfuse.startGeneration({ name: "chatCompletion", messages, config, opts });
 
-  return new Promise((resolve) => {
+  const result = await new Promise((resolve) => {
     const req = transport.request(
       url,
       {
@@ -251,6 +253,8 @@ async function chatCompletion(messages, opts = {}) {
     req.write(body);
     req.end();
   });
+  langfuse.endGeneration(gen, result);
+  return result;
 }
 
 // ── Tool-calling helpers ───────────────────────────────────────────────────────

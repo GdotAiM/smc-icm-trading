@@ -1,0 +1,64 @@
+{
+  "videos": {
+    "O217xQsEUgI": {
+      "id": "O217xQsEUgI",
+      "title": "Navigating High Resistance Liquidity Run Conditions",
+      "url": "https://youtu.be/O217xQsEUgI",
+      "processedAt": "2026-08-10T18:15:46.113Z",
+      "conceptCount": 3,
+      "summary": "This video demonstrates live intraday trade execution and management using Inversion Fair Value Gaps and candle body behavior relative to wick Consequent Encroachment (CE). ICT emphasizes anticipating price behavior on the hard right edge, targeting the NY Midnight Opening Price, and applying defensive partial stops during high-resistance conditions to manage risk and psychology.",
+      "modelName": "Inversion FVG High-Resistance Navigation Model",
+      "difficulty": "ADVANCED",
+      "isNewPDA": false,
+      "wasSalvaged": false
+    }
+  },
+  "lastDiscovery": "2026-08-10T17:56:20.506Z",
+  "conceptIndex": {
+    "inversion_fair_value_gap_entry_and_scale_in": {
+      "name": "Inversion Fair Value Gap Entry and Scale-In",
+      "sources": [
+        "O217xQsEUgI"
+      ],
+      "rules": [
+        "Identify an Inversion Fair Value Gap (IFVG) acting as support in an anticipated bullish run.",
+        "Enter initial position inside or at the low/high threshold of the IFVG.",
+        "Add additional contracts (scale-in) when price retests the top or deep end of the IFVG and respects it.",
+        "Trail stop loss to the low of the IFVG minus 1-2 ticks once the retest is qualified."
+      ],
+      "category": "Entry Model",
+      "confidence": "HIGH",
+      "lastUpdated": "2026-08-10T18:15:46.115Z"
+    },
+    "wick_consequent_encroachment_candle_body_defense": {
+      "name": "Wick Consequent Encroachment & Candle Body Defense",
+      "sources": [
+        "O217xQsEUgI"
+      ],
+      "rules": [
+        "Mark the 50% midpoint (Consequent Encroachment / CE) of prominent wicks in the direction of the trade.",
+        "Candle wicks are allowed to pierce below/above CE, but candle bodies must NOT close past the CE level.",
+        "A close above the candle open price or above the CE of a key wick confirms immediate willingness to continue higher.",
+        "If a candle closes below CE of a key defensive wick, expect deeper retracements or high-resistance conditions."
+      ],
+      "category": "Market Structure",
+      "confidence": "HIGH",
+      "lastUpdated": "2026-08-10T18:15:46.115Z"
+    },
+    "defensive_retracement_partialing_stop_loss_scaling": {
+      "name": "Defensive Retracement Partialing & Stop-Loss Scaling",
+      "sources": [
+        "O217xQsEUgI"
+      ],
+      "rules": [
+        "In high-resistance or disorganized market run conditions, take initial partial profits at immediate targets like NY Midnight Open.",
+        "If price hesitates and threatens to retrace below a minor short-term low, place a defensive stop order for a partial position above full stop loss.",
+        "Executing a partial stop-out on a pullback reduces net position exposure, locks in gains, and removes psychological strain.",
+        "Allow the remaining partial contracts to ride with stop anchored under validated structural lows."
+      ],
+      "category": "Risk Management",
+      "confidence": "HIGH",
+      "lastUpdated": "2026-08-10T18:15:46.115Z"
+    }
+  }
+}

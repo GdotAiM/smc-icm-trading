@@ -1,0 +1,332 @@
+{"time":"2026-08-31T07:29:21.279Z","nyTime":"03:29:21","event":"SCHEDULER_START","detail":"Mode: MONITOR | Day: Mon | Version: f9a5dd3"}
+{"time":"2026-08-31T07:29:21.291Z","nyTime":"03:29:21","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T07:29:50.144Z","nyTime":"03:29:50","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T07:30:10.832Z","nyTime":"03:30:10","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:30:34.637Z","nyTime":"03:30:34","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:30:53.042Z","nyTime":"03:30:53","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:30:53.043Z","nyTime":"03:30:53","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T07:30:53.046Z","nyTime":"03:30:53","event":"EXEC_SKIP","detail":"EURUSD LONG @ 1.1589 — --execute not set (monitor mode)"}
+{"time":"2026-08-31T07:40:53.185Z","nyTime":"03:40:53","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T07:41:09.405Z","nyTime":"03:41:09","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon | Version: f9a5dd3"}
+{"time":"2026-08-31T07:41:09.449Z","nyTime":"03:41:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T07:41:17.374Z","nyTime":"03:41:17","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T07:41:30.896Z","nyTime":"03:41:30","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T07:41:39.889Z","nyTime":"03:41:39","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:41:51.250Z","nyTime":"03:41:51","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:42:01.455Z","nyTime":"03:42:01","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:42:11.237Z","nyTime":"03:42:11","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:42:23.627Z","nyTime":"03:42:23","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:42:23.632Z","nyTime":"03:42:23","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T07:42:23.636Z","nyTime":"03:42:23","event":"EXEC_SKIP","detail":"EURUSD LONG @ 1.1589 — --execute not set (monitor mode)"}
+{"time":"2026-08-31T07:42:34.151Z","nyTime":"03:42:34","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:42:34.159Z","nyTime":"03:42:34","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T07:42:34.161Z","nyTime":"03:42:34","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T07:43:03.868Z","nyTime":"03:43:03","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-31T07:43:03.870Z","nyTime":"03:43:03","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T07:52:23.744Z","nyTime":"03:52:23","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T07:52:57.674Z","nyTime":"03:52:57","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T07:53:03.962Z","nyTime":"03:53:03","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T07:53:31.507Z","nyTime":"03:53:31","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:53:42.270Z","nyTime":"03:53:42","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T07:54:02.466Z","nyTime":"03:54:02","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:54:12.231Z","nyTime":"03:54:12","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:54:28.567Z","nyTime":"03:54:28","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:54:28.606Z","nyTime":"03:54:28","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T07:54:28.609Z","nyTime":"03:54:28","event":"EXEC_SKIP","detail":"EURUSD LONG @ 1.1589 — --execute not set (monitor mode)"}
+{"time":"2026-08-31T07:54:37.089Z","nyTime":"03:54:37","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:55:07.072Z","nyTime":"03:55:07","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T07:55:07.076Z","nyTime":"03:55:07","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T07:55:07.079Z","nyTime":"03:55:07","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T07:55:34.339Z","nyTime":"03:55:34","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-31T07:55:34.342Z","nyTime":"03:55:34","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T08:04:28.808Z","nyTime":"04:04:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T08:04:56.666Z","nyTime":"04:04:56","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T08:05:34.406Z","nyTime":"04:05:34","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T08:05:35.558Z","nyTime":"04:05:35","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:06:13.613Z","nyTime":"04:06:13","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T08:06:13.765Z","nyTime":"04:06:13","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:06:50.344Z","nyTime":"04:06:50","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:06:53.285Z","nyTime":"04:06:53","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:06:53.287Z","nyTime":"04:06:53","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T08:06:53.290Z","nyTime":"04:06:53","event":"EXEC_SKIP","detail":"EURUSD LONG @ 1.1589 — --execute not set (monitor mode)"}
+{"time":"2026-08-31T08:07:22.384Z","nyTime":"04:07:22","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:07:57.005Z","nyTime":"04:07:57","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:07:57.037Z","nyTime":"04:07:57","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T08:07:57.045Z","nyTime":"04:07:57","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T08:08:25.675Z","nyTime":"04:08:25","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-31T08:08:25.682Z","nyTime":"04:08:25","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T08:09:45.992Z","nyTime":"04:09:45","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon | Version: f9a5dd3"}
+{"time":"2026-08-31T08:09:46.044Z","nyTime":"04:09:46","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T08:10:23.571Z","nyTime":"04:10:23","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T08:10:59.054Z","nyTime":"04:10:59","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:11:29.001Z","nyTime":"04:11:29","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:12:09.424Z","nyTime":"04:12:09","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:12:09.426Z","nyTime":"04:12:09","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T08:12:09.428Z","nyTime":"04:12:09","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T08:12:37.119Z","nyTime":"04:12:37","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-31T08:12:37.121Z","nyTime":"04:12:37","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T08:18:25.799Z","nyTime":"04:18:25","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T08:19:10.018Z","nyTime":"04:19:10","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T08:19:55.192Z","nyTime":"04:19:55","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:20:26.967Z","nyTime":"04:20:26","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:20:59.620Z","nyTime":"04:20:59","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:20:59.628Z","nyTime":"04:20:59","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T08:20:59.631Z","nyTime":"04:20:59","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T08:21:26.128Z","nyTime":"04:21:26","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-31T08:21:26.130Z","nyTime":"04:21:26","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T08:22:37.275Z","nyTime":"04:22:37","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T08:23:25.240Z","nyTime":"04:23:25","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T08:24:06.505Z","nyTime":"04:24:06","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:24:51.165Z","nyTime":"04:24:51","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:25:27.873Z","nyTime":"04:25:27","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:25:27.877Z","nyTime":"04:25:27","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T08:25:27.882Z","nyTime":"04:25:27","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T08:25:54.735Z","nyTime":"04:25:54","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-31T08:25:54.740Z","nyTime":"04:25:54","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T08:26:16.503Z","nyTime":"04:26:16","event":"SCHEDULER_START","detail":"Mode: AUTONOMOUS | Day: Mon | Version: f9a5dd3"}
+{"time":"2026-08-31T08:26:16.509Z","nyTime":"04:26:16","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T08:26:54.491Z","nyTime":"04:26:54","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T08:27:31.646Z","nyTime":"04:27:31","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:28:21.774Z","nyTime":"04:28:21","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:29:04.923Z","nyTime":"04:29:04","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:29:04.926Z","nyTime":"04:29:04","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T08:35:54.993Z","nyTime":"04:35:54","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T08:36:38.896Z","nyTime":"04:36:38","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T08:37:11.157Z","nyTime":"04:37:11","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:37:50.277Z","nyTime":"04:37:50","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:38:34.838Z","nyTime":"04:38:34","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:38:34.844Z","nyTime":"04:38:34","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T08:38:34.848Z","nyTime":"04:38:34","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T08:39:03.207Z","nyTime":"04:39:03","event":"ERROR","detail":"node: Command failed: node \"C:\\Users\\cash\\smc-icm-trading\\tools\\tv-mcp\\market_order.cj"}
+{"time":"2026-08-31T08:39:03.210Z","nyTime":"04:39:03","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T08:49:03.285Z","nyTime":"04:49:03","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T08:49:49.770Z","nyTime":"04:49:49","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T08:50:31.283Z","nyTime":"04:50:31","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:51:05.449Z","nyTime":"04:51:05","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:51:41.640Z","nyTime":"04:51:41","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T08:51:41.643Z","nyTime":"04:51:41","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T08:51:41.646Z","nyTime":"04:51:41","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T08:51:58.234Z","nyTime":"04:51:58","event":"TRADE_EXECUTED","detail":"EURUSD BUY 62500 — VERIFIED ✅"}
+{"time":"2026-08-31T09:01:58.437Z","nyTime":"05:01:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T09:02:35.867Z","nyTime":"05:02:35","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T09:03:10.370Z","nyTime":"05:03:10","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:03:42.159Z","nyTime":"05:03:42","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:04:19.287Z","nyTime":"05:04:19","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:19:19.404Z","nyTime":"05:19:19","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T09:20:01.140Z","nyTime":"05:20:01","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T09:20:38.771Z","nyTime":"05:20:38","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:21:23.098Z","nyTime":"05:21:23","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:22:00.126Z","nyTime":"05:22:00","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:37:00.263Z","nyTime":"05:37:00","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T09:37:47.818Z","nyTime":"05:37:47","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T09:38:38.754Z","nyTime":"05:38:38","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:39:44.521Z","nyTime":"05:39:44","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:40:28.425Z","nyTime":"05:40:28","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:55:28.565Z","nyTime":"05:55:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T09:56:12.183Z","nyTime":"05:56:12","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T09:56:42.763Z","nyTime":"05:56:42","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:57:12.445Z","nyTime":"05:57:12","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T09:57:39.506Z","nyTime":"05:57:39","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T10:12:39.584Z","nyTime":"06:12:39","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T10:13:27.000Z","nyTime":"06:13:27","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T10:13:58.050Z","nyTime":"06:13:58","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T10:14:28.967Z","nyTime":"06:14:28","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T10:14:58.722Z","nyTime":"06:14:58","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T10:29:58.882Z","nyTime":"06:29:58","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T10:30:37.917Z","nyTime":"06:30:37","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T10:31:14.333Z","nyTime":"06:31:14","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T10:31:43.797Z","nyTime":"06:31:43","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T10:32:12.530Z","nyTime":"06:32:12","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T10:47:12.655Z","nyTime":"06:47:12","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T10:48:25.782Z","nyTime":"06:48:25","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T10:49:11.671Z","nyTime":"06:49:11","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T10:50:02.222Z","nyTime":"06:50:02","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T10:50:37.572Z","nyTime":"06:50:37","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T11:05:37.631Z","nyTime":"07:05:37","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T11:06:10.438Z","nyTime":"07:06:10","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T11:06:38.337Z","nyTime":"07:06:38","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T11:07:05.969Z","nyTime":"07:07:05","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T11:07:30.788Z","nyTime":"07:07:30","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T13:24:43.779Z","nyTime":"09:24:43","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T13:26:54.816Z","nyTime":"09:26:54","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T13:27:54.908Z","nyTime":"09:27:54","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T13:28:36.667Z","nyTime":"09:28:36","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T13:29:05.640Z","nyTime":"09:29:05","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T13:39:05.690Z","nyTime":"09:39:05","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T13:39:35.939Z","nyTime":"09:39:35","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T13:40:05.760Z","nyTime":"09:40:05","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T13:40:31.544Z","nyTime":"09:40:31","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T13:40:58.468Z","nyTime":"09:40:58","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T13:40:58.471Z","nyTime":"09:40:58","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T13:40:58.477Z","nyTime":"09:40:58","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T13:41:28.536Z","nyTime":"09:41:28","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T13:41:28.537Z","nyTime":"09:41:28","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T13:51:28.544Z","nyTime":"09:51:28","event":"EVENT","detail":"09:50 — NY_MACRO: ⭐⭐ NY-AM Macro — highest conviction"}
+{"time":"2026-08-31T13:51:28.545Z","nyTime":"09:51:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T13:51:56.249Z","nyTime":"09:51:56","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T13:52:22.050Z","nyTime":"09:52:22","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T13:52:47.411Z","nyTime":"09:52:47","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T13:53:11.702Z","nyTime":"09:53:11","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T13:53:11.704Z","nyTime":"09:53:11","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T13:53:11.705Z","nyTime":"09:53:11","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T13:53:41.722Z","nyTime":"09:53:41","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T13:53:41.723Z","nyTime":"09:53:41","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T14:03:41.734Z","nyTime":"10:03:41","event":"EVENT","detail":"10:00 — SILVER_BULLET: Silver Bullet scalp window"}
+{"time":"2026-08-31T14:03:41.738Z","nyTime":"10:03:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T14:04:17.121Z","nyTime":"10:04:17","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T14:04:45.624Z","nyTime":"10:04:45","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:05:12.145Z","nyTime":"10:05:12","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:05:34.043Z","nyTime":"10:05:34","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:05:34.045Z","nyTime":"10:05:34","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T14:05:34.046Z","nyTime":"10:05:34","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T14:06:04.415Z","nyTime":"10:06:04","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T14:06:04.417Z","nyTime":"10:06:04","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T14:16:04.426Z","nyTime":"10:16:04","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T14:16:32.364Z","nyTime":"10:16:32","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T14:16:58.842Z","nyTime":"10:16:58","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:17:22.624Z","nyTime":"10:17:22","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:17:45.847Z","nyTime":"10:17:45","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:17:45.849Z","nyTime":"10:17:45","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T14:17:45.850Z","nyTime":"10:17:45","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T14:18:15.866Z","nyTime":"10:18:15","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T14:18:15.868Z","nyTime":"10:18:15","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T14:28:15.879Z","nyTime":"10:28:15","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T14:28:42.790Z","nyTime":"10:28:42","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T14:29:09.176Z","nyTime":"10:29:09","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:29:34.041Z","nyTime":"10:29:34","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:29:59.883Z","nyTime":"10:29:59","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:29:59.886Z","nyTime":"10:29:59","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T14:29:59.887Z","nyTime":"10:29:59","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T14:30:29.902Z","nyTime":"10:30:29","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T14:30:29.903Z","nyTime":"10:30:29","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T14:40:29.925Z","nyTime":"10:40:29","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T14:41:25.132Z","nyTime":"10:41:25","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T14:42:15.957Z","nyTime":"10:42:15","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:42:47.774Z","nyTime":"10:42:47","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:43:13.880Z","nyTime":"10:43:13","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:43:13.882Z","nyTime":"10:43:13","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T14:43:13.884Z","nyTime":"10:43:13","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T14:43:43.949Z","nyTime":"10:43:43","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T14:43:43.950Z","nyTime":"10:43:43","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T14:53:44.006Z","nyTime":"10:53:44","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T14:54:26.342Z","nyTime":"10:54:26","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T14:55:15.784Z","nyTime":"10:55:15","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:55:45.992Z","nyTime":"10:55:45","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:56:12.971Z","nyTime":"10:56:12","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T14:56:12.976Z","nyTime":"10:56:12","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T14:56:12.980Z","nyTime":"10:56:12","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T14:56:43.007Z","nyTime":"10:56:43","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T14:56:43.008Z","nyTime":"10:56:43","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T15:06:43.033Z","nyTime":"11:06:43","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T15:07:19.327Z","nyTime":"11:07:19","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T15:07:46.976Z","nyTime":"11:07:46","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:08:13.768Z","nyTime":"11:08:13","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:08:39.249Z","nyTime":"11:08:39","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:23:38.531Z","nyTime":"11:23:38","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T15:24:09.222Z","nyTime":"11:24:09","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T15:24:34.106Z","nyTime":"11:24:34","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:25:01.814Z","nyTime":"11:25:01","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:25:28.717Z","nyTime":"11:25:28","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:40:28.787Z","nyTime":"11:40:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T15:40:55.194Z","nyTime":"11:40:55","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T15:41:21.053Z","nyTime":"11:41:21","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:41:45.469Z","nyTime":"11:41:45","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:42:16.989Z","nyTime":"11:42:16","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:57:20.532Z","nyTime":"11:57:20","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T15:58:03.192Z","nyTime":"11:58:03","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T15:58:44.401Z","nyTime":"11:58:44","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:59:11.576Z","nyTime":"11:59:11","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T15:59:43.892Z","nyTime":"11:59:43","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T16:14:44.018Z","nyTime":"12:14:44","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T16:15:23.403Z","nyTime":"12:15:23","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T16:15:49.359Z","nyTime":"12:15:49","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T16:16:15.557Z","nyTime":"12:16:15","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T16:16:41.115Z","nyTime":"12:16:41","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T16:31:41.225Z","nyTime":"12:31:41","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T16:32:12.358Z","nyTime":"12:32:12","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T16:32:40.889Z","nyTime":"12:32:40","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T16:33:09.083Z","nyTime":"12:33:09","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T16:33:35.118Z","nyTime":"12:33:35","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T16:48:35.170Z","nyTime":"12:48:35","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T16:49:04.321Z","nyTime":"12:49:04","event":"GATED_OUT","detail":"EURUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1"}
+{"time":"2026-08-31T16:49:32.002Z","nyTime":"12:49:32","event":"GATED_OUT","detail":"GBPUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T16:50:00.292Z","nyTime":"12:50:00","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T16:50:28.377Z","nyTime":"12:50:28","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:05:28.407Z","nyTime":"13:05:28","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T17:05:57.726Z","nyTime":"13:05:57","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T17:06:23.875Z","nyTime":"13:06:23","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:06:50.017Z","nyTime":"13:06:50","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:07:14.143Z","nyTime":"13:07:14","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:07:14.146Z","nyTime":"13:07:14","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T17:07:14.150Z","nyTime":"13:07:14","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T17:07:44.229Z","nyTime":"13:07:44","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T17:07:44.231Z","nyTime":"13:07:44","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T17:17:44.286Z","nyTime":"13:17:44","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T17:18:11.166Z","nyTime":"13:18:11","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T17:18:38.862Z","nyTime":"13:18:38","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:19:05.361Z","nyTime":"13:19:05","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:19:32.668Z","nyTime":"13:19:32","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:19:32.673Z","nyTime":"13:19:32","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T17:19:32.676Z","nyTime":"13:19:32","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T17:20:02.700Z","nyTime":"13:20:02","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T17:20:02.701Z","nyTime":"13:20:02","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T17:30:02.759Z","nyTime":"13:30:02","event":"EVENT","detail":"13:30 — PMOR: PM Session Opening Range"}
+{"time":"2026-08-31T17:30:02.765Z","nyTime":"13:30:02","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T17:30:38.214Z","nyTime":"13:30:38","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T17:31:04.057Z","nyTime":"13:31:04","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:31:24.014Z","nyTime":"13:31:24","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:31:43.540Z","nyTime":"13:31:43","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:31:43.543Z","nyTime":"13:31:43","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T17:31:43.545Z","nyTime":"13:31:43","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T17:32:13.572Z","nyTime":"13:32:13","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T17:32:13.577Z","nyTime":"13:32:13","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T17:42:13.713Z","nyTime":"13:42:13","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T17:43:12.919Z","nyTime":"13:43:12","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T17:43:49.209Z","nyTime":"13:43:49","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:44:24.952Z","nyTime":"13:44:24","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:44:54.555Z","nyTime":"13:44:54","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:44:54.559Z","nyTime":"13:44:54","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T17:44:54.565Z","nyTime":"13:44:54","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T17:45:24.631Z","nyTime":"13:45:24","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T17:45:24.635Z","nyTime":"13:45:24","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T17:55:24.747Z","nyTime":"13:55:24","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T17:55:57.076Z","nyTime":"13:55:57","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T17:56:24.535Z","nyTime":"13:56:24","event":"GATED_OUT","detail":"GBPUSD: invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:56:50.741Z","nyTime":"13:56:50","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:57:22.962Z","nyTime":"13:57:22","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T17:57:22.967Z","nyTime":"13:57:22","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 0"}
+{"time":"2026-08-31T17:57:22.972Z","nyTime":"13:57:22","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T17:57:53.014Z","nyTime":"13:57:53","event":"ERROR","detail":"node: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"}
+{"time":"2026-08-31T17:57:53.018Z","nyTime":"13:57:53","event":"TRADE_FAILED","detail":"EURUSD BUY — order might not have filled"}
+{"time":"2026-08-31T18:07:53.066Z","nyTime":"14:07:53","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T18:08:21.809Z","nyTime":"14:08:21","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T18:08:49.254Z","nyTime":"14:08:49","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:09:16.327Z","nyTime":"14:09:16","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:09:42.316Z","nyTime":"14:09:42","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:09:42.321Z","nyTime":"14:09:42","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T18:09:42.325Z","nyTime":"14:09:42","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T18:09:55.705Z","nyTime":"14:09:55","event":"TRADE_EXECUTED","detail":"EURUSD BUY 62500 — VERIFIED ✅"}
+{"time":"2026-08-31T18:19:55.746Z","nyTime":"14:19:55","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T18:20:31.693Z","nyTime":"14:20:31","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T18:21:03.605Z","nyTime":"14:21:03","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:21:32.445Z","nyTime":"14:21:32","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:21:56.126Z","nyTime":"14:21:56","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:21:56.134Z","nyTime":"14:21:56","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T18:21:56.136Z","nyTime":"14:21:56","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T18:22:09.827Z","nyTime":"14:22:09","event":"TRADE_EXECUTED","detail":"EURUSD BUY 62500 — VERIFIED ✅"}
+{"time":"2026-08-31T18:32:09.955Z","nyTime":"14:32:09","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T18:33:00.544Z","nyTime":"14:33:00","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T18:33:34.199Z","nyTime":"14:33:34","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:34:06.397Z","nyTime":"14:34:06","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:34:46.289Z","nyTime":"14:34:46","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:34:46.333Z","nyTime":"14:34:46","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T18:34:46.377Z","nyTime":"14:34:46","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T18:35:00.599Z","nyTime":"14:35:00","event":"TRADE_EXECUTED","detail":"EURUSD BUY 62500 — VERIFIED ✅"}
+{"time":"2026-08-31T18:45:00.688Z","nyTime":"14:45:00","event":"SCAN","detail":"Scanning 4 pairs..."}
+{"time":"2026-08-31T18:45:50.470Z","nyTime":"14:45:50","event":"SETUP","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.5:1 | Qty:62500"}
+{"time":"2026-08-31T18:46:20.400Z","nyTime":"14:46:20","event":"GATED_OUT","detail":"GBPUSD: guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:46:47.635Z","nyTime":"14:46:47","event":"GATED_OUT","detail":"XAUUSD: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:47:19.005Z","nyTime":"14:47:19","event":"GATED_OUT","detail":"NAS100: registry: NO TRADE (need SETUP COMPLETE); registry: no primary model; entry: NO TRADE; entry: missing/invalid price/SL/TP1; invalidation: INVALIDATED + guard blocked; guard BLOCKED: INVERSION_MISSING"}
+{"time":"2026-08-31T18:47:19.011Z","nyTime":"14:47:19","event":"BEST","detail":"EURUSD: LONG @ 1.1589 | SCOB | R:R 4.51408850646993:1 | Coh: 39"}
+{"time":"2026-08-31T18:47:19.014Z","nyTime":"14:47:19","event":"EXECUTING","detail":"EURUSD (TV:OANDA:EURUSD) BUY Qty:62500 SL:1.1573360076259291 TP:1.16596"}
+{"time":"2026-08-31T18:47:32.454Z","nyTime":"14:47:32","event":"TRADE_EXECUTED","detail":"EURUSD BUY 62500 — VERIFIED ✅"}

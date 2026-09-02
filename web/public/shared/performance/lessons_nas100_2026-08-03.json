@@ -1,0 +1,14 @@
+{
+  "pair": "NAS100",
+  "date": "2026-08-03",
+  "extracted": "2026-08-03T19:55:50.429Z",
+  "trade": null,
+  "conceptsUsed": [],
+  "ruleViolations": [],
+  "rulesFollowed": [],
+  "forecastAccuracy": null,
+  "decisionQuality": 3.75,
+  "lessons": [],
+  "gaps": [],
+  "playbookCandidates": []
+}

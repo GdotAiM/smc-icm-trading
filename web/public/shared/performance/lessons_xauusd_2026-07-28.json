@@ -1,0 +1,22 @@
+{
+  "pair": "XAUUSD",
+  "date": "2026-07-28",
+  "extracted": "2026-07-28T07:22:31.518Z",
+  "trade": null,
+  "conceptsUsed": [],
+  "ruleViolations": [],
+  "rulesFollowed": [],
+  "forecastAccuracy": null,
+  "decisionQuality": null,
+  "lessons": [],
+  "gaps": [
+    {
+      "type": "shallow_review",
+      "severity": "low",
+      "detail": "No structured lessons extracted from journal",
+      "recommendation": "Run a deeper journal review. Ask: what ICT rule was followed? What was missed? What would you do differently?",
+      "conceptsToReview": []
+    }
+  ],
+  "playbookCandidates": []
+}

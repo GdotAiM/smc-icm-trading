@@ -1,0 +1,11 @@
+{
+  "narrative_coherence": 0.68,
+  "dxy_alignment_confidence": 0.8,
+  "pattern_similarity_score": 1,
+  "macro_context_strength": 0.7,
+  "decision_confidence": 0.55,
+  "structural_applied": true,
+  "mode": "rule-based-fallback",
+  "generated": "2026-08-31T18:46:21.519Z",
+  "pair": "GBPUSD"
+}

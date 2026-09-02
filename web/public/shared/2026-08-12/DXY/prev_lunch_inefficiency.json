@@ -1,0 +1,51 @@
+{
+  "pair": "DXY",
+  "today": "2026-08-12",
+  "prevDate": "2026-08-11",
+  "found": true,
+  "summary": "BISI before NY lunch BSL sweep → carry 12676.00000–12674.00000 (bearish reversal)",
+  "candlesAnalyzed": 300,
+  "lunchCandleCount": 207,
+  "sweep": {
+    "price": "12675.00000",
+    "type": "BSL",
+    "time": 1786462500000
+  },
+  "inefficiency": {
+    "top": "12676.00000",
+    "bottom": "12674.00000",
+    "midpoint": "12675.00000",
+    "anchor": "12676.00000",
+    "kind": "BISI",
+    "expectedReaction": "bearish_reversal",
+    "hasVolumeImbalance": false,
+    "vibGap": "0",
+    "vibDirection": null
+  },
+  "eventHorizons": [
+    {
+      "horizon": "12679.84375",
+      "upperPool": "12686.98750",
+      "lowerPool": "12672.70000",
+      "distancePct": "0.01",
+      "label": "Event Horizon: BSL 12686.98750 ↔ SSL 12672.70000"
+    },
+    {
+      "horizon": "12670.20208",
+      "upperPool": "12686.98750",
+      "lowerPool": "12653.41667",
+      "distancePct": "-0.06",
+      "label": "Event Horizon: BSL 12686.98750 ↔ SSL 12653.41667"
+    }
+  ],
+  "action": {
+    "direction": "SHORT",
+    "entryZone": "12674 – 12676",
+    "trigger": "Price trades UP into the BISI zone → expect bearish reversal",
+    "stopLoss": "Above inefficiency high: 12676 + buffer",
+    "takeProfit1": "Consequent encroachment (midpoint) of the inefficiency",
+    "takeProfit2": "Previous day RTH opening range gap, or Event Horizon level",
+    "note": "BISI from BSL sweep during NY lunch → complex reversal setup"
+  },
+  "prevSessionDate": "2026-08-11"
+}

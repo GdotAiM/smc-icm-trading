@@ -1,0 +1,122 @@
+{
+  "pair": "EURUSD",
+  "symbol": "EURUSD",
+  "date": "2026-08-10",
+  "emittedAt": "2026-08-10T18:38:48.122Z",
+  "registry": {
+    "verdict": "SETUP COMPLETE",
+    "primary": "2FVG Entry",
+    "completeCount": 1
+  },
+  "entry": {
+    "type": "SHORT",
+    "price": 1.15438,
+    "sl": 1.1570859051227962,
+    "tp1": 1.15177,
+    "tp2": 1.150445,
+    "noDrawDir": null,
+    "slReason": "15m Swing High @ 1.15542 + ATR buffer"
+  },
+  "rr": {
+    "rr1": 0.9645571006949725,
+    "rr2": 1.4542268931933853
+  },
+  "coherence": {
+    "unified": 60,
+    "phase": "DISTRIBUTION",
+    "base": 70
+  },
+  "invalidation": {
+    "status": "HIGH RISK",
+    "totalInvalidated": 0,
+    "totalWarnings": 4
+  },
+  "guard": {
+    "verdict": "❌ DO NOT ENTER",
+    "blocked": 1,
+    "warnings": 0,
+    "sizeMultiplier": "0.75",
+    "blockedIds": [
+      "INVERSION_MISSING"
+    ]
+  },
+  "freshness": {
+    "score": 5,
+    "label": "ACCEPTABLE",
+    "source": "1H",
+    "ageMin": 70.72746666666667
+  },
+  "risk": {
+    "allowed": true,
+    "reason": null,
+    "accountBalance": 10000,
+    "riskAmount": 100,
+    "sizeMultiplier": 1
+  },
+  "evaluation": {
+    "verdict": "PASSED — all checks passed",
+    "score": "85/100 | 4/4 modules passed",
+    "blocked": false
+  },
+  "conflicts": {
+    "legacy": 0,
+    "phase": 0
+  },
+  "sizing": {
+    "posSizeLots": 0.37037037037037035,
+    "lots": "0.37 std",
+    "maxLoss": 100,
+    "maxGain": 96.2962962962963,
+    "riskPips": 27,
+    "qty": 37037
+  },
+  "gates": {
+    "hasSetup": true,
+    "rrOk": false,
+    "notInvalidated": true,
+    "notGuardBlocked": false,
+    "freshEnough": true,
+    "riskAllowed": true
+  },
+  "missedEntry": {
+    "pair": "EURUSD",
+    "assessedAt": "2026-08-10T18:38:48.132Z",
+    "originalSetup": {
+      "registry": {
+        "verdict": "SETUP COMPLETE",
+        "primary": "2FVG Entry",
+        "completeCount": 1
+      },
+      "entry": {
+        "type": "SHORT",
+        "price": 1.15438,
+        "sl": 1.1570859051227962,
+        "tp1": 1.15177,
+        "tp2": 1.150445,
+        "noDrawDir": null,
+        "slReason": "15m Swing High @ 1.15542 + ATR buffer"
+      },
+      "rr": {
+        "rr1": 0.9645571006949725,
+        "rr2": 1.4542268931933853
+      },
+      "coherence": {
+        "unified": 60,
+        "phase": "DISTRIBUTION",
+        "base": 70
+      },
+      "invalidation": {
+        "status": "HIGH RISK",
+        "totalInvalidated": 0,
+        "totalWarnings": 4
+      },
+      "emittedAt": "2026-08-10T18:38:48.122Z"
+    },
+    "status": "watching",
+    "allowSecondaryEntry": false,
+    "reasons": [
+      "original setup still within entry tolerance — monitoring"
+    ],
+    "secondaryEntry": null
+  }
+}

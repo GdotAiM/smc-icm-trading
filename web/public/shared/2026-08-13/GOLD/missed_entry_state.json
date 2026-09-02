@@ -1,0 +1,306 @@
+{
+  "pair": "XAUUSD",
+  "assessedAt": "2026-08-13T12:20:59.550Z",
+  "originalSetup": {
+    "registry": {
+      "verdict": "SETUP COMPLETE",
+      "primary": "MMXM Buy Model",
+      "completeCount": 5,
+      "confidence": 0.75,
+      "direction": "BUY",
+      "confluence": {
+        "BUY": {
+          "complete": 5,
+          "partial": 4,
+          "weight": 18.489440283400807,
+          "models": [
+            {
+              "id": "mmxm_buy",
+              "complete": true,
+              "seq": 1
+            },
+            {
+              "id": "ote_institutional_ob",
+              "complete": false,
+              "seq": 0.75
+            },
+            {
+              "id": "unicorn_ote_fvg",
+              "complete": false,
+              "seq": 0.75
+            },
+            {
+              "id": "breaker_block",
+              "complete": true,
+              "seq": 1
+            },
+            {
+              "id": "ifvg_scale_in",
+              "complete": false,
+              "seq": 0.8
+            },
+            {
+              "id": "scob",
+              "complete": false,
+              "seq": 0.75
+            },
+            {
+              "id": "two_fvg",
+              "complete": true,
+              "seq": 1
+            },
+            {
+              "id": "nwog_ndog",
+              "complete": true,
+              "seq": 1
+            },
+            {
+              "id": "mitigation_block",
+              "complete": true,
+              "seq": 1
+            }
+          ]
+        },
+        "SELL": {
+          "complete": 0,
+          "partial": 3,
+          "weight": 6,
+          "models": [
+            {
+              "id": "mmxm_sell",
+              "complete": false,
+              "seq": 1
+            },
+            {
+              "id": "turtle_soup",
+              "complete": false,
+              "seq": 0.6666666666666666
+            },
+            {
+              "id": "rejection_block",
+              "complete": false,
+              "seq": 1
+            }
+          ]
+        }
+      },
+      "resolved": {
+        "tie": true,
+        "conflict": false,
+        "poolFiltered": false,
+        "poolLocked": false,
+        "lockedDirection": null,
+        "rule": "WP-17 Pool-First: locked pool (raided+MSS) sets direction priority. Models targeting the locked pool win ties. Models opposing the locked pool are excluded. One Trade Setup drives the registry."
+      },
+      "mlProbability": null,
+      "mlConfidence": null,
+      "expectedValue": null,
+      "poolContext": {
+        "locked": false,
+        "lockedDirection": null,
+        "poolSummary": "No session raid + MSS confirmed yet. Monitoring all sessions in priority order.",
+        "sessions": [
+          "P1 PM Session (prev day 1:30-4:00 PM): ⏳ — ⏳ Not yet raided",
+          "P2 London Session (today 2:00-5:00 AM): ⏳ — ⏳ Not yet raided",
+          "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
+          "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
+        ],
+        "targetPool": {
+          "high": 4441.315,
+          "low": 4362.655,
+          "date": "2026-08-11"
+        }
+      },
+      "liquidityCascade": {
+        "session": {
+          "triggers": [
+            {
+              "source": "pm",
+              "label": "PM Session (prev day 1:30-4:00 PM)",
+              "priority": 1,
+              "high": 4418.475,
+              "low": 4329.845,
+              "raided": false,
+              "mssConfirmed": true,
+              "validRaid": false,
+              "sweepPrice": null,
+              "mssDirection": "bearish",
+              "sweptSide": null,
+              "expectedDirection": null
+            },
+            {
+              "source": "london",
+              "label": "London Session (today 2:00-5:00 AM)",
+              "priority": 2,
+              "high": 4424.46,
+              "low": 4019.575,
+              "raided": false,
+              "mssConfirmed": true,
+              "validRaid": false,
+              "sweepPrice": null,
+              "mssDirection": "bearish",
+              "sweptSide": null,
+              "expectedDirection": null
+            }
+          ],
+          "swept": [],
+          "direction": null,
+          "detail": "No session pools raided yet — waiting for first sweep"
+        },
+        "daily": {
+          "targets": [
+            {
+              "type": "BSL",
+              "price": 4441.315,
+              "source": "prev_am_high",
+              "label": "Prev AM High (2026-08-11)",
+              "tier": "daily"
+            },
+            {
+              "type": "SSL",
+              "price": 4362.655,
+              "source": "prev_am_low",
+              "label": "Prev AM Low (2026-08-11)",
+              "tier": "daily"
+            },
+            {
+              "type": "BSL",
+              "price": 4441.315,
+              "source": "pdh",
+              "label": "Previous Day High",
+              "tier": "daily"
+            },
+            {
+              "type": "SSL",
+              "price": 4362.655,
+              "source": "pdl",
+              "label": "Previous Day Low",
+              "tier": "daily"
+            },
+            {
+              "type": "BSL",
+              "price": 4370.915,
+              "source": "pwh",
+              "label": "Previous Week High",
+              "tier": "weekly"
+            },
+            {
+              "type": "SSL",
+              "price": 4369.675,
+              "source": "pwl",
+              "label": "Previous Week Low",
+              "tier": "weekly"
+            }
+          ],
+          "primary": {
+            "type": "BSL",
+            "price": 4370.915,
+            "source": "pwh",
+            "label": "Previous Week High",
+            "tier": "weekly"
+          },
+          "secondary": {
+            "type": "BSL",
+            "price": 4441.315,
+            "source": "prev_am_high",
+            "label": "Prev AM High (2026-08-11)",
+            "tier": "daily"
+          },
+          "detail": "BUY: nearest BSL above = Previous Week High @ 4370.915"
+        },
+        "weekly": {
+          "targets": [],
+          "primary": null,
+          "detail": "No HTF draw beyond daily target"
+        }
+      }
+    },
+    "entry": {
+      "type": "LONG",
+      "price": 4370.15,
+      "sl": 4331.373352109138,
+      "tp1": 4441.315,
+      "tp2": 4449.83,
+      "noDrawDir": null,
+      "slReason": "15m Swing Low @ 4369.03 - ATR buffer"
+    },
+    "rr": {
+      "rr1": 1.8352540477530888,
+      "rr2": 2.054844973301015
+    },
+    "coherence": {
+      "unified": 0,
+      "phase": "DISTRIBUTION",
+      "base": 50,
+      "confluenceBoost": 0
+    },
+    "invalidation": {
+      "status": "INVALIDATED",
+      "totalInvalidated": 2,
+      "totalWarnings": 3
+    },
+    "emittedAt": "2026-08-13T08:59:59.605Z"
+  },
+  "status": "secondary_entry_available",
+  "allowSecondaryEntry": true,
+  "reasons": [
+    "original entry price passed by market without execution (missed)",
+    "narrative intact (same direction + model + not invalidated)",
+    "inside valid window (killzone (nyAM))",
+    "secondary array found: IFVG @4376.61250 (5m)"
+  ],
+  "secondaryEntry": {
+    "array": {
+      "kind": "IFVG",
+      "tf": "5m",
+      "price": 4376.612499999999,
+      "top": 4378.485,
+      "bottom": 4374.74,
+      "inversion": true
+    },
+    "entry": 4375.67625,
+    "sl": 4352.41026,
+    "tp1": 4441.315,
+    "sizeMultiplier": 0.5,
+    "riskNote": "Late entry — lower-half entry on the array, stop tightened ~40% toward entry and size cut to 0.5x",
+    "half": "lower half",
+    "minorTarget": {
+      "type": "BSL",
+      "price": 4395.87167,
+      "tf": "5m",
+      "detail": "Minor buy-side @ 4395.87167 (5m) — nearest unswept pool before the main draw"
+    },
+    "mohawk": {
+      "mohawk": false,
+      "detail": "NOT a mohawk — 10 body(ies) closed beyond the array (acceptance = delivery)"
+    },
+    "backupPlan": {
+      "array": {
+        "kind": "IFVG",
+        "tf": "1H",
+        "price": 4375.605,
+        "top": 4378.52,
+        "bottom": 4372.69
+      },
+      "entry": 4374.1475,
+      "sl": 4350.88151,
+      "tp1": 4441.315,
+      "sizeMultiplier": 0.5,
+      "detail": "Backup: IFVG 1H @ 4375.60500 — if the second chance stops out, re-enter the SAME narrative on this larger inversion"
+    },
+    "originalIdea": {
+      "model": "MMXM Buy Model",
+      "direction": "LONG",
+      "originalEntry": 4370.15
+    },
+    "rules": [
+      "Do NOT chase the original entry price",
+      "Enter on the Inversion FVG — LOWER half (longs) for better risk",
+      "Use tightened SL + 0.5x size",
+      "First objective = minor buy-side @4395.87167",
+      "No mohawk variance — bodies confirm",
+      "If stopped out, re-enter on backup IFVG 1H @4375.60500 (same narrative)",
+      "Abort if narrative breaks or window closes"
+    ]
+  }
+}

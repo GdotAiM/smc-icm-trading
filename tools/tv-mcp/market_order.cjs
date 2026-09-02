@@ -24,22 +24,28 @@ const SIDE_BTN = SIDE === "SELL" ? "sell-order-button" : "buy-order-button";
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "../..");
 
 // ═══ WP-15: Idempotency guard — prevent duplicate orders ═══
-const IDEMPOTENCY_WINDOW_MS = 60_000; // 60 seconds
+const IDEMPOTENCY_WINDOW_MS = 600_000; // 10 minutes
 const IDEMPOTENCY_LOG = path.join(__dirname, "..", "..", "shared", "order_placement_log.jsonl");
 const PRICE_TOLERANCE = 0.001; // 0.1% price tolerance for duplicate detection
+
+// Normalize pair name for consistent matching across broker-prefixed and plain names
+function normalizePair(p) {
+  return p.replace(/^OANDA:/, "").replace(/^CAPITALCOM:/, "").replace(/^FX:/, "").toUpperCase();
+}
 
 function isDuplicate() {
   try {
     if (!fs.existsSync(IDEMPOTENCY_LOG)) return false;
     const lines = fs.readFileSync(IDEMPOTENCY_LOG, "utf8").trim().split("\n").filter(Boolean);
     const now = Date.now();
-    const entryPrice = parseFloat(STOP); // rough: use SL as unique key for the setup
+    const entryPrice = parseFloat(STOP);
+    const normPair = normalizePair(PAIR);
     for (const line of lines) {
       try {
         const prev = JSON.parse(line);
         const age = now - prev.timestamp;
         if (age > IDEMPOTENCY_WINDOW_MS) continue;
-        if (prev.pair !== PAIR || prev.side !== SIDE) continue;
+        if (normalizePair(prev.pair) !== normPair || prev.side !== SIDE) continue;
         const priceDiff = Math.abs((prev.sl || 0) - entryPrice) / Math.max(entryPrice, 0.00001);
         if (priceDiff < PRICE_TOLERANCE) {
           console.error(`DUPLICATE: ${PAIR} ${SIDE} SL=${STOP} — identical order placed ${Math.round(age/1000)}s ago (${prev.timestamp})`);
@@ -177,28 +183,44 @@ try {
   // ═══ VERIFY ORDER APPEARED IN POSITIONS (with retries) ═══
   let verified = false;
   const MAX_RETRIES = 4;
-  const RETRY_DELAY = 3000;
+  const RETRY_DELAY = 5000;
 
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
       await ev(`(function(){ var bs=document.querySelectorAll("button"); for(var i=0;i<bs.length;i++){ if(bs[i].textContent.trim()==="Positions"){ bs[i].click(); return; } } })()`);
-      await sleep(1500);
+      await sleep(2500);
 
       const check = await ev(`(function() {
+        // Search ALL tables regardless of position — TV panel layout varies
         var tables = document.querySelectorAll("table");
         for (var i = 0; i < tables.length; i++) {
-          var r = tables[i].getBoundingClientRect();
-          if (r.y > 400 && r.width > 400) {
-            var rows = tables[i].querySelectorAll("tr");
-            for (var j = 1; j < Math.min(rows.length, 10); j++) {
-              var txt = rows[j].textContent;
-              if (txt.indexOf("${PAIR}") >= 0 && txt.indexOf("${SIDE === 'SELL' ? 'Short' : 'Long'}") >= 0) {
-                return { found: true, row: txt.substring(0, 120) };
-              }
+          var tbl = tables[i];
+          var rect = tbl.getBoundingClientRect();
+          // Skip dead tables (no visible content or too small)
+          if (rect.height < 30 || !tbl.querySelector("tr")) continue;
+          var rows = tbl.querySelectorAll("tr");
+          if (rows.length < 2) continue;
+          var hRow = rows[0].querySelectorAll("td,th");
+          var dRow = rows[1].querySelectorAll("td");
+          if (!hRow.length || !dRow.length) continue;
+          // Cell-by-cell match: header contains PAIR, data contains side
+          var cellMatch = false;
+          for (var k = 0; k < Math.min(hRow.length, dRow.length); k++) {
+            if (hRow[k].textContent.indexOf("${PAIR}") >= 0 && dRow[k].textContent.indexOf("${SIDE === 'SELL' ? 'Short' : 'Long'}") >= 0) {
+              cellMatch = true; break;
             }
           }
+          // Fallback: full-row text search
+          var fallbackMatch = false;
+          if (!cellMatch) {
+            var fullText = Array.from(rows).slice(1).map(function(r){ return r.textContent; }).join(" ");
+            if (fullText.indexOf("${PAIR}") >= 0 && fullText.indexOf("${SIDE === 'SELL' ? 'Short' : 'Long'}") >= 0) fallbackMatch = true;
+          }
+          if (cellMatch || fallbackMatch) {
+            return { found: true, row: fullText.substring(0, 200), method: cellMatch ? "cell" : "fallback" };
+          }
         }
-        return { found: false };
+        return { found: false, tableCount: tables.length };
       })()`);
 
       if (check?.found) {

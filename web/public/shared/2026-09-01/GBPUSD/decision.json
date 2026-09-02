@@ -1,0 +1,781 @@
+{
+  "pair": "GBPUSD",
+  "symbol": "GBPUSD",
+  "date": "2026-09-01",
+  "emittedAt": "2026-09-01T17:34:50.101Z",
+  "registry": {
+    "verdict": "SETUP COMPLETE",
+    "primary": "SCOB",
+    "completeCount": 4,
+    "confidence": 0.75,
+    "direction": "BUY",
+    "confluence": {
+      "BUY": {
+        "complete": 4,
+        "partial": 6,
+        "weight": 17.24694028340081,
+        "models": [
+          {
+            "id": "mmxm_buy",
+            "complete": false,
+            "seq": 0.8
+          },
+          {
+            "id": "ote_institutional_ob",
+            "complete": false,
+            "seq": 0.75
+          },
+          {
+            "id": "unicorn_ote_fvg",
+            "complete": false,
+            "seq": 0.75
+          },
+          {
+            "id": "breaker_block",
+            "complete": false,
+            "seq": 0.75
+          },
+          {
+            "id": "ifvg_scale_in",
+            "complete": false,
+            "seq": 0.6
+          },
+          {
+            "id": "scob",
+            "complete": true,
+            "seq": 1
+          },
+          {
+            "id": "two_fvg",
+            "complete": true,
+            "seq": 1
+          },
+          {
+            "id": "nwog_ndog",
+            "complete": true,
+            "seq": 1
+          },
+          {
+            "id": "mitigation_block",
+            "complete": true,
+            "seq": 1
+          },
+          {
+            "id": "ny_lunch_reversal_long",
+            "complete": false,
+            "seq": 0
+          }
+        ]
+      },
+      "SELL": {
+        "complete": 0,
+        "partial": 4,
+        "weight": 5.9,
+        "models": [
+          {
+            "id": "mmxm_sell",
+            "complete": false,
+            "seq": 0.8
+          },
+          {
+            "id": "turtle_soup",
+            "complete": false,
+            "seq": 0.8333333333333334
+          },
+          {
+            "id": "rejection_block",
+            "complete": false,
+            "seq": 1
+          },
+          {
+            "id": "ny_lunch_reversal_short",
+            "complete": false,
+            "seq": 0
+          }
+        ]
+      }
+    },
+    "resolved": {
+      "tie": true,
+      "conflict": false,
+      "poolFiltered": false,
+      "poolLocked": false,
+      "lockedDirection": null,
+      "rule": "WP-17 Pool-First: locked pool (raided+MSS) sets direction priority. Models targeting the locked pool win ties. Models opposing the locked pool are excluded. One Trade Setup drives the registry."
+    },
+    "mlProbability": {
+      "model": "SCOB",
+      "win_rate_pct": 41.7,
+      "raw_win_rate_pct": 35.7,
+      "ci90_low": 25.4,
+      "ci90_high": 57.9,
+      "samples": 14,
+      "precision": 0.36,
+      "calibration": "CALIBRATED",
+      "recommendation": "NEUTRAL",
+      "prior": "Beta(5,5) — weak prior centered at 50%"
+    },
+    "mlConfidence": 0.63,
+    "expectedValue": {
+      "p_win": 0.42,
+      "p_loss": 0.58,
+      "ev_r": 0.04,
+      "interpretation": "NEAR_ZERO",
+      "bayesian": true,
+      "prior": "Beta(5,5)",
+      "posterior_samples": 24,
+      "note": "EV uses Bayesian posterior mean. Prior: Beta(5,5) centered at 50% WR. The prior shrinks the estimate toward 50% when samples are small — protecting against overfitting on thin data."
+    },
+    "poolContext": {
+      "locked": false,
+      "lockedDirection": null,
+      "poolSummary": "No session raid + MSS confirmed yet. Monitoring all sessions in priority order.",
+      "sessions": [
+        "P1 PM Session (prev day 1:30-4:00 PM): ⚡ RAIDED — ⚡ RAIDED — awaiting MSS: High swept",
+        "P2 London Session (today 2:00-5:00 AM): ⏳ — ⏳ Not yet raided",
+        "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
+        "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
+      ],
+      "targetPool": {
+        "high": 1.35654,
+        "low": 1.35292,
+        "date": "2026-08-30"
+      }
+    },
+    "liquidityCascade": {
+      "session": {
+        "triggers": [
+          {
+            "source": "pm",
+            "label": "PM Session (prev day 1:30-4:00 PM)",
+            "priority": 1,
+            "high": 1.35931,
+            "low": 1.35268,
+            "raided": true,
+            "mssConfirmed": false,
+            "validRaid": false,
+            "sweepPrice": 1.35712,
+            "mssDirection": null,
+            "sweptSide": null,
+            "expectedDirection": null
+          },
+          {
+            "source": "london",
+            "label": "London Session (today 2:00-5:00 AM)",
+            "priority": 2,
+            "high": 1.36758,
+            "low": 1.34982,
+            "raided": false,
+            "mssConfirmed": false,
+            "validRaid": false,
+            "sweepPrice": null,
+            "mssDirection": null,
+            "sweptSide": null,
+            "expectedDirection": null
+          }
+        ],
+        "swept": [
+          {
+            "source": "pm",
+            "label": "PM Session (prev day 1:30-4:00 PM)",
+            "priority": 1,
+            "high": 1.35931,
+            "low": 1.35268,
+            "raided": true,
+            "mssConfirmed": false,
+            "validRaid": false,
+            "sweepPrice": 1.35712,
+            "mssDirection": null,
+            "sweptSide": null,
+            "expectedDirection": null
+          }
+        ],
+        "direction": null,
+        "detail": "AWAITING MSS: 1 pool(s) raided, none confirmed. Next to lock: PM Session (prev day 1:30-4:00 PM)"
+      },
+      "daily": {
+        "targets": [
+          {
+            "type": "BSL",
+            "price": 1.35654,
+            "source": "prev_am_high",
+            "label": "Prev AM High (2026-08-30)",
+            "tier": "daily"
+          },
+          {
+            "type": "SSL",
+            "price": 1.35292,
+            "source": "prev_am_low",
+            "label": "Prev AM Low (2026-08-30)",
+            "tier": "daily"
+          },
+          {
+            "type": "BSL",
+            "price": 1.35654,
+            "source": "pdh",
+            "label": "Previous Day High",
+            "tier": "daily"
+          },
+          {
+            "type": "SSL",
+            "price": 1.35292,
+            "source": "pdl",
+            "label": "Previous Day Low",
+            "tier": "daily"
+          },
+          {
+            "type": "BSL",
+            "price": 1.3517,
+            "source": "pwh",
+            "label": "Previous Week High",
+            "tier": "weekly"
+          },
+          {
+            "type": "SSL",
+            "price": 1.35165,
+            "source": "pwl",
+            "label": "Previous Week Low",
+            "tier": "weekly"
+          }
+        ],
+        "primary": {
+          "type": "SSL",
+          "price": 1.35165,
+          "source": "pwl",
+          "label": "Previous Week Low",
+          "tier": "weekly"
+        },
+        "secondary": null,
+        "detail": "SELL: nearest SSL below = Previous Week Low @ 1.35165"
+      },
+      "weekly": {
+        "targets": [
+          {
+            "type": "SSL",
+            "price": 1.34188,
+            "source": "engine_4h",
+            "label": "4H SSL pool",
+            "tier": "weekly",
+            "strength": 3
+          }
+        ],
+        "primary": {
+          "type": "SSL",
+          "price": 1.34188,
+          "source": "engine_4h",
+          "label": "4H SSL pool",
+          "tier": "weekly",
+          "strength": 3
+        },
+        "detail": "Next HTF draw: 4H SSL pool @ 1.34188"
+      }
+    }
+  },
+  "mmxmStep": {
+    "step": 3,
+    "label": "DISTRIBUTION",
+    "tradeable": true,
+    "scalpOnly": false,
+    "detail": "MMXM Step 3/5: DISTRIBUTION (from 4H)"
+  },
+  "entry": {
+    "type": "LONG",
+    "price": 1.3517,
+    "sl": 1.3506257268232917,
+    "tp1": 1.35642,
+    "tp2": 1.35654,
+    "noDrawDir": null,
+    "slReason": "15m Swing Low @ 1.35252 - ATR buffer"
+  },
+  "rr": {
+    "rr1": 4.393668298098347,
+    "rr2": 4.5053717294060425
+  },
+  "coherence": {
+    "unified": 0,
+    "phase": "DISTRIBUTION",
+    "base": 40,
+    "confluenceBoost": 0
+  },
+  "invalidation": {
+    "status": "INVALIDATED",
+    "totalInvalidated": 1,
+    "totalWarnings": 2
+  },
+  "guard": {
+    "verdict": "❌ DO NOT ENTER",
+    "blocked": 1,
+    "warnings": 1,
+    "sizeMultiplier": "0.75",
+    "blockedIds": [
+      "INVERSION_MISSING"
+    ]
+  },
+  "freshness": {
+    "score": 7,
+    "label": "ACCEPTABLE",
+    "source": "1H",
+    "ageMin": 10.799
+  },
+  "risk": {
+    "allowed": true,
+    "reason": null,
+    "accountBalance": 10000,
+    "riskAmount": 100,
+    "sizeMultiplier": 1
+  },
+  "evaluation": {
+    "verdict": "PASSED — all checks passed",
+    "score": "85/100 | 4/4 modules passed",
+    "blocked": false
+  },
+  "conflicts": {
+    "legacy": 0,
+    "phase": 0
+  },
+  "sizing": {
+    "posSizeLots": 0.9090909090909091,
+    "lots": "0.91 std",
+    "maxLoss": 100,
+    "maxGain": 427.27272727272725,
+    "riskPips": 11,
+    "qty": 90909
+  },
+  "gates": {
+    "hasSetup": true,
+    "rrOk": true,
+    "notInvalidated": false,
+    "notGuardBlocked": false,
+    "freshEnough": true,
+    "riskAllowed": true
+  },
+  "selfValidation": {
+    "verdict": "CONFLICT",
+    "fails": [
+      {
+        "id": "micro_trigger_direction",
+        "source": "05b_micro_confirmation/output/trigger_check.md",
+        "detail": "Decision LONG but the trigger checklist runs a SHORT setup (Direction: SHORT)."
+      }
+    ],
+    "warns": [
+      {
+        "id": "sweep_claim",
+        "source": "engine_5m.json",
+        "detail": "Decision trades but engine 5m reports 2 pool(s) (e.g. BSL) — none marked swept. Sweep-dependent models (purge-gated) would be contradicting the trade."
+      },
+      {
+        "id": "fvg_claim",
+        "source": "engine_5m.json",
+        "detail": "Decision trades on SCOB but engine 5m reports 0 FVGs — an FVG-dependent setup with no unmitigated FVG on the entry TF."
+      },
+      {
+        "id": "fvg_claim",
+        "source": "engine_15m.json",
+        "detail": "Decision trades on SCOB but engine 15m reports 0 FVGs — an FVG-dependent setup with no unmitigated FVG on the entry TF."
+      }
+    ]
+  },
+  "sentence": {
+    "open": false,
+    "passed": 5,
+    "total": 6,
+    "missing": [
+      "MSS on entry TF (1m/5m) inside killzone"
+    ],
+    "elements": [
+      {
+        "key": "bias",
+        "label": "Daily bias",
+        "pass": true,
+        "detail": "bias bullish"
+      },
+      {
+        "key": "draw",
+        "label": "Single liquidity draw on bias side",
+        "pass": true,
+        "detail": "nearest BSL @ 1.35642"
+      },
+      {
+        "key": "pd_array",
+        "label": "One PD array in premium/discount",
+        "pass": true,
+        "detail": "price at a fresh unmitigated PD array"
+      },
+      {
+        "key": "mss_killzone",
+        "label": "MSS on entry TF (1m/5m) inside killzone",
+        "pass": false,
+        "detail": "MSS=false (no MSS), killzone=true — both required"
+      },
+      {
+        "key": "sl",
+        "label": "SL beyond structural swing",
+        "pass": true,
+        "detail": "15m Swing Low @ 1.35252 - ATR buffer"
+      },
+      {
+        "key": "tp",
+        "label": "TP at the draw",
+        "pass": true,
+        "detail": "TP1 BSL pool @ 1.35642"
+      }
+    ],
+    "policy": "advisory — made known, never enforced (build-time)"
+  },
+  "forecast": {
+    "f5m": {
+      "available": true,
+      "direction": "bullish"
+    },
+    "f1m": {
+      "available": true,
+      "direction": "bearish"
+    },
+    "aligned": false,
+    "opposesDecision": {
+      "opposing": true,
+      "both": false,
+      "detail": "forecast opposes BUY — warn-and-continue (advisory)"
+    },
+    "policy": "warn-and-continue — surfaced, never blocks (build-time)"
+  },
+  "structural": {
+    "chain": {
+      "linkCount": 4,
+      "dominantHalf": "BEARISH",
+      "handoffSequence": "BISI → SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT",
+      "narrative": "Chain: BISI → SUSPENSION_BLOCK → WICK_CE → ORG_MIDPOINT | 4 links active. Dominant half: LOWER (bearish delivery). BISI W @ 1.35317 (1.35316–1.35318) | 2026-09-01 → ORG CE @ 1.35433 | Price in LOWER (discount) | FILLED",
+      "opposesDirection": true
+    },
+    "fractal": {
+      "score": 11,
+      "max": 20,
+      "label": "⏳ MODERATE fractal coherence — some nesting gaps. Wait for tighter alignment.",
+      "nestingScore": 5,
+      "nestingMax": 6,
+      "inversionDetected": false,
+      "inversionScore": 3,
+      "inversionMax": 8,
+      "confirmationsPassed": 4,
+      "cisdDetected": false,
+      "weak": false
+    },
+    "entryMss": {
+      "present": false,
+      "detail": "no 1m/5m MSS/CHoCH — 15m-only structure does not satisfy the entry-TF shift"
+    },
+    "policy": "advisory — surfaced for AI consideration, never blocks the verdict (build-time)"
+  },
+  "regime": {
+    "tf": "5m",
+    "regime": "TRENDING_DOWN",
+    "volatility": "NORMAL",
+    "anomalies": []
+  },
+  "missedEntry": {
+    "pair": "GBPUSD",
+    "assessedAt": "2026-09-01T17:34:50.104Z",
+    "originalSetup": {
+      "registry": {
+        "verdict": "SETUP COMPLETE",
+        "primary": "SCOB",
+        "completeCount": 4,
+        "confidence": 0.75,
+        "direction": "BUY",
+        "confluence": {
+          "BUY": {
+            "complete": 4,
+            "partial": 6,
+            "weight": 17.24694028340081,
+            "models": [
+              {
+                "id": "mmxm_buy",
+                "complete": false,
+                "seq": 0.8
+              },
+              {
+                "id": "ote_institutional_ob",
+                "complete": false,
+                "seq": 0.75
+              },
+              {
+                "id": "unicorn_ote_fvg",
+                "complete": false,
+                "seq": 0.75
+              },
+              {
+                "id": "breaker_block",
+                "complete": false,
+                "seq": 0.75
+              },
+              {
+                "id": "ifvg_scale_in",
+                "complete": false,
+                "seq": 0.6
+              },
+              {
+                "id": "scob",
+                "complete": true,
+                "seq": 1
+              },
+              {
+                "id": "two_fvg",
+                "complete": true,
+                "seq": 1
+              },
+              {
+                "id": "nwog_ndog",
+                "complete": true,
+                "seq": 1
+              },
+              {
+                "id": "mitigation_block",
+                "complete": true,
+                "seq": 1
+              },
+              {
+                "id": "ny_lunch_reversal_long",
+                "complete": false,
+                "seq": 0
+              }
+            ]
+          },
+          "SELL": {
+            "complete": 0,
+            "partial": 4,
+            "weight": 5.9,
+            "models": [
+              {
+                "id": "mmxm_sell",
+                "complete": false,
+                "seq": 0.8
+              },
+              {
+                "id": "turtle_soup",
+                "complete": false,
+                "seq": 0.8333333333333334
+              },
+              {
+                "id": "rejection_block",
+                "complete": false,
+                "seq": 1
+              },
+              {
+                "id": "ny_lunch_reversal_short",
+                "complete": false,
+                "seq": 0
+              }
+            ]
+          }
+        },
+        "resolved": {
+          "tie": true,
+          "conflict": false,
+          "poolFiltered": false,
+          "poolLocked": false,
+          "lockedDirection": null,
+          "rule": "WP-17 Pool-First: locked pool (raided+MSS) sets direction priority. Models targeting the locked pool win ties. Models opposing the locked pool are excluded. One Trade Setup drives the registry."
+        },
+        "mlProbability": {
+          "model": "SCOB",
+          "win_rate_pct": 41.7,
+          "raw_win_rate_pct": 35.7,
+          "ci90_low": 25.4,
+          "ci90_high": 57.9,
+          "samples": 14,
+          "precision": 0.36,
+          "calibration": "CALIBRATED",
+          "recommendation": "NEUTRAL",
+          "prior": "Beta(5,5) — weak prior centered at 50%"
+        },
+        "mlConfidence": 0.63,
+        "expectedValue": {
+          "p_win": 0.42,
+          "p_loss": 0.58,
+          "ev_r": 0.04,
+          "interpretation": "NEAR_ZERO",
+          "bayesian": true,
+          "prior": "Beta(5,5)",
+          "posterior_samples": 24,
+          "note": "EV uses Bayesian posterior mean. Prior: Beta(5,5) centered at 50% WR. The prior shrinks the estimate toward 50% when samples are small — protecting against overfitting on thin data."
+        },
+        "poolContext": {
+          "locked": false,
+          "lockedDirection": null,
+          "poolSummary": "No session raid + MSS confirmed yet. Monitoring all sessions in priority order.",
+          "sessions": [
+            "P1 PM Session (prev day 1:30-4:00 PM): ⚡ RAIDED — ⚡ RAIDED — awaiting MSS: High swept",
+            "P2 London Session (today 2:00-5:00 AM): ⏳ — ⏳ Not yet raided",
+            "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
+            "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
+          ],
+          "targetPool": {
+            "high": 1.35654,
+            "low": 1.35292,
+            "date": "2026-08-30"
+          }
+        },
+        "liquidityCascade": {
+          "session": {
+            "triggers": [
+              {
+                "source": "pm",
+                "label": "PM Session (prev day 1:30-4:00 PM)",
+                "priority": 1,
+                "high": 1.35931,
+                "low": 1.35268,
+                "raided": true,
+                "mssConfirmed": false,
+                "validRaid": false,
+                "sweepPrice": 1.35712,
+                "mssDirection": null,
+                "sweptSide": null,
+                "expectedDirection": null
+              },
+              {
+                "source": "london",
+                "label": "London Session (today 2:00-5:00 AM)",
+                "priority": 2,
+                "high": 1.36758,
+                "low": 1.34982,
+                "raided": false,
+                "mssConfirmed": false,
+                "validRaid": false,
+                "sweepPrice": null,
+                "mssDirection": null,
+                "sweptSide": null,
+                "expectedDirection": null
+              }
+            ],
+            "swept": [
+              {
+                "source": "pm",
+                "label": "PM Session (prev day 1:30-4:00 PM)",
+                "priority": 1,
+                "high": 1.35931,
+                "low": 1.35268,
+                "raided": true,
+                "mssConfirmed": false,
+                "validRaid": false,
+                "sweepPrice": 1.35712,
+                "mssDirection": null,
+                "sweptSide": null,
+                "expectedDirection": null
+              }
+            ],
+            "direction": null,
+            "detail": "AWAITING MSS: 1 pool(s) raided, none confirmed. Next to lock: PM Session (prev day 1:30-4:00 PM)"
+          },
+          "daily": {
+            "targets": [
+              {
+                "type": "BSL",
+                "price": 1.35654,
+                "source": "prev_am_high",
+                "label": "Prev AM High (2026-08-30)",
+                "tier": "daily"
+              },
+              {
+                "type": "SSL",
+                "price": 1.35292,
+                "source": "prev_am_low",
+                "label": "Prev AM Low (2026-08-30)",
+                "tier": "daily"
+              },
+              {
+                "type": "BSL",
+                "price": 1.35654,
+                "source": "pdh",
+                "label": "Previous Day High",
+                "tier": "daily"
+              },
+              {
+                "type": "SSL",
+                "price": 1.35292,
+                "source": "pdl",
+                "label": "Previous Day Low",
+                "tier": "daily"
+              },
+              {
+                "type": "BSL",
+                "price": 1.3517,
+                "source": "pwh",
+                "label": "Previous Week High",
+                "tier": "weekly"
+              },
+              {
+                "type": "SSL",
+                "price": 1.35165,
+                "source": "pwl",
+                "label": "Previous Week Low",
+                "tier": "weekly"
+              }
+            ],
+            "primary": {
+              "type": "SSL",
+              "price": 1.35165,
+              "source": "pwl",
+              "label": "Previous Week Low",
+              "tier": "weekly"
+            },
+            "secondary": null,
+            "detail": "SELL: nearest SSL below = Previous Week Low @ 1.35165"
+          },
+          "weekly": {
+            "targets": [
+              {
+                "type": "SSL",
+                "price": 1.34188,
+                "source": "engine_4h",
+                "label": "4H SSL pool",
+                "tier": "weekly",
+                "strength": 3
+              }
+            ],
+            "primary": {
+              "type": "SSL",
+              "price": 1.34188,
+              "source": "engine_4h",
+              "label": "4H SSL pool",
+              "tier": "weekly",
+              "strength": 3
+            },
+            "detail": "Next HTF draw: 4H SSL pool @ 1.34188"
+          }
+        }
+      },
+      "entry": {
+        "type": "LONG",
+        "price": 1.3517,
+        "sl": 1.3506257268232917,
+        "tp1": 1.35642,
+        "tp2": 1.35654,
+        "noDrawDir": null,
+        "slReason": "15m Swing Low @ 1.35252 - ATR buffer"
+      },
+      "rr": {
+        "rr1": 4.393668298098347,
+        "rr2": 4.5053717294060425
+      },
+      "coherence": {
+        "unified": 0,
+        "phase": "DISTRIBUTION",
+        "base": 40,
+        "confluenceBoost": 0
+      },
+      "invalidation": {
+        "status": "INVALIDATED",
+        "totalInvalidated": 1,
+        "totalWarnings": 2
+      },
+      "emittedAt": "2026-09-01T17:34:50.101Z"
+    },
+    "status": "watching",
+    "allowSecondaryEntry": false,
+    "reasons": [
+      "original setup still within entry tolerance — monitoring"
+    ],
+    "secondaryEntry": null
+  }
+}

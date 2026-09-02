@@ -1,0 +1,27 @@
+{
+  "pair": "GOLD",
+  "date": "2026-07-28",
+  "extracted": "2026-07-28T18:59:41.870Z",
+  "trade": {
+    "pnl": 0,
+    "outcome": "|",
+    "entries": 3,
+    "blocked": 0
+  },
+  "conceptsUsed": [],
+  "ruleViolations": [],
+  "rulesFollowed": [],
+  "forecastAccuracy": null,
+  "decisionQuality": 3.75,
+  "lessons": [],
+  "gaps": [
+    {
+      "type": "shallow_review",
+      "severity": "low",
+      "detail": "No structured lessons extracted from journal",
+      "recommendation": "Run a deeper journal review. Ask: what ICT rule was followed? What was missed? What would you do differently?",
+      "conceptsToReview": []
+    }
+  ],
+  "playbookCandidates": []
+}

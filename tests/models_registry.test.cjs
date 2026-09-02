@@ -35,6 +35,7 @@ function makeContext(overrides = {}) {
     htfRanging: overrides.htfRanging ?? true,
     displacement: overrides.displacement ?? true,
     hasDraw: overrides.hasDraw ?? true,
+    killzone: overrides.killzone ?? true,
     // IFVG Scale-In — bias-aligned inversion FVG with price inside (WP-13/14).
     inversionFvgs: overrides.inversionFvgs ?? [{ bottom: 1.0, top: 1.1 }],
     ifvgInPlay: overrides.ifvgInPlay ?? true,
@@ -93,6 +94,7 @@ const STEP_FAIL = {
   htf_ranging: { htfRanging: false },
   displacement: { displacement: false },
   purge: { hasSweep: false },
+  killzone: { killzone: false },
   lecture2_hunt_swept: { lecture2: { hunt: { swept: false } } },
   lecture2_mss: { lecture2: { mss: { confirmed: false } } },
   lecture2_ready: { lecture2: { setupReady: false } },

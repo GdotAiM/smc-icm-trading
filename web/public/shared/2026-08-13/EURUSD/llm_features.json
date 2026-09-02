@@ -1,0 +1,10 @@
+{
+  "narrative_coherence": 0.4,
+  "dxy_alignment_confidence": 0.5,
+  "pattern_similarity_score": 0.8,
+  "macro_context_strength": 0.6,
+  "decision_confidence": 0,
+  "mode": "llm",
+  "generated": "2026-08-13T12:24:44.135Z",
+  "pair": "EURUSD"
+}

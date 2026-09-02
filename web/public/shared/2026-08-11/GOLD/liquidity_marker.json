@@ -1,0 +1,124 @@
+{
+  "pair": "XAUUSD",
+  "time": "13:29:18 NY",
+  "currentPrice": 4380.505,
+  "htfBias": {
+    "daily": "bullish",
+    "h4": "bullish",
+    "aligned": true,
+    "direction": "bullish",
+    "detail": "✅ ALIGNED — 1D BULLISH + 4H BULLISH"
+  },
+  "pdhPdl": {
+    "pdh": 4395.385,
+    "pdl": 4313.43,
+    "range": 81.95499999999993,
+    "date": "2026-08-09",
+    "detail": "PDH: 4395.38500 | PDL: 4313.43000 | Range: 81.95500"
+  },
+  "pwhPwl": {
+    "pwh": 4381.34,
+    "pwl": 4379.995,
+    "range": 1.3450000000002547,
+    "detail": "PWH: 4381.34000 | PWL: 4379.99500 | Range: 1.34500"
+  },
+  "relEquals": {
+    "highs": [],
+    "lows": [],
+    "highCount": 0,
+    "lowCount": 0,
+    "magnets": [],
+    "magnetCount": 0,
+    "smoothCount": 0,
+    "detail": "0 equal highs, 0 equal lows inside daily range"
+  },
+  "drawTargets": {
+    "primary": {
+      "level": "PDL",
+      "price": 4313.43,
+      "type": "SSL",
+      "priority": 1,
+      "label": "Previous Day Low"
+    },
+    "oppositePool": null,
+    "allTargets": [
+      {
+        "level": "PDL",
+        "price": 4313.43,
+        "type": "SSL",
+        "priority": 1,
+        "label": "Previous Day Low"
+      },
+      {
+        "level": "PWL",
+        "price": 4379.995,
+        "type": "SSL",
+        "priority": 2,
+        "label": "Previous Week Low"
+      }
+    ],
+    "detail": "Primary draw: Previous Day Low (SSL) @ 4313.43000 | Opposite (TP): N/A"
+  },
+  "sweepStatus": {
+    "swept": false,
+    "mss": false,
+    "sweptPool": null,
+    "structureEvent": "BOS",
+    "detail": "⏳ Previous Day Low NOT swept yet | Awaiting sweep + MSS"
+  },
+  "entryGuidance": {
+    "ready": false,
+    "detail": "⏳ NOT READY — ⏳ Previous Day Low NOT swept yet | Awaiting sweep + MSS. Wait for Previous Day Low sweep + MSS."
+  },
+  "hrlrLrlr": {
+    "targets": [
+      {
+        "level": "PDL",
+        "price": 4313.43,
+        "type": "SSL",
+        "priority": 1,
+        "label": "Previous Day Low",
+        "classification": "HRLR",
+        "defenders": 1,
+        "hasNearbyFVG": false,
+        "isLongTerm": true,
+        "isWithTrend": true,
+        "isCounterTrend": false,
+        "distPct": "1.53"
+      },
+      {
+        "level": "PWL",
+        "price": 4379.995,
+        "type": "SSL",
+        "priority": 2,
+        "label": "Previous Week Low",
+        "classification": "HRLR",
+        "defenders": 0,
+        "hasNearbyFVG": false,
+        "isLongTerm": true,
+        "isWithTrend": true,
+        "isCounterTrend": false,
+        "distPct": "0.01"
+      }
+    ],
+    "lrlrCount": 0,
+    "hrlrCount": 2,
+    "primaryLRLR": null,
+    "stretchHRLR": {
+      "level": "PDL",
+      "price": 4313.43,
+      "type": "SSL",
+      "priority": 1,
+      "label": "Previous Day Low",
+      "classification": "HRLR",
+      "defenders": 1,
+      "hasNearbyFVG": false,
+      "isLongTerm": true,
+      "isWithTrend": true,
+      "isCounterTrend": false,
+      "distPct": "1.53"
+    },
+    "detail": "0 LRLR (easy, with-trend) | 2 HRLR (hard, needs catalyst) | Primary TP: N/A | Stretch: Previous Day Low @ 4313.43000"
+  },
+  "sweepVsRun": null
+}

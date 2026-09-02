@@ -1,0 +1,40 @@
+{
+  "pair": "XAUUSD",
+  "today": "2026-08-12",
+  "prevDate": "2026-08-11",
+  "found": false,
+  "summary": "Lunch SSL sweep found but no qualifying inefficiency before it",
+  "candlesAnalyzed": 300,
+  "lunchCandleCount": 0,
+  "sweep": {
+    "price": "4380.21000",
+    "type": "SSL",
+    "time": 1786468920000
+  },
+  "inefficiency": null,
+  "eventHorizons": [
+    {
+      "horizon": "4380.49500",
+      "upperPool": "4404.29000",
+      "lowerPool": "4356.70000",
+      "distancePct": "-0.00",
+      "label": "Event Horizon: BSL 4404.29000 ↔ SSL 4356.70000"
+    },
+    {
+      "horizon": "4376.23750",
+      "upperPool": "4395.77500",
+      "lowerPool": "4356.70000",
+      "distancePct": "-0.10",
+      "label": "Event Horizon: BSL 4395.77500 ↔ SSL 4356.70000"
+    },
+    {
+      "horizon": "4365.70625",
+      "upperPool": "4404.29000",
+      "lowerPool": "4327.12250",
+      "distancePct": "-0.34",
+      "label": "Event Horizon: BSL 4404.29000 ↔ SSL 4327.12250"
+    }
+  ],
+  "action": null,
+  "prevSessionDate": "2026-08-11"
+}

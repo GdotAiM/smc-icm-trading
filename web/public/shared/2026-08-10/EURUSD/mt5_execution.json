@@ -1,0 +1,28 @@
+{
+  "pair": "EURUSD",
+  "mode": "LIVE",
+  "time": "2026-08-10T19:16:02.561Z",
+  "allowed": false,
+  "executed": false,
+  "ticket": null,
+  "error": "GATE_BLOCKED: decision stale (37m > 15m); guard BLOCKED: INVERSION_MISSING",
+  "details": {},
+  "gate": {
+    "allowed": false,
+    "reasons": [
+      "decision stale (37m > 15m)",
+      "guard BLOCKED: INVERSION_MISSING"
+    ],
+    "operative": {
+      "kind": "PRIMARY",
+      "side": "SHORT",
+      "entry": 1.15438,
+      "sl": 1.1570859051227962,
+      "tp1": 1.15177,
+      "sizeMultiplier": 1
+    },
+    "secondChance": false,
+    "coherence": 60
+  },
+  "elapsedMs": 10
+}

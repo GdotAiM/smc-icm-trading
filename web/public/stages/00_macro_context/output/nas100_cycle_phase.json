@@ -1,0 +1,9 @@
+{
+  "pair": "NAS100",
+  "phase": "MANIPULATION",
+  "confidence": 0.85,
+  "reason": "4 sweep(s) + CHoCH — manipulation active",
+  "source": "4H",
+  "timestamp": "2026-09-01T17:35:35.411Z",
+  "structureOnly": true
+}

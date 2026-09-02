@@ -194,7 +194,7 @@ try {
   const fractal2 = JSON.parse(fractalOutput2);
   const invDetected = fractal2.inversionDetected;
   const invScore = fractal2.inversionScore;
-  const hasCHoCH = fractal2.hasCHoCH || (invScore >= 6); // score 6+ implies CHoCH passed (2pts + sweep 2pts + fvg 2pts)
+  const hasCHoCH = fractal2.hasCHoCH || (invScore >= CONFIG.inversion.minScore); // inversion score above minScore implies CHoCH passed
 
   if (!invDetected) {
     // Sequence incomplete — block with specific reason

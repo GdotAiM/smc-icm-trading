@@ -1,0 +1,97 @@
+{
+  "updated": "2026-07-29T09:12:18.475Z",
+  "pairs": {
+    "NAS100": {
+      "price": 27815.6,
+      "events": [
+        {
+          "type": "CHoCH",
+          "dir": "BULLISH",
+          "from": 27766,
+          "to": 27821.5,
+          "time": "2026-07-29T09:10:47.372Z",
+          "pair": "NAS100"
+        },
+        {
+          "type": "BOS",
+          "dir": "BULLISH",
+          "from": 27807.8,
+          "to": 27821.5,
+          "time": "2026-07-29T09:10:47.374Z",
+          "pair": "NAS100"
+        }
+      ]
+    },
+    "EURUSD": {
+      "price": 1.13966,
+      "events": [
+        {
+          "type": "CHoCH",
+          "dir": "BEARISH",
+          "from": 1.13976,
+          "to": 1.13953,
+          "time": "2026-07-29T09:10:52.430Z",
+          "pair": "EURUSD"
+        },
+        {
+          "type": "CHoCH",
+          "dir": "BULLISH",
+          "from": 1.13953,
+          "to": 1.1397,
+          "time": "2026-07-29T09:11:22.847Z",
+          "pair": "EURUSD"
+        }
+      ]
+    },
+    "GBPUSD": {
+      "price": 1.33034,
+      "events": [
+        {
+          "type": "CHoCH",
+          "dir": "BULLISH",
+          "from": 1.33021,
+          "to": 1.33045,
+          "time": "2026-07-29T09:11:02.576Z",
+          "pair": "GBPUSD"
+        },
+        {
+          "type": "BOS",
+          "dir": "BEARISH",
+          "from": 1.33024,
+          "to": 1.33021,
+          "time": "2026-07-29T09:11:02.576Z",
+          "pair": "GBPUSD"
+        },
+        {
+          "type": "CHoCH",
+          "dir": "BEARISH",
+          "from": 1.33045,
+          "to": 1.33028,
+          "time": "2026-07-29T09:12:03.271Z",
+          "pair": "GBPUSD"
+        }
+      ]
+    },
+    "XAUUSD": {
+      "price": 4036.83,
+      "events": [
+        {
+          "type": "CHoCH",
+          "dir": "BULLISH",
+          "from": 4035.815,
+          "to": 4037.96,
+          "time": "2026-07-29T09:11:12.712Z",
+          "pair": "XAUUSD"
+        },
+        {
+          "type": "BOS",
+          "dir": "BEARISH",
+          "from": 4036.335,
+          "to": 4035.815,
+          "time": "2026-07-29T09:11:12.712Z",
+          "pair": "XAUUSD"
+        }
+      ]
+    }
+  }
+}

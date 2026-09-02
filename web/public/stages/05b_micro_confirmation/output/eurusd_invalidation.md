@@ -1,0 +1,26 @@
+# Invalidation Awareness — EURUSD — 2026-09-02
+
+## Overall Status: ❌ TRADE INVALID — At least one dimension has failed. Exit or do not enter.
+
+| Dimension | Status | Detail |
+|-----------|--------|--------|
+| PRICE | ⏳ undefined |  |
+| STRUCTURE | ✅ VALID | 4H BOS bearish — structure confirms direction |
+| STRUCTURE | ⚠️ WARNING | 1D bias is bullish — HTF may be opposing the trade |
+| TIME | ⏳ MONITOR | Between killzones — reduced displacement probability |
+| TIME | ⏳ INACTIVE | SB window not active — next: NY AM SB at 10:00 |
+| MODEL | ❌ INVALIDATED | Not in Silver Bullet window — model requires active SB killzone |
+| MODEL | ✅ VALID | OB present + sweep detected — MMXM conditions met |
+| CYCLE | ✅ VALID | DISTRIBUTION phase — trend is active. Let winners run. |
+| MICRO | ✅ VALID | 15m bias bearish — aligned with HTF |
+| MICRO | ⚠️ WARNING | 5m CHoCH flipped to bullish — micro reversal. Check if SL threatened. |
+| CORRELATION | ⏳ UNKNOWN | DXY data unavailable |
+
+## Invalidation Summary
+- **Invalidated**: 1 dimension(s) — EXIT OR DO NOT ENTER
+- **Warnings**: 2 — Trade with reduced size and awareness
+- **Confirmed**: 4 checks passed
+
+## If Trade Is Active
+- **EXIT NOW** — the trade thesis is no longer valid.
+- **Re-entry**: Only if ALL dimensions return to VALID status

@@ -1,0 +1,2 @@
+{"timestamp":"2026-08-13T12:24:48.708Z","pair":"GBPUSD","event":"SESSION_START","date":"2026-08-13","nyTime":{"hour":8,"day":4,"dayName":"Thursday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-08-13T12:25:04.203Z","pair":"GBPUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":15,"status":"PARTIAL","stageList":[]}

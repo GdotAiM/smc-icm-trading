@@ -1,0 +1,5 @@
+{"pair":"EURUSD","cycleId":"2026-09-01_1788264524715","result":{"error":"Timeout","pair":"EURUSD"},"elapsed":30000,"success":false,"ts":"2026-09-01T12:09:21.364Z"}
+{"pair":"GBPUSD","cycleId":"2026-09-01_1788264524715","result":{"error":"Timeout","pair":"GBPUSD"},"elapsed":30000,"success":false,"ts":"2026-09-01T12:09:21.612Z"}
+{"pair":"XAUUSD","cycleId":"2026-09-01_1788264524715","result":{"error":"Timeout","pair":"XAUUSD"},"elapsed":30000,"success":false,"ts":"2026-09-01T12:09:21.613Z"}
+{"pair":"NAS100","cycleId":"2026-09-01_1788264524715","result":{"error":"Timeout","pair":"NAS100"},"elapsed":30000,"success":false,"ts":"2026-09-01T12:09:21.613Z"}
+{"pair":"DXY","cycleId":"2026-09-01_1788264524715","result":{"error":"Timeout","pair":"DXY"},"elapsed":30000,"success":false,"ts":"2026-09-01T12:09:21.802Z"}

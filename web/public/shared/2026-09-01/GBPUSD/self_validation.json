@@ -1,0 +1,67 @@
+{
+  "pair": "GBPUSD",
+  "date": "2026-09-01",
+  "validatedAt": "2026-09-01T17:34:50.096Z",
+  "verdict": "CONFLICT",
+  "counts": {
+    "pass": 5,
+    "warn": 3,
+    "fail": 1
+  },
+  "checks": [
+    {
+      "id": "direction_vs_bias",
+      "level": "PASS",
+      "source": "01_htf_bias/output/bias.md",
+      "detail": "Decision LONG aligns with HTF bias BULLISH."
+    },
+    {
+      "id": "trigger_text_direction",
+      "level": "PASS",
+      "source": "05_entry_refinement/output/entry_plan.md",
+      "detail": "Trigger text is direction-consistent (- **Trigger**: MSS upside + bullish FVG fill on 5m)."
+    },
+    {
+      "id": "micro_trigger_direction",
+      "level": "FAIL",
+      "source": "05b_micro_confirmation/output/trigger_check.md",
+      "detail": "Decision LONG but the trigger checklist runs a SHORT setup (Direction: SHORT)."
+    },
+    {
+      "id": "guard_vs_gates",
+      "level": "PASS",
+      "source": "05b_micro_confirmation/output/guard.md",
+      "detail": "Guard blocks entry and decision gates reflect it (fail-closed working as intended)."
+    },
+    {
+      "id": "sl_tp_geometry",
+      "level": "PASS",
+      "source": "decision.json",
+      "detail": "LONG: SL 1.35113 < entry 1.35474; TP1 1.36007 > entry."
+    },
+    {
+      "id": "sweep_claim",
+      "level": "WARN",
+      "source": "engine_5m.json",
+      "detail": "Decision trades but engine 5m reports 2 pool(s) (e.g. BSL) — none marked swept. Sweep-dependent models (purge-gated) would be contradicting the trade."
+    },
+    {
+      "id": "sweep_claim",
+      "level": "PASS",
+      "source": "engine_15m.json",
+      "detail": "3 pool(s), 1 swept."
+    },
+    {
+      "id": "fvg_claim",
+      "level": "WARN",
+      "source": "engine_5m.json",
+      "detail": "Decision trades on SCOB but engine 5m reports 0 FVGs — an FVG-dependent setup with no unmitigated FVG on the entry TF."
+    },
+    {
+      "id": "fvg_claim",
+      "level": "WARN",
+      "source": "engine_15m.json",
+      "detail": "Decision trades on SCOB but engine 15m reports 0 FVGs — an FVG-dependent setup with no unmitigated FVG on the entry TF."
+    }
+  ]
+}

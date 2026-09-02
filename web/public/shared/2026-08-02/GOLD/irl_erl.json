@@ -1,0 +1,86 @@
+{
+  "pair": "XAUUSD",
+  "time": "13:20:45 NY",
+  "currentPrice": 4045.165,
+  "dealingRange": {
+    "high": 4166.13,
+    "low": 3959.8,
+    "range": 206.32999999999993,
+    "midpoint": 4062.965,
+    "source": "1D",
+    "valid": false,
+    "validation": {
+      "highSwept": false,
+      "lowSwept": false,
+      "detail": "⚠️ PARTIAL — high NOT swept, low NOT swept"
+    },
+    "premium": {
+      "high": 4166.13,
+      "low": 4062.965
+    },
+    "discount": {
+      "high": 4062.965,
+      "low": 3959.8
+    },
+    "detail": "Partial dealing range: 3959.80000 — 4166.13000 (206.33000 range)"
+  },
+  "irl": {
+    "count": 1,
+    "fvgs": [
+      {
+        "top": 4050.735,
+        "bottom": 4047.755,
+        "type": "bearish",
+        "index": 298,
+        "time": 1785531000000,
+        "gapAtr": 1.0615776081424706,
+        "displacementAtr": 1.560305343511446,
+        "fillFraction": 0,
+        "distance": 0.10086115152286562,
+        "tf": "5m",
+        "midpoint": 4049.245,
+        "isIRL": true,
+        "fillPct": "0.00"
+      }
+    ],
+    "unfilled": 1,
+    "partial": 0,
+    "filled": 0
+  },
+  "erl": {
+    "buySide": [],
+    "sellSide": [],
+    "buySideClusters": 0,
+    "sellSideClusters": 0,
+    "dominant": "BALANCED",
+    "largerPool": "ABOVE",
+    "detail": "ERL: 0 buy-side pools above, 0 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: BALANCED"
+  },
+  "cycle": {
+    "position": "OUTSIDE RANGE",
+    "phase": "BELOW range — ERL raid possible",
+    "nextTarget": "Opposite ERL or re-enter range toward IRL",
+    "erlAboveSwept": 0,
+    "erlBelowSwept": 0,
+    "unfilledIRL": 1,
+    "partiallyFilledIRL": 0,
+    "recentlyFilled": 0,
+    "priceInRange": false,
+    "currentPrice": 0,
+    "detail": "OUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 1 unfilled, 0 filled | ERL sweeps: 0 above, 0 below"
+  },
+  "bias": {
+    "bias": "neutral",
+    "confidence": 0,
+    "reasoning": "",
+    "detail": "NEUTRAL bias (0.00): "
+  },
+  "entryGuidance": [
+    {
+      "action": "WAIT",
+      "direction": "neutral",
+      "detail": "Unclear cycle position — wait for ERL raid or IRL fill to establish direction."
+    }
+  ],
+  "detail": "Partial dealing range: 3959.80000 — 4166.13000 (206.33000 range)\nIRL: 1 FVGs inside range (1 unfilled)\nERL: 0 buy-side pools above, 0 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: BALANCED\nOUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 1 unfilled, 0 filled | ERL sweeps: 0 above, 0 below\nNEUTRAL bias (0.00): "
+}

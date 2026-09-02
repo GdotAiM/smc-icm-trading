@@ -1,0 +1,141 @@
+{
+  "pair": "NAS100",
+  "time": "05:23:03 NY",
+  "currentPrice": 30081.8,
+  "dealingRange": {
+    "high": 30169.6,
+    "low": 26980.6,
+    "range": 3189,
+    "midpoint": 28575.1,
+    "equilibrium": 28575.1,
+    "positionPct": 97.19,
+    "zone": "PREMIUM",
+    "source": "1D",
+    "valid": true,
+    "validation": {
+      "highSwept": true,
+      "lowSwept": true,
+      "detail": "Sweep-to-sweep — high swept @ 30169.60000, low swept @ 26980.60000"
+    },
+    "premium": {
+      "high": 30169.6,
+      "low": 28575.1
+    },
+    "discount": {
+      "high": 28575.1,
+      "low": 26980.6
+    },
+    "detail": "Sweep-to-sweep dealing range: 26980.6 — 30169.6 (equilibrium 28575.1, PREMIUM)"
+  },
+  "irl": {
+    "count": 4,
+    "fvgs": [
+      {
+        "top": 30099.2,
+        "bottom": 30090.3,
+        "type": "bearish",
+        "index": 318,
+        "time": 1786666500000,
+        "gapAtr": 0.58034466697729,
+        "displacementAtr": 1.0628784350256022,
+        "fillFraction": 0.11235955056177938,
+        "distance": 12.950000000000728,
+        "tf": "5m",
+        "kind": "FVG",
+        "midpoint": 30094.75,
+        "isIRL": true,
+        "fillPct": "11.24"
+      },
+      {
+        "top": 30049.3,
+        "bottom": 29945.6,
+        "type": "bullish",
+        "index": 330,
+        "time": 1786628700000,
+        "gapAtr": 1.9871338625787203,
+        "displacementAtr": 3.1042978373939287,
+        "fillFraction": 0.4860173577627528,
+        "distance": 84.35000000000218,
+        "tf": "15m",
+        "kind": "FVG",
+        "midpoint": 29997.449999999997,
+        "isIRL": true,
+        "fillPct": "48.60"
+      },
+      {
+        "top": 29901.6,
+        "bottom": 29813.4,
+        "type": "bullish",
+        "index": 329,
+        "time": 1786627800000,
+        "gapAtr": 2.1322742186150276,
+        "displacementAtr": 2.446554999136615,
+        "fillFraction": 0,
+        "distance": 224.29999999999927,
+        "tf": "15m",
+        "kind": "FVG",
+        "midpoint": 29857.5,
+        "isIRL": true,
+        "fillPct": "0.00"
+      },
+      {
+        "top": 29834.2,
+        "bottom": 29813.4,
+        "type": "bullish",
+        "index": 190,
+        "time": 1786627800000,
+        "gapAtr": 0.7495495495495234,
+        "displacementAtr": 1.2180180180181228,
+        "fillFraction": 0,
+        "distance": 257.99999999999636,
+        "tf": "5m",
+        "kind": "FVG",
+        "midpoint": 29823.800000000003,
+        "isIRL": true,
+        "fillPct": "0.00"
+      }
+    ],
+    "unfilled": 3,
+    "partial": 1,
+    "filled": 0,
+    "fvgCount": 4,
+    "equalHighCount": 0,
+    "equalLowCount": 0
+  },
+  "erl": {
+    "buySide": [],
+    "sellSide": [],
+    "buySideClusters": 0,
+    "sellSideClusters": 0,
+    "dominant": "BALANCED",
+    "largerPool": "ABOVE",
+    "detail": "ERL: 0 buy-side pools above, 0 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: BALANCED"
+  },
+  "cycle": {
+    "position": "OUTSIDE RANGE",
+    "phase": "BELOW range — ERL raid possible",
+    "nextTarget": "Opposite ERL or re-enter range toward IRL",
+    "erlAboveSwept": 0,
+    "erlBelowSwept": 0,
+    "unfilledIRL": 3,
+    "partiallyFilledIRL": 1,
+    "recentlyFilled": 0,
+    "priceInRange": false,
+    "currentPrice": 0,
+    "detail": "OUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 3 unfilled, 0 filled | ERL sweeps: 0 above, 0 below"
+  },
+  "bias": {
+    "bias": "neutral",
+    "confidence": 0,
+    "reasoning": "",
+    "detail": "NEUTRAL bias (0.00): "
+  },
+  "entryGuidance": [
+    {
+      "action": "WAIT",
+      "direction": "neutral",
+      "detail": "Unclear cycle position — wait for ERL raid or IRL fill to establish direction."
+    }
+  ],
+  "detail": "Sweep-to-sweep dealing range: 26980.6 — 30169.6 (equilibrium 28575.1, PREMIUM)\nIRL: 4 objects (4 FVGs, 0 EQ-H, 0 EQ-L) — 3 unfilled\nERL: 0 buy-side pools above, 0 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: BALANCED\nOUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 3 unfilled, 0 filled | ERL sweeps: 0 above, 0 below\nNEUTRAL bias (0.00): "
+}

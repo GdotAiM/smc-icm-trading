@@ -1,0 +1,99 @@
+{
+  "pair": "XAUUSD",
+  "time": "14:46:21 NY",
+  "currentPrice": 4440.88,
+  "dailyBias": {
+    "bias": "bullish",
+    "confidence": "0.75",
+    "alignment": "bullish→bullish→bearish→bullish",
+    "pdZone": "PREMIUM",
+    "tradeable": true,
+    "detail": "BULLISH bias (75.00% confidence) | 3B/1S aligned | PREMIUM zone"
+  },
+  "sessions": {
+    "pm": {
+      "range": {
+        "high": 4618.02,
+        "low": 4445.455,
+        "range": 172.5650000000005,
+        "candleCount": 33,
+        "source": "15m PM candles",
+        "detail": "PM Session (1:30-4:00 PM prev day): H 4618.02000 | L 4445.45500 | 33 candles"
+      },
+      "priority": 1,
+      "label": "PM Session (prev day 1:30-4:00 PM)",
+      "raidStatus": {
+        "raided": true,
+        "mssConfirmed": false,
+        "mssDirection": null,
+        "validRaid": false,
+        "sweepPrice": 4374.18,
+        "detail": "⚡ RAIDED — awaiting MSS: Low swept"
+      }
+    },
+    "london": {
+      "range": {
+        "high": 4660.125,
+        "low": 4328.05,
+        "range": 332.0749999999998,
+        "sourceCount": 53,
+        "source": "London session"
+      },
+      "priority": 2,
+      "label": "London Session (today 2:00-5:00 AM)",
+      "raidStatus": {
+        "raided": false,
+        "mssConfirmed": false,
+        "mssDirection": null,
+        "validRaid": false,
+        "sweepPrice": null,
+        "detail": "⏳ Not yet raided"
+      }
+    },
+    "openingGap": {
+      "range": null,
+      "priority": 3,
+      "label": "Opening Range Gap (8:30/9:30 AM)",
+      "raidStatus": {
+        "raided": false,
+        "mssConfirmed": false,
+        "detail": "Delegated to Lecture 4 gap model"
+      }
+    },
+    "lunch": {
+      "range": null,
+      "priority": 4,
+      "label": "NY Lunch Raid (12:00-1:30 PM)",
+      "raidStatus": {
+        "raided": false,
+        "mssConfirmed": false,
+        "detail": "Window not yet open"
+      }
+    },
+    "prevAM": {
+      "high": 4631.98,
+      "low": 4445.455,
+      "date": "2026-08-27",
+      "detail": "Prev Day AM Session (2026-08-27): H 4631.98000 | L 4445.45500"
+    }
+  },
+  "firstOpp": {
+    "locked": false,
+    "directionBoost": 1,
+    "counterDirectionWeight": 1,
+    "detail": "No session raid + MSS confirmed yet. Monitoring all sessions in priority order."
+  },
+  "prevAM": {
+    "high": 4631.98,
+    "low": 4445.455,
+    "date": "2026-08-27",
+    "detail": "Prev Day AM Session (2026-08-27): H 4631.98000 | L 4445.45500"
+  },
+  "raidSummary": [
+    "P1 PM Session (prev day 1:30-4:00 PM): ⚡ RAIDED — ⚡ RAIDED — awaiting MSS: Low swept",
+    "P2 London Session (today 2:00-5:00 AM): ⏳ — ⏳ Not yet raided",
+    "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
+    "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
+  ],
+  "detail": "Bias: BULLISH bias (75.00% confidence) | 3B/1S aligned | PREMIUM zone\nTarget: Prev Day AM Session (2026-08-27): H 4631.98000 | L 4445.45500\nPM: PM Session (1:30-4:00 PM prev day): H 4618.02000 | L 4445.45500 | 33 candles\nLondon: H 4660.12500 L 4328.05000\nNo session raid + MSS confirmed yet. Monitoring all sessions in priority order."
+}

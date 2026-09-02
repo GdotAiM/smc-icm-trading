@@ -1,0 +1,53 @@
+{
+  "pair": "NAS100",
+  "date": "2026-07-29",
+  "direction": "SHORT",
+  "model": "OTE + Institutional OB",
+  "entry": 27756,
+  "sl": 27820,
+  "tp1": 27455,
+  "tp2": 26771,
+  "riskPoints": 64,
+  "outcome": "LOSS",
+  "pnl": -64,
+  "exitPrice": 27820,
+  "exitTime": "2026-07-29T09:10:47Z (~05:10 NY)",
+  "exitReason": "SL hit — 1m bullish BOS at 27821.5 breached SL at 27820",
+
+  "bestPrice": 27674,
+  "bestPnl": 82,
+  "bestRr": 1.28,
+  "missedProfitReason": "No monitoring from entry to best price. Price dropped 82 pts into profit then reversed without detection.",
+
+  "timeline": [
+    { "time": "04:15 NY", "event": "ENTRY SHORT @ 27,756", "price": 27756 },
+    { "time": "~04:20 NY", "event": "Price dropped to session low 27,674 (+82 pts profit)", "price": 27674 },
+    { "time": "~04:25 NY", "event": "1m bullish CHoCH formed — structure flipped", "price": 27700 },
+    { "time": "~04:30 NY", "event": "1m bullish BOS confirmed — user noticed and flagged the miss", "price": 27778 },
+    { "time": "~04:45 NY", "event": "Bounce reached 27,793 (swing high) — rejected", "price": 27793 },
+    { "time": "~04:55 NY", "event": "Second bounce wave began — 1m bullish again", "price": 27790 },
+    { "time": "05:10 NY", "event": "SL HIT — 1m bullish BOS @ 27,821.5 breached SL @ 27,820", "price": 27820 }
+  ],
+
+  "analysis": {
+    "directionCorrect": true,
+    "entryTiming": "EARLY — entered before 1m bearish MSS confirmation",
+    "slPlacement": "CORRECT — above 1m swing high, took two bounce waves to hit",
+    "monitoring": "FAILED — no monitor for first 30 min, missed +82 pt profit opportunity",
+    "structuralContext": "1D↓ 4H↓ 1H↓ confirmed bearish but 15m/5m/1m were bouncing. Trade needed micro confirmation before entry."
+  },
+
+  "lessonsLearned": [
+    "Wait for 1m MSS in trade direction before entry — don't anticipate",
+    "Set profit-taking alerts at key levels (1:1 R:R minimum)",
+    "Monitor from second one — the first 15 minutes are the most critical",
+    "A 1m bullish BOS against a short is NOT noise — it's a warning to tighten or take profit",
+    "The entry was in the right direction but wrong timing — 30 min later and it's a winner"
+  ],
+
+  "systemImprovements": [
+    "trade_monitor.cjs now exists — would have caught the +82 pt move",
+    "silent_monitor.cjs with TV native alerts — SL/TP fire in Desktop",
+    "trade_status.cjs — instant on-demand status from disk"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "event": "NFP",
+  "date": "2026-08-07",
+  "time_ny": "08:30",
+  "status": "MISSED — tool bugs prevented execution",
+  "pre_nfp_trend": "ALL BULLISH — XAUUSD, EURUSD, NAS100 all 15m/5m/1m aligned",
+  "pre_nfp_price_snapshot": {
+    "time_ny": "08:00",
+    "xauusd": 4323.77,
+    "eurusd": 1.15286,
+    "nas100": 29520.2
+  },
+  "post_nfp_spike": {
+    "time_ny": "08:50",
+    "xauusd": 4365.85,
+    "eurusd": 1.15776,
+    "nas100": 29739.4
+  },
+  "trade_plan": {
+    "xauusd": {
+      "direction": "BUY",
+      "entry": 4323.77,
+      "sl": 4286.27,
+      "tp": 4411.27,
+      "rr": "2.3:1",
+      "qty": 100,
+      "would_be_pnl": "+$4,200 (TP hit region)"
+    },
+    "eurusd": {
+      "direction": "BUY",
+      "entry": 1.15286,
+      "sl": 1.15086,
+      "tp": 1.15811,
+      "rr": "2.6:1",
+      "qty": 10000,
+      "would_be_pnl": "+$525 (approaching TP)"
+    },
+    "nas100": {
+      "direction": "BUY",
+      "entry": 29520.2,
+      "sl": 29145.2,
+      "tp": 30920.2,
+      "rr": "3.7:1",
+      "qty": 1,
+      "would_be_pnl": "+$219 (en route to TP)"
+    }
+  },
+  "bugs_encountered": [
+    "news_trade.cjs: trend1m ReferenceError (line 158)",
+    "news_trade.cjs: timezone — system UTC+2, passed 08:30 (NY time), got -313 min",
+    "news_trade.cjs: CDP candle scan returned empty for all pairs",
+    "news_trade.cjs: entryWindow=5min prevented early placement",
+    "FRIDAY_PLAN.md: no NFP awareness",
+    "Autonomous system: placed 4 corrupt trades at 2:12 AM",
+    "Monitor: died at 4:23 AM, no position tracking"
+  ],
+  "direction_correct": true,
+  "lesson": "System correctly predicted the NFP move direction and magnitude. Execution failed due to fragile tooling. Need hardened fallback path using market_order.cjs with pre-calculated levels."
+}

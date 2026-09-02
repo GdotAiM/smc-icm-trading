@@ -1,0 +1,60 @@
+{
+  "pair": "XAUUSD",
+  "time": "07:35:40 NY",
+  "currentPrice": 0,
+  "dailyBias": {
+    "bias": "neutral",
+    "confidence": "0.00",
+    "alignment": "neutral→neutral→neutral→neutral",
+    "pdZone": "NONE",
+    "tradeable": false,
+    "detail": "NEUTRAL — 0B/0S aligned. No clear daily bias."
+  },
+  "sessions": {
+    "pm": {
+      "range": null,
+      "priority": 1,
+      "label": "PM Session (prev day 1:30-4:00 PM)",
+      "raidStatus": null
+    },
+    "london": {
+      "range": null,
+      "priority": 2,
+      "label": "London Session (today 2:00-5:00 AM)",
+      "raidStatus": null
+    },
+    "openingGap": {
+      "range": null,
+      "priority": 3,
+      "label": "Opening Range Gap (8:30/9:30 AM)",
+      "raidStatus": {
+        "raided": false,
+        "mssConfirmed": false,
+        "detail": "Delegated to Lecture 4 gap model"
+      }
+    },
+    "lunch": {
+      "range": null,
+      "priority": 4,
+      "label": "NY Lunch Raid (12:00-1:30 PM)",
+      "raidStatus": {
+        "raided": false,
+        "mssConfirmed": false,
+        "detail": "Window not yet open"
+      }
+    },
+    "prevAM": null
+  },
+  "firstOpp": {
+    "locked": false,
+    "directionBoost": 1,
+    "counterDirectionWeight": 1,
+    "detail": "No session raid + MSS confirmed yet. Monitoring all sessions in priority order."
+  },
+  "prevAM": null,
+  "raidSummary": [
+    "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
+    "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
+  ],
+  "detail": "Bias: NEUTRAL — 0B/0S aligned. No clear daily bias.\nTarget: N/A\nPM: N/A\nLondon: N/A\nNo session raid + MSS confirmed yet. Monitoring all sessions in priority order."
+}

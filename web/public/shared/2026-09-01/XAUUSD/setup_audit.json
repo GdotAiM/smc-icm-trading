@@ -1,0 +1,22 @@
+{
+  "pair": "XAUUSD",
+  "date": "2026-09-01",
+  "emittedAt": "2026-09-01T17:35:23.128Z",
+  "provider": "default",
+  "toolsUsed": true,
+  "status": "llm_unavailable",
+  "iterations": 1,
+  "verdict": null,
+  "confidence": null,
+  "evidence": [],
+  "counterEvidence": [],
+  "recommendations": [],
+  "reasoning": "",
+  "rawText": "[LLM error 429: {\"type\":\"error\",\"error\":{\"type\":\"FreeUsageLimitError\",\"message\":\"Rate limit exceeded. Please try again later.\"},\"metadata\":{}}]",
+  "toolTrace": [
+    {
+      "iteration": 0,
+      "llm": true
+    }
+  ]
+}

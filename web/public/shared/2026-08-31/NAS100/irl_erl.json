@@ -1,0 +1,76 @@
+{
+  "pair": "NAS100",
+  "time": "14:47:01 NY",
+  "currentPrice": 29459.2,
+  "dealingRange": {
+    "high": 30243,
+    "low": 28868.2,
+    "range": 1374.7999999999993,
+    "midpoint": 29555.6,
+    "equilibrium": 29555.6,
+    "positionPct": 42.98,
+    "zone": "DISCOUNT",
+    "source": "1D",
+    "valid": true,
+    "validation": {
+      "highSwept": true,
+      "lowSwept": true,
+      "detail": "Sweep-to-sweep — high swept @ 30243.00000, low swept @ 28868.20000"
+    },
+    "premium": {
+      "high": 30243,
+      "low": 29555.6
+    },
+    "discount": {
+      "high": 29555.6,
+      "low": 28868.2
+    },
+    "detail": "Sweep-to-sweep dealing range: 28868.2 — 30243 (equilibrium 29555.6, DISCOUNT)"
+  },
+  "irl": {
+    "count": 0,
+    "fvgs": [],
+    "unfilled": 0,
+    "partial": 0,
+    "filled": 0,
+    "fvgCount": 0,
+    "equalHighCount": 0,
+    "equalLowCount": 0
+  },
+  "erl": {
+    "buySide": [],
+    "sellSide": [],
+    "buySideClusters": 0,
+    "sellSideClusters": 0,
+    "dominant": "BALANCED",
+    "largerPool": "ABOVE",
+    "detail": "ERL: 0 buy-side pools above, 0 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: BALANCED"
+  },
+  "cycle": {
+    "position": "OUTSIDE RANGE",
+    "phase": "BELOW range — ERL raid possible",
+    "nextTarget": "Opposite ERL or re-enter range toward IRL",
+    "erlAboveSwept": 0,
+    "erlBelowSwept": 0,
+    "unfilledIRL": 0,
+    "partiallyFilledIRL": 0,
+    "recentlyFilled": 0,
+    "priceInRange": false,
+    "currentPrice": 0,
+    "detail": "OUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 0 unfilled, 0 filled | ERL sweeps: 0 above, 0 below"
+  },
+  "bias": {
+    "bias": "neutral",
+    "confidence": 0,
+    "reasoning": "",
+    "detail": "NEUTRAL bias (0.00): "
+  },
+  "entryGuidance": [
+    {
+      "action": "WAIT",
+      "direction": "neutral",
+      "detail": "Unclear cycle position — wait for ERL raid or IRL fill to establish direction."
+    }
+  ],
+  "detail": "Sweep-to-sweep dealing range: 28868.2 — 30243 (equilibrium 29555.6, DISCOUNT)\nIRL: 0 objects (0 FVGs, 0 EQ-H, 0 EQ-L) — 0 unfilled\nERL: 0 buy-side pools above, 0 sell-side below. 0 equal-high clusters, 0 equal-low clusters. Dominant: BALANCED\nOUTSIDE RANGE | BELOW range — ERL raid possible | Next: Opposite ERL or re-enter range toward IRL | IRL: 0 unfilled, 0 filled | ERL sweeps: 0 above, 0 below\nNEUTRAL bias (0.00): "
+}

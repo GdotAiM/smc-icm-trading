@@ -1,0 +1,32 @@
+[
+  {
+    "pair": "NAS100",
+    "date": "2026-07-29",
+    "time": "04:15 NY",
+    "session": "London Silver Bullet",
+    "direction": "SHORT",
+    "model": "OTE + Institutional OB",
+    "entry": 27756,
+    "sl": 27820,
+    "tp1": 27455,
+    "tp2": 26771,
+    "riskPoints": 64,
+    "rewardPointsTp1": 301,
+    "rewardPointsTp2": 985,
+    "rrTp1": 4.7,
+    "rrTp2": 15.4,
+    "size": "1.0x",
+    "confluence": {
+      "htfBias": "1D↓ 4H↓ 1H↓",
+      "po3Nesting": "9/10",
+      "marketState": "TRENDING (1/8)",
+      "forecast5m": "BEARISH",
+      "forecast1m": "BEARISH",
+      "forecastAligned": true
+    },
+    "status": "OPEN",
+    "notes": "Entered during micro bounce fade. 1m swing high at 27814 is structural invalidation. FOMC at 14:00 ET — tighten or close before 13:45.",
+    "cyclePhase": "DISTRIBUTION",
+    "dayType": "Wednesday Reversal Day"
+  }
+]

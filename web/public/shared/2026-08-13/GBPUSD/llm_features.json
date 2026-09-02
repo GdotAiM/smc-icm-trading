@@ -1,0 +1,10 @@
+{
+  "narrative_coherence": 0.6,
+  "dxy_alignment_confidence": 0.5,
+  "pattern_similarity_score": 0.7,
+  "macro_context_strength": 0.7,
+  "decision_confidence": 0,
+  "mode": "llm",
+  "generated": "2026-08-13T12:25:39.115Z",
+  "pair": "GBPUSD"
+}

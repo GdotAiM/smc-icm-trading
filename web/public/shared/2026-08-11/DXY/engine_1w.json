@@ -1,0 +1,83 @@
+{
+  "price": 12678,
+  "structure": {
+    "bias": "bullish",
+    "lastEvent": "BOS",
+    "lastEventPrice": 12675,
+    "lastEventTime": 1786462440000,
+    "confidence": 0.5,
+    "lastSwingHigh": 12675,
+    "lastSwingLow": 12673
+  },
+  "liquidity": [
+    {
+      "price": 12672,
+      "type": "SSL",
+      "strength": 3,
+      "score": 2.009043121264343,
+      "distance": 0.047326076668244205,
+      "session": "Off",
+      "ageBars": 44,
+      "swept": false
+    }
+  ],
+  "orderBlocks": [],
+  "fvgs": [],
+  "draw": {
+    "price": 12672,
+    "side": "down",
+    "distance": 0.047326076668244205,
+    "reason": "SSL pool Â· 3 touches",
+    "score": 0.6812139138665405
+  },
+  "alt": null,
+  "volumeDisplacement": {
+    "atrRatio": 0,
+    "label": "weak",
+    "volumeConfirmed": false,
+    "volumeRatio": 0.351493848857645
+  },
+  "pdArray": {
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
+    "currentZone": "discount",
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
+  },
+  "inversionFvgs": [
+    {
+      "top": 12678,
+      "bottom": 12677,
+      "type": "inversion",
+      "index": 287,
+      "time": 1786468440000,
+      "gapAtr": 2,
+      "reversalAtr": 2.3333333333333335,
+      "confirmationLag": 4,
+      "distance": 0.003943839722353684
+    },
+    {
+      "top": 12676,
+      "bottom": 12675,
+      "type": "inversion",
+      "index": 203,
+      "time": 1786463400000,
+      "gapAtr": 1.1666666666666667,
+      "reversalAtr": 1.4,
+      "confirmationLag": 3,
+      "distance": 0.019719198611768417
+    },
+    {
+      "top": 12673,
+      "bottom": 12672,
+      "type": "inversion",
+      "index": 133,
+      "time": 1786459200000,
+      "gapAtr": 1.4,
+      "reversalAtr": 1.75,
+      "confirmationLag": 3,
+      "distance": 0.043382236945890516
+    }
+  ]
+}

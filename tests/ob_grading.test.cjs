@@ -142,7 +142,7 @@ test("arrayInPlayFor: a consumed block at price never counts (WP-11 DoD)", () =>
 });
 
 test("array_mitigated step fails against a consumed block", () => {
-  assert.strictEqual(steps.array_mitigated({ consumedAtPrice: true, arrayInPlay: true }).pass, false);
+  assert.strictEqual(steps.array_mitigated({ consumedAtPrice: true, arrayInPlay: true, hasOB: true }).pass, false);
   assert.strictEqual(steps.array_mitigated({ consumedAtPrice: false, arrayInPlay: true }).pass, true);
   assert.strictEqual(steps.array_mitigated({ arrayInPlay: false }).pass, false);
 });
@@ -156,7 +156,7 @@ test("no model sequence passes an array step against a consumed block", () => {
   const m = MODELS.find(x => x.id === "ote_institutional_ob");
   assert.ok(m.sequence.includes("array_mitigated"));
   const base = {
-    hour: 10, bias: "bearish", lastSweepType: "BSL",
+    hour: 10, bias: "bearish", lastSweepType: "BSL", killzone: true,
     hasSweep: true, hasReversal: true, mss: true,
     hasOB: true, uniqueOBs: [{ proximal: 1.1 }],
     hasFVG: true, fvgs: [{ fillFraction: 0.2 }],

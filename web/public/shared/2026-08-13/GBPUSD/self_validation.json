@@ -1,0 +1,67 @@
+{
+  "pair": "GBPUSD",
+  "date": "2026-08-13",
+  "validatedAt": "2026-08-13T12:25:04.261Z",
+  "verdict": "CAUTION",
+  "counts": {
+    "pass": 4,
+    "warn": 5,
+    "fail": 0
+  },
+  "checks": [
+    {
+      "id": "direction_vs_bias",
+      "level": "WARN",
+      "source": "decision.json",
+      "detail": "No decision direction found."
+    },
+    {
+      "id": "trigger_text_direction",
+      "level": "WARN",
+      "source": "05_entry_refinement/output/entry_plan.md",
+      "detail": "No decision direction (NO TRADE) — trigger not checked."
+    },
+    {
+      "id": "micro_trigger_direction",
+      "level": "WARN",
+      "source": "05b_micro_confirmation/output/trigger_check.md",
+      "detail": "NO TRADE decision — direction not applicable."
+    },
+    {
+      "id": "guard_vs_gates",
+      "level": "PASS",
+      "source": "05b_micro_confirmation/output/guard.md",
+      "detail": "Guard blocks entry and decision gates reflect it (fail-closed working as intended)."
+    },
+    {
+      "id": "sl_tp_geometry",
+      "level": "WARN",
+      "source": "decision.json",
+      "detail": "No entry/SL/TP (NO TRADE or incomplete) — geometry not checked."
+    },
+    {
+      "id": "sweep_claim",
+      "level": "PASS",
+      "source": "engine_5m.json",
+      "detail": "4 pool(s), 1 swept."
+    },
+    {
+      "id": "sweep_claim",
+      "level": "PASS",
+      "source": "engine_15m.json",
+      "detail": "5 pool(s), 3 swept."
+    },
+    {
+      "id": "fvg_claim",
+      "level": "WARN",
+      "source": "engine_5m.json",
+      "detail": "0 unmitigated FVG(s) on 5m."
+    },
+    {
+      "id": "fvg_claim",
+      "level": "PASS",
+      "source": "engine_15m.json",
+      "detail": "1 unmitigated FVG(s) on 15m."
+    }
+  ]
+}

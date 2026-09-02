@@ -1,0 +1,10 @@
+{
+  "narrative_coherence": 0.7,
+  "dxy_alignment_confidence": 0.5,
+  "pattern_similarity_score": 0.8,
+  "macro_context_strength": 0.8,
+  "decision_confidence": 0,
+  "mode": "llm",
+  "generated": "2026-08-13T12:22:26.336Z",
+  "pair": "XAUUSD"
+}

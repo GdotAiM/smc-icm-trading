@@ -1,25 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+:root {
+  --bg-primary: #0a0c10;
+  --bg-surface: #111620;
+  --bg-elevated: #181f2e;
+  --bullish: #39ff14;
+  --bearish: #ff2d2d;
+  --neutral: #f0c040;
+  --text-primary: #e8eaed;
+  --text-muted: #6b7280;
+  --text-dim: #3d4f60;
+  --border: #1e2738;
+  --accent-cyan: #00d4ff;
+  --accent-purple: #a855f7;
 }
 
-/* Markdown content styling */
-.prose h1 { @apply text-2xl font-bold text-white mb-4; }
-.prose h2 { @apply text-xl font-semibold text-gray-200 mb-3 mt-6; }
-.prose h3 { @apply text-lg font-medium text-gray-300 mb-2 mt-4; }
-.prose p { @apply text-gray-400 mb-3; }
-.prose ul { @apply list-disc pl-5 text-gray-400 mb-3; }
-.prose ol { @apply list-decimal pl-5 text-gray-400 mb-3; }
-.prose li { @apply mb-1; }
-.prose table { @apply w-full border-collapse mb-4; }
-.prose th { @apply text-left p-2 bg-gray-800 text-gray-300 font-medium border-b border-gray-700; }
-.prose td { @apply p-2 border-b border-gray-800 text-gray-400; }
-.prose code { @apply bg-gray-800 px-1.5 py-0.5 rounded text-sm text-green-400; }
-.prose pre { @apply bg-gray-900 p-3 rounded-lg overflow-x-auto mb-4; }
-.prose strong { @apply text-gray-200 font-semibold; }
-.prose blockquote { @apply border-l-2 border-blue-500 pl-4 text-gray-500 italic my-3; }
-.prose hr { @apply border-gray-800 my-6; }
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.font-display { font-family: 'Space Grotesk', sans-serif; }
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Header ── */
+.header-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 44px; padding: 0 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+}
+.logo span { color: var(--accent-cyan); }
+
+.pair-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  padding: 3px 8px; border-radius: 3px;
+  border: 1px solid transparent;
+  cursor: pointer; transition: all 0.15s ease;
+  background: transparent;
+}
+.pair-chip:hover { filter: brightness(1.2); }
+.pair-chip.active { background: rgba(255,255,255,0.06); }
+
+.header-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: var(--text-dim);
+  display: flex; gap: 14px; align-items: center;
+}
+
+.live-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--bullish); display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* ── Stage Rail ── */
+.stage-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 10px; border-radius: 5px;
+  cursor: pointer; transition: all 0.15s ease;
+  border: 1px solid transparent; margin-bottom: 2px;
+}
+.stage-item:hover { background: var(--bg-elevated); border-color: var(--border); }
+.stage-item.active { background: var(--bg-elevated); border-color: rgba(0,212,255,0.3); }
+
+.stage-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: var(--text-dim); width: 22px; flex-shrink: 0; margin-top: 1px;
+}
+.stage-item.active .stage-num { color: var(--accent-cyan); }
+
+.stage-info { flex: 1; min-w: 0; }
+
+.stage-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 500; color: var(--text-muted);
+}
+.stage-item.active .stage-name { color: var(--text-primary); }
+
+.stage-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; color: var(--text-dim); margin-top: 2px;
+}
+
+.stage-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; padding: 1px 5px; border-radius: 2px; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── Panel ── */
+.panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px; overflow: hidden;
+}
+.panel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+.panel-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--text-muted);
+}
+.panel-body { padding: 12px; }
+
+/* ── Verdict Badge ── */
+.verdict-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 700;
+  padding: 2px 7px; border-radius: 3px;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.verdict-clear  { background: rgba(57,255,20,0.12); color: var(--bullish); border: 1px solid rgba(57,255,20,0.25); }
+.verdict-caution { background: rgba(240,192,64,0.12); color: var(--neutral); border: 1px solid rgba(240,192,64,0.25); }
+.verdict-blocked { background: rgba(255,45,45,0.12); color: var(--bearish); border: 1px solid rgba(255,45,45,0.25); }
+
+/* ── Signal Row (for layer stack) ── */
+.signal-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 0; border-bottom: 1px solid rgba(30,39,56,0.5);
+}
+.signal-row:last-child { border-bottom: none; }
+.signal-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--text-muted); width: 70px; flex-shrink: 0;
+}
+.signal-bar-track { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.signal-bar-fill { height: 100%; border-radius: 2px; transition: width 0.6s cubic-bezier(0.4,0,0.2,1); }
+.signal-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500; width: 32px; text-align: right; flex-shrink: 0;
+}
+
+/* ── Gauge ── */
+.gauge-container { position: relative; width: 160px; height: 160px; }
+.gauge-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+.gauge-bg { fill: none; stroke: var(--border); stroke-width: 10; }
+.gauge-fill {
+  fill: none; stroke-width: 10; stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.gauge-center {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); text-align: center;
+}
+.gauge-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 36px; font-weight: 700; line-height: 1; letter-spacing: -2px;
+}
+.gauge-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--text-muted); margin-top: 2px;
+}
+.gauge-bias {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600; margin-top: 2px;
+}
+
+/* ── Markdown / Content ── */
+.instrument-prose h1 { @apply text-base font-bold text-white mb-3 mt-0 font-display; }
+.instrument-prose h2 { @apply text-sm font-semibold text-gray-100 mb-2 mt-4 font-display; }
+.instrument-prose h3 { @apply text-xs font-medium text-gray-300 mb-1 mt-3; }
+.instrument-prose p  { @apply text-gray-400 mb-2 text-xs leading-relaxed; }
+.instrument-prose ul { @apply list-disc pl-4 text-gray-400 mb-2 text-xs; }
+.instrument-prose ol { @apply list-decimal pl-4 text-gray-400 mb-2 text-xs; }
+.instrument-prose li  { @apply mb-0.5; }
+.instrument-prose code { @apply bg-[var(--bg-elevated)] px-1 py-0.5 rounded text-xs font-mono text-[var(--bullish)]; }
+.instrument-prose pre { @apply bg-[var(--bg-primary)] p-2 rounded overflow-x-auto mb-3 border border-[var(--border)]; }
+.instrument-prose pre code { @apply bg-transparent px-0 py-0 text-xs text-gray-300; }
+.instrument-prose strong { @apply text-gray-200 font-semibold; }
+.instrument-prose blockquote { @apply border-l-2 border-[var(--accent-cyan)] pl-3 text-gray-500 italic my-2 text-xs; }
+.instrument-prose hr  { @apply border-[var(--border)] my-4; }
+.instrument-prose table { @apply w-full border-collapse mb-3 text-xs; }
+.instrument-prose th { @apply text-left p-1.5 bg-[var(--bg-elevated)] text-gray-300 font-medium border-b border-[var(--border)]; }
+.instrument-prose td { @apply p-1.5 border-b border-[var(--border)] text-gray-400; }
+
+/* ── Entry Plan Box ── */
+.entry-plan {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 4px; padding: 10px 12px; margin: 8px 0;
+}
+.entry-plan.bullish { border-left-color: var(--bullish); }
+.entry-plan.bearish  { border-left-color: var(--bearish); }
+.entry-plan-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--text-muted); margin-bottom: 6px;
+}
+.entry-plan-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 6px;
+}
+.entry-plan-item { display: flex; flex-direction: column; gap: 2px; }
+.entry-plan-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim);
+}
+.entry-plan-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 600; color: var(--text-primary);
+}
+
+/* ── KPI Cards ── */
+.kpi-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 4px; padding: 10px 12px;
+}
+.kpi-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8px; text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--text-dim); margin-bottom: 4px;
+}
+.kpi-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px; font-weight: 700; line-height: 1;
+}
+.kpi-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; color: var(--text-dim); margin-top: 4px;
+}

@@ -1,0 +1,65 @@
+{
+  "price": 12677,
+  "structure": {
+    "bias": "bullish",
+    "lastEvent": "BOS",
+    "lastEventPrice": 12678,
+    "lastEventTime": 1786501140000,
+    "confidence": 0.5833333333333334,
+    "lastSwingHigh": 12678,
+    "lastSwingLow": 12677
+  },
+  "liquidity": [
+    {
+      "price": 12675.666666666666,
+      "type": "SSL",
+      "strength": 6,
+      "score": 4.81796440067246,
+      "distance": 0.010517735531544843,
+      "session": "London",
+      "ageBars": 13,
+      "swept": false
+    },
+    {
+      "price": 12677.333333333334,
+      "type": "BSL",
+      "strength": 3,
+      "score": 2.434159548890611,
+      "distance": 0.0026294338828897978,
+      "session": "London",
+      "ageBars": 10,
+      "swept": true
+    }
+  ],
+  "orderBlocks": [],
+  "fvgs": [],
+  "draw": {
+    "price": 12677.333333333334,
+    "side": "up",
+    "distance": 0.0026294338828897978,
+    "reason": "BSL pool Â· 3 touches",
+    "score": 0.9247896452893689
+  },
+  "alt": {
+    "price": 12675.666666666666,
+    "side": "down",
+    "distance": 0.010517735531544843,
+    "reason": "SSL pool Â· 6 touches",
+    "score": 0.7591585811574764
+  },
+  "volumeDisplacement": {
+    "atrRatio": 0,
+    "label": "weak",
+    "volumeConfirmed": false,
+    "volumeRatio": 0
+  },
+  "pdArray": {
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
+    "currentZone": "discount",
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
+  },
+  "inversionFvgs": []
+}

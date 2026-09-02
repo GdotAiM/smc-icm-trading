@@ -1,0 +1,170 @@
+{
+  "price": 99.803,
+  "structure": {
+    "bias": "bearish",
+    "lastEvent": "BOS",
+    "lastEventPrice": 99.816,
+    "lastEventTime": 1786690740000,
+    "confidence": 1,
+    "lastSwingHigh": 99.844,
+    "lastSwingLow": 99.816
+  },
+  "liquidity": [
+    {
+      "price": 99.92169512195117,
+      "type": "BSL",
+      "strength": 82,
+      "score": 119.3535802773884,
+      "distance": 0.11892941289457924,
+      "session": "London",
+      "ageBars": 20,
+      "swept": false
+    }
+  ],
+  "orderBlocks": [
+    {
+      "top": 99.889,
+      "bottom": 99.886,
+      "proximal": 99.886,
+      "distal": 99.889,
+      "type": "bearish",
+      "kind": "OB",
+      "index": 1007,
+      "time": 1786681800000,
+      "impulseAtr": 1.2098765432109075,
+      "hasFvg": true,
+      "distance": 0.08466679358335055
+    },
+    {
+      "top": 99.901,
+      "bottom": 99.896,
+      "proximal": 99.896,
+      "distal": 99.901,
+      "type": "bearish",
+      "kind": "Breaker",
+      "index": 852,
+      "time": 1786672500000,
+      "impulseAtr": 1.1395348837211994,
+      "hasFvg": true,
+      "distance": 0.09568850635752559
+    },
+    {
+      "top": 99.891,
+      "bottom": 99.884,
+      "proximal": 99.891,
+      "distal": 99.884,
+      "type": "bullish",
+      "kind": "Breaker",
+      "index": 794,
+      "time": 1786669020000,
+      "impulseAtr": 1.1089108910880363,
+      "hasFvg": true,
+      "distance": -0.0846667935833648
+    },
+    {
+      "top": 99.977,
+      "bottom": 99.972,
+      "proximal": 99.972,
+      "distal": 99.977,
+      "type": "bearish",
+      "kind": "Mitigation",
+      "index": 644,
+      "time": 1786653840000,
+      "impulseAtr": 1.3207547169837526,
+      "hasFvg": true,
+      "distance": 0.17183852188812848
+    }
+  ],
+  "fvgs": [
+    {
+      "top": 99.886,
+      "bottom": 99.883,
+      "type": "bearish",
+      "index": 1008,
+      "time": 1786681860000,
+      "gapAtr": 0.5185185185186094,
+      "displacementAtr": 1.2098765432109075,
+      "fillFraction": 0,
+      "distance": 0.08166087191768329
+    },
+    {
+      "top": 99.964,
+      "bottom": 99.949,
+      "type": "bearish",
+      "index": 718,
+      "time": 1786658400000,
+      "gapAtr": 2.8,
+      "displacementAtr": 4.293333333332449,
+      "fillFraction": 0.2,
+      "distance": 0.15380299189403945
+    }
+  ],
+  "draw": {
+    "price": 99.92169512195117,
+    "side": "up",
+    "distance": 0.11892941289457924,
+    "reason": "BSL pool Â· 82 touches",
+    "score": 0.7504856469684338
+  },
+  "alt": null,
+  "volumeDisplacement": {
+    "atrRatio": 0.486956521739687,
+    "label": "weak",
+    "volumeConfirmed": true,
+    "volumeRatio": 0
+  },
+  "pdArray": {
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
+    "currentZone": "discount",
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
+  },
+  "inversionFvgs": [
+    {
+      "top": 99.831,
+      "bottom": 99.824,
+      "type": "inversion",
+      "index": 188,
+      "time": 1786626300000,
+      "gapAtr": 0.4000000000003481,
+      "reversalAtr": 0.5761316872431387,
+      "confirmationLag": 1,
+      "distance": -0.024548360269734674
+    },
+    {
+      "top": 99.831,
+      "bottom": 99.827,
+      "type": "inversion",
+      "index": 1143,
+      "time": 1786689960000,
+      "gapAtr": 0.4869565217397472,
+      "reversalAtr": 0.7241379310345124,
+      "confirmationLag": 1,
+      "distance": -0.02605132110258255
+    },
+    {
+      "top": 99.831,
+      "bottom": 99.828,
+      "type": "inversion",
+      "index": 1145,
+      "time": 1786690080000,
+      "gapAtr": 0.36521739130437786,
+      "reversalAtr": 0.5045045045052311,
+      "confirmationLag": 3,
+      "distance": 0.026552308046850933
+    },
+    {
+      "top": 99.833,
+      "bottom": 99.831,
+      "type": "inversion",
+      "index": 1140,
+      "time": 1786689780000,
+      "gapAtr": 0.25225225225168707,
+      "reversalAtr": 0.9739130434794944,
+      "confirmationLag": 1,
+      "distance": 0.029057242768249815
+    }
+  ]
+}

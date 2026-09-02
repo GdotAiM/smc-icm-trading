@@ -1,0 +1,289 @@
+{
+  "pair": "GBPUSD",
+  "assessedAt": "2026-08-14T09:22:31.712Z",
+  "originalSetup": {
+    "registry": {
+      "verdict": "SETUP COMPLETE",
+      "primary": "MMXM Buy Model",
+      "completeCount": 6,
+      "confidence": 0.73,
+      "direction": "BUY",
+      "confluence": {
+        "BUY": {
+          "complete": 6,
+          "partial": 3,
+          "weight": 18.996940283400807,
+          "models": [
+            {
+              "id": "mmxm_buy",
+              "complete": true,
+              "seq": 1
+            },
+            {
+              "id": "ote_institutional_ob",
+              "complete": false,
+              "seq": 0.75
+            },
+            {
+              "id": "unicorn_ote_fvg",
+              "complete": false,
+              "seq": 0.75
+            },
+            {
+              "id": "breaker_block",
+              "complete": true,
+              "seq": 1
+            },
+            {
+              "id": "ifvg_scale_in",
+              "complete": false,
+              "seq": 0.8
+            },
+            {
+              "id": "scob",
+              "complete": true,
+              "seq": 1
+            },
+            {
+              "id": "two_fvg",
+              "complete": true,
+              "seq": 1
+            },
+            {
+              "id": "nwog_ndog",
+              "complete": true,
+              "seq": 1
+            },
+            {
+              "id": "mitigation_block",
+              "complete": true,
+              "seq": 1
+            }
+          ]
+        },
+        "SELL": {
+          "complete": 0,
+          "partial": 3,
+          "weight": 7,
+          "models": [
+            {
+              "id": "mmxm_sell",
+              "complete": false,
+              "seq": 1
+            },
+            {
+              "id": "turtle_soup",
+              "complete": false,
+              "seq": 1
+            },
+            {
+              "id": "rejection_block",
+              "complete": false,
+              "seq": 1
+            }
+          ]
+        }
+      },
+      "resolved": {
+        "tie": true,
+        "conflict": false,
+        "poolFiltered": false,
+        "poolLocked": false,
+        "lockedDirection": null,
+        "rule": "WP-17 Pool-First: locked pool (raided+MSS) sets direction priority. Models targeting the locked pool win ties. Models opposing the locked pool are excluded. One Trade Setup drives the registry."
+      },
+      "mlProbability": null,
+      "mlConfidence": null,
+      "expectedValue": null,
+      "poolContext": {
+        "locked": false,
+        "lockedDirection": null,
+        "poolSummary": "No session raid + MSS confirmed yet. Monitoring all sessions in priority order.",
+        "sessions": [
+          "P1 PM Session (prev day 1:30-4:00 PM): ⚡ RAIDED — ⚡ RAIDED — awaiting MSS: Low swept",
+          "P2 London Session (today 2:00-5:00 AM): ⏳ — ⏳ Not yet raided",
+          "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
+          "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
+        ],
+        "targetPool": {
+          "high": 1.35132,
+          "low": 1.34743,
+          "date": "2026-08-12"
+        }
+      },
+      "liquidityCascade": {
+        "session": {
+          "triggers": [
+            {
+              "source": "pm",
+              "label": "PM Session (prev day 1:30-4:00 PM)",
+              "priority": 1,
+              "high": 1.35118,
+              "low": 1.34797,
+              "raided": true,
+              "mssConfirmed": false,
+              "validRaid": false,
+              "sweepPrice": 1.34887625,
+              "mssDirection": null,
+              "sweptSide": null,
+              "expectedDirection": null
+            },
+            {
+              "source": "london",
+              "label": "London Session (today 2:00-5:00 AM)",
+              "priority": 2,
+              "high": 1.35297,
+              "low": 1.32798,
+              "raided": false,
+              "mssConfirmed": false,
+              "validRaid": false,
+              "sweepPrice": null,
+              "mssDirection": null,
+              "sweptSide": null,
+              "expectedDirection": null
+            }
+          ],
+          "swept": [
+            {
+              "source": "pm",
+              "label": "PM Session (prev day 1:30-4:00 PM)",
+              "priority": 1,
+              "high": 1.35118,
+              "low": 1.34797,
+              "raided": true,
+              "mssConfirmed": false,
+              "validRaid": false,
+              "sweepPrice": 1.34887625,
+              "mssDirection": null,
+              "sweptSide": null,
+              "expectedDirection": null
+            }
+          ],
+          "direction": null,
+          "detail": "AWAITING MSS: 1 pool(s) raided, none confirmed. Next to lock: PM Session (prev day 1:30-4:00 PM)"
+        },
+        "daily": {
+          "targets": [
+            {
+              "type": "BSL",
+              "price": 1.35132,
+              "source": "prev_am_high",
+              "label": "Prev AM High (2026-08-12)",
+              "tier": "daily"
+            },
+            {
+              "type": "SSL",
+              "price": 1.34743,
+              "source": "prev_am_low",
+              "label": "Prev AM Low (2026-08-12)",
+              "tier": "daily"
+            },
+            {
+              "type": "BSL",
+              "price": 1.35132,
+              "source": "pdh",
+              "label": "Previous Day High",
+              "tier": "daily"
+            },
+            {
+              "type": "SSL",
+              "price": 1.34743,
+              "source": "pdl",
+              "label": "Previous Day Low",
+              "tier": "daily"
+            },
+            {
+              "type": "BSL",
+              "price": 1.35048,
+              "source": "pwh",
+              "label": "Previous Week High",
+              "tier": "weekly"
+            },
+            {
+              "type": "SSL",
+              "price": 1.35038,
+              "source": "pwl",
+              "label": "Previous Week Low",
+              "tier": "weekly"
+            }
+          ],
+          "primary": {
+            "type": "BSL",
+            "price": 1.35048,
+            "source": "pwh",
+            "label": "Previous Week High",
+            "tier": "weekly"
+          },
+          "secondary": {
+            "type": "BSL",
+            "price": 1.35132,
+            "source": "prev_am_high",
+            "label": "Prev AM High (2026-08-12)",
+            "tier": "daily"
+          },
+          "detail": "BUY: nearest BSL above = Previous Week High @ 1.35048"
+        },
+        "weekly": {
+          "targets": [
+            {
+              "type": "BSL",
+              "price": 1.3558733333333333,
+              "source": "engine_1d",
+              "label": "1D BSL pool",
+              "tier": "weekly",
+              "strength": 3
+            },
+            {
+              "type": "BSL",
+              "price": 1.351074,
+              "source": "engine_4h",
+              "label": "4H BSL pool",
+              "tier": "weekly",
+              "strength": 5
+            }
+          ],
+          "primary": {
+            "type": "BSL",
+            "price": 1.351074,
+            "source": "engine_4h",
+            "label": "4H BSL pool",
+            "tier": "weekly",
+            "strength": 5
+          },
+          "detail": "Next HTF draw: 4H BSL pool @ 1.351074"
+        }
+      }
+    },
+    "entry": {
+      "type": "NO TRADE",
+      "price": 1.35046,
+      "sl": 0,
+      "tp1": 0,
+      "tp2": 0,
+      "noDrawDir": "buy-side (BSL) above",
+      "slReason": null
+    },
+    "rr": {
+      "rr1": 1,
+      "rr2": 0
+    },
+    "coherence": {
+      "unified": 0,
+      "phase": "DISTRIBUTION",
+      "base": 60,
+      "confluenceBoost": 0
+    },
+    "invalidation": {
+      "status": "INVALIDATED",
+      "totalInvalidated": 1,
+      "totalWarnings": 0
+    },
+    "emittedAt": "2026-08-14T08:36:12.890Z"
+  },
+  "status": "stand_aside",
+  "allowSecondaryEntry": false,
+  "reasons": [
+    "no current valid setup (registry not SETUP COMPLETE)"
+  ],
+  "secondaryEntry": null
+}

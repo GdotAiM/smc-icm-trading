@@ -1,0 +1,134 @@
+{
+  "price": 1.15908,
+  "structure": {
+    "bias": "bearish",
+    "lastEvent": "CHoCH",
+    "lastEventPrice": 1.15892,
+    "lastEventTime": 1788279300000,
+    "confidence": 1,
+    "lastSwingHigh": 1.15909,
+    "lastSwingLow": 1.1585
+  },
+  "liquidity": [
+    {
+      "price": 1.1589691666666668,
+      "type": "SSL",
+      "strength": 12,
+      "score": 15.385230190096403,
+      "distance": 0.009562181500265924,
+      "session": "NY PM",
+      "ageBars": 4,
+      "swept": true
+    },
+    {
+      "price": 1.1614791666666664,
+      "type": "BSL",
+      "strength": 12,
+      "score": 17.77756402828919,
+      "distance": 0.20698887623514214,
+      "session": "NY AM",
+      "ageBars": 38,
+      "swept": false
+    },
+    {
+      "price": 1.159688,
+      "type": "BSL",
+      "strength": 10,
+      "score": 7.586708589815825,
+      "distance": 0.05245539565862079,
+      "session": "Off",
+      "ageBars": 8,
+      "swept": false
+    }
+  ],
+  "orderBlocks": [
+    {
+      "top": 1.16182,
+      "bottom": 1.16176,
+      "proximal": 1.16182,
+      "distal": 1.16176,
+      "type": "bullish",
+      "kind": "Breaker",
+      "index": 68,
+      "time": 1788213900000,
+      "impulseAtr": 1.042553191489643,
+      "hasFvg": true,
+      "distance": -0.23380612209681542
+    }
+  ],
+  "fvgs": [],
+  "draw": {
+    "price": 1.1589691666666668,
+    "side": "down",
+    "distance": 0.009562181500265924,
+    "reason": "SSL pool Â· 12 touches",
+    "score": 0.9992350254799787
+  },
+  "alt": {
+    "price": 1.159688,
+    "side": "up",
+    "distance": 0.05245539565862079,
+    "reason": "BSL pool Â· 10 touches",
+    "score": 0.7558035683473103
+  },
+  "volumeDisplacement": {
+    "atrRatio": 0.6965174129358428,
+    "label": "weak",
+    "volumeConfirmed": false,
+    "volumeRatio": 0.4191767068273093
+  },
+  "pdArray": {
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
+    "currentZone": "discount",
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
+  },
+  "inversionFvgs": [
+    {
+      "top": 1.15912,
+      "bottom": 1.15904,
+      "type": "inversion",
+      "index": 190,
+      "time": 1788250500000,
+      "gapAtr": 0.2539682539678144,
+      "reversalAtr": 0.7351598173521847,
+      "confirmationLag": 1,
+      "distance": 1.9156969745404224e-14
+    },
+    {
+      "top": 1.15914,
+      "bottom": 1.15904,
+      "type": "inversion",
+      "index": 188,
+      "time": 1788249900000,
+      "gapAtr": 0.3211009174311632,
+      "reversalAtr": 0.9760348583881256,
+      "confirmationLag": 4,
+      "distance": 0.0008627532180559985
+    },
+    {
+      "top": 1.15916,
+      "bottom": 1.1591,
+      "type": "inversion",
+      "index": 235,
+      "time": 1788264000000,
+      "gapAtr": 0.26837060702855725,
+      "reversalAtr": 0.6481481481475707,
+      "confirmationLag": 1,
+      "distance": 0.0043137660903374625
+    },
+    {
+      "top": 1.16043,
+      "bottom": 1.1603,
+      "type": "inversion",
+      "index": 174,
+      "time": 1788245700000,
+      "gapAtr": 0.598684210526161,
+      "reversalAtr": 0.9158878504674979,
+      "confirmationLag": 2,
+      "distance": -0.1108637885219295
+    }
+  ]
+}

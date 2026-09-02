@@ -1,0 +1,22 @@
+{
+  "pair": "EURUSD",
+  "date": "2026-08-12",
+  "emittedAt": "2026-08-12T16:24:01.546Z",
+  "provider": "default",
+  "toolsUsed": true,
+  "status": "llm_unavailable",
+  "iterations": 1,
+  "verdict": null,
+  "confidence": null,
+  "evidence": [],
+  "counterEvidence": [],
+  "recommendations": [],
+  "reasoning": "",
+  "rawText": "[LLM error 429: {\"type\":\"error\",\"error\":{\"type\":\"FreeUsageLimitError\",\"message\":\"Error from provider (Console): Rate limit exceeded. Please try again later.\"}}]",
+  "toolTrace": [
+    {
+      "iteration": 0,
+      "llm": true
+    }
+  ]
+}

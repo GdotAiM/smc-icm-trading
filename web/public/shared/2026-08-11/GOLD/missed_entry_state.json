@@ -1,0 +1,11 @@
+{
+  "pair": "XAUUSD",
+  "assessedAt": "2026-08-11T17:29:21.795Z",
+  "originalSetup": null,
+  "status": "stand_aside",
+  "allowSecondaryEntry": false,
+  "reasons": [
+    "no current valid setup (registry not SETUP COMPLETE)"
+  ],
+  "secondaryEntry": null
+}

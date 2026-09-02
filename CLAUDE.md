@@ -273,6 +273,13 @@ EXECUTION → Entry only after all gates clear
 ### ICT Coherence Audit — 10 gaps identified and closed (Jul 31)
 Full audit at `shared/AUDIT_ICT_COHERENCE.md`.
 
+### Sep 1 Additions — Post-Lecture Market-State Feedback
+- **Wick Acceleration** (`wick_acceleration.cjs`): Detects post-stop-rate acceleration (body-close-through vs wick-sweep-only) and wick-body defense at CE levels. Run after `run_pair`: `node tools/wick_acceleration.cjs <PAIR> [--tf 1m]`. Verdict: ACCELERATION CONFIRMED / STOP-RATE PENDING / BODY DEFENSE HOLDING / BODY DEFENSE BROKEN.
+- **Volume Imbalance** (`volume_imbalance.cjs`): Three-gauge momentum check — up/down volume ratio, immediate-rebalance detection (moves flipped within 1-2 candles = no institutional follow-through), ATR-normalized body energy. Signal: BULLISH / BEARISH / REJECTED / UNCERTAIN.
+- **Macro Feedback** (`macro_feedback.cjs`): Time-aware session agent. `--now` gives single snapshot; `--watch [seconds]` polls continuously and logs to `shared/YYYY-MM-DD/PAIR/macro_feedback.jsonl`; `--summary` reads the log. Fires during macro windows (last 10 min of hour + first 10 min of next hour). Verdict: ALIGNING / CONFIRMED / MISALIGNMENT / DIVERGING.
+- **Live state injected into `run_pair.cjs`** — all three tools run automatically as part of every pair analysis after forecasts complete.
+- **Session monitor enhanced** — `tv-mcp/session_monitor.cjs` now calls `macro_feedback.cjs --now` on every 60s tick for EURUSD/GBPUSD/XAUUSD/NAS100 and logs MACRO_FEEDBACK / MACRO_MISALIGN events.
+
 ### Aug 2 Additions
 - **Opening Ranges** (`opening_range.cjs`): 5-window 30-min framework, 3-condition PFVG, SD projections, CE confirmation
 - **Time & Price Grid** (`time_price_grid.cjs`): Suspension blocks, space between, octants/quadrants, wick/body, delivery mode, **Chain of Custody** (sequential PD array linking)
@@ -491,6 +498,11 @@ node tools/tv-mcp/check_orders.cjs
 | `scan_all_pairs.cjs` | Live scan all 5 pairs for setups |
 | `switch_panel.cjs` | Switch panel symbol via dropdown |
 | `session_monitor.cjs` | Dual-layer monitoring (background 60s + cron 10min) |
+| `wick_acceleration.cjs` | Post-stop-rate acceleration + wick-body CE defense |
+| `volume_imbalance.cjs` | Volume ratio / immediate rebalance / energy gauge |
+| `macro_feedback.cjs` | Macro-time feedback agent (--now / --watch / --summary) |
+| `ict_framework_tracker.cjs` | 5-question ICT framework (Q1-Q5) with EXTERNAL/INTERNAL pool classification |
+| `tape_practice.cjs` | Tape reading practice: start → observe → report loop, 30min cooldown |
 | `news_trade.cjs` | ICT One Shot One Kill news event trading |
 | `live_levels.cjs` | Live prices + SL/TP with freshness check |
 | `cdp_client.cjs` | CDP module resolver (works regardless of CWD) |

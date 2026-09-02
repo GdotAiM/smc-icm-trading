@@ -1,0 +1,10 @@
+{
+  "narrative_coherence": 0.2,
+  "dxy_alignment_confidence": 0.5,
+  "pattern_similarity_score": 0.3,
+  "macro_context_strength": 0.2,
+  "decision_confidence": 0,
+  "mode": "llm",
+  "generated": "2026-08-13T12:27:11.277Z",
+  "pair": "NAS100"
+}

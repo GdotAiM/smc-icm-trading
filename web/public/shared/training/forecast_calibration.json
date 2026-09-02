@@ -1,0 +1,33 @@
+{
+  "generated": "2026-08-12T14:03:54.912466",
+  "methodology": "Recency-weighted ensemble: 70% recent(5d) + 30% overall accuracy. P(reach TP) from sample path traversal over forecast distribution.",
+  "forecast_models": {
+    "statistical": {
+      "total_samples": 53,
+      "overall_accuracy": 0.5283,
+      "recent_accuracy": 0.5,
+      "blended_accuracy": 0.5085,
+      "ensemble_weight": 1.0
+    },
+    "kronos": {
+      "total_samples": 0,
+      "overall_accuracy": 0.5,
+      "recent_accuracy": null,
+      "blended_accuracy": 0.5,
+      "ensemble_weight": 0
+    },
+    "chronos": {
+      "total_samples": 0,
+      "overall_accuracy": 0.5,
+      "recent_accuracy": null,
+      "blended_accuracy": 0.5,
+      "ensemble_weight": 0
+    }
+  },
+  "p_reach_tp": {
+    "average": 0.0,
+    "samples": 6,
+    "interpretation": "On average, 0.0% of forecast sample paths reach TP1"
+  },
+  "recommendation": "Primary: statistical (weight=1.00). Ensemble all available models weighted by recency-adjusted accuracy."
+}

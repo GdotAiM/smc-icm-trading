@@ -153,7 +153,7 @@ async function fetchFromTV() {
       })()`);
       if (retrySymbol !== tvSymbol) {
         log(`  ❌ Retry failed: still showing ${retrySymbol} instead of ${tvSymbol} — SKIPPING pair (wrong-symbol data corruption prevention)`);
-        failures.push(`${pair}/${tf}: wrong symbol ${retrySymbol}`);
+        failures.push(`${pair}: wrong symbol ${retrySymbol}`);
         return; // WP-15: skip this pair entirely — don't write wrong-instrument data
       } else {
         log(`  ✅ Retry OK: ${retrySymbol}`);
@@ -372,6 +372,41 @@ function printSummary(engineResult, forecastResult) {
   const forecastResult = runForecasts();
   syncGoldDir();
   printSummary(engineResult, forecastResult);
+
+  // Post-startup: ICT Framework Tracker + Tape Practice Log
+  try {
+    log("═══ POST-STARTUP: ICT Framework Tracker ═══");
+    const tracker = require("./ict_framework_tracker.cjs");
+    // tracker runs inline via console.log; capture by redirecting if needed
+    // We just trigger it — it reads from the data we just wrote
+    const { execSync } = require("child_process");
+    execSync(`node "${path.join(__dirname, "ict_framework_tracker.cjs")}"`, {
+      stdio: ["ignore", "ignore", "pipe"],
+      encoding: "utf8",
+      timeout: 30000,
+    });
+    log("  ✅ ICT_FRAMEWORK_TRACKER.md written");
+  } catch (e) {
+    log(`  ⚠️  Tracker failed: ${e.message?.slice(0, 100)}`);
+  }
+
+  // Log tape practice predictions for all tradeable pairs
+  try {
+    log("═══ POST-STARTUP: Tape Practice Predictions ═══");
+    const { execSync } = require("child_process");
+    for (const pair of PAIRS.filter(p => p !== "DXY")) {
+      try {
+        execSync(`node "${path.join(__dirname, "tape_practice.cjs")}" start ${pair}`, {
+          stdio: ["ignore", "ignore", "pipe"],
+          encoding: "utf8",
+          timeout: 15000,
+        });
+        log(`  ✅ ${pair} prediction logged`);
+      } catch {}
+    }
+  } catch (e) {
+    log(`  ⚠️  Tape practice: ${e.message?.slice(0, 100)}`);
+  }
 
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
   log(`Total startup time: ${elapsed}s`);

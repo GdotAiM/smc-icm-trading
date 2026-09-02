@@ -205,23 +205,23 @@ function sequenceOf(model, ctx) {
 // is THE trade.
 function poolProximity(model, ctx) {
   const pc = ctx.poolContext;
-  if (!pc) return { score: 1.0, detail: "No pool context — all models pass" };
+  if (!pc) return { rank: 1.0, detail: "No pool context — all models pass" };
 
   // Determine which direction this model implies
   const dir = directionOf(model, ctx);
-  if (!dir) return { score: 0.5, detail: "Model has no clear direction — neutral" };
+  if (!dir) return { rank: 0.5, detail: "Model has no clear direction — neutral" };
 
   // If a pool IS locked, models must target it or be penalized
   if (pc.locked && pc.lockedDirection) {
     const matchesLocked = dir === pc.lockedDirection;
     if (matchesLocked) {
-      return { score: 2.0, detail: `✅ Targets locked ${pc.lockedDirection} pool — PRIMARY`, boost: pc.directionBoost || 1.3 };
+      return { rank: 2.0, detail: `✅ Targets locked ${pc.lockedDirection} pool — PRIMARY`, boost: pc.directionBoost || 1.3 };
     } else {
-      return { score: 0.3, detail: `❌ ${dir} vs locked ${pc.lockedDirection} pool — COUNTER`, penalty: true };
+      return { rank: 0.3, detail: `❌ ${dir} vs locked ${pc.lockedDirection} pool — COUNTER`, penalty: true };
     }
   }
 
-  // No pool locked yet — score by proximity to the highest-priority unraided pool
+  // No pool locked yet — rank by proximity to the highest-priority unraided pool
   const sessions = pc.sessions || {};
   // Get pools that have been raided (fuel collected) in priority order
   const raidedPools = [];
@@ -241,11 +241,11 @@ function poolProximity(model, ctx) {
     }
     const uniqueDirs = [...new Set(poolDirections)];
     if (uniqueDirs.includes(dir)) {
-      return { score: 1.5, detail: `✅ ${dir} targets raided pools (${raidedPools.map(p => p.label).join(', ')})`, boost: 1.2 };
+      return { rank: 1.5, detail: `✅ ${dir} targets raided pools (${raidedPools.map(p => p.label).join(', ')})`, boost: 1.2 };
     }
   }
 
-  return { score: 1.0, detail: "No pool constraint — neutral" };
+  return { rank: 1.0, detail: "No pool constraint — neutral" };
 }
 
 function evaluateModel(model, ctx) {
@@ -297,8 +297,8 @@ function tieBreak(a, b, ctx) {
     // Penalty models (wrong direction) always lose
     if (aPool.penalty && !bPool.penalty) return 1;
     if (!aPool.penalty && bPool.penalty) return -1;
-    // Higher pool score wins
-    if (aPool.score !== bPool.score) return aPool.score > bPool.score ? -1 : 1;
+    // Higher pool rank wins
+    if (aPool.rank !== bPool.rank) return aPool.rank > bPool.rank ? -1 : 1;
   }
   // WP-15: Killzone primacy — time-windowed models that are currently ACTIVE
   // beat always-on (null window) models of the same tier. ICT teaches that the
@@ -473,7 +473,7 @@ function runRegistry(ctx) {
     const before = complete.length;
     complete = complete.filter(r => {
       // Only keep models whose pool direction matches or is neutral toward the lock
-      const dir = r.pool?.score >= 1.0 || !r.pool?.penalty;
+      const dir = r.pool?.rank >= 1.0 || !r.pool?.penalty;
       return dir;
     });
     if (complete.length < before) {
@@ -528,7 +528,7 @@ function runRegistry(ctx) {
         ci90_low: Math.round(ci90Low * 1000) / 10,                       // 90% credible interval
         ci90_high: Math.round(ci90High * 1000) / 10,
         samples: bayes.samples,
-        precision: Math.round(bayes.precision * 100) / 100,              // 0-1 precision score
+        precision: Math.round(bayes.precision * 100) / 100,              // 0-1 precision rating
         calibration: ml.calibration || "UNKNOWN",
         recommendation: ml.recommendation || "NEUTRAL",
         prior: "Beta(5,5) — weak prior centered at 50%",

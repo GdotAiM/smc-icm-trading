@@ -1,0 +1,16 @@
+{
+  "generated": "2026-08-13T07:08:37.425Z",
+  "methodology": "Full WP-8 registry run against historical engine reports. Each completed model tracked for EOD outcome. No live CDP required.",
+  "summary": {
+    "totalTrades": 0,
+    "datesCovered": 17,
+    "pairsCovered": 0,
+    "modelsWithEdge": 0,
+    "modelsTotal": 0
+  },
+  "modelPerformance": {},
+  "regimePerformance": {},
+  "pairPerformance": {},
+  "topRecommendation": "INSUFFICIENT DATA",
+  "allTrades": 0
+}
