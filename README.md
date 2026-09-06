@@ -132,16 +132,22 @@ smc-icm-trading/
 
 Interactive visualizations generated with [Archify](https://github.com/milanjanji/archify):
 
-| Diagram | Description |
-|---------|-------------|
-| **Architecture** | Full system layout — tools, stages, config, and data flow between layers |
-| **Data Flow** | How candle data moves from TradingView CDP through engines to shared output |
-| **Sequence** | Call chain from `session_start.cjs` → engine runner → pair analysis |
-| **Workflow** | End-to-end session lifecycle: startup → analysis → execution → journaling |
+<!-- Architecture --><img src="docs/smc-icm-architecture.visual-check.1440x900.light.png" alt="Architecture Diagram" width="640"/><br/>
+<!-- Data Flow --><img src="docs/smc-icm-dataflow.visual-check.1440x900.light.png" alt="Data Flow Diagram" width="640"/><br/>
+<!-- Sequence --><img src="docs/smc-icm-sequence.visual-check.1440x900.light.png" alt="Sequence Diagram" width="640"/><br/>
+<!-- Workflow --><img src="docs/smc-icm-workflow.visual-check.1440x900.light.png" alt="Workflow Diagram" width="640"/>
 
-[→ View all diagrams in docs/](docs/)
+<details>
+<summary><strong>View all diagram variants (dark mode, full resolution)</strong></summary>
 
-*Note: Dark/light variants included for both 1440×900 and 2048×1320 resolutions.*
+| Diagram | Light 1440p | Dark 1440p | Light 2K | Dark 2K |
+|---------|-------------|------------|----------|---------|
+| **Architecture** | [↗](docs/smc-icm-architecture.visual-check.1440x900.light.png) | [↗](docs/smc-icm-architecture.visual-check.1440x900.dark.png) | [↗](docs/smc-icm-architecture.visual-check.2048x1320.light.png) | [↗](docs/smc-icm-architecture.visual-check.2048x1320.dark.png) |
+| **Data Flow** | [↗](docs/smc-icm-dataflow.visual-check.1440x900.light.png) | [↗](docs/smc-icm-dataflow.visual-check.1440x900.dark.png) | [↗](docs/smc-icm-dataflow.visual-check.2048x1320.light.png) | [↗](docs/smc-icm-dataflow.visual-check.2048x1320.dark.png) |
+| **Sequence** | [↗](docs/smc-icm-sequence.visual-check.1440x900.light.png) | [↗](docs/smc-icm-sequence.visual-check.1440x900.dark.png) | [↗](docs/smc-icm-sequence.visual-check.2048x1320.light.png) | [↗](docs/smc-icm-sequence.visual-check.2048x1320.dark.png) |
+| **Workflow** | [↗](docs/smc-icm-workflow.visual-check.1440x900.light.png) | [↗](docs/smc-icm-workflow.visual-check.1440x900.dark.png) | [↗](docs/smc-icm-workflow.visual-check.2048x1320.light.png) | [↗](docs/smc-icm-workflow.visual-check.2048x1320.dark.png) |
+
+</details>
 
 ## ICT Knowledge Base
 
