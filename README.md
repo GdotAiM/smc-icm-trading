@@ -57,7 +57,7 @@ node --test tests/llm_layer.test.cjs                   # 22 LLM-layer tests
 
 Full spec: `md/LLM_AUDIT_LAYER.md`
 
-## Architecture
+## System Architecture
 
 ```
 smc-icm-trading/
@@ -127,6 +127,21 @@ smc-icm-trading/
 ├── references/           # 138 ICT tutorials + knowledge base (RAG indexed)
 └── web/                  # Frontend dashboard
 ```
+
+### Architecture Diagrams
+
+Interactive visualizations generated with [Archify](https://github.com/milanjanji/archify):
+
+| Diagram | Description |
+|---------|-------------|
+| **Architecture** | Full system layout — tools, stages, config, and data flow between layers |
+| **Data Flow** | How candle data moves from TradingView CDP through engines to shared output |
+| **Sequence** | Call chain from `session_start.cjs` → engine runner → pair analysis |
+| **Workflow** | End-to-end session lifecycle: startup → analysis → execution → journaling |
+
+[→ View all diagrams in docs/](docs/)
+
+*Note: Dark/light variants included for both 1440×900 and 2048×1320 resolutions.*
 
 ## ICT Knowledge Base
 
