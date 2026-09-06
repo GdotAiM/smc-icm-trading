@@ -11,6 +11,18 @@
       "difficulty": "ADVANCED",
       "isNewPDA": false,
       "wasSalvaged": false
+    },
+    "dmHSwlmS9iY": {
+      "id": "dmHSwlmS9iY",
+      "title": "The Week In The Life Cycle Of Price",
+      "url": "https://youtu.be/dmHSwlmS9iY",
+      "processedAt": "2026-09-06T07:13:49.100Z",
+      "conceptCount": 3,
+      "summary": "This lecture details ICT's weekly price cycle framework for determining market bias, identifying the draw on liquidity, and executing Friday TGIF retracement setups. By starting analysis on continuous futures contracts to establish key weekly and monthly levels, traders can determine order flow direction and utilize macro time windows (9:50–10:10 AM) alongside Inversion FVGs and Rejection Blocks to trade expected 20–30% weekly range retracements.",
+      "modelName": "TGIF Retracement Model / ICT Silver Bullet",
+      "difficulty": "ADVANCED",
+      "isNewPDA": false,
+      "wasSalvaged": false
     }
   },
   "lastDiscovery": "2026-08-10T17:56:20.506Z",
@@ -59,6 +71,49 @@
       "category": "Risk Management",
       "confidence": "HIGH",
       "lastUpdated": "2026-08-10T18:15:46.115Z"
+    },
+    "tgif_weekly_range_retracement_model": {
+      "name": "TGIF Weekly Range Retracement Model",
+      "sources": [
+        "dmHSwlmS9iY"
+      ],
+      "rules": [
+        "On Friday, after the market has completed its weekly expansion toward HTF liquidity targets, expect a TGIF retracement back into the weekly range.",
+        "Target a retracement depth of 20% to 30% (ideally ~25%) of the total weekly range established up to Friday morning.",
+        "Confluence for the 20%-30% retracement target often aligns with key reference levels such as the previous week's high or previous month's high.",
+        "The Friday high typically forms during the morning session between 9:30 AM and 10:10 AM Eastern Time."
+      ],
+      "category": "Entry Model",
+      "confidence": "HIGH",
+      "lastUpdated": "2026-09-06T07:13:49.176Z"
+    },
+    "guarded_liquidity_identification": {
+      "name": "Guarded Liquidity Identification",
+      "sources": [
+        "dmHSwlmS9iY"
+      ],
+      "rules": [
+        "Relative equal highs or buy-side liquidity pools are not always swept; smart money may guard them during distribution phases.",
+        "If price approaches relative equal highs during key macro windows (e.g., 9:50 AM – 10:10 AM) and respects a rejection block rather than breaking out, the buyside is guarded.",
+        "Order flow confirmation occurs when candle bodies refuse to close above key rejection levels or upper halves of premium wicks."
+      ],
+      "category": "Liquidity",
+      "confidence": "HIGH",
+      "lastUpdated": "2026-09-06T07:13:49.176Z"
+    },
+    "continuous_contract_htf_bias_draw_on_liquidity": {
+      "name": "Continuous Contract HTF Bias & Draw on Liquidity",
+      "sources": [
+        "dmHSwlmS9iY"
+      ],
+      "rules": [
+        "Always begin weekly and monthly bias analysis on a Continuous Futures Contract to avoid rollover gaps and distorted key levels.",
+        "Map previous month's high/low and previous week's high/low across continuous data and blend with front-month contract data.",
+        "Determine the Draw on Liquidity by evaluating path of least resistance from the weekly open relative to nearest HTF liquidity pools in the direction of dominant order flow."
+      ],
+      "category": "Market Structure",
+      "confidence": "HIGH",
+      "lastUpdated": "2026-09-06T07:13:49.176Z"
     }
   }
 }

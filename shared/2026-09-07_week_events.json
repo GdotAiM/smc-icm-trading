@@ -1,0 +1,126 @@
+{
+  "week": "September 7-12, 2026 (actual ForexFactory)",
+  "source": "User screenshots, 2026-09-06",
+  "events": [
+    {
+      "day": "Monday Sep 7",
+      "time": "3:30am ET",
+      "currency": "AUD",
+      "event": "ANZ Job Advertisements m/m",
+      "impact": "LOW",
+      "pairs": ""
+    },
+    {
+      "day": "Monday Sep 7",
+      "time": "8:00am ET",
+      "currency": "EUR",
+      "event": "German Industrial Production m/m",
+      "impact": "LOW",
+      "pairs": ""
+    },
+    {
+      "day": "Tuesday Sep 8",
+      "time": "12:00pm ET",
+      "currency": "USD",
+      "event": "NFIB Small Business Index",
+      "impact": "LOW",
+      "pairs": ""
+    },
+    {
+      "day": "Wednesday Sep 9",
+      "time": "2:15pm ET",
+      "currency": "USD",
+      "event": "ADP Weekly Employment Change",
+      "impact": "LOW",
+      "pairs": ""
+    },
+    {
+      "day": "Thursday Sep 10",
+      "time": "2:15pm ET",
+      "currency": "EUR",
+      "event": "ECB Interest Rate Decision (2.65%\u2192?)",
+      "impact": "CRITICAL",
+      "pairs": "EURUSD,DXY"
+    },
+    {
+      "day": "Thursday Sep 10",
+      "time": "2:45pm ET",
+      "currency": "EUR",
+      "event": "ECB Press Conference (Lagarde)",
+      "impact": "HIGH",
+      "pairs": "EURUSD,DXY"
+    },
+    {
+      "day": "Thursday Sep 10",
+      "time": "2:30pm ET",
+      "currency": "USD",
+      "event": "Core PPI m/m (exp 0.3%)",
+      "impact": "HIGH",
+      "pairs": "DXY,XAUUSD"
+    },
+    {
+      "day": "Thursday Sep 10",
+      "time": "2:30pm ET",
+      "currency": "USD",
+      "event": "PPI m/m (exp 0.4%)",
+      "impact": "HIGH",
+      "pairs": "DXY"
+    },
+    {
+      "day": "Thursday Sep 10",
+      "time": "2:30pm ET",
+      "currency": "USD",
+      "event": "Unemployment Claims (exp 205K)",
+      "impact": "MED",
+      "pairs": "DXY"
+    },
+    {
+      "day": "Friday Sep 11",
+      "time": "8:00am ET",
+      "currency": "GBP",
+      "event": "UK GDP m/m (exp 0.0%)",
+      "impact": "HIGH",
+      "pairs": "GBPUSD"
+    },
+    {
+      "day": "Friday Sep 11",
+      "time": "2:30pm ET",
+      "currency": "USD",
+      "event": "CORE CPI m/m (exp 0.2%)",
+      "impact": "CRITICAL",
+      "pairs": "ALL"
+    },
+    {
+      "day": "Friday Sep 11",
+      "time": "2:30pm ET",
+      "currency": "USD",
+      "event": "CORE CPI y/y (exp 2.4%)",
+      "impact": "CRITICAL",
+      "pairs": "ALL"
+    },
+    {
+      "day": "Friday Sep 11",
+      "time": "2:30pm ET",
+      "currency": "USD",
+      "event": "CPI m/m (exp 0.4%)",
+      "impact": "CRITICAL",
+      "pairs": "ALL"
+    },
+    {
+      "day": "Friday Sep 11",
+      "time": "2:30pm ET",
+      "currency": "USD",
+      "event": "CPI y/y (exp 3.4%)",
+      "impact": "CRITICAL",
+      "pairs": "ALL"
+    },
+    {
+      "day": "Friday Sep 11",
+      "time": "4:00pm ET",
+      "currency": "USD",
+      "event": "Prelim UoM Consumer Sentiment",
+      "impact": "MED",
+      "pairs": "DXY"
+    }
+  ]
+}
