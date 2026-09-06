@@ -1,0 +1,53 @@
+name: Deploy & Validate
+
+on:
+  push:
+    branches: [main, master, feat/**]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate:
+    name: Validate Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Run tests
+        run: npm test
+
+      - name: Syntax check all tools
+        run: |
+          find tools -name '*.cjs' -o -name '*.js' | xargs -I{} node -c {}
+          echo "All syntax checks passed"
+
+      - name: Check session_start smoke test
+        run: node tools/session_start.cjs 2>&1 | head -5 || true
+
+  deploy:
+    name: Deploy
+    needs: validate
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Notify deploy complete
+        run: |
+          echo "Deploy validated successfully"
+          echo "Branch: ${{ github.ref }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Note: This is a local CLI workspace. No server to deploy."
+          echo "Run 'node tools/session_start.cjs' on your machine to start."

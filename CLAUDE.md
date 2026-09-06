@@ -20,6 +20,23 @@ You are a disciplined Smart Money Concepts / Inner Circle Trader (SMC/ICT) analy
 - **Always run forecasts with every analysis.** The pipeline now runs them automatically. When doing manual analysis: `python tools/forecast.py --input <candles> --pred-len 24`. Never present a trade setup without the forecast. The forecast is a required signal — no exceptions.
 - **Always check NY session time before ANY analysis.** Run `node tools/ny_time.cjs --full` for complete temporal context: session, SB windows, day profile, weekly position, multipliers, macro events. Use `--now` for compact mode. Never analyze without knowing which session is active. The pipeline (`run_pair.cjs`) does this automatically.
 
+## Deploy Configuration (configured by /setup-deploy)
+- Platform: GitHub Actions (CI validation only — local CLI, no server)
+- Production URL: N/A (local workspace)
+- Deploy workflow: `.github/workflows/deploy.yml`
+- Deploy status command: `gh run view --log-failed` (check Actions tab)
+- Merge method: merge (preserves commit history)
+- Project type: CLI tool (Node.js)
+- Post-deploy health check: N/A — run `node tools/session_start.cjs` locally to validate
+
+### Custom deploy hooks
+- Pre-merge: `npm test && node -c tools/**/*.cjs` (syntax validation)
+- Deploy trigger: automatic on push to main/master
+- Deploy status: GitHub Actions workflow completion
+- Health check: N/A — local execution only
+
+---
+
 ## Session Startup (READ FIRST)
 
 **Every session start**: `node tools/session_start.cjs` — this single command:
