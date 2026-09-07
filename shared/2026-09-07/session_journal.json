@@ -1,0 +1,147 @@
+{
+  "session_date": "2026-09-07",
+  "day_of_week": "Monday",
+  "ny_time_start": "09:36",
+  "ny_time_end": "~04:50",
+  "duration_minutes": 14,
+  "session_type": "live_trading",
+  "things_done": [
+    "Fixed TV CDP — killed 12 stale TradingView processes, relaunched with --remote-debugging-port=9222",
+    "Ran full session startup (session_start.cjs) — 35/35 engines OK, 8/8 forecasts OK, 0 lunch carry setups",
+    "Ran pair analyses: EURUSD, GBPUSD, XAUUSD, NAS100, DXY — all 5 complete",
+    "ICT Framework Tracker written — EURUSD READY (BUY), GBPUSD/XAUUSD/NAS100 awaiting sweep + MSS",
+    "Tape practice predictions logged for all 4 tradeable pairs",
+    "Graph rebuilt: 19 trades indexed, 5 lessons extracted"
+  ],
+  "verdict": "NO TRADE — all pairs fail-closed by MMXM manipulation gate or invalidation",
+  "key_findings": [
+    {
+      "finding": "All 5 pairs gated by MMXM Step 2/5: MANIPULATION — correct fail-close behavior; Monday London KZ is trap zone, not delivery",
+      "impact": "high"
+    },
+    {
+      "finding": "EURUSD: PDL swept at 1.15703, MSS confirmed, but pipeline flags INDUCEMENT — possible trap ahead of Wednesday Low target",
+      "impact": "medium"
+    },
+    {
+      "finding": "GBPUSD: SCOB model completed (5 of 17 models) but R:R 0.80:1 fails minimum — also forecast diverges (5m bearish vs 1m bullish)",
+      "impact": "high"
+    },
+    {
+      "finding": "XAUUSD: INVALIDATED — wick defense broken, volume REJECTED, custody chain dominant BEARISH opposing the BUY signal",
+      "impact": "high"
+    },
+    {
+      "finding": "NAS100: INVALIDATED — fractal coherence only 9/20, forecasts aligned bullish but 1m inverted structure blocks entry",
+      "impact": "medium"
+    },
+    {
+      "finding": "DXY: Strongest alignment (95% bearish, all TFs aligned) but MMXM gate closed — setup ready for NY AM when gate opens",
+      "impact": "high"
+    },
+    {
+      "finding": "Silver Bullet window (London 03:00–04:00 NY) was ACTIVE during analysis — boosted SB scores on all pairs but could not override MMXM gate",
+      "impact": "medium"
+    }
+  ],
+  "pair_summary": [
+    {
+      "pair": "EURUSD",
+      "price": 1.1616,
+      "bias": "BULLISH (80%)",
+      "model": "NO TRADE",
+      "gate": "MMXM Step 2/5: MANIPULATION",
+      "coherence": "60/100",
+      "invalidation": "VALID ✅"
+    },
+    {
+      "pair": "GBPUSD",
+      "price": 1.3525,
+      "bias": "BULLISH (60%)",
+      "model": "SCOB (SETUP COMPLETE)",
+      "gate": "R:R 0.80:1 below min + forecast opposes direction",
+      "coherence": "69/100",
+      "invalidation": "HIGH RISK ⚠️"
+    },
+    {
+      "pair": "XAUUSD",
+      "price": 4396.19,
+      "bias": "BULLISH (85%)",
+      "model": "2FVG Entry (SETUP COMPLETE)",
+      "gate": "INVALIDATED — wick defense broken, volume rejected, custody chain BEARISH",
+      "coherence": "40/100",
+      "invalidation": "🛑 INVALIDATED"
+    },
+    {
+      "pair": "NAS100",
+      "price": 29608,
+      "bias": "BULLISH (80%)",
+      "model": "NO TRADE",
+      "gate": "MMXM Step 2/5: MANIPULATION + INVALIDATED",
+      "coherence": "40/100",
+      "invalidation": "🛑 INVALIDATED"
+    },
+    {
+      "pair": "DXY",
+      "price": 99.11,
+      "bias": "BEARISH (95%)",
+      "model": "NO TRADE",
+      "gate": "MMXM Step 2/5: MANIPULATION",
+      "coherence": "60/100",
+      "invalidation": "CAUTION ⚠️"
+    }
+  ],
+  "what_to_watch": [
+    {
+      "time_ny": "07:00–08:00",
+      "event": "Lecture 2 window — London Hunt + IFVG",
+      "priority_pair": "EURUSD, GBPUSD"
+    },
+    {
+      "time_ny": "08:00–08:30",
+      "event": "Pre-Market Formation ⭐ — 08:30 Liquidity Raid Model",
+      "priority_pair": "All pairs"
+    },
+    {
+      "time_ny": "08:30–09:30",
+      "event": "News release + NDOG/NWOG gap model ⭐",
+      "priority_pair": "XAUUSD, NAS100"
+    },
+    {
+      "time_ny": "09:30",
+      "event": "Equity open A-Plus ⭐",
+      "priority_pair": "NAS100"
+    }
+  ],
+  "priority_for_monday_remainder": [
+    {
+      "rank": 1,
+      "pair": "DXY",
+      "reason": "Strongest bias (95% bearish, all TFs aligned). MMXM gate will open in DISTRIBUTION phase. Setup already marked SELL on PD array retest."
+    },
+    {
+      "rank": 2,
+      "pair": "EURUSD",
+      "reason": "PDL swept + MSS confirmed. Watch for false breakout trap → re-entry on retest of 1.16104–1.16146 PD array."
+    },
+    {
+      "rank": 3,
+      "pair": "GBPUSD",
+      "reason": "SCOB completed but needs R:R improvement and forecast alignment. PDH 1.35491 still unswept."
+    }
+  ],
+  "system_notes": [
+    "TV CDP was down (12 stale processes without debug flag) — fixed by kill + relaunch. Root cause: TV was running from previous session without --remote-debugging-port.",
+    "Monday profile = Wednesday Low for forex pairs, Wednesday High for DXY — consistent with yesterday's weekly profile probability map (Profile IV favored at 35%).",
+    "All pairs show CONTROLLED delivery (100% overlap) — low volatility, waiting for displacement signal before institutions commit."
+  ],
+  "files_created": [
+    "shared/2026-09-07/EURUSD/decision.json",
+    "shared/2026-09-07/GBPUSD/decision.json",
+    "shared/2026-09-07/XAUUSD/decision.json",
+    "shared/2026-09-07/NAS100/decision.json",
+    "shared/2026-09-07/DXY/decision.json",
+    "shared/2026-09-07/ICT_FRAMEWORK_TRACKER.md",
+    "stages/07_journal_review/output/{eurusd,gbpusd,xauusd,nas100,dxy}_review.md"
+  ]
+}
