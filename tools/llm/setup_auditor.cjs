@@ -33,6 +33,22 @@ const { load: loadCycleState, briefContext: cycleBriefContext } = require("./cyc
 
 loadProjectEnv();
 
+// ── MCP tool bridge ───────────────────────────────────────────────────────────
+// When MCP_HTTP_URL is set (MCP server running on :9233), merge the full TV
+// CDP tool registry into every audit. The LLM can then call any TV tool
+// (fetch candles, switch symbols, draw levels) alongside stage-file reads.
+// Falls back silently when MCP_HTTP_URL is unset or unavailable.
+async function loadMCPTOOLS() {
+  if (!process.env.MCP_HTTP_URL) return [];
+  try {
+    const mod = await import("../../tv-mcp/dist/openai-tools.js");
+    if (typeof mod.toOpenAITools !== "function" || !Array.isArray(mod.ALL_TOOLS)) return [];
+    return mod.toOpenAITools(mod.ALL_TOOLS);
+  } catch (_) {
+    return [];
+  }
+}
+
 const ROOT = process.env.WORKSPACE_ROOT || path.resolve(__dirname, "..", "..");
 
 const ALLOWED_BASES = ["stages", "_config", "shared", path.join("tools", "llm")];
@@ -341,15 +357,42 @@ async function runAudit({ pair, date, maxIterations = 6, provider, model, client
     },
   ];
 
+  // Merge MCP tools when the HTTP transport is available
+  const mcpTools = await loadMCPTOOLS();
+  const allTools = mcpTools.length > 0 ? [...TOOL_DEFS, ...mcpTools] : TOOL_DEFS;
+
   let result = await agentLoop({
     messages: initialMessages,
-    tools: TOOL_DEFS,
+    tools: allTools,
     toolDispatch: dispatch,
     llmOpts,
     maxIterations,
     client: clientFn,
     log,
   });
+
+  // When MCP tools were merged but the provider rejects tool calls (e.g.
+  // Gemini thinking models with 400), retry with only the sandboxed tools.
+  const primaryToolsUsed = mcpTools.length > 0;
+  if (primaryToolsUsed && result.status === "llm_unavailable" && /tool|function|400|400:|invalid/i.test(result.text)) {
+    if (log) log("setup_auditor: MCP tools rejected by provider — falling back to sandboxed tools only");
+    result = await agentLoop({
+      messages: [
+        ...initialMessages,
+        {
+          role: "user",
+          content:
+            "NOTE: external tool calling was unavailable. Produce your JSON verdict using ONLY the context provided above.",
+        },
+      ],
+      tools: TOOL_DEFS, // fall back to sandboxed tools only
+      toolDispatch: dispatch,
+      llmOpts,
+      maxIterations: 1,
+      client: clientFn,
+      log,
+    });
+  }
 
   // Provider resilience: some providers (e.g. Gemini thinking models) reject
   // tool calls with a 400. Retry ONCE without tools — the context above already
