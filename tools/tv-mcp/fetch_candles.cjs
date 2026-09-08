@@ -3,6 +3,7 @@
 //        node tools/tv-mcp/fetch_candles.cjs --pair GOLD --all-tfs --output-dir shared/2026-07-28/GOLD/
 
 const CDP = require("chrome-remote-interface");
+const { fetchRetry } = require("../../lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 
@@ -118,7 +119,7 @@ async function fetchCandles(client, symbol, resolution, barCount) {
 
 // ── Main ──────────────────────────────────────────────
 (async () => {
-  const resp = await fetch("http://127.0.0.1:9222/json/list");
+  const resp = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await resp.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.log(JSON.stringify({ error: "No TradingView chart tab found" })); process.exit(1); }

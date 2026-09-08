@@ -5,6 +5,7 @@
 //        node tools/refresh_data.cjs GBPUSD    → single pair
 
 const CDP = require("./tv-mcp/cdp_client.cjs");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
@@ -35,7 +36,7 @@ async function refresh() {
   console.log("\n═══ STEP 1: Connect to TV CDP ═══");
   let client;
   try {
-    const resp = await fetch("http://127.0.0.1:9222/json/list");
+    const resp = await fetchRetry("http://127.0.0.1:9222/json/list");
     const targets = await resp.json();
     const chart = targets.find(t => t.type === "page" && /tradingview/i.test(t.url || ""));
     if (!chart) { console.log("  ❌ No TradingView chart tab found. Open TV Desktop first."); return; }
