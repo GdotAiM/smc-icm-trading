@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Trading Data Pipeline",
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "visual_preset": "signal-flow",
+    "output": "docs/smc-icm-dataflow.html",
+    "viewBox": [
+      1000,
+      700
+    ]
+  },
+  "stages": [
+    {
+      "label": "Sources"
+    },
+    {
+      "label": "Processing"
+    },
+    {
+      "label": "Persist"
+    },
+    {
+      "label": "Consume"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "tv",
+      "type": "external",
+      "label": "TradingView",
+      "sublabel": "CDP live",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "binance",
+      "type": "external",
+      "label": "Binance",
+      "sublabel": "historical",
+      "stage": 0,
+      "row": 1
+    },
+    {
+      "id": "fetcher",
+      "type": "backend",
+      "label": "Data Fetcher",
+      "sublabel": "sync cache",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "smc",
+      "type": "backend",
+      "label": "SMC Engine",
+      "sublabel": "structure OBs",
+      "stage": 1,
+      "row": 1
+    },
+    {
+      "id": "engine_out",
+      "type": "messagebus",
+      "label": "Engine Reports",
+      "sublabel": "JSON per TF",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "supabase",
+      "type": "database",
+      "label": "Supabase",
+      "sublabel": "positions trades",
+      "stage": 2,
+      "row": 1
+    },
+    {
+      "id": "llm",
+      "type": "backend",
+      "label": "LLM Operator",
+      "sublabel": "council coherence",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "eval",
+      "type": "backend",
+      "label": "Evaluation",
+      "sublabel": "judge metrics",
+      "stage": 3,
+      "row": 1
+    }
+  ],
+  "flows": [
+    {
+      "from": "tv",
+      "to": "fetcher",
+      "label": "live candles",
+      "classification": "CDP stream",
+      "variant": "emphasis"
+    },
+    {
+      "from": "binance",
+      "to": "smc",
+      "label": "historical fallback",
+      "classification": "backup",
+      "variant": "dashed"
+    },
+    {
+      "from": "fetcher",
+      "to": "smc",
+      "label": "cleaned candles",
+      "classification": "structured",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "from": "smc",
+      "to": "engine_out",
+      "label": "reports JSON",
+      "classification": "per-TF",
+      "variant": "emphasis"
+    },
+    {
+      "from": "engine_out",
+      "to": "llm",
+      "label": "stage context",
+      "classification": "read model",
+      "variant": "emphasis"
+    },
+    {
+      "from": "llm",
+      "to": "eval",
+      "label": "signals",
+      "classification": "judge input",
+      "variant": "default",
+      "route": "vertical-channel"
+    },
+    {
+      "from": "engine_out",
+      "to": "supabase",
+      "label": "persist reports",
+      "classification": "durable write",
+      "variant": "default",
+      "labelDy": 24
+    },
+    {
+      "from": "supabase",
+      "to": "eval",
+      "label": "read positions",
+      "classification": "query",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Ingest Pipeline",
+      "items": [
+        "TradingView is canonical source; Binance fills gaps",
+        "SMC engine produces structured JSON reports per timeframe"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Storage Layer",
+      "items": [
+        "Engine reports go to shared/YYYY-MM-DD/PAIR/",
+        "Supabase stores positions and trades"
+      ]
+    }
+  ]
+}

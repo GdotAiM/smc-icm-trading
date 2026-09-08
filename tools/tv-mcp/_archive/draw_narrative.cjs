@@ -1,4 +1,5 @@
 const CDP = require("chrome-remote-interface");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
@@ -139,7 +140,7 @@ async function drawPair(client, config) {
 }
 
 (async () => {
-  const r = await fetch("http://127.0.0.1:9222/json/list");
+  const r = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await r.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.log("No chart"); process.exit(1); }

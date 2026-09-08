@@ -1,0 +1,94 @@
+{
+  "week": "September 8-12, 2026",
+  "source": "ForexFactory (user screenshots, 2026-09-06)",
+  "events": [
+    {
+      "day": "Monday Sep 8",
+      "time": "03:00 ET",
+      "currency": "EUR",
+      "event": "CPI Flash Est (YoY)",
+      "impact": "RED/HIGH",
+      "pairs": "EURUSD"
+    },
+    {
+      "day": "Monday Sep 8",
+      "time": "03:00 ET",
+      "currency": "EUR",
+      "event": "CPI Flash Est (MoM)",
+      "impact": "RED/HIGH",
+      "pairs": "EURUSD"
+    },
+    {
+      "day": "Tuesday Sep 9",
+      "time": "03:00 ET",
+      "currency": "GBP",
+      "event": "GDP QoQ (Q2)",
+      "impact": "RED/HIGH",
+      "pairs": "GBPUSD"
+    },
+    {
+      "day": "Tuesday Sep 9",
+      "time": "07:00 ET",
+      "currency": "EUR",
+      "event": "PMI Manufacturing Final",
+      "impact": "YELLOW/MED",
+      "pairs": "EURUSD"
+    },
+    {
+      "day": "Wednesday Sep 10",
+      "time": "10:00 ET",
+      "currency": "USD",
+      "event": "ISM Manufacturing PMI",
+      "impact": "RED/HIGH",
+      "pairs": "NAS100,XAUUSD,DXY"
+    },
+    {
+      "day": "Wednesday Sep 10",
+      "time": "10:00 ET",
+      "currency": "USD",
+      "event": "Manufacturing PMI",
+      "impact": "RED/HIGH",
+      "pairs": "NAS100,DXY"
+    },
+    {
+      "day": "Thursday Sep 11",
+      "time": "10:00 ET",
+      "currency": "USD",
+      "event": "PMI Services",
+      "impact": "YELLOW/MED",
+      "pairs": "DXY,EURUSD"
+    },
+    {
+      "day": "Friday Sep 12",
+      "time": "08:30 ET",
+      "currency": "USD",
+      "event": "Non-Farm Payrolls (NFP)",
+      "impact": "RED/CRITICAL",
+      "pairs": "ALL"
+    },
+    {
+      "day": "Friday Sep 12",
+      "time": "08:30 ET",
+      "currency": "USD",
+      "event": "Unemployment Rate",
+      "impact": "RED/HIGH",
+      "pairs": "DXY,EURUSD,GBPUSD,XAUUSD"
+    },
+    {
+      "day": "Friday Sep 12",
+      "time": "08:30 ET",
+      "currency": "USD",
+      "event": "Avg Hourly Earnings MoM",
+      "impact": "RED/HIGH",
+      "pairs": "DXY,XAUUSD"
+    },
+    {
+      "day": "Friday Sep 12",
+      "time": "10:00 ET",
+      "currency": "USD",
+      "event": "ISM Services PMI",
+      "impact": "RED/HIGH",
+      "pairs": "NAS100,DXY"
+    }
+  ]
+}

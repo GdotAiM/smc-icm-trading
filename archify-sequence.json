@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Trade Analysis \u2014 Single Pair Run",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "output": "docs/smc-icm-sequence.html",
+    "viewBox": [
+      950,
+      760
+    ],
+    "views": [
+      {
+        "id": "full-run",
+        "label": "Full pipeline run",
+        "focus": [
+          "trader",
+          "session",
+          "smc",
+          "tv",
+          "forecast",
+          "llm",
+          "judge",
+          "web"
+        ],
+        "note": "End-to-end from CLI invocation to dashboard rendering."
+      },
+      {
+        "id": "coherence-check",
+        "label": "Coherence validation",
+        "focus": [
+          "llm",
+          "judge",
+          "trader"
+        ],
+        "note": "See the LLM judge verify ICT adherence and reasoning quality."
+      }
+    ]
+  },
+  "participants": [
+    {
+      "id": "trader",
+      "type": "external",
+      "label": "Trader",
+      "sublabel": "CLI"
+    },
+    {
+      "id": "session",
+      "type": "backend",
+      "label": "Session Start",
+      "sublabel": "orchestrator"
+    },
+    {
+      "id": "smc",
+      "type": "backend",
+      "label": "SMC Engine",
+      "sublabel": "Rust analysis"
+    },
+    {
+      "id": "tv",
+      "type": "external",
+      "label": "TradingView",
+      "sublabel": "CDP charts"
+    },
+    {
+      "id": "forecast",
+      "type": "backend",
+      "label": "Forecast",
+      "sublabel": "Kronos MC"
+    },
+    {
+      "id": "llm",
+      "type": "backend",
+      "label": "LLM Operator",
+      "sublabel": "council coherence"
+    },
+    {
+      "id": "judge",
+      "type": "backend",
+      "label": "Judge",
+      "sublabel": "5-dim scoring"
+    },
+    {
+      "id": "web",
+      "type": "frontend",
+      "label": "Web Dashboard",
+      "sublabel": "React UI"
+    }
+  ],
+  "segments": [
+    {
+      "from": 150,
+      "to": 280,
+      "label": "Setup & data"
+    },
+    {
+      "from": 300,
+      "to": 500,
+      "label": "Analysis"
+    },
+    {
+      "from": 520,
+      "to": 680,
+      "label": "Decision & output"
+    }
+  ],
+  "messages": [
+    {
+      "from": "trader",
+      "to": "session",
+      "y": 175,
+      "label": "run session",
+      "variant": "emphasis"
+    },
+    {
+      "from": "session",
+      "to": "tv",
+      "y": 222,
+      "label": "launch CDP",
+      "variant": "default"
+    },
+    {
+      "from": "tv",
+      "to": "session",
+      "y": 269,
+      "label": "ready",
+      "variant": "return"
+    },
+    {
+      "from": "session",
+      "to": "smc",
+      "y": 316,
+      "label": "run SMC engine",
+      "variant": "emphasis"
+    },
+    {
+      "from": "smc",
+      "to": "tv",
+      "y": 363,
+      "label": "fetch candles via MCP",
+      "variant": "default"
+    },
+    {
+      "from": "tv",
+      "to": "smc",
+      "y": 410,
+      "label": "OHLCV data",
+      "variant": "return"
+    },
+    {
+      "from": "smc",
+      "to": "forecast",
+      "y": 457,
+      "label": "candle reports",
+      "variant": "default"
+    },
+    {
+      "from": "forecast",
+      "to": "llm",
+      "y": 504,
+      "label": "predictions",
+      "variant": "default"
+    },
+    {
+      "from": "llm",
+      "to": "judge",
+      "y": 551,
+      "label": "score reasoning",
+      "variant": "security"
+    },
+    {
+      "from": "judge",
+      "to": "llm",
+      "y": 598,
+      "label": "VERDICT",
+      "variant": "return"
+    },
+    {
+      "from": "llm",
+      "to": "web",
+      "y": 645,
+      "label": "write stages",
+      "variant": "dashed"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "trader",
+      "from": 175,
+      "to": 222,
+      "type": "external"
+    },
+    {
+      "participant": "session",
+      "from": 175,
+      "to": 363,
+      "type": "backend"
+    },
+    {
+      "participant": "tv",
+      "from": 222,
+      "to": 457,
+      "type": "external"
+    },
+    {
+      "participant": "smc",
+      "from": 316,
+      "to": 504,
+      "type": "backend"
+    },
+    {
+      "participant": "forecast",
+      "from": 457,
+      "to": 551,
+      "type": "backend"
+    },
+    {
+      "participant": "llm",
+      "from": 504,
+      "to": 692,
+      "type": "backend"
+    },
+    {
+      "participant": "judge",
+      "from": 551,
+      "to": 645,
+      "type": "backend"
+    },
+    {
+      "participant": "web",
+      "from": 645,
+      "to": 692,
+      "type": "frontend"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Three Phases",
+      "items": [
+        "Setup: TV launch + candle fetch (1-2 min)",
+        "Analysis: SMC engine + forecast cross-check",
+        "Decision: LLM judge scores + dashboard renders"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Judge Gate",
+      "items": [
+        "5 dimensions: directional correctness ICT adherence reasoning",
+        "BLOCKED = mandatory abort before trade execution"
+      ]
+    }
+  ]
+}

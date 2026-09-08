@@ -6,6 +6,7 @@
 //   node tools/tv-mcp/market_monitor.cjs --trade NAS100 --entry 27756 --sl 27820 --tp1 27455
 
 const CDP = require("chrome-remote-interface");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 
 // Broker-prefixed TV symbols — plain names resolve to wrong instruments
 const TV_SYMBOLS = {
@@ -70,7 +71,7 @@ function detectStructure(bars) {
   for (const p of SCAN_PAIRS) { ROTATION.push(TRADE_PAIR); ROTATION.push(p); }
   // Pattern: NAS100 → EURUSD → NAS100 → GBPUSD → NAS100 → XAUUSD → repeat
 
-  const resp = await fetch("http://127.0.0.1:9222/json/list");
+  const resp = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await resp.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.log("No chart"); process.exit(1); }

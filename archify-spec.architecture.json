@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "SMC-ICM Trading System",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/GdotAiM/smc-icm-trading.git",
+      "revision": "1ec1a57547c4c6c09d706d7ca3acfc3a72163a76"
+    }
+  },
+  "components": [
+    {
+      "id": "user",
+      "type": "external",
+      "label": "Trader",
+      "sublabel": "Claude Code + CLI",
+      "pos": [
+        20,
+        30
+      ],
+      "size": [
+        110,
+        56
+      ]
+    },
+    {
+      "id": "session",
+      "type": "backend",
+      "label": "Session Orchestrator",
+      "sublabel": "7-stage pipeline entry point",
+      "sources": [
+        {
+          "path": "tools/session_start.cjs"
+        }
+      ],
+      "pos": [
+        190,
+        30
+      ],
+      "size": [
+        180,
+        56
+      ]
+    },
+    {
+      "id": "smc",
+      "type": "backend",
+      "label": "SMC Engine",
+      "sublabel": "Rust TS structure OBs FVGs",
+      "sources": [
+        {
+          "path": "tools/smc-engine/src/index.ts"
+        }
+      ],
+      "pos": [
+        430,
+        30
+      ],
+      "size": [
+        180,
+        56
+      ]
+    },
+    {
+      "id": "tv",
+      "type": "external",
+      "label": "TradingView Desktop",
+      "sublabel": "CDP 9222 11 MCP tools",
+      "pos": [
+        670,
+        30
+      ],
+      "size": [
+        180,
+        56
+      ]
+    },
+    {
+      "id": "data",
+      "type": "backend",
+      "label": "Data Layer",
+      "sublabel": "Binance Yahoo Cache",
+      "sources": [
+        {
+          "path": "tools/data_fetcher.py"
+        }
+      ],
+      "pos": [
+        430,
+        140
+      ],
+      "size": [
+        180,
+        56
+      ]
+    },
+    {
+      "id": "supabase",
+      "type": "database",
+      "label": "Supabase",
+      "sublabel": "PostgreSQL positions trades",
+      "pos": [
+        670,
+        140
+      ],
+      "size": [
+        180,
+        56
+      ]
+    },
+    {
+      "id": "llm",
+      "type": "backend",
+      "label": "LLM Operator Layer",
+      "sublabel": "Ollama Groq operator council",
+      "sources": [
+        {
+          "path": "tools/llm/operator_loop.cjs"
+        }
+      ],
+      "pos": [
+        190,
+        140
+      ],
+      "size": [
+        180,
+        56
+      ]
+    },
+    {
+      "id": "web",
+      "type": "frontend",
+      "label": "Web Dashboard",
+      "sublabel": "Vite React Tailwind",
+      "sources": [
+        {
+          "path": "web/src/App.tsx"
+        }
+      ],
+      "pos": [
+        190,
+        250
+      ],
+      "size": [
+        180,
+        56
+      ]
+    },
+    {
+      "id": "workers",
+      "type": "cloud",
+      "label": "Cloud Workers",
+      "sublabel": "Wrangler status monitor",
+      "sources": [
+        {
+          "path": "workers/status.js"
+        }
+      ],
+      "pos": [
+        430,
+        250
+      ],
+      "size": [
+        180,
+        56
+      ]
+    },
+    {
+      "id": "discord",
+      "type": "messagebus",
+      "label": "Discord Bot",
+      "sublabel": "Alerts premium notifications",
+      "sources": [
+        {
+          "path": "tools/discord_bot.cjs"
+        }
+      ],
+      "pos": [
+        670,
+        250
+      ],
+      "size": [
+        180,
+        56
+      ]
+    },
+    {
+      "id": "langfuse",
+      "type": "external",
+      "label": "Langfuse",
+      "sublabel": "Observability LLM tracing",
+      "pos": [
+        430,
+        360
+      ],
+      "size": [
+        180,
+        56
+      ]
+    },
+    {
+      "id": "eval",
+      "type": "backend",
+      "label": "Eval Backtest",
+      "sublabel": "judge metrics regression",
+      "sources": [
+        {
+          "path": "evaluation/judge/llm_judge.cjs"
+        }
+      ],
+      "pos": [
+        670,
+        360
+      ],
+      "size": [
+        180,
+        56
+      ]
+    }
+  ],
+  "boundaries": [],
+  "connections": [
+    {
+      "from": "user",
+      "to": "session",
+      "label": "run session",
+      "variant": "emphasis"
+    },
+    {
+      "from": "session",
+      "to": "smc",
+      "label": "analyze candles",
+      "labelDy": -24
+    },
+    {
+      "from": "smc",
+      "to": "tv",
+      "label": "candle stream",
+      "labelDy": -24
+    },
+    {
+      "from": "smc",
+      "to": "data"
+    },
+    {
+      "from": "data",
+      "to": "supabase"
+    },
+    {
+      "from": "session",
+      "to": "llm"
+    },
+    {
+      "from": "llm",
+      "to": "web"
+    },
+    {
+      "from": "web",
+      "to": "workers"
+    },
+    {
+      "from": "workers",
+      "to": "discord"
+    },
+    {
+      "from": "workers",
+      "to": "langfuse"
+    },
+    {
+      "from": "discord",
+      "to": "eval"
+    },
+    {
+      "from": "eval",
+      "to": "langfuse"
+    }
+  ]
+}

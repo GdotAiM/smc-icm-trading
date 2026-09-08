@@ -1,5 +1,5 @@
 const CDP = require("chrome-remote-interface");
-const { fetchRetry } = require("../../lib/http_retry.cjs");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 
 async function evalExpr(client, expr) {
   const r = await client.Runtime.evaluate({ expression: expr, returnByValue: true });

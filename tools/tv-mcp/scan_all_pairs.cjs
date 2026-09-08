@@ -1,5 +1,6 @@
 // Scan all pairs for live tradeable setups
 const path = require("path");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 
 // Broker-prefixed TV symbols — plain names resolve to wrong instruments
@@ -12,7 +13,7 @@ const PAIRS = [
 ];
 
 (async () => {
-  const r = await fetch("http://127.0.0.1:9222/json/list");
+  const r = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await r.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   const client = await CDP({ host: "127.0.0.1", port: 9222, target: chart.id });

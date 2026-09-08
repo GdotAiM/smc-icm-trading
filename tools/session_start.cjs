@@ -14,6 +14,7 @@
  */
 
 const { execSync, spawn } = require("child_process");
+const { fetchRetry } = require("./lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 
@@ -51,7 +52,7 @@ log("═══ STEP 1: TV Desktop CDP ═══");
 
 async function checkTV() {
   try {
-    const resp = await fetch("http://127.0.0.1:9222/json/version");
+    const resp = await fetchRetry("http://127.0.0.1:9222/json/version");
     const data = await resp.json();
     log(`  ✅ TV CDP running — ${data.Browser}`);
     return true;
@@ -94,7 +95,7 @@ async function ensureTV() {
 // STEP 1b: Check for chart tab
 // ═══════════════════════════════════════════════════
 async function ensureChartTab() {
-  const resp = await fetch("http://127.0.0.1:9222/json/list");
+  const resp = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await resp.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (chart) {

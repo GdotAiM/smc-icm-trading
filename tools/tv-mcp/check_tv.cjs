@@ -1,7 +1,8 @@
 const CDP = require("chrome-remote-interface");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 
 (async () => {
-  const r = await fetch("http://127.0.0.1:9222/json/list");
+  const r = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await r.json();
 
   console.log("=== TradingView Tabs ===");

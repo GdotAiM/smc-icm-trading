@@ -1,6 +1,6 @@
 // Get live price + 1m swing high from TradingView
 const CDP = require("chrome-remote-interface");
-const { fetchRetry } = require("../../lib/http_retry.cjs");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 
 (async () => {
   const r = await fetchRetry("http://127.0.0.1:9222/json/list");

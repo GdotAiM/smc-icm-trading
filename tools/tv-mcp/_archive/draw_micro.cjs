@@ -1,11 +1,12 @@
 const CDP = require("chrome-remote-interface");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 
 async function run(client, expr) {
   await client.Runtime.evaluate({ expression: expr, returnByValue: true });
 }
 
 (async () => {
-  const r = await fetch("http://127.0.0.1:9222/json/list");
+  const r = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await r.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.log("No chart"); process.exit(1); }

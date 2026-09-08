@@ -1,9 +1,10 @@
 // Output positions as clean JSON for machine consumption
 const path = require("path");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 
 (async () => {
-  const r = await fetch("http://127.0.0.1:9222/json/list");
+  const r = await fetchRetry("http://127.0.0.1:9222/json/list");
   const t = await r.json();
   const c = t.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!c) { console.log("[]"); process.exit(0); }

@@ -1,5 +1,6 @@
 // Quick fix: fetch DXY with correct TradingView symbol
 const CDP = require("chrome-remote-interface");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 
@@ -13,7 +14,7 @@ async function evalExpr(client, expr) {
 }
 
 (async () => {
-  const resp = await fetch("http://127.0.0.1:9222/json/list");
+  const resp = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await resp.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.error("No chart tab found"); process.exit(1); }

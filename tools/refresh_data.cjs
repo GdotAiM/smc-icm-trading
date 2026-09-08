@@ -5,7 +5,7 @@
 //        node tools/refresh_data.cjs GBPUSD    → single pair
 
 const CDP = require("./tv-mcp/cdp_client.cjs");
-const { fetchRetry } = require("../lib/http_retry.cjs");
+const { fetchRetry } = require("./lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");

@@ -9,6 +9,7 @@
 // Pipe to a file and tail -f, or use Claude's Monitor tool.
 
 const CDP = require("chrome-remote-interface");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 
 // Broker-prefixed TV symbols — plain names resolve to wrong instruments
 const TV_SYMBOLS = {
@@ -132,7 +133,7 @@ function detectStructure(bars) {
   const tp2 = parseFloat(a.tp2) || null;
   const interval = parseInt(a.interval) || 5; // poll interval in seconds
 
-  const resp = await fetch("http://127.0.0.1:9222/json/list");
+  const resp = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await resp.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.log(JSON.stringify({ error: "No chart" })); process.exit(1); }

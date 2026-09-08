@@ -1,5 +1,6 @@
 // Draw entry/SL/TP from current decision.json on the 1m chart
 const CDP = require("chrome-remote-interface");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 
@@ -53,7 +54,7 @@ function r1(v) { return Number(v).toFixed(1); }
   const tvSymbol = PAIR === "NAS100" ? "CAPITALCOM:NAS100" : PAIR === "EURUSD" ? "OANDA:EURUSD" : PAIR === "GBPUSD" ? "OANDA:GBPUSD" : PAIR;
 
   // Connect
-  const r = await fetch("http://127.0.0.1:9222/json/list");
+  const r = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await r.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.log("No chart"); process.exit(1); }

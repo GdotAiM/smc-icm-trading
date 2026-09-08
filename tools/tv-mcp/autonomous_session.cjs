@@ -9,6 +9,7 @@
 // Discord alerts: Set DISCORD_WEBHOOK in .env for trade notifications
 
 const { execSync } = require("child_process");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 
@@ -107,7 +108,7 @@ async function phase1Startup() {
 
   // Check TV CDP
   try {
-    const resp = await fetch("http://127.0.0.1:9222/json/version");
+    const resp = await fetchRetry("http://127.0.0.1:9222/json/version");
     const data = await resp.json();
     log({ event: "TV_CDP_OK", detail: data.Browser });
   } catch {

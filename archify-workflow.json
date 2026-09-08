@@ -1,0 +1,264 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "ICM Trading Pipeline",
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "visual_preset": "signal-flow",
+    "output": "docs/smc-icm-workflow.html"
+  },
+  "lanes": [
+    {
+      "id": "trader",
+      "label": "Trader"
+    },
+    {
+      "id": "pipeline",
+      "label": "Pipeline"
+    },
+    {
+      "id": "analysis",
+      "label": "Analysis"
+    },
+    {
+      "id": "intelligence",
+      "label": "Intelligence Layer"
+    },
+    {
+      "id": "reasoning",
+      "label": "Reasoning"
+    },
+    {
+      "id": "output",
+      "label": "Output & Evaluation"
+    },
+    {
+      "id": "display",
+      "label": "Display"
+    },
+    {
+      "id": "results",
+      "label": "Results"
+    }
+  ],
+  "phases": [
+    {
+      "id": "prep",
+      "label": "Pre-flight",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "analyze",
+      "label": "Deep Analysis",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "decide",
+      "label": "Decision + Eval",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "groups": [
+    {
+      "id": "stage-sweep",
+      "label": "7-stage sweep",
+      "lane": "pipeline",
+      "fromCol": 2,
+      "toCol": 2,
+      "variant": "emphasis"
+    },
+    {
+      "id": "int-group",
+      "label": "Forecast + LLM",
+      "lane": "intelligence",
+      "fromCol": 3,
+      "toCol": 3,
+      "variant": "dashed"
+    },
+    {
+      "id": "judge-path",
+      "label": "Judge + verdict",
+      "lane": "output",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "security"
+    }
+  ],
+  "mainPath": [
+    "trader",
+    "session",
+    "smc",
+    "forecast",
+    "llm",
+    "judge",
+    "web",
+    "eval"
+  ],
+  "nodes": [
+    {
+      "id": "trader",
+      "lane": "trader",
+      "col": 0,
+      "type": "external",
+      "label": "Trader",
+      "sublabel": "Claude Code CLI",
+      "width": 100
+    },
+    {
+      "id": "session",
+      "lane": "pipeline",
+      "col": 1,
+      "type": "backend",
+      "label": "Session Start",
+      "sublabel": "launch TV fetch candles",
+      "width": 100
+    },
+    {
+      "id": "smc",
+      "lane": "pipeline",
+      "col": 2,
+      "type": "backend",
+      "label": "SMC Engine",
+      "sublabel": "Rust TS structure OBs",
+      "width": 100
+    },
+    {
+      "id": "tv",
+      "lane": "analysis",
+      "col": 2,
+      "type": "external",
+      "label": "TradingView CDP",
+      "sublabel": "charts drawings live data",
+      "width": 100
+    },
+    {
+      "id": "forecast",
+      "lane": "intelligence",
+      "col": 3,
+      "type": "backend",
+      "label": "Forecast Engine",
+      "sublabel": "Kronos Chronos MC",
+      "width": 100
+    },
+    {
+      "id": "llm",
+      "lane": "reasoning",
+      "col": 4,
+      "type": "backend",
+      "label": "LLM Operator",
+      "sublabel": "council vote coherence",
+      "width": 100
+    },
+    {
+      "id": "judge",
+      "lane": "output",
+      "col": 4,
+      "type": "backend",
+      "label": "LLM Judge",
+      "sublabel": "5-dim quality scoring",
+      "width": 100
+    },
+    {
+      "id": "web",
+      "lane": "display",
+      "col": 5,
+      "type": "frontend",
+      "label": "Web Dashboard",
+      "sublabel": "stage rail KPI journal",
+      "width": 100
+    },
+    {
+      "id": "eval",
+      "lane": "output",
+      "col": 5,
+      "type": "backend",
+      "label": "Eval Backtest",
+      "sublabel": "judge metrics regression",
+      "width": 100
+    },
+    {
+      "id": "verdict",
+      "lane": "results",
+      "col": 5,
+      "type": "external",
+      "label": "Verdict",
+      "sublabel": "CLEAR CAUTION BLOCKED",
+      "width": 100
+    }
+  ],
+  "edges": [
+    {
+      "from": "trader",
+      "to": "session",
+      "label": "run session",
+      "variant": "emphasis"
+    },
+    {
+      "from": "session",
+      "to": "smc",
+      "label": "analyze candles"
+    },
+    {
+      "from": "session",
+      "to": "tv",
+      "label": "launch CDP"
+    },
+    {
+      "from": "smc",
+      "to": "forecast",
+      "label": "candle reports"
+    },
+    {
+      "from": "forecast",
+      "to": "llm",
+      "label": "predictions"
+    },
+    {
+      "from": "llm",
+      "to": "judge",
+      "label": "signal reasoning"
+    },
+    {
+      "from": "judge",
+      "to": "web",
+      "label": "stage outputs"
+    },
+    {
+      "from": "web",
+      "to": "eval",
+      "label": "review results"
+    },
+    {
+      "from": "eval",
+      "to": "verdict",
+      "label": "approve block",
+      "variant": "security"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Pipeline Phases",
+      "items": [
+        "Pre-flight: TV launch + candle fetch (3-4 min)",
+        "Deep Analysis: SMC engine + forecast cross-check",
+        "Decision + Eval: LLM judge scores clarity of reasoning"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Verdict Gate",
+      "items": [
+        "CLEAR: all quality checks pass proceed",
+        "CAUTION: warnings found advisory only",
+        "BLOCKED: critical failure do not trade"
+      ]
+    }
+  ]
+}

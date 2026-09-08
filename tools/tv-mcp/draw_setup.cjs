@@ -4,6 +4,7 @@
 // Falls back to engine data for levels
 
 const path = require("path");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 const CDP = require(path.join(__dirname, "cdp_client.cjs"));
 const fs = require("fs");
 
@@ -23,7 +24,7 @@ const TV_SYMBOLS = {
 const TV_SYM = TV_SYMBOLS[PAIR] || PAIR;
 
 (async () => {
-  const r = await fetch("http://127.0.0.1:9222/json/list");
+  const r = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await r.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.log("No TV chart"); process.exit(1); }

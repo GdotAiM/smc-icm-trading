@@ -4,6 +4,7 @@
 // Usage: node tools/tv-mcp/intel_monitor.cjs
 
 const CDP = require("chrome-remote-interface");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 
@@ -353,7 +354,7 @@ function analyzeRegime(pairStates, recentMs = 60000) {
     if (f) console.error(`  ${p}: 5m ${f.f5m.direction} → ${f.f5m.target} | 1m ${f.f1m.direction} → ${f.f1m.target} | ${f.agree ? 'ALIGNED' : 'DIVERGENT'}`);
   }
 
-  const resp = await fetch("http://127.0.0.1:9222/json/list");
+  const resp = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await resp.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.error("No chart"); process.exit(1); }
@@ -365,7 +366,7 @@ function analyzeRegime(pairStates, recentMs = 60000) {
   async function reconnectCDP() {
     try {
       if (client) { try { await client.close(); } catch {} }
-      const resp = await fetch("http://127.0.0.1:9222/json/list");
+      const resp = await fetchRetry("http://127.0.0.1:9222/json/list");
       const targets = await resp.json();
       const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
       if (!chart) { console.error("[INTEL] CDP reconnect failed — no chart tab"); return false; }

@@ -3,7 +3,7 @@
 //        node tools/tv-mcp/fetch_candles.cjs --pair GOLD --all-tfs --output-dir shared/2026-07-28/GOLD/
 
 const CDP = require("chrome-remote-interface");
-const { fetchRetry } = require("../../lib/http_retry.cjs");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 

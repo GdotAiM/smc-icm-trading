@@ -3,6 +3,7 @@
 // Usage: node tools/position_monitor.cjs
 
 const CDP = require("./tv-mcp/cdp_client.cjs");
+const { fetchRetry } = require("./lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 
@@ -14,7 +15,7 @@ const POSITIONS = [
 ];
 
 (async () => {
-  const r = await (await fetch("http://127.0.0.1:9222/json/list")).json();
+  const r = await (await fetchRetry("http://127.0.0.1:9222/json/list")).json();
   const chart = r.find(t => t.type === "page" && /tradingview/i.test(t.url || ""));
   if (!chart) { console.log("❌ TV not connected"); return; }
   const cl = await CDP({ host: "127.0.0.1", port: 9222, target: chart.id });

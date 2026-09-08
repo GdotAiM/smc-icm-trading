@@ -8,6 +8,7 @@
 //        node tools/auto_scheduler.cjs --once     (run one cycle and exit)
 
 const { execSync } = require("child_process");
+const { fetchRetry } = require("./lib/http_retry.cjs");
 const fs = require("fs");
 const path = require("path");
 
@@ -374,7 +375,7 @@ async function detectPositionExits() {
   })()`;
   try {
     const CDP = require(path.join(ROOT, "tools", "tv-mcp", "cdp_client.cjs"));
-    const r = await fetch("http://127.0.0.1:9222/json/list");
+    const r = await fetchRetry("http://127.0.0.1:9222/json/list");
     const targets = await r.json();
     const chart = targets.find(t => t.type === "page" && /tradingview/.test(t.url || ""));
     if (!chart) return;

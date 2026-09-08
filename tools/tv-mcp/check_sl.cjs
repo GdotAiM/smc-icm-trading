@@ -3,6 +3,7 @@
 //        node tools/tv-mcp/check_sl.cjs --pair GOLD --trades '[{"entry":4043.90,"sl":4055.60,"id":"E1"},{"entry":4028.50,"sl":4036.00,"id":"E2"}]'
 
 const CDP = require("chrome-remote-interface");
+const { fetchRetry } = require("../lib/http_retry.cjs");
 
 // Broker-prefixed TV symbols — plain names resolve to wrong instruments
 const TV_SYMBOLS = {
@@ -42,7 +43,7 @@ async function evalExpr(client, expr) {
     process.exit(1);
   }
 
-  const resp = await fetch("http://127.0.0.1:9222/json/list");
+  const resp = await fetchRetry("http://127.0.0.1:9222/json/list");
   const targets = await resp.json();
   const chart = targets.find(t => t.type === "page" && /tradingview\.com\/chart/i.test(t.url || ""));
   if (!chart) { console.log(JSON.stringify({ error: "No chart" })); process.exit(1); }
