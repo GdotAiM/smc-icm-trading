@@ -29,6 +29,7 @@ const { agentLoop, safeJsonParse } = require("./llm_client.cjs");
 const { loadActiveLessons, formatMemoryMarkdown } = require("./memory_lessons.cjs");
 const { COT_CHAIN } = require("./llm_prompts.cjs");
 const { loadProjectEnv } = require("./load_env.cjs");
+const { load: loadCycleState, briefContext: cycleBriefContext } = require("./cycle_state.cjs");
 
 loadProjectEnv();
 
@@ -139,6 +140,15 @@ function buildContext({ pair, date, root = ROOT }) {
   const memText = formatMemoryMarkdown(mem);
   if (memText) sections.push(`\n## Live trade-graph memory\n${memText}`);
   if (mem && mem.error && !memText) sections.push(`\n## Trade-graph memory\n[${mem.error}]`);
+
+  // Cycle state — recent operator history for this pair
+  try {
+    const ny = require("../ny_time.cjs");
+    const csDate = ny.getNYDate();
+    const cs = loadCycleState(P, csDate);
+    const csText = cycleBriefContext(P, cs);
+    if (csText) sections.push(csText);
+  } catch (_) {}
 
   return { context: sections.join("\n\n").slice(0, 40000), decision, stageFiles };
 }

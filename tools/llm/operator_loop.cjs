@@ -31,6 +31,7 @@ const { chatCompletion, safeJsonParse } = require("./llm_client.cjs");
 const { COT_CHAIN } = require("./llm_prompts.cjs");
 const { loadActiveLessons, formatMemoryMarkdown } = require("./memory_lessons.cjs");
 const { computeSwingTarget, countModelPasses, SWING_TARGET_MODEL } = require("./swing_target.cjs");
+const { load: loadCycleState, save: saveCycleState, briefContext: cycleBriefContext, computePriceDrift } = require("./cycle_state.cjs");
 require("./load_env.cjs").loadProjectEnv();
 
 const ALL_PAIRS = ["XAUUSD", "GBPUSD", "EURUSD", "NAS100", "USDOLLAR"];
@@ -171,6 +172,21 @@ function gate(proposal, ctx) {
   if (proposal.action !== "TRADE") {
     return { verdict: "NO_TRADE_PROPOSAL", reasons: [`proposal action = ${proposal.action}`], canExecute: false };
   }
+
+  // Repetition guard — block identical proposals without sufficient price drift.
+  // Prevents the LLM from re-proposing the same missed trade every cycle.
+  try {
+    const prev = loadCycleState(ctx.pair);
+    if (prev?.lastProposal && prev.lastProposal.action === "TRADE") {
+      const lp = prev.lastProposal;
+      const entrySame = Math.abs(Number(proposal.entry) - Number(lp.entry)) / Number(lp.entry) < 0.001;
+      const modelSame = String(proposal.model || "").toLowerCase() === String(lp.model || "").toLowerCase();
+      const driftEnough = prev.priceDrift != null && Math.abs(prev.priceDrift) > 0.002;
+      if (entrySame && modelSame && !driftEnough) {
+        reasons.push(`repeat proposal — same model+price within 0.1% as last cycle (${prev.consecutiveNoTrade ?? 0} prior NO_TRADE)`);
+      }
+    }
+  } catch (_) {}
 
   // NY Lunch carve-out: a carry-forward model (backed by a real carried prior-day
   // lunch inefficiency, correct side) is the ONLY lunch entry permitted — at 50%
@@ -355,7 +371,7 @@ async function verifyOrder(pair) {
 
 // ── LLM propose (the ICT operator) ─────────────────────────────────────────────
 
-function buildOperatorPrompt(brief, memoryText) {
+function buildOperatorPrompt(brief, memoryText, ctxText = "") {
   const systemPrompt = `You are ICT (Inner Circle Trader) acting as the lead operator of a trading desk. You make trading decisions, and a deterministic supervisor enforces hard risk rules after you. You never place an order directly.
 
 ${COT_CHAIN}
@@ -415,15 +431,16 @@ GROUND RULES:
     { role: "system", content: systemPrompt },
     {
       role: "user",
-      content: `## MARKET BRIEF\n${brief}\n\n${memoryText ? `## YOUR TRADE-GRAPH MEMORY\n${memoryText}` : ""}\n\nDecide. Respond with the JSON object only.`,
+      content: `## MARKET BRIEF\n${brief}\n\n${memoryText ? `## YOUR TRADE-GRAPH MEMORY\n${memoryText}` : ""}${ctxText}\nDecide. Respond with the JSON object only.`,
     },
   ];
 }
 
-async function propose(brief, pair) {
+async function propose(brief, pair, cycleState) {
   const mem = loadActiveLessons({ pair, limit: 6 });
   const memoryText = formatMemoryMarkdown(mem);
-  const messages = buildOperatorPrompt(brief, memoryText);
+  const ctxText = cycleBriefContext(pair, cycleState);
+  const messages = buildOperatorPrompt(brief, memoryText, ctxText);
 
   const fallbackProviders = ["gemini"];
   let lastError = "";
@@ -495,11 +512,17 @@ async function cyclePair(pair, opts) {
     return;
   }
 
-  const proposal = await propose(briefRes.brief, pair);
+  const prev = loadCycleState(pair);
+  const proposal = await propose(briefRes.brief, pair, prev);
   await append("proposal", { pair, cycleId: CYCLE_ID, proposal });
 
   if (proposal.action !== "TRADE") {
     await append("journal", { pair, cycleId: CYCLE_ID, verdict: proposal.action, summary: proposal.verdict || proposal.reason || "" });
+    saveCycleState(pair, {
+      lastProposal: null,
+      consecutiveNoTrade: (prev?.consecutiveNoTrade ?? 0) + 1,
+      executionAttempts: 0,
+    }, getNYDate());
     return;
   }
 
@@ -513,6 +536,11 @@ async function cyclePair(pair, opts) {
       summary: `proposal BLOCKED${opts.noExecute ? " (no-execute mode)" : ""}: ${g.reasons.join("; ") || "gate denied"}`,
       proposal,
     });
+    saveCycleState(pair, {
+      lastProposal: { action: "TRADE", side: proposal.side, entry: proposal.entry, sl: proposal.sl, tp: proposal.tp, model: proposal.model, confidence: proposal.confidence },
+      lastRejection: g.reasons.join("; "),
+      consecutiveNoTrade: 0,
+    }, getNYDate());
     return;
   }
 
@@ -527,6 +555,12 @@ async function cyclePair(pair, opts) {
     summary: `${proposal.side} ${pair} @ ${proposal.entry} SL ${proposal.sl} TP ${proposal.tp} | ${proposal.model} | qty ${qty} | ${exec.status}`,
     proposal,
   });
+  saveCycleState(pair, {
+    lastProposal: { action: "TRADE", side: proposal.side, entry: proposal.entry, sl: proposal.sl, tp: proposal.tp, model: proposal.model, confidence: proposal.confidence },
+    lastRejection: null,
+    consecutiveNoTrade: 0,
+    executionAttempts: exec.status === "failed" ? ((prev?.executionAttempts ?? 0) + 1) : 0,
+  }, getNYDate());
 }
 
 // ── Day-planner (PHASE 6) ─────────────────────────────────────────────────────
