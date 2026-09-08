@@ -448,7 +448,7 @@ async function propose(brief, pair, cycleState) {
   for (let attempt = 0; attempt < 3; attempt++) {
     const provider = attempt === 0 ? undefined : fallbackProviders[attempt - 1];
     try {
-      const resp = await chatCompletion(messages, { provider, maxTokens: 2000, temperature: 0.2, timeout: 120000 });
+      const resp = await chatCompletion(messages, { provider, maxTokens: 4000, temperature: 0.2, timeout: 120000 });
       if (resp.text.startsWith("[LLM")) {
         lastError = resp.text;
         await append("error", { pair, cycleId: CYCLE_ID, message: resp.text });
