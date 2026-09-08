@@ -19,6 +19,7 @@ import { logger } from "../logger.js";
 import { getTvConfig } from "../config.js";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 import CDP from "chrome-remote-interface";
+import { fetchRetry } from "./retry.js";
 
 // ─── State ────────────────────────────────────────────────────────────────
 
@@ -58,7 +59,7 @@ export interface TvTarget {
  * List all CDP page targets from TV Desktop.
  */
 export async function listTargets(): Promise<TvTarget[]> {
-  const resp = await fetch(`${getEndpoint()}/json/list`);
+  const resp = await fetchRetry(`${getEndpoint()}/json/list`);
   const targets = await resp.json() as any[];
   return targets
     .filter(t => t.type === "page")
@@ -114,11 +115,11 @@ export async function connect(): Promise<boolean> {
 
     _targetUrl = target.url;
     _connected = true;
-    logger.info({ url: target.url, title: target.title }, "TradingView Desktop CDP connected");
+    logger.info("TradingView Desktop CDP connected — " + target.url);
     return true;
   } catch (err: any) {
     _connected = false;
-    logger.warn({ err: err.message }, "TradingView Desktop CDP connection failed");
+    logger.warn("TradingView Desktop CDP connection failed: " + err.message);
     return false;
   }
 }
@@ -185,7 +186,7 @@ export async function evaluate<T = any>(expression: string): Promise<T | null> {
     const { result } = await _client.Runtime.evaluate({ expression, returnByValue: true });
     return result.value as T;
   } catch (err: any) {
-    logger.warn({ err: err.message, expression: expression.slice(0, 80) }, "TV Desktop evaluate failed");
+    logger.warn("evaluate failed: " + err.message);
     return null;
   }
 }
@@ -205,7 +206,7 @@ export async function evaluateAsync<T = any>(expression: string): Promise<T | nu
     });
     return result.value as T;
   } catch (err: any) {
-    logger.warn({ err: err.message, expression: expression.slice(0, 80) }, "TV Desktop evaluateAsync failed");
+    logger.warn("evaluateAsync failed: " + err.message);
     return null;
   }
 }
@@ -268,7 +269,7 @@ export async function captureScreenshot(region: "full" | "chart" | "strategy_tes
     const { data } = await _client.Page.captureScreenshot(params);
     return data as string; // base64-encoded PNG
   } catch (err: any) {
-    logger.warn({ err: err.message }, "TV Desktop screenshot failed");
+    logger.warn("screenshot failed: " + err.message);
     return null;
   }
 }
