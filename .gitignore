@@ -23,7 +23,37 @@ shared/*/trade_execution.json
 shared/*/*/trade_execution.json
 
 # Runtime daily data (regenerated every run)
-shared/*/
+# Session logs — keep the narrative record, dump the raw engine data
+
+!shared/2026-*/session_log.md
+
+!shared/2026-*/session_journal.json
+
+!shared/2026-*/decision_journal.md
+
+!shared/2026-*/tape_narrative.md
+
+!shared/2026-*/self_validation.md
+
+!shared/2026-*/setup_audit.md
+
+!shared/2026-*/md/*.md
+
+shared/2026-*/*.json
+
+shared/2026-*/*.log
+
+
+# Session logs — permanent record (EXCEPTIONS above)
+!shared/*/session_log.md
+!shared/*/session_journal.json
+!shared/*/decision_journal.md
+!shared/*/tape_narrative.md
+!shared/*/self_validation.md
+!shared/*/setup_audit.md
+!shared/2026-09-07/session_journal.json
+!shared/2026-09-07/session_log.md
+
 shared/trade_graph.json
 shared/trade_log.json
 shared/mt5_bridge.pid

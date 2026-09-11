@@ -200,3 +200,13 @@ console.log(`  Refresh data:       node tools/session_start.cjs`);
 console.log(`  Autonomous NY AM:   node tools/tv-mcp/ny_am_autonomous.cjs`);
 console.log(`  Journal session:    node tools/ict_continuous_learn.cjs --run`);
 console.log(`  Re-run briefing:    node tools/morning_briefing.cjs`);
+
+// ═══════════════════════════════════════════════════════════
+// AUTO-SESSION LOGGER — captures briefing output after each run
+// Non-breaking: if logger fails, briefing still completes
+// ═══════════════════════════════════════════════════════════
+try {
+  const { execSync } = require("child_process");
+  const cmd = `node "${path.join(__dirname, "session_logger.cjs")}"`;
+  execSync(cmd, { stdio: "ignore", timeout: 15000 });
+} catch (_) { /* logger optional — never break the briefing */ }
