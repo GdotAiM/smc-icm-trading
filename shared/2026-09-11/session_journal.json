@@ -1,14 +1,14 @@
 {
   "session_date": "2026-09-11",
   "day_of_week": "Friday",
-  "ny_time_start": "04:50:47",
+  "ny_time_start": "08:09:21",
   "ny_time_end": "~pending",
   "duration_minutes": "in-progress",
   "session_type": "live_analysis",
   "verdict": "NO TRADE",
   "tradeable_count": 0,
   "things_done": [
-    "Ran full session analysis at 04:50:47 NY — 4/4 pairs complete",
+    "Ran full session analysis at 08:09:21 NY — 4/4 pairs complete",
     "Data refreshed: all candles fetched, engines regenerated, forecasts generated",
     "Registry verdicts computed: 0 tradeable, 4 blocked"
   ],
@@ -81,7 +81,7 @@
       "pair": "XAUUSD",
       "price": "4351.05500",
       "bias": "BULLISH (100%)",
-      "model": "SETUP COMPLETE",
+      "model": "NO TRADE",
       "gate": "CHECK REGISTRY",
       "coherence": "0",
       "invalidation": "INVALIDATED",
