@@ -11,17 +11,17 @@ metadata:
 
 ## Week Overview
 
-| Day | ICT Phase | Events | Size | Best Window |
-|-----|-----------|--------|------|-------------|
+| Day | ICT Phase | Key Events | Size | Best Window |
+|-----|-----------|-----------|------|-------------|
 | **Sun** | Closed | Bank holidays | — | Refresh data 21:00 NY |
-| **Mon** | Accumulation | UK Srv PMI, US Chi PMI (LOW) | 0.5× | 08:30–11:00 NY |
-| **Tue** | Manipulation | US HBCHA Mkt Bas (LOW) | 0.5× | 02:00–05:00 + 08:30–11:00 |
-| **Wed** | Reversal Gate ★ | US New House Sales, Unclms (MED) | 0.5× | 08:30–11:00 + gate check |
-| **Thu** | Expansion ★★ | US Core PCE (HIGH), Philly Fed (MED) | 0.75× | 08:30–10:00 NY |
-| **Fri** | Distribution ★★★ | US Leading Ind, API Crude (MED) | Scalp only | 08:30–10:00 |
+| **Mon** | Accumulation | Canada CPI (12:30 PM), China data, RBA Hunter Speech | 0.5× | 08:30–11:00 NY |
+| **Tue** | Manipulation | UK Jobs (6:00 AM), ADP + Empire State (12:15–12:30 PM) | 0.5× | 02:00–05:00 + 08:30–11:00 |
+| **Wed** | **CLIMAX ★★** | **FED RATE DECISION + Projections + Press Conf (6:00 PM ET)** + UK Inflation | 1.0× | 18:00–19:30 NY |
+| **Thu** | **CLIMAX ★★** | **BOE RATE DECISION (11:00 AM ET)** + US Jobless Claims + Housing Starts | 1.0× | 11:00–14:00 NY |
+| **Fri** | Distribution ★★★ | **BOJ RATE DECISION (3:00 AM ET)** + US Industrial Production + Germany PPI | Scalp only | 08:30–10:00 |
 
 **Last Week Recap (Sep 7–12):** Risk-off week. ECB hike priced in, CPI came hot → DXY surged, gold sold hard.
-**Weekly Range Position:** EUR/GBP/XAU/NAS all near weekly LOWS. DXY near midpoint. Expect mean-reversion bias early in the week.
+**Weekly Range Position:** EUR/GBP/XAU/NAS all near weekly LOWS. DXY near midpoint. Three central bank decisions this week will SET the trend for Q4.
 
 ---
 
@@ -59,6 +59,43 @@ metadata:
 
 ---
 
+## HIGH-IMPACT DAYS THIS WEEK
+
+This is a **three-bank decision week** — Fed, BoE, and BoJ all meeting. Each will set the directional tone for the following days.
+
+### Wednesday Sep 16 — FOMC DAY (CRITICAL)
+| Time ET | Event | Impact |
+|---------|-------|--------|
+| 6:00 PM | **Fed Interest Rate Decision** | 🔴 CRITICAL |
+| 6:00 PM | **FOMC Economic Projections (dot plot)** | 🔴 CRITICAL |
+| 6:30 PM | **Fed Press Conference (Powell)** | 🔴 CRITICAL |
+| 12:30 PM | US Retail Sales MoM (pre-market lead) | 🟡 HIGH |
+| 6:00 AM | UK Core/Headline Inflation | 🟡 HIGH |
+
+**Key questions:** Will the Fed hold, cut, or signal a shift? Dot plot direction matters more than the rate itself. Powell's tone on inflation vs growth tradeoff sets the quarter.
+
+### Thursday Sep 17 — BOE DAY
+| Time ET | Event | Impact |
+|---------|-------|--------|
+| 11:00 AM | **BoE Interest Rate Decision** | 🔴 CRITICAL |
+| 11:00 AM | **BoE MPC Vote breakdown** | 🔴 CRITICAL |
+| 12:30 PM | US Initial Jobless Claims | 🟡 HIGH |
+| 12:30 PM | US Housing Starts + Building Permits | 🟡 HIGH |
+
+**Key questions:** Hawkish hold or dovish pivot from BoE? Vote split (cut vs hike vs unchanged) drives GBP volatility.
+
+### Friday Sep 18 — BOJ DAY
+| Time ET | Event | Impact |
+|---------|-------|--------|
+| 3:00 AM | **BoJ Interest Rate Decision** | 🔴 CRITICAL |
+| 6:00 AM | Germany PPI | 🟡 HIGH |
+| 6:00 AM | UK Retail Sales | 🟡 HIGH |
+| 1:15 PM | US Industrial Production | 🟡 HIGH |
+
+**Key questions:** BOJ tightening or pause? Yen intervention risk if USD/JPY gaps.
+
+---
+
 ## MONDAY SEP 14 — ACCUMULATION
 
 **Theme:** Post-CPI stabilization. First look at new week direction.
@@ -89,65 +126,84 @@ metadata:
 
 ## TUESDAY SEP 15 — MANIPULATION
 
-**Theme:** Testing new weekly range. London session sets tone.
-**Size:** 0.5× (early week caution)
+**Theme:** Pre-FOMC positioning. UK jobs data sets GBP tone.
+**Size:** 0.5× (tight ranges ahead of Wednesday)
 
 ### Key Levels
 Same as Monday + watch for new extreme formation.
 
 ### Trade Plan
 - If Monday established a range high/low → Tuesday tests the opposite side.
-- **Failure pattern:** If price breaks Monday's high AND reclaims it → accumulation complete, trend resumes.
-- **Failure pattern:** If price breaks Monday's low AND holds below → distribution accelerating.
+- **UK Jobs (6:00 AM ET):** Strong payrolls = GBP bullish. Weak = fade into FOMC.
+- **ADP + Empire State (12:15–12:30 PM ET):** Early Fed signal. Heat = hawkish lean.
 - Focus on 4H structure shifts over 15m noise.
 
 ---
 
-## WEDNESDAY SEP 16 — REVERSAL GATE ★
+## WEDNESDAY SEP 16 — FOMC ★★
 
-**Theme:** "Wednesday close is the gate." ICT rule — if no extreme formed by Wed close, discard original weekly profile read.
-**Events:** US New House Sales, Weekly Unemployment Claims (MED)
+**Theme:** The most important day of the week. Fed sets the tone for Q4.
+**Events:** Fed Rate Decision + Dot Plot + Press Conference @ 6:00 PM ET
 
-### Trade Plan
-- **Assess:** Has an extreme formed by Wed NY close?
-  - YES → Accumulation complete. Thursday = continuation day.
-  - NO → Discard original plan. Switch to Plan B (mean reversion into Friday).
-- **Unemployment Claims** at 08:30 ET → watch DXY reaction immediately.
-- If claims < 205K (bearish USD) → gold/index longs get green light.
-- If claims > 220K (bullish USD) → fade risk-on, stick with shorts.
+### Pre-FOMC (Morning–Afternoon)
+- Retail Sales at 12:30 PM ET is the last US data before the decision
+- UK Inflation at 6:00 AM ET sets GBP context
+- **Do not open new positions 30 min before FOMC** — spread widening
+
+### Post-FOMC (6:00–7:30 PM ET)
+1. **Rate decision** → compare to consensus (hold vs cut vs hawkish hold)
+2. **Dot plot** → median projection for year-end = bigger signal than the decision
+3. **Powell presser** → listen for inflation vs employment language shift
+4. Wait 5 min after presser for direction → run `run_pair.cjs` fresh
+5. Enter on pullback to structural level, SL at swing invalidation
+
+### Key Scenarios
+- **Hawkish hold (no cut, dots show fewer cuts):** DXY surges → fade XAU/NAS longs
+- **Cut signaled (dovish tilt):** DXY drops → chase XAU/NAS/EUR longs
+- **Surprise cut:** Maximum volatility. Wait for Powell to finish speaking before entering.
 
 ---
 
-## THURSDAY SEP 17 — EXPANSION ★★
+## THURSDAY SEP 17 — BOE ★★
 
-**Theme:** First high-impact day of the week. Core PCE is the Fed's preferred inflation gauge.
-**Events:** US Core PCE m/m (exp 0.2%), Philly Fed Manufacturing (MED)
+**Theme:** BoE decision sets GBP trend. US labor data confirms/contradicts Fed.
+**Events:** BoE Rate Decision @ 11:00 AM ET + Jobless Claims @ 12:30 PM ET
 
 | Pair | Priority | Rationale |
 |------|----------|-----------|
-| XAUUSD | HIGH | Core PCE directly impacts gold. Hot print = gold selloff. Cool print = bounce. |
-| NAS100 | HIGH | Rate-sensitive. PCE drives Fed expectations. |
-| EURUSD | MED | ECB hike already done. EUR needs USD weakness to move. |
-| DXY | HIGH | PCE = direct USD catalyst. |
+| GBPUSD | HIGH | Direct impact from BoE decision |
+| XAUUSD | HIGH | Post-FOMC continuation or reversal |
+| DXY | HIGH | BoE tone affects USD cross-rates |
+| NAS100 | MED | Risk-on/off shift from BoE |
 
 ### Trade Plan
-- **Pre-PCE (08:00–08:25 ET):** Have entries ready but DO NOT front-run.
-- **Post-PCE (08:35+ ET):** Wait 5 min for direction. Then run `run_pair.cjs` fresh.
-- **Core PCE > 0.3%:** Hot inflation → DXY surges → fade longs on XAU/NAS.
-- **Core PCE ≤ 0.2%:** Cool inflation → DXY drops → chase longs on XAU/NAS/EUR.
-- **Philadelphia Fed:** Secondary confirmation. If PCE is cool AND Philly Fed > 0 → strong risk-on.
+- **Pre-BoE (before 11:00 AM):** Position for outcome. Watch GBPUSD structure from Monday/Tuesday.
+- **Post-BoE (11:00–12:00 PM):** Enter on confirmed direction. SL at structural invalidation.
+- **Jobless Claims (12:30 PM):** Secondary catalyst. If claims < 220K = USD weakness extends.
+- **Failure pattern:** If BoE is dovish but claims are hawkish → chop, no clear direction.
 
 ---
 
-## FRIDAY SEP 18 — DISTRIBUTION / TGIF ★★★
+## FRIDAY SEP 18 — BOJ + DISTRIBUTION ★★★
 
-**Theme:** Position squaring. No major US data, but European session carry-over.
-**Events:** US Leading Index, API Crude Inventories (MED)
+**Theme:** BOJ decision sets JPY tone. Position squaring across all pairs.
+**Events:** BoJ Rate Decision @ 3:00 AM ET + US Industrial Production @ 1:15 PM ET
+
+| Pair | Priority | Rationale |
+|------|----------|-----------|
+| DXY | HIGH | BOJ tightening = yen strength = DXY pressure |
+| XAUUSD | HIGH | JPY carry unwinds affect gold funding |
+| NAS100 | MED | Yen strength = risk-off headwind |
+| EURUSD | MED | Cross-rate effects from BOJ |
 
 ### Trade Plan
 - **Size:** Scalp only. Max 1% per trade, 2% daily max.
 - **Friday Rule:** ALL positions MUST close by 16:00 NY.
-- **Leading Index:** 10:00 ET. Weak reading = recession fear = risk-off Friday.
+- **BOJ (3:00 AM ET):** Small window but potentially massive for USD/JPY and carry trades.
+  - Rate hike = yen strengthens = DXY down = risk-on
+  - Hold = status quo = range continues
+  - Hawkish surprise = massive USD sell-off
+- **Industrial Production (1:15 PM ET):** Late-week momentum indicator
 - **TGI Retracement Model:**
   1. Peak expansion expected during 09:30–10:10 ET macro window
   2. Watch if BSL is GUARDED (reversal) vs SWEPT (continuation)
@@ -221,7 +277,7 @@ node tools/draw_all_pairs_v6.cjs
 node tools/ict_continuous_learn.cjs --run
 node tools/trade_graph.cjs --rebuild
 
-# Monday–Wednesday (daily)
+# Monday–Tuesday (daily)
 node tools/session_start.cjs
 node tools/morning_briefing.cjs
 node tools/run_pair.cjs <PAIR>
@@ -229,15 +285,21 @@ node tools/ny_time.cjs --full
 node tools/macro_feedback.cjs --now
 node tools/cross_system_guard.cjs
 
-# Thursday (Core PCE day)
+# Wednesday (FOMC day)
 node tools/session_start.cjs
 node tools/ny_time.cjs --full
-node tools/macro_feedback.cjs --watch 600  # watch during PCE
-# Post-PCE (5 min after 08:30 ET): run run_pair.cjs for updated analysis
+node tools/macro_feedback.cjs --watch 600  # watch during FOMC
+# Post-FOMC (5 min after 6:30 PM ET presser): run run_pair.cjs for updated analysis
 
-# Friday (TGIF)
+# Thursday (BoE day)
 node tools/session_start.cjs
 node tools/ny_time.cjs --full
+# Post-BoE (15 min after 11:00 AM ET): run run_pair.cjs for updated analysis
+
+# Friday (BOJ + TGIF)
+node tools/session_start.cjs
+node tools/ny_time.cjs --full
+# BOJ at 3:00 AM ET — pre-position or stay flat
 # CLOSE ALL BY 16:00 NY
 ```
 
@@ -246,11 +308,13 @@ node tools/ny_time.cjs --full
 ## EXIT RULES (Non-Negotiable)
 
 1. **Never hold over the weekend** without explicit reason + risk reduction
-2. **Thursday PCE:** Do not open NEW positions within 15 min of release
-3. **Friday hard stop at 16:00 NY** — manual intervention if needed
-4. **If DXY breaks 99.60** — flatten ALL longs immediately, reassess regime
-5. **If XAU breaks $4,300** weekly low — abort mean-reversion thesis, switch to trend-following short
-6. **Daily loss limit:** $300 max. Hit it and walk away.
+2. **FOMC (Wed 6:00 PM ET):** Do not open NEW positions within 30 min before/after
+3. **BoE (Thu 11:00 AM ET):** Same rule — wait for initial spike to settle
+4. **BoJ (Fri 3:00 AM ET):** Small window, consider staying flat unless setup is clear
+5. **Friday hard stop at 16:00 NY** — manual intervention if needed
+6. **If DXY breaks 99.60** — flatten ALL longs immediately, reassess regime
+7. **If XAU breaks $4,300** weekly low — abort mean-reversion thesis, switch to trend-following short
+8. **Daily loss limit:** $300 max. Hit it and walk away.
 
 ---
 
@@ -259,4 +323,4 @@ node tools/ny_time.cjs --full
 > *"The more time you spend consolidating in macro time, the less likely continuation."*
 > — ICT Weekly Market Outlook, Aug 31, 2026
 
-This week's consolidation across all risk assets (tight ranges, low volume) suggests accumulation is happening. The break direction will be determined by PCE data on Thursday. Until then: watch, don't force.
+This is NOT a quiet week. Three central bank decisions (Fed Wed, BoE Thu, BoJ Fri) will determine the trend for Q4. The mean-reversion thesis from last week's lows depends on the Fed being dovish. If the Fed stays hawkish, all risk assets could extend lower into next week.
