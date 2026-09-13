@@ -1,0 +1,94 @@
+{
+  "session_date": "2026-09-13",
+  "day_of_week": "Sunday",
+  "ny_time_start": "14:57",
+  "session_type": "weekend_prep",
+  "verdict": "NO TRADE — Sunday prep day",
+  "tradeable_count": 0,
+  "things_done": [
+    "Reviewed Sept 7–12 weekly recap: all risk assets sold off, DXY consolidated flat",
+    "Analyzed Friday (Sep 11) engine data for all 5 pairs — liquidity levels, structure, draw targets",
+    "Computed weekly range positions: XAU/NAS/EUR/GBP all near weekly lows (12-38%), DXY at midpoint (48%)",
+    "Identified Monday execution priority: XAUUSD > NAS100 > DXY (watch first) > EURUSD > GBPUSD",
+    "Created shared/2026-09-13/SUNDAY-WEEKEND-PREP.md with full pair analysis",
+    "Created shared/2026-09-14-WEEKLY-OUTLOOK.md with day-by-day playbook Sep 14-19",
+    "Noted smc-engine npm 404 issue — engine reports incomplete for today"
+  ],
+  "key_findings": [
+    {
+      "impact": "high",
+      "text": "All 4 risk assets (EUR/GBP/XAU/NAS) closed near weekly lows after risk-off CPI week — mean-reversion bias likely Monday–Wednesday"
+    },
+    {
+      "impact": "high",
+      "text": "DXY at 99.087 (mid-range) is the key filter: break 99.009 = risk-on / break 99.186 = risk-off"
+    },
+    {
+      "impact": "medium",
+      "text": "Quiet week ahead: no major catalysts until Thursday Core PCE — good environment for technical mean-reversion trades"
+    },
+    {
+      "impact": "medium",
+      "text": "XAUUSD double-tap on 4313 SSL zone suggests institutional support at weekly lows"
+    },
+    {
+      "impact": "medium",
+      "text": "NAS100 showed strongest single-day recovery (+165pts on Fri) with clean BOS structure"
+    },
+    {
+      "impact": "low",
+      "text": "smc-engine npm package unavailable (404) — pipeline cannot auto-generate engine reports"
+    }
+  ],
+  "pair_summary": [
+    {
+      "pair": "XAUUSD",
+      "price": "4327.77",
+      "bias": "BEARISH (weekly trend)",
+      "model": "Mean-reversion bounce candidate",
+      "gate": "Awaiting Monday confirmation",
+      "coherence": "TBD",
+      "invalidation": "Valid — ,300 stop"
+    },
+    {
+      "pair": "NAS100",
+      "price": "29287.20",
+      "bias": "BULLISH (recovery signal)",
+      "model": "BOS retest candidate",
+      "gate": "Awaiting Monday confirmation",
+      "coherence": "TBD",
+      "invalidation": "Valid — 9,013 stop"
+    },
+    {
+      "pair": "EURUSD",
+      "price": "1.15921",
+      "bias": "BEARISH (BOS)",
+      "model": "SSL defense test",
+      "gate": "Awaiting Monday confirmation",
+      "coherence": "TBD",
+      "invalidation": "Valid — 1.1578 stop"
+    },
+    {
+      "pair": "GBPUSD",
+      "price": "1.35088",
+      "bias": "NEUTRAL (CHoCH pending)",
+      "model": "SSL hold watch",
+      "gate": "Awaiting Monday confirmation",
+      "coherence": "TBD",
+      "invalidation": "Valid — 1.3480 stop"
+    },
+    {
+      "pair": "DXY",
+      "price": "99.087",
+      "bias": "NEUTRAL (mid-range)",
+      "model": "Direction confirm",
+      "gate": "Watch first — determines all else",
+      "coherence": "TBD",
+      "invalidation": "N/A"
+    }
+  ],
+  "files_created": [
+    "shared/2026-09-13/SUNDAY-WEEKEND-PREP.md",
+    "shared/2026-09-14-WEEKLY-OUTLOOK.md"
+  ]
+}
