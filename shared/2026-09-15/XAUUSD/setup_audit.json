@@ -1,0 +1,27 @@
+{
+  "pair": "XAUUSD",
+  "date": "2026-09-15",
+  "emittedAt": "2026-09-15T07:28:17.779Z",
+  "provider": "human-stub",
+  "toolsUsed": false,
+  "status": "ok",
+  "iterations": 0,
+  "verdict": "UNABLE",
+  "confidence": 40,
+  "evidence": [
+    "engine_1h: XAUUSD structure bias=bearish"
+  ],
+  "counterEvidence": [
+    "firstOpp UNLOCKED - no session raid + MSS confirmed yet",
+    "dailyBias NEUTRAL - no clear directional conviction",
+    "invalidation: TRADE INVALID - at least one dimension failed",
+    "insufficient evidence for directional call"
+  ],
+  "recommendations": [
+    "No tradeable edge exists at this time",
+    "Wait for next session raid (London/NY AM) to establish direction"
+  ],
+  "reasoning": "HYPOTHESIS: Evaluating whether XAUUSD has a tradeable setup today. EVIDENCE: tradeable=undefined, bias=, locked=undefined, engineBias=bearish, MMXM step=3/5, coherence_broken=false. COUNTER-EVIDENCE: firstOpp UNLOCKED - no session raid + MSS confirmed yet; dailyBias NEUTRAL - no clear directional conviction; invalidation: TRADE INVALID - at least one dimension failed; insufficient evidence for directional call. VERDICT: UNABLE.",
+  "rawText": "[human-llm-stub]",
+  "toolTrace": []
+}

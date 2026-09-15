@@ -1,0 +1,93 @@
+{
+  "pair": "NAS100",
+  "time": "02:09:05 NY",
+  "currentPrice": 29071.6,
+  "dailyBias": {
+    "bias": "neutral",
+    "confidence": "0.00",
+    "alignment": "bullish→bullish→bearish→bearish",
+    "pdZone": "DISCOUNT",
+    "tradeable": false,
+    "detail": "NEUTRAL — 2B/2S aligned. No clear daily bias."
+  },
+  "sessions": {
+    "pm": {
+      "range": {
+        "high": 29456.9,
+        "low": 29095,
+        "range": 361.90000000000146,
+        "candleCount": 33,
+        "source": "15m PM candles",
+        "detail": "PM Session (1:30-4:00 PM prev day): H 29456.90000 | L 29095.00000 | 33 candles"
+      },
+      "priority": 1,
+      "label": "PM Session (prev day 1:30-4:00 PM)",
+      "raidStatus": {
+        "raided": false,
+        "mssConfirmed": false,
+        "detail": "No bias or no range"
+      }
+    },
+    "london": {
+      "range": {
+        "high": 29652,
+        "low": 28795.5,
+        "range": 856.5,
+        "sourceCount": 49,
+        "source": "London session"
+      },
+      "priority": 2,
+      "label": "London Session (today 2:00-5:00 AM)",
+      "raidStatus": {
+        "raided": false,
+        "mssConfirmed": false,
+        "detail": "No bias or no range"
+      }
+    },
+    "openingGap": {
+      "range": null,
+      "priority": 3,
+      "label": "Opening Range Gap (8:30/9:30 AM)",
+      "raidStatus": {
+        "raided": false,
+        "mssConfirmed": false,
+        "detail": "Delegated to Lecture 4 gap model"
+      }
+    },
+    "lunch": {
+      "range": null,
+      "priority": 4,
+      "label": "NY Lunch Raid (12:00-1:30 PM)",
+      "raidStatus": {
+        "raided": false,
+        "mssConfirmed": false,
+        "detail": "Window not yet open"
+      }
+    },
+    "prevAM": {
+      "high": 29283.7,
+      "low": 28795.5,
+      "date": "2026-09-13",
+      "detail": "Prev Day AM Session (2026-09-13): H 29283.70000 | L 28795.50000"
+    }
+  },
+  "firstOpp": {
+    "locked": false,
+    "directionBoost": 1,
+    "counterDirectionWeight": 1,
+    "detail": "No session raid + MSS confirmed yet. Monitoring all sessions in priority order."
+  },
+  "prevAM": {
+    "high": 29283.7,
+    "low": 28795.5,
+    "date": "2026-09-13",
+    "detail": "Prev Day AM Session (2026-09-13): H 29283.70000 | L 28795.50000"
+  },
+  "raidSummary": [
+    "P1 PM Session (prev day 1:30-4:00 PM): ⏳ — No bias or no range",
+    "P2 London Session (today 2:00-5:00 AM): ⏳ — No bias or no range",
+    "P3 Opening Range Gap (8:30/9:30 AM): ⏳ — Delegated to Lecture 4 gap model",
+    "P4 NY Lunch Raid (12:00-1:30 PM): ⏳ — Window not yet open"
+  ],
+  "detail": "Bias: NEUTRAL — 2B/2S aligned. No clear daily bias.\nTarget: Prev Day AM Session (2026-09-13): H 29283.70000 | L 28795.50000\nPM: PM Session (1:30-4:00 PM prev day): H 29456.90000 | L 29095.00000 | 33 candles\nLondon: H 29652.00000 L 28795.50000\nNo session raid + MSS confirmed yet. Monitoring all sessions in priority order."
+}

@@ -1,0 +1,145 @@
+{
+  "pair": "EURUSD",
+  "time": "02:09:41 NY",
+  "currentPrice": 1.15333,
+  "htfBias": {
+    "daily": "bearish",
+    "h4": "bearish",
+    "aligned": true,
+    "direction": "bearish",
+    "detail": "✅ ALIGNED — 1D BEARISH + 4H BEARISH"
+  },
+  "pdhPdl": {
+    "pdh": 1.15979,
+    "pdl": 1.15231,
+    "range": 0.007480000000000153,
+    "date": "2026-09-13",
+    "detail": "PDH: 1.15979 | PDL: 1.15231 | Range: 0.00748"
+  },
+  "pwhPwl": {
+    "pwh": 1.15367,
+    "pwl": 1.15346,
+    "range": 0.00021000000000004349,
+    "detail": "PWH: 1.15367 | PWL: 1.15346 | Range: 0.00021"
+  },
+  "relEquals": {
+    "highs": [],
+    "lows": [],
+    "highCount": 0,
+    "lowCount": 0,
+    "magnets": [],
+    "magnetCount": 0,
+    "smoothCount": 0,
+    "detail": "0 equal highs, 0 equal lows inside daily range"
+  },
+  "drawTargets": {
+    "primary": {
+      "level": "PDH",
+      "price": 1.15979,
+      "type": "BSL",
+      "priority": 1,
+      "label": "Previous Day High"
+    },
+    "oppositePool": null,
+    "allTargets": [
+      {
+        "level": "PDH",
+        "price": 1.15979,
+        "type": "BSL",
+        "priority": 1,
+        "label": "Previous Day High"
+      },
+      {
+        "level": "PWH",
+        "price": 1.15367,
+        "type": "BSL",
+        "priority": 2,
+        "label": "Previous Week High"
+      }
+    ],
+    "detail": "Primary draw: Previous Day High (BSL) @ 1.15979 | Opposite (TP): N/A"
+  },
+  "sweepStatus": {
+    "swept": true,
+    "mss": false,
+    "sweptPool": {
+      "price": 1.159145,
+      "type": "BSL",
+      "strength": 4,
+      "score": 1.5492242928817759,
+      "distance": 0.5041922086480127,
+      "session": "Off",
+      "ageBars": 202,
+      "swept": true
+    },
+    "structureEvent": "BOS",
+    "detail": "✅ Previous Day High SWEPT at 1.15915 | MSS: ⏳ Pending"
+  },
+  "entryGuidance": {
+    "ready": false,
+    "detail": "⏳ NOT READY — ✅ Previous Day High SWEPT at 1.15915 | MSS: ⏳ Pending. Wait for Previous Day High sweep + MSS."
+  },
+  "hrlrLrlr": {
+    "targets": [
+      {
+        "level": "PDH",
+        "price": 1.15979,
+        "type": "BSL",
+        "priority": 1,
+        "label": "Previous Day High",
+        "classification": "HRLR",
+        "defenders": 1,
+        "hasNearbyFVG": true,
+        "isLongTerm": true,
+        "isWithTrend": true,
+        "isCounterTrend": false,
+        "distPct": "0.56"
+      },
+      {
+        "level": "PWH",
+        "price": 1.15367,
+        "type": "BSL",
+        "priority": 2,
+        "label": "Previous Week High",
+        "classification": "HRLR",
+        "defenders": 0,
+        "hasNearbyFVG": true,
+        "isLongTerm": true,
+        "isWithTrend": true,
+        "isCounterTrend": false,
+        "distPct": "0.03"
+      }
+    ],
+    "lrlrCount": 0,
+    "hrlrCount": 2,
+    "primaryLRLR": null,
+    "stretchHRLR": {
+      "level": "PDH",
+      "price": 1.15979,
+      "type": "BSL",
+      "priority": 1,
+      "label": "Previous Day High",
+      "classification": "HRLR",
+      "defenders": 1,
+      "hasNearbyFVG": true,
+      "isLongTerm": true,
+      "isWithTrend": true,
+      "isCounterTrend": false,
+      "distPct": "0.56"
+    },
+    "detail": "0 LRLR (easy, with-trend) | 2 HRLR (hard, needs catalyst) | Primary TP: N/A | Stretch: Previous Day High @ 1.15979"
+  },
+  "sweepVsRun": {
+    "classification": "INDUCEMENT",
+    "action": "WAIT — possible trap",
+    "sweptSide": "BUY-SIDE (above)",
+    "htfAgreesWithSwept": true,
+    "priceClosedBackInside": true,
+    "displacedAway": false,
+    "mssFound": true,
+    "mssDirection": "BEARISH",
+    "currentPrice": 1.15334,
+    "sweptLevel": 1.15979,
+    "detail": "⚠️ INDUCEMENT: BUY-SIDE (above) swept, price reversed back… but HTF agrees with swept side. First sweep of session may be a trap. Wait for second move to confirm real direction."
+  }
+}

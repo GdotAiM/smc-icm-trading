@@ -1,0 +1,11 @@
+{
+  "running": true,
+  "positions": [],
+  "lastSignal": null,
+  "lastScan": "2026-09-03T07:19:48.026Z",
+  "killsToday": 0,
+  "winsToday": 0,
+  "lossesToday": 0,
+  "startTs": "2026-09-02T12:30:23.681Z",
+  "lastError": "SCAN_TIMEOUT"
+}

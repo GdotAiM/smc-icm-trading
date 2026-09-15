@@ -22,6 +22,7 @@
 //   node tools/llm/setup_auditor.cjs EURUSD --date 2026-08-11 --provider cerebras
 //   node tools/llm/setup_auditor.cjs EURUSD --dry-run    # no LLM call
 //   node tools/llm/setup_auditor.cjs EURUSD --max-iterations 6
+//   node tools/llm/setup_auditor.cjs EURUSD --stub       # human-as-LLM fallback (no API call)
 
 const path = require("path");
 const fs = require("fs");
@@ -74,6 +75,147 @@ const PRIORITY_FILES = [
 const PER_FILE_CAP = 2500;
 const TOTAL_STAGE_CAP = 15000;
 const DECISION_CAP = 4000;
+
+// ── Human-as-LLM fallback ─────────────────────────────────────────────────────
+// When LLM providers are down, run the audit inline using the same COT framework
+// (HYPOTHESIS → EVIDENCE → COUNTER-EVIDENCE → VERDICT) but without an API call.
+// Activated via --stub flag or AUTO_FALLBACK env var when all providers fail.
+async function runHumanAudit({ pair, date, root = ROOT, log = null }) {
+  const P = String(pair || "").toUpperCase();
+  if (!P) return { status: "no_pair" };
+
+  const resolvedDate = decisionDate(P, date, root);
+  const { context, decision } = buildContext({ pair: P, date: resolvedDate, root });
+  const sharedDir = path.join(root, "shared", resolvedDate, P);
+  fs.mkdirSync(sharedDir, { recursive: true });
+
+  if (log) log(`setup_auditor[human]: running stub audit for ${P} ${resolvedDate}`);
+
+  // Produce verdict inline using structural heuristics
+  const v = classifyVerdict({ P, decision, context, log });
+
+  const audit = {
+    pair: P,
+    date: resolvedDate,
+    emittedAt: new Date().toISOString(),
+    provider: "human-stub",
+    toolsUsed: false,
+    status: "ok",
+    iterations: 0,
+    verdict: v.verdict,
+    confidence: v.confidence,
+    evidence: v.evidence,
+    counterEvidence: v.counterEvidence,
+    recommendations: v.recommendations,
+    reasoning: v.reasoning,
+    rawText: "[human-llm-stub]",
+    toolTrace: [],
+  };
+
+  const jsonPath = path.join(sharedDir, "setup_audit.json");
+  const mdPath = path.join(sharedDir, "setup_audit.md");
+  try {
+    fs.writeFileSync(jsonPath, JSON.stringify(audit, null, 2), "utf8");
+    fs.writeFileSync(mdPath, formatMarkdown(audit), "utf8");
+  } catch (e) {
+    audit.writeError = e.message;
+  }
+  if (log) log(`setup_auditor[human]: verdict=${audit.verdict} -> ${jsonPath}`);
+  return { ...audit, sharedDir, file: jsonPath, context, decision };
+}
+
+/**
+ * Classify verdict using structural heuristics (no LLM needed).
+ * Mirrors what a human auditor would conclude from the stage data.
+ */
+function classifyVerdict({ P, decision, context, log = null }) {
+  const date = decision?.date || decisionDate(P);
+  const irlPath = path.join(ROOT, "shared", date, P, "irl_erl.json");
+  const otsPath = path.join(ROOT, "shared", date, P, "one_trade_setup.json");
+  const engine1hPath = path.join(ROOT, "shared", date, P, "engine_1h.json");
+  const coherencePath = path.join(ROOT, "stages", "00_council_vote", "output", `${P.toLowerCase()}_coherence_audit.md`);
+  const invalidationPath = path.join(ROOT, "stages", "05b_micro_confirmation", "output", `${P.toLowerCase()}_invalidation.md`);
+
+  let irl, ots, engine1h, coherence, inv;
+  try { irl = JSON.parse(fs.readFileSync(irlPath, "utf8")); } catch (_) {}
+  try { ots = JSON.parse(fs.readFileSync(otsPath, "utf8")); } catch (_) {}
+  try { engine1h = JSON.parse(fs.readFileSync(engine1hPath, "utf8")); } catch (_) {}
+  try { coherence = fs.readFileSync(coherencePath, "utf8"); } catch (_) {}
+  try { inv = fs.readFileSync(invalidationPath, "utf8"); } catch (_) {}
+
+  const db = ots?.dailyBias || {};
+  const fo = ots?.firstOpp || {};
+  const tradeable = db.tradeable;
+  const bias = (db.bias || "").toLowerCase();
+  const locked = fo.locked;
+  const boost = fo.directionBoost || 1;
+  const engineBias = engine1h?.structure?.bias || "";
+  const mmxmStep = decision?.mmxmStep?.step || 0;
+  const registryVerdict = decision?.registry?.verdict || "NO TRADE";
+
+  const evidence = [];
+  const counterEvidence = [];
+  const recommendations = [];
+
+  // Evidence
+  if (engineBias) evidence.push(`engine_1h: ${P} structure bias=${engineBias}`);
+  if (tradeable !== undefined) evidence.push(`one_trade_setup: tradeable=${tradeable}`);
+  if (bias) evidence.push(`daily_bias: ${bias} (${db.confidence || 0}%)`);
+  if (locked) evidence.push(`firstOpp LOCKED: direction=${fo.lockedDirection || "unknown"} boost=${boost}x`);
+  if (fo.detail) evidence.push(`firstOpp detail: ${fo.detail}`);
+  if (db.pdZone) evidence.push(`pdZone: ${db.pdZone}`);
+  const raids = ots?.raidSummary || [];
+  const lockedRaids = raids.filter(r => r.includes("LOCKED") || r.includes("LOCK"));
+  if (lockedRaids.length > 0) evidence.push(`${lockedRaids.length} session(s) LOCKED with MSS`);
+
+  // Counter-evidence
+  const isCoherenceBroken = /BROKEN|30\/100|20\/100|10\/100/.test(coherence);
+  if (isCoherenceBroken) counterEvidence.push("coherence_audit BROKEN (<40/100) - structural contradictions detected");
+  if (mmxmStep < 3) counterEvidence.push(`MMXM step ${mmxmStep}/5 GATE CLOSED - cannot enter until DISTRIBUTION`);
+  if (registryVerdict === "NO TRADE") counterEvidence.push("registry NO TRADE - no single complete model sequence");
+  if (!locked) counterEvidence.push("firstOpp UNLOCKED - no session raid + MSS confirmed yet");
+  if (bias === "neutral" || !bias) counterEvidence.push("dailyBias NEUTRAL - no clear directional conviction");
+  if (inv && /TRADE INVALID|EXIT OR DO NOT ENTER/.test(inv)) {
+    counterEvidence.push("invalidation: TRADE INVALID - at least one dimension failed");
+  }
+
+  // Decide verdict
+  let verdict, confidence;
+
+  if (tradeable && locked && bias !== "neutral") {
+    verdict = "ALIGNED";
+    confidence = Math.max(50, Math.min(80, 68 - (isCoherenceBroken ? 15 : 0)));
+    if (isCoherenceBroken) counterEvidence.unshift("low coherence despite lock - size reduced accordingly");
+  } else if (tradeable && !locked) {
+    verdict = "CHALLENGED";
+    confidence = Math.max(55, 72 - (isCoherenceBroken ? 10 : 0));
+    recommendations.push("Wait for session raid lock + MSS before entering");
+    recommendations.push("Monitor DXY as directional filter");
+  } else if (!tradeable && (bias === "neutral" || !bias)) {
+    verdict = "UNABLE";
+    confidence = 40;
+    counterEvidence.push("insufficient evidence for directional call");
+    recommendations.push("No tradeable edge exists at this time");
+    recommendations.push("Wait for next session raid (London/NY AM) to establish direction");
+  } else {
+    verdict = "UNABLE";
+    confidence = 35;
+    counterEvidence.push("pipeline emitted NO TRADE with insufficient conditions met");
+  }
+
+  if (isCoherenceBroken) {
+    recommendations.push("Reduced position size recommended due to structural contradictions");
+  }
+  if (lockedRaids.length > 0 && tradeable) {
+    recommendations.push(`Entry viable per: ${lockedRaids[0].slice(0, 100)}`);
+  }
+
+  if (log) log(`classifyVerdict: ${P} -> ${verdict} (${confidence}) tradeable=${tradeable} locked=${locked} bias=${bias}`);
+
+  const reasoning = `HYPOTHESIS: Evaluating whether ${P} has a tradeable setup today. EVIDENCE: tradeable=${tradeable}, bias=${bias}, locked=${locked}, engineBias=${engineBias}, MMXM step=${mmxmStep}/5, coherence_broken=${isCoherenceBroken}. COUNTER-EVIDENCE: ${counterEvidence.join("; ") || "none found"}. VERDICT: ${verdict}.`;
+
+  return { verdict, confidence, evidence, counterEvidence, recommendations, reasoning };
+}
 
 // ── Context assembly ───────────────────────────────────────────────────────────
 
@@ -537,11 +679,14 @@ function main() {
   --provider <name>      LLM provider (gemini|cerebras|groq|...)
   --model <name>         model override
   --max-iterations <n>   ReAct loop cap (default 6)
-  --dry-run              build context + print tool defs, no LLM call`);
+  --dry-run              build context + print tool defs, no LLM call
+  --stub                 human-as-LLM fallback: runs structural audit without API call
+`);
     return;
   }
 
   const dryRun = args.includes("--dry-run");
+  const stubMode = args.includes("--stub");
   const opts = {
     pair,
     date: flag("--date"),
@@ -558,6 +703,28 @@ function main() {
     TOOL_DEFS.forEach((t) => console.log(`  ${t.function.name}`));
     console.log("\n--- CONTEXT (first 2000 chars) ---");
     console.log(context.slice(0, 2000));
+    return;
+  }
+
+  if (stubMode) {
+    // Human-as-LLM stub: skip API call, run structural audit inline
+    runHumanAudit(opts)
+      .then((r) => {
+        console.log(`\nSetup audit ${pair}: ${r.verdict || r.status} (confidence ${r.confidence ?? "n/a"}) [STUB MODE]`);
+        console.log(`-> ${r.file}`);
+        if (r.counterEvidence.length) {
+          console.log("\nCounter-evidence:");
+          r.counterEvidence.forEach((c) => console.log(`  - ${c}`));
+        }
+        if (r.recommendations.length) {
+          console.log("\nRecommendations:");
+          r.recommendations.forEach((c) => console.log(`  - ${c}`));
+        }
+      })
+      .catch((e) => {
+        console.error("Stub audit failed:", e.message);
+        process.exit(1);
+      });
     return;
   }
 
@@ -584,6 +751,8 @@ function main() {
 
 module.exports = {
   runAudit,
+  runHumanAudit,
+  classifyVerdict,
   buildContext,
   buildDispatch,
   searchKnowledge,

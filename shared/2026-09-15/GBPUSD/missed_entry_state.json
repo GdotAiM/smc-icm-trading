@@ -1,0 +1,11 @@
+{
+  "pair": "GBPUSD",
+  "assessedAt": "2026-09-15T06:10:19.523Z",
+  "originalSetup": null,
+  "status": "stand_aside",
+  "allowSecondaryEntry": false,
+  "reasons": [
+    "no current valid setup (registry not SETUP COMPLETE)"
+  ],
+  "secondaryEntry": null
+}

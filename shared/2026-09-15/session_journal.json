@@ -1,0 +1,91 @@
+{
+  "session_date": "2026-09-15",
+  "day_of_week": "Tuesday",
+  "ny_time_start": "02:10:19",
+  "ny_time_end": "~pending",
+  "duration_minutes": "in-progress",
+  "session_type": "live_analysis",
+  "verdict": "TRADE",
+  "tradeable_count": 1,
+  "things_done": [
+    "Ran full session analysis at 02:10:19 NY — 4/4 pairs complete",
+    "Data refreshed: all candles fetched, engines regenerated, forecasts generated",
+    "Registry verdicts computed: 1 tradeable, 3 blocked"
+  ],
+  "key_findings": [
+    {
+      "impact": "high",
+      "text": "GBPUSD: Stuck in MANIPULATION — smart money trapping. Gate closed until transition to DISTRIBUTION."
+    },
+    {
+      "impact": "medium",
+      "text": "XAUUSD: Tradeable — null setup ready with gate open."
+    },
+    {
+      "impact": "high",
+      "text": "NAS100: Stuck in MANIPULATION — smart money trapping. Gate closed until transition to DISTRIBUTION."
+    },
+    {
+      "impact": "medium",
+      "text": "Weekly profile split: 3 pairs expect bearish continuation. Gold leading sell-off."
+    }
+  ],
+  "pair_summary": [
+    {
+      "pair": "EURUSD",
+      "price": "1.15333",
+      "bias": "BEARISH (100%)",
+      "model": "NO TRADE",
+      "gate": "CHECK REGISTRY",
+      "coherence": "70",
+      "invalidation": "valid",
+      "phase": "DISTRIBUTION",
+      "smr": "⏳ PRE-SMR",
+      "tradeable": false,
+      "weekly_profile": "Wednesday High"
+    },
+    {
+      "pair": "GBPUSD",
+      "price": "1.34775",
+      "bias": "BULLISH (100%)",
+      "model": "NO TRADE",
+      "gate": "CHECK REGISTRY",
+      "coherence": "30",
+      "invalidation": "valid",
+      "phase": "MANIPULATION",
+      "smr": "⏳ PRE-SMR",
+      "tradeable": false,
+      "weekly_profile": "Wednesday High"
+    },
+    {
+      "pair": "XAUUSD",
+      "price": "4290.44000",
+      "bias": "BULLISH (100%)",
+      "model": "SETUP COMPLETE",
+      "gate": "CHECK REGISTRY",
+      "coherence": "59",
+      "invalidation": "valid",
+      "phase": "DISTRIBUTION",
+      "smr": "⏳ PRE-SMR",
+      "tradeable": true,
+      "weekly_profile": "Wednesday High"
+    },
+    {
+      "pair": "NAS100",
+      "price": "29071.60000",
+      "bias": "BULLISH (100%)",
+      "model": "NO TRADE",
+      "gate": "CHECK REGISTRY",
+      "coherence": "30",
+      "invalidation": "valid",
+      "phase": "MANIPULATION",
+      "smr": "⏳ PRE-SMR",
+      "tradeable": false,
+      "weekly_profile": "Wednesday Low"
+    }
+  ],
+  "files_created": [
+    "shared/2026-09-15/session_log.md",
+    "shared/2026-09-15/session_journal.json"
+  ]
+}

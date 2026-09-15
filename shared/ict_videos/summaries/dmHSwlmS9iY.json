@@ -1,0 +1,124 @@
+{
+  "videoId": "dmHSwlmS9iY",
+  "info": {
+    "title": "The Week In The Life Cycle Of Price",
+    "duration": 5125,
+    "uploadDate": "20260815",
+    "description": "Government Required Risk Disclaimer and Disclosure Statement\n\nCFTC RULE 4.41 – HYPOTHETICAL OR SIMULATED PERFORMANCE RESULTS HAVE CERTAIN LIMITATIONS. UNLIKE AN ACTUAL PERFORMANCE RECORD, SIMULATED RESULTS DO NOT REPRESENT ACTUAL TRADING. ALSO, SINCE THE TRADES HAVE NOT BEEN EXECUTED, THE RESULTS MAY HAVE UNDER-OR-OVER COMPENSATED FOR THE IMPACT, IF ANY, OF CERTAIN MARKET FACTORS, SUCH AS LACK OF LIQUIDITY. SIMULATED TRADING PROGRAMS IN GENERAL ARE ALSO SUBJECT TO THE FACT THAT THEY ARE DESIGNED WITH THE BENEFIT OF HINDSIGHT. NO REPRESENTATION IS BEING MADE THAT ANY ACCOUNT WILL OR IS LIKELY TO ACHIEVE PROFIT OR LOSSES SIMILAR TO THOSE SHOWN\n\nTrading performance displayed herein is hypothetical. Hypothetical performance results have many inherent limitations, some of which are described below. No representation is being made that any account will or is likely to achieve profits or losses similar to those shown. In fact, there are frequently sharp differences between hypothetical performance results and the actual results subsequently achieved by any particular trading program. One of the limitations of hypothetical performance trading results is that they are generally prepared with the benefit of hindsight. In addition, hypothetical trading does not involve financial risk, and no hypothetical trading record can completely account for the impact of financial risk in actual trading. For example, the ability to withstand losses or to adhere to a particular trading program in spite of trading losses are material points which can also adversely affect actual trading results. There are numerous other factors related to the markets in general or to the implementation of any specific trading program which cannot be fully accounted for in the preparation of hypothetical performance results and all of which can adversely affect actual trading results.\n\nU.S. Government Required Disclaimer – Commodity Futures Trading Commission Futures and Options trading has large potential rewards, but also large potential risk. You must be aware of the risks and be willing to accept them in order to invest in the futures and options markets. Don’t trade with money you can’t afford to lose. This is neither a solicitation nor an offer to Buy/Sell futures or options. No representation is being made that any account will or is likely to achieve profits or losses similar to those discussed on this web site. The past performance of any trading system or methodology is not necessarily indicative of future results.\n\nTrade at your own risk. The information provided here is of the nature of a general comment only and neither purports nor intends to be, specific trading advice. It has been prepared without regard to any particular person’s investment objectives, financial situation and particular needs. Information should not be considered as an offer or enticement to buy, sell or trade.\n\nYou should seek appropriate advice from your broker, or licensed investment advisor, before taking any action. Past performance does not guarantee future results. Simulated performance results contain inherent limitations. Unlike actual performance records the results may under or over compensate for such factors such as lack of liquidity. No representation is being made that any account will or is likely to achieve profits or losses to those shown.\n\nThe risk of loss in trading can be substantial. You should therefore carefully consider whether such trading is suitable for you in light of your financial condition.\n\nIf you purchase or sell Equities, Futures, Currencies or Options you may sustain a total loss of the initial margin funds and any additional funds that you deposit with your broker to establish or maintain your position. If the market moves against your position, you may be called upon by your broker to deposit a substantial amount of additional margin funds, on short notice in order to maintain your position. If you do not provide the required funds within the prescribed time, your position may be liquidated at a loss, and you may be liable for any resulting deficit in your account.\n\nUnder certain market conditions, you may find it difficult or impossible to liquidate a position. This can occur, for example, when the market makes a “limit move.” The placement of contingent orders by you, such as a “stop-loss” or “stop-limit” order, will not necessarily limit your losses to the intended amounts, since market conditions may make it impossible to execute such orders."
+  },
+  "summary": {
+    "concepts": [
+      {
+        "name": "TGIF Weekly Range Retracement Model",
+        "category": "Entry Model",
+        "rules": [
+          "On Friday, after the market has completed its weekly expansion toward HTF liquidity targets, expect a TGIF retracement back into the weekly range.",
+          "Target a retracement depth of 20% to 30% (ideally ~25%) of the total weekly range established up to Friday morning.",
+          "Confluence for the 20%-30% retracement target often aligns with key reference levels such as the previous week's high or previous month's high.",
+          "The Friday high typically forms during the morning session between 9:30 AM and 10:10 AM Eastern Time."
+        ],
+        "timeframes": [
+          "1m",
+          "15m",
+          "1d",
+          "1w"
+        ],
+        "keyLevels": [
+          "20% Weekly Range Retracement",
+          "30% Weekly Range Retracement",
+          "Previous Month High",
+          "Previous Week High"
+        ],
+        "entryCriteria": [
+          "Confirm that weekly expansion targets (e.g., previous week/month high) were reached earlier in the week.",
+          "Observe the 9:30 AM RTH open and monitor the 9:50 AM – 10:10 AM macro window for peak formation.",
+          "Identify order flow failure, such as price respecting a rejection block or failing to close above a premium wick's consequent encroachment.",
+          "Wait for a displacement below a BSSI/FVG, creating an Inversion Fair Value Gap.",
+          "Enter short on a return into the Inversion FVG, Bearish Suspension Block, or Silver Bullet setup window."
+        ],
+        "invalidation": "Candle bodies closing above the Friday morning high or above the consequent encroachment of the bearish inversion array.",
+        "confidence": "HIGH",
+        "timestamp": "N/A",
+        "quotes": [
+          "It's likely to go into TGIF, which is retrace back down into the weekly range, 20 to 30%.",
+          "You have to know your extraction point. You have to know how the smart money is going to leave the marketplace."
+        ]
+      },
+      {
+        "name": "Guarded Liquidity Identification",
+        "category": "Liquidity",
+        "rules": [
+          "Relative equal highs or buy-side liquidity pools are not always swept; smart money may guard them during distribution phases.",
+          "If price approaches relative equal highs during key macro windows (e.g., 9:50 AM – 10:10 AM) and respects a rejection block rather than breaking out, the buyside is guarded.",
+          "Order flow confirmation occurs when candle bodies refuse to close above key rejection levels or upper halves of premium wicks."
+        ],
+        "timeframes": [
+          "1m",
+          "5m",
+          "15m"
+        ],
+        "keyLevels": [
+          "Relative Equal Highs",
+          "Rejection Block",
+          "9:30 AM Opening Price"
+        ],
+        "entryCriteria": [
+          "Monitor price approaching relative equal highs near a key timing window (9:50-10:10 AM macro).",
+          "Observe candle bodies failing to close above the rejection block or previous wick's consequent encroachment.",
+          "Confirm breakdown through an existing FVG to signal an inversion and active guarded distribution."
+        ],
+        "invalidation": "Candle bodies closing above the relative equal highs or rejection block level.",
+        "confidence": "HIGH",
+        "timestamp": "N/A",
+        "quotes": [
+          "How do you know when they're not going to take out relative equal highs? ... We have a macro time... If they guard it during the macro... it gives up the ghost."
+        ]
+      },
+      {
+        "name": "Continuous Contract HTF Bias & Draw on Liquidity",
+        "category": "Market Structure",
+        "rules": [
+          "Always begin weekly and monthly bias analysis on a Continuous Futures Contract to avoid rollover gaps and distorted key levels.",
+          "Map previous month's high/low and previous week's high/low across continuous data and blend with front-month contract data.",
+          "Determine the Draw on Liquidity by evaluating path of least resistance from the weekly open relative to nearest HTF liquidity pools in the direction of dominant order flow."
+        ],
+        "timeframes": [
+          "1d",
+          "1w",
+          "1M"
+        ],
+        "keyLevels": [
+          "Previous Month High/Low",
+          "Previous Week High/Low",
+          "July High/Low"
+        ],
+        "entryCriteria": [
+          "Mark continuous contract previous month and week extremes on the weekly chart.",
+          "Note the position of the current week's opening price relative to those levels.",
+          "In a bullish order flow regime, if price opens closer to previous week/month high, establish that as the primary draw on liquidity."
+        ],
+        "invalidation": "Market structure shift breaking opposing key HTF swing points against dominant order flow.",
+        "confidence": "HIGH",
+        "timestamp": "N/A",
+        "quotes": [
+          "My analysis always begins with a continuous contract... Continuous contract gives me a field of reference for key highs, key lows, inefficiencies...",
+          "So, if we're opening here, is it more likely that we're going to go to the previous week's high or previous month's high... Clearly, it's easier to get to it here. So, this is the path of least resistance."
+        ]
+      }
+    ],
+    "summary": "This lecture details ICT's weekly price cycle framework for determining market bias, identifying the draw on liquidity, and executing Friday TGIF retracement setups. By starting analysis on continuous futures contracts to establish key weekly and monthly levels, traders can determine order flow direction and utilize macro time windows (9:50–10:10 AM) alongside Inversion FVGs and Rejection Blocks to trade expected 20–30% weekly range retracements.",
+    "modelName": "TGIF Retracement Model / ICT Silver Bullet",
+    "isNewPDA": false,
+    "relatedConcepts": [
+      "TGIF Model",
+      "ICT Silver Bullet",
+      "Inversion Fair Value Gap",
+      "Rejection Block",
+      "Draw on Liquidity",
+      "Macro Windows (9:50-10:10 AM)",
+      "Continuous Futures Contract Analysis"
+    ],
+    "difficulty": "ADVANCED"
+  },
+  "processedAt": "2026-09-06T07:13:49.177Z"
+}

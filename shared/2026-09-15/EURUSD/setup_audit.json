@@ -1,0 +1,31 @@
+{
+  "pair": "EURUSD",
+  "date": "2026-09-15",
+  "emittedAt": "2026-09-15T07:27:52.097Z",
+  "provider": "human-stub",
+  "toolsUsed": false,
+  "status": "ok",
+  "iterations": 0,
+  "verdict": "CHALLENGED",
+  "confidence": 72,
+  "evidence": [
+    "engine_1h: EURUSD structure bias=bearish",
+    "one_trade_setup: tradeable=true",
+    "daily_bias: bearish (1.00%)",
+    "firstOpp detail: No session raid + MSS confirmed yet. Monitoring all sessions in priority order.",
+    "pdZone: DISCOUNT"
+  ],
+  "counterEvidence": [
+    "MMXM step 2/5 GATE CLOSED - cannot enter until DISTRIBUTION",
+    "registry NO TRADE - no single complete model sequence",
+    "firstOpp UNLOCKED - no session raid + MSS confirmed yet",
+    "invalidation: TRADE INVALID - at least one dimension failed"
+  ],
+  "recommendations": [
+    "Wait for session raid lock + MSS before entering",
+    "Monitor DXY as directional filter"
+  ],
+  "reasoning": "HYPOTHESIS: Evaluating whether EURUSD has a tradeable setup today. EVIDENCE: tradeable=true, bias=bearish, locked=false, engineBias=bearish, MMXM step=2/5, coherence_broken=false. COUNTER-EVIDENCE: MMXM step 2/5 GATE CLOSED - cannot enter until DISTRIBUTION; registry NO TRADE - no single complete model sequence; firstOpp UNLOCKED - no session raid + MSS confirmed yet; invalidation: TRADE INVALID - at least one dimension failed. VERDICT: CHALLENGED.",
+  "rawText": "[human-llm-stub]",
+  "toolTrace": []
+}

@@ -1,0 +1,14 @@
+{
+  "pair": "EURUSD",
+  "today": "2026-09-15",
+  "prevDate": "2026-09-14",
+  "found": false,
+  "summary": "Insufficient NY lunch candles in prior day",
+  "candlesAnalyzed": 300,
+  "lunchCandleCount": 0,
+  "sweep": null,
+  "inefficiency": null,
+  "eventHorizons": [],
+  "action": null,
+  "prevSessionDate": "2026-09-14"
+}
