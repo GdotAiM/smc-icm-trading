@@ -1,0 +1,170 @@
+{
+  "price": 4333.275,
+  "structure": {
+    "bias": "bullish",
+    "lastEvent": "CHoCH",
+    "lastEventPrice": 4328.56,
+    "lastEventTime": 1789536600000,
+    "confidence": 1,
+    "lastSwingHigh": 4328.56,
+    "lastSwingLow": 4320.635
+  },
+  "liquidity": [
+    {
+      "price": 4291.755,
+      "type": "SSL",
+      "strength": 7,
+      "score": 4.010830368849782,
+      "distance": 0.9581667445523196,
+      "session": "Off",
+      "ageBars": 89,
+      "swept": true
+    },
+    {
+      "price": 4285.027142857143,
+      "type": "SSL",
+      "strength": 7,
+      "score": 4.195669244916274,
+      "distance": 1.1134270763534844,
+      "session": "Off",
+      "ageBars": 76,
+      "swept": true
+    },
+    {
+      "price": 4322.306666666666,
+      "type": "SSL",
+      "strength": 3,
+      "score": 1.6358436810153563,
+      "distance": 0.2531187919837363,
+      "session": "Asia",
+      "ageBars": 11,
+      "swept": true
+    },
+    {
+      "price": 4279.7119999999995,
+      "type": "SSL",
+      "strength": 5,
+      "score": 2.771063398245859,
+      "distance": 1.2360858703867192,
+      "session": "Asia",
+      "ageBars": 46,
+      "swept": false
+    },
+    {
+      "price": 4300.295000000001,
+      "type": "SSL",
+      "strength": 3,
+      "score": 2.1410393980376328,
+      "distance": 0.7610871684810833,
+      "session": "NY PM",
+      "ageBars": 113,
+      "swept": true
+    },
+    {
+      "price": 4271.14,
+      "type": "SSL",
+      "strength": 3,
+      "score": 2.84215600780227,
+      "distance": 1.433903917937341,
+      "session": "NY AM",
+      "ageBars": 167,
+      "swept": false
+    }
+  ],
+  "orderBlocks": [
+    {
+      "top": 4280.96,
+      "bottom": 4276.35,
+      "proximal": 4280.96,
+      "distal": 4276.35,
+      "type": "bullish",
+      "kind": "Breaker",
+      "index": 49,
+      "time": 1789458900000,
+      "impulseAtr": 2.492847195847454,
+      "hasFvg": true,
+      "distance": 1.2604785064414095
+    }
+  ],
+  "fvgs": [
+    {
+      "top": 4309.185,
+      "bottom": 4300.71,
+      "type": "bullish",
+      "index": 260,
+      "time": 1789525800000,
+      "gapAtr": 1.5356241506504367,
+      "displacementAtr": 1.9985763282210263,
+      "fillFraction": 0,
+      "distance": 0.6537203385430055
+    }
+  ],
+  "draw": {
+    "price": 4291.755,
+    "side": "down",
+    "distance": 0.9581667445523196,
+    "reason": "SSL pool Â· 7 touches",
+    "score": 0.6833466604358145
+  },
+  "alt": null,
+  "volumeDisplacement": {
+    "atrRatio": 0.0526315789473223,
+    "label": "weak",
+    "volumeConfirmed": false,
+    "volumeRatio": 0.11397383417609759
+  },
+  "pdArray": {
+    "rangeHigh": 0,
+    "rangeLow": 0,
+    "midpoint": 0,
+    "currentZone": "discount",
+    "zoneDistance": 0,
+    "description": "No clear dealing range identified"
+  },
+  "inversionFvgs": [
+    {
+      "top": 4335.625,
+      "bottom": 4330.8,
+      "type": "inversion",
+      "index": 268,
+      "time": 1789528200000,
+      "gapAtr": 0.7516412595971685,
+      "reversalAtr": 0.6456265713908739,
+      "confirmationLag": 5,
+      "distance": 0.0014423271082495343
+    },
+    {
+      "top": 4324.755,
+      "bottom": 4323.455,
+      "type": "inversion",
+      "index": 286,
+      "time": 1789533600000,
+      "gapAtr": 0.4246383574428818,
+      "reversalAtr": 1.5453610896941257,
+      "confirmationLag": 5,
+      "distance": -0.21161823332237337
+    },
+    {
+      "top": 4322.95,
+      "bottom": 4322.12,
+      "type": "inversion",
+      "index": 287,
+      "time": 1789533900000,
+      "gapAtr": 0.27706247019548375,
+      "reversalAtr": 1.5453610896941257,
+      "confirmationLag": 4,
+      "distance": -0.24784949028159492
+    },
+    {
+      "top": 4295.39,
+      "bottom": 4294.365,
+      "type": "inversion",
+      "index": 205,
+      "time": 1789505700000,
+      "gapAtr": 0.4466230936821788,
+      "reversalAtr": 1.419988874467244,
+      "confirmationLag": 1,
+      "distance": 0.8861080822241638
+    }
+  ]
+}

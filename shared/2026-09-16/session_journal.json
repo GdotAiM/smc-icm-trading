@@ -1,0 +1,90 @@
+{
+  "session_date": "2026-09-16",
+  "day_of_week": "Wednesday",
+  "ny_time_start": "01:47:00",
+  "ny_time_end": "~pending",
+  "duration_minutes": "in-progress",
+  "session_type": "live_analysis",
+  "verdict": "WATCH",
+  "tradeable_count": 0,
+  "things_done": [
+    "Ran full session_start at 01:47 NY — 4/4 pairs complete (NASDAQ 5m/15m/1m skipped due to corrupt candles)",
+    "Ran run_pair.cjs for EURUSD, GBPUSD, XAUUSD, NAS100 — all 4 passed evaluation",
+    "Weekly profile: 2x Wednesday High (bearish), 2x Wednesday Low (bullish) — classic reversal day split",
+    "DXY critical: SSL 99.594 (0.02%, unswept) vs BSL 99.710 (0.10%, swept) — trapped between",
+    "Gold gap UP +39pts from yesterday close, strongest intraday mover",
+    "LLM provider still unavailable — setup_auditor will use --stub fallback"
+  ],
+  "key_findings": [
+    {
+      "impact": "high",
+      "text": "Wednesday REVERSAL DAY — highest probability weekly high/low forms today"
+    },
+    {
+      "impact": "high",
+      "text": "XAUUSD: SETUP COMPLETE gap up, weekly profile BULLISH Wed Low target, 5m+1m both bullish"
+    },
+    {
+      "impact": "medium",
+      "text": "DXY trapped between 99.594 SSL and 99.710 BSL — breakout from here dictates risk regime"
+    },
+    {
+      "impact": "medium",
+      "text": "NASDAQ 15m/5m/1m candles corrupted in morning fetch — manual re-fetch needed before NY Open"
+    },
+    {
+      "impact": "low",
+      "text": "No session locks formed yet — PM and London sessions not yet raided on fresh data"
+    }
+  ],
+  "pair_summary": [
+    {
+      "pair": "EURUSD",
+      "price": "1.15457",
+      "bias": "BULLISH (1H flip) / BEARISH (weekly)",
+      "model": "NO TRADE",
+      "gate": "CHECK REGISTRY",
+      "coherence": "70",
+      "invalidation": "valid",
+      "phase": "MANIPULATION",
+      "tradeable": false,
+      "weekly_profile": "Wednesday High"
+    },
+    {
+      "pair": "GBPUSD",
+      "price": "1.34870",
+      "bias": "BEARISH (1H) / BULLISH (weekly)",
+      "model": "NO TRADE",
+      "gate": "CHECK REGISTRY",
+      "coherence": "?",
+      "invalidation": "valid",
+      "phase": "MANIPULATION",
+      "tradeable": false,
+      "weekly_profile": "Wednesday High"
+    },
+    {
+      "pair": "XAUUSD",
+      "price": "4333.350",
+      "bias": "BULLISH (all TFs aligned)",
+      "model": "SETUP READY",
+      "gate": "CHECK REGISTRY",
+      "coherence": "?",
+      "invalidation": "valid",
+      "phase": "DISTRIBUTION",
+      "tradeable": true,
+      "weekly_profile": "Wednesday Low"
+    },
+    {
+      "pair": "NAS100",
+      "price": "29036.300",
+      "bias": "MIXED (1W/1D bull, 4H/1H bear)",
+      "model": "NO TRADE",
+      "gate": "CHECK REGISTRY",
+      "coherence": "70",
+      "invalidation": "valid",
+      "phase": "MANIPULATION",
+      "tradeable": false,
+      "weekly_profile": "Wednesday Low"
+    }
+  ]
+}

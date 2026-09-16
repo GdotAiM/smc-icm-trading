@@ -1,0 +1,2 @@
+{"timestamp":"2026-09-16T05:50:19.077Z","pair":"NAS100","event":"SESSION_START","date":"2026-09-16","nyTime":{"hour":1,"day":3,"dayName":"Wednesday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-09-16T05:50:37.505Z","pair":"NAS100","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":18,"status":"PARTIAL","stageList":[]}

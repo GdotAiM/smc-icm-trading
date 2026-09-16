@@ -1,0 +1,131 @@
+{
+  "price": 1.3487,
+  "structure": {
+    "bias": "bearish",
+    "lastEvent": "CHoCH",
+    "lastEventPrice": 1.3487,
+    "lastEventTime": 1789537200000,
+    "confidence": 1,
+    "lastSwingHigh": 1.34891,
+    "lastSwingLow": 1.3487
+  },
+  "liquidity": [
+    {
+      "price": 1.3477147058823529,
+      "type": "SSL",
+      "strength": 17,
+      "score": 10.06290166119136,
+      "distance": 0.07305509880975307,
+      "session": "Asia",
+      "ageBars": 27,
+      "swept": false
+    }
+  ],
+  "orderBlocks": [
+    {
+      "top": 1.34792,
+      "bottom": 1.34785,
+      "proximal": 1.34792,
+      "distal": 1.34785,
+      "type": "bullish",
+      "kind": "OB",
+      "index": 186,
+      "time": 1789530660000,
+      "impulseAtr": 1.5555555555571547,
+      "hasFvg": true,
+      "distance": 0.060428560836361694
+    }
+  ],
+  "fvgs": [
+    {
+      "top": 1.34753,
+      "bottom": 1.34738,
+      "type": "bullish",
+      "index": 105,
+      "time": 1789525800000,
+      "gapAtr": 1.499999999998414,
+      "displacementAtr": 1.5000000000006344,
+      "fillFraction": 0,
+      "distance": 0.09231111440646109
+    },
+    {
+      "top": 1.34674,
+      "bottom": 1.3467,
+      "type": "bullish",
+      "index": 80,
+      "time": 1789524300000,
+      "gapAtr": 0.5185185185192648,
+      "displacementAtr": 1.4259259259272585,
+      "fillFraction": 0,
+      "distance": 0.1468080373693255
+    }
+  ],
+  "draw": {
+    "price": 1.3477147058823529,
+    "side": "down",
+    "distance": 0.07305509880975307,
+    "reason": "SSL pool Â· 17 touches",
+    "score": 1.1432789309095028
+  },
+  "alt": null,
+  "volumeDisplacement": {
+    "atrRatio": 0.3043478260856343,
+    "label": "weak",
+    "volumeConfirmed": false,
+    "volumeRatio": 0.2810810810810811
+  },
+  "pdArray": {
+    "rangeHigh": 1.3469,
+    "rangeLow": 1.34665,
+    "midpoint": 1.346775,
+    "currentZone": "premium",
+    "zoneDistance": 15.399999999994494,
+    "description": "Price in premium (820% of range). 770.0% above midpoint"
+  },
+  "inversionFvgs": [
+    {
+      "top": 1.34856,
+      "bottom": 1.34854,
+      "type": "inversion",
+      "index": 233,
+      "time": 1789533480000,
+      "gapAtr": 0.25225225225126824,
+      "reversalAtr": 1.3461538461552256,
+      "confirmationLag": 1,
+      "distance": 0.011121821012834173
+    },
+    {
+      "top": 1.34851,
+      "bottom": 1.34848,
+      "type": "inversion",
+      "index": 232,
+      "time": 1789533420000,
+      "gapAtr": 0.3750000000026021,
+      "reversalAtr": 1.3461538461552256,
+      "confirmationLag": 2,
+      "distance": 0.01519982205086459
+    },
+    {
+      "top": 1.34844,
+      "bottom": 1.34838,
+      "type": "inversion",
+      "index": 231,
+      "time": 1789533360000,
+      "gapAtr": 0.7924528301912246,
+      "reversalAtr": 1.1666666666669065,
+      "confirmationLag": 5,
+      "distance": 0.02150218729147501
+    },
+    {
+      "top": 1.34843,
+      "bottom": 1.34838,
+      "type": "inversion",
+      "index": 261,
+      "time": 1789535160000,
+      "gapAtr": 0.8860759493683837,
+      "reversalAtr": 2.303797468352936,
+      "confirmationLag": 2,
+      "distance": -0.021872914658555214
+    }
+  ]
+}

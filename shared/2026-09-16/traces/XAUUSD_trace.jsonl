@@ -1,0 +1,2 @@
+{"timestamp":"2026-09-16T05:49:34.615Z","pair":"XAUUSD","event":"SESSION_START","date":"2026-09-16","nyTime":{"hour":1,"day":3,"dayName":"Wednesday"},"nodeVersion":"v24.15.0"}
+{"timestamp":"2026-09-16T05:49:53.346Z","pair":"XAUUSD","event":"SESSION_FINISH","totalStages":0,"ok":0,"failed":0,"skipped":0,"durationSec":19,"status":"PARTIAL","stageList":[]}

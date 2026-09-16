@@ -1,0 +1,22 @@
+{
+  "pair": "GBPUSD",
+  "date": "2026-09-16",
+  "emittedAt": "2026-09-16T05:49:20.717Z",
+  "provider": "default",
+  "toolsUsed": false,
+  "status": "llm_unavailable",
+  "iterations": 1,
+  "verdict": null,
+  "confidence": null,
+  "evidence": [],
+  "counterEvidence": [],
+  "recommendations": [],
+  "reasoning": "",
+  "rawText": "[LLM error 400: {\"error\":{\"type\":\"server_error\",\"message\":\"Error from provider (Console): Upstream request failed: Model is unavailable.\"}}]",
+  "toolTrace": [
+    {
+      "iteration": 0,
+      "llm": true
+    }
+  ]
+}
