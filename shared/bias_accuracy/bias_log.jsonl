@@ -1,0 +1,16 @@
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"EURUSD","bias":"BEARISH","timeframe":"1h","source":"manual","note":"Morning pipeline 02:10 NY","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"GBPUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"Morning pipeline - WRONG","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"XAUUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"Morning pipeline","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"NAS100","bias":"BULLISH","timeframe":"1h","source":"manual","note":"Morning pipeline","locked":true}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"EURUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"London scan 09:21 NY - flipped bullish","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"GBPUSD","bias":"BEARISH","timeframe":"1h","source":"manual","note":"London scan 09:21 NY - corrected bearish","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"XAUUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"London scan 09:21 NY","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"NAS100","bias":"BULLISH","timeframe":"1h","source":"manual","note":"London scan 09:21 NY - LOCKED LONG","locked":true}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"EURUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"PM scan 13:21 NY","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"GBPUSD","bias":"BEARISH","timeframe":"1h","source":"manual","note":"PM scan 13:21 NY","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"XAUUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"PM scan 13:21 NY","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"NAS100","bias":"BULLISH","timeframe":"1h","source":"manual","note":"PM scan 13:21 NY","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"EURUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"Current scan 15:26 NY","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"GBPUSD","bias":"BEARISH","timeframe":"1h","source":"manual","note":"Current scan 15:26 NY","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"XAUUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"Current scan 15:26 NY","locked":false}
+{"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"NAS100","bias":"BULLISH","timeframe":"1h","source":"manual","note":"Current scan 15:26 NY","locked":false}
