@@ -14,3 +14,11 @@
 {"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"GBPUSD","bias":"BEARISH","timeframe":"1h","source":"manual","note":"Current scan 15:26 NY","locked":false}
 {"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"XAUUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"Current scan 15:26 NY","locked":false}
 {"ts":"2026-09-16T10:00:00","nyDate":"2026-09-16","nyHour":12,"pair":"NAS100","bias":"BULLISH","timeframe":"1h","source":"manual","note":"Current scan 15:26 NY","locked":false}
+{"ts":"2026-09-17T10:00:00","nyDate":"2026-09-17","nyHour":12,"pair":"EURUSD","bias":"BEARISH","timeframe":"1h","source":"manual","note":"Morning brief - weak, grinding lower","locked":false}
+{"ts":"2026-09-17T10:00:00","nyDate":"2026-09-17","nyHour":12,"pair":"GBPUSD","bias":"BEARISH","timeframe":"1h","source":"manual","note":"Morning brief - bearish continuation","locked":false}
+{"ts":"2026-09-17T10:00:00","nyDate":"2026-09-17","nyHour":12,"pair":"XAUUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"Morning brief - recovering from gap down","locked":false}
+{"ts":"2026-09-17T10:00:00","nyDate":"2026-09-17","nyHour":12,"pair":"NAS100","bias":"BULLISH","timeframe":"1h","source":"manual","note":"Morning brief - gap recovery, expansion day","locked":true}
+{"ts":"2026-09-17T10:00:00","nyDate":"2026-09-17","nyHour":12,"pair":"EURUSD","bias":"BEARISH","timeframe":"1h","source":"manual","note":"London/Pre-NY - weak chop","locked":false}
+{"ts":"2026-09-17T10:00:00","nyDate":"2026-09-17","nyHour":12,"pair":"GBPUSD","bias":"BEARISH","timeframe":"1h","source":"manual","note":"London/Pre-NY - bearish continuation","locked":false}
+{"ts":"2026-09-17T10:00:00","nyDate":"2026-09-17","nyHour":12,"pair":"XAUUSD","bias":"BULLISH","timeframe":"1h","source":"manual","note":"London/Pre-NY - recovering +15pts","locked":false}
+{"ts":"2026-09-17T10:00:00","nyDate":"2026-09-17","nyHour":12,"pair":"NAS100","bias":"BULLISH","timeframe":"1h","source":"manual","note":"London/Pre-NY - strong recovery +40pts","locked":true}
