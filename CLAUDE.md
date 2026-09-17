@@ -557,3 +557,11 @@ Layer 2: CronCreate (every 10min, idle-REPL) — deep scans when chat quiet
 Both read/write shared `session_state.json` — no duplicate work, zero gaps.
 
 
+
+## Bias Tracking
+
+Use `node tools/bias_tracker.cjs` to log bias calls and generate accuracy reports:
+  `node tools/bias_tracker.cjs log <PAIR> <BIAS> [--tf 1h] [--note "reason"] [--date YYYY-MM-DD]`
+  `node tools/bias_tracker.cjs report --date YYYY-MM-DD`
+
+Log biases at each scan (morning, London, PM, NY Open) for daily accuracy tracking.
